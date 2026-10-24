@@ -138,3 +138,8 @@ clang -target x86_64-apple-darwin19 \
   -lobjc -lSystem \
   Source/main.m -o MyApp.app/Contents/MacOS/MyApp
 ```
+
+---
+
+> [!NOTE]
+> macOS, AppKit, Cocoa, IOKit, Metal являются товарными знаками Apple Inc. Проект darwinOS является независимым проектом с открытым исходным кодом в исследовательских целях (подробнее см. в [LEGAL.md](../LEGAL.md)).

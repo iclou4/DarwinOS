@@ -66,3 +66,8 @@
   $writer.WriteLine('screendump screenshot.ppm')
   $tcp.Close()
   ```
+
+---
+
+> [!NOTE]
+> macOS, AppKit, Cocoa, IOKit, Metal являются товарными знаками Apple Inc. Проект darwinOS является независимым проектом с открытым исходным кодом в исследовательских целях (подробнее см. в [LEGAL.md](../LEGAL.md)).

@@ -120,3 +120,8 @@ clang++ -target x86_64-apple-darwin19 \
   -mkernel -DAPPLE -DKERNEL -I${XNU_HEADERS} \
   -c MyDriver.cpp -o MyDriver.o
 ```
+
+---
+
+> [!NOTE]
+> macOS, AppKit, Cocoa, IOKit, Metal являются товарными знаками Apple Inc. Проект darwinOS является независимым проектом с открытым исходным кодом в исследовательских целях (подробнее см. в [LEGAL.md](../LEGAL.md)).

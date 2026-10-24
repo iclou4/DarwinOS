@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# metal - Apple Metal Shading Language Compiler Driver for ravynOS
+# metal - Apple Metal Shading Language Compiler Driver for ravynOS / darwinOS
 set -e
 
 TC="/Library/Developer/Toolchains/Default.xctoolchain"
@@ -39,7 +39,11 @@ if [[ ${#INPUTS[@]} -eq 0 ]]; then
 fi
 
 if [[ -z "$OUT" ]]; then
-	OUT="default.air"
+	if [[ $COMPILE_ONLY -eq 1 ]]; then
+		OUT="default.air"
+	else
+		OUT="default.metallib"
+	fi
 fi
 
 if [[ $COMPILE_ONLY -eq 1 ]]; then
@@ -48,9 +52,19 @@ if [[ $COMPILE_ONLY -eq 1 ]]; then
 		-I"$MTL_HDRS" -I"$MTL_HDRS/Metal" -I"$MTL_HDRS/metal_stdlib" \
 		"${ARGS[@]}" -c "${INPUTS[@]}" -o "$OUT"
 else
-	exec "$CLANG" -target x86_64-apple-darwin19 --sysroot="$SDK" \
+	TMP_OBJS=()
+	for inp in "${INPUTS[@]}"; do
+		t_obj=$(mktemp /tmp/metal_obj_XXXXXX.o)
+		"$CLANG" -target x86_64-apple-darwin19 --sysroot="$SDK" \
+			-x c++ -std=c++14 -O2 -fPIC -fvisibility=default \
+			-I"$MTL_HDRS" -I"$MTL_HDRS/Metal" -I"$MTL_HDRS/metal_stdlib" \
+			"${ARGS[@]}" -c "$inp" -o "$t_obj"
+		TMP_OBJS+=("$t_obj")
+	done
+	"$CLANG" -target x86_64-apple-darwin19 --sysroot="$SDK" \
 		--ld-path="$TC/usr/bin/ld64" \
-		-shared -dylib -fPIC -O2 -fvisibility=default \
-		-I"$MTL_HDRS" -I"$MTL_HDRS/Metal" -I"$MTL_HDRS/metal_stdlib" \
-		"${ARGS[@]}" "${INPUTS[@]}" -o "$OUT"
+		-shared -dynamiclib -fPIC -O2 \
+		-Wl,-undefined,dynamic_lookup \
+		"${ARGS[@]}" "${TMP_OBJS[@]}" -o "$OUT"
+	rm -f "${TMP_OBJS[@]}"
 fi
