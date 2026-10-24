@@ -1445,17 +1445,17 @@ poll_input(void)
             int win_y = (int)((under->y + under->h) - py);
             if (win_x >= 0 && win_x < RECOVERY_UI_W && win_y >= 0 && win_y < RECOVERY_UI_H) {
                 int clicked_row = -1;
-                if (win_y >= 34 && win_y < 120) clicked_row = 0;
-                else if (win_y >= 120 && win_y < 210) clicked_row = 1;
-                else if (win_y >= 210 && win_y < 300) clicked_row = 2;
-                else if (win_y >= 300 && win_y < 390) clicked_row = 3;
+                if (win_y >= 20 && win_y < 112) clicked_row = 0;
+                else if (win_y >= 112 && win_y < 204) clicked_row = 1;
+                else if (win_y >= 204 && win_y < 296) clicked_row = 2;
+                else if (win_y >= 296 && win_y < 388) clicked_row = 3;
 
                 if (clicked_row >= 0) {
                     g_recovery_selected_row = clicked_row;
                     memcpy(under->surface, g_recovery_states[clicked_row], (size_t)RECOVERY_UI_W * (size_t)RECOVERY_UI_H * 4);
                     under->mtl_tex = NULL;
                     g_dirty = 1;
-                } else if (win_x >= 380 && win_x <= 464 && win_y >= 398 && win_y <= 426) {
+                } else if (win_x >= 380 && win_x <= 465 && win_y >= 398 && win_y <= 430) {
                     memcpy(under->surface, g_recovery_state_4, (size_t)RECOVERY_UI_W * (size_t)RECOVERY_UI_H * 4);
                     under->mtl_tex = NULL;
                     g_dirty = 1;
