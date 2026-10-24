@@ -139,6 +139,8 @@ static int      g_mouse_buttons;
 static int      g_cursor_hidden;
 static int      g_ready;
 static volatile int g_dirty = 1;        /* full recomposite + present needed */
+static int g_recovery_selected_row = 1;
+static int g_active_topbar_menu = -1;
 static volatile int g_cursor_moved;     /* only the pointer moved */
 static int          g_drag_dirty;
 static int          g_drag_x0, g_drag_y0, g_drag_x1, g_drag_y1;
@@ -1401,6 +1403,29 @@ poll_input(void)
             activate_app(under->owner, under);
             g_dirty = 1;
 
+            /* macOS Recovery procedural interactive click handling */
+            if (under->w == 420 && under->h == 370 && under->surface) {
+                int win_x = (int)under->x;
+                int win_y = (int)under->y;
+                int rx = (int)px - win_x;
+                int ry = 370 - ((int)py - win_y);
+                int sel = -1;
+                if (rx >= 18 && rx <= 402) {
+                    if (ry >= 82 && ry < 140) sel = 0;
+                    else if (ry >= 140 && ry < 200) sel = 1;
+                    else if (ry >= 200 && ry < 260) sel = 2;
+                    else if (ry >= 260 && ry < 320) sel = 3;
+                }
+                if (sel >= 0) {
+                    g_recovery_selected_row = sel;
+                    memcpy(under->surface, g_recovery_ui_states[sel], 420 * 370 * 4);
+                    g_dirty = 1;
+                } else if (rx >= 320 && rx <= 402 && ry >= 324 && ry <= 352) {
+                    memcpy(under->surface, g_recovery_ui_state_btn, 420 * 370 * 4);
+                    g_dirty = 1;
+                }
+            }
+
             /* title bar drag (leave room for the traffic lights) */
             if (py >= under->y + under->h - kWindowServerTitlebarHeight &&
                 px >= under->x + 60) {
@@ -1426,6 +1451,10 @@ poll_input(void)
         }
     } else if (!(buttons & 1) && (lastbuttons & 1)) {
         /* left up */
+        if (under && under->w == 420 && under->h == 370 && under->surface) {
+            memcpy(under->surface, g_recovery_ui_states[g_recovery_selected_row], 420 * 370 * 4);
+            g_dirty = 1;
+        }
         if (g_dragWin) {
             send_window_state(g_dragWin);
             g_drag_last_win = g_dragWin;
@@ -1562,7 +1591,7 @@ rpc_window_create(WSPortMessage *m, mach_port_t reply)
         for (k = 0; k < n; k++)
             fill[k] = 0xff292929u;
         if (d->w == RECOVERY_UI_W && d->h == RECOVERY_UI_H) {
-            memcpy(fill, g_recovery_ui_pixels, sizeof(g_recovery_ui_pixels));
+            memcpy(fill, g_recovery_ui_pixels, (size_t)RECOVERY_UI_W * (size_t)RECOVERY_UI_H * 4);
         }
     }
 
@@ -1999,19 +2028,7 @@ render_thread(void *arg)
          * Check g_dirty first: when dragging or updating windows, full compositing
          * must run every frame to prevent window freeze and stuttering.
          */
-        int has_visible_win = 0;
-        for (int lvl = 0; lvl < kCGNumReservedWindowLevels; lvl++) {
-            WSWindow *cw;
-            for (cw = g_levels[lvl]; cw; cw = cw->next) {
-                if (win_visible(cw) && cw->surface) {
-                    has_visible_win = 1;
-                    break;
-                }
-            }
-            if (has_visible_win) break;
-        }
-
-        if (g_dirty != 0 || frames < 600 || has_visible_win) {
+        if (g_dirty != 0 || frames < 60) {
             frames++;
             WSWindow *targetWin = g_dragWin ? g_dragWin : g_drag_last_win;
             int was_drag = (targetWin != NULL && g_drag_prev_x != -9999);
