@@ -1403,29 +1403,6 @@ poll_input(void)
             activate_app(under->owner, under);
             g_dirty = 1;
 
-            /* macOS Recovery procedural interactive click handling */
-            if (under->w == 420 && under->h == 370 && under->surface) {
-                int win_x = (int)under->x;
-                int win_y = (int)under->y;
-                int rx = (int)px - win_x;
-                int ry = 370 - ((int)py - win_y);
-                int sel = -1;
-                if (rx >= 18 && rx <= 402) {
-                    if (ry >= 82 && ry < 140) sel = 0;
-                    else if (ry >= 140 && ry < 200) sel = 1;
-                    else if (ry >= 200 && ry < 260) sel = 2;
-                    else if (ry >= 260 && ry < 320) sel = 3;
-                }
-                if (sel >= 0) {
-                    g_recovery_selected_row = sel;
-                    memcpy(under->surface, g_recovery_ui_states[sel], 420 * 370 * 4);
-                    g_dirty = 1;
-                } else if (rx >= 320 && rx <= 402 && ry >= 324 && ry <= 352) {
-                    memcpy(under->surface, g_recovery_ui_state_btn, 420 * 370 * 4);
-                    g_dirty = 1;
-                }
-            }
-
             /* title bar drag (leave room for the traffic lights) */
             if (py >= under->y + under->h - kWindowServerTitlebarHeight &&
                 px >= under->x + 60) {
@@ -1451,10 +1428,6 @@ poll_input(void)
         }
     } else if (!(buttons & 1) && (lastbuttons & 1)) {
         /* left up */
-        if (under && under->w == 420 && under->h == 370 && under->surface) {
-            memcpy(under->surface, g_recovery_ui_states[g_recovery_selected_row], 420 * 370 * 4);
-            g_dirty = 1;
-        }
         if (g_dragWin) {
             send_window_state(g_dragWin);
             g_drag_last_win = g_dragWin;
