@@ -1,0 +1,143 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0
+// swift-module-flags: -target x86_64-apple-macos10.15 -enable-library-evolution -module-name SwiftUI
+import AppKit
+import Foundation
+
+public protocol View {
+    associatedtype Body : View
+    @ViewBuilder var body: Self.Body { get }
+}
+
+public protocol App {
+    associatedtype Body : Scene
+    @SceneBuilder var body: Self.Body { get }
+    init()
+}
+
+public protocol Scene {
+    associatedtype Body : Scene
+    var body: Self.Body { get }
+}
+
+public struct WindowGroup<Content : View> : Scene {
+    public var body: WindowGroup<Content> { get }
+    public init(@ViewBuilder content: () -> Content)
+}
+
+@resultBuilder public struct ViewBuilder {
+    public static func buildBlock() -> EmptyView
+    public static func buildBlock<Content : View>(_ content: Content) -> Content
+}
+
+@resultBuilder public struct SceneBuilder {
+    public static func buildBlock<Content : Scene>(_ content: Content) -> Content
+}
+
+public struct EmptyView : View {
+    public var body: Never { get }
+    public init()
+}
+
+public struct Text : View {
+    public var body: Never { get }
+    public init(verbatim content: String)
+    public init(_ content: String)
+}
+
+public struct Button<Label : View> : View {
+    public var body: Never { get }
+    public init(action: @escaping () -> Void, @ViewBuilder label: () -> Label)
+}
+
+public struct Image : View {
+    public var body: Never { get }
+    public init(systemName: String)
+}
+
+public struct VStack<Content : View> : View {
+    public var body: Never { get }
+    public init(alignment: HorizontalAlignment = .center, spacing: CGFloat? = nil, @ViewBuilder content: () -> Content)
+}
+
+public struct HStack<Content : View> : View {
+    public var body: Never { get }
+    public init(alignment: VerticalAlignment = .center, spacing: CGFloat? = nil, @ViewBuilder content: () -> Content)
+}
+
+public struct ZStack<Content : View> : View {
+    public var body: Never { get }
+    public init(alignment: Alignment = .center, @ViewBuilder content: () -> Content)
+}
+
+public struct List<Content : View> : View {
+    public var body: Never { get }
+    public init(@ViewBuilder content: () -> Content)
+}
+
+public struct Spacer : View {
+    public var body: Never { get }
+    public init(minLength: CGFloat? = nil)
+}
+
+public struct Divider : View {
+    public var body: Never { get }
+    public init()
+}
+
+public struct Material {
+    public static let ultraThinMaterial: Material
+    public static let thinMaterial: Material
+    public static let regularMaterial: Material
+    public static let thickMaterial: Material
+    public static let ultraThickMaterial: Material
+}
+
+public struct Animation {
+    public static func spring(response: Double = 0.35, dampingFraction: Double = 0.75, blendDuration: Double = 0) -> Animation
+}
+
+extension View {
+    public func padding(_ length: CGFloat? = nil) -> some View
+    public func frame(width: CGFloat? = nil, height: CGFloat? = nil) -> some View
+    public func background(_ material: Material) -> some View
+    public func cornerRadius(_ radius: CGFloat) -> some View
+    public func shadow(color: Color = Color.black.opacity(0.33), radius: CGFloat, x: CGFloat = 0, y: CGFloat = 0) -> some View
+    public func animation(_ animation: Animation?) -> some View
+}
+
+public struct Color {
+    public static let accentColor: Color
+    public static let primary: Color
+    public static let secondary: Color
+    public static let clear: Color
+    public static let white: Color
+    public static let black: Color
+    public func opacity(_ opacity: Double) -> Color
+}
+
+public struct HorizontalAlignment {
+    public static let leading: HorizontalAlignment
+    public static let center: HorizontalAlignment
+    public static let trailing: HorizontalAlignment
+}
+
+public struct VerticalAlignment {
+    public static let top: VerticalAlignment
+    public static let center: VerticalAlignment
+    public static let bottom: VerticalAlignment
+}
+
+public struct Alignment {
+    public static let center: Alignment
+}
+
+open class NSHostingView<Content : View> : NSView {
+    public init(rootView: Content)
+    required public init?(coder: NSCoder)
+}
+
+open class NSHostingController<Content : View> : NSViewController {
+    public init(rootView: Content)
+    required public init?(coder: NSCoder)
+}

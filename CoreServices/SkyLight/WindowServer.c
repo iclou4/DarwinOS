@@ -42,6 +42,8 @@
 
 #include "WindowServer.h"
 #include "cursor_data.h"
+#include "menubar_data.h"
+#include "recovery_ui_data.h"
 #include <Metal/MTLSoftware.h>
 
 /* ------------------------------------------------------------------ */
@@ -806,6 +808,15 @@ ws_metal_init(void)
 }
 
 static inline void
+draw_menubar(void)
+{
+    if (!g_fb || g_w < MENUBAR_W) return;
+    for (int y = 0; y < MENUBAR_H && y < g_h; y++) {
+        memcpy(g_fb + (size_t)y * (size_t)g_w, g_menubar_pixels + (size_t)y * (size_t)MENUBAR_W, (size_t)MENUBAR_W * 4);
+    }
+}
+
+static inline void
 fill_rect_bg(int rx, int ry, int rw, int rh)
 {
     if (rw <= 0 || rh <= 0) return;
@@ -815,7 +826,8 @@ fill_rect_bg(int rx, int ry, int rw, int rh)
     int y1 = ry + rh > g_h ? g_h : ry + rh;
     if (x0 >= x1 || y0 >= y1) return;
 
-    uint32_t bg = 0xff261f1fu;
+    /* Authentic macOS Tahoe Recovery dark vignette base: #161616 */
+    uint32_t bg = 0xff161616u;
     uint64_t bg64 = ((uint64_t)bg << 32) | (uint64_t)bg;
     int w_words = x1 - x0;
 
@@ -1013,7 +1025,7 @@ composite_ex(int is_drag, int sc_x, int sc_y, int sc_w, int sc_h)
 
     if (!g_mtl_device || !g_mtl_queue || !g_mtl_screen || !g_mtl_pipe_window) {
         /* Fallback CPU desktop clear */
-        uint32_t bg = 0xff261f1fu;
+        uint32_t bg = 0xff161616u;
         for (size_t i = 0; i < (size_t)g_w * (size_t)g_h; i++)
             g_fb[i] = bg;
         for (l = 0; l < kCGNumReservedWindowLevels; l++) {
@@ -1023,6 +1035,7 @@ composite_ex(int is_drag, int sc_x, int sc_y, int sc_w, int sc_h)
                     composite_window(w);
             }
         }
+        draw_menubar();
         if (!g_cursor_hidden)
             composite_cursor();
         return;
@@ -1050,7 +1063,7 @@ composite_ex(int is_drag, int sc_x, int sc_y, int sc_w, int sc_h)
             memset(&wrpd, 0, sizeof(wrpd));
             wrpd.color_attachment = g_mtl_screen;
             wrpd.color_store_action = MTLStoreActionStore;
-            wrpd.clear_color = mtl_make_float4(38.0f / 255.0f, 31.0f / 255.0f, 31.0f / 255.0f, 1.0f);
+            wrpd.clear_color = mtl_make_float4(22.0f / 255.0f, 22.0f / 255.0f, 22.0f / 255.0f, 1.0f);
             wrpd.color_load_action = MTLLoadActionLoad;
 
             mtl_render_encoder_t *wenc = mtl_command_buffer_render_encoder(wcb, &wrpd);
@@ -1129,6 +1142,8 @@ composite_ex(int is_drag, int sc_x, int sc_y, int sc_w, int sc_h)
         }
     }
     t_after_commit = now_ms();
+
+    draw_menubar();
 
     if (!g_cursor_hidden)
         composite_cursor();
@@ -1531,7 +1546,10 @@ rpc_window_create(WSPortMessage *m, mach_port_t reply)
         size_t n = size / 4u;
         size_t k;
         for (k = 0; k < n; k++)
-            fill[k] = 0xffecececu;
+            fill[k] = 0xff292929u;
+        if (d->w == RECOVERY_UI_W && d->h == RECOVERY_UI_H) {
+            memcpy(fill, g_recovery_ui_pixels, sizeof(g_recovery_ui_pixels));
+        }
     }
 
     w = (WSWindow *)calloc(1, sizeof(*w));
@@ -2074,7 +2092,6 @@ static void *
 launch_thread(void *arg)
 {
     static const char *candidates[] = {
-        "/Applications/Chords.app/Contents/MacOS/Chords",
         "/Applications/Install darwinOS.app/Contents/MacOS/Install darwinOS",
         NULL
     };

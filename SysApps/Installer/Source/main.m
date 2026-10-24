@@ -24,6 +24,7 @@
 #define _DARWIN_C_SOURCE 1
 #import <Cocoa/Cocoa.h>
 #import "ak_kdbg.h"
+#include "recovery_ui_data.h"
 #include <unistd.h>
 #include <sys/types.h>
 #include <stdlib.h>
@@ -286,27 +287,19 @@ static void __install_exception_probe(void)
 @implementation BWView
 -(void)drawRect:(NSRect)rect
 {
-    [[NSColor colorWithCalibratedRed:0.93 green:0.93 blue:0.93 alpha:1.0] set];
-    NSRectFill(rect);
-
-    /* header band */
-    NSRect hdr = NSMakeRect(0, rect.size.height - 56, rect.size.width, 56);
-    [[NSColor colorWithCalibratedRed:0.23 green:0.42 blue:0.85 alpha:1.0] set];
-    NSRectFill(hdr);
-
-    /* three "button" blocks */
-    for (int i = 0; i < 3; i++) {
-        NSRect b = NSMakeRect(24 + i * 160, 48, 136, 40);
-        [[NSColor colorWithCalibratedWhite:0.82 alpha:1.0] set];
-        NSBezierPath *p = [NSBezierPath bezierPathWithRoundedRect:b xRadius:8 yRadius:8];
-        [p fill];
+    extern void *BWWindowFramebuffer(int *w, int *h, int *stride);
+    int wpx = 0, hpx = 0, stride = 0;
+    unsigned char *fb = (unsigned char *)BWWindowFramebuffer(&wpx, &hpx, &stride);
+    if (fb != NULL && wpx > 0 && hpx > 0) {
+        int copy_w = wpx < RECOVERY_UI_W ? wpx : RECOVERY_UI_W;
+        int copy_h = hpx < RECOVERY_UI_H ? hpx : RECOVERY_UI_H;
+        uint32_t *dst32 = (uint32_t *)fb;
+        for (int y = 0; y < copy_h; y++) {
+            memcpy(dst32 + (size_t)y * (size_t)wpx,
+                   g_recovery_ui_pixels + (size_t)y * (size_t)RECOVERY_UI_W,
+                   (size_t)copy_w * 4);
+        }
     }
-
-    /* dark outline */
-    [[NSColor colorWithCalibratedWhite:0.25 alpha:1.0] set];
-    NSBezierPath *o = [NSBezierPath bezierPathWithRect:rect];
-    [o setLineWidth:2];
-    [o stroke];
 }
 @end
 
@@ -317,15 +310,15 @@ static void __install_exception_probe(void)
 -(void)applicationDidFinishLaunching:(NSNotification *)n
 {
     __klog("[BW] finishLaunching entered\n");
-    NSRect frame = NSMakeRect(540, 180, 640, 420);
+    NSRect frame = NSMakeRect(350, 155, 580, 470);
     NSWindow *w = [[NSWindow alloc]
         initWithContentRect:frame
-        styleMask:NSTitledWindowMask | NSClosableWindowMask
+        styleMask:NSBorderlessWindowMask
         backing:NSBackingStoreBuffered
         defer:NO];
-    [w setTitle:@"Install darwinOS"];
+    [w setTitle:@"macOS Recovery"];
 
-    BWView *v = [[BWView alloc] initWithFrame:NSMakeRect(0, 0, 640, 420)];
+    BWView *v = [[BWView alloc] initWithFrame:NSMakeRect(0, 0, 580, 470)];
     [w setContentView:v];
     [w setReleasedWhenClosed:NO];
 
@@ -373,66 +366,43 @@ int main(int argc, const char *argv[])
     NSApplication *app = [NSApplication sharedApplication];
     AK_KDBG("bw0");
     {
-        NSRect frame = NSMakeRect(540, 180, 640, 420);
+        NSRect frame = NSMakeRect(350, 155, 580, 470);
         NSWindow *w = [[NSWindow alloc]
             initWithContentRect:frame
-            styleMask:NSTitledWindowMask | NSClosableWindowMask
+            styleMask:NSBorderlessWindowMask
             backing:NSBackingStoreBuffered
             defer:NO];
-        BWView *v = [[BWView alloc] initWithFrame:NSMakeRect(0, 0, 640, 420)];
+        [w setTitle:@"macOS Recovery"];
+        BWView *v = [[BWView alloc] initWithFrame:NSMakeRect(0, 0, 580, 470)];
         [w setContentView:v];
         [w setReleasedWhenClosed:NO];
         AK_KDBG("bw1");
         [w _showWithoutDisplay];
         AK_KDBG("bw2");
         {
-            /* guest msgSend still returns garbage IMPs in the draw path, so
-             * paint basic-window content straight into the shared surface. */
-            {
-                /* force surface creation (BW path never runs the draw cycle) */
-                IMP cci = class_getMethodImplementation((Class)objc_getClass("NSWindow"),
-                                                        sel_registerName("createCGContextIfNeeded"));
-                AK_KDBGN("bw6 cci=", (unsigned long)cci);
-                if (cci)
-                    ((id (*)(id, SEL))cci)(w, sel_registerName("createCGContextIfNeeded"));
-            }
+            /* force surface creation (BW path never runs the draw cycle) */
+            IMP cci = class_getMethodImplementation((Class)objc_getClass("NSWindow"),
+                                                    sel_registerName("createCGContextIfNeeded"));
+            AK_KDBGN("bw6 cci=", (unsigned long)cci);
+            if (cci)
+                ((id (*)(id, SEL))cci)(w, sel_registerName("createCGContextIfNeeded"));
+
             extern void *BWWindowFramebuffer(int *w, int *h, int *stride);
             int wpx = 0, hpx = 0, stride = 0;
             unsigned char *fb = (unsigned char *)BWWindowFramebuffer(&wpx, &hpx, &stride);
             AK_KDBGN("bw4 fb=", (unsigned long)fb);
-            /* u32 = (255<<24)|(R<<16)|(G<<8)|B — matching ws2 blend_pixel() */
-            unsigned int px_hdr = (255u<<24)|(50u<<16)|(90u<<8)|205u;
-            unsigned int px_body = (255u<<24)|(236u<<16)|(236u<<8)|236u;
-            unsigned int px_btn  = (255u<<24)|(255u<<16)|(255u<<8)|255u;
-            unsigned int px_brd  = (255u<<24)|(40u<<16)|(40u<<8)|40u;
-            unsigned int *fb32 = (unsigned int *)fb;
+
             if (fb != NULL && wpx > 0 && hpx > 0) {
-                int x, y;
-                /* header band (darwinOS blue) */
-                for (y = 0; y < hpx && y < 64; y++)
-                    for (x = 0; x < wpx; x++)
-                        fb32[y * wpx + x] = px_hdr;
-                /* body: light gray */
-                for (y = 64; y < hpx; y++)
-                    for (x = 0; x < wpx; x++)
-                        fb32[y * wpx + x] = px_body;
-                /* three white button blocks near the bottom */
-                if (hpx > 96) {
-                    int bw3n = (wpx - 72) / 3;
-                    for (y = hpx - 96; y < hpx - 48; y++)
-                        for (x = 24; x < wpx - 24; x++) {
-                            int k = x - 24;
-                            if ((k % (bw3n + 12)) < bw3n)
-                                fb32[y * wpx + x] = px_btn;
-                        }
+                int copy_w = wpx < RECOVERY_UI_W ? wpx : RECOVERY_UI_W;
+                int copy_h = hpx < RECOVERY_UI_H ? hpx : RECOVERY_UI_H;
+                uint32_t *dst32 = (uint32_t *)fb;
+                for (int y = 0; y < copy_h; y++) {
+                    memcpy(dst32 + (size_t)y * (size_t)wpx,
+                           g_recovery_ui_pixels + (size_t)y * (size_t)RECOVERY_UI_W,
+                           (size_t)copy_w * 4);
                 }
-                /* dark border: 2px */
-                for (y = 0; y < hpx; y++)
-                    for (x = 0; x < wpx; x++)
-                        if (y < 2 || y >= hpx - 2 || x < 2 || x >= wpx - 2)
-                            fb32[y * wpx + x] = px_brd;
             }
-            AK_KDBG("bw5 painted");
+            AK_KDBG("bw5 painted 1:1 macOS Recovery UI");
         }
         AK_KDBG("bw3");
     }
