@@ -31,7 +31,21 @@ DarwinOS is built upon freely licensed, publicly released open-source technologi
 
 ---
 
-## 3. DMCA and Intellectual Property Policy
+## 3. Clean-Room Reverse Engineering & Interoperability
+
+All proprietary userland subsystems and display server frameworks implemented in DarwinOS (including, but not limited to, the `SkyLight WindowServer`, `Metal.framework` software rasterizer pipeline, and `AppKit` userland compatibility shims) have been engineered strictly through **clean-room reverse engineering**:
+
+1. **Independent Implementation:** No proprietary Apple source code, copyrighted binary blobs, decompiled proprietary disassembly, or confidential Apple engineering materials were used in the creation of these components.
+2. **Purpose of Interoperability:** Reverse engineering, functional analysis, and protocol reconstruction were conducted solely to enable cross-platform interoperability with Darwin/Cocoa software binaries and Mach IPC protocols.
+3. **Statutory & Judicial Protection:**
+   - **United States Code:** Protected under **17 U.S.C. § 1201(f)**, which explicitly allows reverse engineering of software programs for the sole purpose of achieving interoperability of an independently created computer program with other programs.
+   - **Federal Judicial Precedents:** Protected under **Sony Computer Entertainment, Inc. v. Connectix Corp.**, 203 F.3d 596 (9th Cir. 2000) and **Sega Enterprises Ltd. v. Accolade, Inc.**, 977 F.2d 1510 (9th Cir. 1992), establishing that reverse engineering and emulation for interoperability constitute non-infringing Fair Use.
+   - **API Copyrightability & Interoperability:** Re-implementation of functional API declarations, Mach message interfaces, and data structures is protected under **Oracle America, Inc. v. Google LLC**, 141 S. Ct. 1183 (2021).
+   - **European Union Law:** Protected under **Directive 2009/24/EC**, Articles 5(3) and 6, guaranteeing the right to observe, study, test, and decompile programs without authorization to achieve interoperability.
+
+---
+
+## 4. DMCA and Intellectual Property Policy
 
 DarwinOS strictly respects the intellectual property rights of all copyright holders.
 If you believe that any material or contribution in this repository infringes upon your copyright or trademark rights, please contact the repository maintainer directly or submit an issue so that the content can be reviewed and removed immediately.
