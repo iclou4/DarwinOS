@@ -1,6 +1,6 @@
 /*
  * SUControls.m
- * SwiftUI 26 Declarative Controls & Containers
+ * SwiftUI 26 Declarative Controls & Containers (WWDC25 Liquid Glass & Concentric Design)
  */
 
 #import <SwiftUI/SUControls.h>
@@ -10,7 +10,7 @@
 
 @implementation SUVStack
 
-+ (instancetype)vstackWithSpacing:(CGFloat)spacing children:(NSArray<id<SUViewNode>> *)children
++ (instancetype)vstackWithSpacing:(CGFloat)spacing children:(NSArray *)children
 {
     SUVStack *s = [[self alloc] init];
     s.spacing = spacing;
@@ -47,7 +47,7 @@
 
 @implementation SUHStack
 
-+ (instancetype)hstackWithSpacing:(CGFloat)spacing children:(NSArray<id<SUViewNode>> *)children
++ (instancetype)hstackWithSpacing:(CGFloat)spacing children:(NSArray *)children
 {
     SUHStack *s = [[self alloc] init];
     s.spacing = spacing;
@@ -84,7 +84,7 @@
 
 @implementation SUZStack
 
-+ (instancetype)zstackWithChildren:(NSArray<id<SUViewNode>> *)children
++ (instancetype)zstackWithChildren:(NSArray *)children
 {
     SUZStack *s = [[self alloc] init];
     if (children) [s.children addObjectsFromArray:children];
@@ -127,6 +127,59 @@
 - (NSSize)sizeThatFits:(NSSize)proposal
 {
     return NSMakeSize(proposal.width, 1.0);
+}
+
+@end
+
+/* --- WWDC25 GlassEffectContainer --- */
+
+@implementation SUGlassEffectContainer
+
++ (instancetype)containerWithChildren:(NSArray *)children
+{
+    SUGlassEffectContainer *c = [[self alloc] init];
+    c.material = [SUMaterial liquidGlass];
+    if (children) [c.children addObjectsFromArray:children];
+    return c;
+}
+
+- (void)layoutInRect:(NSRect)rect
+{
+    self.frame = rect;
+    for (id<SUViewNode> child in self.children) {
+        [child layoutInRect:rect];
+    }
+}
+
+@end
+
+/* --- WWDC25 ConcentricRectangle --- */
+
+@implementation SUConcentricRectangle
+
++ (instancetype)concentricRectangle
+{
+    return [[self alloc] init];
+}
+
++ (instancetype)concentricRectangleWithParentRadius:(CGFloat)radius padding:(CGFloat)padding
+{
+    SUConcentricRectangle *r = [[self alloc] init];
+    r.parentRadius = radius;
+    r.insetPadding = padding;
+    r.isUniform = YES;
+    CGFloat computed = radius - padding;
+    r.cornerRadius = (computed > 0.0) ? computed : 0.0;
+    return r;
+}
+
+- (void)layoutInRect:(NSRect)rect
+{
+    self.frame = rect;
+    if (self.isUniform && self.parentRadius > 0.0) {
+        CGFloat computed = self.parentRadius - self.insetPadding;
+        self.cornerRadius = (computed > 0.0) ? computed : 0.0;
+    }
 }
 
 @end
@@ -180,8 +233,9 @@
     SUButton *b = [[self alloc] init];
     b.title = title;
     b.action = action;
+    b.buttonStyle = SUButtonStyleGlass;
     b.cornerRadius = 8.0;
-    b.backgroundColor = [NSColor colorWithCalibratedWhite:0.25 alpha:1.0];
+    b.backgroundColor = [NSColor colorWithCalibratedWhite:0.25 alpha:0.8];
     b.shadow = [SUShadow buttonShadow];
     return b;
 }
@@ -189,20 +243,43 @@
 - (void)dealloc
 {
     [_title release];
+    [_tintColor release];
     if (_action) Block_release(_action);
     [super dealloc];
 }
 
+- (instancetype)glassStyle
+{
+    self.buttonStyle = SUButtonStyleGlass;
+    self.material = [SUMaterial thinMaterial];
+    self.cornerRadius = 8.0;
+    return self;
+}
+
 - (instancetype)glassProminentStyle
 {
-    self.isGlassProminent = YES;
+    self.buttonStyle = SUButtonStyleGlassProminent;
     self.material = [SUMaterial liquidGlass];
+    self.cornerRadius = 8.0;
+    if (!self.tintColor) {
+        self.backgroundColor = [NSColor colorWithCalibratedWhite:0.32 alpha:0.9];
+    }
+    return self;
+}
+
+- (instancetype)tint:(NSColor *)tintColor
+{
+    self.tintColor = tintColor;
+    if (self.buttonStyle == SUButtonStyleGlassProminent) {
+        self.backgroundColor = tintColor;
+    }
     return self;
 }
 
 - (NSSize)sizeThatFits:(NSSize)proposal
 {
-    return NSMakeSize(104.0, 34.0);
+    /* WWDC25 Glass button dimensions: 92x30 */
+    return NSMakeSize(92.0, 30.0);
 }
 
 @end
@@ -232,7 +309,7 @@
 - (NSSize)sizeThatFits:(NSSize)proposal
 {
     if (self.image) return [self.image size];
-    return NSMakeSize(54.0, 54.0);
+    return NSMakeSize(48.0, 48.0);
 }
 
 @end
@@ -244,9 +321,10 @@
     SUListRow *r = [[self alloc] init];
     r.content = content;
     r.isSelected = selected;
+    /* WWDC25 concentric squircle selection container */
     r.cornerRadius = 12.0;
     if (selected) {
-        r.backgroundColor = [SUColor selectionHighlight];
+        r.backgroundColor = [NSColor colorWithCalibratedWhite:1.0 alpha:0.08];
     }
     if (content) [r.children addObject:content];
     return r;
@@ -260,14 +338,14 @@
 
 - (NSSize)sizeThatFits:(NSSize)proposal
 {
-    return NSMakeSize(proposal.width, 76.0);
+    return NSMakeSize(proposal.width, 72.0);
 }
 
 @end
 
 @implementation SUList
 
-+ (instancetype)listWithRows:(NSArray<SUListRow *> *)rows
++ (instancetype)listWithRows:(NSArray *)rows
 {
     SUList *l = [[self alloc] init];
     l.rows = [NSMutableArray arrayWithArray:rows];
@@ -290,11 +368,11 @@
 {
     self.frame = rect;
     CGFloat cur_y = rect.origin.y;
-    CGFloat row_h = 76.0;
+    CGFloat row_h = 72.0;
     for (SUListRow *row in self.rows) {
-        NSRect r = NSMakeRect(rect.origin.x + 18.0, cur_y, rect.size.width - 36.0, row_h);
+        NSRect r = NSMakeRect(rect.origin.x + 16.0, cur_y, rect.size.width - 32.0, row_h);
         [row layoutInRect:r];
-        cur_y += row_h + 4.0;
+        cur_y += row_h + 6.0;
     }
 }
 

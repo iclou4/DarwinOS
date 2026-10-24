@@ -1,3 +1,6 @@
+#ifndef CTFontRef
+typedef const struct __CTFont *CTFontRef;
+#endif
 /*
  * SUShadow.h
  * SwiftUI 26 Continuous SDF Shadow Engine

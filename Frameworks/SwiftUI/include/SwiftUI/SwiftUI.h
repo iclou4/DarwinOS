@@ -1,3 +1,6 @@
+#ifndef CTFontRef
+typedef const struct __CTFont *CTFontRef;
+#endif
 /*
  * SwiftUI.h
  * SwiftUI Framework (macOS 26 Tahoe Clean-Room Implementation)

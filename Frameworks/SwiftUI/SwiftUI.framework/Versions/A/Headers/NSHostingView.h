@@ -1,3 +1,6 @@
+#ifndef CTFontRef
+typedef const struct __CTFont *CTFontRef;
+#endif
 /*
  * NSHostingView.h
  * SwiftUI 26 AppKit Bridge Hosting View

@@ -1,3 +1,6 @@
+#ifndef CTFontRef
+typedef const struct __CTFont *CTFontRef;
+#endif
 /*
  * SUColor.h
  * SwiftUI 26 Dynamic Vibrant Colors

@@ -1,12 +1,16 @@
+#ifndef CTFontRef
+typedef const struct __CTFont *CTFontRef;
+#endif
 /*
  * SUControls.h
- * SwiftUI 26 Declarative Controls & Containers
+ * SwiftUI 26 Declarative Controls & Containers (WWDC25 Liquid Glass & Concentric Design)
  */
 
 #ifndef SU_CONTROLS_H
 #define SU_CONTROLS_H
 
 #import <SwiftUI/SUView.h>
+#import <SwiftUI/SUMaterial.h>
 
 /* --- Containers --- */
 
@@ -32,6 +36,20 @@
 + (instancetype)divider;
 @end
 
+/* WWDC25 GlassEffectContainer: groups multiple Liquid Glass shapes into a unified morphing element */
+@interface SUGlassEffectContainer : SUView
++ (instancetype)containerWithChildren:(NSArray *)children;
+@end
+
+/* WWDC25 ConcentricRectangle: shape adapting curvature concentrically to container */
+@interface SUConcentricRectangle : SUView
+@property (nonatomic, assign) CGFloat parentRadius;
+@property (nonatomic, assign) CGFloat insetPadding;
+@property (nonatomic, assign) BOOL isUniform;
++ (instancetype)concentricRectangle;
++ (instancetype)concentricRectangleWithParentRadius:(CGFloat)radius padding:(CGFloat)padding;
+@end
+
 /* --- Controls --- */
 
 @interface SUText : SUView
@@ -43,13 +61,24 @@
 - (instancetype)foregroundColor:(NSColor *)color;
 @end
 
+typedef NS_ENUM(NSInteger, SUButtonStyle) {
+    SUButtonStyleAutomatic = 0,
+    SUButtonStylePlain     = 1,
+    SUButtonStyleBordered  = 2,
+    SUButtonStyleGlass     = 3,        /* WWDC25 .buttonStyle(.glass) */
+    SUButtonStyleGlassProminent = 4    /* WWDC25 .buttonStyle(.glassProminent) */
+};
+
 @interface SUButton : SUView
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) void (^action)(void);
-@property (nonatomic, assign) BOOL isGlassProminent;
+@property (nonatomic, assign) SUButtonStyle buttonStyle;
+@property (nonatomic, retain) NSColor *tintColor;
 @property (nonatomic, assign) BOOL isPressed;
 + (instancetype)buttonWithTitle:(NSString *)title action:(void (^)(void))action;
+- (instancetype)glassStyle;
 - (instancetype)glassProminentStyle;
+- (instancetype)tint:(NSColor *)tintColor;
 @end
 
 @interface SUImage : SUView

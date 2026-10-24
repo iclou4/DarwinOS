@@ -1,3 +1,6 @@
+#ifndef CTFontRef
+typedef const struct __CTFont *CTFontRef;
+#endif
 /*
  * SUSpringAnimation.h
  * SwiftUI 26 Interactive Spring Animation Engine

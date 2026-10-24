@@ -7,6 +7,9 @@
 #define SU_VIEW_H
 
 #import <Foundation/Foundation.h>
+#ifndef CTFontRef
+typedef const struct __CTFont *CTFontRef;
+#endif
 #import <AppKit/AppKit.h>
 #import <SwiftUI/SUMaterial.h>
 #import <SwiftUI/SUSpringAnimation.h>

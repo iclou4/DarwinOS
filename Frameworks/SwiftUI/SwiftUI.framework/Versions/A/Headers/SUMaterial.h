@@ -1,3 +1,6 @@
+#ifndef CTFontRef
+typedef const struct __CTFont *CTFontRef;
+#endif
 /*
  * SUMaterial.h
  * SwiftUI 26 Liquid Glass & Vibrancy Materials

@@ -536,7 +536,9 @@ composite_window(WSWindow *w)
                 int rcol = x >= iw - (int)R;
                 if (lcol || rcol) {
                     float rx = lcol ? (float)(x + 0.5f - R) : (float)(x + 0.5f - (iw - R));
-                    float dist = sqrtf(rx * rx + ry * ry);
+                    float nx = fabsf(rx) / R;
+                    float ny = fabsf(ry) / R;
+                    float dist = powf(powf(nx, 3.6f) + powf(ny, 3.6f), 0.2777778f) * R;
                     if (dist >= R_outer) {
                         skip = 1;
                     } else if (dist > R_inner) {
@@ -1985,7 +1987,8 @@ render_thread(void *arg)
          * Check g_dirty first: when dragging or updating windows, full compositing
          * must run every frame to prevent window freeze and stuttering.
          */
-        if (g_dirty != 0) {
+        if (g_dirty != 0 || frames < 60) {
+            frames++;
             WSWindow *targetWin = g_dragWin ? g_dragWin : g_drag_last_win;
             int was_drag = (targetWin != NULL && g_drag_prev_x != -9999);
             int pres_x = 0, pres_y = 0, pres_w = g_w, pres_h = g_h;
