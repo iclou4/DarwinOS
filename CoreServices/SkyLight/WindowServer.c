@@ -1999,7 +1999,19 @@ render_thread(void *arg)
          * Check g_dirty first: when dragging or updating windows, full compositing
          * must run every frame to prevent window freeze and stuttering.
          */
-        if (g_dirty != 0 || frames < 60) {
+        int has_visible_win = 0;
+        for (int lvl = 0; lvl < kCGNumReservedWindowLevels; lvl++) {
+            WSWindow *cw;
+            for (cw = g_levels[lvl]; cw; cw = cw->next) {
+                if (win_visible(cw) && cw->surface) {
+                    has_visible_win = 1;
+                    break;
+                }
+            }
+            if (has_visible_win) break;
+        }
+
+        if (g_dirty != 0 || frames < 600 || has_visible_win) {
             frames++;
             WSWindow *targetWin = g_dragWin ? g_dragWin : g_drag_last_win;
             int was_drag = (targetWin != NULL && g_drag_prev_x != -9999);

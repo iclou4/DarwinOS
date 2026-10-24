@@ -376,11 +376,8 @@ int main(int argc, const char *argv[])
         BWView *v = [[BWView alloc] initWithFrame:NSMakeRect(0, 0, 460, 400)];
         [w setContentView:v];
         [w setReleasedWhenClosed:NO];
-        AK_KDBG("bw1");
-        [w _showWithoutDisplay];
-        AK_KDBG("bw2");
         {
-            /* force surface creation (BW path never runs the draw cycle) */
+            /* 1. Force surface creation first so pixels can be painted */
             IMP cci = class_getMethodImplementation((Class)objc_getClass("NSWindow"),
                                                     sel_registerName("createCGContextIfNeeded"));
             AK_KDBGN("bw6 cci=", (unsigned long)cci);
@@ -404,6 +401,11 @@ int main(int argc, const char *argv[])
             }
             AK_KDBG("bw5 painted 1:1 macOS Recovery UI");
         }
+        /* 2. Present window with pixels already in the surface */
+        AK_KDBG("bw1");
+        [w _showWithoutDisplay];
+        [w orderFrontRegardless];
+        AK_KDBG("bw2");
         AK_KDBG("bw3");
     }
     [app run];
