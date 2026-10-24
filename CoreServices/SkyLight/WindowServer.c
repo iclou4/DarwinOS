@@ -669,7 +669,7 @@ static mtl_render_pipeline_t *g_mtl_pipe_window;
 static mtl_sampler_t         *g_mtl_sampler;
 
 static void
-vs_metal_window(const mtl_vertex_in *in, mtl_vertex_out *out)
+vs_metal_window_fallback(const mtl_vertex_in *in, mtl_vertex_out *out)
 {
     const float *pos = (const float *)mtl_vertex_pointer(in, 0, 16);
     const float *uv = (const float *)mtl_vertex_pointer(in, 1, 8);
@@ -681,7 +681,7 @@ vs_metal_window(const mtl_vertex_in *in, mtl_vertex_out *out)
 }
 
 static void
-fs_metal_window(const mtl_fragment_in *in, mtl_fragment_out *out)
+fs_metal_window_fallback(const mtl_fragment_in *in, mtl_fragment_out *out)
 {
     float u = in->varying[0].x;
     float v = in->varying[0].y;
@@ -707,6 +707,7 @@ fs_metal_window(const mtl_fragment_in *in, mtl_fragment_out *out)
         float cov = R + 0.5f - dist;
         if (cov <= 0.0f) {
             out->color = mtl_make_float4(0.0f, 0.0f, 0.0f, 0.0f);
+            out->discard = 1;
             return;
         }
         if (cov < 1.0f) {
@@ -739,10 +740,49 @@ ws_metal_init(void)
     g_mtl_screen = mtl_device_new_texture(g_mtl_device, &tdesc);
     mtl_texture_set_backing(g_mtl_screen, g_fb);
 
+    /*
+     * Load shaders directly from Apple Metal Shading Language (.metal) file:
+     * macOS 26 Tahoe window compositor shader with 16pt continuous rounded corner AA.
+     */
+    const char *metal_candidates[] = {
+        "/System/Library/CoreServices/WindowServer.app/Contents/Resources/window.metal",
+        "/System/Library/Frameworks/Metal.framework/Resources/window.metal",
+        "/window.metal",
+        "window.metal",
+        NULL
+    };
+    const char *metal_path = NULL;
+    for (int i = 0; metal_candidates[i]; i++) {
+        if (access(metal_candidates[i], R_OK) == 0) {
+            metal_path = metal_candidates[i];
+            break;
+        }
+    }
+
+    mtl_library_t *metal_lib = NULL;
+    if (metal_path) {
+        wslog("WindowServer: loading native .metal shader: %s", metal_path);
+        metal_lib = mtl_device_new_library_with_file(g_mtl_device, metal_path);
+    } else {
+        wslog("WindowServer: warning: window.metal not found on filesystem");
+    }
+
+    mtl_vertex_function vert_fn = metal_lib ? mtl_library_vertex_function(metal_lib, "window_vertex") : NULL;
+    mtl_fragment_function frag_fn = metal_lib ? mtl_library_fragment_function(metal_lib, "window_fragment") : NULL;
+
+    if (!vert_fn || !frag_fn) {
+        wslog("WindowServer: fallback to default MSL window shaders");
+        vert_fn = vs_metal_window_fallback;
+        frag_fn = fs_metal_window_fallback;
+    } else {
+        wslog("WindowServer: successfully bound MSL shader functions: window_vertex=%p, window_fragment=%p",
+              (void *)vert_fn, (void *)frag_fn);
+    }
+
     mtl_render_pipeline_descriptor pdesc;
     memset(&pdesc, 0, sizeof(pdesc));
-    pdesc.vertex_function = vs_metal_window;
-    pdesc.fragment_function = fs_metal_window;
+    pdesc.vertex_function = vert_fn;
+    pdesc.fragment_function = frag_fn;
     pdesc.color_attachment_format = MTLPixelFormatBGRA8Unorm;
     pdesc.color_attachment.blending_enabled = 1;
     pdesc.color_attachment.source_rgb = MTLBlendFactorSourceAlpha;
@@ -829,6 +869,15 @@ init_shadow_lut(void)
     g_shadow_lut_ready = 1;
 }
 
+#define BLEND_SHADOW_PX(dst_ptr, sa) do { \
+    uint32_t d_col = *(dst_ptr); \
+    unsigned inv = 255u - (sa); \
+    unsigned r = (((d_col >> 16) & 0xffu) * inv + 127u) / 255u; \
+    unsigned g = (((d_col >> 8) & 0xffu) * inv + 127u) / 255u; \
+    unsigned b = ((d_col & 0xffu) * inv + 127u) / 255u; \
+    *(dst_ptr) = 0xff000000u | (r << 16) | (g << 8) | b; \
+} while (0)
+
 static void
 draw_window_shadow(WSWindow *w, int sc_x, int sc_y, int sc_w, int sc_h)
 {
@@ -840,15 +889,18 @@ draw_window_shadow(WSWindow *w, int sc_x, int sc_y, int sc_w, int sc_h)
     int wh = (int)w->h;
     const int M = 16;       /* shadow spread radius */
     const int dy_off = 4;   /* downward light offset */
-    const float R = 16.0f;  /* window corner radius */
+    const int R = 16;       /* window corner radius */
 
-    /* Shadow bounding box in screen coords */
+    int win_x0 = wx;
+    int win_y0 = wy;
+    int win_x1 = wx + ww;
+    int win_y1 = wy + wh;
+
     int sx0 = wx - M;
     int sy0 = wy - M + dy_off;
     int sx1 = wx + ww + M;
     int sy1 = wy + wh + M + dy_off;
 
-    /* Clip to scissor rect if specified */
     if (sc_w > 0 && sc_h > 0) {
         if (sx0 < sc_x) sx0 = sc_x;
         if (sy0 < sc_y) sy0 = sc_y;
@@ -856,7 +908,6 @@ draw_window_shadow(WSWindow *w, int sc_x, int sc_y, int sc_w, int sc_h)
         if (sy1 > sc_y + sc_h) sy1 = sc_y + sc_h;
     }
 
-    /* Clip to screen */
     if (sx0 < 0) sx0 = 0;
     if (sy0 < 0) sy0 = 0;
     if (sx1 > g_w) sx1 = g_w;
@@ -864,51 +915,89 @@ draw_window_shadow(WSWindow *w, int sc_x, int sc_y, int sc_w, int sc_h)
 
     if (sx0 >= sx1 || sy0 >= sy1) return;
 
-    float center_x = (float)wx + (float)ww * 0.5f;
-    float center_y = (float)wy + (float)wh * 0.5f;
-    float half_inner_w = (float)ww * 0.5f - R;
-    float half_inner_h = (float)wh * 0.5f - R;
+    int corner_lx = wx + R;
+    int corner_rx = wx + ww - R;
+    int corner_ty = wy + R;
+    int corner_by = wy + wh - R;
 
     for (int py = sy0; py < sy1; py++) {
-        float qy = fabsf((float)(py - dy_off) + 0.5f - center_y) - half_inner_h;
-        float my = qy > 0.0f ? qy : 0.0f;
-        int imy = (int)roundf(my);
-        if (imy > 33) imy = 33;
-
         uint32_t *dst_row = g_fb + (size_t)py * (size_t)g_w;
+        int in_win_y = (py >= win_y0 && py < win_y1);
+        int top_half = (py < corner_ty);
+        int bot_half = (py >= corner_by);
 
-        for (int px = sx0; px < sx1; px++) {
-            float qx = fabsf((float)px + 0.5f - center_x) - half_inner_w;
+        int dy_edge = 0;
+        if (py < win_y0) {
+            dy_edge = (win_y0 - py);
+        } else if (py >= win_y1) {
+            dy_edge = (py - win_y1 + 1);
+        }
 
-            if (qx <= 0.0f && qy <= 0.0f) {
-                /* Fast skip interior of window */
-                int skip_to = (int)(center_x + half_inner_w);
-                if (skip_to > px && skip_to < sx1) {
-                    px = skip_to;
+        /* Fast skip window interior for mid-body scanlines */
+        if (in_win_y && !top_half && !bot_half) {
+            int lx1 = (win_x0 < sx1) ? win_x0 : sx1;
+            for (int px = sx0; px < lx1; px++) {
+                int d = win_x0 - px;
+                if (d >= 0 && d < 16) {
+                    uint8_t sa = g_shadow_lut[d];
+                    if (sa) BLEND_SHADOW_PX(&dst_row[px], sa);
                 }
+            }
+            int rx0 = (win_x1 > sx0) ? win_x1 : sx0;
+            for (int px = rx0; px < sx1; px++) {
+                int d = px - win_x1 + 1;
+                if (d >= 0 && d < 16) {
+                    uint8_t sa = g_shadow_lut[d];
+                    if (sa) BLEND_SHADOW_PX(&dst_row[px], sa);
+                }
+            }
+            continue;
+        }
+
+        /* Top, bottom, or corner scanlines */
+        for (int px = sx0; px < sx1; px++) {
+            if (in_win_y && px >= corner_lx && px < corner_rx) {
+                px = corner_rx - 1;
                 continue;
             }
 
-            uint8_t sa;
-            if (qx <= 0.0f) {
-                int d = (int)roundf(qy - R);
-                sa = (d >= 0 && d < 16) ? g_shadow_lut[d] : 0;
-            } else if (qy <= 0.0f) {
-                int d = (int)roundf(qx - R);
-                sa = (d >= 0 && d < 16) ? g_shadow_lut[d] : 0;
-            } else {
-                int imx = (int)roundf(qx);
-                if (imx > 33) imx = 33;
-                sa = g_corner_lut[imy][imx];
+            if (in_win_y && px >= win_x0 && px < win_x1) {
+                int lcol = (px < corner_lx);
+                int cx = lcol ? corner_lx : corner_rx;
+                int cy = top_half ? corner_ty : corner_by;
+                int cdx = px - cx;
+                int cdy = py - cy;
+                if (cdx * cdx + cdy * cdy <= R * R) {
+                    if (lcol) px = corner_lx - 1;
+                    continue;
+                }
             }
 
-            if (sa > 0) {
-                uint32_t d_col = dst_row[px];
-                unsigned inv = 255u - sa;
-                unsigned r = (((d_col >> 16) & 0xffu) * inv + 127u) / 255u;
-                unsigned g = (((d_col >> 8) & 0xffu) * inv + 127u) / 255u;
-                unsigned b = ((d_col & 0xffu) * inv + 127u) / 255u;
-                dst_row[px] = 0xff000000u | (r << 16) | (g << 8) | b;
+            int dx_edge = 0;
+            if (px < win_x0) {
+                dx_edge = win_x0 - px;
+            } else if (px >= win_x1) {
+                dx_edge = px - win_x1 + 1;
+            }
+
+            uint8_t sa = 0;
+            if (dx_edge == 0 && dy_edge > 0) {
+                if (dy_edge < 16) sa = g_shadow_lut[dy_edge];
+            } else if (dy_edge == 0 && dx_edge > 0) {
+                if (dx_edge < 16) sa = g_shadow_lut[dx_edge];
+            } else {
+                int lcol = (px < corner_lx);
+                int cx = lcol ? corner_lx : corner_rx;
+                int cy = top_half ? corner_ty : corner_by;
+                int qx = abs(px - cx);
+                int qy = abs(py - cy);
+                if (qx > 33) qx = 33;
+                if (qy > 33) qy = 33;
+                sa = g_corner_lut[qy][qx];
+            }
+
+            if (sa) {
+                BLEND_SHADOW_PX(&dst_row[px], sa);
             }
         }
     }

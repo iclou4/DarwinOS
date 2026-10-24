@@ -4,6 +4,11 @@
   <img src="https://raw.githubusercontent.com/iclou4/DarwinOS/main/CoreServices/WindowServer/Cursors/arrowCursor.png" width="48" alt="darwinOS Logo" />
 </p>
 
+> [!IMPORTANT]
+> **Правовое уведомление / Legal Disclaimer:**
+> Проект **darwinOS** является независимым исследовательским и образовательным проектом с открытым исходным кодом. darwinOS **не связан, не спонсируется и не поддерживается компанией Apple Inc.** Все торговые марки («Apple», «macOS», «Mac OS X», «Cocoa», «AppKit», «Metal», «Aqua») принадлежат компании Apple Inc. и упоминаются исключительно в целях описания технической совместимости в рамках доктрины добросовестного использования (Fair Use / 15 U.S.C. § 1115(b)(4)). Ядро Darwin/XNU используется на основе официальной открытой лицензии Apple Public Source License (APSL 2.0). Подробнее см. в [LEGAL.md](LEGAL.md).
+
+
 **darwinOS** — открытая операционная система, основанная на гибридном ядре **XNU** (Mach + BSD), графическом сервере **SkyLight WindowServer** и нативной среде исполнения **Cocoa / AppKit**. Проект нацелен на полную бинарную и исходную совместимость с macOS, современный визуальный дизайн macOS 26 Tahoe и работу как в гипервизорах (QEMU/KVM/WHPX), так и на реальном x86_64 оборудовании.
 
 ---
@@ -14,6 +19,7 @@
 - ⚙️ [**API разработки драйверов (IOKit & Kexts)**](docs/API_DRIVERS.md) — создание драйверов, IOKit, ApplePS2, графика и ввод
 - 🎨 [**API разработки приложений (AppKit & Cocoa)**](docs/API_APPKIT.md) — создание графических окон, контролов, курсоров и событий
 - 🛠️ [**Руководство разработчика (System Architecture & Build)**](docs/DEVELOPMENT.md) — сборка системы, ядро XNU, компилятор и отладка
+- ⚖️ [**Правовая информация и лицензии (LEGAL & Compliance)**](LEGAL.md) — APSL 2.0, торговые марки и отказ от ответственности
 
 ---
 

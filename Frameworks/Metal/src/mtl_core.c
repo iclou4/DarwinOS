@@ -422,6 +422,127 @@ mtl_library_fragment_function(mtl_library_t *library, const char *name)
 	return library->entries[index].fragment;
 }
 
+mtl_library_t *
+mtl_device_new_library_with_file(mtl_device_t *device, const char *filepath)
+{
+	if (filepath == NULL) {
+		return NULL;
+	}
+
+	mtl_library_t *lib = mtl_device_new_library(device);
+	if (lib == NULL) {
+		return NULL;
+	}
+
+	char metallib_path[PATH_MAX];
+	strncpy(metallib_path, filepath, sizeof(metallib_path) - 1);
+	metallib_path[sizeof(metallib_path) - 1] = '\0';
+
+	size_t len = strlen(metallib_path);
+	if (len > 6 && strcmp(metallib_path + len - 6, ".metal") == 0) {
+		strcpy(metallib_path + len - 6, ".metallib");
+	}
+
+	void *dl = NULL;
+	if (access(metallib_path, R_OK) == 0) {
+		dl = dlopen(metallib_path, RTLD_NOW | RTLD_LOCAL);
+	}
+	if (dl == NULL && access(filepath, R_OK) == 0) {
+		dl = dlopen(filepath, RTLD_NOW | RTLD_LOCAL);
+	}
+
+	/* Parse function declarations from the .metal source file */
+	FILE *fp = fopen(filepath, "r");
+	if (fp != NULL) {
+		char line[512];
+		while (fgets(line, sizeof(line), fp) != NULL) {
+			char *v = strstr(line, "vertex ");
+			char *f = strstr(line, "fragment ");
+			if (v != NULL || f != NULL) {
+				int is_frag = (f != NULL);
+				char *start = is_frag ? f + 9 : v + 7;
+				char *paren = strchr(start, '(');
+				if (paren != NULL) {
+					*paren = '\0';
+					char *fn_name = paren - 1;
+					while (fn_name > start && (*fn_name == ' ' || *fn_name == '\t')) {
+						fn_name--;
+					}
+					while (fn_name > start && (*fn_name != ' ' && *fn_name != '\t' && *fn_name != '*')) {
+						fn_name--;
+					}
+					if (*fn_name == ' ' || *fn_name == '\t' || *fn_name == '*') {
+						fn_name++;
+					}
+					if (strlen(fn_name) > 0) {
+						void *sym = dl ? dlsym(dl, fn_name) : NULL;
+						if (sym == NULL && dl != NULL) {
+							char under[128];
+							snprintf(under, sizeof(under), "_%s", fn_name);
+							sym = dlsym(dl, under);
+						}
+						if (sym != NULL) {
+							if (is_frag) {
+								mtl_library_add_fragment_function(lib, fn_name, (mtl_fragment_function)sym);
+							} else {
+								mtl_library_add_function(lib, fn_name, (mtl_vertex_function)sym);
+							}
+						}
+					}
+				}
+			}
+		}
+		fclose(fp);
+	}
+
+	/* Fallback: look up standard entry points if dlopen succeeded */
+	if (dl != NULL && lib->count == 0) {
+		const char *candidates[] = {
+			"window_vertex", "window_fragment",
+			"vertex_main", "fragment_main",
+			"vs_main", "fs_main",
+			NULL
+		};
+		for (int i = 0; candidates[i] != NULL; i++) {
+			void *sym = dlsym(dl, candidates[i]);
+			if (sym == NULL) {
+				char under[128];
+				snprintf(under, sizeof(under), "_%s", candidates[i]);
+				sym = dlsym(dl, under);
+			}
+			if (sym != NULL) {
+				if (strstr(candidates[i], "fragment") || strstr(candidates[i], "fs")) {
+					mtl_library_add_fragment_function(lib, candidates[i], (mtl_fragment_function)sym);
+				} else {
+					mtl_library_add_function(lib, candidates[i], (mtl_vertex_function)sym);
+				}
+			}
+		}
+	}
+
+	lib->dl_handle = dl;
+	return lib;
+}
+
+mtl_library_t *
+mtl_device_new_library_with_source(mtl_device_t *device, const char *source)
+{
+	if (source == NULL) {
+		return NULL;
+	}
+	char tmpsrc[] = "/tmp/msl_src_XXXXXX.metal";
+	int fd = mkstemps(tmpsrc, 6);
+	if (fd < 0) {
+		return NULL;
+	}
+	write(fd, source, strlen(source));
+	close(fd);
+
+	mtl_library_t *lib = mtl_device_new_library_with_file(device, tmpsrc);
+	unlink(tmpsrc);
+	return lib;
+}
+
 /* ------------------------------------------------------------------------- */
 /* render pipelines                                                          */
 /* ------------------------------------------------------------------------- */
@@ -506,6 +627,10 @@ mtl_library_release(mtl_library_t *library)
 	if (library == NULL) return;
 	for (unsigned int i = 0; i < library->count; i++) {
 		free(library->entries[i].name);
+	}
+	if (library->dl_handle) {
+		dlclose(library->dl_handle);
+		library->dl_handle = NULL;
 	}
 	free(library);
 }

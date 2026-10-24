@@ -131,6 +131,10 @@ mtl_vertex_function   mtl_library_vertex_function(mtl_library_t *library,
     const char *name);
 mtl_fragment_function mtl_library_fragment_function(mtl_library_t *library,
     const char *name);
+mtl_library_t  *mtl_device_new_library_with_file(mtl_device_t *device,
+    const char *filepath);
+mtl_library_t  *mtl_device_new_library_with_source(mtl_device_t *device,
+    const char *source);
 void                  mtl_library_release(mtl_library_t *library);
 
 typedef struct {

@@ -13,6 +13,9 @@
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
+#include <dlfcn.h>
+#include <unistd.h>
+#include <limits.h>
 
 /* ------------------------------------------------------------------------- */
 /* objects                                                                   */
@@ -65,6 +68,7 @@ struct mtl_library {
 		mtl_fragment_function fragment;
 	} entries[MTL_LIBRARY_MAX_ENTRIES];
 	unsigned int count;
+	void        *dl_handle;
 };
 
 struct mtl_render_pipeline {
