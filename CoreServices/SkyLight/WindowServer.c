@@ -1404,7 +1404,7 @@ poll_input(void)
             g_dirty = 1;
 
             /* macOS Recovery procedural interactive click handling */
-            if (under->w == 410 && under->h == 370 && under->surface) {
+            if (under->w == 420 && under->h == 370 && under->surface) {
                 int win_x = (int)under->x;
                 int win_y = (int)under->y;
                 int rx = (int)px - win_x;
@@ -1451,7 +1451,7 @@ poll_input(void)
         }
     } else if (!(buttons & 1) && (lastbuttons & 1)) {
         /* left up */
-        if (under && under->w == 410 && under->h == 370 && under->surface) {
+        if (under && under->w == 420 && under->h == 370 && under->surface) {
             memcpy(under->surface, g_recovery_ui_states[g_recovery_selected_row], 420 * 370 * 4);
             g_dirty = 1;
         }
