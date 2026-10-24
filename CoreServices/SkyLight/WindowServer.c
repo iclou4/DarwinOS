@@ -814,12 +814,47 @@ ws_metal_init(void)
     wslog("WindowServer: Metal Framework rendering pipeline initialized successfully");
 }
 
+static int g_active_menu = -1;
 static inline void
 draw_menubar(void)
 {
     if (!g_fb || g_w < MENUBAR_W) return;
+    const uint32_t *mb_src = g_menubar_pixels;
+    if (g_active_menu == 0) mb_src = g_menubar_apple;
+    else if (g_active_menu == 1) mb_src = g_menubar_recovery;
+    else if (g_active_menu == 4) mb_src = g_menubar_utilities;
+
     for (int y = 0; y < MENUBAR_H && y < g_h; y++) {
-        memcpy(g_fb + (size_t)y * (size_t)g_w, g_menubar_pixels + (size_t)y * (size_t)MENUBAR_W, (size_t)MENUBAR_W * 4);
+        memcpy(g_fb + (size_t)y * (size_t)g_w, mb_src + (size_t)y * (size_t)MENUBAR_W, (size_t)MENUBAR_W * 4);
+    }
+
+    if (g_active_menu == 0) {
+        for (int dy = 0; dy < DROPDOWN_APPLE_H && (DROPDOWN_APPLE_Y + dy) < g_h; dy++) {
+            uint32_t *dst = g_fb + (size_t)(DROPDOWN_APPLE_Y + dy) * (size_t)g_w + DROPDOWN_APPLE_X;
+            const uint32_t *src = g_dropdown_apple + (size_t)dy * (size_t)DROPDOWN_APPLE_W;
+            for (int dx = 0; dx < DROPDOWN_APPLE_W; dx++) {
+                uint32_t p = src[dx];
+                if ((p >> 24) != 0) dst[dx] = p;
+            }
+        }
+    } else if (g_active_menu == 1) {
+        for (int dy = 0; dy < DROPDOWN_RECOVERY_H && (DROPDOWN_RECOVERY_Y + dy) < g_h; dy++) {
+            uint32_t *dst = g_fb + (size_t)(DROPDOWN_RECOVERY_Y + dy) * (size_t)g_w + DROPDOWN_RECOVERY_X;
+            const uint32_t *src = g_dropdown_recovery + (size_t)dy * (size_t)DROPDOWN_RECOVERY_W;
+            for (int dx = 0; dx < DROPDOWN_RECOVERY_W; dx++) {
+                uint32_t p = src[dx];
+                if ((p >> 24) != 0) dst[dx] = p;
+            }
+        }
+    } else if (g_active_menu == 4) {
+        for (int dy = 0; dy < DROPDOWN_UTILITIES_H && (DROPDOWN_UTILITIES_Y + dy) < g_h; dy++) {
+            uint32_t *dst = g_fb + (size_t)(DROPDOWN_UTILITIES_Y + dy) * (size_t)g_w + DROPDOWN_UTILITIES_X;
+            const uint32_t *src = g_dropdown_utilities + (size_t)dy * (size_t)DROPDOWN_UTILITIES_W;
+            for (int dx = 0; dx < DROPDOWN_UTILITIES_W; dx++) {
+                uint32_t p = src[dx];
+                if ((p >> 24) != 0) dst[dx] = p;
+            }
+        }
     }
 }
 
@@ -1397,6 +1432,48 @@ poll_input(void)
 
     if ((buttons & 1) && !(lastbuttons & 1)) {
         /* left down */
+        if (py >= (double)(g_h - MENUBAR_H)) {
+            if (px >= 10 && px < 32) {
+                g_active_menu = (g_active_menu == 0) ? -1 : 0;
+            } else if (px >= 32 && px < 96) {
+                g_active_menu = (g_active_menu == 1) ? -1 : 1;
+            } else if (px >= 166 && px < 224) {
+                g_active_menu = (g_active_menu == 4) ? -1 : 4;
+            } else {
+                g_active_menu = -1;
+            }
+            g_dirty = 1;
+            lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+            pthread_mutex_unlock(&g_lock);
+            return;
+        } else if (g_active_menu >= 0) {
+            g_active_menu = -1;
+            g_dirty = 1;
+        }
+
+        if (under && under->surface) {
+            int win_x = (int)(px - under->x);
+            int win_y = (int)((under->y + under->h) - py);
+            if (win_x >= 0 && win_x < RECOVERY_UI_W && win_y >= 0 && win_y < RECOVERY_UI_H) {
+                int clicked_row = -1;
+                if (win_y >= 30 && win_y < 100) clicked_row = 0;
+                else if (win_y >= 100 && win_y < 170) clicked_row = 1;
+                else if (win_y >= 170 && win_y < 240) clicked_row = 2;
+                else if (win_y >= 240 && win_y < 305) clicked_row = 3;
+
+                if (clicked_row >= 0) {
+                    g_recovery_selected_row = clicked_row;
+                    memcpy(under->surface, g_recovery_states[clicked_row], (size_t)RECOVERY_UI_W * (size_t)RECOVERY_UI_H * 4);
+                    under->mtl_tex = NULL;
+                    g_dirty = 1;
+                } else if (win_x >= 290 && win_x <= 348 && win_y >= 309 && win_y <= 326) {
+                    memcpy(under->surface, g_recovery_state_4, (size_t)RECOVERY_UI_W * (size_t)RECOVERY_UI_H * 4);
+                    under->mtl_tex = NULL;
+                    g_dirty = 1;
+                }
+            }
+        }
+
         if (under) {
             win_raise(under);
             g_curWin = under;
@@ -1428,6 +1505,15 @@ poll_input(void)
         }
     } else if (!(buttons & 1) && (lastbuttons & 1)) {
         /* left up */
+        if (under && under->surface) {
+            int win_x = (int)(px - under->x);
+            int win_y = (int)((under->y + under->h) - py);
+            if (win_x >= 290 && win_x <= 348 && win_y >= 309 && win_y <= 326) {
+                memcpy(under->surface, g_recovery_states[g_recovery_selected_row], (size_t)RECOVERY_UI_W * (size_t)RECOVERY_UI_H * 4);
+                under->mtl_tex = NULL;
+                g_dirty = 1;
+            }
+        }
         if (g_dragWin) {
             send_window_state(g_dragWin);
             g_drag_last_win = g_dragWin;
