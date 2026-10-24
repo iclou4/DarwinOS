@@ -1424,9 +1424,9 @@ poll_input(void)
     if ((buttons & 1) && !(lastbuttons & 1)) {
         /* left down */
         if (py >= (double)(g_h - MENUBAR_H)) {
-            if (px >= 16 && px < 84) {
+            if (px >= 14 && px < 100) {
                 g_active_menu = (g_active_menu == 0) ? -1 : 0;
-            } else if (px >= 156 && px < 218) {
+            } else if (px >= 170 && px < 235) {
                 g_active_menu = (g_active_menu == 3) ? -1 : 3;
             } else {
                 g_active_menu = -1;
