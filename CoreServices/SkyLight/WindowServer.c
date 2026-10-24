@@ -707,7 +707,10 @@ fs_metal_window_fallback(const mtl_fragment_in *in, mtl_fragment_out *out)
         float cy = topc ? R : (win_h - R);
         float dx = px - cx;
         float dy = py - cy;
-        float dist = sqrtf(dx * dx + dy * dy);
+        /* Apple squircle superellipse n=3.6 */
+        float ax = fabsf(dx) / R;
+        float ay = fabsf(dy) / R;
+        float dist = powf(powf(ax, 3.6f) + powf(ay, 3.6f), 0.27777778f) * R;
         float cov = R + 0.5f - dist;
         if (cov <= 0.0f) {
             out->color = mtl_make_float4(0.0f, 0.0f, 0.0f, 0.0f);
@@ -818,6 +821,31 @@ draw_menubar(void)
     }
 }
 
+static uint32_t g_bg_gradient[1280 * 800];
+static int g_bg_gradient_ready = 0;
+
+static void
+init_bg_gradient(void)
+{
+    if (g_bg_gradient_ready) return;
+    float xc = (float)g_w * 0.5f;
+    float yc = (float)g_h * 0.5f;
+    for (int y = 0; y < g_h && y < 800; y++) {
+        float dy = ((float)y - yc) / yc;
+        for (int x = 0; x < g_w && x < 1280; x++) {
+            float dx = ((float)x - xc) / xc;
+            float r2 = dx * dx + dy * dy;
+            float t = sqrtf(r2) * 0.75f;
+            if (t > 1.0f) t = 1.0f;
+            /* Authentic macOS Tahoe Recovery vignette matching reference: 25 at center, 10 at corners */
+            int v = (int)roundf(25.0f - 15.0f * t);
+            if (v < 10) v = 10;
+            g_bg_gradient[y * g_w + x] = 0xff000000u | ((uint32_t)v << 16) | ((uint32_t)v << 8) | (uint32_t)v;
+        }
+    }
+    g_bg_gradient_ready = 1;
+}
+
 static inline void
 fill_rect_bg(int rx, int ry, int rw, int rh)
 {
@@ -828,26 +856,12 @@ fill_rect_bg(int rx, int ry, int rw, int rh)
     int y1 = ry + rh > g_h ? g_h : ry + rh;
     if (x0 >= x1 || y0 >= y1) return;
 
-    /* Authentic macOS Tahoe Recovery dark vignette base: #161616 */
-    uint32_t bg = 0xff161616u;
-    uint64_t bg64 = ((uint64_t)bg << 32) | (uint64_t)bg;
-    int w_words = x1 - x0;
-
+    init_bg_gradient();
+    int copy_bytes = (x1 - x0) * (int)sizeof(uint32_t);
     for (int y = y0; y < y1; y++) {
-        uint32_t *dst = g_fb + (size_t)y * (size_t)g_w + (size_t)x0;
-        int x = 0;
-        if (((uintptr_t)dst & 7) && x < w_words) {
-            dst[x++] = bg;
-        }
-        int count64 = (w_words - x) / 2;
-        uint64_t *d64 = (uint64_t *)(dst + x);
-        for (int k = 0; k < count64; k++) {
-            d64[k] = bg64;
-        }
-        x += count64 * 2;
-        while (x < w_words) {
-            dst[x++] = bg;
-        }
+        memcpy(g_fb + (size_t)y * (size_t)g_w + (size_t)x0,
+               g_bg_gradient + (size_t)y * (size_t)g_w + (size_t)x0,
+               copy_bytes);
     }
 }
 
@@ -1026,10 +1040,8 @@ composite_ex(int is_drag, int sc_x, int sc_y, int sc_w, int sc_h)
     double t_after_commit = 0.0;
 
     if (!g_mtl_device || !g_mtl_queue || !g_mtl_screen || !g_mtl_pipe_window) {
-        /* Fallback CPU desktop clear */
-        uint32_t bg = 0xff161616u;
-        for (size_t i = 0; i < (size_t)g_w * (size_t)g_h; i++)
-            g_fb[i] = bg;
+        /* Fallback CPU desktop clear with authentic radial vignette */
+        fill_rect_bg(0, 0, g_w, g_h);
         for (l = 0; l < kCGNumReservedWindowLevels; l++) {
             WSWindow *w;
             for (w = g_levels[l]; w; w = w->next) {
