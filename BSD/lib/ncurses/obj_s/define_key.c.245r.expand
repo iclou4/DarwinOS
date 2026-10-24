@@ -1,0 +1,1812 @@
+
+;; Function define_key_sp (define_key_sp, funcdef_no=91, decl_uid=6718, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+int define_key_sp (struct SCREEN * sp, const char * str, int keycode)
+{
+  unsigned int ukey;
+  int code;
+  int code;
+  struct TERMINAL * _1;
+  struct TERMINAL * _3;
+  int _6;
+  int _17;
+  int _19;
+  int _20;
+  struct TRIES * * _21;
+  int _22;
+  struct TRIES * * pretmp_25;
+  struct TERMINAL * _27;
+  int _30;
+  struct TRIES * * pretmp_31;
+  int _38;
+  int _40;
+  _Bool _44;
+  struct TRIES * * pretmp_57;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (sp_11(D) == 0B)
+    goto <bb 3>; [0.87%]
+  else
+    goto <bb 4>; [99.13%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+;;                5
+;;                12
+;;                19
+  goto <bb 18>; [100.00%]
+;;    succ:       18
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+  _1 = sp_11(D)->_term;
+  if (_1 != 0B)
+    goto <bb 6>; [70.00%]
+  else
+    goto <bb 5>; [30.00%]
+;;    succ:       6
+;;                5
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  _3 = _nc_prescreen._cur_term;
+  if (_3 == 0B)
+    goto <bb 3>; [0.87%]
+  else
+    goto <bb 6>; [99.13%]
+;;    succ:       3
+;;                6
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+;;                4
+  if (keycode_13(D) > 0)
+    goto <bb 7>; [59.00%]
+  else
+    goto <bb 16>; [41.00%]
+;;    succ:       7
+;;                16
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+  ukey_16 = (unsigned int) keycode_13(D);
+  if (str_14(D) != 0B)
+    goto <bb 8>; [70.00%]
+  else
+    goto <bb 12>; [30.00%]
+;;    succ:       8
+;;                12
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+  if (_1 != 0B)
+    goto <bb 10>; [70.00%]
+  else
+    goto <bb 9>; [30.00%]
+;;    succ:       10
+;;                9
+
+;;   basic block 9, loop depth 0
+;;    pred:       8
+  _27 = _nc_prescreen._cur_term;
+  if (_27 == 0B)
+    goto <bb 19>; [0.87%]
+  else
+    goto <bb 10>; [99.13%]
+;;    succ:       19
+;;                10
+
+;;   basic block 10, loop depth 0
+;;    pred:       9
+;;                8
+  pretmp_57 = &sp_11(D)->_keytry;
+;;    succ:       11
+
+;;   basic block 11, loop depth 1
+;;    pred:       10
+;;                11
+  _30 = _nc_remove_string (pretmp_57, str_14(D));
+  if (_30 != 0)
+    goto <bb 11>; [89.00%]
+  else
+    goto <bb 19>; [11.00%]
+;;    succ:       11
+;;                19
+
+;;   basic block 12, loop depth 0
+;;    pred:       7
+  _17 = has_key_sp (sp_11(D), keycode_13(D));
+  if (_17 != 0)
+    goto <bb 13>; [50.00%]
+  else
+    goto <bb 3>; [50.00%]
+;;    succ:       13
+;;                3
+
+;;   basic block 13, loop depth 0
+;;    pred:       12
+  pretmp_25 = &sp_11(D)->_keytry;
+;;    succ:       14
+
+;;   basic block 14, loop depth 1
+;;    pred:       13
+;;                14
+  # code_24 = PHI <-1(13), code_4(14)>
+  _19 = _nc_remove_key (pretmp_25, ukey_16);
+  code_4 = 0;
+  if (_19 != 0)
+    goto <bb 14>; [89.00%]
+  else
+    goto <bb 18>; [11.00%]
+;;    succ:       14
+;;                18
+
+;;   basic block 15, loop depth 0
+;;    pred:       19
+  _21 = &sp_11(D)->_keytry;
+  _22 = _nc_add_to_try (_21, str_14(D), ukey_16);
+  _44 = _22 != 0;
+  _38 = (int) _44;
+  _40 = -_38;
+  goto <bb 18>; [100.00%]
+;;    succ:       18
+
+;;   basic block 16, loop depth 0
+;;    pred:       6
+  pretmp_31 = &sp_11(D)->_keytry;
+;;    succ:       17
+
+;;   basic block 17, loop depth 1
+;;    pred:       16
+;;                17
+  # code_7 = PHI <-1(16), code_5(17)>
+  _6 = _nc_remove_string (pretmp_31, str_14(D));
+  code_5 = 0;
+  if (_6 != 0)
+    goto <bb 17>; [89.00%]
+  else
+    goto <bb 18>; [11.00%]
+;;    succ:       17
+;;                18
+
+;;   basic block 18, loop depth 0
+;;    pred:       15
+;;                3
+;;                17
+;;                14
+  # code_8 = PHI <_40(15), -1(3), code_7(17), code_24(14)>
+  return code_8;
+;;    succ:       EXIT
+
+;;   basic block 19, loop depth 0
+;;    pred:       9
+;;                11
+  _20 = key_defined_sp (sp_11(D), str_14(D));
+  if (_20 == 0)
+    goto <bb 15>; [96.02%]
+  else
+    goto <bb 3>; [3.98%]
+;;    succ:       15
+;;                3
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 3 (_3 - 3 )
+Partition 4 (code_4 - 4 )
+Partition 5 (code_5 - 5 )
+Partition 6 (_6 - 6 )
+Partition 7 (code_7 - 7 )
+Partition 8 (code_8 - 8 )
+Partition 11 (sp_11(D) - 11 )
+Partition 13 (keycode_13(D) - 13 )
+Partition 14 (str_14(D) - 14 )
+Partition 16 (ukey_16 - 16 )
+Partition 17 (_17 - 17 )
+Partition 19 (_19 - 19 )
+Partition 20 (_20 - 20 )
+Partition 21 (_21 - 21 )
+Partition 22 (_22 - 22 )
+Partition 24 (code_24 - 24 )
+Partition 25 (pretmp_25 - 25 )
+Partition 27 (_27 - 27 )
+Partition 30 (_30 - 30 )
+Partition 31 (pretmp_31 - 31 )
+Partition 38 (_38 - 38 )
+Partition 40 (_40 - 40 )
+Partition 44 (_44 - 44 )
+Partition 51 (_51(D) - 51 )
+Partition 57 (pretmp_57 - 57 )
+
+
+Coalescible Partition map 
+
+Partition 3, base 0 (code_4 - 4 5 7 8 24 40 51 )
+Partition 4, base 1 (sp_11(D) - 11 )
+Partition 5, base 2 (keycode_13(D) - 13 )
+Partition 6, base 3 (str_14(D) - 14 )
+
+
+Partition map 
+
+Partition 0 (code_4 - 4 )
+Partition 1 (code_5 - 5 )
+Partition 2 (code_7 - 7 )
+Partition 3 (code_8 - 8 )
+Partition 4 (sp_11(D) - 11 )
+Partition 5 (keycode_13(D) - 13 )
+Partition 6 (str_14(D) - 14 )
+Partition 7 (code_24 - 24 )
+Partition 8 (_40 - 40 )
+Partition 9 (_51(D) - 51 )
+
+
+Conflict graph:
+0: 7
+1: 2
+2: 1
+7: 0
+
+After sorting:
+Sorted Coalesce list:
+(17800, 0) code_5 <-> code_7
+(3842, 0) code_4 <-> code_24
+(2714, 0) code_8 <-> _51(D)
+(2200, 0) code_7 <-> code_8
+(813, 0) code_8 <-> _40
+(474, 0) code_8 <-> code_24
+
+Partition map 
+
+Partition 0 (code_4 - 4 )
+Partition 1 (code_5 - 5 )
+Partition 2 (code_7 - 7 )
+Partition 3 (code_8 - 8 )
+Partition 4 (sp_11(D) - 11 )
+Partition 5 (keycode_13(D) - 13 )
+Partition 6 (str_14(D) - 14 )
+Partition 7 (code_24 - 24 )
+Partition 8 (_40 - 40 )
+Partition 9 (_51(D) - 51 )
+
+Coalesce list: (5)code_5 & (7)code_7 [map: 1, 2] : Fail due to conflict
+Coalesce list: (4)code_4 & (24)code_24 [map: 0, 7] : Fail due to conflict
+Coalesce list: (8)code_8 & (51)_51(D) [map: 3, 9] : Success -> 3
+Coalesce list: (7)code_7 & (8)code_8 [map: 2, 3] : Success -> 3
+Coalesce list: (8)code_8 & (40)_40 [map: 3, 8] : Success -> 3
+Coalesce list: (8)code_8 & (24)code_24 [map: 3, 7] : Success -> 3
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_3 - 3 )
+Partition 2 (code_4 - 4 )
+Partition 3 (code_5 - 5 )
+Partition 4 (_6 - 6 )
+Partition 5 (code_8 - 7 8 24 40 51 )
+Partition 6 (sp_11(D) - 11 )
+Partition 7 (keycode_13(D) - 13 )
+Partition 8 (str_14(D) - 14 )
+Partition 9 (ukey_16 - 16 )
+Partition 10 (_17 - 17 )
+Partition 11 (_19 - 19 )
+Partition 12 (_20 - 20 )
+Partition 13 (_21 - 21 )
+Partition 14 (_22 - 22 )
+Partition 15 (pretmp_25 - 25 )
+Partition 16 (_27 - 27 )
+Partition 17 (_30 - 30 )
+Partition 18 (pretmp_31 - 31 )
+Partition 19 (_38 - 38 )
+Partition 20 (_44 - 44 )
+Partition 21 (pretmp_57 - 57 )
+
+
+Replacing Expressions
+_3 replace with --> _3 = _nc_prescreen._cur_term;
+
+_21 replace with --> _21 = &sp_11(D)->_keytry;
+
+_27 replace with --> _27 = _nc_prescreen._cur_term;
+
+_38 replace with --> _38 = (int) _44;
+
+_44 replace with --> _44 = _22 != 0;
+
+
+__attribute__((visibility ("default")))
+int define_key_sp (struct SCREEN * sp, const char * str, int keycode)
+{
+  unsigned int ukey;
+  int code;
+  int code;
+  struct TERMINAL * _1;
+  struct TERMINAL * _3;
+  int _6;
+  int _17;
+  int _19;
+  int _20;
+  struct TRIES * * _21;
+  int _22;
+  struct TRIES * * pretmp_25;
+  struct TERMINAL * _27;
+  int _30;
+  struct TRIES * * pretmp_31;
+  int _38;
+  int _40;
+  _Bool _44;
+  int _51(D);
+  struct TRIES * * pretmp_57;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (sp_11(D) == 0B)
+    goto <bb 3>; [0.87%]
+  else
+    goto <bb 4>; [99.13%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+;;                5
+;;                12
+;;                19
+  goto <bb 18>; [100.00%]
+;;    succ:       18
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+  _1 = sp_11(D)->_term;
+  if (_1 != 0B)
+    goto <bb 6>; [70.00%]
+  else
+    goto <bb 5>; [30.00%]
+;;    succ:       6
+;;                5
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  _3 = _nc_prescreen._cur_term;
+  if (_3 == 0B)
+    goto <bb 3>; [0.87%]
+  else
+    goto <bb 6>; [99.13%]
+;;    succ:       3
+;;                6
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+;;                4
+  if (keycode_13(D) > 0)
+    goto <bb 7>; [59.00%]
+  else
+    goto <bb 16>; [41.00%]
+;;    succ:       7
+;;                16
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+  ukey_16 = (unsigned int) keycode_13(D);
+  if (str_14(D) != 0B)
+    goto <bb 8>; [70.00%]
+  else
+    goto <bb 12>; [30.00%]
+;;    succ:       8
+;;                12
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+  if (_1 != 0B)
+    goto <bb 10>; [70.00%]
+  else
+    goto <bb 9>; [30.00%]
+;;    succ:       10
+;;                9
+
+;;   basic block 9, loop depth 0
+;;    pred:       8
+  _27 = _nc_prescreen._cur_term;
+  if (_27 == 0B)
+    goto <bb 19>; [0.87%]
+  else
+    goto <bb 10>; [99.13%]
+;;    succ:       19
+;;                10
+
+;;   basic block 10, loop depth 0
+;;    pred:       9
+;;                8
+  pretmp_57 = &sp_11(D)->_keytry;
+;;    succ:       11
+
+;;   basic block 11, loop depth 1
+;;    pred:       10
+;;                11
+  _30 = _nc_remove_string (pretmp_57, str_14(D));
+  if (_30 != 0)
+    goto <bb 11>; [89.00%]
+  else
+    goto <bb 19>; [11.00%]
+;;    succ:       11
+;;                19
+
+;;   basic block 12, loop depth 0
+;;    pred:       7
+  _17 = has_key_sp (sp_11(D), keycode_13(D));
+  if (_17 != 0)
+    goto <bb 13>; [50.00%]
+  else
+    goto <bb 3>; [50.00%]
+;;    succ:       13
+;;                3
+
+;;   basic block 13, loop depth 0
+;;    pred:       12
+  pretmp_25 = &sp_11(D)->_keytry;
+;;    succ:       14
+
+;;   basic block 14, loop depth 1
+;;    pred:       13
+;;                14
+  # code_24 = PHI <-1(13), code_4(14)>
+  _19 = _nc_remove_key (pretmp_25, ukey_16);
+  code_4 = 0;
+  if (_19 != 0)
+    goto <bb 14>; [89.00%]
+  else
+    goto <bb 18>; [11.00%]
+;;    succ:       14
+;;                18
+
+;;   basic block 15, loop depth 0
+;;    pred:       19
+  _21 = &sp_11(D)->_keytry;
+  _22 = _nc_add_to_try (_21, str_14(D), ukey_16);
+  _44 = _22 != 0;
+  _38 = (int) _44;
+  _40 = -_38;
+  goto <bb 18>; [100.00%]
+;;    succ:       18
+
+;;   basic block 16, loop depth 0
+;;    pred:       6
+  pretmp_31 = &sp_11(D)->_keytry;
+;;    succ:       17
+
+;;   basic block 17, loop depth 1
+;;    pred:       16
+;;                17
+  # code_7 = PHI <-1(16), code_5(17)>
+  _6 = _nc_remove_string (pretmp_31, str_14(D));
+  code_5 = 0;
+  if (_6 != 0)
+    goto <bb 17>; [89.00%]
+  else
+    goto <bb 18>; [11.00%]
+;;    succ:       17
+;;                18
+
+;;   basic block 18, loop depth 0
+;;    pred:       15
+;;                3
+;;                17
+;;                14
+  # code_8 = PHI <_40(15), -1(3), code_7(17), code_24(14)>
+  return code_8;
+;;    succ:       EXIT
+
+;;   basic block 19, loop depth 0
+;;    pred:       9
+;;                11
+  _20 = key_defined_sp (sp_11(D), str_14(D));
+  if (_20 == 0)
+    goto <bb 15>; [96.02%]
+  else
+    goto <bb 3>; [3.98%]
+;;    succ:       15
+;;                3
+
+}
+
+
+Inserting a value copy on edge BB13->BB14 : PART.5 = -1
+Inserting a partition copy on edge BB14->BB14 : PART.5 = PART.2
+Inserting a value copy on edge BB16->BB17 : PART.5 = -1
+Inserting a partition copy on edge BB17->BB17 : PART.5 = PART.3
+Inserting a value copy on edge BB3->BB18 : PART.5 = -1
+
+;; Generating RTL for gimple basic block 2
+
+;; if (sp_11(D) == 0B)
+
+(insn 13 12 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 101 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":45:8 -1
+     (nil))
+
+(jump_insn 14 13 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/define_key.c":45:8 -1
+     (int_list:REG_BR_PROB 1064400276 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; 
+
+(code_label 18 17 19 2 (nil) [0 uses])
+
+(note 19 18 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _1 = sp_11(D)->_term;
+
+(insn 20 19 0 (set (reg/f:DI 82 [ _1 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 101 [ sp ])
+                (const_int 48 [0x30])) [1 sp_11(D)->_term+0 S8 A64])) "../ncurses/./base/define_key.c":45:29 -1
+     (nil))
+
+;; if (_1 != 0B)
+
+(insn 21 20 22 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":45:8 -1
+     (nil))
+
+(jump_insn 22 21 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/define_key.c":45:8 -1
+     (int_list:REG_BR_PROB 751619284 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; if (_3 == 0B)
+
+(insn 25 23 26 (set (reg/f:DI 104)
+        (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7fb274ac6f30 _nc_prescreen>)) "../ncurses/./base/define_key.c":45:29 -1
+     (nil))
+
+(insn 26 25 27 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f/c:DI (plus:DI (reg/f:DI 104)
+                    (const_int 680 [0x2a8])) [1 _nc_prescreen._cur_term+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":45:28 -1
+     (nil))
+
+(jump_insn 27 26 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 24)
+            (pc))) "../ncurses/./base/define_key.c":45:28 -1
+     (int_list:REG_BR_PROB 9341556 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 28 27 29 4 (nil) [0 uses])
+
+(note 29 28 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (keycode_13(D) > 0)
+
+(insn 32 29 33 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:SI 103 [ keycode ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":47:15 -1
+     (nil))
+
+(jump_insn 33 32 0 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/define_key.c":47:15 -1
+     (int_list:REG_BR_PROB 440234148 (nil)))
+
+;; Generating RTL for gimple basic block 7
+
+;; ukey_16 = (unsigned int) keycode_13(D);
+
+(insn 35 34 0 (set (reg/v:SI 87 [ ukey ])
+        (reg/v:SI 103 [ keycode ])) "../ncurses/./base/define_key.c":48:11 -1
+     (nil))
+
+;; if (str_14(D) != 0B)
+
+(insn 36 35 37 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 102 [ str ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":56:5 -1
+     (nil))
+
+(jump_insn 37 36 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/define_key.c":56:5 -1
+     (int_list:REG_BR_PROB 322122548 (nil)))
+
+;; Generating RTL for gimple basic block 8
+
+;; if (_1 != 0B)
+
+(insn 39 38 40 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":45:8 -1
+     (nil))
+
+(jump_insn 40 39 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/define_key.c":45:8 -1
+     (int_list:REG_BR_PROB 751619284 (nil)))
+
+;; Generating RTL for gimple basic block 9
+
+;; if (_27 == 0B)
+
+(insn 42 41 43 (set (reg/f:DI 105)
+        (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7fb274ac6f30 _nc_prescreen>)) "../ncurses/./base/define_key.c":45:29 -1
+     (nil))
+
+(insn 43 42 44 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f/c:DI (plus:DI (reg/f:DI 105)
+                    (const_int 680 [0x2a8])) [1 _nc_prescreen._cur_term+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":45:28 -1
+     (nil))
+
+(jump_insn 44 43 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/define_key.c":45:28 -1
+     (int_list:REG_BR_PROB 9341556 (nil)))
+
+;; Generating RTL for gimple basic block 10
+
+;; 
+
+(code_label 45 44 46 8 (nil) [0 uses])
+
+(note 46 45 0 NOTE_INSN_BASIC_BLOCK)
+
+;; pretmp_57 = &sp_11(D)->_keytry;
+
+(insn 47 46 0 (parallel [
+            (set (reg/f:DI 99 [ pretmp_57 ])
+                (plus:DI (reg/v/f:DI 101 [ sp ])
+                    (const_int 160 [0xa0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/define_key.c":64:7 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 11
+
+;; _30 = _nc_remove_string (pretmp_57, str_14(D));
+
+(insn 49 48 50 (set (reg:DI 4 si)
+        (reg/v/f:DI 102 [ str ])) "../ncurses/./base/define_key.c":74:9 -1
+     (nil))
+
+(insn 50 49 51 (set (reg:DI 5 di)
+        (reg/f:DI 99 [ pretmp_57 ])) "../ncurses/./base/define_key.c":74:9 -1
+     (nil))
+
+(call_insn 51 50 52 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_remove_string") [flags 0x41]  <function_decl 0x7fb274b8f000 _nc_remove_string>) [0 _nc_remove_string S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":74:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_remove_string") [flags 0x41]  <function_decl 0x7fb274b8f000 _nc_remove_string>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 52 51 0 (set (reg:SI 95 [ _30 ])
+        (reg:SI 0 ax)) "../ncurses/./base/define_key.c":74:9 -1
+     (nil))
+
+;; if (_30 != 0)
+
+(insn 54 52 55 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 95 [ _30 ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":74:9 -1
+     (nil))
+
+(jump_insn 55 54 58 11 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 53)
+            (pc))) "../ncurses/./base/define_key.c":74:9 -1
+     (int_list:REG_BR_PROB 955630228 (nil)))
+
+(note 58 55 56 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 56 58 57 21 (set (pc)
+        (label_ref 0)) -1
+     (nil))
+
+(barrier 57 56 0)
+
+;; Generating RTL for gimple basic block 12
+
+;; 
+
+(code_label 59 57 60 7 (nil) [0 uses])
+
+(note 60 59 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _17 = has_key_sp (sp_11(D), keycode_13(D));
+
+(insn 61 60 62 (set (reg:SI 4 si)
+        (reg/v:SI 103 [ keycode ])) "../ncurses/./base/define_key.c":58:13 -1
+     (nil))
+
+(insn 62 61 63 (set (reg:DI 5 di)
+        (reg/v/f:DI 101 [ sp ])) "../ncurses/./base/define_key.c":58:13 -1
+     (nil))
+
+(call_insn 63 62 64 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("has_key_sp") [flags 0x41]  <function_decl 0x7fb274a85200 has_key_sp>) [0 has_key_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":58:13 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("has_key_sp") [flags 0x41]  <function_decl 0x7fb274a85200 has_key_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+
+(insn 64 63 0 (set (reg:SI 88 [ _17 ])
+        (reg:SI 0 ax)) "../ncurses/./base/define_key.c":58:13 -1
+     (nil))
+
+;; if (_17 != 0)
+
+(insn 65 64 66 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 88 [ _17 ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":58:12 -1
+     (nil))
+
+(jump_insn 66 65 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 24)
+            (pc))) "../ncurses/./base/define_key.c":58:12 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 13
+
+;; pretmp_25 = &sp_11(D)->_keytry;
+
+(insn 68 67 0 (parallel [
+            (set (reg/f:DI 93 [ pretmp_25 ])
+                (plus:DI (reg/v/f:DI 101 [ sp ])
+                    (const_int 160 [0xa0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/define_key.c":64:7 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 14
+
+;; _19 = _nc_remove_key (pretmp_25, ukey_16);
+
+(insn 70 69 71 (set (reg:SI 4 si)
+        (reg/v:SI 87 [ ukey ])) "../ncurses/./base/define_key.c":59:13 -1
+     (nil))
+
+(insn 71 70 72 (set (reg:DI 5 di)
+        (reg/f:DI 93 [ pretmp_25 ])) "../ncurses/./base/define_key.c":59:13 -1
+     (nil))
+
+(call_insn 72 71 73 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_remove_key") [flags 0x41]  <function_decl 0x7fb274b88f00 _nc_remove_key>) [0 _nc_remove_key S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":59:13 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_remove_key") [flags 0x41]  <function_decl 0x7fb274b88f00 _nc_remove_key>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+
+(insn 73 72 0 (set (reg:SI 89 [ _19 ])
+        (reg:SI 0 ax)) "../ncurses/./base/define_key.c":59:13 -1
+     (nil))
+
+;; code_4 = 0;
+
+(insn 74 73 0 (set (reg/v:SI 84 [ code ])
+        (const_int 0 [0])) "../ncurses/./base/define_key.c":60:8 -1
+     (nil))
+
+;; if (_19 != 0)
+
+(insn 76 74 77 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 89 [ _19 ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":59:13 -1
+     (nil))
+
+(jump_insn 77 76 80 14 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 75)
+            (pc))) "../ncurses/./base/define_key.c":59:13 -1
+     (int_list:REG_BR_PROB 955630228 (nil)))
+
+(note 80 77 78 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 78 80 79 22 (set (pc)
+        (label_ref 0)) -1
+     (nil))
+
+(barrier 79 78 0)
+
+;; Generating RTL for gimple basic block 15
+
+;; _22 = _nc_add_to_try (_21, str_14(D), ukey_16);
+
+(insn 82 81 83 (parallel [
+            (set (reg:DI 106)
+                (plus:DI (reg/v/f:DI 101 [ sp ])
+                    (const_int 160 [0xa0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/define_key.c":64:7 -1
+     (nil))
+
+(insn 83 82 84 (set (reg:SI 1 dx)
+        (reg/v:SI 87 [ ukey ])) "../ncurses/./base/define_key.c":64:7 -1
+     (nil))
+
+(insn 84 83 85 (set (reg:DI 4 si)
+        (reg/v/f:DI 102 [ str ])) "../ncurses/./base/define_key.c":64:7 -1
+     (nil))
+
+(insn 85 84 86 (set (reg:DI 5 di)
+        (reg:DI 106)) "../ncurses/./base/define_key.c":64:7 -1
+     (nil))
+
+(call_insn 86 85 87 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_add_to_try") [flags 0x41]  <function_decl 0x7fb274b88d00 _nc_add_to_try>) [0 _nc_add_to_try S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":64:7 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_add_to_try") [flags 0x41]  <function_decl 0x7fb274b88d00 _nc_add_to_try>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+
+(insn 87 86 0 (set (reg:SI 92 [ _22 ])
+        (reg:SI 0 ax)) "../ncurses/./base/define_key.c":64:7 -1
+     (nil))
+
+;; _40 = -_38;
+
+(insn 88 87 89 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 92 [ _22 ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":64:6 -1
+     (nil))
+
+(insn 89 88 90 (set (reg:QI 108)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":64:6 -1
+     (nil))
+
+(insn 90 89 91 (set (reg:SI 107)
+        (zero_extend:SI (reg:QI 108))) "../ncurses/./base/define_key.c":64:6 -1
+     (nil))
+
+(insn 91 90 0 (parallel [
+            (set (reg/v:SI 100 [ <retval> ])
+                (neg:SI (reg:SI 107)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/define_key.c":64:6 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 16
+
+;; 
+
+(code_label 94 93 95 6 (nil) [0 uses])
+
+(note 95 94 0 NOTE_INSN_BASIC_BLOCK)
+
+;; pretmp_31 = &sp_11(D)->_keytry;
+
+(insn 96 95 0 (parallel [
+            (set (reg/f:DI 96 [ pretmp_31 ])
+                (plus:DI (reg/v/f:DI 101 [ sp ])
+                    (const_int 160 [0xa0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/define_key.c":64:7 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 17
+
+;; _6 = _nc_remove_string (pretmp_31, str_14(D));
+
+(insn 98 97 99 (set (reg:DI 4 si)
+        (reg/v/f:DI 102 [ str ])) "../ncurses/./base/define_key.c":74:9 -1
+     (nil))
+
+(insn 99 98 100 (set (reg:DI 5 di)
+        (reg/f:DI 96 [ pretmp_31 ])) "../ncurses/./base/define_key.c":74:9 -1
+     (nil))
+
+(call_insn 100 99 101 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_remove_string") [flags 0x41]  <function_decl 0x7fb274b8f000 _nc_remove_string>) [0 _nc_remove_string S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":74:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_remove_string") [flags 0x41]  <function_decl 0x7fb274b8f000 _nc_remove_string>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 101 100 0 (set (reg:SI 86 [ _6 ])
+        (reg:SI 0 ax)) "../ncurses/./base/define_key.c":74:9 -1
+     (nil))
+
+;; code_5 = 0;
+
+(insn 102 101 0 (set (reg/v:SI 85 [ code ])
+        (const_int 0 [0])) "../ncurses/./base/define_key.c":75:11 -1
+     (nil))
+
+;; if (_6 != 0)
+
+(insn 104 102 105 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 86 [ _6 ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":74:9 -1
+     (nil))
+
+(jump_insn 105 104 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 103)
+            (pc))) "../ncurses/./base/define_key.c":74:9 -1
+     (int_list:REG_BR_PROB 955630228 (nil)))
+
+;; Generating RTL for gimple basic block 18
+
+;; 
+
+(code_label 106 105 107 3 (nil) [0 uses])
+
+(note 107 106 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return code_8;
+
+(jump_insn 108 107 109 (set (pc)
+        (label_ref 0)) "../ncurses/./base/define_key.c":77:5 -1
+     (nil))
+
+(barrier 109 108 0)
+
+;; Generating RTL for gimple basic block 19
+
+;; 
+
+(code_label 110 109 111 9 (nil) [0 uses])
+
+(note 111 110 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _20 = key_defined_sp (sp_11(D), str_14(D));
+
+(insn 112 111 113 (set (reg:DI 4 si)
+        (reg/v/f:DI 102 [ str ])) "../ncurses/./base/define_key.c":63:10 -1
+     (nil))
+
+(insn 113 112 114 (set (reg:DI 5 di)
+        (reg/v/f:DI 101 [ sp ])) "../ncurses/./base/define_key.c":63:10 -1
+     (nil))
+
+(call_insn 114 113 115 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("key_defined_sp") [flags 0x41]  <function_decl 0x7fb274a23f00 key_defined_sp>) [0 key_defined_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":63:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("key_defined_sp") [flags 0x41]  <function_decl 0x7fb274a23f00 key_defined_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 115 114 0 (set (reg:SI 90 [ _20 ])
+        (reg:SI 0 ax)) "../ncurses/./base/define_key.c":63:10 -1
+     (nil))
+
+;; if (_20 == 0)
+
+(insn 117 115 118 19 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 90 [ _20 ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":63:9 -1
+     (nil))
+
+(jump_insn 118 117 121 19 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 116)
+            (pc))) "../ncurses/./base/define_key.c":63:9 -1
+     (int_list:REG_BR_PROB 1031006900 (nil)))
+
+(note 121 118 119 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 119 121 120 23 (set (pc)
+        (label_ref 24)) -1
+     (nil))
+
+(barrier 120 119 0)
+Edge 14->14 redirected to 25
+Edge 17->17 redirected to 26
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 16 from 23 to 26.
+Forwarding edge 12->13 to 24 failed.
+Forwarding edge 17->18 to 26 failed.
+Redirecting jump 78 from 23 to 26.
+Redirecting jump 92 from 23 to 26.
+Forwarding edge 22->23 to 26 failed.
+Deleted label in block 23.
+Forwarding edge 24->25 to 4 failed.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 12->13 to 24 failed.
+Forwarding edge 17->18 to 26 failed.
+Forwarding edge 22->23 to 26 failed.
+Forwarding edge 24->25 to 4 failed.
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 11 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 291365806 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:291365806 (estimated locally) (FALLTHRU)
+(note 11 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 11 3 2 (set (reg/v/f:DI 101 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/define_key.c":41:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 102 [ str ])
+        (reg:DI 4 si [ str ])) "../ncurses/./base/define_key.c":41:1 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:SI 103 [ keycode ])
+        (reg:SI 1 dx [ keycode ])) "../ncurses/./base/define_key.c":41:1 -1
+     (nil))
+(note 5 4 13 2 NOTE_INSN_FUNCTION_BEG)
+(insn 13 5 14 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 101 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":45:8 -1
+     (nil))
+(jump_insn 14 13 24 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 18)
+            (pc))) "../ncurses/./base/define_key.c":45:8 -1
+     (int_list:REG_BR_PROB 1064400276 (nil))
+ -> 18)
+;;  succ:       4 [0.9% (guessed)]  count:2534882 (estimated locally) (FALLTHRU)
+;;              5 [99.1% (guessed)]  count:288830924 (estimated locally)
+
+;; basic block 4, loop depth 0, count 32400598 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 33477594 (estimated locally), should be 32400598 (estimated locally)
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [0.9% (guessed)]  count:2534882 (estimated locally) (FALLTHRU)
+;;              6 [0.9% (guessed)]  count:753849 (estimated locally)
+;;              14 [50.0% (guessed)]  count:25494821 (estimated locally)
+;;              25 [always]  count:4694042 (estimated locally)
+(code_label 24 14 15 4 5 (nil) [3 uses])
+(note 15 24 10 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 10 15 16 4 (set (reg/v:SI 100 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/define_key.c":46:7 -1
+     (nil))
+(jump_insn 16 10 17 4 (set (pc)
+        (label_ref:DI 122)) 807 {jump}
+     (nil)
+ -> 122)
+;;  succ:       26 [always]  count:32400598 (estimated locally)
+
+(barrier 17 16 18)
+;; basic block 5, loop depth 0, count 288830924 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [99.1% (guessed)]  count:288830924 (estimated locally)
+(code_label 18 17 19 5 2 (nil) [1 uses])
+(note 19 18 20 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 21 5 (set (reg/f:DI 82 [ _1 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 101 [ sp ])
+                (const_int 48 [0x30])) [1 sp_11(D)->_term+0 S8 A64])) "../ncurses/./base/define_key.c":45:29 -1
+     (nil))
+(insn 21 20 22 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":45:8 -1
+     (nil))
+(jump_insn 22 21 23 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 28)
+            (pc))) "../ncurses/./base/define_key.c":45:8 -1
+     (int_list:REG_BR_PROB 751619284 (nil))
+ -> 28)
+;;  succ:       7 [70.0% (guessed)]  count:202181648 (estimated locally)
+;;              6 [30.0% (guessed)]  count:86649276 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 86649276 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [30.0% (guessed)]  count:86649276 (estimated locally) (FALLTHRU)
+(note 23 22 25 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 25 23 26 6 (set (reg/f:DI 104)
+        (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7fb274ac6f30 _nc_prescreen>)) "../ncurses/./base/define_key.c":45:29 -1
+     (nil))
+(insn 26 25 27 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f/c:DI (plus:DI (reg/f:DI 104)
+                    (const_int 680 [0x2a8])) [1 _nc_prescreen._cur_term+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":45:28 -1
+     (nil))
+(jump_insn 27 26 28 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 24)
+            (pc))) "../ncurses/./base/define_key.c":45:28 -1
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 24)
+;;  succ:       4 [0.9% (guessed)]  count:753849 (estimated locally)
+;;              7 [99.1% (guessed)]  count:85895427 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 288077076 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [99.1% (guessed)]  count:85895427 (estimated locally) (FALLTHRU)
+;;              5 [70.0% (guessed)]  count:202181648 (estimated locally)
+(code_label 28 27 29 7 4 (nil) [1 uses])
+(note 29 28 32 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 32 29 33 7 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:SI 103 [ keycode ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":47:15 -1
+     (nil))
+(jump_insn 33 32 34 7 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 94)
+            (pc))) "../ncurses/./base/define_key.c":47:15 -1
+     (int_list:REG_BR_PROB 440234148 (nil))
+ -> 94)
+;;  succ:       8 [59.0% (guessed)]  count:169965476 (estimated locally) (FALLTHRU)
+;;              20 [41.0% (guessed)]  count:118111600 (estimated locally)
+
+;; basic block 8, loop depth 0, count 169965476 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [59.0% (guessed)]  count:169965476 (estimated locally) (FALLTHRU)
+(note 34 33 35 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 35 34 36 8 (set (reg/v:SI 87 [ ukey ])
+        (reg/v:SI 103 [ keycode ])) "../ncurses/./base/define_key.c":48:11 -1
+     (nil))
+(insn 36 35 37 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 102 [ str ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":56:5 -1
+     (nil))
+(jump_insn 37 36 38 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 59)
+            (pc))) "../ncurses/./base/define_key.c":56:5 -1
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 59)
+;;  succ:       9 [70.0% (guessed)]  count:118975834 (estimated locally) (FALLTHRU)
+;;              14 [30.0% (guessed)]  count:50989642 (estimated locally)
+
+;; basic block 9, loop depth 0, count 117940744 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [70.0% (guessed)]  count:118975834 (estimated locally) (FALLTHRU)
+(note 38 37 39 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 39 38 40 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":45:8 -1
+     (nil))
+(jump_insn 40 39 41 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 45)
+            (pc))) "../ncurses/./base/define_key.c":45:8 -1
+     (int_list:REG_BR_PROB 751619284 (nil))
+ -> 45)
+;;  succ:       11 [70.0% (guessed)]  count:82558521 (estimated locally)
+;;              10 [30.0% (guessed)]  count:35382223 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 35382223 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       9 [30.0% (guessed)]  count:35382223 (estimated locally) (FALLTHRU)
+(note 41 40 42 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 42 41 43 10 (set (reg/f:DI 105)
+        (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7fb274ac6f30 _nc_prescreen>)) "../ncurses/./base/define_key.c":45:29 -1
+     (nil))
+(insn 43 42 44 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f/c:DI (plus:DI (reg/f:DI 105)
+                    (const_int 680 [0x2a8])) [1 _nc_prescreen._cur_term+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":45:28 -1
+     (nil))
+(jump_insn 44 43 45 10 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 110)
+            (pc))) "../ncurses/./base/define_key.c":45:28 -1
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 110)
+;;  succ:       24 [0.9% (guessed)]  count:307825 (estimated locally)
+;;              11 [99.1% (guessed)]  count:35074398 (estimated locally) (FALLTHRU)
+
+;; basic block 11, loop depth 0, count 117632919 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       10 [99.1% (guessed)]  count:35074398 (estimated locally) (FALLTHRU)
+;;              9 [70.0% (guessed)]  count:82558521 (estimated locally)
+(code_label 45 44 46 11 8 (nil) [1 uses])
+(note 46 45 47 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 47 46 53 11 (parallel [
+            (set (reg/f:DI 99 [ pretmp_57 ])
+                (plus:DI (reg/v/f:DI 101 [ sp ])
+                    (const_int 160 [0xa0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/define_key.c":64:7 -1
+     (nil))
+;;  succ:       12 [always]  count:117632919 (estimated locally) (FALLTHRU)
+
+;; basic block 12, loop depth 1, count 1069390177 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       11 [always]  count:117632919 (estimated locally) (FALLTHRU)
+;;              12 [89.0% (guessed)]  count:951757258 (estimated locally) (DFS_BACK)
+(code_label 53 47 48 12 10 (nil) [1 uses])
+(note 48 53 49 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 49 48 50 12 (set (reg:DI 4 si)
+        (reg/v/f:DI 102 [ str ])) "../ncurses/./base/define_key.c":74:9 -1
+     (nil))
+(insn 50 49 51 12 (set (reg:DI 5 di)
+        (reg/f:DI 99 [ pretmp_57 ])) "../ncurses/./base/define_key.c":74:9 -1
+     (nil))
+(call_insn 51 50 52 12 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_remove_string") [flags 0x41]  <function_decl 0x7fb274b8f000 _nc_remove_string>) [0 _nc_remove_string S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":74:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_remove_string") [flags 0x41]  <function_decl 0x7fb274b8f000 _nc_remove_string>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 52 51 54 12 (set (reg:SI 95 [ _30 ])
+        (reg:SI 0 ax)) "../ncurses/./base/define_key.c":74:9 -1
+     (nil))
+(insn 54 52 55 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 95 [ _30 ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":74:9 -1
+     (nil))
+(jump_insn 55 54 58 12 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 53)
+            (pc))) "../ncurses/./base/define_key.c":74:9 -1
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 53)
+;;  succ:       12 [89.0% (guessed)]  count:951757258 (estimated locally) (DFS_BACK)
+;;              13 [11.0% (guessed)]  count:117632919 (estimated locally) (FALLTHRU)
+
+;; basic block 13, loop depth 0, count 117632919 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL)
+;;  pred:       12 [11.0% (guessed)]  count:117632919 (estimated locally) (FALLTHRU)
+(note 58 55 56 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 56 58 57 13 (set (pc)
+        (label_ref 110)) -1
+     (nil)
+ -> 110)
+;;  succ:       24 [always]  count:117632919 (estimated locally)
+
+(barrier 57 56 59)
+;; basic block 14, loop depth 0, count 50989642 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [30.0% (guessed)]  count:50989642 (estimated locally)
+(code_label 59 57 60 14 7 (nil) [1 uses])
+(note 60 59 61 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 61 60 62 14 (set (reg:SI 4 si)
+        (reg/v:SI 103 [ keycode ])) "../ncurses/./base/define_key.c":58:13 -1
+     (nil))
+(insn 62 61 63 14 (set (reg:DI 5 di)
+        (reg/v/f:DI 101 [ sp ])) "../ncurses/./base/define_key.c":58:13 -1
+     (nil))
+(call_insn 63 62 64 14 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("has_key_sp") [flags 0x41]  <function_decl 0x7fb274a85200 has_key_sp>) [0 has_key_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":58:13 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("has_key_sp") [flags 0x41]  <function_decl 0x7fb274a85200 has_key_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 64 63 65 14 (set (reg:SI 88 [ _17 ])
+        (reg:SI 0 ax)) "../ncurses/./base/define_key.c":58:13 -1
+     (nil))
+(insn 65 64 66 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 88 [ _17 ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":58:12 -1
+     (nil))
+(jump_insn 66 65 67 14 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 24)
+            (pc))) "../ncurses/./base/define_key.c":58:12 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 24)
+;;  succ:       15 [50.0% (guessed)]  count:25494821 (estimated locally) (FALLTHRU)
+;;              4 [50.0% (guessed)]  count:25494821 (estimated locally)
+
+;; basic block 15, loop depth 0, count 25494821 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       14 [50.0% (guessed)]  count:25494821 (estimated locally) (FALLTHRU)
+(note 67 66 68 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 68 67 6 15 (parallel [
+            (set (reg/f:DI 93 [ pretmp_25 ])
+                (plus:DI (reg/v/f:DI 101 [ sp ])
+                    (const_int 160 [0xa0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/define_key.c":64:7 -1
+     (nil))
+(insn 6 68 126 15 (set (reg/v:SI 100 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/define_key.c":42:9 -1
+     (nil))
+(jump_insn 126 6 127 15 (set (pc)
+        (label_ref 75)) -1
+     (nil)
+ -> 75)
+;;  succ:       17 [always]  count:25494821 (estimated locally)
+
+(barrier 127 126 129)
+;; basic block 16, loop depth 1, count 206276281 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       17 [89.0% (guessed)]  count:206276281 (estimated locally)
+(code_label 129 127 128 16 14 (nil) [1 uses])
+(note 128 129 7 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 7 128 75 16 (set (reg/v:SI 100 [ <retval> ])
+        (reg/v:SI 84 [ code ])) "../ncurses/./base/define_key.c":60:8 -1
+     (nil))
+;;  succ:       17 [always]  count:206276281 (estimated locally) (FALLTHRU,DFS_BACK)
+
+;; basic block 17, loop depth 1, count 231771102 (estimated locally), maybe hot
+;;  prev block 16, next block 18, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       16 [always]  count:206276281 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              15 [always]  count:25494821 (estimated locally)
+(code_label 75 7 69 17 11 (nil) [1 uses])
+(note 69 75 70 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 70 69 71 17 (set (reg:SI 4 si)
+        (reg/v:SI 87 [ ukey ])) "../ncurses/./base/define_key.c":59:13 -1
+     (nil))
+(insn 71 70 72 17 (set (reg:DI 5 di)
+        (reg/f:DI 93 [ pretmp_25 ])) "../ncurses/./base/define_key.c":59:13 -1
+     (nil))
+(call_insn 72 71 73 17 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_remove_key") [flags 0x41]  <function_decl 0x7fb274b88f00 _nc_remove_key>) [0 _nc_remove_key S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":59:13 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_remove_key") [flags 0x41]  <function_decl 0x7fb274b88f00 _nc_remove_key>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 73 72 74 17 (set (reg:SI 89 [ _19 ])
+        (reg:SI 0 ax)) "../ncurses/./base/define_key.c":59:13 -1
+     (nil))
+(insn 74 73 76 17 (set (reg/v:SI 84 [ code ])
+        (const_int 0 [0])) "../ncurses/./base/define_key.c":60:8 -1
+     (nil))
+(insn 76 74 77 17 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 89 [ _19 ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":59:13 -1
+     (nil))
+(jump_insn 77 76 80 17 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 129)
+            (pc))) "../ncurses/./base/define_key.c":59:13 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 129)
+;;  succ:       16 [89.0% (guessed)]  count:206276281 (estimated locally)
+;;              18 [11.0% (guessed)]  count:25494821 (estimated locally) (FALLTHRU)
+
+;; basic block 18, loop depth 0, count 25494821 (estimated locally), maybe hot
+;;  prev block 17, next block 19, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       17 [11.0% (guessed)]  count:25494821 (estimated locally) (FALLTHRU)
+(note 80 77 78 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 78 80 79 18 (set (pc)
+        (label_ref:DI 122)) 807 {jump}
+     (nil)
+ -> 122)
+;;  succ:       26 [always]  count:25494821 (estimated locally)
+
+(barrier 79 78 116)
+;; basic block 19, loop depth 0, count 87263494 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 113246702 (estimated locally), should be 87263494 (estimated locally)
+;;  prev block 18, next block 20, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       24 [96.0% (guessed)]  count:113246702 (estimated locally)
+(code_label 116 79 81 19 13 (nil) [1 uses])
+(note 81 116 82 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 82 81 83 19 (parallel [
+            (set (reg:DI 106)
+                (plus:DI (reg/v/f:DI 101 [ sp ])
+                    (const_int 160 [0xa0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/define_key.c":64:7 -1
+     (nil))
+(insn 83 82 84 19 (set (reg:SI 1 dx)
+        (reg/v:SI 87 [ ukey ])) "../ncurses/./base/define_key.c":64:7 -1
+     (nil))
+(insn 84 83 85 19 (set (reg:DI 4 si)
+        (reg/v/f:DI 102 [ str ])) "../ncurses/./base/define_key.c":64:7 -1
+     (nil))
+(insn 85 84 86 19 (set (reg:DI 5 di)
+        (reg:DI 106)) "../ncurses/./base/define_key.c":64:7 -1
+     (nil))
+(call_insn 86 85 87 19 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_add_to_try") [flags 0x41]  <function_decl 0x7fb274b88d00 _nc_add_to_try>) [0 _nc_add_to_try S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":64:7 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_add_to_try") [flags 0x41]  <function_decl 0x7fb274b88d00 _nc_add_to_try>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 87 86 88 19 (set (reg:SI 92 [ _22 ])
+        (reg:SI 0 ax)) "../ncurses/./base/define_key.c":64:7 -1
+     (nil))
+(insn 88 87 89 19 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 92 [ _22 ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":64:6 -1
+     (nil))
+(insn 89 88 90 19 (set (reg:QI 108)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":64:6 -1
+     (nil))
+(insn 90 89 91 19 (set (reg:SI 107)
+        (zero_extend:SI (reg:QI 108))) "../ncurses/./base/define_key.c":64:6 -1
+     (nil))
+(insn 91 90 92 19 (parallel [
+            (set (reg/v:SI 100 [ <retval> ])
+                (neg:SI (reg:SI 107)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/define_key.c":64:6 -1
+     (nil))
+(jump_insn 92 91 93 19 (set (pc)
+        (label_ref:DI 122)) 807 {jump}
+     (nil)
+ -> 122)
+;;  succ:       26 [always]  count:87263494 (estimated locally)
+
+(barrier 93 92 94)
+;; basic block 20, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 19, next block 21, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [41.0% (guessed)]  count:118111600 (estimated locally)
+(code_label 94 93 95 20 6 (nil) [1 uses])
+(note 95 94 96 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 96 95 8 20 (parallel [
+            (set (reg/f:DI 96 [ pretmp_31 ])
+                (plus:DI (reg/v/f:DI 101 [ sp ])
+                    (const_int 160 [0xa0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/define_key.c":64:7 -1
+     (nil))
+(insn 8 96 130 20 (set (reg/v:SI 100 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/define_key.c":42:9 -1
+     (nil))
+(jump_insn 130 8 131 20 (set (pc)
+        (label_ref 103)) -1
+     (nil)
+ -> 103)
+;;  succ:       22 [always]  count:118111600 (estimated locally)
+
+(barrier 131 130 133)
+;; basic block 21, loop depth 1, count 955630224 (estimated locally), maybe hot
+;;  prev block 20, next block 22, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       22 [89.0% (guessed)]  count:955630224 (estimated locally)
+(code_label 133 131 132 21 15 (nil) [1 uses])
+(note 132 133 9 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 9 132 103 21 (set (reg/v:SI 100 [ <retval> ])
+        (reg/v:SI 85 [ code ])) "../ncurses/./base/define_key.c":75:11 -1
+     (nil))
+;;  succ:       22 [always]  count:955630224 (estimated locally) (FALLTHRU,DFS_BACK)
+
+;; basic block 22, loop depth 1, count 1073741824 (estimated locally), maybe hot
+;;  prev block 21, next block 23, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       21 [always]  count:955630224 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              20 [always]  count:118111600 (estimated locally)
+(code_label 103 9 97 22 12 (nil) [1 uses])
+(note 97 103 98 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 98 97 99 22 (set (reg:DI 4 si)
+        (reg/v/f:DI 102 [ str ])) "../ncurses/./base/define_key.c":74:9 -1
+     (nil))
+(insn 99 98 100 22 (set (reg:DI 5 di)
+        (reg/f:DI 96 [ pretmp_31 ])) "../ncurses/./base/define_key.c":74:9 -1
+     (nil))
+(call_insn 100 99 101 22 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_remove_string") [flags 0x41]  <function_decl 0x7fb274b8f000 _nc_remove_string>) [0 _nc_remove_string S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":74:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_remove_string") [flags 0x41]  <function_decl 0x7fb274b8f000 _nc_remove_string>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 101 100 102 22 (set (reg:SI 86 [ _6 ])
+        (reg:SI 0 ax)) "../ncurses/./base/define_key.c":74:9 -1
+     (nil))
+(insn 102 101 104 22 (set (reg/v:SI 85 [ code ])
+        (const_int 0 [0])) "../ncurses/./base/define_key.c":75:11 -1
+     (nil))
+(insn 104 102 105 22 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 86 [ _6 ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":74:9 -1
+     (nil))
+(jump_insn 105 104 107 22 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 133)
+            (pc))) "../ncurses/./base/define_key.c":74:9 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 133)
+;;  succ:       21 [89.0% (guessed)]  count:955630224 (estimated locally)
+;;              23 [11.0% (guessed)]  count:118111600 (estimated locally) (FALLTHRU)
+
+;; basic block 23, loop depth 0, count 146206894 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 118111600 (estimated locally), should be 146206894 (estimated locally)
+;;  prev block 22, next block 24, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       22 [11.0% (guessed)]  count:118111600 (estimated locally) (FALLTHRU)
+(note 107 105 108 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 108 107 109 23 (set (pc)
+        (label_ref 122)) "../ncurses/./base/define_key.c":77:5 -1
+     (nil)
+ -> 122)
+;;  succ:       26 [always]  count:146206894 (estimated locally)
+
+(barrier 109 108 110)
+;; basic block 24, loop depth 0, count 117940744 (estimated locally), maybe hot
+;;  prev block 23, next block 25, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       10 [0.9% (guessed)]  count:307825 (estimated locally)
+;;              13 [always]  count:117632919 (estimated locally)
+(code_label 110 109 111 24 9 (nil) [2 uses])
+(note 111 110 112 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 112 111 113 24 (set (reg:DI 4 si)
+        (reg/v/f:DI 102 [ str ])) "../ncurses/./base/define_key.c":63:10 -1
+     (nil))
+(insn 113 112 114 24 (set (reg:DI 5 di)
+        (reg/v/f:DI 101 [ sp ])) "../ncurses/./base/define_key.c":63:10 -1
+     (nil))
+(call_insn 114 113 115 24 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("key_defined_sp") [flags 0x41]  <function_decl 0x7fb274a23f00 key_defined_sp>) [0 key_defined_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":63:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("key_defined_sp") [flags 0x41]  <function_decl 0x7fb274a23f00 key_defined_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 115 114 117 24 (set (reg:SI 90 [ _20 ])
+        (reg:SI 0 ax)) "../ncurses/./base/define_key.c":63:10 -1
+     (nil))
+(insn 117 115 118 24 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 90 [ _20 ])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":63:9 -1
+     (nil))
+(jump_insn 118 117 121 24 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 116)
+            (pc))) "../ncurses/./base/define_key.c":63:9 -1
+     (int_list:REG_BR_PROB 1031006900 (nil))
+ -> 116)
+;;  succ:       19 [96.0% (guessed)]  count:113246702 (estimated locally)
+;;              25 [4.0% (guessed)]  count:4694042 (estimated locally) (FALLTHRU)
+
+;; basic block 25, loop depth 0, count 4694042 (estimated locally), maybe hot
+;;  prev block 24, next block 26, flags: (NEW, REACHABLE, RTL)
+;;  pred:       24 [4.0% (guessed)]  count:4694042 (estimated locally) (FALLTHRU)
+(note 121 118 119 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 119 121 120 25 (set (pc)
+        (label_ref 24)) -1
+     (nil)
+ -> 24)
+;;  succ:       4 [always]  count:4694042 (estimated locally)
+
+(barrier 120 119 122)
+;; basic block 26, loop depth 0, count 291365807 (estimated locally), maybe hot
+;;  prev block 25, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       23 [always]  count:146206894 (estimated locally)
+;;              4 [always]  count:32400598 (estimated locally)
+;;              18 [always]  count:25494821 (estimated locally)
+;;              19 [always]  count:87263494 (estimated locally)
+(code_label 122 120 125 26 1 (nil) [4 uses])
+(note 125 122 123 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 123 125 124 26 (set (reg/i:SI 0 ax)
+        (reg/v:SI 100 [ <retval> ])) "../ncurses/./base/define_key.c":78:1 -1
+     (nil))
+(insn 124 123 0 26 (use (reg/i:SI 0 ax)) "../ncurses/./base/define_key.c":78:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:291365807 (estimated locally) (FALLTHRU)
+
+
+;; Function define_key (define_key, funcdef_no=92, decl_uid=6384, cgraph_uid=93, symbol_order=92)
+
+__attribute__((visibility ("default")))
+int define_key (const char * str, int keycode)
+{
+  struct SCREEN * SP.0_1;
+  int _6;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.0_1 = SP;
+  _6 = define_key_sp (SP.0_1, str_3(D), keycode_4(D)); [tail call]
+  return _6;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (SP.0_1 - 1 )
+Partition 3 (str_3(D) - 3 )
+Partition 4 (keycode_4(D) - 4 )
+Partition 6 (_6 - 6 )
+Partition 7 (_7(D) - 7 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (str_3(D) - 3 )
+Partition 1, base 1 (keycode_4(D) - 4 )
+Partition 2, base 2 (_6 - 6 7 )
+
+
+Partition map 
+
+Partition 0 (str_3(D) - 3 )
+Partition 1 (keycode_4(D) - 4 )
+Partition 2 (_6 - 6 )
+Partition 3 (_7(D) - 7 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) _6 <-> _7(D)
+
+Partition map 
+
+Partition 0 (str_3(D) - 3 )
+Partition 1 (keycode_4(D) - 4 )
+Partition 2 (_6 - 6 )
+Partition 3 (_7(D) - 7 )
+
+Coalesce list: (6)_6 & (7)_7(D) [map: 2, 3] : Success -> 2
+After Coalescing:
+
+Partition map 
+
+Partition 0 (SP.0_1 - 1 )
+Partition 1 (str_3(D) - 3 )
+Partition 2 (keycode_4(D) - 4 )
+Partition 3 (_6 - 6 7 )
+
+
+Replacing Expressions
+SP.0_1 replace with --> SP.0_1 = SP;
+
+
+__attribute__((visibility ("default")))
+int define_key (const char * str, int keycode)
+{
+  struct SCREEN * SP.0_1;
+  int _6;
+  int _7(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.0_1 = SP;
+  _6 = define_key_sp (SP.0_1, str_3(D), keycode_4(D)); [tail call]
+  return _6;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; _6 = define_key_sp (SP.0_1, str_3(D), keycode_4(D)); [tail call]
+
+(insn 7 6 8 2 (set (reg:DI 86)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7fb274b34cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/define_key.c":84:12 -1
+     (nil))
+
+(insn 8 7 9 2 (set (reg:SI 1 dx)
+        (reg/v:SI 85 [ keycode ])) "../ncurses/./base/define_key.c":84:12 -1
+     (nil))
+
+(insn 9 8 10 2 (set (reg:DI 4 si)
+        (reg/v/f:DI 84 [ str ])) "../ncurses/./base/define_key.c":84:12 -1
+     (nil))
+
+(insn 10 9 11 2 (set (reg:DI 5 di)
+        (reg:DI 86)) "../ncurses/./base/define_key.c":84:12 -1
+     (nil))
+
+(call_insn/j 11 10 12 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("define_key_sp") [flags 0x3]  <function_decl 0x7fb274a23100 define_key_sp>) [0 define_key_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":84:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("define_key_sp") [flags 0x3]  <function_decl 0x7fb274a23100 define_key_sp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+
+(barrier 12 11 0)
+Basic block 4 is marked unlikely by forward prop
+deleting block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 84 [ str ])
+        (reg:DI 5 di [ str ])) "../ncurses/./base/define_key.c":83:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 85 [ keycode ])
+        (reg:SI 4 si [ keycode ])) "../ncurses/./base/define_key.c":83:1 -1
+     (nil))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (set (reg:DI 86)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7fb274b34cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/define_key.c":84:12 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:SI 1 dx)
+        (reg/v:SI 85 [ keycode ])) "../ncurses/./base/define_key.c":84:12 -1
+     (nil))
+(insn 9 8 10 2 (set (reg:DI 4 si)
+        (reg/v/f:DI 84 [ str ])) "../ncurses/./base/define_key.c":84:12 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:DI 5 di)
+        (reg:DI 86)) "../ncurses/./base/define_key.c":84:12 -1
+     (nil))
+(call_insn/j 11 10 12 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("define_key_sp") [flags 0x3]  <function_decl 0x7fb274a23100 define_key_sp>) [0 define_key_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/define_key.c":84:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("define_key_sp") [flags 0x3]  <function_decl 0x7fb274a23100 define_key_sp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 12 11 0)

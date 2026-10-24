@@ -1,0 +1,226 @@
+
+;; Function wsetscrreg (wsetscrreg, funcdef_no=91, decl_uid=6309, cgraph_uid=92, symbol_order=91)
+
+
+
+try_optimize_cfg iteration 1
+
+Removing jump 51.
+Removing jump 55.
+
+
+try_optimize_cfg iteration 2
+
+
+
+try_optimize_cfg iteration 1
+
+fix_loop_structure: fixing up loops for function
+;; basic block 2, loop depth 0, count 1073741823 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741823 (estimated locally) (FALLTHRU)
+(note 9 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 9 3 2 (set (reg/v/f:DI 94 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_scrreg.c":48:1 74 {*movdi_internal}
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 95 [ top ])
+        (reg:SI 4 si [ top ])) "../ncurses/./base/lib_scrreg.c":48:1 75 {*movsi_internal}
+     (nil))
+(insn 4 3 5 2 (set (reg/v:SI 96 [ bottom ])
+        (reg:SI 1 dx [ bottom ])) "../ncurses/./base/lib_scrreg.c":48:1 75 {*movsi_internal}
+     (nil))
+(note 5 4 11 2 NOTE_INSN_FUNCTION_BEG)
+(insn 11 5 12 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 94 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_scrreg.c":51:9 8 {*cmpdi_ccno_1}
+     (nil))
+(insn 12 11 13 2 (set (reg:QI 98)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_scrreg.c":51:9 802 {*setcc_qi}
+     (nil))
+(insn 13 12 14 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 98)
+            (const_int 0 [0]))) "../ncurses/./base/lib_scrreg.c":51:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 14 13 59 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 54)
+            (pc))) "../ncurses/./base/lib_scrreg.c":51:8 806 {*jcc}
+     (int_list:REG_BR_PROB 5583460 (nil))
+ -> 54)
+;;  succ:       7 [0.5% (guessed)]  count:5583456 (estimated locally)
+;;              3 [99.5% (guessed)]  count:1068158367 (estimated locally) (FALLTHRU)
+
+;; basic block 3, loop depth 0, count 1068158367 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (NEW, REACHABLE, RTL)
+;;  pred:       2 [99.5% (guessed)]  count:1068158367 (estimated locally) (FALLTHRU)
+(note 59 14 17 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 17 59 18 3 (set (reg:SI 100)
+        (not:SI (reg/v:SI 95 [ top ]))) "../ncurses/./base/lib_scrreg.c":52:6 632 {*one_cmplsi2_1}
+     (nil))
+(insn 18 17 19 3 (parallel [
+            (set (reg:SI 101)
+                (lshiftrt:SI (reg:SI 100)
+                    (const_int 31 [0x1f])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_scrreg.c":52:6 701 {*lshrsi3_1}
+     (nil))
+(insn 19 18 20 3 (set (reg:QI 102)
+        (subreg:QI (reg:SI 101) 0)) "../ncurses/./base/lib_scrreg.c":51:8 77 {*movqi_internal}
+     (nil))
+(insn 20 19 21 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 102)
+            (const_int 0 [0]))) "../ncurses/./base/lib_scrreg.c":51:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 21 20 22 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 54)
+            (pc))) "../ncurses/./base/lib_scrreg.c":51:8 806 {*jcc}
+     (int_list:REG_BR_PROB 5612644 (nil))
+ -> 54)
+;;  succ:       4 [99.5% (guessed)]  count:1062574913 (estimated locally) (FALLTHRU)
+;;              7 [0.5% (guessed)]  count:5583454 (estimated locally)
+
+;; basic block 4, loop depth 0, count 1062574911 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       3 [99.5% (guessed)]  count:1062574913 (estimated locally) (FALLTHRU)
+(note 22 21 23 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 24 4 (set (reg:SI 85 [ _4 ])
+        (mem:SI (plus:DI (reg/v/f:DI 94 [ win ])
+                (const_int 8 [0x8])) [1 win_7(D)->_maxy+0 S4 A64])) "../ncurses/./base/lib_scrreg.c":52:24 75 {*movsi_internal}
+     (nil))
+(insn 24 23 25 4 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 95 [ top ])
+            (reg/v:SI 96 [ bottom ]))) "../ncurses/./base/lib_scrreg.c":53:38 11 {*cmpsi_1}
+     (nil))
+(insn 25 24 28 4 (set (reg:QI 104)
+        (lt:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_scrreg.c":53:38 802 {*setcc_qi}
+     (nil))
+(insn 28 25 29 4 (set (reg:SI 106)
+        (not:SI (reg/v:SI 96 [ bottom ]))) "../ncurses/./base/lib_scrreg.c":52:32 632 {*one_cmplsi2_1}
+     (nil))
+(insn 29 28 30 4 (parallel [
+            (set (reg:SI 107)
+                (lshiftrt:SI (reg:SI 106)
+                    (const_int 31 [0x1f])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_scrreg.c":52:32 701 {*lshrsi3_1}
+     (nil))
+(insn 30 29 31 4 (parallel [
+            (set (reg:QI 108)
+                (and:QI (reg:QI 104)
+                    (subreg:QI (reg:SI 107) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_scrreg.c":53:38 491 {*andqi_1}
+     (nil))
+(insn 31 30 32 4 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 85 [ _4 ])
+            (reg/v:SI 95 [ top ]))) "../ncurses/./base/lib_scrreg.c":52:11 11 {*cmpsi_1}
+     (nil))
+(insn 32 31 33 4 (set (reg:QI 110)
+        (ge:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_scrreg.c":52:11 802 {*setcc_qi}
+     (nil))
+(insn 33 32 34 4 (parallel [
+            (set (reg:QI 111)
+                (and:QI (reg:QI 108)
+                    (reg:QI 110)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_scrreg.c":53:38 491 {*andqi_1}
+     (nil))
+(insn 34 33 35 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 111)
+            (const_int 0 [0]))) "../ncurses/./base/lib_scrreg.c":53:38 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 35 34 60 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 58)
+            (pc))) "../ncurses/./base/lib_scrreg.c":53:38 806 {*jcc}
+     (int_list:REG_BR_PROB 25385388 (nil))
+ -> 58)
+;;  succ:       8 [2.4% (guessed)]  count:25121376 (estimated locally)
+;;              5 [97.6% (guessed)]  count:1037453535 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 1037453535 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL)
+;;  pred:       4 [97.6% (guessed)]  count:1037453535 (estimated locally) (FALLTHRU)
+(note 60 35 36 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 36 60 37 5 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 85 [ _4 ])
+            (reg/v:SI 96 [ bottom ]))) "../ncurses/./base/lib_scrreg.c":53:14 11 {*cmpsi_1}
+     (nil))
+(insn 37 36 38 5 (set (reg:QI 113)
+        (ge:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_scrreg.c":53:14 802 {*setcc_qi}
+     (nil))
+(insn 38 37 39 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 113)
+            (const_int 0 [0]))) "../ncurses/./base/lib_scrreg.c":53:38 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 39 38 40 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 58)
+            (pc))) "../ncurses/./base/lib_scrreg.c":53:38 806 {*jcc}
+     (int_list:REG_BR_PROB 26000084 (nil))
+ -> 58)
+;;  succ:       6 [97.6% (guessed)]  count:1012332156 (estimated locally) (FALLTHRU)
+;;              8 [2.4% (guessed)]  count:25121379 (estimated locally)
+
+;; basic block 6, loop depth 0, count 1012332153 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [97.6% (guessed)]  count:1012332156 (estimated locally) (FALLTHRU)
+(note 40 39 41 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 41 40 42 6 (set (mem:SI (plus:DI (reg/v/f:DI 94 [ win ])
+                (const_int 64 [0x40])) [1 win_7(D)->_regtop+0 S4 A64])
+        (reg/v:SI 95 [ top ])) "../ncurses/./base/lib_scrreg.c":55:15 75 {*movsi_internal}
+     (nil))
+(insn 42 41 6 6 (set (mem:SI (plus:DI (reg/v/f:DI 94 [ win ])
+                (const_int 68 [0x44])) [1 win_7(D)->_regbottom+0 S4 A32])
+        (reg/v:SI 96 [ bottom ])) "../ncurses/./base/lib_scrreg.c":56:18 75 {*movsi_internal}
+     (nil))
+(insn 6 42 54 6 (set (reg:SI 93 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_scrreg.c":58:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:1012332153 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 11166912 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       3 [0.5% (guessed)]  count:5583454 (estimated locally)
+;;              2 [0.5% (guessed)]  count:5583456 (estimated locally)
+(code_label 54 6 53 7 3 (nil) [2 uses])
+(note 53 54 8 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 8 53 58 7 (set (reg:SI 93 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_scrreg.c":60:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:11166912 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 50242752 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [2.4% (guessed)]  count:25121379 (estimated locally)
+;;              4 [2.4% (guessed)]  count:25121376 (estimated locally)
+(code_label 58 8 57 8 4 (nil) [2 uses])
+(note 57 58 7 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 7 57 47 8 (set (reg:SI 93 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_scrreg.c":60:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:50242752 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       8 [always]  count:50242752 (estimated locally) (FALLTHRU)
+;;              6 [always]  count:1012332153 (estimated locally) (FALLTHRU)
+;;              7 [always]  count:11166912 (estimated locally) (FALLTHRU)
+(code_label 47 7 50 9 1 (nil) [0 uses])
+(note 50 47 48 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 48 50 49 9 (set (reg/i:SI 0 ax)
+        (reg:SI 93 [ <retval> ])) "../ncurses/./base/lib_scrreg.c":61:1 75 {*movsi_internal}
+     (nil))
+(insn 49 48 0 9 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_scrreg.c":61:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+

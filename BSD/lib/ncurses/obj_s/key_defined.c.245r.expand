@@ -1,0 +1,1888 @@
+
+;; Function find_definition (find_definition, funcdef_no=91, decl_uid=9177, cgraph_uid=92, symbol_order=91)
+
+int find_definition (struct TRIES * tree, const char * str)
+{
+  int result;
+  struct TRIES * ptr;
+  unsigned long str.0_1;
+  unsigned long _2;
+  char _3;
+  unsigned char _6;
+  char _7;
+  const char * _9;
+  short unsigned int _11;
+  struct tries * pretmp_18;
+  const char * _37;
+  unsigned char _38;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  str.0_1 = (unsigned long) str_19(D);
+  _2 = str.0_1 + 18446744073709551615;
+  if (_2 <= 18446744073709551613)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+;;    succ:       3
+;;                12
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _3 = *str_19(D);
+  if (_3 != 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+;;    succ:       4
+;;                12
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  if (tree_21(D) != 0B)
+    goto <bb 5>; [94.50%]
+  else
+    goto <bb 12>; [5.50%]
+;;    succ:       5
+;;                12
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  _38 = (unsigned char) _3;
+;;    succ:       6
+
+;;   basic block 6, loop depth 1
+;;    pred:       11
+;;                5
+  # ptr_25 = PHI <ptr_24(11), tree_21(D)(5)>
+  _6 = ptr_25->ch;
+  if (_6 == _38)
+    goto <bb 7>; [34.00%]
+  else
+    goto <bb 11>; [66.00%]
+;;    succ:       7
+;;                11
+
+;;   basic block 7, loop depth 1
+;;    pred:       6
+  _7 = MEM[(const char *)str_19(D) + 1B];
+  pretmp_18 = ptr_25->child;
+  if (_7 == 0)
+    goto <bb 8>; [67.00%]
+  else
+    goto <bb 9>; [33.00%]
+;;    succ:       8
+;;                9
+
+;;   basic block 8, loop depth 1
+;;    pred:       7
+  if (pretmp_18 != 0B)
+    goto <bb 12>; [5.50%]
+  else
+    goto <bb 13>; [94.50%]
+;;    succ:       12
+;;                13
+
+;;   basic block 9, loop depth 1
+;;    pred:       7
+  _9 = str_19(D) + 1;
+  result_22 = find_definition (pretmp_18, _9);
+  if (result_22 == 0)
+    goto <bb 10>; [0.00%]
+  else
+    goto <bb 12>; [100.00%]
+;;    succ:       10
+;;                12
+
+;;   basic block 10, loop depth 1
+;;    pred:       13
+;;                9
+  _11 = ptr_25->value;
+  result_23 = (int) _11;
+  if (result_23 != 0)
+    goto <bb 12>; [0.00%]
+  else
+    goto <bb 11>; [100.00%]
+;;    succ:       12
+;;                11
+
+;;   basic block 11, loop depth 1
+;;    pred:       10
+;;                6
+  ptr_24 = ptr_25->sibling;
+  if (ptr_24 != 0B)
+    goto <bb 6>; [94.50%]
+  else
+    goto <bb 12>; [5.50%]
+;;    succ:       6
+;;                12
+
+;;   basic block 12, loop depth 0
+;;    pred:       3
+;;                10
+;;                9
+;;                13
+;;                2
+;;                11
+;;                4
+;;                8
+  # result_15 = PHI <0(3), result_23(10), result_22(9), -1(13), 0(2), 0(11), 0(4), -1(8)>
+  return result_15;
+;;    succ:       EXIT
+
+;;   basic block 13, loop depth 1
+;;    pred:       8
+  _37 = str_19(D) + 1;
+  result_39 = find_definition (0B, _37);
+  if (result_39 == 0)
+    goto <bb 10>; [95.82%]
+  else
+    goto <bb 12>; [4.18%]
+;;    succ:       10
+;;                12
+
+}
+
+
+
+Partition map 
+
+Partition 1 (str.0_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 6 (_6 - 6 )
+Partition 7 (_7 - 7 )
+Partition 9 (_9 - 9 )
+Partition 11 (_11 - 11 )
+Partition 15 (result_15 - 15 )
+Partition 18 (pretmp_18 - 18 )
+Partition 19 (str_19(D) - 19 )
+Partition 21 (tree_21(D) - 21 )
+Partition 22 (result_22 - 22 )
+Partition 23 (result_23 - 23 )
+Partition 24 (ptr_24 - 24 )
+Partition 25 (ptr_25 - 25 )
+Partition 35 (_35(D) - 35 )
+Partition 37 (_37 - 37 )
+Partition 38 (_38 - 38 )
+Partition 39 (result_39 - 39 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (result_15 - 15 22 23 35 )
+Partition 1, base 1 (str_19(D) - 19 )
+Partition 2, base 2 (tree_21(D) - 21 24 25 )
+
+
+Partition map 
+
+Partition 0 (result_15 - 15 )
+Partition 1 (str_19(D) - 19 )
+Partition 2 (tree_21(D) - 21 )
+Partition 3 (result_22 - 22 )
+Partition 4 (result_23 - 23 )
+Partition 5 (ptr_24 - 24 )
+Partition 6 (ptr_25 - 25 )
+Partition 7 (_35(D) - 35 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(16514, 0) ptr_24 <-> ptr_25
+(5048, 0) result_15 <-> _35(D)
+(2120, 0) result_15 <-> result_22
+(1193, 0) tree_21(D) <-> ptr_25
+(2, 0) result_15 <-> result_23
+
+Partition map 
+
+Partition 0 (result_15 - 15 )
+Partition 1 (str_19(D) - 19 )
+Partition 2 (tree_21(D) - 21 )
+Partition 3 (result_22 - 22 )
+Partition 4 (result_23 - 23 )
+Partition 5 (ptr_24 - 24 )
+Partition 6 (ptr_25 - 25 )
+Partition 7 (_35(D) - 35 )
+
+Coalesce list: (24)ptr_24 & (25)ptr_25 [map: 5, 6] : Success -> 5
+Coalesce list: (15)result_15 & (35)_35(D) [map: 0, 7] : Success -> 0
+Coalesce list: (15)result_15 & (22)result_22 [map: 0, 3] : Success -> 0
+Coalesce list: (21)tree_21(D) & (25)ptr_24 [map: 2, 5] : Success -> 5
+Coalesce list: (15)result_15 & (23)result_23 [map: 0, 4] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (str.0_1 - 1 )
+Partition 1 (_2 - 2 )
+Partition 2 (_3 - 3 )
+Partition 3 (_6 - 6 )
+Partition 4 (_7 - 7 )
+Partition 5 (_9 - 9 )
+Partition 6 (_11 - 11 )
+Partition 7 (result_15 - 15 22 23 35 )
+Partition 8 (pretmp_18 - 18 )
+Partition 9 (str_19(D) - 19 )
+Partition 10 (ptr_24 - 21 24 25 )
+Partition 11 (_37 - 37 )
+Partition 12 (_38 - 38 )
+Partition 13 (result_39 - 39 )
+
+
+Replacing Expressions
+str.0_1 replace with --> str.0_1 = (unsigned long) str_19(D);
+
+_2 replace with --> _2 = str.0_1 + 18446744073709551615;
+
+_6 replace with --> _6 = ptr_25->ch;
+
+_7 replace with --> _7 = MEM[(const char *)str_19(D) + 1B];
+
+_9 replace with --> _9 = str_19(D) + 1;
+
+_11 replace with --> _11 = ptr_25->value;
+
+_37 replace with --> _37 = str_19(D) + 1;
+
+
+int find_definition (struct TRIES * tree, const char * str)
+{
+  int result;
+  struct TRIES * ptr;
+  unsigned long str.0_1;
+  unsigned long _2;
+  char _3;
+  unsigned char _6;
+  char _7;
+  const char * _9;
+  short unsigned int _11;
+  struct tries * pretmp_18;
+  int _35(D);
+  const char * _37;
+  unsigned char _38;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  str.0_1 = (unsigned long) str_19(D);
+  _2 = str.0_1 + 18446744073709551615;
+  if (_2 <= 18446744073709551613)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+;;    succ:       3
+;;                12
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _3 = *str_19(D);
+  if (_3 != 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+;;    succ:       4
+;;                12
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  if (tree_21(D) != 0B)
+    goto <bb 5>; [94.50%]
+  else
+    goto <bb 12>; [5.50%]
+;;    succ:       5
+;;                12
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  _38 = (unsigned char) _3;
+;;    succ:       6
+
+;;   basic block 6, loop depth 1
+;;    pred:       11
+;;                5
+  # ptr_25 = PHI <ptr_24(11), tree_21(D)(5)>
+  _6 = ptr_25->ch;
+  if (_6 == _38)
+    goto <bb 7>; [34.00%]
+  else
+    goto <bb 11>; [66.00%]
+;;    succ:       7
+;;                11
+
+;;   basic block 7, loop depth 1
+;;    pred:       6
+  _7 = MEM[(const char *)str_19(D) + 1B];
+  pretmp_18 = ptr_25->child;
+  if (_7 == 0)
+    goto <bb 8>; [67.00%]
+  else
+    goto <bb 9>; [33.00%]
+;;    succ:       8
+;;                9
+
+;;   basic block 8, loop depth 1
+;;    pred:       7
+  if (pretmp_18 != 0B)
+    goto <bb 12>; [5.50%]
+  else
+    goto <bb 13>; [94.50%]
+;;    succ:       12
+;;                13
+
+;;   basic block 9, loop depth 1
+;;    pred:       7
+  _9 = str_19(D) + 1;
+  result_22 = find_definition (pretmp_18, _9);
+  if (result_22 == 0)
+    goto <bb 10>; [0.00%]
+  else
+    goto <bb 12>; [100.00%]
+;;    succ:       10
+;;                12
+
+;;   basic block 10, loop depth 1
+;;    pred:       13
+;;                9
+  _11 = ptr_25->value;
+  result_23 = (int) _11;
+  if (result_23 != 0)
+    goto <bb 12>; [0.00%]
+  else
+    goto <bb 11>; [100.00%]
+;;    succ:       12
+;;                11
+
+;;   basic block 11, loop depth 1
+;;    pred:       10
+;;                6
+  ptr_24 = ptr_25->sibling;
+  if (ptr_24 != 0B)
+    goto <bb 6>; [94.50%]
+  else
+    goto <bb 12>; [5.50%]
+;;    succ:       6
+;;                12
+
+;;   basic block 12, loop depth 0
+;;    pred:       3
+;;                10
+;;                9
+;;                13
+;;                2
+;;                11
+;;                4
+;;                8
+  # result_15 = PHI <0(3), result_23(10), result_22(9), -1(13), 0(2), 0(11), 0(4), -1(8)>
+  return result_15;
+;;    succ:       EXIT
+
+;;   basic block 13, loop depth 1
+;;    pred:       8
+  _37 = str_19(D) + 1;
+  result_39 = find_definition (0B, _37);
+  if (result_39 == 0)
+    goto <bb 10>; [95.82%]
+  else
+    goto <bb 12>; [4.18%]
+;;    succ:       10
+;;                12
+
+}
+
+
+Inserting a value copy on edge BB3->BB12 : PART.7 = 0
+Inserting a value copy on edge BB13->BB12 : PART.7 = -1
+Inserting a value copy on edge BB2->BB12 : PART.7 = 0
+Inserting a value copy on edge BB11->BB12 : PART.7 = 0
+Inserting a value copy on edge BB4->BB12 : PART.7 = 0
+Inserting a value copy on edge BB8->BB12 : PART.7 = -1
+
+;; Generating RTL for gimple basic block 2
+
+;; if (_2 <= 18446744073709551613)
+
+(insn 13 12 16 (parallel [
+            (set (reg:DI 96)
+                (plus:DI (reg/v/f:DI 95 [ str ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/key_defined.c":45:9 -1
+     (nil))
+
+(insn 16 13 17 (set (reg:CC 17 flags)
+        (compare:CC (reg:DI 96)
+            (const_int -3 [0xfffffffffffffffd]))) "../ncurses/./base/key_defined.c":45:8 -1
+     (nil))
+
+(jump_insn 17 16 0 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/key_defined.c":45:8 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _3 = *str_19(D);
+
+(insn 19 18 0 (set (reg:QI 84 [ _3 ])
+        (mem:QI (reg/v/f:DI 95 [ str ]) [0 *str_19(D)+0 S1 A8])) "../ncurses/./base/key_defined.c":45:30 -1
+     (nil))
+
+;; if (_3 != 0)
+
+(insn 20 19 21 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 84 [ _3 ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":45:27 -1
+     (nil))
+
+(jump_insn 21 20 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/key_defined.c":45:27 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; if (tree_21(D) != 0B)
+
+(insn 23 22 24 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 94 [ tree ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":46:23 -1
+     (nil))
+
+(jump_insn 24 23 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/key_defined.c":46:23 -1
+     (int_list:REG_BR_PROB 59055804 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; _38 = (unsigned char) _3;
+
+(insn 26 25 0 (set (reg:QI 91 [ _38 ])
+        (reg:QI 84 [ _3 ])) "../ncurses/./base/key_defined.c":47:10 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 6
+
+;; if (_6 == _38)
+
+(insn 28 27 29 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/v/f:DI 94 [ tree ])
+                    (const_int 16 [0x10])) [0 ptr_25->ch+0 S1 A64])
+            (reg:QI 91 [ _38 ]))) "../ncurses/./base/key_defined.c":47:9 -1
+     (nil))
+
+(jump_insn 29 28 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/key_defined.c":47:9 -1
+     (int_list:REG_BR_PROB 708669604 (nil)))
+
+;; Generating RTL for gimple basic block 7
+
+;; pretmp_18 = ptr_25->child;
+
+(insn 31 30 0 (set (reg/f:DI 89 [ pretmp_18 ])
+        (mem/f:DI (reg/v/f:DI 94 [ tree ]) [2 ptr_25->child+0 S8 A64])) "../ncurses/./base/key_defined.c":48:28 -1
+     (nil))
+
+;; if (_7 == 0)
+
+(insn 32 31 33 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/v/f:DI 95 [ str ])
+                    (const_int 1 [0x1])) [0 MEM[(const char *)str_19(D) + 1B]+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":48:6 -1
+     (nil))
+
+(jump_insn 33 32 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/key_defined.c":48:6 -1
+     (int_list:REG_BR_PROB 354334804 (nil)))
+
+;; Generating RTL for gimple basic block 8
+
+;; if (pretmp_18 != 0B)
+
+(insn 35 34 36 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 89 [ pretmp_18 ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":48:22 -1
+     (nil))
+
+(jump_insn 36 35 39 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/key_defined.c":48:22 -1
+     (int_list:REG_BR_PROB 59055804 (nil)))
+
+(note 39 36 37 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 37 39 38 15 (set (pc)
+        (label_ref 0)) -1
+     (nil))
+
+(barrier 38 37 0)
+
+;; Generating RTL for gimple basic block 9
+
+;; 
+
+(code_label 40 38 41 4 (nil) [0 uses])
+
+(note 41 40 0 NOTE_INSN_BASIC_BLOCK)
+
+;; result_22 = find_definition (pretmp_18, _9);
+
+(insn 42 41 43 (parallel [
+            (set (reg:DI 97)
+                (plus:DI (reg/v/f:DI 95 [ str ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/key_defined.c":50:24 -1
+     (nil))
+
+(insn 43 42 44 (set (reg:DI 4 si)
+        (reg:DI 97)) "../ncurses/./base/key_defined.c":50:24 -1
+     (nil))
+
+(insn 44 43 45 (set (reg:DI 5 di)
+        (reg/f:DI 89 [ pretmp_18 ])) "../ncurses/./base/key_defined.c":50:24 -1
+     (nil))
+
+(call_insn/c/i 45 44 46 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("find_definition") [flags 0x3]  <function_decl 0x7f5d4d8eb200 find_definition>) [0 find_definition S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":50:24 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("find_definition") [flags 0x3]  <function_decl 0x7f5d4d8eb200 find_definition>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 46 45 0 (set (reg/v:SI 93 [ <retval> ])
+        (reg:SI 0 ax)) "../ncurses/./base/key_defined.c":50:24 -1
+     (nil))
+
+;; if (result_22 == 0)
+
+(insn 47 46 48 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 93 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":50:13 -1
+     (nil))
+
+(jump_insn 48 47 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/key_defined.c":50:13 -1
+     (int_list:REG_BR_PROB 1073741828 (nil)))
+
+;; Generating RTL for gimple basic block 10
+
+;; result_23 = (int) _11;
+
+(insn 50 49 0 (set (reg/v:SI 93 [ <retval> ])
+        (zero_extend:SI (mem:HI (plus:DI (reg/v/f:DI 94 [ tree ])
+                    (const_int 18 [0x12])) [3 ptr_25->value+0 S2 A16]))) "../ncurses/./base/key_defined.c":52:14 -1
+     (nil))
+
+;; if (result_23 != 0)
+
+(insn 51 50 52 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 93 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":57:9 -1
+     (nil))
+
+(jump_insn 52 51 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/key_defined.c":57:9 -1
+     (int_list:REG_BR_PROB 4 (nil)))
+
+;; Generating RTL for gimple basic block 11
+
+;; 
+
+(code_label 53 52 54 3 (nil) [0 uses])
+
+(note 54 53 0 NOTE_INSN_BASIC_BLOCK)
+
+;; ptr_24 = ptr_25->sibling;
+
+(insn 55 54 0 (set (reg/v/f:DI 94 [ tree ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 94 [ tree ])
+                (const_int 8 [0x8])) [2 ptr_25->sibling+0 S8 A64])) "../ncurses/./base/key_defined.c":46:36 -1
+     (nil))
+
+;; if (ptr_24 != 0B)
+
+(insn 57 55 58 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 94 [ tree ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":46:23 -1
+     (nil))
+
+(jump_insn 58 57 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 56)
+            (pc))) "../ncurses/./base/key_defined.c":46:23 -1
+     (int_list:REG_BR_PROB 1014686028 (nil)))
+
+;; Generating RTL for gimple basic block 12
+
+;; 
+
+(code_label 59 58 60 2 (nil) [0 uses])
+
+(note 60 59 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return result_15;
+
+(jump_insn 61 60 62 (set (pc)
+        (label_ref 0)) "../ncurses/./base/key_defined.c":61:12 -1
+     (nil))
+
+(barrier 62 61 0)
+
+;; Generating RTL for gimple basic block 13
+
+;; 
+
+(code_label 63 62 64 5 (nil) [0 uses])
+
+(note 64 63 0 NOTE_INSN_BASIC_BLOCK)
+
+;; result_39 = find_definition (0B, _37);
+
+(insn 65 64 66 (parallel [
+            (set (reg:DI 99)
+                (plus:DI (reg/v/f:DI 95 [ str ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/key_defined.c":50:24 -1
+     (nil))
+
+(insn 66 65 67 (set (reg:DI 4 si)
+        (reg:DI 99)) "../ncurses/./base/key_defined.c":50:24 -1
+     (nil))
+
+(insn 67 66 68 (set (reg:DI 5 di)
+        (const_int 0 [0])) "../ncurses/./base/key_defined.c":50:24 -1
+     (nil))
+
+(call_insn/c/i 68 67 69 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("find_definition") [flags 0x3]  <function_decl 0x7f5d4d8eb200 find_definition>) [0 find_definition S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":50:24 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("find_definition") [flags 0x3]  <function_decl 0x7f5d4d8eb200 find_definition>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 69 68 0 (set (reg/v:SI 92 [ result ])
+        (reg:SI 0 ax)) "../ncurses/./base/key_defined.c":50:24 -1
+     (nil))
+
+;; if (result_39 == 0)
+
+(insn 71 69 72 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 92 [ result ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":50:13 -1
+     (nil))
+
+(jump_insn 72 71 75 13 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 70)
+            (pc))) "../ncurses/./base/key_defined.c":50:13 -1
+     (int_list:REG_BR_PROB 1028823884 (nil)))
+
+(note 75 72 73 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 73 75 74 16 (set (pc)
+        (label_ref 59)) "../ncurses/./base/key_defined.c":50:13 -1
+     (nil))
+
+(barrier 74 73 0)
+Edge 2->12 redirected to 19
+Edge 3->12 redirected to 20
+Edge 4->12 redirected to 21
+Edge 8->12 redirected to 22
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 9->10 to 20 failed.
+Edge 11->19 redirected to 22
+Edge 12->19 redirected to 22
+Redirecting jump 81 from 19 to 22.
+Redirecting jump 85 from 19 to 22.
+Redirecting jump 89 from 19 to 22.
+Redirecting jump 93 from 19 to 22.
+Forwarding edge 18->19 to 22 failed.
+Removing jump 73.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 9->10 to 20 failed.
+Merging block 19 into block 18...
+Merged blocks 18 and 19.
+Merged 18 and 19 without moving.
+
+
+try_optimize_cfg iteration 3
+
+Forwarding edge 9->10 to 20 failed.
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 11 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 542049793 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:542049793 (estimated locally) (FALLTHRU)
+(note 11 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 11 3 2 (set (reg/v/f:DI 94 [ tree ])
+        (reg:DI 5 di [ tree ])) "../ncurses/./base/key_defined.c":41:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 95 [ str ])
+        (reg:DI 4 si [ str ])) "../ncurses/./base/key_defined.c":41:1 -1
+     (nil))
+(note 4 3 13 2 NOTE_INSN_FUNCTION_BEG)
+(insn 13 4 16 2 (parallel [
+            (set (reg:DI 96)
+                (plus:DI (reg/v/f:DI 95 [ str ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/key_defined.c":45:9 -1
+     (nil))
+(insn 16 13 17 2 (set (reg:CC 17 flags)
+        (compare:CC (reg:DI 96)
+            (const_int -3 [0xfffffffffffffffd]))) "../ncurses/./base/key_defined.c":45:8 -1
+     (nil))
+(jump_insn 17 16 18 2 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 84)
+            (pc))) "../ncurses/./base/key_defined.c":45:8 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 84)
+;;  succ:       4 [50.0% (guessed)]  count:271024897 (estimated locally) (FALLTHRU)
+;;              15 [50.0% (guessed)]  count:271024897 (estimated locally)
+
+;; basic block 4, loop depth 0, count 271024896 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [50.0% (guessed)]  count:271024897 (estimated locally) (FALLTHRU)
+(note 18 17 19 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 4 (set (reg:QI 84 [ _3 ])
+        (mem:QI (reg/v/f:DI 95 [ str ]) [0 *str_19(D)+0 S1 A8])) "../ncurses/./base/key_defined.c":45:30 -1
+     (nil))
+(insn 20 19 21 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 84 [ _3 ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":45:27 -1
+     (nil))
+(jump_insn 21 20 22 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 88)
+            (pc))) "../ncurses/./base/key_defined.c":45:27 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 88)
+;;  succ:       5 [50.0% (guessed)]  count:135512448 (estimated locally) (FALLTHRU)
+;;              16 [50.0% (guessed)]  count:135512448 (estimated locally)
+
+;; basic block 5, loop depth 0, count 135512448 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [50.0% (guessed)]  count:135512448 (estimated locally) (FALLTHRU)
+(note 22 21 23 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 24 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 94 [ tree ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":46:23 -1
+     (nil))
+(jump_insn 24 23 25 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 92)
+            (pc))) "../ncurses/./base/key_defined.c":46:23 806 {*jcc}
+     (int_list:REG_BR_PROB 59055804 (nil))
+ -> 92)
+;;  succ:       6 [94.5% (guessed)]  count:128059263 (estimated locally) (FALLTHRU)
+;;              17 [5.5% (guessed)]  count:7453185 (estimated locally)
+
+;; basic block 6, loop depth 0, count 128059263 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [94.5% (guessed)]  count:128059263 (estimated locally) (FALLTHRU)
+(note 25 24 26 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 26 25 56 6 (set (reg:QI 91 [ _38 ])
+        (reg:QI 84 [ _3 ])) "../ncurses/./base/key_defined.c":47:10 -1
+     (nil))
+;;  succ:       7 [always]  count:128059263 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 1, count 1014686025 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       13 [94.5% (guessed)]  count:886626761 (estimated locally) (DFS_BACK)
+;;              6 [always]  count:128059263 (estimated locally) (FALLTHRU)
+(code_label 56 26 27 7 6 (nil) [1 uses])
+(note 27 56 28 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/v/f:DI 94 [ tree ])
+                    (const_int 16 [0x10])) [0 ptr_25->ch+0 S1 A64])
+            (reg:QI 91 [ _38 ]))) "../ncurses/./base/key_defined.c":47:9 -1
+     (nil))
+(jump_insn 29 28 30 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 53)
+            (pc))) "../ncurses/./base/key_defined.c":47:9 -1
+     (int_list:REG_BR_PROB 708669604 (nil))
+ -> 53)
+;;  succ:       8 [34.0% (guessed)]  count:344993252 (estimated locally) (FALLTHRU)
+;;              13 [66.0% (guessed)]  count:669692773 (estimated locally)
+
+;; basic block 8, loop depth 1, count 344993252 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [34.0% (guessed)]  count:344993252 (estimated locally) (FALLTHRU)
+(note 30 29 31 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 31 30 32 8 (set (reg/f:DI 89 [ pretmp_18 ])
+        (mem/f:DI (reg/v/f:DI 94 [ tree ]) [2 ptr_25->child+0 S8 A64])) "../ncurses/./base/key_defined.c":48:28 -1
+     (nil))
+(insn 32 31 33 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/v/f:DI 95 [ str ])
+                    (const_int 1 [0x1])) [0 MEM[(const char *)str_19(D) + 1B]+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":48:6 -1
+     (nil))
+(jump_insn 33 32 34 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 40)
+            (pc))) "../ncurses/./base/key_defined.c":48:6 -1
+     (int_list:REG_BR_PROB 354334804 (nil))
+ -> 40)
+;;  succ:       9 [67.0% (guessed)]  count:231145479 (estimated locally) (FALLTHRU)
+;;              11 [33.0% (guessed)]  count:113847773 (estimated locally)
+
+;; basic block 9, loop depth 1, count 231145479 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       8 [67.0% (guessed)]  count:231145479 (estimated locally) (FALLTHRU)
+(note 34 33 35 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 35 34 36 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 89 [ pretmp_18 ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":48:22 -1
+     (nil))
+(jump_insn 36 35 39 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 96)
+            (pc))) "../ncurses/./base/key_defined.c":48:22 806 {*jcc}
+     (int_list:REG_BR_PROB 59055804 (nil))
+ -> 96)
+;;  succ:       18 [5.5% (guessed)]  count:12713001 (estimated locally)
+;;              10 [94.5% (guessed)]  count:218432478 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 1, count 218432478 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL)
+;;  pred:       9 [94.5% (guessed)]  count:218432478 (estimated locally) (FALLTHRU)
+(note 39 36 37 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 37 39 38 10 (set (pc)
+        (label_ref 63)) -1
+     (nil)
+ -> 63)
+;;  succ:       20 [always]  count:218432478 (estimated locally)
+
+(barrier 38 37 40)
+;; basic block 11, loop depth 1, count 113847773 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       8 [33.0% (guessed)]  count:113847773 (estimated locally)
+(code_label 40 38 41 11 4 (nil) [1 uses])
+(note 41 40 42 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 42 41 43 11 (parallel [
+            (set (reg:DI 97)
+                (plus:DI (reg/v/f:DI 95 [ str ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/key_defined.c":50:24 -1
+     (nil))
+(insn 43 42 44 11 (set (reg:DI 4 si)
+        (reg:DI 97)) "../ncurses/./base/key_defined.c":50:24 -1
+     (nil))
+(insn 44 43 45 11 (set (reg:DI 5 di)
+        (reg/f:DI 89 [ pretmp_18 ])) "../ncurses/./base/key_defined.c":50:24 -1
+     (nil))
+(call_insn/c/i 45 44 46 11 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("find_definition") [flags 0x3]  <function_decl 0x7f5d4d8eb200 find_definition>) [0 find_definition S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":50:24 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("find_definition") [flags 0x3]  <function_decl 0x7f5d4d8eb200 find_definition>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 46 45 47 11 (set (reg/v:SI 93 [ <retval> ])
+        (reg:SI 0 ax)) "../ncurses/./base/key_defined.c":50:24 -1
+     (nil))
+(insn 47 46 48 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 93 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":50:13 -1
+     (nil))
+(jump_insn 48 47 70 11 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 76)
+            (pc))) "../ncurses/./base/key_defined.c":50:13 806 {*jcc}
+     (int_list:REG_BR_PROB 1073741828 (nil))
+ -> 76)
+;;  succ:       12 [never (guessed)]  count:0 (estimated locally) (FALLTHRU)
+;;              22 [always (guessed)]  count:113847773 (estimated locally)
+
+;; basic block 12, loop depth 1, count 262119918 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 209294771 (estimated locally), should be 262119918 (estimated locally)
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       20 [95.8% (guessed)]  count:209294771 (estimated locally)
+;;              11 [never (guessed)]  count:0 (estimated locally) (FALLTHRU)
+(code_label 70 48 49 12 7 (nil) [1 uses])
+(note 49 70 50 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 50 49 51 12 (set (reg/v:SI 93 [ <retval> ])
+        (zero_extend:SI (mem:HI (plus:DI (reg/v/f:DI 94 [ tree ])
+                    (const_int 18 [0x12])) [3 ptr_25->value+0 S2 A16]))) "../ncurses/./base/key_defined.c":52:14 -1
+     (nil))
+(insn 51 50 52 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 93 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":57:9 -1
+     (nil))
+(jump_insn 52 51 53 12 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 76)
+            (pc))) "../ncurses/./base/key_defined.c":57:9 806 {*jcc}
+     (int_list:REG_BR_PROB 4 (nil))
+ -> 76)
+;;  succ:       22 [never (guessed)]  count:0 (estimated locally)
+;;              13 [always (guessed)]  count:262119918 (estimated locally) (FALLTHRU)
+
+;; basic block 13, loop depth 1, count 938229376 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       12 [always (guessed)]  count:262119918 (estimated locally) (FALLTHRU)
+;;              7 [66.0% (guessed)]  count:669692773 (estimated locally)
+(code_label 53 52 54 13 3 (nil) [1 uses])
+(note 54 53 55 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 55 54 57 13 (set (reg/v/f:DI 94 [ tree ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 94 [ tree ])
+                (const_int 8 [0x8])) [2 ptr_25->sibling+0 S8 A64])) "../ncurses/./base/key_defined.c":46:36 -1
+     (nil))
+(insn 57 55 58 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 94 [ tree ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":46:23 -1
+     (nil))
+(jump_insn 58 57 80 13 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 56)
+            (pc))) "../ncurses/./base/key_defined.c":46:23 -1
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 56)
+;;  succ:       7 [94.5% (guessed)]  count:886626761 (estimated locally) (DFS_BACK)
+;;              14 [5.5% (guessed)]  count:51602615 (estimated locally) (FALLTHRU)
+
+;; basic block 14, loop depth 0, count 51602615 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       13 [5.5% (guessed)]  count:51602615 (estimated locally) (FALLTHRU)
+(note 80 58 8 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 8 80 81 14 (set (reg/v:SI 93 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/key_defined.c":43:9 -1
+     (nil))
+(jump_insn 81 8 82 14 (set (pc)
+        (label_ref:DI 76)) 807 {jump}
+     (nil)
+ -> 76)
+;;  succ:       22 [always]  count:51602615 (estimated locally)
+
+(barrier 82 81 84)
+;; basic block 15, loop depth 0, count 271024897 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [50.0% (guessed)]  count:271024897 (estimated locally)
+(code_label 84 82 83 15 8 (nil) [1 uses])
+(note 83 84 7 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 7 83 85 15 (set (reg/v:SI 93 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/key_defined.c":43:9 -1
+     (nil))
+(jump_insn 85 7 86 15 (set (pc)
+        (label_ref:DI 76)) 807 {jump}
+     (nil)
+ -> 76)
+;;  succ:       22 [always]  count:271024897 (estimated locally)
+
+(barrier 86 85 88)
+;; basic block 16, loop depth 0, count 135512448 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [50.0% (guessed)]  count:135512448 (estimated locally)
+(code_label 88 86 87 16 9 (nil) [1 uses])
+(note 87 88 5 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 5 87 89 16 (set (reg/v:SI 93 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/key_defined.c":43:9 -1
+     (nil))
+(jump_insn 89 5 90 16 (set (pc)
+        (label_ref:DI 76)) 807 {jump}
+     (nil)
+ -> 76)
+;;  succ:       22 [always]  count:135512448 (estimated locally)
+
+(barrier 90 89 92)
+;; basic block 17, loop depth 0, count 7453185 (estimated locally), maybe hot
+;;  prev block 16, next block 18, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       5 [5.5% (guessed)]  count:7453185 (estimated locally)
+(code_label 92 90 91 17 10 (nil) [1 uses])
+(note 91 92 9 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 9 91 93 17 (set (reg/v:SI 93 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/key_defined.c":43:9 -1
+     (nil))
+(jump_insn 93 9 94 17 (set (pc)
+        (label_ref:DI 76)) 807 {jump}
+     (nil)
+ -> 76)
+;;  succ:       22 [always]  count:7453185 (estimated locally)
+
+(barrier 94 93 96)
+;; basic block 18, loop depth 0, count 12713001 (estimated locally), maybe hot
+;;  prev block 17, next block 20, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       9 [5.5% (guessed)]  count:12713001 (estimated locally)
+(code_label 96 94 95 18 11 (nil) [1 uses])
+(note 95 96 10 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 10 95 61 18 (set (reg/v:SI 93 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/key_defined.c":49:14 -1
+     (nil))
+(jump_insn 61 10 62 18 (set (pc)
+        (label_ref 76)) "../ncurses/./base/key_defined.c":61:12 -1
+     (nil)
+ -> 76)
+;;  succ:       22 [always]  count:12713001 (estimated locally)
+
+(barrier 62 61 63)
+;; basic block 20, loop depth 1, count 218432478 (estimated locally), maybe hot
+;;  prev block 18, next block 21, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       10 [always]  count:218432478 (estimated locally)
+(code_label 63 62 64 20 5 (nil) [1 uses])
+(note 64 63 65 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 65 64 66 20 (parallel [
+            (set (reg:DI 99)
+                (plus:DI (reg/v/f:DI 95 [ str ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/key_defined.c":50:24 -1
+     (nil))
+(insn 66 65 67 20 (set (reg:DI 4 si)
+        (reg:DI 99)) "../ncurses/./base/key_defined.c":50:24 -1
+     (nil))
+(insn 67 66 68 20 (set (reg:DI 5 di)
+        (const_int 0 [0])) "../ncurses/./base/key_defined.c":50:24 -1
+     (nil))
+(call_insn/c/i 68 67 69 20 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("find_definition") [flags 0x3]  <function_decl 0x7f5d4d8eb200 find_definition>) [0 find_definition S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":50:24 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("find_definition") [flags 0x3]  <function_decl 0x7f5d4d8eb200 find_definition>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 69 68 71 20 (set (reg/v:SI 92 [ result ])
+        (reg:SI 0 ax)) "../ncurses/./base/key_defined.c":50:24 -1
+     (nil))
+(insn 71 69 72 20 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 92 [ result ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":50:13 -1
+     (nil))
+(jump_insn 72 71 75 20 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 70)
+            (pc))) "../ncurses/./base/key_defined.c":50:13 -1
+     (int_list:REG_BR_PROB 1028823884 (nil))
+ -> 70)
+;;  succ:       12 [95.8% (guessed)]  count:209294771 (estimated locally)
+;;              21 [4.2% (guessed)]  count:9137707 (estimated locally) (FALLTHRU)
+
+;; basic block 21, loop depth 0, count 9137707 (estimated locally), maybe hot
+;;  prev block 20, next block 22, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       20 [4.2% (guessed)]  count:9137707 (estimated locally) (FALLTHRU)
+(note 75 72 6 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 6 75 76 21 (set (reg/v:SI 93 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/key_defined.c":49:14 -1
+     (nil))
+;;  succ:       22 [always]  count:9137707 (estimated locally) (FALLTHRU)
+
+;; basic block 22, loop depth 0, count 542049795 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 601291626 (estimated locally), should be 542049795 (estimated locally)
+;;  prev block 21, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       18 [always]  count:12713001 (estimated locally)
+;;              11 [always (guessed)]  count:113847773 (estimated locally)
+;;              12 [never (guessed)]  count:0 (estimated locally)
+;;              14 [always]  count:51602615 (estimated locally)
+;;              15 [always]  count:271024897 (estimated locally)
+;;              16 [always]  count:135512448 (estimated locally)
+;;              17 [always]  count:7453185 (estimated locally)
+;;              21 [always]  count:9137707 (estimated locally) (FALLTHRU)
+(code_label 76 6 79 22 1 (nil) [7 uses])
+(note 79 76 77 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 77 79 78 22 (set (reg/i:SI 0 ax)
+        (reg/v:SI 93 [ <retval> ])) "../ncurses/./base/key_defined.c":62:1 -1
+     (nil))
+(insn 78 77 0 22 (use (reg/i:SI 0 ax)) "../ncurses/./base/key_defined.c":62:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:542049795 (estimated locally) (FALLTHRU)
+
+
+;; Function key_defined_sp (key_defined_sp, funcdef_no=92, decl_uid=6767, cgraph_uid=93, symbol_order=92)
+
+__attribute__((visibility ("default")))
+int key_defined_sp (struct SCREEN * sp, const char * str)
+{
+  int code;
+  _Bool _1;
+  _Bool _2;
+  _Bool _3;
+  struct TRIES * _4;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _1 = sp_6(D) != 0B;
+  _2 = str_7(D) != 0B;
+  _3 = _1 & _2;
+  if (_3 != 0)
+    goto <bb 3>; [96.02%]
+  else
+    goto <bb 4>; [3.98%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _4 = sp_6(D)->_keytry;
+  code_9 = find_definition (_4, str_7(D)); [tail call]
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+;;                3
+  # code_5 = PHI <-1(2), code_9(3)>
+  return code_5;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 4 (_4 - 4 )
+Partition 5 (code_5 - 5 )
+Partition 6 (sp_6(D) - 6 )
+Partition 7 (str_7(D) - 7 )
+Partition 9 (code_9 - 9 )
+Partition 10 (_10(D) - 10 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (code_5 - 5 9 10 )
+Partition 1, base 1 (sp_6(D) - 6 )
+Partition 2, base 2 (str_7(D) - 7 )
+
+
+Partition map 
+
+Partition 0 (code_5 - 5 )
+Partition 1 (sp_6(D) - 6 )
+Partition 2 (str_7(D) - 7 )
+Partition 3 (code_9 - 9 )
+Partition 4 (_10(D) - 10 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) code_5 <-> _10(D)
+(9602, 0) code_5 <-> code_9
+
+Partition map 
+
+Partition 0 (code_5 - 5 )
+Partition 1 (sp_6(D) - 6 )
+Partition 2 (str_7(D) - 7 )
+Partition 3 (code_9 - 9 )
+Partition 4 (_10(D) - 10 )
+
+Coalesce list: (5)code_5 & (10)_10(D) [map: 0, 4] : Success -> 0
+Coalesce list: (5)code_5 & (9)code_9 [map: 0, 3] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_2 - 2 )
+Partition 2 (_3 - 3 )
+Partition 3 (_4 - 4 )
+Partition 4 (code_5 - 5 9 10 )
+Partition 5 (sp_6(D) - 6 )
+Partition 6 (str_7(D) - 7 )
+
+
+Replacing Expressions
+_1 replace with --> _1 = sp_6(D) != 0B;
+
+_2 replace with --> _2 = str_7(D) != 0B;
+
+_3 replace with --> _3 = _1 & _2;
+
+_4 replace with --> _4 = sp_6(D)->_keytry;
+
+
+__attribute__((visibility ("default")))
+int key_defined_sp (struct SCREEN * sp, const char * str)
+{
+  int code;
+  _Bool _1;
+  _Bool _2;
+  _Bool _3;
+  struct TRIES * _4;
+  int _10(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _1 = sp_6(D) != 0B;
+  _2 = str_7(D) != 0B;
+  _3 = _1 & _2;
+  if (_3 != 0)
+    goto <bb 3>; [96.02%]
+  else
+    goto <bb 4>; [3.98%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _4 = sp_6(D)->_keytry;
+  code_9 = find_definition (_4, str_7(D)); [tail call]
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+;;                3
+  # code_5 = PHI <-1(2), code_9(3)>
+  return code_5;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB2->BB4 : PART.4 = -1
+
+;; Generating RTL for gimple basic block 2
+
+;; if (_3 != 0)
+
+(insn 8 7 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 87 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:17 -1
+     (nil))
+
+(insn 9 8 10 (set (reg:QI 90)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:17 -1
+     (nil))
+
+(insn 10 9 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 90)
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:8 -1
+     (nil))
+
+(jump_insn 11 10 12 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/key_defined.c":75:8 -1
+     (int_list:REG_BR_PROB 21367468 (nil)))
+
+(insn 12 11 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 88 [ str ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:32 -1
+     (nil))
+
+(insn 13 12 14 (set (reg:QI 92)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:32 -1
+     (nil))
+
+(insn 14 13 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 92)
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:8 -1
+     (nil))
+
+(jump_insn 15 14 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/key_defined.c":75:8 -1
+     (int_list:REG_BR_PROB 21801316 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; code_9 = find_definition (_4, str_7(D)); [tail call]
+
+(insn 17 16 18 3 (set (reg:DI 93)
+        (mem/f:DI (plus:DI (reg/v/f:DI 87 [ sp ])
+                (const_int 160 [0xa0])) [2 sp_6(D)->_keytry+0 S8 A64])) "../ncurses/./base/key_defined.c":76:9 -1
+     (nil))
+
+(insn 18 17 19 3 (set (reg:DI 4 si)
+        (reg/v/f:DI 88 [ str ])) "../ncurses/./base/key_defined.c":76:9 -1
+     (nil))
+
+(insn 19 18 20 3 (set (reg:DI 5 di)
+        (reg:DI 93)) "../ncurses/./base/key_defined.c":76:9 -1
+     (nil))
+
+(call_insn/j/c/i 20 19 21 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("find_definition") [flags 0x3]  <function_decl 0x7f5d4d8eb200 find_definition>) [0 find_definition S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":76:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("find_definition") [flags 0x3]  <function_decl 0x7f5d4d8eb200 find_definition>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(barrier 21 20 0)
+
+;; Generating RTL for gimple basic block 4
+
+;; 
+
+(code_label 23 21 24 27 (nil) [0 uses])
+
+(note 24 23 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return code_5;
+
+(jump_insn 25 24 26 (set (pc)
+        (label_ref 0)) "../ncurses/./base/key_defined.c":79:5 -1
+     (nil))
+
+(barrier 26 25 0)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 25.
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 87 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/key_defined.c":71:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 88 [ str ])
+        (reg:DI 4 si [ str ])) "../ncurses/./base/key_defined.c":71:1 -1
+     (nil))
+(note 4 3 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 4 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 87 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:17 -1
+     (nil))
+(insn 9 8 10 2 (set (reg:QI 90)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:17 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 90)
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:8 -1
+     (nil))
+(jump_insn 11 10 31 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 23)
+            (pc))) "../ncurses/./base/key_defined.c":75:8 -1
+     (int_list:REG_BR_PROB 21367468 (nil))
+ -> 23)
+;;  succ:       6 [2.0% (guessed)]  count:21367464 (estimated locally)
+;;              4 [98.0% (guessed)]  count:1052374360 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 1052374360 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL)
+;;  pred:       2 [98.0% (guessed)]  count:1052374360 (estimated locally) (FALLTHRU)
+(note 31 11 12 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 12 31 13 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 88 [ str ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:32 -1
+     (nil))
+(insn 13 12 14 4 (set (reg:QI 92)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:32 -1
+     (nil))
+(insn 14 13 15 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 92)
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:8 -1
+     (nil))
+(jump_insn 15 14 16 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 23)
+            (pc))) "../ncurses/./base/key_defined.c":75:8 -1
+     (int_list:REG_BR_PROB 21801316 (nil))
+ -> 23)
+;;  succ:       5 [98.0% (guessed)]  count:1031006894 (estimated locally) (FALLTHRU)
+;;              6 [2.0% (guessed)]  count:21367466 (estimated locally)
+
+;; basic block 5, loop depth 0, count 1031006897 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [98.0% (guessed)]  count:1031006894 (estimated locally) (FALLTHRU)
+(note 16 15 17 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 5 (set (reg:DI 93)
+        (mem/f:DI (plus:DI (reg/v/f:DI 87 [ sp ])
+                (const_int 160 [0xa0])) [2 sp_6(D)->_keytry+0 S8 A64])) "../ncurses/./base/key_defined.c":76:9 -1
+     (nil))
+(insn 18 17 19 5 (set (reg:DI 4 si)
+        (reg/v/f:DI 88 [ str ])) "../ncurses/./base/key_defined.c":76:9 -1
+     (nil))
+(insn 19 18 20 5 (set (reg:DI 5 di)
+        (reg:DI 93)) "../ncurses/./base/key_defined.c":76:9 -1
+     (nil))
+(call_insn/j/c/i 20 19 21 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("find_definition") [flags 0x3]  <function_decl 0x7f5d4d8eb200 find_definition>) [0 find_definition S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":76:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("find_definition") [flags 0x3]  <function_decl 0x7f5d4d8eb200 find_definition>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+;;  succ:       EXIT [always]  count:1031006897 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 21 20 23)
+;; basic block 6, loop depth 0, count 42734927 (estimated locally), maybe hot
+;;  prev block 5, next block 1, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [2.0% (guessed)]  count:21367466 (estimated locally)
+;;              2 [2.0% (guessed)]  count:21367464 (estimated locally)
+(code_label 23 21 24 6 27 (nil) [2 uses])
+(note 24 23 5 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 5 24 28 6 (set (reg/v:SI 86 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/key_defined.c":72:9 -1
+     (nil))
+(insn 28 5 29 6 (set (reg/i:SI 0 ax)
+        (reg/v:SI 86 [ <retval> ])) "../ncurses/./base/key_defined.c":80:1 -1
+     (nil))
+(insn 29 28 0 6 (use (reg/i:SI 0 ax)) "../ncurses/./base/key_defined.c":80:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:42734927 (estimated locally) (FALLTHRU)
+
+
+;; Function key_defined (key_defined, funcdef_no=93, decl_uid=6424, cgraph_uid=94, symbol_order=93)
+
+__attribute__((visibility ("default")))
+int key_defined (const char * str)
+{
+  int code;
+  struct SCREEN * SP.1_1;
+  _Bool _5;
+  _Bool _6;
+  _Bool _7;
+  struct TRIES * _8;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.1_1 = SP;
+  _5 = SP.1_1 != 0B;
+  _6 = str_3(D) != 0B;
+  _7 = _5 & _6;
+  if (_7 != 0)
+    goto <bb 3>; [96.02%]
+  else
+    goto <bb 4>; [3.98%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _8 = SP.1_1->_keytry;
+  code_9 = find_definition (_8, str_3(D)); [tail call]
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+;;                3
+  # code_10 = PHI <-1(2), code_9(3)>
+  return code_10;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (SP.1_1 - 1 )
+Partition 3 (str_3(D) - 3 )
+Partition 5 (_5 - 5 )
+Partition 6 (_6 - 6 )
+Partition 7 (_7 - 7 )
+Partition 8 (_8 - 8 )
+Partition 9 (code_9 - 9 )
+Partition 10 (code_10 - 10 )
+Partition 11 (_11(D) - 11 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (str_3(D) - 3 )
+Partition 2, base 1 (code_9 - 9 10 11 )
+
+
+Partition map 
+
+Partition 0 (str_3(D) - 3 )
+Partition 1 (code_9 - 9 )
+Partition 2 (code_10 - 10 )
+Partition 3 (_11(D) - 11 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) code_10 <-> _11(D)
+(9602, 0) code_9 <-> code_10
+
+Partition map 
+
+Partition 0 (str_3(D) - 3 )
+Partition 1 (code_9 - 9 )
+Partition 2 (code_10 - 10 )
+Partition 3 (_11(D) - 11 )
+
+Coalesce list: (10)code_10 & (11)_11(D) [map: 2, 3] : Success -> 2
+Coalesce list: (9)code_9 & (10)code_10 [map: 1, 2] : Success -> 2
+After Coalescing:
+
+Partition map 
+
+Partition 0 (SP.1_1 - 1 )
+Partition 1 (str_3(D) - 3 )
+Partition 2 (_5 - 5 )
+Partition 3 (_6 - 6 )
+Partition 4 (_7 - 7 )
+Partition 5 (_8 - 8 )
+Partition 6 (code_10 - 9 10 11 )
+
+
+Replacing Expressions
+_5 replace with --> _5 = SP.1_1 != 0B;
+
+_6 replace with --> _6 = str_3(D) != 0B;
+
+_7 replace with --> _7 = _5 & _6;
+
+_8 replace with --> _8 = SP.1_1->_keytry;
+
+
+__attribute__((visibility ("default")))
+int key_defined (const char * str)
+{
+  int code;
+  struct SCREEN * SP.1_1;
+  _Bool _5;
+  _Bool _6;
+  _Bool _7;
+  struct TRIES * _8;
+  int _11(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.1_1 = SP;
+  _5 = SP.1_1 != 0B;
+  _6 = str_3(D) != 0B;
+  _7 = _5 & _6;
+  if (_7 != 0)
+    goto <bb 3>; [96.02%]
+  else
+    goto <bb 4>; [3.98%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _8 = SP.1_1->_keytry;
+  code_9 = find_definition (_8, str_3(D)); [tail call]
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+;;                3
+  # code_10 = PHI <-1(2), code_9(3)>
+  return code_10;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB2->BB4 : PART.6 = -1
+
+;; Generating RTL for gimple basic block 2
+
+;; SP.1_1 = SP;
+
+(insn 7 6 0 (set (reg/f:DI 82 [ SP.1_1 ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f5d4d852cf0 SP>) [29 SP+0 S8 A64])) "../ncurses/./base/key_defined.c":86:12 -1
+     (nil))
+
+;; if (_7 != 0)
+
+(insn 8 7 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ SP.1_1 ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:17 -1
+     (nil))
+
+(insn 9 8 10 (set (reg:QI 90)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:17 -1
+     (nil))
+
+(insn 10 9 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 90)
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:8 -1
+     (nil))
+
+(jump_insn 11 10 12 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/key_defined.c":75:8 -1
+     (int_list:REG_BR_PROB 21367468 (nil)))
+
+(insn 12 11 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 88 [ str ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:32 -1
+     (nil))
+
+(insn 13 12 14 (set (reg:QI 92)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:32 -1
+     (nil))
+
+(insn 14 13 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 92)
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:8 -1
+     (nil))
+
+(jump_insn 15 14 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/key_defined.c":75:8 -1
+     (int_list:REG_BR_PROB 21801316 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; code_9 = find_definition (_8, str_3(D)); [tail call]
+
+(insn 17 16 18 3 (set (reg:DI 93)
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ SP.1_1 ])
+                (const_int 160 [0xa0])) [2 SP.1_1->_keytry+0 S8 A64])) "../ncurses/./base/key_defined.c":76:9 -1
+     (nil))
+
+(insn 18 17 19 3 (set (reg:DI 4 si)
+        (reg/v/f:DI 88 [ str ])) "../ncurses/./base/key_defined.c":76:9 -1
+     (nil))
+
+(insn 19 18 20 3 (set (reg:DI 5 di)
+        (reg:DI 93)) "../ncurses/./base/key_defined.c":76:9 -1
+     (nil))
+
+(call_insn/j/c/i 20 19 21 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("find_definition") [flags 0x3]  <function_decl 0x7f5d4d8eb200 find_definition>) [0 find_definition S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":76:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("find_definition") [flags 0x3]  <function_decl 0x7f5d4d8eb200 find_definition>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(barrier 21 20 0)
+
+;; Generating RTL for gimple basic block 4
+
+;; 
+
+(code_label 23 21 24 35 (nil) [0 uses])
+
+(note 24 23 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return code_10;
+
+(jump_insn 25 24 26 (set (pc)
+        (label_ref 0)) "../ncurses/./base/key_defined.c":86:12 -1
+     (nil))
+
+(barrier 26 25 0)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 25.
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 88 [ str ])
+        (reg:DI 5 di [ str ])) "../ncurses/./base/key_defined.c":85:1 -1
+     (nil))
+(note 3 2 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 3 8 2 (set (reg/f:DI 82 [ SP.1_1 ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f5d4d852cf0 SP>) [29 SP+0 S8 A64])) "../ncurses/./base/key_defined.c":86:12 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ SP.1_1 ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:17 -1
+     (nil))
+(insn 9 8 10 2 (set (reg:QI 90)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:17 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 90)
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:8 -1
+     (nil))
+(jump_insn 11 10 31 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 23)
+            (pc))) "../ncurses/./base/key_defined.c":75:8 -1
+     (int_list:REG_BR_PROB 21367468 (nil))
+ -> 23)
+;;  succ:       6 [2.0% (guessed)]  count:21367464 (estimated locally)
+;;              4 [98.0% (guessed)]  count:1052374360 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 1052374360 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL)
+;;  pred:       2 [98.0% (guessed)]  count:1052374360 (estimated locally) (FALLTHRU)
+(note 31 11 12 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 12 31 13 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 88 [ str ])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:32 -1
+     (nil))
+(insn 13 12 14 4 (set (reg:QI 92)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:32 -1
+     (nil))
+(insn 14 13 15 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 92)
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":75:8 -1
+     (nil))
+(jump_insn 15 14 16 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 23)
+            (pc))) "../ncurses/./base/key_defined.c":75:8 -1
+     (int_list:REG_BR_PROB 21801316 (nil))
+ -> 23)
+;;  succ:       5 [98.0% (guessed)]  count:1031006894 (estimated locally) (FALLTHRU)
+;;              6 [2.0% (guessed)]  count:21367466 (estimated locally)
+
+;; basic block 5, loop depth 0, count 1031006897 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [98.0% (guessed)]  count:1031006894 (estimated locally) (FALLTHRU)
+(note 16 15 17 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 5 (set (reg:DI 93)
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ SP.1_1 ])
+                (const_int 160 [0xa0])) [2 SP.1_1->_keytry+0 S8 A64])) "../ncurses/./base/key_defined.c":76:9 -1
+     (nil))
+(insn 18 17 19 5 (set (reg:DI 4 si)
+        (reg/v/f:DI 88 [ str ])) "../ncurses/./base/key_defined.c":76:9 -1
+     (nil))
+(insn 19 18 20 5 (set (reg:DI 5 di)
+        (reg:DI 93)) "../ncurses/./base/key_defined.c":76:9 -1
+     (nil))
+(call_insn/j/c/i 20 19 21 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("find_definition") [flags 0x3]  <function_decl 0x7f5d4d8eb200 find_definition>) [0 find_definition S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/key_defined.c":76:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("find_definition") [flags 0x3]  <function_decl 0x7f5d4d8eb200 find_definition>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+;;  succ:       EXIT [always]  count:1031006897 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 21 20 23)
+;; basic block 6, loop depth 0, count 42734927 (estimated locally), maybe hot
+;;  prev block 5, next block 1, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [2.0% (guessed)]  count:21367466 (estimated locally)
+;;              2 [2.0% (guessed)]  count:21367464 (estimated locally)
+(code_label 23 21 24 6 35 (nil) [2 uses])
+(note 24 23 4 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 4 24 28 6 (set (reg/v:SI 87 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/key_defined.c":72:9 -1
+     (nil))
+(insn 28 4 29 6 (set (reg/i:SI 0 ax)
+        (reg/v:SI 87 [ <retval> ])) "../ncurses/./base/key_defined.c":87:1 -1
+     (nil))
+(insn 29 28 0 6 (use (reg/i:SI 0 ax)) "../ncurses/./base/key_defined.c":87:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:42734927 (estimated locally) (FALLTHRU)
+

@@ -1,0 +1,2137 @@
+
+;; Function _nc_printf_string_sp (_nc_printf_string_sp, funcdef_no=93, decl_uid=8919, cgraph_uid=94, symbol_order=93)
+
+__attribute__((visibility ("default")))
+__attribute__((access ("^2[1]", )))
+char * _nc_printf_string_sp (struct SCREEN * sp, const char * fmt, struct  * ap)
+{
+  struct  ap2[1];
+  char * result;
+  _Bool _1;
+  _Bool _2;
+  _Bool _3;
+  int _4;
+  int _5;
+  int _12;
+  int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  void * _18;
+  long unsigned int _20;
+  char * _21;
+  long unsigned int _22;
+  int _23;
+  int _24;
+  int _25;
+  long unsigned int _26;
+  char * _27;
+  void * _28;
+  long unsigned int _47;
+  int _60;
+  int prephitmp_76;
+  int prephitmp_77;
+  int prephitmp_78;
+  char * prephitmp_80;
+  char * pretmp_81;
+  char * prephitmp_82;
+  int pretmp_84;
+  int pretmp_85;
+  char * pretmp_87;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _1 = sp_38(D) != 0B;
+  _2 = fmt_39(D) != 0B;
+  _3 = _1 & _2;
+  pretmp_87 = _nc_globals.safeprint_buf;
+  if (_3 != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 14>; [50.00%]
+;;    succ:       3
+;;                14
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _4 = sp_38(D)->_lines;
+  _5 = _nc_globals.safeprint_rows;
+  pretmp_84 = sp_38(D)->_columns;
+  pretmp_85 = _nc_globals.safeprint_cols;
+  if (_4 > _5)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+;;    succ:       5
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  if (pretmp_84 > pretmp_85)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+;;    succ:       6
+;;                8
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+  _nc_globals.safeprint_rows = _4;
+  if (pretmp_84 > pretmp_85)
+    goto <bb 6>; [25.00%]
+  else
+    goto <bb 7>; [75.00%]
+;;    succ:       6
+;;                7
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+;;                4
+  # prephitmp_76 = PHI <_4(5), _5(4)>
+  _nc_globals.safeprint_cols = pretmp_84;
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       5
+;;                6
+  # prephitmp_77 = PHI <_4(5), prephitmp_76(6)>
+  # prephitmp_78 = PHI <pretmp_85(5), pretmp_84(6)>
+  _12 = prephitmp_78 + 1;
+  _13 = _12 * prephitmp_77;
+  _14 = (long unsigned int) _13;
+  _15 = _14 + 1;
+  _47 = MAX_EXPR <_15, 80>;
+  MEM <struct NCURSES_GLOBALS> [(void *)&_nc_globals].safeprint_used = _47;
+  _18 = _nc_doalloc (pretmp_87, _47);
+  _nc_globals.safeprint_buf = _18;
+;;    succ:       8
+
+;;   basic block 8, loop depth 0
+;;    pred:       4
+;;                7
+  # prephitmp_80 = PHI <pretmp_87(4), _18(7)>
+  if (prephitmp_80 != 0B)
+    goto <bb 10>; [85.10%]
+  else
+    goto <bb 9>; [14.90%]
+;;    succ:       10
+;;                9
+
+;;   basic block 9, loop depth 0
+;;    pred:       8
+;;                14
+  goto <bb 16>; [100.00%]
+;;    succ:       16
+
+;;   basic block 10, loop depth 1
+;;    pred:       8
+;;                11
+  __builtin_va_copy (&ap2, ap_50(D));
+  _20 = _nc_globals.safeprint_used;
+  _21 = _nc_globals.safeprint_buf;
+  _60 = __builtin___vsnprintf_chk (_21, _20, 1, 18446744073709551615, fmt_39(D), &ap2);
+  _22 = _nc_globals.safeprint_used;
+  _23 = (int) _22;
+  if (_23 > _60)
+    goto <bb 12>; [5.50%]
+  else
+    goto <bb 11>; [94.50%]
+;;    succ:       12
+;;                11
+
+;;   basic block 11, loop depth 1
+;;    pred:       10
+  _24 = _60 * 3;
+  _25 = _24 / 2;
+  _26 = (long unsigned int) _25;
+  _nc_globals.safeprint_used = _26;
+  _27 = _nc_globals.safeprint_buf;
+  _28 = _nc_doalloc (_27, _26);
+  _nc_globals.safeprint_buf = _28;
+  ap2 ={v} {CLOBBER};
+  if (_28 != 0B)
+    goto <bb 10>; [94.50%]
+  else
+    goto <bb 13>; [5.50%]
+;;    succ:       10
+;;                13
+
+;;   basic block 12, loop depth 0
+;;    pred:       10
+  ap2 ={v} {CLOBBER};
+  pretmp_81 = _nc_globals.safeprint_buf;
+;;    succ:       13
+
+;;   basic block 13, loop depth 0
+;;    pred:       12
+;;                11
+  # prephitmp_82 = PHI <pretmp_81(12), _28(11)>
+  goto <bb 16>; [100.00%]
+;;    succ:       16
+
+;;   basic block 14, loop depth 0
+;;    pred:       2
+  if (pretmp_87 != 0B)
+    goto <bb 15>; [53.47%]
+  else
+    goto <bb 9>; [46.53%]
+;;    succ:       15
+;;                9
+
+;;   basic block 15, loop depth 0
+;;    pred:       14
+  free (pretmp_87);
+  _nc_globals.safeprint_buf = 0B;
+  _nc_globals.safeprint_used = 0;
+;;    succ:       16
+
+;;   basic block 16, loop depth 0
+;;    pred:       13
+;;                9
+;;                15
+  # result_30 = PHI <prephitmp_82(13), 0B(9), 0B(15)>
+  return result_30;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 4 (_4 - 4 )
+Partition 5 (_5 - 5 )
+Partition 12 (_12 - 12 )
+Partition 13 (_13 - 13 )
+Partition 14 (_14 - 14 )
+Partition 15 (_15 - 15 )
+Partition 18 (_18 - 18 )
+Partition 20 (_20 - 20 )
+Partition 21 (_21 - 21 )
+Partition 22 (_22 - 22 )
+Partition 23 (_23 - 23 )
+Partition 24 (_24 - 24 )
+Partition 25 (_25 - 25 )
+Partition 26 (_26 - 26 )
+Partition 27 (_27 - 27 )
+Partition 28 (_28 - 28 )
+Partition 30 (result_30 - 30 )
+Partition 38 (sp_38(D) - 38 )
+Partition 39 (fmt_39(D) - 39 )
+Partition 47 (_47 - 47 )
+Partition 50 (ap_50(D) - 50 )
+Partition 52 (_52(D) - 52 )
+Partition 60 (_60 - 60 )
+Partition 76 (prephitmp_76 - 76 )
+Partition 77 (prephitmp_77 - 77 )
+Partition 78 (prephitmp_78 - 78 )
+Partition 80 (prephitmp_80 - 80 )
+Partition 81 (pretmp_81 - 81 )
+Partition 82 (prephitmp_82 - 82 )
+Partition 84 (pretmp_84 - 84 )
+Partition 85 (pretmp_85 - 85 )
+Partition 87 (pretmp_87 - 87 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_4 - 4 5 76 77 )
+Partition 2, base 1 (_18 - 18 80 87 )
+Partition 3, base 2 (_28 - 28 30 52 81 82 )
+Partition 5, base 3 (sp_38(D) - 38 )
+Partition 6, base 4 (fmt_39(D) - 39 )
+Partition 7, base 5 (ap_50(D) - 50 )
+Partition 11, base 6 (prephitmp_78 - 78 84 85 )
+
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_5 - 5 )
+Partition 2 (_18 - 18 )
+Partition 3 (_28 - 28 )
+Partition 4 (result_30 - 30 )
+Partition 5 (sp_38(D) - 38 )
+Partition 6 (fmt_39(D) - 39 )
+Partition 7 (ap_50(D) - 50 )
+Partition 8 (_52(D) - 52 )
+Partition 9 (prephitmp_76 - 76 )
+Partition 10 (prephitmp_77 - 77 )
+Partition 11 (prephitmp_78 - 78 )
+Partition 12 (prephitmp_80 - 80 )
+Partition 13 (pretmp_81 - 81 )
+Partition 14 (prephitmp_82 - 82 )
+Partition 15 (pretmp_84 - 84 )
+Partition 16 (pretmp_85 - 85 )
+Partition 17 (pretmp_87 - 87 )
+
+
+Conflict graph:
+0: 1
+1: 0
+15: 16
+16: 15
+
+After sorting:
+Sorted Coalesce list:
+(2514, 0) result_30 <-> _52(D)
+(1070, 0) result_30 <-> prephitmp_82
+(1040, 0) _28 <-> prephitmp_82
+(943, 0) _18 <-> prephitmp_80
+(942, 1) _4 <-> prephitmp_77
+(942, 1) prephitmp_78 <-> pretmp_85
+(628, 0) prephitmp_80 <-> pretmp_87
+(628, 1) _5 <-> prephitmp_76
+(550, 0) pretmp_81 <-> prephitmp_82
+(471, 0) prephitmp_76 <-> prephitmp_77
+(471, 1) prephitmp_78 <-> pretmp_84
+(314, 0) _4 <-> prephitmp_76
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_5 - 5 )
+Partition 2 (_18 - 18 )
+Partition 3 (_28 - 28 )
+Partition 4 (result_30 - 30 )
+Partition 5 (sp_38(D) - 38 )
+Partition 6 (fmt_39(D) - 39 )
+Partition 7 (ap_50(D) - 50 )
+Partition 8 (_52(D) - 52 )
+Partition 9 (prephitmp_76 - 76 )
+Partition 10 (prephitmp_77 - 77 )
+Partition 11 (prephitmp_78 - 78 )
+Partition 12 (prephitmp_80 - 80 )
+Partition 13 (pretmp_81 - 81 )
+Partition 14 (prephitmp_82 - 82 )
+Partition 15 (pretmp_84 - 84 )
+Partition 16 (pretmp_85 - 85 )
+Partition 17 (pretmp_87 - 87 )
+
+Coalesce list: (30)result_30 & (52)_52(D) [map: 4, 8] : Success -> 4
+Coalesce list: (30)result_30 & (82)prephitmp_82 [map: 4, 14] : Success -> 4
+Coalesce list: (28)_28 & (82)result_30 [map: 3, 4] : Success -> 4
+Coalesce list: (18)_18 & (80)prephitmp_80 [map: 2, 12] : Success -> 2
+Coalesce list: (4)_4 & (77)prephitmp_77 [map: 0, 10] : Success -> 0
+Coalesce list: (78)prephitmp_78 & (85)pretmp_85 [map: 11, 16] : Success -> 11
+Coalesce list: (80)_18 & (87)pretmp_87 [map: 2, 17] : Success -> 2
+Coalesce list: (5)_5 & (76)prephitmp_76 [map: 1, 9] : Success -> 1
+Coalesce list: (81)pretmp_81 & (82)result_30 [map: 13, 4] : Success -> 4
+Coalesce list: (76)_5 & (77)_4 [map: 1, 0] : Fail due to conflict
+Coalesce list: (78)prephitmp_78 & (84)pretmp_84 [map: 11, 15] : Fail due to conflict
+Coalesce list: (4)_4 & (76)_5 [map: 0, 1] : Fail due to conflict
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_2 - 2 )
+Partition 2 (_3 - 3 )
+Partition 3 (_4 - 4 77 )
+Partition 4 (_5 - 5 76 )
+Partition 5 (_12 - 12 )
+Partition 6 (_13 - 13 )
+Partition 7 (_14 - 14 )
+Partition 8 (_15 - 15 )
+Partition 9 (_18 - 18 80 87 )
+Partition 10 (_20 - 20 )
+Partition 11 (_21 - 21 )
+Partition 12 (_22 - 22 )
+Partition 13 (_23 - 23 )
+Partition 14 (_24 - 24 )
+Partition 15 (_25 - 25 )
+Partition 16 (_26 - 26 )
+Partition 17 (_27 - 27 )
+Partition 18 (result_30 - 28 30 52 81 82 )
+Partition 19 (sp_38(D) - 38 )
+Partition 20 (fmt_39(D) - 39 )
+Partition 21 (_47 - 47 )
+Partition 22 (ap_50(D) - 50 )
+Partition 23 (_60 - 60 )
+Partition 24 (prephitmp_78 - 78 85 )
+Partition 25 (pretmp_84 - 84 )
+
+
+Replacing Expressions
+_1 replace with --> _1 = sp_38(D) != 0B;
+
+_2 replace with --> _2 = fmt_39(D) != 0B;
+
+_3 replace with --> _3 = _1 & _2;
+
+_12 replace with --> _12 = prephitmp_78 + 1;
+
+_13 replace with --> _13 = _12 * prephitmp_77;
+
+_14 replace with --> _14 = (long unsigned int) _13;
+
+_15 replace with --> _15 = _14 + 1;
+
+_20 replace with --> _20 = _nc_globals.safeprint_used;
+
+_21 replace with --> _21 = _nc_globals.safeprint_buf;
+
+_22 replace with --> _22 = _nc_globals.safeprint_used;
+
+_23 replace with --> _23 = (int) _22;
+
+_24 replace with --> _24 = _60 * 3;
+
+_25 replace with --> _25 = _24 / 2;
+
+_27 replace with --> _27 = _nc_globals.safeprint_buf;
+
+
+__attribute__((visibility ("default")))
+__attribute__((access ("^2[1]", )))
+char * _nc_printf_string_sp (struct SCREEN * sp, const char * fmt, struct  * ap)
+{
+  struct  ap2[1];
+  char * result;
+  _Bool _1;
+  _Bool _2;
+  _Bool _3;
+  int _4;
+  int _5;
+  int _12;
+  int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  void * _18;
+  long unsigned int _20;
+  char * _21;
+  long unsigned int _22;
+  int _23;
+  int _24;
+  int _25;
+  long unsigned int _26;
+  char * _27;
+  void * _28;
+  long unsigned int _47;
+  char * _52(D);
+  int _60;
+  int prephitmp_76;
+  int prephitmp_77;
+  int prephitmp_78;
+  char * prephitmp_80;
+  char * pretmp_81;
+  char * prephitmp_82;
+  int pretmp_84;
+  int pretmp_85;
+  char * pretmp_87;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _1 = sp_38(D) != 0B;
+  _2 = fmt_39(D) != 0B;
+  _3 = _1 & _2;
+  pretmp_87 = _nc_globals.safeprint_buf;
+  if (_3 != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 14>; [50.00%]
+;;    succ:       3
+;;                14
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _4 = sp_38(D)->_lines;
+  _5 = _nc_globals.safeprint_rows;
+  pretmp_84 = sp_38(D)->_columns;
+  pretmp_85 = _nc_globals.safeprint_cols;
+  if (_4 > _5)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+;;    succ:       5
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  if (pretmp_84 > pretmp_85)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+;;    succ:       6
+;;                8
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+  _nc_globals.safeprint_rows = _4;
+  if (pretmp_84 > pretmp_85)
+    goto <bb 6>; [25.00%]
+  else
+    goto <bb 7>; [75.00%]
+;;    succ:       6
+;;                7
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+;;                4
+  # prephitmp_76 = PHI <_4(5), _5(4)>
+  _nc_globals.safeprint_cols = pretmp_84;
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       5
+;;                6
+  # prephitmp_77 = PHI <_4(5), prephitmp_76(6)>
+  # prephitmp_78 = PHI <pretmp_85(5), pretmp_84(6)>
+  _12 = prephitmp_78 + 1;
+  _13 = _12 * prephitmp_77;
+  _14 = (long unsigned int) _13;
+  _15 = _14 + 1;
+  _47 = MAX_EXPR <_15, 80>;
+  MEM <struct NCURSES_GLOBALS> [(void *)&_nc_globals].safeprint_used = _47;
+  _18 = _nc_doalloc (pretmp_87, _47);
+  _nc_globals.safeprint_buf = _18;
+;;    succ:       8
+
+;;   basic block 8, loop depth 0
+;;    pred:       4
+;;                7
+  # prephitmp_80 = PHI <pretmp_87(4), _18(7)>
+  if (prephitmp_80 != 0B)
+    goto <bb 10>; [85.10%]
+  else
+    goto <bb 9>; [14.90%]
+;;    succ:       10
+;;                9
+
+;;   basic block 9, loop depth 0
+;;    pred:       8
+;;                14
+  goto <bb 16>; [100.00%]
+;;    succ:       16
+
+;;   basic block 10, loop depth 1
+;;    pred:       8
+;;                11
+  __builtin_va_copy (&ap2, ap_50(D));
+  _20 = _nc_globals.safeprint_used;
+  _21 = _nc_globals.safeprint_buf;
+  _60 = __builtin___vsnprintf_chk (_21, _20, 1, 18446744073709551615, fmt_39(D), &ap2);
+  _22 = _nc_globals.safeprint_used;
+  _23 = (int) _22;
+  if (_23 > _60)
+    goto <bb 12>; [5.50%]
+  else
+    goto <bb 11>; [94.50%]
+;;    succ:       12
+;;                11
+
+;;   basic block 11, loop depth 1
+;;    pred:       10
+  _24 = _60 * 3;
+  _25 = _24 / 2;
+  _26 = (long unsigned int) _25;
+  _nc_globals.safeprint_used = _26;
+  _27 = _nc_globals.safeprint_buf;
+  _28 = _nc_doalloc (_27, _26);
+  _nc_globals.safeprint_buf = _28;
+  ap2 ={v} {CLOBBER};
+  if (_28 != 0B)
+    goto <bb 10>; [94.50%]
+  else
+    goto <bb 13>; [5.50%]
+;;    succ:       10
+;;                13
+
+;;   basic block 12, loop depth 0
+;;    pred:       10
+  ap2 ={v} {CLOBBER};
+  pretmp_81 = _nc_globals.safeprint_buf;
+;;    succ:       13
+
+;;   basic block 13, loop depth 0
+;;    pred:       12
+;;                11
+  # prephitmp_82 = PHI <pretmp_81(12), _28(11)>
+  goto <bb 16>; [100.00%]
+;;    succ:       16
+
+;;   basic block 14, loop depth 0
+;;    pred:       2
+  if (pretmp_87 != 0B)
+    goto <bb 15>; [53.47%]
+  else
+    goto <bb 9>; [46.53%]
+;;    succ:       15
+;;                9
+
+;;   basic block 15, loop depth 0
+;;    pred:       14
+  free (pretmp_87);
+  _nc_globals.safeprint_buf = 0B;
+  _nc_globals.safeprint_used = 0;
+;;    succ:       16
+
+;;   basic block 16, loop depth 0
+;;    pred:       13
+;;                9
+;;                15
+  # result_30 = PHI <prephitmp_82(13), 0B(9), 0B(15)>
+  return result_30;
+;;    succ:       EXIT
+
+}
+
+
+Partition 0: size 24 align 8
+	ap2
+Inserting a partition copy on edge BB5->BB6 : PART.4 = PART.3
+Inserting a partition copy on edge BB6->BB7 : PART.24 = PART.25
+Inserting a partition copy on edge BB6->BB7 : PART.3 = PART.4
+Inserting a value copy on edge BB9->BB16 : PART.18 = 0B
+Inserting a value copy on edge BB15->BB16 : PART.18 = 0B
+
+;; Generating RTL for gimple basic block 2
+
+;; pretmp_87 = _nc_globals.safeprint_buf;
+
+(insn 15 14 16 (set (reg/f:DI 109)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":260:18 -1
+     (nil))
+
+(insn 16 15 0 (set (reg/f:DI 91 [ _18 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 109)
+                (const_int 96 [0x60])) [4 _nc_globals.safeprint_buf+0 S8 A64])) "../ncurses/./base/safe_sprintf.c":260:18 -1
+     (nil))
+
+;; if (_3 != 0)
+
+(insn 17 16 18 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 105 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":228:17 -1
+     (nil))
+
+(insn 18 17 19 (set (reg:QI 111)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":228:17 -1
+     (nil))
+
+(insn 19 18 20 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 111)
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":228:8 -1
+     (nil))
+
+(jump_insn 20 19 21 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/safe_sprintf.c":228:8 -1
+     (int_list:REG_BR_PROB 268435460 (nil)))
+
+(insn 21 20 22 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 106 [ fmt ])
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":228:32 -1
+     (nil))
+
+(insn 22 21 23 (set (reg:QI 113)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":228:32 -1
+     (nil))
+
+(insn 23 22 24 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 113)
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":228:8 -1
+     (nil))
+
+(jump_insn 24 23 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/safe_sprintf.c":228:8 -1
+     (int_list:REG_BR_PROB 357913948 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _4 = sp_38(D)->_lines;
+
+(insn 26 25 0 (set (reg:SI 85 [ _4 ])
+        (mem:SI (plus:DI (reg/v/f:DI 105 [ sp ])
+                (const_int 116 [0x74])) [1 sp_38(D)->_lines+0 S4 A32])) "../ncurses/./base/safe_sprintf.c":252:6 -1
+     (nil))
+
+;; _5 = _nc_globals.safeprint_rows;
+
+(insn 27 26 28 (set (reg/f:DI 114)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":252:30 -1
+     (nil))
+
+(insn 28 27 0 (set (reg:SI 86 [ _5 ])
+        (mem/c:SI (plus:DI (reg/f:DI 114)
+                (const_int 500 [0x1f4])) [1 _nc_globals.safeprint_rows+0 S4 A32])) "../ncurses/./base/safe_sprintf.c":252:30 -1
+     (nil))
+
+;; pretmp_84 = sp_38(D)->_columns;
+
+(insn 29 28 0 (set (reg:SI 103 [ pretmp_84 ])
+        (mem:SI (plus:DI (reg/v/f:DI 105 [ sp ])
+                (const_int 120 [0x78])) [1 sp_38(D)->_columns+0 S4 A64])) "../ncurses/./base/safe_sprintf.c":252:40 -1
+     (nil))
+
+;; pretmp_85 = _nc_globals.safeprint_cols;
+
+(insn 30 29 31 (set (reg/f:DI 115)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":252:66 -1
+     (nil))
+
+(insn 31 30 0 (set (reg:SI 102 [ prephitmp_78 ])
+        (mem/c:SI (plus:DI (reg/f:DI 115)
+                (const_int 496 [0x1f0])) [1 _nc_globals.safeprint_cols+0 S4 A64])) "../ncurses/./base/safe_sprintf.c":252:66 -1
+     (nil))
+
+;; if (_4 > _5)
+
+(insn 32 31 33 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 85 [ _4 ])
+            (reg:SI 86 [ _5 ]))) "../ncurses/./base/safe_sprintf.c":252:5 -1
+     (nil))
+
+(jump_insn 33 32 0 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/safe_sprintf.c":252:5 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; if (pretmp_84 > pretmp_85)
+
+(insn 35 34 36 4 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 103 [ pretmp_84 ])
+            (reg:SI 102 [ prephitmp_78 ]))) "../ncurses/./base/safe_sprintf.c":252:37 -1
+     (nil))
+
+(jump_insn 36 35 39 4 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/safe_sprintf.c":252:37 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+(note 39 36 37 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 37 39 38 18 (set (pc)
+        (label_ref 0)) -1
+     (nil))
+
+(barrier 38 37 0)
+
+;; Generating RTL for gimple basic block 5
+
+;; 
+
+(code_label 40 38 41 3 (nil) [0 uses])
+
+(note 41 40 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _nc_globals.safeprint_rows = _4;
+
+(insn 42 41 43 (set (reg/f:DI 116)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":254:10 -1
+     (nil))
+
+(insn 43 42 0 (set (mem/c:SI (plus:DI (reg/f:DI 116)
+                (const_int 500 [0x1f4])) [1 _nc_globals.safeprint_rows+0 S4 A32])
+        (reg:SI 85 [ _4 ])) "../ncurses/./base/safe_sprintf.c":254:10 -1
+     (nil))
+
+;; if (pretmp_84 > pretmp_85)
+
+(insn 44 43 45 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 103 [ pretmp_84 ])
+            (reg:SI 102 [ prephitmp_78 ]))) "../ncurses/./base/safe_sprintf.c":255:9 -1
+     (nil))
+
+(jump_insn 45 44 0 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/safe_sprintf.c":255:9 -1
+     (int_list:REG_BR_PROB 805306372 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 46 45 47 4 (nil) [0 uses])
+
+(note 47 46 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _nc_globals.safeprint_cols = pretmp_84;
+
+(insn 48 47 49 (set (reg/f:DI 117)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":256:10 -1
+     (nil))
+
+(insn 49 48 0 (set (mem/c:SI (plus:DI (reg/f:DI 117)
+                (const_int 496 [0x1f0])) [1 _nc_globals.safeprint_cols+0 S4 A64])
+        (reg:SI 103 [ pretmp_84 ])) "../ncurses/./base/safe_sprintf.c":256:10 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 7
+
+;; 
+
+(code_label 50 49 51 6 (nil) [0 uses])
+
+(note 51 50 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _47 = MAX_EXPR <_15, 80>;
+
+(insn 52 51 53 (parallel [
+            (set (reg:SI 118)
+                (plus:SI (reg:SI 102 [ prephitmp_78 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/safe_sprintf.c":257:45 -1
+     (nil))
+
+(insn 53 52 54 (parallel [
+            (set (reg:SI 119)
+                (mult:SI (reg:SI 118)
+                    (reg:SI 85 [ _4 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/safe_sprintf.c":257:35 -1
+     (nil))
+
+(insn 54 53 55 (set (reg:DI 120)
+        (sign_extend:DI (reg:SI 119))) "../ncurses/./base/safe_sprintf.c":257:18 -1
+     (nil))
+
+(insn 55 54 56 (parallel [
+            (set (reg:DI 100 [ _47 ])
+                (plus:DI (reg:DI 120)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/safe_sprintf.c":257:51 -1
+     (nil))
+
+(insn 56 55 0 (parallel [
+            (set (reg:DI 100 [ _47 ])
+                (umax:DI (reg:DI 100 [ _47 ])
+                    (const_int 80 [0x50])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+;; MEM <struct NCURSES_GLOBALS> [(void *)&_nc_globals].safeprint_used = _47;
+
+(insn 57 56 58 (set (reg/f:DI 121)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) -1
+     (nil))
+
+(insn 58 57 0 (set (mem/c:DI (plus:DI (reg/f:DI 121)
+                (const_int 104 [0x68])) [0 MEM <struct NCURSES_GLOBALS> [(void *)&_nc_globals].safeprint_used+0 S8 A64])
+        (reg:DI 100 [ _47 ])) -1
+     (nil))
+
+;; _18 = _nc_doalloc (pretmp_87, _47);
+
+(insn 59 58 60 (set (reg:DI 4 si)
+        (reg:DI 100 [ _47 ])) "../ncurses/./base/safe_sprintf.c":260:18 -1
+     (nil))
+
+(insn 60 59 61 (set (reg:DI 5 di)
+        (reg/f:DI 91 [ _18 ])) "../ncurses/./base/safe_sprintf.c":260:18 -1
+     (nil))
+
+(call_insn 61 60 62 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_doalloc") [flags 0x41]  <function_decl 0x7f1c42551b00 _nc_doalloc>) [0 _nc_doalloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":260:18 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_doalloc") [flags 0x41]  <function_decl 0x7f1c42551b00 _nc_doalloc>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 62 61 0 (set (reg/f:DI 91 [ _18 ])
+        (reg:DI 0 ax)) "../ncurses/./base/safe_sprintf.c":260:18 -1
+     (nil))
+
+;; _nc_globals.safeprint_buf = _18;
+
+(insn 63 62 64 (set (reg/f:DI 122)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":260:16 -1
+     (nil))
+
+(insn 64 63 0 (set (mem/f/c:DI (plus:DI (reg/f:DI 122)
+                (const_int 96 [0x60])) [4 _nc_globals.safeprint_buf+0 S8 A64])
+        (reg/f:DI 91 [ _18 ])) "../ncurses/./base/safe_sprintf.c":260:16 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 8
+
+;; 
+
+(code_label 65 64 66 5 (nil) [0 uses])
+
+(note 66 65 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (prephitmp_80 != 0B)
+
+(insn 67 66 68 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 91 [ _18 ])
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":263:5 -1
+     (nil))
+
+(jump_insn 68 67 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/safe_sprintf.c":263:5 -1
+     (int_list:REG_BR_PROB 913754300 (nil)))
+
+;; Generating RTL for gimple basic block 9
+
+;; Generating RTL for gimple basic block 10
+
+;; 
+
+(code_label 72 71 73 7 (nil) [0 uses])
+
+(note 73 72 0 NOTE_INSN_BASIC_BLOCK)
+
+;; __builtin_va_copy (&ap2, ap_50(D));
+
+(insn 74 73 75 (parallel [
+            (set (reg:DI 123)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/safe_sprintf.c":270:3 -1
+     (nil))
+
+(insn 75 74 76 (set (reg:TI 124)
+        (mem:TI (reg/v/f:DI 107 [ ap ]) [48  S16 A64])) "../ncurses/./base/safe_sprintf.c":270:3 -1
+     (nil))
+
+(insn 76 75 77 (set (mem:TI (reg:DI 123) [48  S16 A64])
+        (reg:TI 124)) "../ncurses/./base/safe_sprintf.c":270:3 -1
+     (nil))
+
+(insn 77 76 78 (set (reg:DI 125)
+        (mem:DI (plus:DI (reg/v/f:DI 107 [ ap ])
+                (const_int 16 [0x10])) [48  S8 A64])) "../ncurses/./base/safe_sprintf.c":270:3 -1
+     (nil))
+
+(insn 78 77 0 (set (mem:DI (plus:DI (reg:DI 123)
+                (const_int 16 [0x10])) [48  S8 A64])
+        (reg:DI 125)) "../ncurses/./base/safe_sprintf.c":270:3 -1
+     (nil))
+
+;; _60 = __builtin___vsnprintf_chk (_21, _20, 1, 18446744073709551615, fmt_39(D), &ap2);
+
+(insn 79 78 80 (parallel [
+            (set (reg:DI 126)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (nil))
+
+(insn 80 79 81 (set (reg/f:DI 127)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":271:10 -1
+     (nil))
+
+(insn 81 80 82 (set (reg:DI 128)
+        (mem/c:DI (plus:DI (reg/f:DI 127)
+                (const_int 104 [0x68])) [6 _nc_globals.safeprint_used+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (nil))
+
+(insn 82 81 83 (set (reg/f:DI 129)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":271:10 -1
+     (nil))
+
+(insn 83 82 84 (set (reg:DI 130)
+        (mem/f/c:DI (plus:DI (reg/f:DI 129)
+                (const_int 96 [0x60])) [4 _nc_globals.safeprint_buf+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (nil))
+
+(insn 84 83 85 (set (reg:DI 37 r9)
+        (reg:DI 126)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (nil))
+
+(insn 85 84 86 (set (reg:DI 36 r8)
+        (reg/v/f:DI 106 [ fmt ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (nil))
+
+(insn 86 85 87 (set (reg:DI 2 cx)
+        (const_int -1 [0xffffffffffffffff])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (nil))
+
+(insn 87 86 88 (set (reg:SI 1 dx)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (nil))
+
+(insn 88 87 89 (set (reg:DI 4 si)
+        (reg:DI 128)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (nil))
+
+(insn 89 88 90 (set (reg:DI 5 di)
+        (reg:DI 130)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (nil))
+
+(call_insn 90 89 91 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__vsnprintf_chk") [flags 0x41]  <function_decl 0x7f1c42984500 __builtin___vsnprintf_chk>) [0 __builtin___vsnprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__vsnprintf_chk") [flags 0x41]  <function_decl 0x7f1c42984500 __builtin___vsnprintf_chk>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (expr_list:DI (use (reg:DI 36 r8))
+                        (expr_list:DI (use (reg:DI 37 r9))
+                            (nil))))))))
+
+(insn 91 90 0 (set (reg:SI 101 [ _60 ])
+        (reg:SI 0 ax)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (nil))
+
+;; if (_23 > _60)
+
+(insn 92 91 93 (set (reg/f:DI 131)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":273:20 -1
+     (nil))
+
+(insn 93 92 94 (set (reg:DI 132)
+        (mem/c:DI (plus:DI (reg/f:DI 131)
+                (const_int 104 [0x68])) [6 _nc_globals.safeprint_used+0 S8 A64])) "../ncurses/./base/safe_sprintf.c":273:14 -1
+     (nil))
+
+(insn 94 93 95 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 101 [ _60 ])
+            (subreg:SI (reg:DI 132) 0))) "../ncurses/./base/safe_sprintf.c":273:6 -1
+     (nil))
+
+(jump_insn 95 94 0 (set (pc)
+        (if_then_else (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/safe_sprintf.c":273:6 -1
+     (int_list:REG_BR_PROB 59055804 (nil)))
+
+;; Generating RTL for gimple basic block 11
+
+;; _26 = (long unsigned int) _25;
+
+(insn 97 96 98 (set (reg:SI 133)
+        (reg:SI 101 [ _60 ])) "../ncurses/./base/safe_sprintf.c":275:28 -1
+     (nil))
+
+(insn 98 97 99 (parallel [
+            (set (reg:SI 134)
+                (ashift:SI (reg:SI 133)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/safe_sprintf.c":275:28 -1
+     (nil))
+
+(insn 99 98 102 (parallel [
+            (set (reg:SI 135)
+                (plus:SI (reg:SI 134)
+                    (reg:SI 101 [ _60 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/safe_sprintf.c":275:28 -1
+     (expr_list:REG_EQUAL (mult:SI (reg:SI 101 [ _60 ])
+            (const_int 3 [0x3]))
+        (nil)))
+
+(insn 102 99 103 (parallel [
+            (set (reg:SI 137)
+                (lshiftrt:SI (reg:SI 135)
+                    (const_int 31 [0x1f])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/safe_sprintf.c":275:36 -1
+     (nil))
+
+(insn 103 102 104 (parallel [
+            (set (reg:SI 138)
+                (plus:SI (reg:SI 137)
+                    (reg:SI 135)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/safe_sprintf.c":275:36 -1
+     (nil))
+
+(insn 104 103 105 (parallel [
+            (set (reg:SI 139)
+                (ashiftrt:SI (reg:SI 138)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/safe_sprintf.c":275:36 -1
+     (expr_list:REG_EQUAL (div:SI (reg:SI 135)
+            (const_int 2 [0x2]))
+        (nil)))
+
+(insn 105 104 0 (set (reg:DI 98 [ _26 ])
+        (sign_extend:DI (reg:SI 139))) "../ncurses/./base/safe_sprintf.c":275:15 -1
+     (nil))
+
+;; _nc_globals.safeprint_used = _26;
+
+(insn 106 105 107 (set (reg/f:DI 140)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":275:13 -1
+     (nil))
+
+(insn 107 106 0 (set (mem/c:DI (plus:DI (reg/f:DI 140)
+                (const_int 104 [0x68])) [6 _nc_globals.safeprint_used+0 S8 A64])
+        (reg:DI 98 [ _26 ])) "../ncurses/./base/safe_sprintf.c":275:13 -1
+     (nil))
+
+;; _28 = _nc_doalloc (_27, _26);
+
+(insn 108 107 109 (set (reg/f:DI 141)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":276:15 -1
+     (nil))
+
+(insn 109 108 110 (set (reg:DI 142)
+        (mem/f/c:DI (plus:DI (reg/f:DI 141)
+                (const_int 96 [0x60])) [4 _nc_globals.safeprint_buf+0 S8 A64])) "../ncurses/./base/safe_sprintf.c":276:15 -1
+     (nil))
+
+(insn 110 109 111 (set (reg:DI 4 si)
+        (reg:DI 98 [ _26 ])) "../ncurses/./base/safe_sprintf.c":276:15 -1
+     (nil))
+
+(insn 111 110 112 (set (reg:DI 5 di)
+        (reg:DI 142)) "../ncurses/./base/safe_sprintf.c":276:15 -1
+     (nil))
+
+(call_insn 112 111 113 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_doalloc") [flags 0x41]  <function_decl 0x7f1c42551b00 _nc_doalloc>) [0 _nc_doalloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":276:15 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_doalloc") [flags 0x41]  <function_decl 0x7f1c42551b00 _nc_doalloc>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 113 112 0 (set (reg/v/f:DI 104 [ <retval> ])
+        (reg:DI 0 ax)) "../ncurses/./base/safe_sprintf.c":276:15 -1
+     (nil))
+
+;; _nc_globals.safeprint_buf = _28;
+
+(insn 114 113 115 (set (reg/f:DI 143)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":276:13 -1
+     (nil))
+
+(insn 115 114 0 (set (mem/f/c:DI (plus:DI (reg/f:DI 143)
+                (const_int 96 [0x60])) [4 _nc_globals.safeprint_buf+0 S8 A64])
+        (reg/v/f:DI 104 [ <retval> ])) "../ncurses/./base/safe_sprintf.c":276:13 -1
+     (nil))
+
+;; ap2 ={v} {CLOBBER};
+
+(nil)
+
+;; if (_28 != 0B)
+
+(insn 116 115 117 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 104 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":277:25 -1
+     (nil))
+
+(jump_insn 117 116 120 11 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 72)
+            (pc))) "../ncurses/./base/safe_sprintf.c":277:25 -1
+     (int_list:REG_BR_PROB 1014686028 (nil)))
+
+(note 120 117 118 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 118 120 119 19 (set (pc)
+        (label_ref 0)) -1
+     (nil))
+
+(barrier 119 118 0)
+
+;; Generating RTL for gimple basic block 12
+
+;; 
+
+(code_label 121 119 122 9 (nil) [0 uses])
+
+(note 122 121 0 NOTE_INSN_BASIC_BLOCK)
+
+;; ap2 ={v} {CLOBBER};
+
+(nil)
+
+;; pretmp_81 = _nc_globals.safeprint_buf;
+
+(insn 123 122 124 (set (reg/f:DI 144)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":276:15 -1
+     (nil))
+
+(insn 124 123 0 (set (reg/v/f:DI 104 [ <retval> ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 144)
+                (const_int 96 [0x60])) [4 _nc_globals.safeprint_buf+0 S8 A64])) "../ncurses/./base/safe_sprintf.c":276:15 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 13
+
+;; 
+
+(code_label 125 124 126 10 (nil) [0 uses])
+
+(note 126 125 0 NOTE_INSN_BASIC_BLOCK)
+
+;; Generating RTL for gimple basic block 14
+
+;; 
+
+(code_label 129 128 130 2 (nil) [0 uses])
+
+(note 130 129 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (pretmp_87 != 0B)
+
+(insn 132 130 133 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 91 [ _18 ])
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":285:15 -1
+     (nil))
+
+(jump_insn 133 132 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 131)
+            (pc))) "../ncurses/./base/safe_sprintf.c":285:15 -1
+     (int_list:REG_BR_PROB 499612076 (nil)))
+
+;; Generating RTL for gimple basic block 15
+
+;; free (pretmp_87);
+
+(insn 135 134 136 (set (reg:DI 5 di)
+        (reg/f:DI 91 [ _18 ])) "../ncurses/./base/safe_sprintf.c":286:2 -1
+     (nil))
+
+(call_insn 136 135 0 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f1c42974d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/safe_sprintf.c":286:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f1c42974d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; _nc_globals.safeprint_buf = 0B;
+
+(insn 137 136 138 (set (reg/f:DI 145)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":287:12 -1
+     (nil))
+
+(insn 138 137 0 (set (mem/f/c:DI (plus:DI (reg/f:DI 145)
+                (const_int 96 [0x60])) [4 _nc_globals.safeprint_buf+0 S8 A64])
+        (const_int 0 [0])) "../ncurses/./base/safe_sprintf.c":287:12 -1
+     (nil))
+
+;; _nc_globals.safeprint_used = 0;
+
+(insn 139 138 140 (set (reg/f:DI 146)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":288:12 -1
+     (nil))
+
+(insn 140 139 0 (set (mem/c:DI (plus:DI (reg/f:DI 146)
+                (const_int 104 [0x68])) [6 _nc_globals.safeprint_used+0 S8 A64])
+        (const_int 0 [0])) "../ncurses/./base/safe_sprintf.c":288:12 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 16
+
+;; 
+
+(code_label 141 140 142 8 (nil) [0 uses])
+
+(note 142 141 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return result_30;
+
+(jump_insn 143 142 144 (set (pc)
+        (label_ref 0)) "../ncurses/./base/safe_sprintf.c":290:12 -1
+     (nil))
+
+(barrier 144 143 0)
+Predictions for insn 148 bb 20
+  first match heuristics: 99.96%  exec 269949542 (estimated locally) hit 539899082 (estimated locally) (200.0%)
+  combined heuristics: 99.96%  exec 269949542 (estimated locally) hit 539899082 (estimated locally) (200.0%)
+  noreturn call heuristics: 99.96%  exec 269949542 (estimated locally) hit 539899082 (estimated locally) (200.0%)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 6->7 to 12 failed.
+Redirecting jump 70 from 21 to 22.
+Forwarding edge 15->16 to 22 failed.
+Redirecting jump 118 from 18 to 22.
+Merging block 18 into block 17...
+Merged blocks 17 and 18.
+Merged 17 and 18 without moving.
+Redirecting jump 127 from 21 to 22.
+Merging block 21 into block 20...
+Merged blocks 20 and 21.
+Merged 20 and 21 without moving.
+Removing jump 143.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 6->7 to 12 failed.
+Forwarding edge 15->16 to 22 failed.
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 13 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 269949541 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:269949541 (estimated locally) (FALLTHRU)
+(note 13 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 13 3 2 (set (reg/v/f:DI 105 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/safe_sprintf.c":225:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 106 [ fmt ])
+        (reg:DI 4 si [ fmt ])) "../ncurses/./base/safe_sprintf.c":225:1 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v/f:DI 107 [ ap ])
+        (reg:DI 1 dx [ ap ])) "../ncurses/./base/safe_sprintf.c":225:1 -1
+     (nil))
+(note 5 4 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 5 7 2 (set (reg/f:DI 108)
+        (const_int 40 [0x28])) "../ncurses/./base/safe_sprintf.c":225:1 -1
+     (nil))
+(insn 7 6 15 2 (parallel [
+            (set (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                        (const_int -8 [0xfffffffffffffff8])) [10 D.9197+0 S8 A64])
+                (unspec:DI [
+                        (mem/v/f:DI (reg/f:DI 108) [6 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_SET))
+            (set (scratch:DI)
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/safe_sprintf.c":225:1 -1
+     (nil))
+(insn 15 7 16 2 (set (reg/f:DI 109)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":260:18 -1
+     (nil))
+(insn 16 15 17 2 (set (reg/f:DI 91 [ _18 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 109)
+                (const_int 96 [0x60])) [4 _nc_globals.safeprint_buf+0 S8 A64])) "../ncurses/./base/safe_sprintf.c":260:18 -1
+     (nil))
+(insn 17 16 18 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 105 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":228:17 -1
+     (nil))
+(insn 18 17 19 2 (set (reg:QI 111)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":228:17 -1
+     (nil))
+(insn 19 18 20 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 111)
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":228:8 -1
+     (nil))
+(jump_insn 20 19 156 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 129)
+            (pc))) "../ncurses/./base/safe_sprintf.c":228:8 -1
+     (int_list:REG_BR_PROB 268435460 (nil))
+ -> 129)
+;;  succ:       19 [25.0% (guessed)]  count:67487385 (estimated locally)
+;;              4 [75.0% (guessed)]  count:202462156 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 202462156 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL)
+;;  pred:       2 [75.0% (guessed)]  count:202462156 (estimated locally) (FALLTHRU)
+(note 156 20 21 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 21 156 22 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 106 [ fmt ])
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":228:32 -1
+     (nil))
+(insn 22 21 23 4 (set (reg:QI 113)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":228:32 -1
+     (nil))
+(insn 23 22 24 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 113)
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":228:8 -1
+     (nil))
+(jump_insn 24 23 25 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 129)
+            (pc))) "../ncurses/./base/safe_sprintf.c":228:8 -1
+     (int_list:REG_BR_PROB 357913948 (nil))
+ -> 129)
+;;  succ:       5 [66.7% (guessed)]  count:134974770 (estimated locally) (FALLTHRU)
+;;              19 [33.3% (guessed)]  count:67487386 (estimated locally)
+
+;; basic block 5, loop depth 0, count 134974770 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [66.7% (guessed)]  count:134974770 (estimated locally) (FALLTHRU)
+(note 25 24 26 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 26 25 27 5 (set (reg:SI 85 [ _4 ])
+        (mem:SI (plus:DI (reg/v/f:DI 105 [ sp ])
+                (const_int 116 [0x74])) [1 sp_38(D)->_lines+0 S4 A32])) "../ncurses/./base/safe_sprintf.c":252:6 -1
+     (nil))
+(insn 27 26 28 5 (set (reg/f:DI 114)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":252:30 -1
+     (nil))
+(insn 28 27 29 5 (set (reg:SI 86 [ _5 ])
+        (mem/c:SI (plus:DI (reg/f:DI 114)
+                (const_int 500 [0x1f4])) [1 _nc_globals.safeprint_rows+0 S4 A32])) "../ncurses/./base/safe_sprintf.c":252:30 -1
+     (nil))
+(insn 29 28 30 5 (set (reg:SI 103 [ pretmp_84 ])
+        (mem:SI (plus:DI (reg/v/f:DI 105 [ sp ])
+                (const_int 120 [0x78])) [1 sp_38(D)->_columns+0 S4 A64])) "../ncurses/./base/safe_sprintf.c":252:40 -1
+     (nil))
+(insn 30 29 31 5 (set (reg/f:DI 115)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":252:66 -1
+     (nil))
+(insn 31 30 32 5 (set (reg:SI 102 [ prephitmp_78 ])
+        (mem/c:SI (plus:DI (reg/f:DI 115)
+                (const_int 496 [0x1f0])) [1 _nc_globals.safeprint_cols+0 S4 A64])) "../ncurses/./base/safe_sprintf.c":252:66 -1
+     (nil))
+(insn 32 31 33 5 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 85 [ _4 ])
+            (reg:SI 86 [ _5 ]))) "../ncurses/./base/safe_sprintf.c":252:5 -1
+     (nil))
+(jump_insn 33 32 34 5 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 40)
+            (pc))) "../ncurses/./base/safe_sprintf.c":252:5 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 40)
+;;  succ:       8 [50.0% (guessed)]  count:67487385 (estimated locally)
+;;              6 [50.0% (guessed)]  count:67487385 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 67487385 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [50.0% (guessed)]  count:67487385 (estimated locally) (FALLTHRU)
+(note 34 33 35 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 35 34 36 6 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 103 [ pretmp_84 ])
+            (reg:SI 102 [ prephitmp_78 ]))) "../ncurses/./base/safe_sprintf.c":252:37 -1
+     (nil))
+(jump_insn 36 35 39 6 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 46)
+            (pc))) "../ncurses/./base/safe_sprintf.c":252:37 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 46)
+;;  succ:       10 [50.0% (guessed)]  count:33743693 (estimated locally)
+;;              7 [50.0% (guessed)]  count:33743693 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 33743693 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL)
+;;  pred:       6 [50.0% (guessed)]  count:33743693 (estimated locally) (FALLTHRU)
+(note 39 36 37 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 37 39 38 7 (set (pc)
+        (label_ref 65)) -1
+     (nil)
+ -> 65)
+;;  succ:       12 [always]  count:33743693 (estimated locally)
+
+(barrier 38 37 40)
+;; basic block 8, loop depth 0, count 67487385 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [50.0% (guessed)]  count:67487385 (estimated locally)
+(code_label 40 38 41 8 3 (nil) [1 uses])
+(note 41 40 42 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 42 41 43 8 (set (reg/f:DI 116)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":254:10 -1
+     (nil))
+(insn 43 42 44 8 (set (mem/c:SI (plus:DI (reg/f:DI 116)
+                (const_int 500 [0x1f4])) [1 _nc_globals.safeprint_rows+0 S4 A32])
+        (reg:SI 85 [ _4 ])) "../ncurses/./base/safe_sprintf.c":254:10 -1
+     (nil))
+(insn 44 43 45 8 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 103 [ pretmp_84 ])
+            (reg:SI 102 [ prephitmp_78 ]))) "../ncurses/./base/safe_sprintf.c":255:9 -1
+     (nil))
+(jump_insn 45 44 155 8 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 50)
+            (pc))) "../ncurses/./base/safe_sprintf.c":255:9 -1
+     (int_list:REG_BR_PROB 805306372 (nil))
+ -> 50)
+;;  succ:       9 [25.0% (guessed)]  count:16871846 (estimated locally) (FALLTHRU)
+;;              11 [75.0% (guessed)]  count:50615539 (estimated locally)
+
+;; basic block 9, loop depth 0, count 16871846 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       8 [25.0% (guessed)]  count:16871846 (estimated locally) (FALLTHRU)
+(note 155 45 8 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 8 155 46 9 (set (reg:SI 86 [ _5 ])
+        (reg:SI 85 [ _4 ])) -1
+     (nil))
+;;  succ:       10 [always]  count:16871846 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 50615539 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       9 [always]  count:16871846 (estimated locally) (FALLTHRU)
+;;              6 [50.0% (guessed)]  count:33743693 (estimated locally)
+(code_label 46 8 47 10 4 (nil) [1 uses])
+(note 47 46 48 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 48 47 49 10 (set (reg/f:DI 117)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":256:10 -1
+     (nil))
+(insn 49 48 9 10 (set (mem/c:SI (plus:DI (reg/f:DI 117)
+                (const_int 496 [0x1f0])) [1 _nc_globals.safeprint_cols+0 S4 A64])
+        (reg:SI 103 [ pretmp_84 ])) "../ncurses/./base/safe_sprintf.c":256:10 -1
+     (nil))
+(insn 9 49 10 10 (set (reg:SI 102 [ prephitmp_78 ])
+        (reg:SI 103 [ pretmp_84 ])) "../ncurses/./base/safe_sprintf.c":256:10 -1
+     (nil))
+(insn 10 9 50 10 (set (reg:SI 85 [ _4 ])
+        (reg:SI 86 [ _5 ])) "../ncurses/./base/safe_sprintf.c":256:10 -1
+     (nil))
+;;  succ:       11 [always]  count:50615539 (estimated locally) (FALLTHRU)
+
+;; basic block 11, loop depth 0, count 101231078 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [75.0% (guessed)]  count:50615539 (estimated locally)
+;;              10 [always]  count:50615539 (estimated locally) (FALLTHRU)
+(code_label 50 10 51 11 6 (nil) [1 uses])
+(note 51 50 52 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 52 51 53 11 (parallel [
+            (set (reg:SI 118)
+                (plus:SI (reg:SI 102 [ prephitmp_78 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/safe_sprintf.c":257:45 -1
+     (nil))
+(insn 53 52 54 11 (parallel [
+            (set (reg:SI 119)
+                (mult:SI (reg:SI 118)
+                    (reg:SI 85 [ _4 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/safe_sprintf.c":257:35 -1
+     (nil))
+(insn 54 53 55 11 (set (reg:DI 120)
+        (sign_extend:DI (reg:SI 119))) "../ncurses/./base/safe_sprintf.c":257:18 -1
+     (nil))
+(insn 55 54 56 11 (parallel [
+            (set (reg:DI 100 [ _47 ])
+                (plus:DI (reg:DI 120)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/safe_sprintf.c":257:51 -1
+     (nil))
+(insn 56 55 57 11 (parallel [
+            (set (reg:DI 100 [ _47 ])
+                (umax:DI (reg:DI 100 [ _47 ])
+                    (const_int 80 [0x50])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 57 56 58 11 (set (reg/f:DI 121)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) -1
+     (nil))
+(insn 58 57 59 11 (set (mem/c:DI (plus:DI (reg/f:DI 121)
+                (const_int 104 [0x68])) [0 MEM <struct NCURSES_GLOBALS> [(void *)&_nc_globals].safeprint_used+0 S8 A64])
+        (reg:DI 100 [ _47 ])) -1
+     (nil))
+(insn 59 58 60 11 (set (reg:DI 4 si)
+        (reg:DI 100 [ _47 ])) "../ncurses/./base/safe_sprintf.c":260:18 -1
+     (nil))
+(insn 60 59 61 11 (set (reg:DI 5 di)
+        (reg/f:DI 91 [ _18 ])) "../ncurses/./base/safe_sprintf.c":260:18 -1
+     (nil))
+(call_insn 61 60 62 11 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_doalloc") [flags 0x41]  <function_decl 0x7f1c42551b00 _nc_doalloc>) [0 _nc_doalloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":260:18 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_doalloc") [flags 0x41]  <function_decl 0x7f1c42551b00 _nc_doalloc>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 62 61 63 11 (set (reg/f:DI 91 [ _18 ])
+        (reg:DI 0 ax)) "../ncurses/./base/safe_sprintf.c":260:18 -1
+     (nil))
+(insn 63 62 64 11 (set (reg/f:DI 122)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":260:16 -1
+     (nil))
+(insn 64 63 65 11 (set (mem/f/c:DI (plus:DI (reg/f:DI 122)
+                (const_int 96 [0x60])) [4 _nc_globals.safeprint_buf+0 S8 A64])
+        (reg/f:DI 91 [ _18 ])) "../ncurses/./base/safe_sprintf.c":260:16 -1
+     (nil))
+;;  succ:       12 [always]  count:101231078 (estimated locally) (FALLTHRU)
+
+;; basic block 12, loop depth 0, count 134974770 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       11 [always]  count:101231078 (estimated locally) (FALLTHRU)
+;;              7 [always]  count:33743693 (estimated locally)
+(code_label 65 64 66 12 5 (nil) [1 uses])
+(note 66 65 67 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 67 66 68 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 91 [ _18 ])
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":263:5 -1
+     (nil))
+(jump_insn 68 67 131 12 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 72)
+            (pc))) "../ncurses/./base/safe_sprintf.c":263:5 -1
+     (int_list:REG_BR_PROB 913754300 (nil))
+ -> 72)
+;;  succ:       14 [85.1% (guessed)]  count:114863530 (estimated locally)
+;;              13 [14.9% (guessed)]  count:20111240 (estimated locally) (FALLTHRU)
+
+;; basic block 13, loop depth 0, count 82915001 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       12 [14.9% (guessed)]  count:20111240 (estimated locally) (FALLTHRU)
+;;              19 [46.5% (guessed)]  count:62803761 (estimated locally)
+(code_label 131 68 69 13 11 (nil) [1 uses])
+(note 69 131 11 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 11 69 70 13 (set (reg/v/f:DI 104 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/safe_sprintf.c":226:11 -1
+     (nil))
+(jump_insn 70 11 71 13 (set (pc)
+        (label_ref:DI 145)) 807 {jump}
+     (nil)
+ -> 145)
+;;  succ:       22 [always]  count:82915001 (estimated locally)
+
+(barrier 71 70 72)
+;; basic block 14, loop depth 1, count 1073741824 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       12 [85.1% (guessed)]  count:114863530 (estimated locally)
+;;              15 [94.5% (guessed)]  count:958878293 (estimated locally) (DFS_BACK)
+(code_label 72 71 73 14 7 (nil) [2 uses])
+(note 73 72 74 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 74 73 75 14 (parallel [
+            (set (reg:DI 123)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/safe_sprintf.c":270:3 -1
+     (nil))
+(insn 75 74 76 14 (set (reg:TI 124)
+        (mem:TI (reg/v/f:DI 107 [ ap ]) [48  S16 A64])) "../ncurses/./base/safe_sprintf.c":270:3 -1
+     (nil))
+(insn 76 75 77 14 (set (mem:TI (reg:DI 123) [48  S16 A64])
+        (reg:TI 124)) "../ncurses/./base/safe_sprintf.c":270:3 -1
+     (nil))
+(insn 77 76 78 14 (set (reg:DI 125)
+        (mem:DI (plus:DI (reg/v/f:DI 107 [ ap ])
+                (const_int 16 [0x10])) [48  S8 A64])) "../ncurses/./base/safe_sprintf.c":270:3 -1
+     (nil))
+(insn 78 77 79 14 (set (mem:DI (plus:DI (reg:DI 123)
+                (const_int 16 [0x10])) [48  S8 A64])
+        (reg:DI 125)) "../ncurses/./base/safe_sprintf.c":270:3 -1
+     (nil))
+(insn 79 78 80 14 (parallel [
+            (set (reg:DI 126)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (nil))
+(insn 80 79 81 14 (set (reg/f:DI 127)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":271:10 -1
+     (nil))
+(insn 81 80 82 14 (set (reg:DI 128)
+        (mem/c:DI (plus:DI (reg/f:DI 127)
+                (const_int 104 [0x68])) [6 _nc_globals.safeprint_used+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (nil))
+(insn 82 81 83 14 (set (reg/f:DI 129)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":271:10 -1
+     (nil))
+(insn 83 82 84 14 (set (reg:DI 130)
+        (mem/f/c:DI (plus:DI (reg/f:DI 129)
+                (const_int 96 [0x60])) [4 _nc_globals.safeprint_buf+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (nil))
+(insn 84 83 85 14 (set (reg:DI 37 r9)
+        (reg:DI 126)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (nil))
+(insn 85 84 86 14 (set (reg:DI 36 r8)
+        (reg/v/f:DI 106 [ fmt ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (nil))
+(insn 86 85 87 14 (set (reg:DI 2 cx)
+        (const_int -1 [0xffffffffffffffff])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (nil))
+(insn 87 86 88 14 (set (reg:SI 1 dx)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (nil))
+(insn 88 87 89 14 (set (reg:DI 4 si)
+        (reg:DI 128)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (nil))
+(insn 89 88 90 14 (set (reg:DI 5 di)
+        (reg:DI 130)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (nil))
+(call_insn 90 89 91 14 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__vsnprintf_chk") [flags 0x41]  <function_decl 0x7f1c42984500 __builtin___vsnprintf_chk>) [0 __builtin___vsnprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__vsnprintf_chk") [flags 0x41]  <function_decl 0x7f1c42984500 __builtin___vsnprintf_chk>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (expr_list:DI (use (reg:DI 36 r8))
+                        (expr_list:DI (use (reg:DI 37 r9))
+                            (nil))))))))
+(insn 91 90 92 14 (set (reg:SI 101 [ _60 ])
+        (reg:SI 0 ax)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":85:10 -1
+     (nil))
+(insn 92 91 93 14 (set (reg/f:DI 131)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":273:20 -1
+     (nil))
+(insn 93 92 94 14 (set (reg:DI 132)
+        (mem/c:DI (plus:DI (reg/f:DI 131)
+                (const_int 104 [0x68])) [6 _nc_globals.safeprint_used+0 S8 A64])) "../ncurses/./base/safe_sprintf.c":273:14 -1
+     (nil))
+(insn 94 93 95 14 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 101 [ _60 ])
+            (subreg:SI (reg:DI 132) 0))) "../ncurses/./base/safe_sprintf.c":273:6 -1
+     (nil))
+(jump_insn 95 94 96 14 (set (pc)
+        (if_then_else (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 121)
+            (pc))) "../ncurses/./base/safe_sprintf.c":273:6 -1
+     (int_list:REG_BR_PROB 59055804 (nil))
+ -> 121)
+;;  succ:       17 [5.5% (guessed)]  count:59055800 (estimated locally)
+;;              15 [94.5% (guessed)]  count:1014686024 (estimated locally) (FALLTHRU)
+
+;; basic block 15, loop depth 1, count 1014686024 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       14 [94.5% (guessed)]  count:1014686024 (estimated locally) (FALLTHRU)
+(note 96 95 97 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 97 96 98 15 (set (reg:SI 133)
+        (reg:SI 101 [ _60 ])) "../ncurses/./base/safe_sprintf.c":275:28 -1
+     (nil))
+(insn 98 97 99 15 (parallel [
+            (set (reg:SI 134)
+                (ashift:SI (reg:SI 133)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/safe_sprintf.c":275:28 -1
+     (nil))
+(insn 99 98 102 15 (parallel [
+            (set (reg:SI 135)
+                (plus:SI (reg:SI 134)
+                    (reg:SI 101 [ _60 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/safe_sprintf.c":275:28 -1
+     (expr_list:REG_EQUAL (mult:SI (reg:SI 101 [ _60 ])
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 102 99 103 15 (parallel [
+            (set (reg:SI 137)
+                (lshiftrt:SI (reg:SI 135)
+                    (const_int 31 [0x1f])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/safe_sprintf.c":275:36 -1
+     (nil))
+(insn 103 102 104 15 (parallel [
+            (set (reg:SI 138)
+                (plus:SI (reg:SI 137)
+                    (reg:SI 135)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/safe_sprintf.c":275:36 -1
+     (nil))
+(insn 104 103 105 15 (parallel [
+            (set (reg:SI 139)
+                (ashiftrt:SI (reg:SI 138)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/safe_sprintf.c":275:36 -1
+     (expr_list:REG_EQUAL (div:SI (reg:SI 135)
+            (const_int 2 [0x2]))
+        (nil)))
+(insn 105 104 106 15 (set (reg:DI 98 [ _26 ])
+        (sign_extend:DI (reg:SI 139))) "../ncurses/./base/safe_sprintf.c":275:15 -1
+     (nil))
+(insn 106 105 107 15 (set (reg/f:DI 140)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":275:13 -1
+     (nil))
+(insn 107 106 108 15 (set (mem/c:DI (plus:DI (reg/f:DI 140)
+                (const_int 104 [0x68])) [6 _nc_globals.safeprint_used+0 S8 A64])
+        (reg:DI 98 [ _26 ])) "../ncurses/./base/safe_sprintf.c":275:13 -1
+     (nil))
+(insn 108 107 109 15 (set (reg/f:DI 141)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":276:15 -1
+     (nil))
+(insn 109 108 110 15 (set (reg:DI 142)
+        (mem/f/c:DI (plus:DI (reg/f:DI 141)
+                (const_int 96 [0x60])) [4 _nc_globals.safeprint_buf+0 S8 A64])) "../ncurses/./base/safe_sprintf.c":276:15 -1
+     (nil))
+(insn 110 109 111 15 (set (reg:DI 4 si)
+        (reg:DI 98 [ _26 ])) "../ncurses/./base/safe_sprintf.c":276:15 -1
+     (nil))
+(insn 111 110 112 15 (set (reg:DI 5 di)
+        (reg:DI 142)) "../ncurses/./base/safe_sprintf.c":276:15 -1
+     (nil))
+(call_insn 112 111 113 15 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_doalloc") [flags 0x41]  <function_decl 0x7f1c42551b00 _nc_doalloc>) [0 _nc_doalloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":276:15 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_doalloc") [flags 0x41]  <function_decl 0x7f1c42551b00 _nc_doalloc>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 113 112 114 15 (set (reg/v/f:DI 104 [ <retval> ])
+        (reg:DI 0 ax)) "../ncurses/./base/safe_sprintf.c":276:15 -1
+     (nil))
+(insn 114 113 115 15 (set (reg/f:DI 143)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":276:13 -1
+     (nil))
+(insn 115 114 116 15 (set (mem/f/c:DI (plus:DI (reg/f:DI 143)
+                (const_int 96 [0x60])) [4 _nc_globals.safeprint_buf+0 S8 A64])
+        (reg/v/f:DI 104 [ <retval> ])) "../ncurses/./base/safe_sprintf.c":276:13 -1
+     (nil))
+(insn 116 115 117 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 104 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":277:25 -1
+     (nil))
+(jump_insn 117 116 120 15 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 72)
+            (pc))) "../ncurses/./base/safe_sprintf.c":277:25 -1
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 72)
+;;  succ:       14 [94.5% (guessed)]  count:958878293 (estimated locally) (DFS_BACK)
+;;              16 [5.5% (guessed)]  count:55807731 (estimated locally) (FALLTHRU)
+
+;; basic block 16, loop depth 0, count 55807731 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       15 [5.5% (guessed)]  count:55807731 (estimated locally) (FALLTHRU)
+(note 120 117 118 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 118 120 119 16 (set (pc)
+        (label_ref:DI 145)) 807 {jump}
+     (nil)
+ -> 145)
+;;  succ:       22 [always]  count:55807731 (estimated locally)
+
+(barrier 119 118 121)
+;; basic block 17, loop depth 0, count 59055800 (estimated locally), maybe hot
+;;  prev block 16, next block 19, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       14 [5.5% (guessed)]  count:59055800 (estimated locally)
+(code_label 121 119 122 17 9 (nil) [1 uses])
+(note 122 121 123 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 123 122 124 17 (set (reg/f:DI 144)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":276:15 -1
+     (nil))
+(insn 124 123 127 17 (set (reg/v/f:DI 104 [ <retval> ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 144)
+                (const_int 96 [0x60])) [4 _nc_globals.safeprint_buf+0 S8 A64])) "../ncurses/./base/safe_sprintf.c":276:15 -1
+     (nil))
+(jump_insn 127 124 128 17 (set (pc)
+        (label_ref:DI 145)) "../ncurses/./base/safe_sprintf.c":276:15 807 {jump}
+     (nil)
+ -> 145)
+;;  succ:       22 [always]  count:59055800 (estimated locally)
+
+(barrier 128 127 129)
+;; basic block 19, loop depth 0, count 134974770 (estimated locally), maybe hot
+;;  prev block 17, next block 20, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [33.3% (guessed)]  count:67487386 (estimated locally)
+;;              2 [25.0% (guessed)]  count:67487385 (estimated locally)
+(code_label 129 128 130 19 2 (nil) [2 uses])
+(note 130 129 132 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 132 130 133 19 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 91 [ _18 ])
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":285:15 -1
+     (nil))
+(jump_insn 133 132 134 19 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 131)
+            (pc))) "../ncurses/./base/safe_sprintf.c":285:15 -1
+     (int_list:REG_BR_PROB 499612076 (nil))
+ -> 131)
+;;  succ:       20 [53.5% (guessed)]  count:72171009 (estimated locally) (FALLTHRU)
+;;              13 [46.5% (guessed)]  count:62803761 (estimated locally)
+
+;; basic block 20, loop depth 0, count 72171010 (estimated locally), maybe hot
+;;  prev block 19, next block 22, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       19 [53.5% (guessed)]  count:72171009 (estimated locally) (FALLTHRU)
+(note 134 133 135 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 135 134 136 20 (set (reg:DI 5 di)
+        (reg/f:DI 91 [ _18 ])) "../ncurses/./base/safe_sprintf.c":286:2 -1
+     (nil))
+(call_insn 136 135 137 20 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f1c42974d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/safe_sprintf.c":286:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f1c42974d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 137 136 138 20 (set (reg/f:DI 145)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":287:12 -1
+     (nil))
+(insn 138 137 139 20 (set (mem/f/c:DI (plus:DI (reg/f:DI 145)
+                (const_int 96 [0x60])) [4 _nc_globals.safeprint_buf+0 S8 A64])
+        (const_int 0 [0])) "../ncurses/./base/safe_sprintf.c":287:12 -1
+     (nil))
+(insn 139 138 140 20 (set (reg/f:DI 146)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f1c424aeea0 _nc_globals>)) "../ncurses/./base/safe_sprintf.c":288:12 -1
+     (nil))
+(insn 140 139 12 20 (set (mem/c:DI (plus:DI (reg/f:DI 146)
+                (const_int 104 [0x68])) [6 _nc_globals.safeprint_used+0 S8 A64])
+        (const_int 0 [0])) "../ncurses/./base/safe_sprintf.c":288:12 -1
+     (nil))
+(insn 12 140 145 20 (set (reg/v/f:DI 104 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/safe_sprintf.c":226:11 -1
+     (nil))
+;;  succ:       22 [always]  count:72171010 (estimated locally) (FALLTHRU)
+
+;; basic block 22, loop depth 0, count 269949542 (estimated locally), maybe hot
+;;  prev block 20, next block 23, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       20 [always]  count:72171010 (estimated locally) (FALLTHRU)
+;;              13 [always]  count:82915001 (estimated locally)
+;;              16 [always]  count:55807731 (estimated locally)
+;;              17 [always]  count:59055800 (estimated locally)
+(code_label 145 12 154 22 1 (nil) [3 uses])
+(note 154 145 146 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 146 154 147 22 (set (reg/f:DI 148)
+        (const_int 40 [0x28])) "../ncurses/./base/safe_sprintf.c":291:1 -1
+     (nil))
+(insn 147 146 148 22 (parallel [
+            (set (reg:CCZ 17 flags)
+                (unspec:CCZ [
+                        (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                                (const_int -8 [0xfffffffffffffff8])) [10 D.9197+0 S8 A64])
+                        (mem/v/f:DI (reg/f:DI 148) [6 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_TEST))
+            (clobber (scratch:DI))
+        ]) "../ncurses/./base/safe_sprintf.c":291:1 -1
+     (nil))
+(jump_insn 148 147 157 22 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 151)
+            (pc))) "../ncurses/./base/safe_sprintf.c":291:1 -1
+     (int_list:REG_BR_PROB 1073312332 (nil))
+ -> 151)
+;;  succ:       24 [100.0% (guessed)]  count:269841562 (estimated locally)
+;;              23 [0.0% (guessed)]  count:107980 (estimated locally) (FALLTHRU)
+
+;; basic block 23, loop depth 0, count 107980 (estimated locally)
+;;  prev block 22, next block 24, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       22 [0.0% (guessed)]  count:107980 (estimated locally) (FALLTHRU)
+(note 157 148 149 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(call_insn 149 157 150 23 (call (mem:QI (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7f1c42185b00 __stack_chk_fail>) [0 __stack_chk_fail S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/safe_sprintf.c":291:1 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7f1c42185b00 __stack_chk_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (nil))
+;;  succ:      
+
+(barrier 150 149 151)
+;; basic block 24, loop depth 0, count 269841562 (estimated locally), maybe hot
+;;  prev block 23, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       22 [100.0% (guessed)]  count:269841562 (estimated locally)
+(code_label 151 150 158 24 12 (nil) [1 uses])
+(note 158 151 152 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 152 158 153 24 (set (reg/i:DI 0 ax)
+        (reg/v/f:DI 104 [ <retval> ])) "../ncurses/./base/safe_sprintf.c":291:1 -1
+     (nil))
+(insn 153 152 0 24 (use (reg/i:DI 0 ax)) "../ncurses/./base/safe_sprintf.c":291:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:269841562 (estimated locally) (FALLTHRU)
+
+
+;; Function _nc_printf_string (_nc_printf_string, funcdef_no=94, decl_uid=8709, cgraph_uid=95, symbol_order=94)
+
+__attribute__((visibility ("default")))
+__attribute__((access ("^1[1]", )))
+char * _nc_printf_string (const char * fmt, struct  * ap)
+{
+  struct SCREEN * SP.0_1;
+  char * _6;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.0_1 = SP;
+  _6 = _nc_printf_string_sp (SP.0_1, fmt_3(D), ap_4(D)); [tail call]
+  return _6;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (SP.0_1 - 1 )
+Partition 3 (fmt_3(D) - 3 )
+Partition 4 (ap_4(D) - 4 )
+Partition 6 (_6 - 6 )
+Partition 7 (_7(D) - 7 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (fmt_3(D) - 3 )
+Partition 1, base 1 (ap_4(D) - 4 )
+Partition 2, base 2 (_6 - 6 7 )
+
+
+Partition map 
+
+Partition 0 (fmt_3(D) - 3 )
+Partition 1 (ap_4(D) - 4 )
+Partition 2 (_6 - 6 )
+Partition 3 (_7(D) - 7 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) _6 <-> _7(D)
+
+Partition map 
+
+Partition 0 (fmt_3(D) - 3 )
+Partition 1 (ap_4(D) - 4 )
+Partition 2 (_6 - 6 )
+Partition 3 (_7(D) - 7 )
+
+Coalesce list: (6)_6 & (7)_7(D) [map: 2, 3] : Success -> 2
+After Coalescing:
+
+Partition map 
+
+Partition 0 (SP.0_1 - 1 )
+Partition 1 (fmt_3(D) - 3 )
+Partition 2 (ap_4(D) - 4 )
+Partition 3 (_6 - 6 7 )
+
+
+Replacing Expressions
+SP.0_1 replace with --> SP.0_1 = SP;
+
+
+__attribute__((visibility ("default")))
+__attribute__((access ("^1[1]", )))
+char * _nc_printf_string (const char * fmt, struct  * ap)
+{
+  struct SCREEN * SP.0_1;
+  char * _6;
+  char * _7(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.0_1 = SP;
+  _6 = _nc_printf_string_sp (SP.0_1, fmt_3(D), ap_4(D)); [tail call]
+  return _6;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; _6 = _nc_printf_string_sp (SP.0_1, fmt_3(D), ap_4(D)); [tail call]
+
+(insn 7 6 8 2 (set (reg:DI 86)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f1c4251ccf0 SP>) [37 SP+0 S8 A64])) "../ncurses/./base/safe_sprintf.c":297:12 -1
+     (nil))
+
+(insn 8 7 9 2 (set (reg:DI 1 dx)
+        (reg/v/f:DI 85 [ ap ])) "../ncurses/./base/safe_sprintf.c":297:12 -1
+     (nil))
+
+(insn 9 8 10 2 (set (reg:DI 4 si)
+        (reg/v/f:DI 84 [ fmt ])) "../ncurses/./base/safe_sprintf.c":297:12 -1
+     (nil))
+
+(insn 10 9 11 2 (set (reg:DI 5 di)
+        (reg:DI 86)) "../ncurses/./base/safe_sprintf.c":297:12 -1
+     (nil))
+
+(call_insn/j 11 10 12 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_printf_string_sp") [flags 0x3]  <function_decl 0x7f1c42593500 _nc_printf_string_sp>) [0 _nc_printf_string_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":297:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_printf_string_sp") [flags 0x3]  <function_decl 0x7f1c42593500 _nc_printf_string_sp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+
+(barrier 12 11 0)
+Basic block 4 is marked unlikely by forward prop
+deleting block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 84 [ fmt ])
+        (reg:DI 5 di [ fmt ])) "../ncurses/./base/safe_sprintf.c":296:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 85 [ ap ])
+        (reg:DI 4 si [ ap ])) "../ncurses/./base/safe_sprintf.c":296:1 -1
+     (nil))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (set (reg:DI 86)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f1c4251ccf0 SP>) [37 SP+0 S8 A64])) "../ncurses/./base/safe_sprintf.c":297:12 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:DI 1 dx)
+        (reg/v/f:DI 85 [ ap ])) "../ncurses/./base/safe_sprintf.c":297:12 -1
+     (nil))
+(insn 9 8 10 2 (set (reg:DI 4 si)
+        (reg/v/f:DI 84 [ fmt ])) "../ncurses/./base/safe_sprintf.c":297:12 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:DI 5 di)
+        (reg:DI 86)) "../ncurses/./base/safe_sprintf.c":297:12 -1
+     (nil))
+(call_insn/j 11 10 12 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_printf_string_sp") [flags 0x3]  <function_decl 0x7f1c42593500 _nc_printf_string_sp>) [0 _nc_printf_string_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/safe_sprintf.c":297:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_printf_string_sp") [flags 0x3]  <function_decl 0x7f1c42593500 _nc_printf_string_sp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 12 11 0)

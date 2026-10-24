@@ -1,0 +1,1903 @@
+
+;; Function ungetch_sp (ungetch_sp, funcdef_no=91, decl_uid=6693, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+int ungetch_sp (struct SCREEN * sp, int ch)
+{
+  int rc;
+  short int _1;
+  short int _2;
+  unsigned short _3;
+  unsigned short _4;
+  short int _5;
+  unsigned short _8;
+  unsigned short _9;
+  short int _10;
+  short int prephitmp_11;
+  int prephitmp_23;
+  int prephitmp_26;
+  int _27;
+  short int cstore_43;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (sp_20(D) != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 13>; [0.87%]
+;;    succ:       3
+;;                13
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = sp_20(D)->_fifotail;
+  if (_1 >= 0)
+    goto <bb 4>; [98.60%]
+  else
+    goto <bb 13>; [1.40%]
+;;    succ:       4
+;;                13
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _2 = sp_20(D)->_fifohead;
+  if (_2 < 0)
+    goto <bb 5>; [41.00%]
+  else
+    goto <bb 8>; [59.00%]
+;;    succ:       5
+;;                8
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  if (_1 > 135)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+;;    succ:       7
+;;                6
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  _3 = (unsigned short) _1;
+  _4 = _3 + 1;
+  _5 = (short int) _4;
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+;;                5
+  # prephitmp_11 = PHI <_5(6), -1(5)>
+  sp_20(D)->_fifohead = 0;
+  sp_20(D)->_fifotail = prephitmp_11;
+  sp_20(D)->_fifopeek = prephitmp_11;
+  goto <bb 12>; [100.00%]
+;;    succ:       12
+
+;;   basic block 8, loop depth 0
+;;    pred:       4
+  if (_2 == 0)
+    goto <bb 10>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+;;    succ:       10
+;;                9
+
+;;   basic block 9, loop depth 0
+;;    pred:       8
+  _8 = (unsigned short) _2;
+  _9 = _8 + 65535;
+  _10 = (short int) _9;
+  _27 = (int) _9;
+;;    succ:       10
+
+;;   basic block 10, loop depth 0
+;;    pred:       8
+;;                9
+  # cstore_43 = PHI <136(8), _10(9)>
+  # prephitmp_23 = PHI <136(8), _27(9)>
+  sp_20(D)->_fifohead = cstore_43;
+  if (_1 == cstore_43)
+    goto <bb 11>; [34.00%]
+  else
+    goto <bb 12>; [66.00%]
+;;    succ:       11
+;;                12
+
+;;   basic block 11, loop depth 0
+;;    pred:       10
+  sp_20(D)->_fifotail = -1;
+;;    succ:       12
+
+;;   basic block 12, loop depth 0
+;;    pred:       7
+;;                10
+;;                11
+  # prephitmp_26 = PHI <0(7), prephitmp_23(10), prephitmp_23(11)>
+  sp_20(D)->_fifo[prephitmp_26] = ch_30(D);
+;;    succ:       13
+
+;;   basic block 13, loop depth 0
+;;    pred:       3
+;;                12
+;;                2
+  # rc_14 = PHI <-1(3), 0(12), -1(2)>
+  return rc_14;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 4 (_4 - 4 )
+Partition 5 (_5 - 5 )
+Partition 8 (_8 - 8 )
+Partition 9 (_9 - 9 )
+Partition 10 (_10 - 10 )
+Partition 11 (prephitmp_11 - 11 )
+Partition 13 (_13(D) - 13 )
+Partition 14 (rc_14 - 14 )
+Partition 20 (sp_20(D) - 20 )
+Partition 23 (prephitmp_23 - 23 )
+Partition 26 (prephitmp_26 - 26 )
+Partition 27 (_27 - 27 )
+Partition 30 (ch_30(D) - 30 )
+Partition 43 (cstore_43 - 43 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_5 - 5 11 )
+Partition 1, base 1 (_10 - 10 43 )
+Partition 3, base 2 (_13(D) - 13 14 )
+Partition 5, base 3 (sp_20(D) - 20 )
+Partition 6, base 4 (prephitmp_23 - 23 26 27 )
+Partition 9, base 5 (ch_30(D) - 30 )
+
+
+Partition map 
+
+Partition 0 (_5 - 5 )
+Partition 1 (_10 - 10 )
+Partition 2 (prephitmp_11 - 11 )
+Partition 3 (_13(D) - 13 )
+Partition 4 (rc_14 - 14 )
+Partition 5 (sp_20(D) - 20 )
+Partition 6 (prephitmp_23 - 23 )
+Partition 7 (prephitmp_26 - 26 )
+Partition 8 (_27 - 27 )
+Partition 9 (ch_30(D) - 30 )
+Partition 10 (cstore_43 - 43 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) _13(D) <-> rc_14
+(9573, 0) prephitmp_23 <-> prephitmp_26
+(2883, 0) _10 <-> cstore_43
+(2883, 0) prephitmp_23 <-> _27
+(2004, 0) _5 <-> prephitmp_11
+
+Partition map 
+
+Partition 0 (_5 - 5 )
+Partition 1 (_10 - 10 )
+Partition 2 (prephitmp_11 - 11 )
+Partition 3 (_13(D) - 13 )
+Partition 4 (rc_14 - 14 )
+Partition 5 (sp_20(D) - 20 )
+Partition 6 (prephitmp_23 - 23 )
+Partition 7 (prephitmp_26 - 26 )
+Partition 8 (_27 - 27 )
+Partition 9 (ch_30(D) - 30 )
+Partition 10 (cstore_43 - 43 )
+
+Coalesce list: (13)_13(D) & (14)rc_14 [map: 3, 4] : Success -> 3
+Coalesce list: (23)prephitmp_23 & (26)prephitmp_26 [map: 6, 7] : Success -> 6
+Coalesce list: (10)_10 & (43)cstore_43 [map: 1, 10] : Success -> 1
+Coalesce list: (23)prephitmp_23 & (27)_27 [map: 6, 8] : Success -> 6
+Coalesce list: (5)_5 & (11)prephitmp_11 [map: 0, 2] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_2 - 2 )
+Partition 2 (_3 - 3 )
+Partition 3 (_4 - 4 )
+Partition 4 (_5 - 5 11 )
+Partition 5 (_8 - 8 )
+Partition 6 (_9 - 9 )
+Partition 7 (_10 - 10 43 )
+Partition 8 (_13(D) - 13 14 )
+Partition 9 (sp_20(D) - 20 )
+Partition 10 (prephitmp_23 - 23 26 27 )
+Partition 11 (ch_30(D) - 30 )
+
+
+Replacing Expressions
+_3 replace with --> _3 = (unsigned short) _1;
+
+_4 replace with --> _4 = _3 + 1;
+
+_8 replace with --> _8 = (unsigned short) _2;
+
+
+__attribute__((visibility ("default")))
+int ungetch_sp (struct SCREEN * sp, int ch)
+{
+  int rc;
+  short int _1;
+  short int _2;
+  unsigned short _3;
+  unsigned short _4;
+  short int _5;
+  unsigned short _8;
+  unsigned short _9;
+  short int _10;
+  short int prephitmp_11;
+  int _13(D);
+  int prephitmp_23;
+  int prephitmp_26;
+  int _27;
+  short int cstore_43;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (sp_20(D) != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 13>; [0.87%]
+;;    succ:       3
+;;                13
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = sp_20(D)->_fifotail;
+  if (_1 >= 0)
+    goto <bb 4>; [98.60%]
+  else
+    goto <bb 13>; [1.40%]
+;;    succ:       4
+;;                13
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _2 = sp_20(D)->_fifohead;
+  if (_2 < 0)
+    goto <bb 5>; [41.00%]
+  else
+    goto <bb 8>; [59.00%]
+;;    succ:       5
+;;                8
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  if (_1 > 135)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+;;    succ:       7
+;;                6
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  _3 = (unsigned short) _1;
+  _4 = _3 + 1;
+  _5 = (short int) _4;
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+;;                5
+  # prephitmp_11 = PHI <_5(6), -1(5)>
+  sp_20(D)->_fifohead = 0;
+  sp_20(D)->_fifotail = prephitmp_11;
+  sp_20(D)->_fifopeek = prephitmp_11;
+  goto <bb 12>; [100.00%]
+;;    succ:       12
+
+;;   basic block 8, loop depth 0
+;;    pred:       4
+  if (_2 == 0)
+    goto <bb 10>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+;;    succ:       10
+;;                9
+
+;;   basic block 9, loop depth 0
+;;    pred:       8
+  _8 = (unsigned short) _2;
+  _9 = _8 + 65535;
+  _10 = (short int) _9;
+  _27 = (int) _9;
+;;    succ:       10
+
+;;   basic block 10, loop depth 0
+;;    pred:       8
+;;                9
+  # cstore_43 = PHI <136(8), _10(9)>
+  # prephitmp_23 = PHI <136(8), _27(9)>
+  sp_20(D)->_fifohead = cstore_43;
+  if (_1 == cstore_43)
+    goto <bb 11>; [34.00%]
+  else
+    goto <bb 12>; [66.00%]
+;;    succ:       11
+;;                12
+
+;;   basic block 11, loop depth 0
+;;    pred:       10
+  sp_20(D)->_fifotail = -1;
+;;    succ:       12
+
+;;   basic block 12, loop depth 0
+;;    pred:       7
+;;                10
+;;                11
+  # prephitmp_26 = PHI <0(7), prephitmp_23(10), prephitmp_23(11)>
+  sp_20(D)->_fifo[prephitmp_26] = ch_30(D);
+;;    succ:       13
+
+;;   basic block 13, loop depth 0
+;;    pred:       3
+;;                12
+;;                2
+  # rc_14 = PHI <-1(3), 0(12), -1(2)>
+  return rc_14;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB5->BB7 : PART.4 = -1
+Inserting a value copy on edge BB8->BB10 : PART.10 = 136
+Inserting a value copy on edge BB8->BB10 : PART.7 = 136
+Inserting a value copy on edge BB7->BB12 : PART.10 = 0
+Inserting a value copy on edge BB3->BB13 : PART.8 = -1
+Inserting a value copy on edge BB12->BB13 : PART.8 = 0
+Inserting a value copy on edge BB2->BB13 : PART.8 = -1
+
+;; Generating RTL for gimple basic block 2
+
+;; if (sp_20(D) != 0B)
+
+(insn 14 13 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 92 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":68:8 -1
+     (nil))
+
+(jump_insn 15 14 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_ungetch.c":68:8 -1
+     (int_list:REG_BR_PROB 9341556 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _1 = sp_20(D)->_fifotail;
+
+(insn 17 16 0 (set (reg:HI 82 [ _1 ])
+        (mem:HI (plus:DI (reg/v/f:DI 92 [ sp ])
+                (const_int 730 [0x2da])) [1 sp_20(D)->_fifotail+0 S2 A16])) "../ncurses/./base/lib_ungetch.c":68:23 -1
+     (nil))
+
+;; if (_1 >= 0)
+
+(insn 20 17 21 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":68:20 -1
+     (nil))
+
+(jump_insn 21 20 0 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_ungetch.c":68:20 -1
+     (int_list:REG_BR_PROB 15032388 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; _2 = sp_20(D)->_fifohead;
+
+(insn 23 22 0 (set (reg:HI 83 [ _2 ])
+        (mem:HI (plus:DI (reg/v/f:DI 92 [ sp ])
+                (const_int 728 [0x2d8])) [1 sp_20(D)->_fifohead+0 S2 A64])) "../ncurses/./base/lib_ungetch.c":69:6 -1
+     (nil))
+
+;; if (_2 < 0)
+
+(insn 26 23 27 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 83 [ _2 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":69:5 -1
+     (nil))
+
+(jump_insn 27 26 0 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_ungetch.c":69:5 -1
+     (int_list:REG_BR_PROB 633507684 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; if (_1 > 135)
+
+(insn 31 28 32 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:HI 82 [ _1 ])
+            (const_int 135 [0x87]))) "../ncurses/./base/lib_ungetch.c":71:6 -1
+     (nil))
+
+(jump_insn 32 31 0 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_ungetch.c":71:6 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; _5 = (short int) _4;
+
+(insn 34 33 0 (parallel [
+            (set (reg:HI 86 [ _5 ])
+                (plus:HI (reg:HI 82 [ _1 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":71:6 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 7
+
+;; 
+
+(code_label 35 34 36 4 (nil) [0 uses])
+
+(note 36 35 0 NOTE_INSN_BASIC_BLOCK)
+
+;; sp_20(D)->_fifohead = 0;
+
+(insn 37 36 0 (set (mem:HI (plus:DI (reg/v/f:DI 92 [ sp ])
+                (const_int 728 [0x2d8])) [1 sp_20(D)->_fifohead+0 S2 A64])
+        (const_int 0 [0])) "../ncurses/./base/lib_ungetch.c":70:11 -1
+     (nil))
+
+;; sp_20(D)->_fifotail = prephitmp_11;
+
+(insn 38 37 0 (set (mem:HI (plus:DI (reg/v/f:DI 92 [ sp ])
+                (const_int 730 [0x2da])) [1 sp_20(D)->_fifotail+0 S2 A16])
+        (reg:HI 86 [ _5 ])) -1
+     (nil))
+
+;; sp_20(D)->_fifopeek = prephitmp_11;
+
+(insn 39 38 0 (set (mem:HI (plus:DI (reg/v/f:DI 92 [ sp ])
+                (const_int 732 [0x2dc])) [1 sp_20(D)->_fifopeek+0 S2 A32])
+        (reg:HI 86 [ _5 ])) "../ncurses/./base/lib_ungetch.c":72:11 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 8
+
+;; 
+
+(code_label 42 41 43 3 (nil) [0 uses])
+
+(note 43 42 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (_2 == 0)
+
+(insn 44 43 45 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 83 [ _2 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+
+(jump_insn 45 44 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 9
+
+;; _9 = _8 + 65535;
+
+(insn 47 46 0 (parallel [
+            (set (reg:HI 88 [ _9 ])
+                (plus:HI (reg:HI 83 [ _2 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+
+;; _10 = (short int) _9;
+
+(insn 48 47 0 (set (reg:HI 89 [ _10 ])
+        (reg:HI 88 [ _9 ])) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+
+;; _27 = (int) _9;
+
+(insn 49 48 0 (set (reg:SI 90 [ prephitmp_23 ])
+        (zero_extend:SI (reg:HI 88 [ _9 ]))) "../ncurses/./base/lib_ungetch.c":77:12 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 10
+
+;; 
+
+(code_label 50 49 51 6 (nil) [0 uses])
+
+(note 51 50 0 NOTE_INSN_BASIC_BLOCK)
+
+;; sp_20(D)->_fifohead = cstore_43;
+
+(insn 52 51 0 (set (mem:HI (plus:DI (reg/v/f:DI 92 [ sp ])
+                (const_int 728 [0x2d8])) [1 sp_20(D)->_fifohead+0 S2 A64])
+        (reg:HI 89 [ _10 ])) -1
+     (nil))
+
+;; if (_1 == cstore_43)
+
+(insn 53 52 54 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 82 [ _1 ])
+            (reg:HI 89 [ _10 ]))) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+
+(jump_insn 54 53 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (int_list:REG_BR_PROB 708669604 (nil)))
+
+;; Generating RTL for gimple basic block 11
+
+;; sp_20(D)->_fifotail = -1;
+
+(insn 56 55 0 (set (mem:HI (plus:DI (reg/v/f:DI 92 [ sp ])
+                (const_int 730 [0x2da])) [1 sp_20(D)->_fifotail+0 S2 A16])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 12
+
+;; 
+
+(code_label 57 56 58 5 (nil) [0 uses])
+
+(note 58 57 0 NOTE_INSN_BASIC_BLOCK)
+
+;; sp_20(D)->_fifo[prephitmp_26] = ch_30(D);
+
+(insn 59 58 60 (set (reg:DI 94)
+        (sign_extend:DI (reg:SI 90 [ prephitmp_23 ]))) "../ncurses/./base/lib_ungetch.c":77:18 -1
+     (nil))
+
+(insn 60 59 61 (parallel [
+            (set (reg:DI 95)
+                (plus:DI (reg:DI 94)
+                    (const_int 44 [0x2c])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":77:18 -1
+     (nil))
+
+(insn 61 60 0 (set (mem:SI (plus:DI (plus:DI (mult:DI (reg:DI 95)
+                        (const_int 4 [0x4]))
+                    (reg/v/f:DI 92 [ sp ]))
+                (const_int 4 [0x4])) [3 sp_20(D)->_fifo[prephitmp_26]+0 S4 A32])
+        (reg/v:SI 93 [ ch ])) "../ncurses/./base/lib_ungetch.c":77:18 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 13
+
+;; 
+
+(code_label 62 61 63 2 (nil) [0 uses])
+
+(note 63 62 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return rc_14;
+
+(jump_insn 64 63 65 (set (pc)
+        (label_ref 0)) "../ncurses/./base/lib_ungetch.c":87:5 -1
+     (nil))
+
+(barrier 65 64 0)
+Edge 2->13 redirected to 16
+Edge 3->13 redirected to 17
+Edge 5->7 redirected to 18
+Edge 8->10 redirected to 19
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 70 from 18 to 19.
+Redirecting jump 74 from 18 to 19.
+Merging block 18 into block 17...
+Merged blocks 17 and 18.
+Merged 17 and 18 without moving.
+Removing jump 64.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 12 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741823 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741823 (estimated locally) (FALLTHRU)
+(note 12 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 12 3 2 (set (reg/v/f:DI 92 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/lib_ungetch.c":63:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 93 [ ch ])
+        (reg:SI 4 si [ ch ])) "../ncurses/./base/lib_ungetch.c":63:1 -1
+     (nil))
+(note 4 3 14 2 NOTE_INSN_FUNCTION_BEG)
+(insn 14 4 15 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 92 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":68:8 -1
+     (nil))
+(jump_insn 15 14 16 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 73)
+            (pc))) "../ncurses/./base/lib_ungetch.c":68:8 806 {*jcc}
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 73)
+;;  succ:       4 [99.1% (guessed)]  count:1064400271 (estimated locally) (FALLTHRU)
+;;              16 [0.9% (guessed)]  count:9341552 (estimated locally)
+
+;; basic block 4, loop depth 0, count 1064400271 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [99.1% (guessed)]  count:1064400271 (estimated locally) (FALLTHRU)
+(note 16 15 17 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 20 4 (set (reg:HI 82 [ _1 ])
+        (mem:HI (plus:DI (reg/v/f:DI 92 [ sp ])
+                (const_int 730 [0x2da])) [1 sp_20(D)->_fifotail+0 S2 A16])) "../ncurses/./base/lib_ungetch.c":68:23 -1
+     (nil))
+(insn 20 17 21 4 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":68:20 -1
+     (nil))
+(jump_insn 21 20 22 4 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 77)
+            (pc))) "../ncurses/./base/lib_ungetch.c":68:20 806 {*jcc}
+     (int_list:REG_BR_PROB 15032388 (nil))
+ -> 77)
+;;  succ:       5 [98.6% (guessed)]  count:1049498669 (estimated locally) (FALLTHRU)
+;;              17 [1.4% (guessed)]  count:14901602 (estimated locally)
+
+;; basic block 5, loop depth 0, count 1049498669 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [98.6% (guessed)]  count:1049498669 (estimated locally) (FALLTHRU)
+(note 22 21 23 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 26 5 (set (reg:HI 83 [ _2 ])
+        (mem:HI (plus:DI (reg/v/f:DI 92 [ sp ])
+                (const_int 728 [0x2d8])) [1 sp_20(D)->_fifohead+0 S2 A64])) "../ncurses/./base/lib_ungetch.c":69:6 -1
+     (nil))
+(insn 26 23 27 5 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 83 [ _2 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":69:5 -1
+     (nil))
+(jump_insn 27 26 28 5 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 42)
+            (pc))) "../ncurses/./base/lib_ungetch.c":69:5 -1
+     (int_list:REG_BR_PROB 633507684 (nil))
+ -> 42)
+;;  succ:       6 [41.0% (guessed)]  count:430294451 (estimated locally) (FALLTHRU)
+;;              10 [59.0% (guessed)]  count:619204218 (estimated locally)
+
+;; basic block 6, loop depth 0, count 430294450 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [41.0% (guessed)]  count:430294451 (estimated locally) (FALLTHRU)
+(note 28 27 31 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 31 28 32 6 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:HI 82 [ _1 ])
+            (const_int 135 [0x87]))) "../ncurses/./base/lib_ungetch.c":71:6 -1
+     (nil))
+(jump_insn 32 31 33 6 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 81)
+            (pc))) "../ncurses/./base/lib_ungetch.c":71:6 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 81)
+;;  succ:       8 [50.0% (guessed)]  count:215147225 (estimated locally)
+;;              7 [50.0% (guessed)]  count:215147225 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 215147225 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       6 [50.0% (guessed)]  count:215147225 (estimated locally) (FALLTHRU)
+(note 33 32 34 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 34 33 78 7 (parallel [
+            (set (reg:HI 86 [ _5 ])
+                (plus:HI (reg:HI 82 [ _1 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":71:6 -1
+     (nil))
+(jump_insn 78 34 79 7 (set (pc)
+        (label_ref 35)) -1
+     (nil)
+ -> 35)
+;;  succ:       9 [always (guessed)]  count:215147225 (estimated locally)
+
+(barrier 79 78 81)
+;; basic block 8, loop depth 0, count 215147225 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       6 [50.0% (guessed)]  count:215147225 (estimated locally)
+(code_label 81 79 80 8 9 (nil) [1 uses])
+(note 80 81 5 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 5 80 35 8 (set (reg:HI 86 [ _5 ])
+        (const_int -1 [0xffffffffffffffff])) -1
+     (nil))
+;;  succ:       9 [always]  count:215147225 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 430294450 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [always]  count:215147225 (estimated locally) (FALLTHRU)
+;;              7 [always (guessed)]  count:215147225 (estimated locally)
+(code_label 35 5 36 9 4 (nil) [1 uses])
+(note 36 35 37 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 37 36 38 9 (set (mem:HI (plus:DI (reg/v/f:DI 92 [ sp ])
+                (const_int 728 [0x2d8])) [1 sp_20(D)->_fifohead+0 S2 A64])
+        (const_int 0 [0])) "../ncurses/./base/lib_ungetch.c":70:11 -1
+     (nil))
+(insn 38 37 39 9 (set (mem:HI (plus:DI (reg/v/f:DI 92 [ sp ])
+                (const_int 730 [0x2da])) [1 sp_20(D)->_fifotail+0 S2 A16])
+        (reg:HI 86 [ _5 ])) -1
+     (nil))
+(insn 39 38 8 9 (set (mem:HI (plus:DI (reg/v/f:DI 92 [ sp ])
+                (const_int 732 [0x2dc])) [1 sp_20(D)->_fifopeek+0 S2 A32])
+        (reg:HI 86 [ _5 ])) "../ncurses/./base/lib_ungetch.c":72:11 -1
+     (nil))
+(insn 8 39 40 9 (set (reg:SI 90 [ prephitmp_23 ])
+        (const_int 0 [0])) -1
+     (nil))
+(jump_insn 40 8 41 9 (set (pc)
+        (label_ref 57)) -1
+     (nil)
+ -> 57)
+;;  succ:       15 [always]  count:430294450 (estimated locally)
+
+(barrier 41 40 42)
+;; basic block 10, loop depth 0, count 619204219 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [59.0% (guessed)]  count:619204218 (estimated locally)
+(code_label 42 41 43 10 3 (nil) [1 uses])
+(note 43 42 44 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 44 43 45 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 83 [ _2 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+(jump_insn 45 44 46 10 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 85)
+            (pc))) "../ncurses/./base/lib_ungetch.c":74:6 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 85)
+;;  succ:       12 [50.0% (guessed)]  count:309602110 (estimated locally)
+;;              11 [50.0% (guessed)]  count:309602110 (estimated locally) (FALLTHRU)
+
+;; basic block 11, loop depth 0, count 309602109 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       10 [50.0% (guessed)]  count:309602110 (estimated locally) (FALLTHRU)
+(note 46 45 47 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 47 46 48 11 (parallel [
+            (set (reg:HI 88 [ _9 ])
+                (plus:HI (reg:HI 83 [ _2 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+(insn 48 47 49 11 (set (reg:HI 89 [ _10 ])
+        (reg:HI 88 [ _9 ])) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+(insn 49 48 82 11 (set (reg:SI 90 [ prephitmp_23 ])
+        (zero_extend:SI (reg:HI 88 [ _9 ]))) "../ncurses/./base/lib_ungetch.c":77:12 -1
+     (nil))
+(jump_insn 82 49 83 11 (set (pc)
+        (label_ref 50)) -1
+     (nil)
+ -> 50)
+;;  succ:       13 [always]  count:309602109 (estimated locally)
+
+(barrier 83 82 85)
+;; basic block 12, loop depth 0, count 309602110 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       10 [50.0% (guessed)]  count:309602110 (estimated locally)
+(code_label 85 83 84 12 10 (nil) [1 uses])
+(note 84 85 6 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 6 84 7 12 (set (reg:SI 90 [ prephitmp_23 ])
+        (const_int 136 [0x88])) -1
+     (nil))
+(insn 7 6 50 12 (set (reg:HI 89 [ _10 ])
+        (const_int 136 [0x88])) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+;;  succ:       13 [always]  count:309602110 (estimated locally) (FALLTHRU)
+
+;; basic block 13, loop depth 0, count 619204219 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       12 [always]  count:309602110 (estimated locally) (FALLTHRU)
+;;              11 [always]  count:309602109 (estimated locally)
+(code_label 50 7 51 13 6 (nil) [1 uses])
+(note 51 50 52 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 52 51 53 13 (set (mem:HI (plus:DI (reg/v/f:DI 92 [ sp ])
+                (const_int 728 [0x2d8])) [1 sp_20(D)->_fifohead+0 S2 A64])
+        (reg:HI 89 [ _10 ])) -1
+     (nil))
+(insn 53 52 54 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 82 [ _1 ])
+            (reg:HI 89 [ _10 ]))) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+(jump_insn 54 53 55 13 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 57)
+            (pc))) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (int_list:REG_BR_PROB 708669604 (nil))
+ -> 57)
+;;  succ:       14 [34.0% (guessed)]  count:210529437 (estimated locally) (FALLTHRU)
+;;              15 [66.0% (guessed)]  count:408674782 (estimated locally)
+
+;; basic block 14, loop depth 0, count 210529436 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       13 [34.0% (guessed)]  count:210529437 (estimated locally) (FALLTHRU)
+(note 55 54 56 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 56 55 57 14 (set (mem:HI (plus:DI (reg/v/f:DI 92 [ sp ])
+                (const_int 730 [0x2da])) [1 sp_20(D)->_fifotail+0 S2 A16])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+;;  succ:       15 [always]  count:210529436 (estimated locally) (FALLTHRU)
+
+;; basic block 15, loop depth 0, count 1049498670 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       9 [always]  count:430294450 (estimated locally)
+;;              13 [66.0% (guessed)]  count:408674782 (estimated locally)
+;;              14 [always]  count:210529436 (estimated locally) (FALLTHRU)
+(code_label 57 56 58 15 5 (nil) [2 uses])
+(note 58 57 59 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 59 58 60 15 (set (reg:DI 94)
+        (sign_extend:DI (reg:SI 90 [ prephitmp_23 ]))) "../ncurses/./base/lib_ungetch.c":77:18 -1
+     (nil))
+(insn 60 59 61 15 (parallel [
+            (set (reg:DI 95)
+                (plus:DI (reg:DI 94)
+                    (const_int 44 [0x2c])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":77:18 -1
+     (nil))
+(insn 61 60 10 15 (set (mem:SI (plus:DI (plus:DI (mult:DI (reg:DI 95)
+                        (const_int 4 [0x4]))
+                    (reg/v/f:DI 92 [ sp ]))
+                (const_int 4 [0x4])) [3 sp_20(D)->_fifo[prephitmp_26]+0 S4 A32])
+        (reg/v:SI 93 [ ch ])) "../ncurses/./base/lib_ungetch.c":77:18 -1
+     (nil))
+(insn 10 61 70 15 (set (reg/v:SI 91 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_ungetch.c":85:5 -1
+     (nil))
+(jump_insn 70 10 71 15 (set (pc)
+        (label_ref:DI 66)) 807 {jump}
+     (nil)
+ -> 66)
+;;  succ:       19 [always]  count:1049498670 (estimated locally)
+
+(barrier 71 70 73)
+;; basic block 16, loop depth 0, count 9341552 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [0.9% (guessed)]  count:9341552 (estimated locally)
+(code_label 73 71 72 16 7 (nil) [1 uses])
+(note 72 73 11 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 11 72 74 16 (set (reg/v:SI 91 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":64:9 -1
+     (nil))
+(jump_insn 74 11 75 16 (set (pc)
+        (label_ref:DI 66)) 807 {jump}
+     (nil)
+ -> 66)
+;;  succ:       19 [always]  count:9341552 (estimated locally)
+
+(barrier 75 74 77)
+;; basic block 17, loop depth 0, count 14901602 (estimated locally), maybe hot
+;;  prev block 16, next block 19, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [1.4% (guessed)]  count:14901602 (estimated locally)
+(code_label 77 75 76 17 8 (nil) [1 uses])
+(note 76 77 9 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 9 76 66 17 (set (reg/v:SI 91 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":64:9 -1
+     (nil))
+;;  succ:       19 [always]  count:14901602 (estimated locally) (FALLTHRU)
+
+;; basic block 19, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 17, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       17 [always]  count:14901602 (estimated locally) (FALLTHRU)
+;;              15 [always]  count:1049498670 (estimated locally)
+;;              16 [always]  count:9341552 (estimated locally)
+(code_label 66 9 69 19 1 (nil) [2 uses])
+(note 69 66 67 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 67 69 68 19 (set (reg/i:SI 0 ax)
+        (reg/v:SI 91 [ <retval> ])) "../ncurses/./base/lib_ungetch.c":88:1 -1
+     (nil))
+(insn 68 67 0 19 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_ungetch.c":88:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+
+;; Function ungetch (ungetch, funcdef_no=92, decl_uid=6123, cgraph_uid=93, symbol_order=92)
+
+__attribute__((visibility ("default")))
+int ungetch (int ch)
+{
+  int rc;
+  struct SCREEN * SP.2_1;
+  short int _6;
+  short int _7;
+  unsigned short _8;
+  unsigned short _9;
+  short int _10;
+  unsigned short _13;
+  unsigned short _14;
+  short int _15;
+  short int prephitmp_16;
+  int prephitmp_26;
+  int prephitmp_29;
+  int _30;
+  short int cstore_39;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.2_1 = SP;
+  if (SP.2_1 != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 13>; [0.87%]
+;;    succ:       3
+;;                13
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _6 = SP.2_1->_fifotail;
+  if (_6 >= 0)
+    goto <bb 4>; [98.60%]
+  else
+    goto <bb 13>; [1.40%]
+;;    succ:       4
+;;                13
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _7 = SP.2_1->_fifohead;
+  if (_7 < 0)
+    goto <bb 5>; [41.00%]
+  else
+    goto <bb 8>; [59.00%]
+;;    succ:       5
+;;                8
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  if (_6 > 135)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+;;    succ:       7
+;;                6
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  _8 = (unsigned short) _6;
+  _9 = _8 + 1;
+  _10 = (short int) _9;
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+;;                5
+  # prephitmp_16 = PHI <_10(6), -1(5)>
+  SP.2_1->_fifohead = 0;
+  SP.2_1->_fifotail = prephitmp_16;
+  SP.2_1->_fifopeek = prephitmp_16;
+  goto <bb 12>; [100.00%]
+;;    succ:       12
+
+;;   basic block 8, loop depth 0
+;;    pred:       4
+  if (_7 == 0)
+    goto <bb 10>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+;;    succ:       10
+;;                9
+
+;;   basic block 9, loop depth 0
+;;    pred:       8
+  _13 = (unsigned short) _7;
+  _14 = _13 + 65535;
+  _15 = (short int) _14;
+  _30 = (int) _14;
+;;    succ:       10
+
+;;   basic block 10, loop depth 0
+;;    pred:       8
+;;                9
+  # cstore_39 = PHI <136(8), _15(9)>
+  # prephitmp_26 = PHI <136(8), _30(9)>
+  SP.2_1->_fifohead = cstore_39;
+  if (_6 == cstore_39)
+    goto <bb 11>; [34.00%]
+  else
+    goto <bb 12>; [66.00%]
+;;    succ:       11
+;;                12
+
+;;   basic block 11, loop depth 0
+;;    pred:       10
+  SP.2_1->_fifotail = -1;
+;;    succ:       12
+
+;;   basic block 12, loop depth 0
+;;    pred:       7
+;;                10
+;;                11
+  # prephitmp_29 = PHI <0(7), prephitmp_26(10), prephitmp_26(11)>
+  SP.2_1->_fifo[prephitmp_29] = ch_3(D);
+;;    succ:       13
+
+;;   basic block 13, loop depth 0
+;;    pred:       3
+;;                12
+;;                2
+  # rc_19 = PHI <-1(3), 0(12), -1(2)>
+  return rc_19;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (SP.2_1 - 1 )
+Partition 3 (ch_3(D) - 3 )
+Partition 6 (_6 - 6 )
+Partition 7 (_7 - 7 )
+Partition 8 (_8 - 8 )
+Partition 9 (_9 - 9 )
+Partition 10 (_10 - 10 )
+Partition 13 (_13 - 13 )
+Partition 14 (_14 - 14 )
+Partition 15 (_15 - 15 )
+Partition 16 (prephitmp_16 - 16 )
+Partition 17 (_17(D) - 17 )
+Partition 19 (rc_19 - 19 )
+Partition 26 (prephitmp_26 - 26 )
+Partition 29 (prephitmp_29 - 29 )
+Partition 30 (_30 - 30 )
+Partition 39 (cstore_39 - 39 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (ch_3(D) - 3 )
+Partition 1, base 1 (_10 - 10 16 )
+Partition 2, base 2 (_15 - 15 39 )
+Partition 4, base 3 (_17(D) - 17 19 )
+Partition 6, base 4 (prephitmp_26 - 26 29 30 )
+
+
+Partition map 
+
+Partition 0 (ch_3(D) - 3 )
+Partition 1 (_10 - 10 )
+Partition 2 (_15 - 15 )
+Partition 3 (prephitmp_16 - 16 )
+Partition 4 (_17(D) - 17 )
+Partition 5 (rc_19 - 19 )
+Partition 6 (prephitmp_26 - 26 )
+Partition 7 (prephitmp_29 - 29 )
+Partition 8 (_30 - 30 )
+Partition 9 (cstore_39 - 39 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) _17(D) <-> rc_19
+(9573, 0) prephitmp_26 <-> prephitmp_29
+(2883, 0) _15 <-> cstore_39
+(2883, 0) prephitmp_26 <-> _30
+(2004, 0) _10 <-> prephitmp_16
+
+Partition map 
+
+Partition 0 (ch_3(D) - 3 )
+Partition 1 (_10 - 10 )
+Partition 2 (_15 - 15 )
+Partition 3 (prephitmp_16 - 16 )
+Partition 4 (_17(D) - 17 )
+Partition 5 (rc_19 - 19 )
+Partition 6 (prephitmp_26 - 26 )
+Partition 7 (prephitmp_29 - 29 )
+Partition 8 (_30 - 30 )
+Partition 9 (cstore_39 - 39 )
+
+Coalesce list: (17)_17(D) & (19)rc_19 [map: 4, 5] : Success -> 4
+Coalesce list: (26)prephitmp_26 & (29)prephitmp_29 [map: 6, 7] : Success -> 6
+Coalesce list: (15)_15 & (39)cstore_39 [map: 2, 9] : Success -> 2
+Coalesce list: (26)prephitmp_26 & (30)_30 [map: 6, 8] : Success -> 6
+Coalesce list: (10)_10 & (16)prephitmp_16 [map: 1, 3] : Success -> 1
+After Coalescing:
+
+Partition map 
+
+Partition 0 (SP.2_1 - 1 )
+Partition 1 (ch_3(D) - 3 )
+Partition 2 (_6 - 6 )
+Partition 3 (_7 - 7 )
+Partition 4 (_8 - 8 )
+Partition 5 (_9 - 9 )
+Partition 6 (_10 - 10 16 )
+Partition 7 (_13 - 13 )
+Partition 8 (_14 - 14 )
+Partition 9 (_15 - 15 39 )
+Partition 10 (_17(D) - 17 19 )
+Partition 11 (prephitmp_26 - 26 29 30 )
+
+
+Replacing Expressions
+_8 replace with --> _8 = (unsigned short) _6;
+
+_9 replace with --> _9 = _8 + 1;
+
+_13 replace with --> _13 = (unsigned short) _7;
+
+
+__attribute__((visibility ("default")))
+int ungetch (int ch)
+{
+  int rc;
+  struct SCREEN * SP.2_1;
+  short int _6;
+  short int _7;
+  unsigned short _8;
+  unsigned short _9;
+  short int _10;
+  unsigned short _13;
+  unsigned short _14;
+  short int _15;
+  short int prephitmp_16;
+  int _17(D);
+  int prephitmp_26;
+  int prephitmp_29;
+  int _30;
+  short int cstore_39;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.2_1 = SP;
+  if (SP.2_1 != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 13>; [0.87%]
+;;    succ:       3
+;;                13
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _6 = SP.2_1->_fifotail;
+  if (_6 >= 0)
+    goto <bb 4>; [98.60%]
+  else
+    goto <bb 13>; [1.40%]
+;;    succ:       4
+;;                13
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _7 = SP.2_1->_fifohead;
+  if (_7 < 0)
+    goto <bb 5>; [41.00%]
+  else
+    goto <bb 8>; [59.00%]
+;;    succ:       5
+;;                8
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  if (_6 > 135)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+;;    succ:       7
+;;                6
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  _8 = (unsigned short) _6;
+  _9 = _8 + 1;
+  _10 = (short int) _9;
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+;;                5
+  # prephitmp_16 = PHI <_10(6), -1(5)>
+  SP.2_1->_fifohead = 0;
+  SP.2_1->_fifotail = prephitmp_16;
+  SP.2_1->_fifopeek = prephitmp_16;
+  goto <bb 12>; [100.00%]
+;;    succ:       12
+
+;;   basic block 8, loop depth 0
+;;    pred:       4
+  if (_7 == 0)
+    goto <bb 10>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+;;    succ:       10
+;;                9
+
+;;   basic block 9, loop depth 0
+;;    pred:       8
+  _13 = (unsigned short) _7;
+  _14 = _13 + 65535;
+  _15 = (short int) _14;
+  _30 = (int) _14;
+;;    succ:       10
+
+;;   basic block 10, loop depth 0
+;;    pred:       8
+;;                9
+  # cstore_39 = PHI <136(8), _15(9)>
+  # prephitmp_26 = PHI <136(8), _30(9)>
+  SP.2_1->_fifohead = cstore_39;
+  if (_6 == cstore_39)
+    goto <bb 11>; [34.00%]
+  else
+    goto <bb 12>; [66.00%]
+;;    succ:       11
+;;                12
+
+;;   basic block 11, loop depth 0
+;;    pred:       10
+  SP.2_1->_fifotail = -1;
+;;    succ:       12
+
+;;   basic block 12, loop depth 0
+;;    pred:       7
+;;                10
+;;                11
+  # prephitmp_29 = PHI <0(7), prephitmp_26(10), prephitmp_26(11)>
+  SP.2_1->_fifo[prephitmp_29] = ch_3(D);
+;;    succ:       13
+
+;;   basic block 13, loop depth 0
+;;    pred:       3
+;;                12
+;;                2
+  # rc_19 = PHI <-1(3), 0(12), -1(2)>
+  return rc_19;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB5->BB7 : PART.6 = -1
+Inserting a value copy on edge BB8->BB10 : PART.11 = 136
+Inserting a value copy on edge BB8->BB10 : PART.9 = 136
+Inserting a value copy on edge BB7->BB12 : PART.11 = 0
+Inserting a value copy on edge BB3->BB13 : PART.10 = -1
+Inserting a value copy on edge BB12->BB13 : PART.10 = 0
+Inserting a value copy on edge BB2->BB13 : PART.10 = -1
+
+;; Generating RTL for gimple basic block 2
+
+;; SP.2_1 = SP;
+
+(insn 13 12 0 (set (reg/f:DI 82 [ SP.2_1 ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f9a0ac00cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/lib_ungetch.c":93:12 -1
+     (nil))
+
+;; if (SP.2_1 != 0B)
+
+(insn 14 13 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ SP.2_1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":68:8 -1
+     (nil))
+
+(jump_insn 15 14 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_ungetch.c":68:8 -1
+     (int_list:REG_BR_PROB 9341556 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _6 = SP.2_1->_fifotail;
+
+(insn 17 16 0 (set (reg:HI 83 [ _6 ])
+        (mem:HI (plus:DI (reg/f:DI 82 [ SP.2_1 ])
+                (const_int 730 [0x2da])) [1 SP.2_1->_fifotail+0 S2 A16])) "../ncurses/./base/lib_ungetch.c":68:23 -1
+     (nil))
+
+;; if (_6 >= 0)
+
+(insn 20 17 21 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 83 [ _6 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":68:20 -1
+     (nil))
+
+(jump_insn 21 20 0 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_ungetch.c":68:20 -1
+     (int_list:REG_BR_PROB 15032388 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; _7 = SP.2_1->_fifohead;
+
+(insn 23 22 0 (set (reg:HI 84 [ _7 ])
+        (mem:HI (plus:DI (reg/f:DI 82 [ SP.2_1 ])
+                (const_int 728 [0x2d8])) [1 SP.2_1->_fifohead+0 S2 A64])) "../ncurses/./base/lib_ungetch.c":69:6 -1
+     (nil))
+
+;; if (_7 < 0)
+
+(insn 26 23 27 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 84 [ _7 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":69:5 -1
+     (nil))
+
+(jump_insn 27 26 0 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_ungetch.c":69:5 -1
+     (int_list:REG_BR_PROB 633507684 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; if (_6 > 135)
+
+(insn 31 28 32 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:HI 83 [ _6 ])
+            (const_int 135 [0x87]))) "../ncurses/./base/lib_ungetch.c":71:6 -1
+     (nil))
+
+(jump_insn 32 31 0 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_ungetch.c":71:6 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; _10 = (short int) _9;
+
+(insn 34 33 0 (parallel [
+            (set (reg:HI 87 [ _10 ])
+                (plus:HI (reg:HI 83 [ _6 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":71:6 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 7
+
+;; 
+
+(code_label 35 34 36 16 (nil) [0 uses])
+
+(note 36 35 0 NOTE_INSN_BASIC_BLOCK)
+
+;; SP.2_1->_fifohead = 0;
+
+(insn 37 36 0 (set (mem:HI (plus:DI (reg/f:DI 82 [ SP.2_1 ])
+                (const_int 728 [0x2d8])) [1 SP.2_1->_fifohead+0 S2 A64])
+        (const_int 0 [0])) "../ncurses/./base/lib_ungetch.c":70:11 -1
+     (nil))
+
+;; SP.2_1->_fifotail = prephitmp_16;
+
+(insn 38 37 0 (set (mem:HI (plus:DI (reg/f:DI 82 [ SP.2_1 ])
+                (const_int 730 [0x2da])) [1 SP.2_1->_fifotail+0 S2 A16])
+        (reg:HI 87 [ _10 ])) -1
+     (nil))
+
+;; SP.2_1->_fifopeek = prephitmp_16;
+
+(insn 39 38 0 (set (mem:HI (plus:DI (reg/f:DI 82 [ SP.2_1 ])
+                (const_int 732 [0x2dc])) [1 SP.2_1->_fifopeek+0 S2 A32])
+        (reg:HI 87 [ _10 ])) "../ncurses/./base/lib_ungetch.c":72:11 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 8
+
+;; 
+
+(code_label 42 41 43 15 (nil) [0 uses])
+
+(note 43 42 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (_7 == 0)
+
+(insn 44 43 45 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 84 [ _7 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+
+(jump_insn 45 44 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 9
+
+;; _14 = _13 + 65535;
+
+(insn 47 46 0 (parallel [
+            (set (reg:HI 89 [ _14 ])
+                (plus:HI (reg:HI 84 [ _7 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+
+;; _15 = (short int) _14;
+
+(insn 48 47 0 (set (reg:HI 90 [ _15 ])
+        (reg:HI 89 [ _14 ])) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+
+;; _30 = (int) _14;
+
+(insn 49 48 0 (set (reg:SI 91 [ prephitmp_26 ])
+        (zero_extend:SI (reg:HI 89 [ _14 ]))) "../ncurses/./base/lib_ungetch.c":77:12 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 10
+
+;; 
+
+(code_label 50 49 51 18 (nil) [0 uses])
+
+(note 51 50 0 NOTE_INSN_BASIC_BLOCK)
+
+;; SP.2_1->_fifohead = cstore_39;
+
+(insn 52 51 0 (set (mem:HI (plus:DI (reg/f:DI 82 [ SP.2_1 ])
+                (const_int 728 [0x2d8])) [1 SP.2_1->_fifohead+0 S2 A64])
+        (reg:HI 90 [ _15 ])) -1
+     (nil))
+
+;; if (_6 == cstore_39)
+
+(insn 53 52 54 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 83 [ _6 ])
+            (reg:HI 90 [ _15 ]))) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+
+(jump_insn 54 53 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (int_list:REG_BR_PROB 708669604 (nil)))
+
+;; Generating RTL for gimple basic block 11
+
+;; SP.2_1->_fifotail = -1;
+
+(insn 56 55 0 (set (mem:HI (plus:DI (reg/f:DI 82 [ SP.2_1 ])
+                (const_int 730 [0x2da])) [1 SP.2_1->_fifotail+0 S2 A16])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 12
+
+;; 
+
+(code_label 57 56 58 17 (nil) [0 uses])
+
+(note 58 57 0 NOTE_INSN_BASIC_BLOCK)
+
+;; SP.2_1->_fifo[prephitmp_29] = ch_3(D);
+
+(insn 59 58 60 (set (reg:DI 94)
+        (sign_extend:DI (reg:SI 91 [ prephitmp_26 ]))) "../ncurses/./base/lib_ungetch.c":77:18 -1
+     (nil))
+
+(insn 60 59 61 (parallel [
+            (set (reg:DI 95)
+                (plus:DI (reg:DI 94)
+                    (const_int 44 [0x2c])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":77:18 -1
+     (nil))
+
+(insn 61 60 0 (set (mem:SI (plus:DI (plus:DI (mult:DI (reg:DI 95)
+                        (const_int 4 [0x4]))
+                    (reg/f:DI 82 [ SP.2_1 ]))
+                (const_int 4 [0x4])) [3 SP.2_1->_fifo[prephitmp_29]+0 S4 A32])
+        (reg/v:SI 93 [ ch ])) "../ncurses/./base/lib_ungetch.c":77:18 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 13
+
+;; 
+
+(code_label 62 61 63 14 (nil) [0 uses])
+
+(note 63 62 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return rc_19;
+
+(jump_insn 64 63 65 (set (pc)
+        (label_ref 0)) "../ncurses/./base/lib_ungetch.c":93:12 -1
+     (nil))
+
+(barrier 65 64 0)
+Edge 2->13 redirected to 16
+Edge 3->13 redirected to 17
+Edge 5->7 redirected to 18
+Edge 8->10 redirected to 19
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 70 from 18 to 19.
+Redirecting jump 74 from 18 to 19.
+Merging block 18 into block 17...
+Merged blocks 17 and 18.
+Merged 17 and 18 without moving.
+Removing jump 64.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 11 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 11 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 11 3 2 (set (reg/v:SI 93 [ ch ])
+        (reg:SI 5 di [ ch ])) "../ncurses/./base/lib_ungetch.c":92:1 -1
+     (nil))
+(note 3 2 13 2 NOTE_INSN_FUNCTION_BEG)
+(insn 13 3 14 2 (set (reg/f:DI 82 [ SP.2_1 ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f9a0ac00cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/lib_ungetch.c":93:12 -1
+     (nil))
+(insn 14 13 15 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ SP.2_1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":68:8 -1
+     (nil))
+(jump_insn 15 14 16 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 73)
+            (pc))) "../ncurses/./base/lib_ungetch.c":68:8 806 {*jcc}
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 73)
+;;  succ:       4 [99.1% (guessed)]  count:1064400272 (estimated locally) (FALLTHRU)
+;;              16 [0.9% (guessed)]  count:9341552 (estimated locally)
+
+;; basic block 4, loop depth 0, count 1064400272 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [99.1% (guessed)]  count:1064400272 (estimated locally) (FALLTHRU)
+(note 16 15 17 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 20 4 (set (reg:HI 83 [ _6 ])
+        (mem:HI (plus:DI (reg/f:DI 82 [ SP.2_1 ])
+                (const_int 730 [0x2da])) [1 SP.2_1->_fifotail+0 S2 A16])) "../ncurses/./base/lib_ungetch.c":68:23 -1
+     (nil))
+(insn 20 17 21 4 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 83 [ _6 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":68:20 -1
+     (nil))
+(jump_insn 21 20 22 4 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 77)
+            (pc))) "../ncurses/./base/lib_ungetch.c":68:20 806 {*jcc}
+     (int_list:REG_BR_PROB 15032388 (nil))
+ -> 77)
+;;  succ:       5 [98.6% (guessed)]  count:1049498670 (estimated locally) (FALLTHRU)
+;;              17 [1.4% (guessed)]  count:14901602 (estimated locally)
+
+;; basic block 5, loop depth 0, count 1049498670 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [98.6% (guessed)]  count:1049498670 (estimated locally) (FALLTHRU)
+(note 22 21 23 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 26 5 (set (reg:HI 84 [ _7 ])
+        (mem:HI (plus:DI (reg/f:DI 82 [ SP.2_1 ])
+                (const_int 728 [0x2d8])) [1 SP.2_1->_fifohead+0 S2 A64])) "../ncurses/./base/lib_ungetch.c":69:6 -1
+     (nil))
+(insn 26 23 27 5 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 84 [ _7 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":69:5 -1
+     (nil))
+(jump_insn 27 26 28 5 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 42)
+            (pc))) "../ncurses/./base/lib_ungetch.c":69:5 -1
+     (int_list:REG_BR_PROB 633507684 (nil))
+ -> 42)
+;;  succ:       6 [41.0% (guessed)]  count:430294451 (estimated locally) (FALLTHRU)
+;;              10 [59.0% (guessed)]  count:619204219 (estimated locally)
+
+;; basic block 6, loop depth 0, count 430294450 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [41.0% (guessed)]  count:430294451 (estimated locally) (FALLTHRU)
+(note 28 27 31 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 31 28 32 6 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:HI 83 [ _6 ])
+            (const_int 135 [0x87]))) "../ncurses/./base/lib_ungetch.c":71:6 -1
+     (nil))
+(jump_insn 32 31 33 6 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 81)
+            (pc))) "../ncurses/./base/lib_ungetch.c":71:6 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 81)
+;;  succ:       8 [50.0% (guessed)]  count:215147225 (estimated locally)
+;;              7 [50.0% (guessed)]  count:215147225 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 215147225 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       6 [50.0% (guessed)]  count:215147225 (estimated locally) (FALLTHRU)
+(note 33 32 34 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 34 33 78 7 (parallel [
+            (set (reg:HI 87 [ _10 ])
+                (plus:HI (reg:HI 83 [ _6 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":71:6 -1
+     (nil))
+(jump_insn 78 34 79 7 (set (pc)
+        (label_ref 35)) -1
+     (nil)
+ -> 35)
+;;  succ:       9 [always (guessed)]  count:215147225 (estimated locally)
+
+(barrier 79 78 81)
+;; basic block 8, loop depth 0, count 215147225 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       6 [50.0% (guessed)]  count:215147225 (estimated locally)
+(code_label 81 79 80 8 21 (nil) [1 uses])
+(note 80 81 4 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 4 80 35 8 (set (reg:HI 87 [ _10 ])
+        (const_int -1 [0xffffffffffffffff])) -1
+     (nil))
+;;  succ:       9 [always]  count:215147225 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 430294450 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [always]  count:215147225 (estimated locally) (FALLTHRU)
+;;              7 [always (guessed)]  count:215147225 (estimated locally)
+(code_label 35 4 36 9 16 (nil) [1 uses])
+(note 36 35 37 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 37 36 38 9 (set (mem:HI (plus:DI (reg/f:DI 82 [ SP.2_1 ])
+                (const_int 728 [0x2d8])) [1 SP.2_1->_fifohead+0 S2 A64])
+        (const_int 0 [0])) "../ncurses/./base/lib_ungetch.c":70:11 -1
+     (nil))
+(insn 38 37 39 9 (set (mem:HI (plus:DI (reg/f:DI 82 [ SP.2_1 ])
+                (const_int 730 [0x2da])) [1 SP.2_1->_fifotail+0 S2 A16])
+        (reg:HI 87 [ _10 ])) -1
+     (nil))
+(insn 39 38 7 9 (set (mem:HI (plus:DI (reg/f:DI 82 [ SP.2_1 ])
+                (const_int 732 [0x2dc])) [1 SP.2_1->_fifopeek+0 S2 A32])
+        (reg:HI 87 [ _10 ])) "../ncurses/./base/lib_ungetch.c":72:11 -1
+     (nil))
+(insn 7 39 40 9 (set (reg:SI 91 [ prephitmp_26 ])
+        (const_int 0 [0])) -1
+     (nil))
+(jump_insn 40 7 41 9 (set (pc)
+        (label_ref 57)) -1
+     (nil)
+ -> 57)
+;;  succ:       15 [always]  count:430294450 (estimated locally)
+
+(barrier 41 40 42)
+;; basic block 10, loop depth 0, count 619204220 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [59.0% (guessed)]  count:619204219 (estimated locally)
+(code_label 42 41 43 10 15 (nil) [1 uses])
+(note 43 42 44 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 44 43 45 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 84 [ _7 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+(jump_insn 45 44 46 10 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 85)
+            (pc))) "../ncurses/./base/lib_ungetch.c":74:6 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 85)
+;;  succ:       12 [50.0% (guessed)]  count:309602110 (estimated locally)
+;;              11 [50.0% (guessed)]  count:309602110 (estimated locally) (FALLTHRU)
+
+;; basic block 11, loop depth 0, count 309602109 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       10 [50.0% (guessed)]  count:309602110 (estimated locally) (FALLTHRU)
+(note 46 45 47 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 47 46 48 11 (parallel [
+            (set (reg:HI 89 [ _14 ])
+                (plus:HI (reg:HI 84 [ _7 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+(insn 48 47 49 11 (set (reg:HI 90 [ _15 ])
+        (reg:HI 89 [ _14 ])) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+(insn 49 48 82 11 (set (reg:SI 91 [ prephitmp_26 ])
+        (zero_extend:SI (reg:HI 89 [ _14 ]))) "../ncurses/./base/lib_ungetch.c":77:12 -1
+     (nil))
+(jump_insn 82 49 83 11 (set (pc)
+        (label_ref 50)) -1
+     (nil)
+ -> 50)
+;;  succ:       13 [always]  count:309602109 (estimated locally)
+
+(barrier 83 82 85)
+;; basic block 12, loop depth 0, count 309602110 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       10 [50.0% (guessed)]  count:309602110 (estimated locally)
+(code_label 85 83 84 12 22 (nil) [1 uses])
+(note 84 85 5 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 5 84 6 12 (set (reg:SI 91 [ prephitmp_26 ])
+        (const_int 136 [0x88])) -1
+     (nil))
+(insn 6 5 50 12 (set (reg:HI 90 [ _15 ])
+        (const_int 136 [0x88])) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+;;  succ:       13 [always]  count:309602110 (estimated locally) (FALLTHRU)
+
+;; basic block 13, loop depth 0, count 619204220 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       12 [always]  count:309602110 (estimated locally) (FALLTHRU)
+;;              11 [always]  count:309602109 (estimated locally)
+(code_label 50 6 51 13 18 (nil) [1 uses])
+(note 51 50 52 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 52 51 53 13 (set (mem:HI (plus:DI (reg/f:DI 82 [ SP.2_1 ])
+                (const_int 728 [0x2d8])) [1 SP.2_1->_fifohead+0 S2 A64])
+        (reg:HI 90 [ _15 ])) -1
+     (nil))
+(insn 53 52 54 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 83 [ _6 ])
+            (reg:HI 90 [ _15 ]))) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+(jump_insn 54 53 55 13 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 57)
+            (pc))) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (int_list:REG_BR_PROB 708669604 (nil))
+ -> 57)
+;;  succ:       14 [34.0% (guessed)]  count:210529437 (estimated locally) (FALLTHRU)
+;;              15 [66.0% (guessed)]  count:408674783 (estimated locally)
+
+;; basic block 14, loop depth 0, count 210529436 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       13 [34.0% (guessed)]  count:210529437 (estimated locally) (FALLTHRU)
+(note 55 54 56 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 56 55 57 14 (set (mem:HI (plus:DI (reg/f:DI 82 [ SP.2_1 ])
+                (const_int 730 [0x2da])) [1 SP.2_1->_fifotail+0 S2 A16])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":74:6 -1
+     (nil))
+;;  succ:       15 [always]  count:210529436 (estimated locally) (FALLTHRU)
+
+;; basic block 15, loop depth 0, count 1049498671 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       9 [always]  count:430294450 (estimated locally)
+;;              13 [66.0% (guessed)]  count:408674783 (estimated locally)
+;;              14 [always]  count:210529436 (estimated locally) (FALLTHRU)
+(code_label 57 56 58 15 17 (nil) [2 uses])
+(note 58 57 59 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 59 58 60 15 (set (reg:DI 94)
+        (sign_extend:DI (reg:SI 91 [ prephitmp_26 ]))) "../ncurses/./base/lib_ungetch.c":77:18 -1
+     (nil))
+(insn 60 59 61 15 (parallel [
+            (set (reg:DI 95)
+                (plus:DI (reg:DI 94)
+                    (const_int 44 [0x2c])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":77:18 -1
+     (nil))
+(insn 61 60 9 15 (set (mem:SI (plus:DI (plus:DI (mult:DI (reg:DI 95)
+                        (const_int 4 [0x4]))
+                    (reg/f:DI 82 [ SP.2_1 ]))
+                (const_int 4 [0x4])) [3 SP.2_1->_fifo[prephitmp_29]+0 S4 A32])
+        (reg/v:SI 93 [ ch ])) "../ncurses/./base/lib_ungetch.c":77:18 -1
+     (nil))
+(insn 9 61 70 15 (set (reg/v:SI 92 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_ungetch.c":85:5 -1
+     (nil))
+(jump_insn 70 9 71 15 (set (pc)
+        (label_ref:DI 66)) 807 {jump}
+     (nil)
+ -> 66)
+;;  succ:       19 [always]  count:1049498671 (estimated locally)
+
+(barrier 71 70 73)
+;; basic block 16, loop depth 0, count 9341552 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [0.9% (guessed)]  count:9341552 (estimated locally)
+(code_label 73 71 72 16 19 (nil) [1 uses])
+(note 72 73 10 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 10 72 74 16 (set (reg/v:SI 92 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":64:9 -1
+     (nil))
+(jump_insn 74 10 75 16 (set (pc)
+        (label_ref:DI 66)) 807 {jump}
+     (nil)
+ -> 66)
+;;  succ:       19 [always]  count:9341552 (estimated locally)
+
+(barrier 75 74 77)
+;; basic block 17, loop depth 0, count 14901602 (estimated locally), maybe hot
+;;  prev block 16, next block 19, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [1.4% (guessed)]  count:14901602 (estimated locally)
+(code_label 77 75 76 17 20 (nil) [1 uses])
+(note 76 77 8 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 8 76 66 17 (set (reg/v:SI 92 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":64:9 -1
+     (nil))
+;;  succ:       19 [always]  count:14901602 (estimated locally) (FALLTHRU)
+
+;; basic block 19, loop depth 0, count 1073741825 (estimated locally), maybe hot
+;;  prev block 17, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       17 [always]  count:14901602 (estimated locally) (FALLTHRU)
+;;              15 [always]  count:1049498671 (estimated locally)
+;;              16 [always]  count:9341552 (estimated locally)
+(code_label 66 8 69 19 13 (nil) [2 uses])
+(note 69 66 67 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 67 69 68 19 (set (reg/i:SI 0 ax)
+        (reg/v:SI 92 [ <retval> ])) "../ncurses/./base/lib_ungetch.c":94:1 -1
+     (nil))
+(insn 68 67 0 19 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_ungetch.c":94:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741825 (estimated locally) (FALLTHRU)
+

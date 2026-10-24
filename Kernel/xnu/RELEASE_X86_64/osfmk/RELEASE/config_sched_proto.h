@@ -1,0 +1,1 @@
+#define NCONFIG_SCHED_PROTO 0

@@ -1,0 +1,1017 @@
+
+;; Function endwin_sp (endwin_sp, funcdef_no=91, decl_uid=6529, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+int endwin_sp (struct SCREEN * sp)
+{
+  int code;
+  int _1;
+  void (*<Tda1>) (struct screen *) _2;
+  int _3;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (sp_8(D) != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 6>; [0.87%]
+;;    succ:       3
+;;                6
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = sp_8(D)->_endwin;
+  if (_1 != 3)
+    goto <bb 4>; [66.00%]
+  else
+    goto <bb 5>; [34.00%]
+;;    succ:       4
+;;                5
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  sp_8(D)->_endwin = 3;
+  _2 = sp_8(D)->_mouse_wrap;
+  _2 (sp_8(D));
+  _nc_screen_wrap ();
+  _nc_mvcur_wrap ();
+;;    succ:       5
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+;;                4
+  # code_4 = PHI <-1(3), 0(4)>
+  _3 = reset_shell_mode_sp (sp_8(D));
+  if (_3 == -1)
+    goto <bb 6>; [1.04%]
+  else
+    goto <bb 7>; [98.96%]
+;;    succ:       6
+;;                7
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+;;                2
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+;;                5
+  # code_5 = PHI <-1(6), code_4(5)>
+  return code_5;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 4 (code_4 - 4 )
+Partition 5 (code_5 - 5 )
+Partition 8 (sp_8(D) - 8 )
+Partition 16 (_16(D) - 16 )
+
+
+Coalescible Partition map 
+
+Partition 1, base 0 (code_4 - 4 5 16 )
+Partition 2, base 1 (sp_8(D) - 8 )
+
+
+Partition map 
+
+Partition 0 (code_4 - 4 )
+Partition 1 (code_5 - 5 )
+Partition 2 (sp_8(D) - 8 )
+Partition 3 (_16(D) - 16 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(19620, 0) code_4 <-> code_5
+(10000, 0) code_5 <-> _16(D)
+
+Partition map 
+
+Partition 0 (code_4 - 4 )
+Partition 1 (code_5 - 5 )
+Partition 2 (sp_8(D) - 8 )
+Partition 3 (_16(D) - 16 )
+
+Coalesce list: (4)code_4 & (5)code_5 [map: 0, 1] : Success -> 0
+Coalesce list: (5)code_4 & (16)_16(D) [map: 0, 3] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_2 - 2 )
+Partition 2 (_3 - 3 )
+Partition 3 (code_4 - 4 5 16 )
+Partition 4 (sp_8(D) - 8 )
+
+
+Replacing Expressions
+_1 replace with --> _1 = sp_8(D)->_endwin;
+
+_2 replace with --> _2 = sp_8(D)->_mouse_wrap;
+
+
+__attribute__((visibility ("default")))
+int endwin_sp (struct SCREEN * sp)
+{
+  int code;
+  int _1;
+  void (*<Tda1>) (struct screen *) _2;
+  int _3;
+  int _16(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (sp_8(D) != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 6>; [0.87%]
+;;    succ:       3
+;;                6
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = sp_8(D)->_endwin;
+  if (_1 != 3)
+    goto <bb 4>; [66.00%]
+  else
+    goto <bb 5>; [34.00%]
+;;    succ:       4
+;;                5
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  sp_8(D)->_endwin = 3;
+  _2 = sp_8(D)->_mouse_wrap;
+  _2 (sp_8(D));
+  _nc_screen_wrap ();
+  _nc_mvcur_wrap ();
+;;    succ:       5
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+;;                4
+  # code_4 = PHI <-1(3), 0(4)>
+  _3 = reset_shell_mode_sp (sp_8(D));
+  if (_3 == -1)
+    goto <bb 6>; [1.04%]
+  else
+    goto <bb 7>; [98.96%]
+;;    succ:       6
+;;                7
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+;;                2
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+;;                5
+  # code_5 = PHI <-1(6), code_4(5)>
+  return code_5;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB3->BB5 : PART.3 = -1
+Inserting a value copy on edge BB4->BB5 : PART.3 = 0
+Inserting a value copy on edge BB6->BB7 : PART.3 = -1
+
+;; Generating RTL for gimple basic block 2
+
+;; if (sp_8(D) != 0B)
+
+(insn 9 8 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 86 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_endwin.c":55:8 -1
+     (nil))
+
+(jump_insn 10 9 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_endwin.c":55:8 -1
+     (int_list:REG_BR_PROB 9341556 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; if (_1 != 3)
+
+(insn 12 11 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/v/f:DI 86 [ sp ])
+                    (const_int 736 [0x2e0])) [1 sp_8(D)->_endwin+0 S4 A64])
+            (const_int 3 [0x3]))) "../ncurses/./base/lib_endwin.c":56:5 -1
+     (nil))
+
+(jump_insn 13 12 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_endwin.c":56:5 -1
+     (int_list:REG_BR_PROB 365072228 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; sp_8(D)->_endwin = 3;
+
+(insn 15 14 0 (set (mem:SI (plus:DI (reg/v/f:DI 86 [ sp ])
+                (const_int 736 [0x2e0])) [1 sp_8(D)->_endwin+0 S4 A64])
+        (const_int 3 [0x3])) "../ncurses/./base/lib_endwin.c":64:23 -1
+     (nil))
+
+;; _2 (sp_8(D));
+
+(insn 16 15 17 (set (reg/f:DI 87)
+        (mem/f:DI (plus:DI (reg/v/f:DI 86 [ sp ])
+                (const_int 1064 [0x428])) [2 sp_8(D)->_mouse_wrap+0 S8 A64])) "../ncurses/./base/lib_endwin.c":65:6 -1
+     (nil))
+
+(insn 17 16 18 (set (reg:DI 5 di)
+        (reg/v/f:DI 86 [ sp ])) "../ncurses/./base/lib_endwin.c":65:6 -1
+     (nil))
+
+(call_insn 18 17 0 (call (mem:QI (reg/f:DI 87) [0 *_2 S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_endwin.c":65:6 -1
+     (expr_list:REG_CALL_DECL (nil)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; _nc_screen_wrap ();
+
+(call_insn 19 18 0 (call (mem:QI (symbol_ref:DI ("_nc_screen_wrap") [flags 0x41]  <function_decl 0x7f5a4eb30c00 _nc_screen_wrap>) [0 _nc_screen_wrap S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_endwin.c":66:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_screen_wrap") [flags 0x41]  <function_decl 0x7f5a4eb30c00 _nc_screen_wrap>)
+        (nil))
+    (nil))
+
+;; _nc_mvcur_wrap ();
+
+(call_insn 20 19 0 (call (mem:QI (symbol_ref:DI ("_nc_mvcur_wrap") [flags 0x41]  <function_decl 0x7f5a4eb30800 _nc_mvcur_wrap>) [0 _nc_mvcur_wrap S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_endwin.c":67:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_mvcur_wrap") [flags 0x41]  <function_decl 0x7f5a4eb30800 _nc_mvcur_wrap>)
+        (nil))
+    (nil))
+
+;; Generating RTL for gimple basic block 5
+
+;; 
+
+(code_label 21 20 22 3 (nil) [0 uses])
+
+(note 22 21 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _3 = reset_shell_mode_sp (sp_8(D));
+
+(insn 23 22 24 (set (reg:DI 5 di)
+        (reg/v/f:DI 86 [ sp ])) "../ncurses/./base/lib_endwin.c":71:6 -1
+     (nil))
+
+(call_insn 24 23 25 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("reset_shell_mode_sp") [flags 0x41]  <function_decl 0x7f5a4e9c5100 reset_shell_mode_sp>) [0 reset_shell_mode_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_endwin.c":71:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("reset_shell_mode_sp") [flags 0x41]  <function_decl 0x7f5a4e9c5100 reset_shell_mode_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+(insn 25 24 0 (set (reg:SI 84 [ _3 ])
+        (reg:SI 0 ax)) "../ncurses/./base/lib_endwin.c":71:6 -1
+     (nil))
+
+;; if (_3 == -1)
+
+(insn 26 25 27 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 84 [ _3 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_endwin.c":71:5 -1
+     (nil))
+
+(jump_insn 27 26 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_endwin.c":71:5 -1
+     (int_list:REG_BR_PROB 1062574916 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 28 27 29 2 (nil) [0 uses])
+
+(note 29 28 0 NOTE_INSN_BASIC_BLOCK)
+
+;; Generating RTL for gimple basic block 7
+
+;; 
+
+(code_label 30 29 31 4 (nil) [0 uses])
+
+(note 31 30 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return code_5;
+
+(jump_insn 32 31 33 (set (pc)
+        (label_ref 0)) "../ncurses/./base/lib_endwin.c":75:5 -1
+     (nil))
+
+(barrier 33 32 0)
+Edge 3->5 redirected to 10
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 7->9 redirected to 10
+Merging block 9 into block 8...
+Merged blocks 8 and 9.
+Merged 8 and 9 without moving.
+Removing jump 32.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 7 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741823 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741823 (estimated locally) (FALLTHRU)
+(note 7 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 86 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/lib_endwin.c":50:1 -1
+     (nil))
+(note 3 2 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 3 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 86 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_endwin.c":55:8 -1
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 28)
+            (pc))) "../ncurses/./base/lib_endwin.c":55:8 -1
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 28)
+;;  succ:       4 [99.1% (guessed)]  count:1064400271 (estimated locally) (FALLTHRU)
+;;              8 [0.9% (guessed)]  count:9341552 (estimated locally)
+
+;; basic block 4, loop depth 0, count 1064400271 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [99.1% (guessed)]  count:1064400271 (estimated locally) (FALLTHRU)
+(note 11 10 12 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/v/f:DI 86 [ sp ])
+                    (const_int 736 [0x2e0])) [1 sp_8(D)->_endwin+0 S4 A64])
+            (const_int 3 [0x3]))) "../ncurses/./base/lib_endwin.c":56:5 -1
+     (nil))
+(jump_insn 13 12 14 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 41)
+            (pc))) "../ncurses/./base/lib_endwin.c":56:5 806 {*jcc}
+     (int_list:REG_BR_PROB 365072228 (nil))
+ -> 41)
+;;  succ:       5 [66.0% (guessed)]  count:702504175 (estimated locally) (FALLTHRU)
+;;              6 [34.0% (guessed)]  count:361896096 (estimated locally)
+
+;; basic block 5, loop depth 0, count 702504176 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [66.0% (guessed)]  count:702504175 (estimated locally) (FALLTHRU)
+(note 14 13 15 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 5 (set (mem:SI (plus:DI (reg/v/f:DI 86 [ sp ])
+                (const_int 736 [0x2e0])) [1 sp_8(D)->_endwin+0 S4 A64])
+        (const_int 3 [0x3])) "../ncurses/./base/lib_endwin.c":64:23 -1
+     (nil))
+(insn 16 15 17 5 (set (reg/f:DI 87)
+        (mem/f:DI (plus:DI (reg/v/f:DI 86 [ sp ])
+                (const_int 1064 [0x428])) [2 sp_8(D)->_mouse_wrap+0 S8 A64])) "../ncurses/./base/lib_endwin.c":65:6 -1
+     (nil))
+(insn 17 16 18 5 (set (reg:DI 5 di)
+        (reg/v/f:DI 86 [ sp ])) "../ncurses/./base/lib_endwin.c":65:6 -1
+     (nil))
+(call_insn 18 17 19 5 (call (mem:QI (reg/f:DI 87) [0 *_2 S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_endwin.c":65:6 -1
+     (expr_list:REG_CALL_DECL (nil)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(call_insn 19 18 20 5 (call (mem:QI (symbol_ref:DI ("_nc_screen_wrap") [flags 0x41]  <function_decl 0x7f5a4eb30c00 _nc_screen_wrap>) [0 _nc_screen_wrap S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_endwin.c":66:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_screen_wrap") [flags 0x41]  <function_decl 0x7f5a4eb30c00 _nc_screen_wrap>)
+        (nil))
+    (nil))
+(call_insn 20 19 5 5 (call (mem:QI (symbol_ref:DI ("_nc_mvcur_wrap") [flags 0x41]  <function_decl 0x7f5a4eb30800 _nc_mvcur_wrap>) [0 _nc_mvcur_wrap S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_endwin.c":67:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_mvcur_wrap") [flags 0x41]  <function_decl 0x7f5a4eb30800 _nc_mvcur_wrap>)
+        (nil))
+    (nil))
+(insn 5 20 38 5 (set (reg/v:SI 85 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_endwin.c":69:11 -1
+     (nil))
+(jump_insn 38 5 39 5 (set (pc)
+        (label_ref 21)) -1
+     (nil)
+ -> 21)
+;;  succ:       7 [always]  count:702504176 (estimated locally)
+
+(barrier 39 38 41)
+;; basic block 6, loop depth 0, count 361896096 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [34.0% (guessed)]  count:361896096 (estimated locally)
+(code_label 41 39 40 6 5 (nil) [1 uses])
+(note 40 41 4 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 4 40 21 6 (set (reg/v:SI 85 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_endwin.c":51:9 -1
+     (nil))
+;;  succ:       7 [always]  count:361896096 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 1064400272 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       6 [always]  count:361896096 (estimated locally) (FALLTHRU)
+;;              5 [always]  count:702504176 (estimated locally)
+(code_label 21 4 22 7 3 (nil) [1 uses])
+(note 22 21 23 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 24 7 (set (reg:DI 5 di)
+        (reg/v/f:DI 86 [ sp ])) "../ncurses/./base/lib_endwin.c":71:6 -1
+     (nil))
+(call_insn 24 23 25 7 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("reset_shell_mode_sp") [flags 0x41]  <function_decl 0x7f5a4e9c5100 reset_shell_mode_sp>) [0 reset_shell_mode_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_endwin.c":71:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("reset_shell_mode_sp") [flags 0x41]  <function_decl 0x7f5a4e9c5100 reset_shell_mode_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 25 24 26 7 (set (reg:SI 84 [ _3 ])
+        (reg:SI 0 ax)) "../ncurses/./base/lib_endwin.c":71:6 -1
+     (nil))
+(insn 26 25 27 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 84 [ _3 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_endwin.c":71:5 -1
+     (nil))
+(jump_insn 27 26 28 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 34)
+            (pc))) "../ncurses/./base/lib_endwin.c":71:5 806 {*jcc}
+     (int_list:REG_BR_PROB 1062574916 (nil))
+ -> 34)
+;;  succ:       8 [1.0% (guessed)]  count:11069760 (estimated locally) (FALLTHRU)
+;;              10 [99.0% (guessed)]  count:1053330512 (estimated locally)
+
+;; basic block 8, loop depth 0, count 20411312 (estimated locally), maybe hot
+;;  prev block 7, next block 10, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [1.0% (guessed)]  count:11069760 (estimated locally) (FALLTHRU)
+;;              2 [0.9% (guessed)]  count:9341552 (estimated locally)
+(code_label 28 27 29 8 2 (nil) [1 uses])
+(note 29 28 6 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 6 29 34 8 (set (reg/v:SI 85 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_endwin.c":72:11 -1
+     (nil))
+;;  succ:       10 [always]  count:20411312 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       8 [always]  count:20411312 (estimated locally) (FALLTHRU)
+;;              7 [99.0% (guessed)]  count:1053330512 (estimated locally)
+(code_label 34 6 37 10 1 (nil) [1 uses])
+(note 37 34 35 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 35 37 36 10 (set (reg/i:SI 0 ax)
+        (reg/v:SI 85 [ <retval> ])) "../ncurses/./base/lib_endwin.c":76:1 -1
+     (nil))
+(insn 36 35 0 10 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_endwin.c":76:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+
+;; Function endwin (endwin, funcdef_no=92, decl_uid=5609, cgraph_uid=93, symbol_order=92)
+
+__attribute__((visibility ("default")))
+int endwin ()
+{
+  int code;
+  struct SCREEN * SP.0_1;
+  int _5;
+  void (*<Tda1>) (struct screen *) _6;
+  int _7;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.0_1 = SP;
+  if (SP.0_1 != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 6>; [0.87%]
+;;    succ:       3
+;;                6
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _5 = SP.0_1->_endwin;
+  if (_5 != 3)
+    goto <bb 4>; [66.00%]
+  else
+    goto <bb 5>; [34.00%]
+;;    succ:       4
+;;                5
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  SP.0_1->_endwin = 3;
+  _6 = SP.0_1->_mouse_wrap;
+  _6 (SP.0_1);
+  _nc_screen_wrap ();
+  _nc_mvcur_wrap ();
+;;    succ:       5
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+;;                4
+  # code_9 = PHI <-1(3), 0(4)>
+  _7 = reset_shell_mode_sp (SP.0_1);
+  if (_7 == -1)
+    goto <bb 6>; [1.04%]
+  else
+    goto <bb 7>; [98.96%]
+;;    succ:       6
+;;                7
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+;;                2
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+;;                5
+  # code_8 = PHI <-1(6), code_9(5)>
+  return code_8;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (SP.0_1 - 1 )
+Partition 4 (_4(D) - 4 )
+Partition 5 (_5 - 5 )
+Partition 6 (_6 - 6 )
+Partition 7 (_7 - 7 )
+Partition 8 (code_8 - 8 )
+Partition 9 (code_9 - 9 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_4(D) - 4 8 9 )
+
+
+Partition map 
+
+Partition 0 (_4(D) - 4 )
+Partition 1 (code_8 - 8 )
+Partition 2 (code_9 - 9 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(19620, 0) code_8 <-> code_9
+(10000, 0) _4(D) <-> code_8
+
+Partition map 
+
+Partition 0 (_4(D) - 4 )
+Partition 1 (code_8 - 8 )
+Partition 2 (code_9 - 9 )
+
+Coalesce list: (8)code_8 & (9)code_9 [map: 1, 2] : Success -> 1
+Coalesce list: (4)_4(D) & (8)code_8 [map: 0, 1] : Success -> 1
+After Coalescing:
+
+Partition map 
+
+Partition 0 (SP.0_1 - 1 )
+Partition 1 (_5 - 5 )
+Partition 2 (_6 - 6 )
+Partition 3 (_7 - 7 )
+Partition 4 (code_8 - 4 8 9 )
+
+
+Replacing Expressions
+_5 replace with --> _5 = SP.0_1->_endwin;
+
+_6 replace with --> _6 = SP.0_1->_mouse_wrap;
+
+
+__attribute__((visibility ("default")))
+int endwin ()
+{
+  int code;
+  struct SCREEN * SP.0_1;
+  int _4(D);
+  int _5;
+  void (*<Tda1>) (struct screen *) _6;
+  int _7;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.0_1 = SP;
+  if (SP.0_1 != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 6>; [0.87%]
+;;    succ:       3
+;;                6
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _5 = SP.0_1->_endwin;
+  if (_5 != 3)
+    goto <bb 4>; [66.00%]
+  else
+    goto <bb 5>; [34.00%]
+;;    succ:       4
+;;                5
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  SP.0_1->_endwin = 3;
+  _6 = SP.0_1->_mouse_wrap;
+  _6 (SP.0_1);
+  _nc_screen_wrap ();
+  _nc_mvcur_wrap ();
+;;    succ:       5
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+;;                4
+  # code_9 = PHI <-1(3), 0(4)>
+  _7 = reset_shell_mode_sp (SP.0_1);
+  if (_7 == -1)
+    goto <bb 6>; [1.04%]
+  else
+    goto <bb 7>; [98.96%]
+;;    succ:       6
+;;                7
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+;;                2
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+;;                5
+  # code_8 = PHI <-1(6), code_9(5)>
+  return code_8;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB3->BB5 : PART.4 = -1
+Inserting a value copy on edge BB4->BB5 : PART.4 = 0
+Inserting a value copy on edge BB6->BB7 : PART.4 = -1
+
+;; Generating RTL for gimple basic block 2
+
+;; SP.0_1 = SP;
+
+(insn 8 7 0 (set (reg/f:DI 82 [ SP.0_1 ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f5a4eae0cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/lib_endwin.c":82:12 -1
+     (nil))
+
+;; if (SP.0_1 != 0B)
+
+(insn 9 8 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ SP.0_1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_endwin.c":55:8 -1
+     (nil))
+
+(jump_insn 10 9 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_endwin.c":55:8 -1
+     (int_list:REG_BR_PROB 9341556 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; if (_5 != 3)
+
+(insn 12 11 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/f:DI 82 [ SP.0_1 ])
+                    (const_int 736 [0x2e0])) [1 SP.0_1->_endwin+0 S4 A64])
+            (const_int 3 [0x3]))) "../ncurses/./base/lib_endwin.c":56:5 -1
+     (nil))
+
+(jump_insn 13 12 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_endwin.c":56:5 -1
+     (int_list:REG_BR_PROB 365072228 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; SP.0_1->_endwin = 3;
+
+(insn 15 14 0 (set (mem:SI (plus:DI (reg/f:DI 82 [ SP.0_1 ])
+                (const_int 736 [0x2e0])) [1 SP.0_1->_endwin+0 S4 A64])
+        (const_int 3 [0x3])) "../ncurses/./base/lib_endwin.c":64:23 -1
+     (nil))
+
+;; _6 (SP.0_1);
+
+(insn 16 15 17 (set (reg/f:DI 87)
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ SP.0_1 ])
+                (const_int 1064 [0x428])) [2 SP.0_1->_mouse_wrap+0 S8 A64])) "../ncurses/./base/lib_endwin.c":65:6 -1
+     (nil))
+
+(insn 17 16 18 (set (reg:DI 5 di)
+        (reg/f:DI 82 [ SP.0_1 ])) "../ncurses/./base/lib_endwin.c":65:6 -1
+     (nil))
+
+(call_insn 18 17 0 (call (mem:QI (reg/f:DI 87) [0 *_6 S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_endwin.c":65:6 -1
+     (expr_list:REG_CALL_DECL (nil)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; _nc_screen_wrap ();
+
+(call_insn 19 18 0 (call (mem:QI (symbol_ref:DI ("_nc_screen_wrap") [flags 0x41]  <function_decl 0x7f5a4eb30c00 _nc_screen_wrap>) [0 _nc_screen_wrap S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_endwin.c":66:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_screen_wrap") [flags 0x41]  <function_decl 0x7f5a4eb30c00 _nc_screen_wrap>)
+        (nil))
+    (nil))
+
+;; _nc_mvcur_wrap ();
+
+(call_insn 20 19 0 (call (mem:QI (symbol_ref:DI ("_nc_mvcur_wrap") [flags 0x41]  <function_decl 0x7f5a4eb30800 _nc_mvcur_wrap>) [0 _nc_mvcur_wrap S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_endwin.c":67:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_mvcur_wrap") [flags 0x41]  <function_decl 0x7f5a4eb30800 _nc_mvcur_wrap>)
+        (nil))
+    (nil))
+
+;; Generating RTL for gimple basic block 5
+
+;; 
+
+(code_label 21 20 22 13 (nil) [0 uses])
+
+(note 22 21 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _7 = reset_shell_mode_sp (SP.0_1);
+
+(insn 23 22 24 (set (reg:DI 5 di)
+        (reg/f:DI 82 [ SP.0_1 ])) "../ncurses/./base/lib_endwin.c":71:6 -1
+     (nil))
+
+(call_insn 24 23 25 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("reset_shell_mode_sp") [flags 0x41]  <function_decl 0x7f5a4e9c5100 reset_shell_mode_sp>) [0 reset_shell_mode_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_endwin.c":71:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("reset_shell_mode_sp") [flags 0x41]  <function_decl 0x7f5a4e9c5100 reset_shell_mode_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+(insn 25 24 0 (set (reg:SI 85 [ _7 ])
+        (reg:SI 0 ax)) "../ncurses/./base/lib_endwin.c":71:6 -1
+     (nil))
+
+;; if (_7 == -1)
+
+(insn 26 25 27 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 85 [ _7 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_endwin.c":71:5 -1
+     (nil))
+
+(jump_insn 27 26 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_endwin.c":71:5 -1
+     (int_list:REG_BR_PROB 1062574916 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 28 27 29 12 (nil) [0 uses])
+
+(note 29 28 0 NOTE_INSN_BASIC_BLOCK)
+
+;; Generating RTL for gimple basic block 7
+
+;; 
+
+(code_label 30 29 31 14 (nil) [0 uses])
+
+(note 31 30 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return code_8;
+
+(jump_insn 32 31 33 (set (pc)
+        (label_ref 0)) "../ncurses/./base/lib_endwin.c":82:12 -1
+     (nil))
+
+(barrier 33 32 0)
+Edge 3->5 redirected to 10
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 7->9 redirected to 10
+Merging block 9 into block 8...
+Merged blocks 8 and 9.
+Merged 8 and 9 without moving.
+Removing jump 32.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 6 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 2 9 2 (set (reg/f:DI 82 [ SP.0_1 ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f5a4eae0cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/lib_endwin.c":82:12 -1
+     (nil))
+(insn 9 8 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ SP.0_1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_endwin.c":55:8 -1
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 28)
+            (pc))) "../ncurses/./base/lib_endwin.c":55:8 -1
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 28)
+;;  succ:       4 [99.1% (guessed)]  count:1064400272 (estimated locally) (FALLTHRU)
+;;              8 [0.9% (guessed)]  count:9341552 (estimated locally)
+
+;; basic block 4, loop depth 0, count 1064400272 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [99.1% (guessed)]  count:1064400272 (estimated locally) (FALLTHRU)
+(note 11 10 12 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/f:DI 82 [ SP.0_1 ])
+                    (const_int 736 [0x2e0])) [1 SP.0_1->_endwin+0 S4 A64])
+            (const_int 3 [0x3]))) "../ncurses/./base/lib_endwin.c":56:5 -1
+     (nil))
+(jump_insn 13 12 14 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 41)
+            (pc))) "../ncurses/./base/lib_endwin.c":56:5 806 {*jcc}
+     (int_list:REG_BR_PROB 365072228 (nil))
+ -> 41)
+;;  succ:       5 [66.0% (guessed)]  count:702504176 (estimated locally) (FALLTHRU)
+;;              6 [34.0% (guessed)]  count:361896096 (estimated locally)
+
+;; basic block 5, loop depth 0, count 702504177 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [66.0% (guessed)]  count:702504176 (estimated locally) (FALLTHRU)
+(note 14 13 15 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 5 (set (mem:SI (plus:DI (reg/f:DI 82 [ SP.0_1 ])
+                (const_int 736 [0x2e0])) [1 SP.0_1->_endwin+0 S4 A64])
+        (const_int 3 [0x3])) "../ncurses/./base/lib_endwin.c":64:23 -1
+     (nil))
+(insn 16 15 17 5 (set (reg/f:DI 87)
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ SP.0_1 ])
+                (const_int 1064 [0x428])) [2 SP.0_1->_mouse_wrap+0 S8 A64])) "../ncurses/./base/lib_endwin.c":65:6 -1
+     (nil))
+(insn 17 16 18 5 (set (reg:DI 5 di)
+        (reg/f:DI 82 [ SP.0_1 ])) "../ncurses/./base/lib_endwin.c":65:6 -1
+     (nil))
+(call_insn 18 17 19 5 (call (mem:QI (reg/f:DI 87) [0 *_6 S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_endwin.c":65:6 -1
+     (expr_list:REG_CALL_DECL (nil)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(call_insn 19 18 20 5 (call (mem:QI (symbol_ref:DI ("_nc_screen_wrap") [flags 0x41]  <function_decl 0x7f5a4eb30c00 _nc_screen_wrap>) [0 _nc_screen_wrap S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_endwin.c":66:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_screen_wrap") [flags 0x41]  <function_decl 0x7f5a4eb30c00 _nc_screen_wrap>)
+        (nil))
+    (nil))
+(call_insn 20 19 4 5 (call (mem:QI (symbol_ref:DI ("_nc_mvcur_wrap") [flags 0x41]  <function_decl 0x7f5a4eb30800 _nc_mvcur_wrap>) [0 _nc_mvcur_wrap S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_endwin.c":67:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_mvcur_wrap") [flags 0x41]  <function_decl 0x7f5a4eb30800 _nc_mvcur_wrap>)
+        (nil))
+    (nil))
+(insn 4 20 38 5 (set (reg/v:SI 86 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_endwin.c":69:11 -1
+     (nil))
+(jump_insn 38 4 39 5 (set (pc)
+        (label_ref 21)) -1
+     (nil)
+ -> 21)
+;;  succ:       7 [always]  count:702504177 (estimated locally)
+
+(barrier 39 38 41)
+;; basic block 6, loop depth 0, count 361896096 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [34.0% (guessed)]  count:361896096 (estimated locally)
+(code_label 41 39 40 6 15 (nil) [1 uses])
+(note 40 41 3 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 3 40 21 6 (set (reg/v:SI 86 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_endwin.c":51:9 -1
+     (nil))
+;;  succ:       7 [always]  count:361896096 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 1064400273 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       6 [always]  count:361896096 (estimated locally) (FALLTHRU)
+;;              5 [always]  count:702504177 (estimated locally)
+(code_label 21 3 22 7 13 (nil) [1 uses])
+(note 22 21 23 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 24 7 (set (reg:DI 5 di)
+        (reg/f:DI 82 [ SP.0_1 ])) "../ncurses/./base/lib_endwin.c":71:6 -1
+     (nil))
+(call_insn 24 23 25 7 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("reset_shell_mode_sp") [flags 0x41]  <function_decl 0x7f5a4e9c5100 reset_shell_mode_sp>) [0 reset_shell_mode_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_endwin.c":71:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("reset_shell_mode_sp") [flags 0x41]  <function_decl 0x7f5a4e9c5100 reset_shell_mode_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 25 24 26 7 (set (reg:SI 85 [ _7 ])
+        (reg:SI 0 ax)) "../ncurses/./base/lib_endwin.c":71:6 -1
+     (nil))
+(insn 26 25 27 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 85 [ _7 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_endwin.c":71:5 -1
+     (nil))
+(jump_insn 27 26 28 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 34)
+            (pc))) "../ncurses/./base/lib_endwin.c":71:5 806 {*jcc}
+     (int_list:REG_BR_PROB 1062574916 (nil))
+ -> 34)
+;;  succ:       8 [1.0% (guessed)]  count:11069760 (estimated locally) (FALLTHRU)
+;;              10 [99.0% (guessed)]  count:1053330513 (estimated locally)
+
+;; basic block 8, loop depth 0, count 20411312 (estimated locally), maybe hot
+;;  prev block 7, next block 10, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [1.0% (guessed)]  count:11069760 (estimated locally) (FALLTHRU)
+;;              2 [0.9% (guessed)]  count:9341552 (estimated locally)
+(code_label 28 27 29 8 12 (nil) [1 uses])
+(note 29 28 5 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 5 29 34 8 (set (reg/v:SI 86 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_endwin.c":72:11 -1
+     (nil))
+;;  succ:       10 [always]  count:20411312 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 1073741825 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       8 [always]  count:20411312 (estimated locally) (FALLTHRU)
+;;              7 [99.0% (guessed)]  count:1053330513 (estimated locally)
+(code_label 34 5 37 10 11 (nil) [1 uses])
+(note 37 34 35 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 35 37 36 10 (set (reg/i:SI 0 ax)
+        (reg/v:SI 86 [ <retval> ])) "../ncurses/./base/lib_endwin.c":83:1 -1
+     (nil))
+(insn 36 35 0 10 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_endwin.c":83:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741825 (estimated locally) (FALLTHRU)
+

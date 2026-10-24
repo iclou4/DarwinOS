@@ -1,0 +1,90 @@
+.\"
+.\" SPDX-License-Identifier: BSD-2-Clause
+.\"
+.\" Copyright (c) 2008 Alexander Motin <mav@FreeBSD.org>
+.\" All rights reserved.
+.\"
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions
+.\" are met:
+.\" 1. Redistributions of source code must retain the above copyright
+.\"    notice, this list of conditions and the following disclaimer.
+.\" 2. The name of the author may not be used to endorse or promote products
+.\"    derived from this software without specific prior written permission.
+.\"
+.\" THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+.\" ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+.\" IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+.\" ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+.\" FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+.\" DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+.\" OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+.\" HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+.\" LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+.\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+.\" SUCH DAMAGE.
+.\"
+.Dd October 3, 2025
+.Dt SDHCI 4
+.Os
+.Sh NAME
+.Nm sdhci
+.Nd PCI SD Host Controller bridge driver
+.Sh SYNOPSIS
+To compile this driver into the kernel, place the following lines in your
+kernel configuration file:
+.Bd -ragged -offset indent
+.Cd "device mmc"
+.Cd "device mmcsd"
+.Cd "device sdhci"
+.Ed
+.Pp
+Alternatively, to load the driver as a module at boot time, place the
+following lines in
+.Xr loader.conf 5 :
+.Bd -literal -offset indent
+mmc_load="YES"
+mmcsd_load="YES"
+sdhci_load="YES"
+.Ed
+.Sh DESCRIPTION
+The
+.Nm
+driver supports PCI devices with class 8 and subclass 5 according to
+SD Host Controller Specification.
+Driver supports up to six high speed 4bit MMC/SD slots per controller.
+Driver attaches mmc bus to the respective slot on card insertion and
+detaches it on card removing.
+.Sh HARDWARE
+The
+.Nm
+driver supports the SD Host Controller Specification.
+When attaching via the PCI bus,
+the controller is automatically configured.
+Many SoC chips provide a SDHCI controller directly mapped to I/O memory.
+For those, the controller may be configured using
+.Xr fdt 4
+or
+.Xr acpi 4
+methods, supplied by your board's vendor.
+.Pp
+Unlike most other drivers that support a generic standard,
+.Nm
+requires a large number of quirks to cope with hardware bugs,
+proprietary registers and poorly specified power management.
+While many chipsets from
+Intel, Xilinx, Rockchip, Frescale, Ricoh, and TI have these entries,
+suboptimal performance may result when using some controllers.
+Quirks and custom configuration are most often required
+when the device is configured via
+.Xr fdt 4
+or
+.Xr acpi 4 .
+.Sh SEE ALSO
+.Xr mmc 4 ,
+.Xr mmcsd 4
+.Rs
+.%T "SD Specifications, Part 2, SD Host Controller, Simplified Specification"
+.Re
+.Sh AUTHORS
+.An Alexander Motin Aq Mt mav@FreeBSD.org

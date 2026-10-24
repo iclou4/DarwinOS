@@ -1,0 +1,2131 @@
+
+;; Function _nc_timed_wait (_nc_timed_wait, funcdef_no=92, decl_uid=8790, cgraph_uid=93, symbol_order=92)
+
+__attribute__((visibility ("default")))
+int _nc_timed_wait (const struct SCREEN * sp, int mode, int milliseconds, int * timeleft)
+{
+  long int t0$tv_nsec;
+  long int t0$tv_sec;
+  long int res;
+  struct timespec t1;
+  struct timespec t1;
+  struct pollfd fd_list[2];
+  int fd;
+  int result;
+  int count;
+  int _1;
+  int _2;
+  int _3;
+  long unsigned int _5;
+  struct pollfd * _6;
+  int _11;
+  short int _43;
+  int iftmp.0_51;
+  long int pretmp_56;
+  long unsigned int prephitmp_59;
+  short int _60;
+  short int _61;
+  int _66;
+  int _67;
+  long int prephitmp_68;
+  long unsigned int _69;
+  int _71;
+  long unsigned int prephitmp_72;
+  long int prephitmp_73;
+  long int _75;
+  long int _76;
+  long int _78;
+  long int _81;
+  long int _82;
+  long int _84;
+  long int _85;
+  int _99;
+  short int _101;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  clock_gettime (0, &t1);
+  t0$tv_sec_22 = t1.tv_sec;
+  t0$tv_nsec_24 = t1.tv_nsec;
+  t1 ={v} {CLOBBER};
+  __builtin_memset (&fd_list, 0, 16);
+  _1 = mode_33(D) & 1;
+  if (_1 != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _2 = sp_34(D)->_ifd;
+  MEM[(struct pollfd *)&fd_list].fd = _2;
+  MEM[(struct pollfd *)&fd_list].events = 1;
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+;;                3
+  # count_20 = PHI <_1(2), _1(3)>
+  # prephitmp_59 = PHI <0(2), 1(3)>
+  _3 = mode_33(D) & 2;
+  if (_3 != 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+;;    succ:       5
+;;                7
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  fd_37 = sp_34(D)->_mouse_fd;
+  if (fd_37 >= 0)
+    goto <bb 6>; [59.00%]
+  else
+    goto <bb 7>; [41.00%]
+;;    succ:       6
+;;                7
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  _5 = prephitmp_59 * 8;
+  _6 = &fd_list + _5;
+  _6->fd = fd_37;
+  _6->events = 1;
+  count_40 = count_20 + 1;
+  _69 = (long unsigned int) count_40;
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       4
+;;                5
+;;                6
+  # prephitmp_72 = PHI <prephitmp_59(4), prephitmp_59(5), _69(6)>
+  iftmp.0_51 = __poll_alias (&fd_list, prephitmp_72, milliseconds_41(D));
+  _71 = clock_gettime (0, &t1);
+  if (_71 == -1)
+    goto <bb 11>; [34.00%]
+  else
+    goto <bb 8>; [66.00%]
+;;    succ:       11
+;;                8
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+  _75 = t1.tv_nsec;
+  pretmp_56 = t1.tv_sec;
+  if (t0$tv_nsec_24 > _75)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 10>; [50.00%]
+;;    succ:       9
+;;                10
+
+;;   basic block 9, loop depth 0
+;;    pred:       8
+  _76 = _75 + 1000000000;
+  _78 = pretmp_56 + -1;
+;;    succ:       10
+
+;;   basic block 10, loop depth 0
+;;    pred:       8
+;;                9
+  # prephitmp_73 = PHI <pretmp_56(8), _78(9)>
+  # prephitmp_68 = PHI <_75(8), _76(9)>
+  _81 = prephitmp_73 - t0$tv_sec_22;
+  _82 = _81 * 1000;
+  _84 = prephitmp_68 - t0$tv_nsec_24;
+  _85 = _84 / 1000000;
+  res_86 = _82 + _85;
+;;    succ:       11
+
+;;   basic block 11, loop depth 0
+;;    pred:       7
+;;                10
+  # res_87 = PHI <1(7), res_86(10)>
+  t1 ={v} {CLOBBER};
+  if (milliseconds_41(D) >= 0)
+    goto <bb 12>; [59.00%]
+  else
+    goto <bb 13>; [41.00%]
+;;    succ:       12
+;;                13
+
+;;   basic block 12, loop depth 0
+;;    pred:       11
+  _11 = (int) res_87;
+  milliseconds_44 = milliseconds_41(D) - _11;
+;;    succ:       13
+
+;;   basic block 13, loop depth 0
+;;    pred:       11
+;;                12
+  # milliseconds_19 = PHI <milliseconds_41(D)(11), milliseconds_44(12)>
+  if (timeleft_45(D) != 0B)
+    goto <bb 14>; [70.00%]
+  else
+    goto <bb 15>; [30.00%]
+;;    succ:       14
+;;                15
+
+;;   basic block 14, loop depth 0
+;;    pred:       13
+  *timeleft_45(D) = milliseconds_19;
+;;    succ:       15
+
+;;   basic block 15, loop depth 0
+;;    pred:       13
+;;                14
+  if (iftmp.0_51 > 0)
+    goto <bb 16>; [29.50%]
+  else
+    goto <bb 21>; [70.50%]
+;;    succ:       16
+;;                21
+
+;;   basic block 16, loop depth 0
+;;    pred:       15
+  if (_1 != 0)
+    goto <bb 17>; [50.00%]
+  else
+    goto <bb 18>; [50.00%]
+;;    succ:       17
+;;                18
+
+;;   basic block 17, loop depth 0
+;;    pred:       16
+  _101 = MEM[(struct pollfd *)&fd_list].revents;
+  _43 = _101 & 1;
+  _99 = (int) _43;
+;;    succ:       18
+
+;;   basic block 18, loop depth 0
+;;    pred:       16
+;;                17
+  # result_62 = PHI <_1(16), _99(17)>
+  _66 = mode_33(D) >> 1;
+  _67 = _66 & 1;
+  if (_67 != 0)
+    goto <bb 19>; [50.00%]
+  else
+    goto <bb 21>; [50.00%]
+;;    succ:       19
+;;                21
+
+;;   basic block 19, loop depth 0
+;;    pred:       18
+  _60 = MEM[(struct pollfd *)&fd_list + 8B].revents;
+  _61 = _60 & 1;
+  if (_61 != 0)
+    goto <bb 20>; [50.00%]
+  else
+    goto <bb 21>; [50.00%]
+;;    succ:       20
+;;                21
+
+;;   basic block 20, loop depth 0
+;;    pred:       19
+  result_58 = result_62 | 2;
+;;    succ:       21
+
+;;   basic block 21, loop depth 0
+;;    pred:       20
+;;                19
+;;                15
+;;                18
+  # result_25 = PHI <result_58(20), result_62(19), 0(15), result_62(18)>
+  fd_list ={v} {CLOBBER};
+  return result_25;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 5 (_5 - 5 )
+Partition 6 (_6 - 6 )
+Partition 11 (_11 - 11 )
+Partition 19 (milliseconds_19 - 19 )
+Partition 20 (count_20 - 20 )
+Partition 22 (t0$tv_sec_22 - 22 )
+Partition 24 (t0$tv_nsec_24 - 24 )
+Partition 25 (result_25 - 25 )
+Partition 31 (t0$tv_nsec_31(D) - 31 )
+Partition 33 (mode_33(D) - 33 )
+Partition 34 (sp_34(D) - 34 )
+Partition 37 (fd_37 - 37 )
+Partition 40 (count_40 - 40 )
+Partition 41 (milliseconds_41(D) - 41 )
+Partition 43 (_43 - 43 )
+Partition 44 (milliseconds_44 - 44 )
+Partition 45 (timeleft_45(D) - 45 )
+Partition 51 (iftmp.0_51 - 51 )
+Partition 56 (pretmp_56 - 56 )
+Partition 57 (t0$tv_sec_57(D) - 57 )
+Partition 58 (result_58 - 58 )
+Partition 59 (prephitmp_59 - 59 )
+Partition 60 (_60 - 60 )
+Partition 61 (_61 - 61 )
+Partition 62 (result_62 - 62 )
+Partition 66 (_66 - 66 )
+Partition 67 (_67 - 67 )
+Partition 68 (prephitmp_68 - 68 )
+Partition 69 (_69 - 69 )
+Partition 71 (_71 - 71 )
+Partition 72 (prephitmp_72 - 72 )
+Partition 73 (prephitmp_73 - 73 )
+Partition 75 (_75 - 75 )
+Partition 76 (_76 - 76 )
+Partition 78 (_78 - 78 )
+Partition 81 (_81 - 81 )
+Partition 82 (_82 - 82 )
+Partition 84 (_84 - 84 )
+Partition 85 (_85 - 85 )
+Partition 86 (res_86 - 86 )
+Partition 87 (res_87 - 87 )
+Partition 90 (_90(D) - 90 )
+Partition 99 (_99 - 99 )
+Partition 101 (_101 - 101 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_1 - 1 20 25 58 62 90 99 )
+Partition 1, base 1 (milliseconds_19 - 19 41 44 )
+Partition 4, base 2 (mode_33(D) - 33 )
+Partition 5, base 3 (sp_34(D) - 34 )
+Partition 8, base 4 (timeleft_45(D) - 45 )
+Partition 11, base 6 (prephitmp_59 - 59 69 72 )
+Partition 13, base 7 (prephitmp_68 - 68 75 76 )
+Partition 16, base 5 (pretmp_56 - 56 73 78 )
+Partition 20, base 8 (res_86 - 86 87 )
+
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (milliseconds_19 - 19 )
+Partition 2 (count_20 - 20 )
+Partition 3 (result_25 - 25 )
+Partition 4 (mode_33(D) - 33 )
+Partition 5 (sp_34(D) - 34 )
+Partition 6 (milliseconds_41(D) - 41 )
+Partition 7 (milliseconds_44 - 44 )
+Partition 8 (timeleft_45(D) - 45 )
+Partition 9 (pretmp_56 - 56 )
+Partition 10 (result_58 - 58 )
+Partition 11 (prephitmp_59 - 59 )
+Partition 12 (result_62 - 62 )
+Partition 13 (prephitmp_68 - 68 )
+Partition 14 (_69 - 69 )
+Partition 15 (prephitmp_72 - 72 )
+Partition 16 (prephitmp_73 - 73 )
+Partition 17 (_75 - 75 )
+Partition 18 (_76 - 76 )
+Partition 19 (_78 - 78 )
+Partition 20 (res_86 - 86 )
+Partition 21 (res_87 - 87 )
+Partition 22 (_90(D) - 90 )
+Partition 23 (_99 - 99 )
+
+
+Conflict graph:
+0: 2
+2: 0
+
+After sorting:
+Sorted Coalesce list:
+(15000, 0) _1 <-> count_20
+(14100, 0) prephitmp_59 <-> prephitmp_72
+(10000, 0) result_25 <-> _90(D)
+(8200, 0) milliseconds_19 <-> milliseconds_41(D)
+(6600, 0) pretmp_56 <-> prephitmp_73
+(6600, 0) prephitmp_68 <-> _75
+(6600, 0) res_86 <-> res_87
+(5900, 0) milliseconds_19 <-> milliseconds_44
+(4426, 0) result_25 <-> result_62
+(3300, 0) prephitmp_73 <-> _78
+(3300, 0) prephitmp_68 <-> _76
+(2950, 0) _69 <-> prephitmp_72
+(2950, 1) _1 <-> result_62
+(1475, 0) result_62 <-> _99
+(738, 0) result_25 <-> result_58
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (milliseconds_19 - 19 )
+Partition 2 (count_20 - 20 )
+Partition 3 (result_25 - 25 )
+Partition 4 (mode_33(D) - 33 )
+Partition 5 (sp_34(D) - 34 )
+Partition 6 (milliseconds_41(D) - 41 )
+Partition 7 (milliseconds_44 - 44 )
+Partition 8 (timeleft_45(D) - 45 )
+Partition 9 (pretmp_56 - 56 )
+Partition 10 (result_58 - 58 )
+Partition 11 (prephitmp_59 - 59 )
+Partition 12 (result_62 - 62 )
+Partition 13 (prephitmp_68 - 68 )
+Partition 14 (_69 - 69 )
+Partition 15 (prephitmp_72 - 72 )
+Partition 16 (prephitmp_73 - 73 )
+Partition 17 (_75 - 75 )
+Partition 18 (_76 - 76 )
+Partition 19 (_78 - 78 )
+Partition 20 (res_86 - 86 )
+Partition 21 (res_87 - 87 )
+Partition 22 (_90(D) - 90 )
+Partition 23 (_99 - 99 )
+
+Coalesce list: (1)_1 & (20)count_20 [map: 0, 2] : Fail due to conflict
+Coalesce list: (59)prephitmp_59 & (72)prephitmp_72 [map: 11, 15] : Success -> 11
+Coalesce list: (25)result_25 & (90)_90(D) [map: 3, 22] : Success -> 3
+Coalesce list: (19)milliseconds_19 & (41)milliseconds_41(D) [map: 1, 6] : Success -> 1
+Coalesce list: (56)pretmp_56 & (73)prephitmp_73 [map: 9, 16] : Success -> 9
+Coalesce list: (68)prephitmp_68 & (75)_75 [map: 13, 17] : Success -> 13
+Coalesce list: (86)res_86 & (87)res_87 [map: 20, 21] : Success -> 20
+Coalesce list: (19)milliseconds_19 & (44)milliseconds_44 [map: 1, 7] : Success -> 1
+Coalesce list: (25)result_25 & (62)result_62 [map: 3, 12] : Success -> 3
+Coalesce list: (73)pretmp_56 & (78)_78 [map: 9, 19] : Success -> 9
+Coalesce list: (68)prephitmp_68 & (76)_76 [map: 13, 18] : Success -> 13
+Coalesce list: (69)_69 & (72)prephitmp_59 [map: 14, 11] : Success -> 11
+Coalesce list: (1)_1 & (62)result_25 [map: 0, 3] : Success -> 3
+Coalesce list: (62)result_25 & (99)_99 [map: 3, 23] : Success -> 3
+Coalesce list: (25)result_25 & (58)result_58 [map: 3, 10] : Success -> 3
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_2 - 2 )
+Partition 1 (_3 - 3 )
+Partition 2 (_5 - 5 )
+Partition 3 (_6 - 6 )
+Partition 4 (_11 - 11 )
+Partition 5 (milliseconds_19 - 19 41 44 )
+Partition 6 (count_20 - 20 )
+Partition 7 (t0$tv_sec_22 - 22 )
+Partition 8 (t0$tv_nsec_24 - 24 )
+Partition 9 (result_25 - 1 25 58 62 90 99 )
+Partition 10 (mode_33(D) - 33 )
+Partition 11 (sp_34(D) - 34 )
+Partition 12 (fd_37 - 37 )
+Partition 13 (count_40 - 40 )
+Partition 14 (_43 - 43 )
+Partition 15 (timeleft_45(D) - 45 )
+Partition 16 (iftmp.0_51 - 51 )
+Partition 17 (pretmp_56 - 56 73 78 )
+Partition 18 (prephitmp_59 - 59 69 72 )
+Partition 19 (_60 - 60 )
+Partition 20 (_61 - 61 )
+Partition 21 (_66 - 66 )
+Partition 22 (_67 - 67 )
+Partition 23 (prephitmp_68 - 68 75 76 )
+Partition 24 (_71 - 71 )
+Partition 25 (_81 - 81 )
+Partition 26 (_82 - 82 )
+Partition 27 (_84 - 84 )
+Partition 28 (_85 - 85 )
+Partition 29 (res_86 - 86 87 )
+Partition 30 (_101 - 101 )
+
+
+Replacing Expressions
+_2 replace with --> _2 = sp_34(D)->_ifd;
+
+_3 replace with --> _3 = mode_33(D) & 2;
+
+_5 replace with --> _5 = prephitmp_59 * 8;
+
+_11 replace with --> _11 = (int) res_87;
+
+count_40 replace with --> count_40 = count_20 + 1;
+
+_43 replace with --> _43 = _101 & 1;
+
+_60 replace with --> _60 = MEM[(struct pollfd *)&fd_list + 8B].revents;
+
+_61 replace with --> _61 = _60 & 1;
+
+_66 replace with --> _66 = mode_33(D) >> 1;
+
+_67 replace with --> _67 = _66 & 1;
+
+_81 replace with --> _81 = prephitmp_73 - t0$tv_sec_22;
+
+_82 replace with --> _82 = _81 * 1000;
+
+_84 replace with --> _84 = prephitmp_68 - t0$tv_nsec_24;
+
+_85 replace with --> _85 = _84 / 1000000;
+
+_101 replace with --> _101 = MEM[(struct pollfd *)&fd_list].revents;
+
+
+__attribute__((visibility ("default")))
+int _nc_timed_wait (const struct SCREEN * sp, int mode, int milliseconds, int * timeleft)
+{
+  long int t0$tv_nsec;
+  long int t0$tv_sec;
+  long int res;
+  struct timespec t1;
+  struct timespec t1;
+  struct pollfd fd_list[2];
+  int fd;
+  int result;
+  int count;
+  int _1;
+  int _2;
+  int _3;
+  long unsigned int _5;
+  struct pollfd * _6;
+  int _11;
+  short int _43;
+  int iftmp.0_51;
+  long int pretmp_56;
+  long unsigned int prephitmp_59;
+  short int _60;
+  short int _61;
+  int _66;
+  int _67;
+  long int prephitmp_68;
+  long unsigned int _69;
+  int _71;
+  long unsigned int prephitmp_72;
+  long int prephitmp_73;
+  long int _75;
+  long int _76;
+  long int _78;
+  long int _81;
+  long int _82;
+  long int _84;
+  long int _85;
+  int _90(D);
+  int _99;
+  short int _101;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  clock_gettime (0, &t1);
+  t0$tv_sec_22 = t1.tv_sec;
+  t0$tv_nsec_24 = t1.tv_nsec;
+  t1 ={v} {CLOBBER};
+  __builtin_memset (&fd_list, 0, 16);
+  _1 = mode_33(D) & 1;
+  if (_1 != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _2 = sp_34(D)->_ifd;
+  MEM[(struct pollfd *)&fd_list].fd = _2;
+  MEM[(struct pollfd *)&fd_list].events = 1;
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+;;                3
+  # count_20 = PHI <_1(2), _1(3)>
+  # prephitmp_59 = PHI <0(2), 1(3)>
+  _3 = mode_33(D) & 2;
+  if (_3 != 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+;;    succ:       5
+;;                7
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  fd_37 = sp_34(D)->_mouse_fd;
+  if (fd_37 >= 0)
+    goto <bb 6>; [59.00%]
+  else
+    goto <bb 7>; [41.00%]
+;;    succ:       6
+;;                7
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  _5 = prephitmp_59 * 8;
+  _6 = &fd_list + _5;
+  _6->fd = fd_37;
+  _6->events = 1;
+  count_40 = count_20 + 1;
+  _69 = (long unsigned int) count_40;
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       4
+;;                5
+;;                6
+  # prephitmp_72 = PHI <prephitmp_59(4), prephitmp_59(5), _69(6)>
+  iftmp.0_51 = __poll_alias (&fd_list, prephitmp_72, milliseconds_41(D));
+  _71 = clock_gettime (0, &t1);
+  if (_71 == -1)
+    goto <bb 11>; [34.00%]
+  else
+    goto <bb 8>; [66.00%]
+;;    succ:       11
+;;                8
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+  _75 = t1.tv_nsec;
+  pretmp_56 = t1.tv_sec;
+  if (t0$tv_nsec_24 > _75)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 10>; [50.00%]
+;;    succ:       9
+;;                10
+
+;;   basic block 9, loop depth 0
+;;    pred:       8
+  _76 = _75 + 1000000000;
+  _78 = pretmp_56 + -1;
+;;    succ:       10
+
+;;   basic block 10, loop depth 0
+;;    pred:       8
+;;                9
+  # prephitmp_73 = PHI <pretmp_56(8), _78(9)>
+  # prephitmp_68 = PHI <_75(8), _76(9)>
+  _81 = prephitmp_73 - t0$tv_sec_22;
+  _82 = _81 * 1000;
+  _84 = prephitmp_68 - t0$tv_nsec_24;
+  _85 = _84 / 1000000;
+  res_86 = _82 + _85;
+;;    succ:       11
+
+;;   basic block 11, loop depth 0
+;;    pred:       7
+;;                10
+  # res_87 = PHI <1(7), res_86(10)>
+  t1 ={v} {CLOBBER};
+  if (milliseconds_41(D) >= 0)
+    goto <bb 12>; [59.00%]
+  else
+    goto <bb 13>; [41.00%]
+;;    succ:       12
+;;                13
+
+;;   basic block 12, loop depth 0
+;;    pred:       11
+  _11 = (int) res_87;
+  milliseconds_44 = milliseconds_41(D) - _11;
+;;    succ:       13
+
+;;   basic block 13, loop depth 0
+;;    pred:       11
+;;                12
+  # milliseconds_19 = PHI <milliseconds_41(D)(11), milliseconds_44(12)>
+  if (timeleft_45(D) != 0B)
+    goto <bb 14>; [70.00%]
+  else
+    goto <bb 15>; [30.00%]
+;;    succ:       14
+;;                15
+
+;;   basic block 14, loop depth 0
+;;    pred:       13
+  *timeleft_45(D) = milliseconds_19;
+;;    succ:       15
+
+;;   basic block 15, loop depth 0
+;;    pred:       13
+;;                14
+  if (iftmp.0_51 > 0)
+    goto <bb 16>; [29.50%]
+  else
+    goto <bb 21>; [70.50%]
+;;    succ:       16
+;;                21
+
+;;   basic block 16, loop depth 0
+;;    pred:       15
+  if (_1 != 0)
+    goto <bb 17>; [50.00%]
+  else
+    goto <bb 18>; [50.00%]
+;;    succ:       17
+;;                18
+
+;;   basic block 17, loop depth 0
+;;    pred:       16
+  _101 = MEM[(struct pollfd *)&fd_list].revents;
+  _43 = _101 & 1;
+  _99 = (int) _43;
+;;    succ:       18
+
+;;   basic block 18, loop depth 0
+;;    pred:       16
+;;                17
+  # result_62 = PHI <_1(16), _99(17)>
+  _66 = mode_33(D) >> 1;
+  _67 = _66 & 1;
+  if (_67 != 0)
+    goto <bb 19>; [50.00%]
+  else
+    goto <bb 21>; [50.00%]
+;;    succ:       19
+;;                21
+
+;;   basic block 19, loop depth 0
+;;    pred:       18
+  _60 = MEM[(struct pollfd *)&fd_list + 8B].revents;
+  _61 = _60 & 1;
+  if (_61 != 0)
+    goto <bb 20>; [50.00%]
+  else
+    goto <bb 21>; [50.00%]
+;;    succ:       20
+;;                21
+
+;;   basic block 20, loop depth 0
+;;    pred:       19
+  result_58 = result_62 | 2;
+;;    succ:       21
+
+;;   basic block 21, loop depth 0
+;;    pred:       20
+;;                19
+;;                15
+;;                18
+  # result_25 = PHI <result_58(20), result_62(19), 0(15), result_62(18)>
+  fd_list ={v} {CLOBBER};
+  return result_25;
+;;    succ:       EXIT
+
+}
+
+
+Partition 1: size 16 align 16
+	t1	t1
+Partition 0: size 16 align 16
+	fd_list
+Inserting a partition copy on edge BB2->BB4 : PART.6 = PART.9
+Inserting a value copy on edge BB2->BB4 : PART.18 = 0
+Inserting a partition copy on edge BB3->BB4 : PART.6 = PART.9
+Inserting a value copy on edge BB3->BB4 : PART.18 = 1
+Inserting a value copy on edge BB7->BB11 : PART.29 = 1
+Inserting a value copy on edge BB15->BB21 : PART.9 = 0
+
+;; Generating RTL for gimple basic block 2
+
+;; clock_gettime (0, &t1);
+
+(insn 17 16 18 (parallel [
+            (set (reg:DI 114)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":91:9 -1
+     (nil))
+
+(insn 18 17 19 (set (reg:DI 4 si)
+        (reg:DI 114)) "../ncurses/./tty/lib_twait.c":91:9 -1
+     (nil))
+
+(insn 19 18 20 (set (reg:SI 5 di)
+        (const_int 0 [0])) "../ncurses/./tty/lib_twait.c":91:9 -1
+     (nil))
+
+(call_insn 20 19 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("clock_gettime") [flags 0x41]  <function_decl 0x7fa3039fdc00 clock_gettime>) [0 clock_gettime S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":91:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("clock_gettime") [flags 0x41]  <function_decl 0x7fa3039fdc00 clock_gettime>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+;; t0$tv_sec_22 = t1.tv_sec;
+
+(insn 21 20 0 (set (reg:DI 88 [ t0$tv_sec ])
+        (mem/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -48 [0xffffffffffffffd0])) [1 MEM[(struct timespec *)_89].tv_sec+0 S8 A128])) "../ncurses/./tty/lib_twait.c":92:6 -1
+     (nil))
+
+;; t0$tv_nsec_24 = t1.tv_nsec;
+
+(insn 22 21 0 (set (reg:DI 89 [ t0$tv_nsec ])
+        (mem/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -40 [0xffffffffffffffd8])) [1 MEM[(struct timespec *)_89].tv_nsec+0 S8 A64])) "../ncurses/./tty/lib_twait.c":92:6 -1
+     (nil))
+
+;; t1 ={v} {CLOBBER};
+
+(nil)
+
+;; __builtin_memset (&fd_list, 0, 16);
+
+(insn 23 22 24 (parallel [
+            (set (reg:DI 115)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+(insn 24 23 0 (set (mem/c:TI (reg:DI 115) [0 MEM <char[1:16]> [(void *)&fd_list]+0 S16 A128])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+;; _1 = mode_33(D) & 1;
+
+(insn 25 24 0 (parallel [
+            (set (reg/v:SI 108 [ <retval> ])
+                (and:SI (reg/v:SI 110 [ mode ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":250:14 -1
+     (nil))
+
+;; if (_1 != 0)
+
+(insn 26 25 27 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 108 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":250:8 -1
+     (nil))
+
+(jump_insn 27 26 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tty/lib_twait.c":250:8 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; MEM[(struct pollfd *)&fd_list].fd = _2;
+
+(insn 29 28 30 (set (reg:SI 116)
+        (mem:SI (reg/v/f:DI 109 [ sp ]) [4 sp_34(D)->_ifd+0 S4 A64])) "../ncurses/./tty/lib_twait.c":251:16 -1
+     (nil))
+
+(insn 30 29 0 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -32 [0xffffffffffffffe0])) [4 MEM[(struct pollfd *)&fd_list].fd+0 S4 A128])
+        (reg:SI 116)) "../ncurses/./tty/lib_twait.c":251:16 -1
+     (nil))
+
+;; MEM[(struct pollfd *)&fd_list].events = 1;
+
+(insn 31 30 0 (set (mem/c:HI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -28 [0xffffffffffffffe4])) [12 MEM[(struct pollfd *)&fd_list].events+0 S2 A32])
+        (const_int 1 [0x1])) "../ncurses/./tty/lib_twait.c":252:20 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 4
+
+;; 
+
+(code_label 32 31 33 2 (nil) [0 uses])
+
+(note 33 32 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (_3 != 0)
+
+(insn 34 33 35 (parallel [
+            (set (reg:SI 117)
+                (and:SI (reg/v:SI 110 [ mode ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":255:15 -1
+     (nil))
+
+(insn 35 34 36 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 117)
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":255:8 -1
+     (nil))
+
+(jump_insn 36 35 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tty/lib_twait.c":255:8 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; fd_37 = sp_34(D)->_mouse_fd;
+
+(insn 38 37 0 (set (reg/v:SI 90 [ fd ])
+        (mem:SI (plus:DI (reg/v/f:DI 109 [ sp ])
+                (const_int 1072 [0x430])) [4 sp_34(D)->_mouse_fd+0 S4 A64])) "../ncurses/./tty/lib_twait.c":256:9 -1
+     (nil))
+
+;; if (fd_37 >= 0)
+
+(insn 41 38 42 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 90 [ fd ])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":256:2 -1
+     (nil))
+
+(jump_insn 42 41 0 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tty/lib_twait.c":256:2 -1
+     (int_list:REG_BR_PROB 440234148 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; _6 = &fd_list + _5;
+
+(insn 44 43 45 (parallel [
+            (set (reg:DI 118)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":257:5 -1
+     (nil))
+
+(insn 45 44 46 (parallel [
+            (set (reg:DI 119)
+                (ashift:DI (reg:DI 95 [ prephitmp_59 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":257:5 -1
+     (nil))
+
+(insn 46 45 0 (parallel [
+            (set (reg/f:DI 85 [ _6 ])
+                (plus:DI (reg:DI 118)
+                    (reg:DI 119)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":257:5 -1
+     (nil))
+
+;; _6->fd = fd_37;
+
+(insn 47 46 0 (set (mem:SI (reg/f:DI 85 [ _6 ]) [4 _6->fd+0 S4 A64])
+        (reg/v:SI 90 [ fd ])) "../ncurses/./tty/lib_twait.c":257:16 -1
+     (nil))
+
+;; _6->events = 1;
+
+(insn 48 47 0 (set (mem:HI (plus:DI (reg/f:DI 85 [ _6 ])
+                (const_int 4 [0x4])) [12 _6->events+0 S2 A32])
+        (const_int 1 [0x1])) "../ncurses/./tty/lib_twait.c":258:20 -1
+     (nil))
+
+;; _69 = (long unsigned int) count_40;
+
+(insn 49 48 50 (parallel [
+            (set (reg:SI 120 [ count ])
+                (plus:SI (reg/v:SI 87 [ count ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":259:7 -1
+     (nil))
+
+(insn 50 49 0 (set (reg:DI 95 [ prephitmp_59 ])
+        (sign_extend:DI (reg:SI 120 [ count ]))) "../ncurses/./tty/lib_twait.c":276:14 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 7
+
+;; 
+
+(code_label 51 50 52 3 (nil) [0 uses])
+
+(note 52 51 0 NOTE_INSN_BASIC_BLOCK)
+
+;; iftmp.0_51 = __poll_alias (&fd_list, prephitmp_72, milliseconds_41(D));
+
+(insn 53 52 54 (parallel [
+            (set (reg:DI 121)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/poll2.h":39:10 -1
+     (nil))
+
+(insn 54 53 55 (set (reg:SI 1 dx)
+        (reg/v:SI 111 [ milliseconds ])) "/usr/include/x86_64-linux-gnu/bits/poll2.h":39:10 -1
+     (nil))
+
+(insn 55 54 56 (set (reg:DI 4 si)
+        (reg:DI 95 [ prephitmp_59 ])) "/usr/include/x86_64-linux-gnu/bits/poll2.h":39:10 -1
+     (nil))
+
+(insn 56 55 57 (set (reg:DI 5 di)
+        (reg:DI 121)) "/usr/include/x86_64-linux-gnu/bits/poll2.h":39:10 -1
+     (nil))
+
+(call_insn 57 56 58 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*poll") [flags 0x41]  <function_decl 0x7fa303cf0f00 __poll_alias>) [0 __poll_alias S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/poll2.h":39:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*poll") [flags 0x41]  <function_decl 0x7fa303cf0f00 __poll_alias>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+
+(insn 58 57 0 (set (reg:SI 93 [ iftmp.0_51 ])
+        (reg:SI 0 ax)) "/usr/include/x86_64-linux-gnu/bits/poll2.h":39:10 -1
+     (nil))
+
+;; _71 = clock_gettime (0, &t1);
+
+(insn 59 58 60 (parallel [
+            (set (reg:DI 122)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":91:9 -1
+     (nil))
+
+(insn 60 59 61 (set (reg:DI 4 si)
+        (reg:DI 122)) "../ncurses/./tty/lib_twait.c":91:9 -1
+     (nil))
+
+(insn 61 60 62 (set (reg:SI 5 di)
+        (const_int 0 [0])) "../ncurses/./tty/lib_twait.c":91:9 -1
+     (nil))
+
+(call_insn 62 61 63 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("clock_gettime") [flags 0x41]  <function_decl 0x7fa3039fdc00 clock_gettime>) [0 clock_gettime S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":91:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("clock_gettime") [flags 0x41]  <function_decl 0x7fa3039fdc00 clock_gettime>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 63 62 0 (set (reg:SI 101 [ _71 ])
+        (reg:SI 0 ax)) "../ncurses/./tty/lib_twait.c":91:9 -1
+     (nil))
+
+;; if (_71 == -1)
+
+(insn 64 63 65 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 101 [ _71 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./tty/lib_twait.c":91:8 -1
+     (nil))
+
+(jump_insn 65 64 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tty/lib_twait.c":91:8 -1
+     (int_list:REG_BR_PROB 365072228 (nil)))
+
+;; Generating RTL for gimple basic block 8
+
+;; _75 = t1.tv_nsec;
+
+(insn 67 66 0 (set (reg:DI 100 [ prephitmp_68 ])
+        (mem/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -40 [0xffffffffffffffd8])) [1 MEM[(struct timespec *)_89].tv_nsec+0 S8 A64])) "../ncurses/./tty/lib_twait.c":99:23 -1
+     (nil))
+
+;; pretmp_56 = t1.tv_sec;
+
+(insn 68 67 0 (set (reg:DI 94 [ pretmp_56 ])
+        (mem/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -48 [0xffffffffffffffd0])) [1 MEM[(struct timespec *)_89].tv_sec+0 S8 A128])) "../ncurses/./tty/lib_twait.c":101:8 -1
+     (nil))
+
+;; if (t0$tv_nsec_24 > _75)
+
+(insn 69 68 70 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:DI 89 [ t0$tv_nsec ])
+            (reg:DI 100 [ prephitmp_68 ]))) "../ncurses/./tty/lib_twait.c":99:5 -1
+     (nil))
+
+(jump_insn 70 69 0 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tty/lib_twait.c":99:5 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 9
+
+;; _76 = _75 + 1000000000;
+
+(insn 72 71 0 (parallel [
+            (set (reg:DI 100 [ prephitmp_68 ])
+                (plus:DI (reg:DI 100 [ prephitmp_68 ])
+                    (const_int 1000000000 [0x3b9aca00])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":100:18 -1
+     (nil))
+
+;; _78 = pretmp_56 + -1;
+
+(insn 73 72 0 (parallel [
+            (set (reg:DI 94 [ pretmp_56 ])
+                (plus:DI (reg:DI 94 [ pretmp_56 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":101:15 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 10
+
+;; 
+
+(code_label 74 73 75 5 (nil) [0 uses])
+
+(note 75 74 0 NOTE_INSN_BASIC_BLOCK)
+
+;; res_86 = _82 + _85;
+
+(insn 76 75 77 (parallel [
+            (set (reg:DI 123)
+                (minus:DI (reg:DI 94 [ pretmp_56 ])
+                    (reg:DI 88 [ t0$tv_sec ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":103:27 -1
+     (nil))
+
+(insn 77 76 78 (parallel [
+            (set (reg:DI 124)
+                (mult:DI (reg:DI 123)
+                    (const_int 1000 [0x3e8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":103:41 -1
+     (nil))
+
+(insn 78 77 79 (parallel [
+            (set (reg:DI 125)
+                (minus:DI (reg:DI 100 [ prephitmp_68 ])
+                    (reg:DI 89 [ t0$tv_nsec ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":104:24 -1
+     (nil))
+
+(insn 79 78 80 (set (reg:DI 128)
+        (const_int 4835703278458516699 [0x431bde82d7b634db])) "../ncurses/./tty/lib_twait.c":104:40 -1
+     (nil))
+
+(insn 80 79 81 (parallel [
+            (set (reg:DI 127)
+                (truncate:DI (lshiftrt:TI (mult:TI (sign_extend:TI (reg:DI 125))
+                            (sign_extend:TI (reg:DI 128)))
+                        (const_int 64 [0x40]))))
+            (clobber (scratch:DI))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":104:40 -1
+     (nil))
+
+(insn 81 80 82 (parallel [
+            (set (reg:DI 129)
+                (ashiftrt:DI (reg:DI 127)
+                    (const_int 18 [0x12])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":104:40 -1
+     (nil))
+
+(insn 82 81 83 (parallel [
+            (set (reg:DI 130)
+                (ashiftrt:DI (reg:DI 125)
+                    (const_int 63 [0x3f])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":104:40 -1
+     (nil))
+
+(insn 83 82 84 (parallel [
+            (set (reg:DI 126)
+                (minus:DI (reg:DI 129)
+                    (reg:DI 130)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":104:40 -1
+     (expr_list:REG_EQUAL (div:DI (reg:DI 125)
+            (const_int 1000000 [0xf4240]))
+        (nil)))
+
+(insn 84 83 0 (parallel [
+            (set (reg/v:DI 106 [ res ])
+                (plus:DI (reg:DI 124)
+                    (reg:DI 126)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":103:6 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 11
+
+;; 
+
+(code_label 85 84 86 4 (nil) [0 uses])
+
+(note 86 85 0 NOTE_INSN_BASIC_BLOCK)
+
+;; t1 ={v} {CLOBBER};
+
+(nil)
+
+;; if (milliseconds_41(D) >= 0)
+
+(insn 89 86 90 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 111 [ milliseconds ])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":438:8 -1
+     (nil))
+
+(jump_insn 90 89 0 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tty/lib_twait.c":438:8 -1
+     (int_list:REG_BR_PROB 440234148 (nil)))
+
+;; Generating RTL for gimple basic block 12
+
+;; milliseconds_44 = milliseconds_41(D) - _11;
+
+(insn 92 91 0 (parallel [
+            (set (reg/v:SI 111 [ milliseconds ])
+                (minus:SI (reg/v:SI 111 [ milliseconds ])
+                    (subreg:SI (reg/v:DI 106 [ res ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":439:15 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 13
+
+;; 
+
+(code_label 93 92 94 6 (nil) [0 uses])
+
+(note 94 93 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (timeleft_45(D) != 0B)
+
+(insn 95 94 96 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 112 [ timeleft ])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":474:8 -1
+     (nil))
+
+(jump_insn 96 95 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tty/lib_twait.c":474:8 -1
+     (int_list:REG_BR_PROB 322122548 (nil)))
+
+;; Generating RTL for gimple basic block 14
+
+;; *timeleft_45(D) = milliseconds_19;
+
+(insn 98 97 0 (set (mem:SI (reg/v/f:DI 112 [ timeleft ]) [4 *timeleft_45(D)+0 S4 A32])
+        (reg/v:SI 111 [ milliseconds ])) "../ncurses/./tty/lib_twait.c":475:12 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 15
+
+;; 
+
+(code_label 99 98 100 7 (nil) [0 uses])
+
+(note 100 99 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (iftmp.0_51 > 0)
+
+(insn 103 100 104 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 93 [ iftmp.0_51 ])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":487:5 -1
+     (nil))
+
+(jump_insn 104 103 0 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tty/lib_twait.c":487:5 -1
+     (int_list:REG_BR_PROB 756987988 (nil)))
+
+;; Generating RTL for gimple basic block 16
+
+;; if (_1 != 0)
+
+(insn 106 105 107 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 108 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":491:6 -1
+     (nil))
+
+(jump_insn 107 106 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tty/lib_twait.c":491:6 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 17
+
+;; _99 = (int) _43;
+
+(insn 109 108 110 (set (reg:HI 132)
+        (mem/c:HI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -26 [0xffffffffffffffe6])) [12 MEM[(struct pollfd *)&fd_list].revents+0 S2 A16])) "../ncurses/./tty/lib_twait.c":492:7 -1
+     (nil))
+
+(insn 110 109 111 (parallel [
+            (set (reg:HI 131)
+                (and:HI (reg:HI 132)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":492:7 -1
+     (expr_list:REG_EQUAL (and:HI (mem/c:HI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -26 [0xffffffffffffffe6])) [12 MEM[(struct pollfd *)&fd_list].revents+0 S2 A16])
+            (const_int 1 [0x1]))
+        (nil)))
+
+(insn 111 110 0 (set (reg/v:SI 108 [ <retval> ])
+        (sign_extend:SI (reg:HI 131))) "../ncurses/./tty/lib_twait.c":492:7 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 18
+
+;; 
+
+(code_label 112 111 113 9 (nil) [0 uses])
+
+(note 113 112 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (_67 != 0)
+
+(insn 114 113 115 (parallel [
+            (set (reg:SI 133)
+                (ashiftrt:SI (reg/v:SI 110 [ mode ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":491:7 -1
+     (nil))
+
+(insn 115 114 116 (parallel [
+            (set (reg:SI 134)
+                (and:SI (reg:SI 133)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":491:7 -1
+     (nil))
+
+(insn 116 115 117 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 134)
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":491:6 -1
+     (nil))
+
+(jump_insn 117 116 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tty/lib_twait.c":491:6 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 19
+
+;; if (_61 != 0)
+
+(insn 119 118 120 (set (reg:HI 136)
+        (mem/c:HI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -18 [0xffffffffffffffee])) [12 MEM[(struct pollfd *)&fd_list + 8B].revents+0 S2 A16])) "../ncurses/./tty/lib_twait.c":492:7 -1
+     (nil))
+
+(insn 120 119 121 (parallel [
+            (set (reg:HI 135)
+                (and:HI (reg:HI 136)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":492:7 -1
+     (expr_list:REG_EQUAL (and:HI (mem/c:HI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -18 [0xffffffffffffffee])) [12 MEM[(struct pollfd *)&fd_list + 8B].revents+0 S2 A16])
+            (const_int 1 [0x1]))
+        (nil)))
+
+(insn 121 120 122 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 135)
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":492:7 -1
+     (nil))
+
+(jump_insn 122 121 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tty/lib_twait.c":492:7 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 20
+
+;; result_58 = result_62 | 2;
+
+(insn 124 123 0 (parallel [
+            (set (reg/v:SI 108 [ <retval> ])
+                (ior:SI (reg/v:SI 108 [ <retval> ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":493:14 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 21
+
+;; 
+
+(code_label 125 124 126 8 (nil) [0 uses])
+
+(note 126 125 0 NOTE_INSN_BASIC_BLOCK)
+
+;; fd_list ={v} {CLOBBER};
+
+(nil)
+
+;; return result_25;
+
+(jump_insn 127 126 128 (set (pc)
+        (label_ref 0)) "../ncurses/./tty/lib_twait.c":522:12 -1
+     (nil))
+
+(barrier 128 127 0)
+Edge 2->4 redirected to 24
+Edge 7->11 redirected to 25
+Edge 15->21 redirected to 26
+Predictions for insn 132 bb 23
+  first match heuristics: 99.96%  exec 1073741824 (estimated locally) hit 2147483640 (estimated locally) (200.0%)
+  combined heuristics: 99.96%  exec 1073741824 (estimated locally) hit 2147483640 (estimated locally) (200.0%)
+  noreturn call heuristics: 99.96%  exec 1073741824 (estimated locally) hit 2147483640 (estimated locally) (200.0%)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 21->25 redirected to 26
+Edge 22->25 redirected to 26
+Redirecting jump 147 from 25 to 26.
+Merging block 25 into block 24...
+Merged blocks 24 and 25.
+Merged 24 and 25 without moving.
+Removing jump 127.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 15 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 15 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 15 3 2 (set (reg/v/f:DI 109 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./tty/lib_twait.c":176:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 110 [ mode ])
+        (reg:SI 4 si [ mode ])) "../ncurses/./tty/lib_twait.c":176:1 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:SI 111 [ milliseconds ])
+        (reg:SI 1 dx [ milliseconds ])) "../ncurses/./tty/lib_twait.c":176:1 -1
+     (nil))
+(insn 5 4 6 2 (set (reg/v/f:DI 112 [ timeleft ])
+        (reg:DI 2 cx [ timeleft ])) "../ncurses/./tty/lib_twait.c":176:1 -1
+     (nil))
+(note 6 5 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 6 8 2 (set (reg/f:DI 113)
+        (const_int 40 [0x28])) "../ncurses/./tty/lib_twait.c":176:1 -1
+     (nil))
+(insn 8 7 17 2 (parallel [
+            (set (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                        (const_int -8 [0xfffffffffffffff8])) [40 D.9171+0 S8 A64])
+                (unspec:DI [
+                        (mem/v/f:DI (reg/f:DI 113) [1 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_SET))
+            (set (scratch:DI)
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":176:1 -1
+     (nil))
+(insn 17 8 18 2 (parallel [
+            (set (reg:DI 114)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":91:9 -1
+     (nil))
+(insn 18 17 19 2 (set (reg:DI 4 si)
+        (reg:DI 114)) "../ncurses/./tty/lib_twait.c":91:9 -1
+     (nil))
+(insn 19 18 20 2 (set (reg:SI 5 di)
+        (const_int 0 [0])) "../ncurses/./tty/lib_twait.c":91:9 -1
+     (nil))
+(call_insn 20 19 21 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("clock_gettime") [flags 0x41]  <function_decl 0x7fa3039fdc00 clock_gettime>) [0 clock_gettime S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":91:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("clock_gettime") [flags 0x41]  <function_decl 0x7fa3039fdc00 clock_gettime>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 21 20 22 2 (set (reg:DI 88 [ t0$tv_sec ])
+        (mem/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -48 [0xffffffffffffffd0])) [1 MEM[(struct timespec *)_89].tv_sec+0 S8 A128])) "../ncurses/./tty/lib_twait.c":92:6 -1
+     (nil))
+(insn 22 21 23 2 (set (reg:DI 89 [ t0$tv_nsec ])
+        (mem/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -40 [0xffffffffffffffd8])) [1 MEM[(struct timespec *)_89].tv_nsec+0 S8 A64])) "../ncurses/./tty/lib_twait.c":92:6 -1
+     (nil))
+(insn 23 22 24 2 (parallel [
+            (set (reg:DI 115)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 24 23 25 2 (set (mem/c:TI (reg:DI 115) [0 MEM <char[1:16]> [(void *)&fd_list]+0 S16 A128])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 25 24 26 2 (parallel [
+            (set (reg/v:SI 108 [ <retval> ])
+                (and:SI (reg/v:SI 110 [ mode ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":250:14 -1
+     (nil))
+(insn 26 25 27 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 108 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":250:8 -1
+     (nil))
+(jump_insn 27 26 28 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 142)
+            (pc))) "../ncurses/./tty/lib_twait.c":250:8 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 142)
+;;  succ:       4 [50.0% (guessed)]  count:536870912 (estimated locally) (FALLTHRU)
+;;              5 [50.0% (guessed)]  count:536870912 (estimated locally)
+
+;; basic block 4, loop depth 0, count 536870913 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [50.0% (guessed)]  count:536870912 (estimated locally) (FALLTHRU)
+(note 28 27 29 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 4 (set (reg:SI 116)
+        (mem:SI (reg/v/f:DI 109 [ sp ]) [4 sp_34(D)->_ifd+0 S4 A64])) "../ncurses/./tty/lib_twait.c":251:16 -1
+     (nil))
+(insn 30 29 31 4 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -32 [0xffffffffffffffe0])) [4 MEM[(struct pollfd *)&fd_list].fd+0 S4 A128])
+        (reg:SI 116)) "../ncurses/./tty/lib_twait.c":251:16 -1
+     (nil))
+(insn 31 30 11 4 (set (mem/c:HI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -28 [0xffffffffffffffe4])) [12 MEM[(struct pollfd *)&fd_list].events+0 S2 A32])
+        (const_int 1 [0x1])) "../ncurses/./tty/lib_twait.c":252:20 -1
+     (nil))
+(insn 11 31 12 4 (set (reg/v:SI 87 [ count ])
+        (reg/v:SI 108 [ <retval> ])) "../ncurses/./tty/lib_twait.c":253:7 -1
+     (nil))
+(insn 12 11 139 4 (set (reg:DI 95 [ prephitmp_59 ])
+        (const_int 1 [0x1])) "../ncurses/./tty/lib_twait.c":252:20 -1
+     (nil))
+(jump_insn 139 12 140 4 (set (pc)
+        (label_ref 32)) -1
+     (nil)
+ -> 32)
+;;  succ:       6 [always]  count:536870913 (estimated locally)
+
+(barrier 140 139 142)
+;; basic block 5, loop depth 0, count 536870913 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [50.0% (guessed)]  count:536870912 (estimated locally)
+(code_label 142 140 141 5 11 (nil) [1 uses])
+(note 141 142 9 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 9 141 10 5 (set (reg/v:SI 87 [ count ])
+        (reg/v:SI 108 [ <retval> ])) "../ncurses/./tty/lib_twait.c":230:11 -1
+     (nil))
+(insn 10 9 32 5 (set (reg:DI 95 [ prephitmp_59 ])
+        (const_int 0 [0])) -1
+     (nil))
+;;  succ:       6 [always]  count:536870913 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [always]  count:536870913 (estimated locally) (FALLTHRU)
+;;              4 [always]  count:536870913 (estimated locally)
+(code_label 32 10 33 6 2 (nil) [1 uses])
+(note 33 32 34 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 34 33 35 6 (parallel [
+            (set (reg:SI 117)
+                (and:SI (reg/v:SI 110 [ mode ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":255:15 -1
+     (nil))
+(insn 35 34 36 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 117)
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":255:8 -1
+     (nil))
+(jump_insn 36 35 37 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 51)
+            (pc))) "../ncurses/./tty/lib_twait.c":255:8 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 51)
+;;  succ:       7 [50.0% (guessed)]  count:536870912 (estimated locally) (FALLTHRU)
+;;              9 [50.0% (guessed)]  count:536870912 (estimated locally)
+
+;; basic block 7, loop depth 0, count 536870913 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [50.0% (guessed)]  count:536870912 (estimated locally) (FALLTHRU)
+(note 37 36 38 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 38 37 41 7 (set (reg/v:SI 90 [ fd ])
+        (mem:SI (plus:DI (reg/v/f:DI 109 [ sp ])
+                (const_int 1072 [0x430])) [4 sp_34(D)->_mouse_fd+0 S4 A64])) "../ncurses/./tty/lib_twait.c":256:9 -1
+     (nil))
+(insn 41 38 42 7 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 90 [ fd ])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":256:2 -1
+     (nil))
+(jump_insn 42 41 43 7 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 51)
+            (pc))) "../ncurses/./tty/lib_twait.c":256:2 -1
+     (int_list:REG_BR_PROB 440234148 (nil))
+ -> 51)
+;;  succ:       8 [59.0% (guessed)]  count:316753841 (estimated locally) (FALLTHRU)
+;;              9 [41.0% (guessed)]  count:220117072 (estimated locally)
+
+;; basic block 8, loop depth 0, count 316753840 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [59.0% (guessed)]  count:316753841 (estimated locally) (FALLTHRU)
+(note 43 42 44 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 44 43 45 8 (parallel [
+            (set (reg:DI 118)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":257:5 -1
+     (nil))
+(insn 45 44 46 8 (parallel [
+            (set (reg:DI 119)
+                (ashift:DI (reg:DI 95 [ prephitmp_59 ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":257:5 -1
+     (nil))
+(insn 46 45 47 8 (parallel [
+            (set (reg/f:DI 85 [ _6 ])
+                (plus:DI (reg:DI 118)
+                    (reg:DI 119)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":257:5 -1
+     (nil))
+(insn 47 46 48 8 (set (mem:SI (reg/f:DI 85 [ _6 ]) [4 _6->fd+0 S4 A64])
+        (reg/v:SI 90 [ fd ])) "../ncurses/./tty/lib_twait.c":257:16 -1
+     (nil))
+(insn 48 47 49 8 (set (mem:HI (plus:DI (reg/f:DI 85 [ _6 ])
+                (const_int 4 [0x4])) [12 _6->events+0 S2 A32])
+        (const_int 1 [0x1])) "../ncurses/./tty/lib_twait.c":258:20 -1
+     (nil))
+(insn 49 48 50 8 (parallel [
+            (set (reg:SI 120 [ count ])
+                (plus:SI (reg/v:SI 87 [ count ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":259:7 -1
+     (nil))
+(insn 50 49 51 8 (set (reg:DI 95 [ prephitmp_59 ])
+        (sign_extend:DI (reg:SI 120 [ count ]))) "../ncurses/./tty/lib_twait.c":276:14 -1
+     (nil))
+;;  succ:       9 [always]  count:316753840 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       6 [50.0% (guessed)]  count:536870912 (estimated locally)
+;;              7 [41.0% (guessed)]  count:220117072 (estimated locally)
+;;              8 [always]  count:316753840 (estimated locally) (FALLTHRU)
+(code_label 51 50 52 9 3 (nil) [2 uses])
+(note 52 51 53 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 53 52 54 9 (parallel [
+            (set (reg:DI 121)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/poll2.h":39:10 -1
+     (nil))
+(insn 54 53 55 9 (set (reg:SI 1 dx)
+        (reg/v:SI 111 [ milliseconds ])) "/usr/include/x86_64-linux-gnu/bits/poll2.h":39:10 -1
+     (nil))
+(insn 55 54 56 9 (set (reg:DI 4 si)
+        (reg:DI 95 [ prephitmp_59 ])) "/usr/include/x86_64-linux-gnu/bits/poll2.h":39:10 -1
+     (nil))
+(insn 56 55 57 9 (set (reg:DI 5 di)
+        (reg:DI 121)) "/usr/include/x86_64-linux-gnu/bits/poll2.h":39:10 -1
+     (nil))
+(call_insn 57 56 58 9 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*poll") [flags 0x41]  <function_decl 0x7fa303cf0f00 __poll_alias>) [0 __poll_alias S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/poll2.h":39:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*poll") [flags 0x41]  <function_decl 0x7fa303cf0f00 __poll_alias>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 58 57 59 9 (set (reg:SI 93 [ iftmp.0_51 ])
+        (reg:SI 0 ax)) "/usr/include/x86_64-linux-gnu/bits/poll2.h":39:10 -1
+     (nil))
+(insn 59 58 60 9 (parallel [
+            (set (reg:DI 122)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":91:9 -1
+     (nil))
+(insn 60 59 61 9 (set (reg:DI 4 si)
+        (reg:DI 122)) "../ncurses/./tty/lib_twait.c":91:9 -1
+     (nil))
+(insn 61 60 62 9 (set (reg:SI 5 di)
+        (const_int 0 [0])) "../ncurses/./tty/lib_twait.c":91:9 -1
+     (nil))
+(call_insn 62 61 63 9 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("clock_gettime") [flags 0x41]  <function_decl 0x7fa3039fdc00 clock_gettime>) [0 clock_gettime S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":91:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("clock_gettime") [flags 0x41]  <function_decl 0x7fa3039fdc00 clock_gettime>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 63 62 64 9 (set (reg:SI 101 [ _71 ])
+        (reg:SI 0 ax)) "../ncurses/./tty/lib_twait.c":91:9 -1
+     (nil))
+(insn 64 63 65 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 101 [ _71 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./tty/lib_twait.c":91:8 -1
+     (nil))
+(jump_insn 65 64 66 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 146)
+            (pc))) "../ncurses/./tty/lib_twait.c":91:8 806 {*jcc}
+     (int_list:REG_BR_PROB 365072228 (nil))
+ -> 146)
+;;  succ:       13 [34.0% (guessed)]  count:365072224 (estimated locally)
+;;              10 [66.0% (guessed)]  count:708669600 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 708669601 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       9 [66.0% (guessed)]  count:708669600 (estimated locally) (FALLTHRU)
+(note 66 65 67 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 67 66 68 10 (set (reg:DI 100 [ prephitmp_68 ])
+        (mem/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -40 [0xffffffffffffffd8])) [1 MEM[(struct timespec *)_89].tv_nsec+0 S8 A64])) "../ncurses/./tty/lib_twait.c":99:23 -1
+     (nil))
+(insn 68 67 69 10 (set (reg:DI 94 [ pretmp_56 ])
+        (mem/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -48 [0xffffffffffffffd0])) [1 MEM[(struct timespec *)_89].tv_sec+0 S8 A128])) "../ncurses/./tty/lib_twait.c":101:8 -1
+     (nil))
+(insn 69 68 70 10 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:DI 89 [ t0$tv_nsec ])
+            (reg:DI 100 [ prephitmp_68 ]))) "../ncurses/./tty/lib_twait.c":99:5 -1
+     (nil))
+(jump_insn 70 69 71 10 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 74)
+            (pc))) "../ncurses/./tty/lib_twait.c":99:5 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 74)
+;;  succ:       11 [50.0% (guessed)]  count:354334801 (estimated locally) (FALLTHRU)
+;;              12 [50.0% (guessed)]  count:354334801 (estimated locally)
+
+;; basic block 11, loop depth 0, count 354334800 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       10 [50.0% (guessed)]  count:354334801 (estimated locally) (FALLTHRU)
+(note 71 70 72 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 72 71 73 11 (parallel [
+            (set (reg:DI 100 [ prephitmp_68 ])
+                (plus:DI (reg:DI 100 [ prephitmp_68 ])
+                    (const_int 1000000000 [0x3b9aca00])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":100:18 -1
+     (nil))
+(insn 73 72 74 11 (parallel [
+            (set (reg:DI 94 [ pretmp_56 ])
+                (plus:DI (reg:DI 94 [ pretmp_56 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":101:15 -1
+     (nil))
+;;  succ:       12 [always]  count:354334800 (estimated locally) (FALLTHRU)
+
+;; basic block 12, loop depth 0, count 708669601 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       10 [50.0% (guessed)]  count:354334801 (estimated locally)
+;;              11 [always]  count:354334800 (estimated locally) (FALLTHRU)
+(code_label 74 73 75 12 5 (nil) [1 uses])
+(note 75 74 76 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 76 75 77 12 (parallel [
+            (set (reg:DI 123)
+                (minus:DI (reg:DI 94 [ pretmp_56 ])
+                    (reg:DI 88 [ t0$tv_sec ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":103:27 -1
+     (nil))
+(insn 77 76 78 12 (parallel [
+            (set (reg:DI 124)
+                (mult:DI (reg:DI 123)
+                    (const_int 1000 [0x3e8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":103:41 -1
+     (nil))
+(insn 78 77 79 12 (parallel [
+            (set (reg:DI 125)
+                (minus:DI (reg:DI 100 [ prephitmp_68 ])
+                    (reg:DI 89 [ t0$tv_nsec ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":104:24 -1
+     (nil))
+(insn 79 78 80 12 (set (reg:DI 128)
+        (const_int 4835703278458516699 [0x431bde82d7b634db])) "../ncurses/./tty/lib_twait.c":104:40 -1
+     (nil))
+(insn 80 79 81 12 (parallel [
+            (set (reg:DI 127)
+                (truncate:DI (lshiftrt:TI (mult:TI (sign_extend:TI (reg:DI 125))
+                            (sign_extend:TI (reg:DI 128)))
+                        (const_int 64 [0x40]))))
+            (clobber (scratch:DI))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":104:40 -1
+     (nil))
+(insn 81 80 82 12 (parallel [
+            (set (reg:DI 129)
+                (ashiftrt:DI (reg:DI 127)
+                    (const_int 18 [0x12])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":104:40 -1
+     (nil))
+(insn 82 81 83 12 (parallel [
+            (set (reg:DI 130)
+                (ashiftrt:DI (reg:DI 125)
+                    (const_int 63 [0x3f])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":104:40 -1
+     (nil))
+(insn 83 82 84 12 (parallel [
+            (set (reg:DI 126)
+                (minus:DI (reg:DI 129)
+                    (reg:DI 130)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":104:40 -1
+     (expr_list:REG_EQUAL (div:DI (reg:DI 125)
+            (const_int 1000000 [0xf4240]))
+        (nil)))
+(insn 84 83 143 12 (parallel [
+            (set (reg/v:DI 106 [ res ])
+                (plus:DI (reg:DI 124)
+                    (reg:DI 126)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":103:6 -1
+     (nil))
+(jump_insn 143 84 144 12 (set (pc)
+        (label_ref 85)) -1
+     (nil)
+ -> 85)
+;;  succ:       14 [always]  count:708669601 (estimated locally)
+
+(barrier 144 143 146)
+;; basic block 13, loop depth 0, count 365072224 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       9 [34.0% (guessed)]  count:365072224 (estimated locally)
+(code_label 146 144 145 13 12 (nil) [1 uses])
+(note 145 146 13 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 13 145 85 13 (set (reg/v:DI 106 [ res ])
+        (const_int 1 [0x1])) "../ncurses/./tty/lib_twait.c":93:6 -1
+     (nil))
+;;  succ:       14 [always]  count:365072224 (estimated locally) (FALLTHRU)
+
+;; basic block 14, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       13 [always]  count:365072224 (estimated locally) (FALLTHRU)
+;;              12 [always]  count:708669601 (estimated locally)
+(code_label 85 13 86 14 4 (nil) [1 uses])
+(note 86 85 89 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 89 86 90 14 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 111 [ milliseconds ])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":438:8 -1
+     (nil))
+(jump_insn 90 89 91 14 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 93)
+            (pc))) "../ncurses/./tty/lib_twait.c":438:8 -1
+     (int_list:REG_BR_PROB 440234148 (nil))
+ -> 93)
+;;  succ:       15 [59.0% (guessed)]  count:633507680 (estimated locally) (FALLTHRU)
+;;              16 [41.0% (guessed)]  count:440234144 (estimated locally)
+
+;; basic block 15, loop depth 0, count 633507681 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       14 [59.0% (guessed)]  count:633507680 (estimated locally) (FALLTHRU)
+(note 91 90 92 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 92 91 93 15 (parallel [
+            (set (reg/v:SI 111 [ milliseconds ])
+                (minus:SI (reg/v:SI 111 [ milliseconds ])
+                    (subreg:SI (reg/v:DI 106 [ res ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":439:15 -1
+     (nil))
+;;  succ:       16 [always]  count:633507681 (estimated locally) (FALLTHRU)
+
+;; basic block 16, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       14 [41.0% (guessed)]  count:440234144 (estimated locally)
+;;              15 [always]  count:633507681 (estimated locally) (FALLTHRU)
+(code_label 93 92 94 16 6 (nil) [1 uses])
+(note 94 93 95 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 95 94 96 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 112 [ timeleft ])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":474:8 -1
+     (nil))
+(jump_insn 96 95 97 16 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 99)
+            (pc))) "../ncurses/./tty/lib_twait.c":474:8 -1
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 99)
+;;  succ:       17 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+;;              18 [30.0% (guessed)]  count:322122544 (estimated locally)
+
+;; basic block 17, loop depth 0, count 751619281 (estimated locally), maybe hot
+;;  prev block 16, next block 18, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       16 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+(note 97 96 98 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 98 97 99 17 (set (mem:SI (reg/v/f:DI 112 [ timeleft ]) [4 *timeleft_45(D)+0 S4 A32])
+        (reg/v:SI 111 [ milliseconds ])) "../ncurses/./tty/lib_twait.c":475:12 -1
+     (nil))
+;;  succ:       18 [always]  count:751619281 (estimated locally) (FALLTHRU)
+
+;; basic block 18, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 17, next block 19, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       16 [30.0% (guessed)]  count:322122544 (estimated locally)
+;;              17 [always]  count:751619281 (estimated locally) (FALLTHRU)
+(code_label 99 98 100 18 7 (nil) [1 uses])
+(note 100 99 103 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 103 100 104 18 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 93 [ iftmp.0_51 ])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":487:5 -1
+     (nil))
+(jump_insn 104 103 105 18 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 150)
+            (pc))) "../ncurses/./tty/lib_twait.c":487:5 806 {*jcc}
+     (int_list:REG_BR_PROB 756987988 (nil))
+ -> 150)
+;;  succ:       19 [29.5% (guessed)]  count:316753840 (estimated locally) (FALLTHRU)
+;;              24 [70.5% (guessed)]  count:756987984 (estimated locally)
+
+;; basic block 19, loop depth 0, count 316753840 (estimated locally), maybe hot
+;;  prev block 18, next block 20, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       18 [29.5% (guessed)]  count:316753840 (estimated locally) (FALLTHRU)
+(note 105 104 106 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 106 105 107 19 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 108 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":491:6 -1
+     (nil))
+(jump_insn 107 106 108 19 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 112)
+            (pc))) "../ncurses/./tty/lib_twait.c":491:6 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 112)
+;;  succ:       20 [50.0% (guessed)]  count:158376920 (estimated locally) (FALLTHRU)
+;;              21 [50.0% (guessed)]  count:158376920 (estimated locally)
+
+;; basic block 20, loop depth 0, count 158376920 (estimated locally), maybe hot
+;;  prev block 19, next block 21, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       19 [50.0% (guessed)]  count:158376920 (estimated locally) (FALLTHRU)
+(note 108 107 109 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 109 108 110 20 (set (reg:HI 132)
+        (mem/c:HI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -26 [0xffffffffffffffe6])) [12 MEM[(struct pollfd *)&fd_list].revents+0 S2 A16])) "../ncurses/./tty/lib_twait.c":492:7 -1
+     (nil))
+(insn 110 109 111 20 (parallel [
+            (set (reg:HI 131)
+                (and:HI (reg:HI 132)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":492:7 -1
+     (expr_list:REG_EQUAL (and:HI (mem/c:HI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -26 [0xffffffffffffffe6])) [12 MEM[(struct pollfd *)&fd_list].revents+0 S2 A16])
+            (const_int 1 [0x1]))
+        (nil)))
+(insn 111 110 112 20 (set (reg/v:SI 108 [ <retval> ])
+        (sign_extend:SI (reg:HI 131))) "../ncurses/./tty/lib_twait.c":492:7 -1
+     (nil))
+;;  succ:       21 [always]  count:158376920 (estimated locally) (FALLTHRU)
+
+;; basic block 21, loop depth 0, count 316753840 (estimated locally), maybe hot
+;;  prev block 20, next block 22, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       19 [50.0% (guessed)]  count:158376920 (estimated locally)
+;;              20 [always]  count:158376920 (estimated locally) (FALLTHRU)
+(code_label 112 111 113 21 9 (nil) [1 uses])
+(note 113 112 114 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 114 113 115 21 (parallel [
+            (set (reg:SI 133)
+                (ashiftrt:SI (reg/v:SI 110 [ mode ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":491:7 -1
+     (nil))
+(insn 115 114 116 21 (parallel [
+            (set (reg:SI 134)
+                (and:SI (reg:SI 133)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":491:7 -1
+     (nil))
+(insn 116 115 117 21 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 134)
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":491:6 -1
+     (nil))
+(jump_insn 117 116 118 21 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 129)
+            (pc))) "../ncurses/./tty/lib_twait.c":491:6 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 129)
+;;  succ:       22 [50.0% (guessed)]  count:158376920 (estimated locally) (FALLTHRU)
+;;              26 [50.0% (guessed)]  count:158376920 (estimated locally)
+
+;; basic block 22, loop depth 0, count 158376920 (estimated locally), maybe hot
+;;  prev block 21, next block 23, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       21 [50.0% (guessed)]  count:158376920 (estimated locally) (FALLTHRU)
+(note 118 117 119 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 119 118 120 22 (set (reg:HI 136)
+        (mem/c:HI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -18 [0xffffffffffffffee])) [12 MEM[(struct pollfd *)&fd_list + 8B].revents+0 S2 A16])) "../ncurses/./tty/lib_twait.c":492:7 -1
+     (nil))
+(insn 120 119 121 22 (parallel [
+            (set (reg:HI 135)
+                (and:HI (reg:HI 136)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":492:7 -1
+     (expr_list:REG_EQUAL (and:HI (mem/c:HI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -18 [0xffffffffffffffee])) [12 MEM[(struct pollfd *)&fd_list + 8B].revents+0 S2 A16])
+            (const_int 1 [0x1]))
+        (nil)))
+(insn 121 120 122 22 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 135)
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":492:7 -1
+     (nil))
+(jump_insn 122 121 123 22 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 129)
+            (pc))) "../ncurses/./tty/lib_twait.c":492:7 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 129)
+;;  succ:       23 [50.0% (guessed)]  count:79188460 (estimated locally) (FALLTHRU)
+;;              26 [50.0% (guessed)]  count:79188460 (estimated locally)
+
+;; basic block 23, loop depth 0, count 79188460 (estimated locally), maybe hot
+;;  prev block 22, next block 24, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       22 [50.0% (guessed)]  count:79188460 (estimated locally) (FALLTHRU)
+(note 123 122 124 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 124 123 147 23 (parallel [
+            (set (reg/v:SI 108 [ <retval> ])
+                (ior:SI (reg/v:SI 108 [ <retval> ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":493:14 -1
+     (nil))
+(jump_insn 147 124 148 23 (set (pc)
+        (label_ref:DI 129)) 807 {jump}
+     (nil)
+ -> 129)
+;;  succ:       26 [always]  count:79188460 (estimated locally)
+
+(barrier 148 147 150)
+;; basic block 24, loop depth 0, count 756987984 (estimated locally), maybe hot
+;;  prev block 23, next block 26, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       18 [70.5% (guessed)]  count:756987984 (estimated locally)
+(code_label 150 148 149 24 13 (nil) [1 uses])
+(note 149 150 14 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 14 149 129 24 (set (reg/v:SI 108 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./tty/lib_twait.c":508:13 -1
+     (nil))
+;;  succ:       26 [always]  count:756987984 (estimated locally) (FALLTHRU)
+
+;; basic block 26, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 24, next block 27, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       24 [always]  count:756987984 (estimated locally) (FALLTHRU)
+;;              21 [50.0% (guessed)]  count:158376920 (estimated locally)
+;;              22 [50.0% (guessed)]  count:79188460 (estimated locally)
+;;              23 [always]  count:79188460 (estimated locally)
+(code_label 129 14 138 26 1 (nil) [3 uses])
+(note 138 129 130 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 130 138 131 26 (set (reg/f:DI 138)
+        (const_int 40 [0x28])) "../ncurses/./tty/lib_twait.c":523:1 -1
+     (nil))
+(insn 131 130 132 26 (parallel [
+            (set (reg:CCZ 17 flags)
+                (unspec:CCZ [
+                        (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                                (const_int -8 [0xfffffffffffffff8])) [40 D.9171+0 S8 A64])
+                        (mem/v/f:DI (reg/f:DI 138) [1 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_TEST))
+            (clobber (scratch:DI))
+        ]) "../ncurses/./tty/lib_twait.c":523:1 -1
+     (nil))
+(jump_insn 132 131 151 26 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 135)
+            (pc))) "../ncurses/./tty/lib_twait.c":523:1 -1
+     (int_list:REG_BR_PROB 1073312332 (nil))
+ -> 135)
+;;  succ:       28 [100.0% (guessed)]  count:1073312328 (estimated locally)
+;;              27 [0.0% (guessed)]  count:429496 (estimated locally) (FALLTHRU)
+
+;; basic block 27, loop depth 0, count 429496 (estimated locally)
+;;  prev block 26, next block 28, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       26 [0.0% (guessed)]  count:429496 (estimated locally) (FALLTHRU)
+(note 151 132 133 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(call_insn 133 151 134 27 (call (mem:QI (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7fa303706b00 __stack_chk_fail>) [0 __stack_chk_fail S1 A8])
+        (const_int 0 [0])) "../ncurses/./tty/lib_twait.c":523:1 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7fa303706b00 __stack_chk_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (nil))
+;;  succ:      
+
+(barrier 134 133 135)
+;; basic block 28, loop depth 0, count 1073312328 (estimated locally), maybe hot
+;;  prev block 27, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       26 [100.0% (guessed)]  count:1073312328 (estimated locally)
+(code_label 135 134 152 28 10 (nil) [1 uses])
+(note 152 135 136 28 [bb 28] NOTE_INSN_BASIC_BLOCK)
+(insn 136 152 137 28 (set (reg/i:SI 0 ax)
+        (reg/v:SI 108 [ <retval> ])) "../ncurses/./tty/lib_twait.c":523:1 -1
+     (nil))
+(insn 137 136 0 28 (use (reg/i:SI 0 ax)) "../ncurses/./tty/lib_twait.c":523:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073312328 (estimated locally) (FALLTHRU)
+

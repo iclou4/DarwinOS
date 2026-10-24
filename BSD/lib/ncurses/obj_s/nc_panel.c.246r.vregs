@@ -1,0 +1,145 @@
+
+;; Function _nc_panelhook_sp (_nc_panelhook_sp, funcdef_no=91, decl_uid=8250, cgraph_uid=92, symbol_order=91)
+
+(note 1 0 4 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 83 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/nc_panel.c":40:1 74 {*movdi_internal}
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 83 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/nc_panel.c":43:6 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 7 6 8 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 12)
+            (pc))) "../ncurses/./base/nc_panel.c":43:6 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 12)
+;;  succ:       4 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+;;              5 [30.0% (guessed)]  count:322122544 (estimated locally)
+
+;; basic block 4, loop depth 0, count 751619281 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+(note 8 7 9 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 9 8 10 4 (parallel [
+            (set (reg/f:DI 82 [ <retval> ])
+                (plus:DI (reg/v/f:DI 83 [ sp ])
+                    (const_int 1280 [0x500])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/nc_panel.c":43:6 210 {*adddi_1}
+     (nil))
+(jump_insn 10 9 11 4 (set (pc)
+        (label_ref:DI 23)) 807 {jump}
+     (nil)
+ -> 23)
+;;  succ:       8 [always]  count:751619281 (estimated locally)
+
+(barrier 11 10 12)
+;; basic block 5, loop depth 0, count 322122544 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [30.0% (guessed)]  count:322122544 (estimated locally)
+(code_label 12 11 13 5 2 (nil) [1 uses])
+(note 13 12 14 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 14 13 15 5 (set (reg/f:DI 82 [ <retval> ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7fa9ed0a2cf0 SP>) [1 SP+0 S8 A64])) "../ncurses/./base/nc_panel.c":44:9 74 {*movdi_internal}
+     (nil))
+(insn 15 14 16 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/nc_panel.c":45:9 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 16 15 17 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 23)
+            (pc))) "../ncurses/./base/nc_panel.c":45:9 806 {*jcc}
+     (int_list:REG_BR_PROB 159987532 (nil))
+ -> 23)
+;;  succ:       6 [85.1% (guessed)]  count:274126286 (estimated locally) (FALLTHRU)
+;;              8 [14.9% (guessed)]  count:47996258 (estimated locally)
+
+;; basic block 6, loop depth 0, count 274126286 (estimated locally), maybe hot
+;;  prev block 5, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [85.1% (guessed)]  count:274126286 (estimated locally) (FALLTHRU)
+(note 17 16 18 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 18 17 23 6 (parallel [
+            (set (reg/f:DI 82 [ <retval> ])
+                (plus:DI (reg/f:DI 82 [ <retval> ])
+                    (const_int 1280 [0x500])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/nc_panel.c":45:9 210 {*adddi_1}
+     (nil))
+;;  succ:       8 [always]  count:274126286 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 6, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       6 [always]  count:274126286 (estimated locally) (FALLTHRU)
+;;              4 [always]  count:751619281 (estimated locally)
+;;              5 [14.9% (guessed)]  count:47996258 (estimated locally)
+(code_label 23 18 26 8 1 (nil) [2 uses])
+(note 26 23 24 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 24 26 25 8 (set (reg/i:DI 0 ax)
+        (reg/f:DI 82 [ <retval> ])) "../ncurses/./base/nc_panel.c":46:1 74 {*movdi_internal}
+     (nil))
+(insn 25 24 0 8 (use (reg/i:DI 0 ax)) "../ncurses/./base/nc_panel.c":46:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+
+;; Function _nc_panelhook (_nc_panelhook, funcdef_no=92, decl_uid=8248, cgraph_uid=93, symbol_order=92)
+
+(note 1 0 3 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg/f:DI 82 [ <retval> ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7fa9ed0a2cf0 SP>) [1 SP+0 S8 A64])) "../ncurses/./base/nc_panel.c":52:12 74 {*movdi_internal}
+     (nil))
+(insn 6 5 7 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/nc_panel.c":43:6 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 7 6 8 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 14)
+            (pc))) "../ncurses/./base/nc_panel.c":43:6 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 14)
+;;  succ:       4 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+;;              6 [30.0% (guessed)]  count:322122544 (estimated locally)
+
+;; basic block 4, loop depth 0, count 751619281 (estimated locally), maybe hot
+;;  prev block 2, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+(note 8 7 9 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 9 8 14 4 (parallel [
+            (set (reg/f:DI 82 [ <retval> ])
+                (plus:DI (reg/f:DI 82 [ <retval> ])
+                    (const_int 1280 [0x500])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/nc_panel.c":43:6 210 {*adddi_1}
+     (nil))
+;;  succ:       6 [always]  count:751619281 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 4, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       4 [always]  count:751619281 (estimated locally) (FALLTHRU)
+;;              2 [30.0% (guessed)]  count:322122544 (estimated locally)
+(code_label 14 9 17 6 7 (nil) [1 uses])
+(note 17 14 15 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 15 17 16 6 (set (reg/i:DI 0 ax)
+        (reg/f:DI 82 [ <retval> ])) "../ncurses/./base/nc_panel.c":53:1 74 {*movdi_internal}
+     (nil))
+(insn 16 15 0 6 (use (reg/i:DI 0 ax)) "../ncurses/./base/nc_panel.c":53:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+

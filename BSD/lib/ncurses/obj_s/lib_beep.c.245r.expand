@@ -1,0 +1,920 @@
+
+;; Function beep_sp (beep_sp, funcdef_no=91, decl_uid=6503, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+int beep_sp (struct SCREEN * sp)
+{
+  int res;
+  int res;
+  struct term * _1;
+  struct term * _2;
+  char * * _3;
+  char * _4;
+  struct term * _5;
+  char * * _6;
+  char * _8;
+  struct term * _19;
+  char * * _20;
+  char * _21;
+  struct term * _22;
+  char * * _23;
+  char * _24;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _1 = _nc_cur_term ();
+  if (_1 == 0B)
+    goto <bb 3>; [1.74%]
+  else
+    goto <bb 4>; [98.26%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+;;                6
+  goto <bb 8>; [100.00%]
+;;    succ:       8
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+  _2 = _nc_cur_term ();
+  _3 = _2->type2.Strings;
+  _4 = MEM[(char * *)_3 + 8B];
+  if (_4 != 0B)
+    goto <bb 5>; [70.00%]
+  else
+    goto <bb 6>; [30.00%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  _5 = _nc_cur_term ();
+  _6 = _5->type2.Strings;
+  _8 = MEM[(char * *)_6 + 8B];
+  res_18 = _nc_putp_flush_sp (sp_15(D), "bell", _8); [tail call]
+  goto <bb 8>; [100.00%]
+;;    succ:       8
+
+;;   basic block 6, loop depth 0
+;;    pred:       4
+  _19 = _nc_cur_term ();
+  _20 = _19->type2.Strings;
+  _21 = MEM[(char * *)_20 + 360B];
+  if (_21 != 0B)
+    goto <bb 7>; [98.26%]
+  else
+    goto <bb 3>; [1.74%]
+;;    succ:       7
+;;                3
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+  _22 = _nc_cur_term ();
+  _23 = _22->type2.Strings;
+  _24 = MEM[(char * *)_23 + 360B];
+  res_25 = _nc_putp_flush_sp (sp_15(D), "flash_screen", _24);
+  _nc_flush ();
+;;    succ:       8
+
+;;   basic block 8, loop depth 0
+;;    pred:       3
+;;                5
+;;                7
+  # res_11 = PHI <-1(3), res_18(5), res_25(7)>
+  return res_11;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 4 (_4 - 4 )
+Partition 5 (_5 - 5 )
+Partition 6 (_6 - 6 )
+Partition 8 (_8 - 8 )
+Partition 11 (res_11 - 11 )
+Partition 15 (sp_15(D) - 15 )
+Partition 18 (res_18 - 18 )
+Partition 19 (_19 - 19 )
+Partition 20 (_20 - 20 )
+Partition 21 (_21 - 21 )
+Partition 22 (_22 - 22 )
+Partition 23 (_23 - 23 )
+Partition 24 (_24 - 24 )
+Partition 25 (res_25 - 25 )
+Partition 26 (_26(D) - 26 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (res_11 - 11 18 25 26 )
+Partition 1, base 1 (sp_15(D) - 15 )
+
+
+Partition map 
+
+Partition 0 (res_11 - 11 )
+Partition 1 (sp_15(D) - 15 )
+Partition 2 (res_18 - 18 )
+Partition 3 (res_25 - 25 )
+Partition 4 (_26(D) - 26 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) res_11 <-> _26(D)
+(6878, 0) res_11 <-> res_18
+(2897, 0) res_11 <-> res_25
+
+Partition map 
+
+Partition 0 (res_11 - 11 )
+Partition 1 (sp_15(D) - 15 )
+Partition 2 (res_18 - 18 )
+Partition 3 (res_25 - 25 )
+Partition 4 (_26(D) - 26 )
+
+Coalesce list: (11)res_11 & (26)_26(D) [map: 0, 4] : Success -> 0
+Coalesce list: (11)res_11 & (18)res_18 [map: 0, 2] : Success -> 0
+Coalesce list: (11)res_11 & (25)res_25 [map: 0, 3] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_2 - 2 )
+Partition 2 (_3 - 3 )
+Partition 3 (_4 - 4 )
+Partition 4 (_5 - 5 )
+Partition 5 (_6 - 6 )
+Partition 6 (_8 - 8 )
+Partition 7 (res_11 - 11 18 25 26 )
+Partition 8 (sp_15(D) - 15 )
+Partition 9 (_19 - 19 )
+Partition 10 (_20 - 20 )
+Partition 11 (_21 - 21 )
+Partition 12 (_22 - 22 )
+Partition 13 (_23 - 23 )
+Partition 14 (_24 - 24 )
+
+
+Replacing Expressions
+_3 replace with --> _3 = _2->type2.Strings;
+
+_4 replace with --> _4 = MEM[(char * *)_3 + 8B];
+
+_6 replace with --> _6 = _5->type2.Strings;
+
+_8 replace with --> _8 = MEM[(char * *)_6 + 8B];
+
+_20 replace with --> _20 = _19->type2.Strings;
+
+_21 replace with --> _21 = MEM[(char * *)_20 + 360B];
+
+_23 replace with --> _23 = _22->type2.Strings;
+
+_24 replace with --> _24 = MEM[(char * *)_23 + 360B];
+
+
+__attribute__((visibility ("default")))
+int beep_sp (struct SCREEN * sp)
+{
+  int res;
+  int res;
+  struct term * _1;
+  struct term * _2;
+  char * * _3;
+  char * _4;
+  struct term * _5;
+  char * * _6;
+  char * _8;
+  struct term * _19;
+  char * * _20;
+  char * _21;
+  struct term * _22;
+  char * * _23;
+  char * _24;
+  int _26(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _1 = _nc_cur_term ();
+  if (_1 == 0B)
+    goto <bb 3>; [1.74%]
+  else
+    goto <bb 4>; [98.26%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+;;                6
+  goto <bb 8>; [100.00%]
+;;    succ:       8
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+  _2 = _nc_cur_term ();
+  _3 = _2->type2.Strings;
+  _4 = MEM[(char * *)_3 + 8B];
+  if (_4 != 0B)
+    goto <bb 5>; [70.00%]
+  else
+    goto <bb 6>; [30.00%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  _5 = _nc_cur_term ();
+  _6 = _5->type2.Strings;
+  _8 = MEM[(char * *)_6 + 8B];
+  res_18 = _nc_putp_flush_sp (sp_15(D), "bell", _8); [tail call]
+  goto <bb 8>; [100.00%]
+;;    succ:       8
+
+;;   basic block 6, loop depth 0
+;;    pred:       4
+  _19 = _nc_cur_term ();
+  _20 = _19->type2.Strings;
+  _21 = MEM[(char * *)_20 + 360B];
+  if (_21 != 0B)
+    goto <bb 7>; [98.26%]
+  else
+    goto <bb 3>; [1.74%]
+;;    succ:       7
+;;                3
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+  _22 = _nc_cur_term ();
+  _23 = _22->type2.Strings;
+  _24 = MEM[(char * *)_23 + 360B];
+  res_25 = _nc_putp_flush_sp (sp_15(D), "flash_screen", _24);
+  _nc_flush ();
+;;    succ:       8
+
+;;   basic block 8, loop depth 0
+;;    pred:       3
+;;                5
+;;                7
+  # res_11 = PHI <-1(3), res_18(5), res_25(7)>
+  return res_11;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB3->BB8 : PART.7 = -1
+
+;; Generating RTL for gimple basic block 2
+
+;; _1 = _nc_cur_term ();
+
+(call_insn 7 6 8 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f1b36dcc600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":72:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f1b36dcc600 _nc_cur_term>)
+        (nil))
+    (nil))
+
+(insn 8 7 0 (set (reg/f:DI 82 [ _1 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_beep.c":72:9 -1
+     (nil))
+
+;; if (_1 == 0B)
+
+(insn 9 8 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":72:8 -1
+     (nil))
+
+(jump_insn 10 9 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_beep.c":72:8 -1
+     (int_list:REG_BR_PROB 1055058724 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; 
+
+(code_label 14 13 15 2 (nil) [0 uses])
+
+(note 15 14 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _2 = _nc_cur_term ();
+
+(call_insn 16 15 17 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f1b36dcc600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":74:16 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f1b36dcc600 _nc_cur_term>)
+        (nil))
+    (nil))
+
+(insn 17 16 0 (set (reg/f:DI 83 [ _2 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_beep.c":74:16 -1
+     (nil))
+
+;; if (_4 != 0B)
+
+(insn 18 17 19 (set (reg/f:DI 97)
+        (mem/f:DI (plus:DI (reg/f:DI 83 [ _2 ])
+                (const_int 720 [0x2d0])) [1 _2->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_beep.c":74:16 -1
+     (nil))
+
+(insn 19 18 20 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 97)
+                    (const_int 8 [0x8])) [4 MEM[(char * *)_3 + 8B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":74:15 -1
+     (nil))
+
+(jump_insn 20 19 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_beep.c":74:15 -1
+     (int_list:REG_BR_PROB 322122548 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; _5 = _nc_cur_term ();
+
+(call_insn 22 21 23 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f1b36dcc600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":75:8 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f1b36dcc600 _nc_cur_term>)
+        (nil))
+    (nil))
+
+(insn 23 22 0 (set (reg/f:DI 86 [ _5 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_beep.c":75:8 -1
+     (nil))
+
+;; res_18 = _nc_putp_flush_sp (sp_15(D), "bell", _8); [tail call]
+
+(insn 24 23 25 5 (set (reg/f:DI 98)
+        (mem/f:DI (plus:DI (reg/f:DI 86 [ _5 ])
+                (const_int 720 [0x2d0])) [1 _5->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_beep.c":75:8 -1
+     (nil))
+
+(insn 25 24 26 5 (set (reg:DI 99)
+        (mem/f:DI (plus:DI (reg/f:DI 98)
+                (const_int 8 [0x8])) [4 MEM[(char * *)_6 + 8B]+0 S8 A64])) "../ncurses/./base/lib_beep.c":75:8 -1
+     (nil))
+
+(insn 26 25 27 5 (set (reg:DI 1 dx)
+        (reg:DI 99)) "../ncurses/./base/lib_beep.c":75:8 -1
+     (nil))
+
+(insn 27 26 28 5 (set (reg:DI 100)
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f1b36ee6990 *.LC0>)) "../ncurses/./base/lib_beep.c":75:8 -1
+     (nil))
+
+(insn 28 27 29 5 (set (reg:DI 4 si)
+        (reg:DI 100)) "../ncurses/./base/lib_beep.c":75:8 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f1b36ee6990 *.LC0>)
+        (nil)))
+
+(insn 29 28 30 5 (set (reg:DI 5 di)
+        (reg/v/f:DI 96 [ sp ])) "../ncurses/./base/lib_beep.c":75:8 -1
+     (nil))
+
+(call_insn/j 30 29 31 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_putp_flush_sp") [flags 0x41]  <function_decl 0x7f1b36ecfe00 _nc_putp_flush_sp>) [0 _nc_putp_flush_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":75:8 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_putp_flush_sp") [flags 0x41]  <function_decl 0x7f1b36ecfe00 _nc_putp_flush_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+
+(barrier 31 30 0)
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 33 31 34 4 (nil) [0 uses])
+
+(note 34 33 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _19 = _nc_cur_term ();
+
+(call_insn 35 34 36 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f1b36dcc600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":76:16 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f1b36dcc600 _nc_cur_term>)
+        (nil))
+    (nil))
+
+(insn 36 35 0 (set (reg/f:DI 89 [ _19 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_beep.c":76:16 -1
+     (nil))
+
+;; if (_21 != 0B)
+
+(insn 38 36 39 (set (reg/f:DI 101)
+        (mem/f:DI (plus:DI (reg/f:DI 89 [ _19 ])
+                (const_int 720 [0x2d0])) [1 _19->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_beep.c":76:16 -1
+     (nil))
+
+(insn 39 38 40 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 101)
+                    (const_int 360 [0x168])) [4 MEM[(char * *)_20 + 360B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":76:15 -1
+     (nil))
+
+(jump_insn 40 39 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 37)
+            (pc))) "../ncurses/./base/lib_beep.c":76:15 -1
+     (int_list:REG_BR_PROB 18683108 (nil)))
+
+;; Generating RTL for gimple basic block 7
+
+;; _22 = _nc_cur_term ();
+
+(call_insn 42 41 43 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f1b36dcc600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":77:8 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f1b36dcc600 _nc_cur_term>)
+        (nil))
+    (nil))
+
+(insn 43 42 0 (set (reg/f:DI 92 [ _22 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_beep.c":77:8 -1
+     (nil))
+
+;; res_25 = _nc_putp_flush_sp (sp_15(D), "flash_screen", _24);
+
+(insn 44 43 45 (set (reg/f:DI 102)
+        (mem/f:DI (plus:DI (reg/f:DI 92 [ _22 ])
+                (const_int 720 [0x2d0])) [1 _22->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_beep.c":77:8 -1
+     (nil))
+
+(insn 45 44 46 (set (reg:DI 103)
+        (mem/f:DI (plus:DI (reg/f:DI 102)
+                (const_int 360 [0x168])) [4 MEM[(char * *)_23 + 360B]+0 S8 A64])) "../ncurses/./base/lib_beep.c":77:8 -1
+     (nil))
+
+(insn 46 45 47 (set (reg:DI 1 dx)
+        (reg:DI 103)) "../ncurses/./base/lib_beep.c":77:8 -1
+     (nil))
+
+(insn 47 46 48 (set (reg:DI 104)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f1b36ee6a20 *.LC1>)) "../ncurses/./base/lib_beep.c":77:8 -1
+     (nil))
+
+(insn 48 47 49 (set (reg:DI 4 si)
+        (reg:DI 104)) "../ncurses/./base/lib_beep.c":77:8 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f1b36ee6a20 *.LC1>)
+        (nil)))
+
+(insn 49 48 50 (set (reg:DI 5 di)
+        (reg/v/f:DI 96 [ sp ])) "../ncurses/./base/lib_beep.c":77:8 -1
+     (nil))
+
+(call_insn 50 49 51 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_putp_flush_sp") [flags 0x41]  <function_decl 0x7f1b36ecfe00 _nc_putp_flush_sp>) [0 _nc_putp_flush_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":77:8 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_putp_flush_sp") [flags 0x41]  <function_decl 0x7f1b36ecfe00 _nc_putp_flush_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+
+(insn 51 50 0 (set (reg/v:SI 95 [ <retval> ])
+        (reg:SI 0 ax)) "../ncurses/./base/lib_beep.c":77:8 -1
+     (nil))
+
+;; _nc_flush ();
+
+(call_insn 52 51 0 (call (mem:QI (symbol_ref:DI ("_nc_flush") [flags 0x41]  <function_decl 0x7f1b36eb9a00 _nc_flush>) [0 _nc_flush S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_beep.c":78:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_flush") [flags 0x41]  <function_decl 0x7f1b36eb9a00 _nc_flush>)
+        (nil))
+    (nil))
+
+;; Generating RTL for gimple basic block 8
+
+;; 
+
+(code_label 53 52 54 3 (nil) [0 uses])
+
+(note 54 53 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return res_11;
+
+(jump_insn 55 54 56 (set (pc)
+        (label_ref 0)) "../ncurses/./base/lib_beep.c":82:5 -1
+     (nil))
+
+(barrier 56 55 0)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 12 from 9 to 10.
+Merging block 9 into block 8...
+Merged blocks 8 and 9.
+Merged 8 and 9 without moving.
+Removing jump 55.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 96 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/lib_beep.c":62:1 -1
+     (nil))
+(note 3 2 7 2 NOTE_INSN_FUNCTION_BEG)
+(call_insn 7 3 8 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f1b36dcc600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":72:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f1b36dcc600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 8 7 9 2 (set (reg/f:DI 82 [ _1 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_beep.c":72:9 -1
+     (nil))
+(insn 9 8 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":72:8 -1
+     (nil))
+(jump_insn 10 9 37 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 14)
+            (pc))) "../ncurses/./base/lib_beep.c":72:8 -1
+     (int_list:REG_BR_PROB 1055058724 (nil))
+ -> 14)
+;;  succ:       4 [1.7% (guessed)]  count:18683104 (estimated locally) (FALLTHRU)
+;;              5 [98.3% (guessed)]  count:1055058720 (estimated locally)
+
+;; basic block 4, loop depth 0, count 24190509 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [1.7% (guessed)]  count:18683104 (estimated locally) (FALLTHRU)
+;;              7 [1.7% (guessed)]  count:5507405 (estimated locally)
+(code_label 37 10 11 4 5 (nil) [1 uses])
+(note 11 37 4 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 4 11 12 4 (set (reg/v:SI 95 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_beep.c":73:6 -1
+     (nil))
+(jump_insn 12 4 13 4 (set (pc)
+        (label_ref:DI 57)) 807 {jump}
+     (nil)
+ -> 57)
+;;  succ:       10 [always]  count:24190509 (estimated locally)
+
+(barrier 13 12 14)
+;; basic block 5, loop depth 0, count 1055058721 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [98.3% (guessed)]  count:1055058720 (estimated locally)
+(code_label 14 13 15 5 2 (nil) [1 uses])
+(note 15 14 16 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(call_insn 16 15 17 5 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f1b36dcc600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":74:16 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f1b36dcc600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 17 16 18 5 (set (reg/f:DI 83 [ _2 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_beep.c":74:16 -1
+     (nil))
+(insn 18 17 19 5 (set (reg/f:DI 97)
+        (mem/f:DI (plus:DI (reg/f:DI 83 [ _2 ])
+                (const_int 720 [0x2d0])) [1 _2->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_beep.c":74:16 -1
+     (nil))
+(insn 19 18 20 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 97)
+                    (const_int 8 [0x8])) [4 MEM[(char * *)_3 + 8B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":74:15 -1
+     (nil))
+(jump_insn 20 19 21 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 33)
+            (pc))) "../ncurses/./base/lib_beep.c":74:15 -1
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 33)
+;;  succ:       6 [70.0% (guessed)]  count:738541108 (estimated locally) (FALLTHRU)
+;;              7 [30.0% (guessed)]  count:316517613 (estimated locally)
+
+;; basic block 6, loop depth 0, count 738541108 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [70.0% (guessed)]  count:738541108 (estimated locally) (FALLTHRU)
+(note 21 20 22 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(call_insn 22 21 23 6 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f1b36dcc600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":75:8 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f1b36dcc600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 23 22 24 6 (set (reg/f:DI 86 [ _5 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_beep.c":75:8 -1
+     (nil))
+(insn 24 23 25 6 (set (reg/f:DI 98)
+        (mem/f:DI (plus:DI (reg/f:DI 86 [ _5 ])
+                (const_int 720 [0x2d0])) [1 _5->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_beep.c":75:8 -1
+     (nil))
+(insn 25 24 26 6 (set (reg:DI 99)
+        (mem/f:DI (plus:DI (reg/f:DI 98)
+                (const_int 8 [0x8])) [4 MEM[(char * *)_6 + 8B]+0 S8 A64])) "../ncurses/./base/lib_beep.c":75:8 -1
+     (nil))
+(insn 26 25 27 6 (set (reg:DI 1 dx)
+        (reg:DI 99)) "../ncurses/./base/lib_beep.c":75:8 -1
+     (nil))
+(insn 27 26 28 6 (set (reg:DI 100)
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f1b36ee6990 *.LC0>)) "../ncurses/./base/lib_beep.c":75:8 -1
+     (nil))
+(insn 28 27 29 6 (set (reg:DI 4 si)
+        (reg:DI 100)) "../ncurses/./base/lib_beep.c":75:8 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f1b36ee6990 *.LC0>)
+        (nil)))
+(insn 29 28 30 6 (set (reg:DI 5 di)
+        (reg/v/f:DI 96 [ sp ])) "../ncurses/./base/lib_beep.c":75:8 -1
+     (nil))
+(call_insn/j 30 29 31 6 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_putp_flush_sp") [flags 0x41]  <function_decl 0x7f1b36ecfe00 _nc_putp_flush_sp>) [0 _nc_putp_flush_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":75:8 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_putp_flush_sp") [flags 0x41]  <function_decl 0x7f1b36ecfe00 _nc_putp_flush_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+;;  succ:       EXIT [always]  count:738541108 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 31 30 33)
+;; basic block 7, loop depth 0, count 316517613 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [30.0% (guessed)]  count:316517613 (estimated locally)
+(code_label 33 31 34 7 4 (nil) [1 uses])
+(note 34 33 35 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(call_insn 35 34 36 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f1b36dcc600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":76:16 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f1b36dcc600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 36 35 38 7 (set (reg/f:DI 89 [ _19 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_beep.c":76:16 -1
+     (nil))
+(insn 38 36 39 7 (set (reg/f:DI 101)
+        (mem/f:DI (plus:DI (reg/f:DI 89 [ _19 ])
+                (const_int 720 [0x2d0])) [1 _19->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_beep.c":76:16 -1
+     (nil))
+(insn 39 38 40 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 101)
+                    (const_int 360 [0x168])) [4 MEM[(char * *)_20 + 360B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":76:15 -1
+     (nil))
+(jump_insn 40 39 41 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 37)
+            (pc))) "../ncurses/./base/lib_beep.c":76:15 -1
+     (int_list:REG_BR_PROB 18683108 (nil))
+ -> 37)
+;;  succ:       8 [98.3% (guessed)]  count:311010208 (estimated locally) (FALLTHRU)
+;;              4 [1.7% (guessed)]  count:5507405 (estimated locally)
+
+;; basic block 8, loop depth 0, count 311010208 (estimated locally), maybe hot
+;;  prev block 7, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [98.3% (guessed)]  count:311010208 (estimated locally) (FALLTHRU)
+(note 41 40 42 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(call_insn 42 41 43 8 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f1b36dcc600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":77:8 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f1b36dcc600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 43 42 44 8 (set (reg/f:DI 92 [ _22 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_beep.c":77:8 -1
+     (nil))
+(insn 44 43 45 8 (set (reg/f:DI 102)
+        (mem/f:DI (plus:DI (reg/f:DI 92 [ _22 ])
+                (const_int 720 [0x2d0])) [1 _22->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_beep.c":77:8 -1
+     (nil))
+(insn 45 44 46 8 (set (reg:DI 103)
+        (mem/f:DI (plus:DI (reg/f:DI 102)
+                (const_int 360 [0x168])) [4 MEM[(char * *)_23 + 360B]+0 S8 A64])) "../ncurses/./base/lib_beep.c":77:8 -1
+     (nil))
+(insn 46 45 47 8 (set (reg:DI 1 dx)
+        (reg:DI 103)) "../ncurses/./base/lib_beep.c":77:8 -1
+     (nil))
+(insn 47 46 48 8 (set (reg:DI 104)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f1b36ee6a20 *.LC1>)) "../ncurses/./base/lib_beep.c":77:8 -1
+     (nil))
+(insn 48 47 49 8 (set (reg:DI 4 si)
+        (reg:DI 104)) "../ncurses/./base/lib_beep.c":77:8 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f1b36ee6a20 *.LC1>)
+        (nil)))
+(insn 49 48 50 8 (set (reg:DI 5 di)
+        (reg/v/f:DI 96 [ sp ])) "../ncurses/./base/lib_beep.c":77:8 -1
+     (nil))
+(call_insn 50 49 51 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_putp_flush_sp") [flags 0x41]  <function_decl 0x7f1b36ecfe00 _nc_putp_flush_sp>) [0 _nc_putp_flush_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":77:8 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_putp_flush_sp") [flags 0x41]  <function_decl 0x7f1b36ecfe00 _nc_putp_flush_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 51 50 52 8 (set (reg/v:SI 95 [ <retval> ])
+        (reg:SI 0 ax)) "../ncurses/./base/lib_beep.c":77:8 -1
+     (nil))
+(call_insn 52 51 57 8 (call (mem:QI (symbol_ref:DI ("_nc_flush") [flags 0x41]  <function_decl 0x7f1b36eb9a00 _nc_flush>) [0 _nc_flush S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_beep.c":78:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_flush") [flags 0x41]  <function_decl 0x7f1b36eb9a00 _nc_flush>)
+        (nil))
+    (nil))
+;;  succ:       10 [always]  count:311010208 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 335200716 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       8 [always]  count:311010208 (estimated locally) (FALLTHRU)
+;;              4 [always]  count:24190509 (estimated locally)
+(code_label 57 52 60 10 1 (nil) [1 uses])
+(note 60 57 58 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 58 60 59 10 (set (reg/i:SI 0 ax)
+        (reg/v:SI 95 [ <retval> ])) "../ncurses/./base/lib_beep.c":83:1 -1
+     (nil))
+(insn 59 58 0 10 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_beep.c":83:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:335200716 (estimated locally) (FALLTHRU)
+
+
+;; Function beep (beep, funcdef_no=92, decl_uid=5520, cgraph_uid=93, symbol_order=92)
+
+__attribute__((visibility ("default")))
+int beep ()
+{
+  struct SCREEN * SP.0_1;
+  int _4;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.0_1 = SP;
+  _4 = beep_sp (SP.0_1); [tail call]
+  return _4;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (SP.0_1 - 1 )
+Partition 4 (_4 - 4 )
+Partition 5 (_5(D) - 5 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_4 - 4 5 )
+
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_5(D) - 5 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) _4 <-> _5(D)
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_5(D) - 5 )
+
+Coalesce list: (4)_4 & (5)_5(D) [map: 0, 1] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (SP.0_1 - 1 )
+Partition 1 (_4 - 4 5 )
+
+
+Replacing Expressions
+SP.0_1 replace with --> SP.0_1 = SP;
+
+
+__attribute__((visibility ("default")))
+int beep ()
+{
+  struct SCREEN * SP.0_1;
+  int _4;
+  int _5(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.0_1 = SP;
+  _4 = beep_sp (SP.0_1); [tail call]
+  return _4;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; _4 = beep_sp (SP.0_1); [tail call]
+
+(insn 5 4 6 2 (set (reg:DI 84)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f1b36e58cf0 SP>) [16 SP+0 S8 A64])) "../ncurses/./base/lib_beep.c":89:12 -1
+     (nil))
+
+(insn 6 5 7 2 (set (reg:DI 5 di)
+        (reg:DI 84)) "../ncurses/./base/lib_beep.c":89:12 -1
+     (nil))
+
+(call_insn/j 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("beep_sp") [flags 0x3]  <function_decl 0x7f1b36d2e700 beep_sp>) [0 beep_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":89:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("beep_sp") [flags 0x3]  <function_decl 0x7f1b36d2e700 beep_sp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+(barrier 8 7 0)
+Basic block 4 is marked unlikely by forward prop
+deleting block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 3 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg:DI 84)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f1b36e58cf0 SP>) [16 SP+0 S8 A64])) "../ncurses/./base/lib_beep.c":89:12 -1
+     (nil))
+(insn 6 5 7 2 (set (reg:DI 5 di)
+        (reg:DI 84)) "../ncurses/./base/lib_beep.c":89:12 -1
+     (nil))
+(call_insn/j 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("beep_sp") [flags 0x3]  <function_decl 0x7f1b36d2e700 beep_sp>) [0 beep_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_beep.c":89:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("beep_sp") [flags 0x3]  <function_decl 0x7f1b36d2e700 beep_sp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 8 7 0)

@@ -1,0 +1,364 @@
+
+;; Function slk_attroff_sp (slk_attroff_sp, funcdef_no=91, decl_uid=6644, cgraph_uid=92, symbol_order=91)
+
+
+
+try_optimize_cfg iteration 1
+
+Removing jump 37.
+Removing jump 41.
+Removing jump 45.
+
+
+try_optimize_cfg iteration 2
+
+
+
+try_optimize_cfg iteration 1
+
+fix_loop_structure: fixing up loops for function
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 9 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 9 3 2 (set (reg/v/f:DI 90 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/lib_slkatrof.c":46:1 74 {*movdi_internal}
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 91 [ attr ])
+        (reg:SI 4 si [ attr ])) "../ncurses/./base/lib_slkatrof.c":46:1 75 {*movsi_internal}
+     (nil))
+(note 4 3 11 2 NOTE_INSN_FUNCTION_BEG)
+(insn 11 4 12 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 90 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkatrof.c":49:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 12 11 13 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 40)
+            (pc))) "../ncurses/./base/lib_slkatrof.c":49:8 806 {*jcc}
+     (int_list:REG_BR_PROB 4831844 (nil))
+ -> 40)
+;;  succ:       3 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+;;              6 [0.5% (guessed)]  count:4831840 (estimated locally)
+
+;; basic block 3, loop depth 0, count 1068909985 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+(note 13 12 14 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 14 13 15 3 (set (reg/f:DI 82 [ _1 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 90 [ sp ])
+                (const_int 800 [0x320])) [2 sp_11(D)->_slk+0 S8 A64])) "../ncurses/./base/lib_slkatrof.c":49:35 74 {*movdi_internal}
+     (nil))
+(insn 15 14 16 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkatrof.c":49:25 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 16 15 17 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 44)
+            (pc))) "../ncurses/./base/lib_slkatrof.c":49:25 806 {*jcc}
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 44)
+;;  succ:       4 [99.1% (guessed)]  count:1059610470 (estimated locally) (FALLTHRU)
+;;              7 [0.9% (guessed)]  count:9299515 (estimated locally)
+
+;; basic block 4, loop depth 0, count 1059610470 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       3 [99.1% (guessed)]  count:1059610470 (estimated locally) (FALLTHRU)
+(note 17 16 18 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 18 17 19 4 (parallel [
+            (set (reg:SI 92)
+                (and:SI (reg/v:SI 91 [ attr ])
+                    (const_int -256 [0xffffffffffffff00])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkatrof.c":51:2 490 {*andsi_1}
+     (nil))
+(insn 19 18 20 4 (set (reg:SI 93)
+        (not:SI (reg:SI 92))) "../ncurses/./base/lib_slkatrof.c":51:2 632 {*one_cmplsi2_1}
+     (nil))
+(insn 20 19 21 4 (parallel [
+            (set (reg:SI 86 [ _5 ])
+                (and:SI (reg:SI 93)
+                    (mem:SI (plus:DI (reg/f:DI 82 [ _1 ])
+                            (const_int 32 [0x20])) [1 _1->attr.attr+0 S4 A64])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkatrof.c":51:2 490 {*andsi_1}
+     (nil))
+(insn 21 20 22 4 (set (mem:SI (plus:DI (reg/f:DI 82 [ _1 ])
+                (const_int 32 [0x20])) [1 _1->attr.attr+0 S4 A64])
+        (reg:SI 86 [ _5 ])) "../ncurses/./base/lib_slkatrof.c":51:2 75 {*movsi_internal}
+     (nil))
+(insn 22 21 23 4 (parallel [
+            (set (reg:SI 94)
+                (and:SI (reg/v:SI 91 [ attr ])
+                    (const_int 65280 [0xff00])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkatrof.c":52:12 490 {*andsi_1}
+     (nil))
+(insn 23 22 24 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 94)
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkatrof.c":52:5 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 24 23 25 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 48)
+            (pc))) "../ncurses/./base/lib_slkatrof.c":52:5 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 48)
+;;  succ:       5 [50.0% (guessed)]  count:529805235 (estimated locally) (FALLTHRU)
+;;              8 [50.0% (guessed)]  count:529805235 (estimated locally)
+
+;; basic block 5, loop depth 0, count 529805235 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [50.0% (guessed)]  count:529805235 (estimated locally) (FALLTHRU)
+(note 25 24 26 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 26 25 27 5 (set (mem:SI (plus:DI (reg/f:DI 82 [ _1 ])
+                (const_int 56 [0x38])) [1 _1->attr.ext_color+0 S4 A64])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkatrof.c":53:6 75 {*movsi_internal}
+     (nil))
+(insn 27 26 28 5 (parallel [
+            (set (reg:SI 95)
+                (and:SI (reg:SI 86 [ _5 ])
+                    (const_int -65281 [0xffffffffffff00ff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkatrof.c":53:6 490 {*andsi_1}
+     (nil))
+(insn 28 27 5 5 (set (mem:SI (plus:DI (reg/f:DI 82 [ _1 ])
+                (const_int 32 [0x20])) [1 _1->attr.attr+0 S4 A64])
+        (reg:SI 95)) "../ncurses/./base/lib_slkatrof.c":53:6 75 {*movsi_internal}
+     (nil))
+(insn 5 28 40 5 (set (reg:SI 89 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkatrof.c":56:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:529805235 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 4831840 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [0.5% (guessed)]  count:4831840 (estimated locally)
+(code_label 40 5 39 6 3 (nil) [1 uses])
+(note 39 40 8 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 8 39 44 6 (set (reg:SI 89 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkatrof.c":58:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:4831840 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 9299515 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       3 [0.9% (guessed)]  count:9299515 (estimated locally)
+(code_label 44 8 43 7 4 (nil) [1 uses])
+(note 43 44 7 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 7 43 48 7 (set (reg:SI 89 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkatrof.c":58:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:9299515 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 529805235 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [50.0% (guessed)]  count:529805235 (estimated locally)
+(code_label 48 7 47 8 5 (nil) [1 uses])
+(note 47 48 6 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 6 47 33 8 (set (reg:SI 89 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkatrof.c":56:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:529805235 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       8 [always]  count:529805235 (estimated locally) (FALLTHRU)
+;;              5 [always]  count:529805235 (estimated locally) (FALLTHRU)
+;;              6 [always]  count:4831840 (estimated locally) (FALLTHRU)
+;;              7 [always]  count:9299515 (estimated locally) (FALLTHRU)
+(code_label 33 6 36 9 1 (nil) [0 uses])
+(note 36 33 34 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 34 36 35 9 (set (reg/i:SI 0 ax)
+        (reg:SI 89 [ <retval> ])) "../ncurses/./base/lib_slkatrof.c":59:1 75 {*movsi_internal}
+     (nil))
+(insn 35 34 0 9 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_slkatrof.c":59:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+
+;; Function slk_attroff (slk_attroff, funcdef_no=92, decl_uid=6050, cgraph_uid=93, symbol_order=92)
+
+
+
+try_optimize_cfg iteration 1
+
+Removing jump 37.
+Removing jump 41.
+Removing jump 45.
+
+
+try_optimize_cfg iteration 2
+
+
+
+try_optimize_cfg iteration 1
+
+fix_loop_structure: fixing up loops for function
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 8 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg/v:SI 91 [ attr ])
+        (reg:SI 5 di [ attr ])) "../ncurses/./base/lib_slkatrof.c":64:1 75 {*movsi_internal}
+     (nil))
+(note 3 2 10 2 NOTE_INSN_FUNCTION_BEG)
+(insn 10 3 11 2 (set (reg/f:DI 82 [ SP.0_1 ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7fd8d9e96cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/lib_slkatrof.c":65:12 74 {*movdi_internal}
+     (nil))
+(insn 11 10 12 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ SP.0_1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkatrof.c":49:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 12 11 13 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 40)
+            (pc))) "../ncurses/./base/lib_slkatrof.c":49:8 806 {*jcc}
+     (int_list:REG_BR_PROB 4831844 (nil))
+ -> 40)
+;;  succ:       3 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+;;              6 [0.5% (guessed)]  count:4831840 (estimated locally)
+
+;; basic block 3, loop depth 0, count 1068909985 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+(note 13 12 14 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 14 13 15 3 (set (reg/f:DI 83 [ _6 ])
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ SP.0_1 ])
+                (const_int 800 [0x320])) [2 SP.0_1->_slk+0 S8 A64])) "../ncurses/./base/lib_slkatrof.c":49:35 74 {*movdi_internal}
+     (nil))
+(insn 15 14 16 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 83 [ _6 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkatrof.c":49:25 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 16 15 17 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 44)
+            (pc))) "../ncurses/./base/lib_slkatrof.c":49:25 806 {*jcc}
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 44)
+;;  succ:       4 [99.1% (guessed)]  count:1059610470 (estimated locally) (FALLTHRU)
+;;              7 [0.9% (guessed)]  count:9299515 (estimated locally)
+
+;; basic block 4, loop depth 0, count 1059610470 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       3 [99.1% (guessed)]  count:1059610470 (estimated locally) (FALLTHRU)
+(note 17 16 18 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 18 17 19 4 (parallel [
+            (set (reg:SI 92)
+                (and:SI (reg/v:SI 91 [ attr ])
+                    (const_int -256 [0xffffffffffffff00])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkatrof.c":51:2 490 {*andsi_1}
+     (nil))
+(insn 19 18 20 4 (set (reg:SI 93)
+        (not:SI (reg:SI 92))) "../ncurses/./base/lib_slkatrof.c":51:2 632 {*one_cmplsi2_1}
+     (nil))
+(insn 20 19 21 4 (parallel [
+            (set (reg:SI 87 [ _10 ])
+                (and:SI (reg:SI 93)
+                    (mem:SI (plus:DI (reg/f:DI 83 [ _6 ])
+                            (const_int 32 [0x20])) [1 _6->attr.attr+0 S4 A64])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkatrof.c":51:2 490 {*andsi_1}
+     (nil))
+(insn 21 20 22 4 (set (mem:SI (plus:DI (reg/f:DI 83 [ _6 ])
+                (const_int 32 [0x20])) [1 _6->attr.attr+0 S4 A64])
+        (reg:SI 87 [ _10 ])) "../ncurses/./base/lib_slkatrof.c":51:2 75 {*movsi_internal}
+     (nil))
+(insn 22 21 23 4 (parallel [
+            (set (reg:SI 94)
+                (and:SI (reg/v:SI 91 [ attr ])
+                    (const_int 65280 [0xff00])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkatrof.c":52:12 490 {*andsi_1}
+     (nil))
+(insn 23 22 24 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 94)
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkatrof.c":52:5 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 24 23 25 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 48)
+            (pc))) "../ncurses/./base/lib_slkatrof.c":52:5 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 48)
+;;  succ:       5 [50.0% (guessed)]  count:529805235 (estimated locally) (FALLTHRU)
+;;              8 [50.0% (guessed)]  count:529805235 (estimated locally)
+
+;; basic block 5, loop depth 0, count 529805235 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [50.0% (guessed)]  count:529805235 (estimated locally) (FALLTHRU)
+(note 25 24 26 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 26 25 27 5 (set (mem:SI (plus:DI (reg/f:DI 83 [ _6 ])
+                (const_int 56 [0x38])) [1 _6->attr.ext_color+0 S4 A64])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkatrof.c":53:6 75 {*movsi_internal}
+     (nil))
+(insn 27 26 28 5 (parallel [
+            (set (reg:SI 95)
+                (and:SI (reg:SI 87 [ _10 ])
+                    (const_int -65281 [0xffffffffffff00ff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkatrof.c":53:6 490 {*andsi_1}
+     (nil))
+(insn 28 27 6 5 (set (mem:SI (plus:DI (reg/f:DI 83 [ _6 ])
+                (const_int 32 [0x20])) [1 _6->attr.attr+0 S4 A64])
+        (reg:SI 95)) "../ncurses/./base/lib_slkatrof.c":53:6 75 {*movsi_internal}
+     (nil))
+(insn 6 28 40 5 (set (reg:SI 90 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkatrof.c":56:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:529805235 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 4831840 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [0.5% (guessed)]  count:4831840 (estimated locally)
+(code_label 40 6 39 6 10 (nil) [1 uses])
+(note 39 40 7 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 7 39 44 6 (set (reg:SI 90 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkatrof.c":58:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:4831840 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 9299515 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       3 [0.9% (guessed)]  count:9299515 (estimated locally)
+(code_label 44 7 43 7 11 (nil) [1 uses])
+(note 43 44 4 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 4 43 48 7 (set (reg:SI 90 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkatrof.c":58:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:9299515 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 529805235 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [50.0% (guessed)]  count:529805235 (estimated locally)
+(code_label 48 4 47 8 12 (nil) [1 uses])
+(note 47 48 5 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 5 47 33 8 (set (reg:SI 90 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkatrof.c":56:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:529805235 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       8 [always]  count:529805235 (estimated locally) (FALLTHRU)
+;;              5 [always]  count:529805235 (estimated locally) (FALLTHRU)
+;;              6 [always]  count:4831840 (estimated locally) (FALLTHRU)
+;;              7 [always]  count:9299515 (estimated locally) (FALLTHRU)
+(code_label 33 5 36 9 8 (nil) [0 uses])
+(note 36 33 34 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 34 36 35 9 (set (reg/i:SI 0 ax)
+        (reg:SI 90 [ <retval> ])) "../ncurses/./base/lib_slkatrof.c":66:1 75 {*movsi_internal}
+     (nil))
+(insn 35 34 0 9 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_slkatrof.c":66:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+

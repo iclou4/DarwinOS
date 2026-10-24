@@ -1,0 +1,844 @@
+
+;; Function mvwin (mvwin, funcdef_no=91, decl_uid=5879, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+int mvwin (struct WINDOW * win, int by, int bx)
+{
+  const struct SCREEN * sp;
+  short int _1;
+  int _2;
+  int _3;
+  int _4;
+  int _5;
+  int _6;
+  int _7;
+  int _11;
+  short int _21;
+  int iftmp.0_22;
+  int _24;
+  int _28;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  sp_16 = _nc_screen_of (win_14(D));
+  if (win_14(D) == 0B)
+    goto <bb 8>; [0.45%]
+  else
+    goto <bb 3>; [99.55%]
+;;    succ:       8
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = win_14(D)->_flags;
+  _21 = _1 & 16;
+  if (_21 != 0)
+    goto <bb 8>; [1.04%]
+  else
+    goto <bb 4>; [98.96%]
+;;    succ:       8
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _2 = sp_16->_lines;
+  _3 = win_14(D)->_maxy;
+  _4 = _3 + by_17(D);
+  if (_2 <= _4)
+    goto <bb 8>; [1.04%]
+  else
+    goto <bb 5>; [98.96%]
+;;    succ:       8
+;;                5
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  _5 = sp_16->_columns;
+  _6 = win_14(D)->_maxx;
+  _7 = _6 + bx_18(D);
+  if (_5 <= _7)
+    goto <bb 8>; [1.04%]
+  else
+    goto <bb 6>; [98.96%]
+;;    succ:       8
+;;                6
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  _28 = by_17(D) | bx_18(D);
+  if (_28 < 0)
+    goto <bb 8>; [2.09%]
+  else
+    goto <bb 7>; [97.91%]
+;;    succ:       8
+;;                7
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+  win_14(D)->_begy = by_17(D);
+  win_14(D)->_begx = bx_18(D);
+  iftmp.0_22 = _3 + 1;
+  _24 = wtouchln (win_14(D), 0, iftmp.0_22, 1); [tail call]
+;;    succ:       8
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+;;                3
+;;                2
+;;                6
+;;                5
+;;                4
+  # _11 = PHI <_24(7), -1(3), -1(2), -1(6), -1(5), -1(4)>
+  return _11;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 4 (_4 - 4 )
+Partition 5 (_5 - 5 )
+Partition 6 (_6 - 6 )
+Partition 7 (_7 - 7 )
+Partition 11 (_11 - 11 )
+Partition 14 (win_14(D) - 14 )
+Partition 16 (sp_16 - 16 )
+Partition 17 (by_17(D) - 17 )
+Partition 18 (bx_18(D) - 18 )
+Partition 21 (_21 - 21 )
+Partition 22 (iftmp.0_22 - 22 )
+Partition 24 (_24 - 24 )
+Partition 27 (_27(D) - 27 )
+Partition 28 (_28 - 28 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_11 - 11 24 27 )
+Partition 1, base 1 (win_14(D) - 14 )
+Partition 2, base 2 (by_17(D) - 17 )
+Partition 3, base 3 (bx_18(D) - 18 )
+
+
+Partition map 
+
+Partition 0 (_11 - 11 )
+Partition 1 (win_14(D) - 14 )
+Partition 2 (by_17(D) - 17 )
+Partition 3 (bx_18(D) - 18 )
+Partition 4 (_24 - 24 )
+Partition 5 (_27(D) - 27 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) _11 <-> _27(D)
+(9446, 0) _11 <-> _24
+
+Partition map 
+
+Partition 0 (_11 - 11 )
+Partition 1 (win_14(D) - 14 )
+Partition 2 (by_17(D) - 17 )
+Partition 3 (bx_18(D) - 18 )
+Partition 4 (_24 - 24 )
+Partition 5 (_27(D) - 27 )
+
+Coalesce list: (11)_11 & (27)_27(D) [map: 0, 5] : Success -> 0
+Coalesce list: (11)_11 & (24)_24 [map: 0, 4] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_2 - 2 )
+Partition 2 (_3 - 3 )
+Partition 3 (_4 - 4 )
+Partition 4 (_5 - 5 )
+Partition 5 (_6 - 6 )
+Partition 6 (_7 - 7 )
+Partition 7 (_11 - 11 24 27 )
+Partition 8 (win_14(D) - 14 )
+Partition 9 (sp_16 - 16 )
+Partition 10 (by_17(D) - 17 )
+Partition 11 (bx_18(D) - 18 )
+Partition 12 (_21 - 21 )
+Partition 13 (iftmp.0_22 - 22 )
+Partition 14 (_28 - 28 )
+
+
+Replacing Expressions
+_1 replace with --> _1 = win_14(D)->_flags;
+
+_2 replace with --> _2 = sp_16->_lines;
+
+_4 replace with --> _4 = _3 + by_17(D);
+
+_5 replace with --> _5 = sp_16->_columns;
+
+_6 replace with --> _6 = win_14(D)->_maxx;
+
+_7 replace with --> _7 = _6 + bx_18(D);
+
+_21 replace with --> _21 = _1 & 16;
+
+iftmp.0_22 replace with --> iftmp.0_22 = _3 + 1;
+
+_28 replace with --> _28 = by_17(D) | bx_18(D);
+
+
+__attribute__((visibility ("default")))
+int mvwin (struct WINDOW * win, int by, int bx)
+{
+  const struct SCREEN * sp;
+  short int _1;
+  int _2;
+  int _3;
+  int _4;
+  int _5;
+  int _6;
+  int _7;
+  int _11;
+  short int _21;
+  int iftmp.0_22;
+  int _24;
+  int _27(D);
+  int _28;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  sp_16 = _nc_screen_of (win_14(D));
+  if (win_14(D) == 0B)
+    goto <bb 8>; [0.45%]
+  else
+    goto <bb 3>; [99.55%]
+;;    succ:       8
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = win_14(D)->_flags;
+  _21 = _1 & 16;
+  if (_21 != 0)
+    goto <bb 8>; [1.04%]
+  else
+    goto <bb 4>; [98.96%]
+;;    succ:       8
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _2 = sp_16->_lines;
+  _3 = win_14(D)->_maxy;
+  _4 = _3 + by_17(D);
+  if (_2 <= _4)
+    goto <bb 8>; [1.04%]
+  else
+    goto <bb 5>; [98.96%]
+;;    succ:       8
+;;                5
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  _5 = sp_16->_columns;
+  _6 = win_14(D)->_maxx;
+  _7 = _6 + bx_18(D);
+  if (_5 <= _7)
+    goto <bb 8>; [1.04%]
+  else
+    goto <bb 6>; [98.96%]
+;;    succ:       8
+;;                6
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  _28 = by_17(D) | bx_18(D);
+  if (_28 < 0)
+    goto <bb 8>; [2.09%]
+  else
+    goto <bb 7>; [97.91%]
+;;    succ:       8
+;;                7
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+  win_14(D)->_begy = by_17(D);
+  win_14(D)->_begx = bx_18(D);
+  iftmp.0_22 = _3 + 1;
+  _24 = wtouchln (win_14(D), 0, iftmp.0_22, 1); [tail call]
+;;    succ:       8
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+;;                3
+;;                2
+;;                6
+;;                5
+;;                4
+  # _11 = PHI <_24(7), -1(3), -1(2), -1(6), -1(5), -1(4)>
+  return _11;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB3->BB8 : PART.7 = -1
+Inserting a value copy on edge BB2->BB8 : PART.7 = -1
+Inserting a value copy on edge BB6->BB8 : PART.7 = -1
+Inserting a value copy on edge BB5->BB8 : PART.7 = -1
+Inserting a value copy on edge BB4->BB8 : PART.7 = -1
+
+;; Generating RTL for gimple basic block 2
+
+;; sp_16 = _nc_screen_of (win_14(D));
+
+(insn 13 12 14 (set (reg:DI 5 di)
+        (reg/v/f:DI 94 [ win ])) "../ncurses/./base/lib_mvwin.c":52:24 -1
+     (nil))
+
+(call_insn 14 13 15 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_screen_of") [flags 0x41]  <function_decl 0x7fe6afdeb100 _nc_screen_of>) [0 _nc_screen_of S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_mvwin.c":52:24 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_screen_of") [flags 0x41]  <function_decl 0x7fe6afdeb100 _nc_screen_of>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+(insn 15 14 0 (set (reg/v/f:DI 89 [ sp ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_mvwin.c":52:24 -1
+     (nil))
+
+;; if (win_14(D) == 0B)
+
+(insn 16 15 17 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 94 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_mvwin.c":57:8 -1
+     (nil))
+
+(jump_insn 17 16 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_mvwin.c":57:8 -1
+     (int_list:REG_BR_PROB 4831844 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; if (_21 != 0)
+
+(insn 19 18 20 (set (reg:HI 98)
+        (mem:HI (plus:DI (reg/v/f:DI 94 [ win ])
+                (const_int 24 [0x18])) [1 win_14(D)->_flags+0 S2 A64])) "../ncurses/./base/lib_mvwin.c":57:14 -1
+     (nil))
+
+(insn 20 19 21 (parallel [
+            (set (reg:HI 97)
+                (and:HI (reg:HI 98)
+                    (const_int 16 [0x10])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_mvwin.c":57:14 -1
+     (expr_list:REG_EQUAL (and:HI (mem:HI (plus:DI (reg/v/f:DI 94 [ win ])
+                    (const_int 24 [0x18])) [1 win_14(D)->_flags+0 S2 A64])
+            (const_int 16 [0x10]))
+        (nil)))
+
+(insn 21 20 22 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 97)
+            (const_int 0 [0]))) "../ncurses/./base/lib_mvwin.c":57:14 -1
+     (nil))
+
+(jump_insn 22 21 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_mvwin.c":57:14 -1
+     (int_list:REG_BR_PROB 11166916 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; _3 = win_14(D)->_maxy;
+
+(insn 24 23 0 (set (reg:SI 84 [ _3 ])
+        (mem:SI (plus:DI (reg/v/f:DI 94 [ win ])
+                (const_int 8 [0x8])) [3 win_14(D)->_maxy+0 S4 A64])) "../ncurses/./base/lib_mvwin.c":106:17 -1
+     (nil))
+
+;; if (_2 <= _4)
+
+(insn 25 24 26 (parallel [
+            (set (reg:SI 99)
+                (plus:SI (reg:SI 84 [ _3 ])
+                    (reg/v:SI 95 [ by ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_mvwin.c":106:12 -1
+     (nil))
+
+(insn 26 25 27 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 89 [ sp ])
+                    (const_int 116 [0x74])) [3 sp_16->_lines+0 S4 A32])
+            (reg:SI 99))) "../ncurses/./base/lib_mvwin.c":106:8 -1
+     (nil))
+
+(jump_insn 27 26 0 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_mvwin.c":106:8 -1
+     (int_list:REG_BR_PROB 11166916 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; if (_5 <= _7)
+
+(insn 29 28 30 (set (reg:SI 101)
+        (mem:SI (plus:DI (reg/v/f:DI 94 [ win ])
+                (const_int 12 [0xc])) [3 win_14(D)->_maxx+0 S4 A32])) "../ncurses/./base/lib_mvwin.c":107:8 -1
+     (nil))
+
+(insn 30 29 31 (parallel [
+            (set (reg:SI 100)
+                (plus:SI (reg/v:SI 96 [ bx ])
+                    (reg:SI 101)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_mvwin.c":107:8 -1
+     (expr_list:REG_EQUAL (plus:SI (reg/v:SI 96 [ bx ])
+            (mem:SI (plus:DI (reg/v/f:DI 94 [ win ])
+                    (const_int 12 [0xc])) [3 win_14(D)->_maxx+0 S4 A32]))
+        (nil)))
+
+(insn 31 30 32 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 89 [ sp ])
+                    (const_int 120 [0x78])) [3 sp_16->_columns+0 S4 A64])
+            (reg:SI 100))) "../ncurses/./base/lib_mvwin.c":107:2 -1
+     (nil))
+
+(jump_insn 32 31 0 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_mvwin.c":107:2 -1
+     (int_list:REG_BR_PROB 11166916 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; if (_28 < 0)
+
+(insn 34 33 37 (parallel [
+            (set (reg:SI 102)
+                (ior:SI (reg/v:SI 95 [ by ])
+                    (reg/v:SI 96 [ bx ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_mvwin.c":109:2 -1
+     (nil))
+
+(insn 37 34 38 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:SI 102)
+            (const_int 0 [0]))) "../ncurses/./base/lib_mvwin.c":109:2 -1
+     (nil))
+
+(jump_insn 38 37 0 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_mvwin.c":109:2 -1
+     (int_list:REG_BR_PROB 22441212 (nil)))
+
+;; Generating RTL for gimple basic block 7
+
+;; win_14(D)->_begy = by_17(D);
+
+(insn 40 39 0 (set (mem:SI (plus:DI (reg/v/f:DI 94 [ win ])
+                (const_int 16 [0x10])) [3 win_14(D)->_begy+0 S4 A64])
+        (reg/v:SI 95 [ by ])) "../ncurses/./base/lib_mvwin.c":118:16 -1
+     (nil))
+
+;; win_14(D)->_begx = bx_18(D);
+
+(insn 41 40 0 (set (mem:SI (plus:DI (reg/v/f:DI 94 [ win ])
+                (const_int 20 [0x14])) [3 win_14(D)->_begx+0 S4 A32])
+        (reg/v:SI 96 [ bx ])) "../ncurses/./base/lib_mvwin.c":119:16 -1
+     (nil))
+
+;; _24 = wtouchln (win_14(D), 0, iftmp.0_22, 1); [tail call]
+
+(insn 42 41 43 7 (parallel [
+            (set (reg:SI 103)
+                (plus:SI (reg:SI 84 [ _3 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_mvwin.c":120:5 -1
+     (nil))
+
+(insn 43 42 44 7 (set (reg:SI 2 cx)
+        (const_int 1 [0x1])) "../ncurses/./base/lib_mvwin.c":120:5 -1
+     (nil))
+
+(insn 44 43 45 7 (set (reg:SI 1 dx)
+        (reg:SI 103)) "../ncurses/./base/lib_mvwin.c":120:5 -1
+     (nil))
+
+(insn 45 44 46 7 (set (reg:SI 4 si)
+        (const_int 0 [0])) "../ncurses/./base/lib_mvwin.c":120:5 -1
+     (nil))
+
+(insn 46 45 47 7 (set (reg:DI 5 di)
+        (reg/v/f:DI 94 [ win ])) "../ncurses/./base/lib_mvwin.c":120:5 -1
+     (nil))
+
+(call_insn/j 47 46 48 7 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wtouchln") [flags 0x41]  <function_decl 0x7fe6afc55300 wtouchln>) [0 wtouchln S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_mvwin.c":120:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wtouchln") [flags 0x41]  <function_decl 0x7fe6afc55300 wtouchln>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (nil))))))
+
+(barrier 48 47 0)
+
+;; Generating RTL for gimple basic block 8
+
+;; 
+
+(code_label 50 48 51 2 (nil) [0 uses])
+
+(note 51 50 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return _11;
+
+(jump_insn 52 51 53 (set (pc)
+        (label_ref 0)) "../ncurses/./base/lib_mvwin.c":121:1 -1
+     (nil))
+
+(barrier 53 52 0)
+Edge 2->8 redirected to 11
+Edge 3->8 redirected to 12
+Edge 4->8 redirected to 13
+Edge 5->8 redirected to 14
+Edge 6->8 redirected to 15
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 60 from 14 to 15.
+Redirecting jump 64 from 14 to 15.
+Redirecting jump 68 from 14 to 15.
+Redirecting jump 72 from 14 to 15.
+Merging block 14 into block 13...
+Merged blocks 13 and 14.
+Merged 13 and 14 without moving.
+Removing jump 52.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 11 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 11 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 11 3 2 (set (reg/v/f:DI 94 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_mvwin.c":50:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 95 [ by ])
+        (reg:SI 4 si [ by ])) "../ncurses/./base/lib_mvwin.c":50:1 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:SI 96 [ bx ])
+        (reg:SI 1 dx [ bx ])) "../ncurses/./base/lib_mvwin.c":50:1 -1
+     (nil))
+(note 5 4 13 2 NOTE_INSN_FUNCTION_BEG)
+(insn 13 5 14 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 94 [ win ])) "../ncurses/./base/lib_mvwin.c":52:24 -1
+     (nil))
+(call_insn 14 13 15 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_screen_of") [flags 0x41]  <function_decl 0x7fe6afdeb100 _nc_screen_of>) [0 _nc_screen_of S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_mvwin.c":52:24 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_screen_of") [flags 0x41]  <function_decl 0x7fe6afdeb100 _nc_screen_of>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 15 14 16 2 (set (reg/v/f:DI 89 [ sp ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_mvwin.c":52:24 -1
+     (nil))
+(insn 16 15 17 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 94 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_mvwin.c":57:8 -1
+     (nil))
+(jump_insn 17 16 18 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 59)
+            (pc))) "../ncurses/./base/lib_mvwin.c":57:8 806 {*jcc}
+     (int_list:REG_BR_PROB 4831844 (nil))
+ -> 59)
+;;  succ:       9 [0.5% (guessed)]  count:4831840 (estimated locally)
+;;              4 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 1068909985 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+(note 18 17 19 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 4 (set (reg:HI 98)
+        (mem:HI (plus:DI (reg/v/f:DI 94 [ win ])
+                (const_int 24 [0x18])) [1 win_14(D)->_flags+0 S2 A64])) "../ncurses/./base/lib_mvwin.c":57:14 -1
+     (nil))
+(insn 20 19 21 4 (parallel [
+            (set (reg:HI 97)
+                (and:HI (reg:HI 98)
+                    (const_int 16 [0x10])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_mvwin.c":57:14 -1
+     (expr_list:REG_EQUAL (and:HI (mem:HI (plus:DI (reg/v/f:DI 94 [ win ])
+                    (const_int 24 [0x18])) [1 win_14(D)->_flags+0 S2 A64])
+            (const_int 16 [0x10]))
+        (nil)))
+(insn 21 20 22 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 97)
+            (const_int 0 [0]))) "../ncurses/./base/lib_mvwin.c":57:14 -1
+     (nil))
+(jump_insn 22 21 23 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 63)
+            (pc))) "../ncurses/./base/lib_mvwin.c":57:14 806 {*jcc}
+     (int_list:REG_BR_PROB 11166916 (nil))
+ -> 63)
+;;  succ:       10 [1.0% (guessed)]  count:11116661 (estimated locally)
+;;              5 [99.0% (guessed)]  count:1057793324 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 1057793324 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [99.0% (guessed)]  count:1057793324 (estimated locally) (FALLTHRU)
+(note 23 22 24 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 25 5 (set (reg:SI 84 [ _3 ])
+        (mem:SI (plus:DI (reg/v/f:DI 94 [ win ])
+                (const_int 8 [0x8])) [3 win_14(D)->_maxy+0 S4 A64])) "../ncurses/./base/lib_mvwin.c":106:17 -1
+     (nil))
+(insn 25 24 26 5 (parallel [
+            (set (reg:SI 99)
+                (plus:SI (reg:SI 84 [ _3 ])
+                    (reg/v:SI 95 [ by ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_mvwin.c":106:12 -1
+     (nil))
+(insn 26 25 27 5 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 89 [ sp ])
+                    (const_int 116 [0x74])) [3 sp_16->_lines+0 S4 A32])
+            (reg:SI 99))) "../ncurses/./base/lib_mvwin.c":106:8 -1
+     (nil))
+(jump_insn 27 26 28 5 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 67)
+            (pc))) "../ncurses/./base/lib_mvwin.c":106:8 806 {*jcc}
+     (int_list:REG_BR_PROB 11166916 (nil))
+ -> 67)
+;;  succ:       11 [1.0% (guessed)]  count:11001048 (estimated locally)
+;;              6 [99.0% (guessed)]  count:1046792276 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 1046792276 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [99.0% (guessed)]  count:1046792276 (estimated locally) (FALLTHRU)
+(note 28 27 29 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 6 (set (reg:SI 101)
+        (mem:SI (plus:DI (reg/v/f:DI 94 [ win ])
+                (const_int 12 [0xc])) [3 win_14(D)->_maxx+0 S4 A32])) "../ncurses/./base/lib_mvwin.c":107:8 -1
+     (nil))
+(insn 30 29 31 6 (parallel [
+            (set (reg:SI 100)
+                (plus:SI (reg/v:SI 96 [ bx ])
+                    (reg:SI 101)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_mvwin.c":107:8 -1
+     (expr_list:REG_EQUAL (plus:SI (reg/v:SI 96 [ bx ])
+            (mem:SI (plus:DI (reg/v/f:DI 94 [ win ])
+                    (const_int 12 [0xc])) [3 win_14(D)->_maxx+0 S4 A32]))
+        (nil)))
+(insn 31 30 32 6 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 89 [ sp ])
+                    (const_int 120 [0x78])) [3 sp_16->_columns+0 S4 A64])
+            (reg:SI 100))) "../ncurses/./base/lib_mvwin.c":107:2 -1
+     (nil))
+(jump_insn 32 31 33 6 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 71)
+            (pc))) "../ncurses/./base/lib_mvwin.c":107:2 806 {*jcc}
+     (int_list:REG_BR_PROB 11166916 (nil))
+ -> 71)
+;;  succ:       12 [1.0% (guessed)]  count:10886637 (estimated locally)
+;;              7 [99.0% (guessed)]  count:1035905639 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 1035905639 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       6 [99.0% (guessed)]  count:1035905639 (estimated locally) (FALLTHRU)
+(note 33 32 34 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 34 33 37 7 (parallel [
+            (set (reg:SI 102)
+                (ior:SI (reg/v:SI 95 [ by ])
+                    (reg/v:SI 96 [ bx ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_mvwin.c":109:2 -1
+     (nil))
+(insn 37 34 38 7 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:SI 102)
+            (const_int 0 [0]))) "../ncurses/./base/lib_mvwin.c":109:2 -1
+     (nil))
+(jump_insn 38 37 39 7 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 75)
+            (pc))) "../ncurses/./base/lib_mvwin.c":109:2 806 {*jcc}
+     (int_list:REG_BR_PROB 22441212 (nil))
+ -> 75)
+;;  succ:       13 [2.1% (guessed)]  count:21650432 (estimated locally)
+;;              8 [97.9% (guessed)]  count:1014255207 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 1014255207 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [97.9% (guessed)]  count:1014255207 (estimated locally) (FALLTHRU)
+(note 39 38 40 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 40 39 41 8 (set (mem:SI (plus:DI (reg/v/f:DI 94 [ win ])
+                (const_int 16 [0x10])) [3 win_14(D)->_begy+0 S4 A64])
+        (reg/v:SI 95 [ by ])) "../ncurses/./base/lib_mvwin.c":118:16 -1
+     (nil))
+(insn 41 40 42 8 (set (mem:SI (plus:DI (reg/v/f:DI 94 [ win ])
+                (const_int 20 [0x14])) [3 win_14(D)->_begx+0 S4 A32])
+        (reg/v:SI 96 [ bx ])) "../ncurses/./base/lib_mvwin.c":119:16 -1
+     (nil))
+(insn 42 41 43 8 (parallel [
+            (set (reg:SI 103)
+                (plus:SI (reg:SI 84 [ _3 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_mvwin.c":120:5 -1
+     (nil))
+(insn 43 42 44 8 (set (reg:SI 2 cx)
+        (const_int 1 [0x1])) "../ncurses/./base/lib_mvwin.c":120:5 -1
+     (nil))
+(insn 44 43 45 8 (set (reg:SI 1 dx)
+        (reg:SI 103)) "../ncurses/./base/lib_mvwin.c":120:5 -1
+     (nil))
+(insn 45 44 46 8 (set (reg:SI 4 si)
+        (const_int 0 [0])) "../ncurses/./base/lib_mvwin.c":120:5 -1
+     (nil))
+(insn 46 45 47 8 (set (reg:DI 5 di)
+        (reg/v/f:DI 94 [ win ])) "../ncurses/./base/lib_mvwin.c":120:5 -1
+     (nil))
+(call_insn/j 47 46 48 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wtouchln") [flags 0x41]  <function_decl 0x7fe6afc55300 wtouchln>) [0 wtouchln S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_mvwin.c":120:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wtouchln") [flags 0x41]  <function_decl 0x7fe6afc55300 wtouchln>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (nil))))))
+;;  succ:       EXIT [always]  count:1014255207 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 48 47 59)
+;; basic block 9, loop depth 0, count 4831840 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [0.5% (guessed)]  count:4831840 (estimated locally)
+(code_label 59 48 58 9 3 (nil) [1 uses])
+(note 58 59 7 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 7 58 60 9 (set (reg:SI 93 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_mvwin.c":58:2 -1
+     (nil))
+(jump_insn 60 7 61 9 (set (pc)
+        (label_ref:DI 54)) 807 {jump}
+     (nil)
+ -> 54)
+;;  succ:       15 [always]  count:4831840 (estimated locally)
+
+(barrier 61 60 63)
+;; basic block 10, loop depth 0, count 11116661 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [1.0% (guessed)]  count:11116661 (estimated locally)
+(code_label 63 61 62 10 4 (nil) [1 uses])
+(note 62 63 6 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 6 62 64 10 (set (reg:SI 93 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_mvwin.c":58:2 -1
+     (nil))
+(jump_insn 64 6 65 10 (set (pc)
+        (label_ref:DI 54)) 807 {jump}
+     (nil)
+ -> 54)
+;;  succ:       15 [always]  count:11116661 (estimated locally)
+
+(barrier 65 64 67)
+;; basic block 11, loop depth 0, count 11001048 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       5 [1.0% (guessed)]  count:11001048 (estimated locally)
+(code_label 67 65 66 11 5 (nil) [1 uses])
+(note 66 67 10 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 10 66 68 11 (set (reg:SI 93 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_mvwin.c":58:2 -1
+     (nil))
+(jump_insn 68 10 69 11 (set (pc)
+        (label_ref:DI 54)) 807 {jump}
+     (nil)
+ -> 54)
+;;  succ:       15 [always]  count:11001048 (estimated locally)
+
+(barrier 69 68 71)
+;; basic block 12, loop depth 0, count 10886637 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       6 [1.0% (guessed)]  count:10886637 (estimated locally)
+(code_label 71 69 70 12 6 (nil) [1 uses])
+(note 70 71 9 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 9 70 72 12 (set (reg:SI 93 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_mvwin.c":58:2 -1
+     (nil))
+(jump_insn 72 9 73 12 (set (pc)
+        (label_ref:DI 54)) 807 {jump}
+     (nil)
+ -> 54)
+;;  succ:       15 [always]  count:10886637 (estimated locally)
+
+(barrier 73 72 75)
+;; basic block 13, loop depth 0, count 21650432 (estimated locally), maybe hot
+;;  prev block 12, next block 15, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [2.1% (guessed)]  count:21650432 (estimated locally)
+(code_label 75 73 74 13 7 (nil) [1 uses])
+(note 74 75 8 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 8 74 54 13 (set (reg:SI 93 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_mvwin.c":58:2 -1
+     (nil))
+;;  succ:       15 [always]  count:21650432 (estimated locally) (FALLTHRU)
+
+;; basic block 15, loop depth 0, count 59486617 (estimated locally), maybe hot
+;;  prev block 13, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       13 [always]  count:21650432 (estimated locally) (FALLTHRU)
+;;              9 [always]  count:4831840 (estimated locally)
+;;              10 [always]  count:11116661 (estimated locally)
+;;              11 [always]  count:11001048 (estimated locally)
+;;              12 [always]  count:10886637 (estimated locally)
+(code_label 54 8 57 15 1 (nil) [4 uses])
+(note 57 54 55 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 55 57 56 15 (set (reg/i:SI 0 ax)
+        (reg:SI 93 [ <retval> ])) "../ncurses/./base/lib_mvwin.c":121:1 -1
+     (nil))
+(insn 56 55 0 15 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_mvwin.c":121:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:59486617 (estimated locally) (FALLTHRU)
+

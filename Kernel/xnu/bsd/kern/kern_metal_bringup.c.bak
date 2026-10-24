@@ -1,0 +1,157 @@
+/*
+ * kern_metal_bringup.c
+ *
+ * Bring-up scaffolding for the Metal graphics stack on ravynOS.
+ */
+
+#include <sys/param.h>
+#include <sys/systm.h>
+#include <sys/kernel.h>
+#include <sys/malloc.h>
+#include <sys/proc.h>
+#include <sys/errno.h>
+#include <sys/uio.h>
+#include <sys/vnode.h>
+#include <sys/mount.h>
+#include <sys/kauth.h>
+#include <libkern/copyio.h>
+#include <kern/kalloc.h>
+#include <console/video_console.h>
+
+#include "mtl_payload.h"
+
+extern void kprintf(const char *fmt, ...);
+
+struct fb_present_args {
+	user_addr_t buf;
+	user_addr_t width;
+	user_addr_t height;
+	user_addr_t stride;
+};
+
+extern uint64_t mach_absolute_time(void);
+extern void clock_delay_until(uint64_t deadline);
+extern void nanoseconds_to_absolutetime(uint64_t nanosecs, uint64_t *result);
+
+static uint32_t fb_present_frames;
+static uint64_t fb_frame_interval_abs;
+static uint64_t fb_next_deadline;
+
+int
+fb_present(struct proc *p, struct fb_present_args *uap, int32_t *retval)
+{
+	struct vc_fb_geometry fb;
+	user_addr_t src = uap->buf;
+	unsigned int width = (unsigned int)uap->width;
+	unsigned int height = (unsigned int)uap->height;
+	unsigned int stride = (unsigned int)uap->stride;
+	unsigned int rowbytes, y;
+	int error = 0;
+	uint64_t t_now, c0, c1;
+	static uint64_t t_last = 0;
+
+	(void)p;
+
+	unsigned int y_offset = (stride >> 16) & 0xffff;
+	stride = stride & 0xffff;
+
+	if (vc_fb_geometry(&fb) != 0) {
+		return ENXIO;
+	}
+	if (fb.depth < 24) {
+		return ENOTSUP;
+	}
+	if (width == 0 || height == 0 || width > fb.width || (y_offset + height) > fb.height) {
+		return EINVAL;
+	}
+	if (stride < width * 4) {
+		return EINVAL;
+	}
+
+	rowbytes = width * 4;
+	t_now = mach_absolute_time();
+	c0 = t_now;
+
+	if (stride == fb.stride && stride == rowbytes) {
+		void *dst = (void *)((unsigned long)fb.base + (unsigned long)y_offset * fb.stride);
+		error = copyin(src, dst, (size_t)width * height * 4);
+	} else {
+		for (y = 0; y < height && error == 0; y++) {
+			void *dst = (void *)((unsigned long)fb.base +
+			    (unsigned long)(y_offset + y) * fb.stride);
+			user_addr_t row = src + (user_addr_t)y * stride;
+			error = copyin(row, dst, rowbytes);
+		}
+	}
+	c1 = mach_absolute_time();
+
+	fb_present_frames++;
+	if (fb_present_frames <= 10 || (fb_present_frames % 60) == 0) {
+		uint64_t dt = t_last != 0 ? (t_now - t_last) : 0;
+		kprintf("MTL_PERF: frame %u, total_dt=%llu us, copyin=%llu us, rows=%u (y0=%u), is_bulk=%d\n",
+		    fb_present_frames,
+		    dt / 530,
+		    (c1 - c0) / 530,
+		    height, y_offset,
+		    (stride == fb.stride && stride == rowbytes) ? 1 : 0);
+	}
+	t_last = t_now;
+
+	if (error != 0) {
+		kprintf("fb_present: frame %u copy error %d\n", fb_present_frames, error);
+	}
+
+	*retval = 0;
+	return error;
+}
+
+extern vnode_t rootvnode;
+
+void
+mtl_install_test_payload(void)
+{
+	static const char path[] = "/mtl_app";
+	vnode_t vp = NULLVP;
+	vfs_context_t ctx = vfs_context_kernel();
+	struct vnode_attr va;
+	int resid = 0;
+	int error;
+
+	kprintf("mtl: payload %u bytes -> %s\n", (unsigned)MTL_TEST_PAYLOAD_LEN, path);
+
+	if (rootvnode) {
+		mount_t mp = vnode_mount(rootvnode);
+		if (mp) {
+			vfs_clearflags(mp, MNT_RDONLY);
+		}
+	}
+
+	error = vnode_open(path, FREAD | FWRITE | O_CREAT | O_TRUNC, 0755, 0, &vp, ctx);
+	if (error != 0) {
+		kprintf("mtl: create %s failed (%d)\n", path, error);
+		return;
+	}
+
+	error = vn_rdwr(UIO_WRITE, vp, (caddr_t)mtl_test_payload,
+	    (int)MTL_TEST_PAYLOAD_LEN, 0, UIO_SYSSPACE, IO_NOCACHE,
+	    kauth_cred_get(), &resid, NULL);
+
+	VATTR_INIT(&va);
+	VATTR_SET(&va, va_mode, 0755);
+	VATTR_SET(&va, va_uid, 0);
+	VATTR_SET(&va, va_gid, 0);
+	(void)vnode_setattr(vp, &va, ctx);
+
+	(void)vnode_close(vp, FWRITE, ctx);
+
+	kprintf("mtl: wrote %s %u/%u bytes, err %d\n", path,
+	    (unsigned)(MTL_TEST_PAYLOAD_LEN - (size_t)resid),
+	    (unsigned)MTL_TEST_PAYLOAD_LEN, error);
+}
+
+int __cxa_atexit(void (*func)(void *), void *arg, void *dso_handle);
+int __cxa_atexit(void (*func)(void *), void *arg, void *dso_handle)
+{
+	(void)func; (void)arg; (void)dso_handle;
+	return 0;
+}

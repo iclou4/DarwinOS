@@ -1,0 +1,933 @@
+
+;; Function keyok_sp (keyok_sp, funcdef_no=91, decl_uid=6775, cgraph_uid=92, symbol_order=91)
+
+
+
+try_optimize_cfg iteration 1
+
+
+
+keyok_sp
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp] 16 [argp] 19 [frame]
+;;  regular block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  eh block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 6 [bp] 7 [sp] 19 [frame]
+;;  regs ever live 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 17 [flags]
+;;  ref usage 	r0={13d,8u} r1={16d,5u} r2={14d,2u} r4={18d,7u} r5={22d,11u} r6={1d,20u} r7={1d,31u} r8={11d} r9={11d} r10={11d} r11={11d} r12={11d} r13={11d} r14={11d} r15={11d} r16={1d,19u} r17={27d,11u} r18={11d} r19={1d,27u,2e} r20={12d} r21={12d} r22={12d} r23={12d} r24={12d} r25={12d} r26={12d} r27={12d} r28={11d} r29={11d} r30={11d} r31={11d} r32={11d} r33={11d} r34={11d} r35={11d} r36={12d} r37={12d} r38={11d} r39={11d} r44={11d} r45={11d} r46={11d} r47={11d} r48={11d} r49={11d} r50={11d} r51={11d} r52={11d} r53={11d} r54={11d} r55={11d} r56={11d} r57={11d} r58={11d} r59={11d} r60={11d} r61={11d} r62={11d} r63={11d} r64={11d} r65={11d} r66={11d} r67={11d} r68={11d} r69={11d} r70={11d} r71={11d} r72={11d} r73={11d} r74={11d} r75={11d} r92={1d,4u} r93={1d,4u} r97={6d,3u} r98={1d,8u} r99={1d,7u} r101={1d,1u} r110={1d,1u} r112={1d,1u} r114={1d,1u} r116={1d,1u} r119={2d,2u} r120={1d,1u} r121={1d,1u} r122={1d,1u} r123={1d,1u} r124={1d,1u} r125={1d,1u} r126={1d,1u} r127={1d,1u} r128={1d,1u} r129={1d,1u} r130={1d,1u} 
+;;    total ref usage 1010{823d,185u,2e} in 89{78 regular + 11 call} insns.
+;; basic block 2, loop depth 0, count 179498457 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (RTL)
+;;  pred:       ENTRY [always]  count:179498457 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 1 [dx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 1 [dx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 17 [flags] 98 99 101 122 123 124
+;; live  in  	 1 [dx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 17 [flags] 98 99 101 122 123 124
+;; live  kill	 17 [flags]
+(note 13 0 180 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 180 13 2 2 (set (reg:DI 122)
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/keyok.c":51:1 -1
+     (expr_list:REG_DEAD (reg:DI 5 di [ sp ])
+        (nil)))
+(insn 2 180 181 2 (set (reg/v/f:DI 98 [ sp ])
+        (reg:DI 122)) "../ncurses/./base/keyok.c":51:1 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 122)
+        (nil)))
+(insn 181 2 3 2 (set (reg:SI 123)
+        (reg:SI 4 si [ c ])) "../ncurses/./base/keyok.c":51:1 -1
+     (expr_list:REG_DEAD (reg:SI 4 si [ c ])
+        (nil)))
+(insn 3 181 182 2 (set (reg/v:SI 99 [ c ])
+        (reg:SI 123)) "../ncurses/./base/keyok.c":51:1 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 123)
+        (nil)))
+(insn 182 3 4 2 (set (reg:SI 124)
+        (reg:SI 1 dx [ flag ])) "../ncurses/./base/keyok.c":51:1 -1
+     (expr_list:REG_DEAD (reg:SI 1 dx [ flag ])
+        (nil)))
+(insn 4 182 6 2 (set (reg:SI 101 [ flag ])
+        (reg:SI 124)) "../ncurses/./base/keyok.c":51:1 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 124)
+        (nil)))
+(note 6 4 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 6 15 2 (parallel [
+            (set (mem/v/f/c:DI (plus:DI (reg/f:DI 19 frame)
+                        (const_int -8 [0xfffffffffffffff8])) [39 D.9079+0 S8 A64])
+                (unspec:DI [
+                        (mem/v/f:DI (const_int 40 [0x28]) [6 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_SET))
+            (set (scratch:DI)
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/keyok.c":51:1 1159 {stack_protect_set_1_di}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 15 8 16 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 98 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":54:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 16 15 17 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 143)
+            (pc))) "../ncurses/./base/keyok.c":54:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 9341556 (nil)))
+ -> 143)
+;;  succ:       3 [99.1% (guessed)]  count:177936821 (estimated locally) (FALLTHRU)
+;;              16 [0.9% (guessed)]  count:1561636 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 99 101
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 99 101
+
+;; basic block 3, loop depth 0, count 177936821 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (RTL)
+;;  pred:       2 [99.1% (guessed)]  count:177936821 (estimated locally) (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 99 101
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98
+;; lr  def 	 17 [flags]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 99 101
+;; live  gen 	 17 [flags]
+;; live  kill	
+(note 17 16 18 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(note 18 17 19 3 NOTE_INSN_DELETED)
+(note 19 18 20 3 NOTE_INSN_DELETED)
+(insn 20 19 21 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/v/f:DI 98 [ sp ])
+                    (const_int 48 [0x30])) [8 sp_19(D)->_term+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":59:5 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 21 20 152 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 147)
+            (pc))) "../ncurses/./base/keyok.c":59:5 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 12121580 (nil)))
+ -> 147)
+;;  succ:       17 [1.1% (guessed)]  count:2008746 (estimated locally)
+;;              4 [98.9% (guessed)]  count:175928075 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 99 101
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 99 101
+
+;; basic block 4, loop depth 0, count 175928075 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (RTL)
+;;  pred:       3 [98.9% (guessed)]  count:175928075 (estimated locally) (FALLTHRU)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 99 101
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 99
+;; lr  def 	 17 [flags]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 99 101
+;; live  gen 	 17 [flags]
+;; live  kill	
+(note 152 21 24 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(note 24 152 25 4 NOTE_INSN_DELETED)
+(note 25 24 27 4 NOTE_INSN_DELETED)
+(insn 27 25 28 4 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 99 [ c ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":59:5 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 28 27 29 4 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 147)
+            (pc))) "../ncurses/./base/keyok.c":59:5 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 12259988 (nil)))
+ -> 147)
+;;  succ:       5 [98.9% (guessed)]  count:173919328 (estimated locally) (FALLTHRU)
+;;              17 [1.1% (guessed)]  count:2008747 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 99 101
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 99 101
+
+;; basic block 5, loop depth 0, count 173919328 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (RTL)
+;;  pred:       4 [98.9% (guessed)]  count:173919328 (estimated locally) (FALLTHRU)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 99 101
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 101
+;; lr  def 	 17 [flags]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 99 101
+;; live  gen 	 17 [flags]
+;; live  kill	
+(note 29 28 30 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 30 29 32 5 (set (mem/c:SI (plus:DI (reg/f:DI 19 frame)
+                (const_int -12 [0xfffffffffffffff4])) [2 count+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":60:10 75 {*movsi_internal}
+     (nil))
+(insn 32 30 33 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (subreg:QI (reg:SI 101 [ flag ]) 0)
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":64:9 5 {*cmpqi_ccno_1}
+     (expr_list:REG_DEAD (reg:SI 101 [ flag ])
+        (nil)))
+(jump_insn 33 32 36 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 151)
+            (pc))) "../ncurses/./base/keyok.c":64:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 536870916 (nil)))
+ -> 151)
+;;  succ:       10 [50.0% (guessed)]  count:86959664 (estimated locally)
+;;              6 [50.0% (guessed)]  count:86959664 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 99
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 99
+
+;; basic block 6, loop depth 0, count 86959664 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (RTL)
+;;  pred:       5 [50.0% (guessed)]  count:86959664 (estimated locally) (FALLTHRU)
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 99
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98
+;; lr  def 	 17 [flags] 97 119 121
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 99
+;; live  gen 	 97 119 121
+;; live  kill	 17 [flags]
+(note 36 33 10 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 10 36 164 6 (set (reg/v:SI 97 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/keyok.c":52:9 75 {*movsi_internal}
+     (nil))
+(insn 164 10 83 6 (set (reg/f:DI 119)
+        (plus:DI (reg/f:DI 19 frame)
+            (const_int -12 [0xfffffffffffffff4]))) 206 {*leadi}
+     (nil))
+(insn 83 164 76 6 (parallel [
+            (set (reg/f:DI 121)
+                (plus:DI (reg/v/f:DI 98 [ sp ])
+                    (const_int 160 [0xa0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/keyok.c":80:11 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+;;  succ:       15 [always]  count:86959664 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 99 119 121
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 99 119 121
+
+;; basic block 7, loop depth 0, count 1014686025 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (RTL)
+;;  pred:       11 [94.5% (guessed)]  count:1014686024 (estimated locally)
+;; bb 7 artificial_defs: { }
+;; bb 7 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 97 98 99 119 120
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 99 120
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 125
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 97 98 99 119 120
+;; live  gen 	 0 [ax] 4 [si] 5 [di] 17 [flags] 125
+;; live  kill	
+(code_label 76 83 37 7 8 (nil) [1 uses])
+(note 37 76 39 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 39 37 40 7 (set (reg:SI 4 si)
+        (reg/v:SI 99 [ c ])) "../ncurses/./base/keyok.c":67:11 75 {*movsi_internal}
+     (nil))
+(insn 40 39 41 7 (set (reg:DI 5 di)
+        (reg/f:DI 120)) "../ncurses/./base/keyok.c":67:11 74 {*movdi_internal}
+     (nil))
+(call_insn 41 40 183 7 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_remove_key") [flags 0x41]  <function_decl 0x7fc7dbb7af00 _nc_remove_key>) [0 _nc_remove_key S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":67:11 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:SI 4 si)
+            (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_remove_key") [flags 0x41]  <function_decl 0x7fc7dbb7af00 _nc_remove_key>)
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 183 41 42 7 (set (reg:SI 125)
+        (reg:SI 0 ax)) "../ncurses/./base/keyok.c":67:11 -1
+     (expr_list:REG_DEAD (reg:SI 0 ax)
+        (nil)))
+(note 42 183 43 7 NOTE_INSN_DELETED)
+(insn 43 42 44 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 125)
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":67:10 7 {*cmpsi_ccno_1}
+     (expr_list:REG_DEAD (reg:SI 125)
+        (nil)))
+(jump_insn 44 43 45 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 60)
+            (pc))) "../ncurses/./base/keyok.c":67:10 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 536870916 (nil)))
+ -> 60)
+;;  succ:       8 [50.0% (guessed)]  count:507343013 (estimated locally) (FALLTHRU)
+;;              9 [50.0% (guessed)]  count:507343013 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 97 98 99 119 120
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 97 98 99 119 120
+
+;; basic block 8, loop depth 0, count 507343012 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (RTL)
+;;  pred:       7 [50.0% (guessed)]  count:507343013 (estimated locally) (FALLTHRU)
+;; bb 8 artificial_defs: { }
+;; bb 8 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 98 99 119 120
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 98 99
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 97 110 126
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 98 99 119 120
+;; live  gen 	 0 [ax] 1 [dx] 4 [si] 5 [di] 17 [flags] 97 110 126
+;; live  kill	 17 [flags]
+(note 45 44 46 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 46 45 47 8 (parallel [
+            (set (reg/f:DI 110)
+                (plus:DI (reg/v/f:DI 98 [ sp ])
+                    (const_int 160 [0xa0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/keyok.c":68:11 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 47 46 48 8 (set (reg:SI 1 dx)
+        (reg/v:SI 99 [ c ])) "../ncurses/./base/keyok.c":68:11 75 {*movsi_internal}
+     (nil))
+(insn 48 47 49 8 (set (reg:DI 4 si)
+        (reg/v/f:DI 93 [ s ])) "../ncurses/./base/keyok.c":68:11 74 {*movdi_internal}
+     (nil))
+(insn 49 48 50 8 (set (reg:DI 5 di)
+        (reg/f:DI 110)) "../ncurses/./base/keyok.c":68:11 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 110)
+        (nil)))
+(call_insn 50 49 184 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_add_to_try") [flags 0x41]  <function_decl 0x7fc7dbb7ad00 _nc_add_to_try>) [0 _nc_add_to_try S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":68:11 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:DI 4 si)
+            (expr_list:REG_DEAD (reg:SI 1 dx)
+                (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_add_to_try") [flags 0x41]  <function_decl 0x7fc7dbb7ad00 _nc_add_to_try>)
+                    (nil)))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 184 50 51 8 (set (reg:SI 126)
+        (reg:SI 0 ax)) "../ncurses/./base/keyok.c":68:11 -1
+     (expr_list:REG_DEAD (reg:SI 0 ax)
+        (nil)))
+(insn 51 184 52 8 (set (reg/v:SI 97 [ <retval> ])
+        (reg:SI 126)) "../ncurses/./base/keyok.c":68:11 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 126)
+        (nil)))
+(insn 52 51 53 8 (set (reg:DI 5 di)
+        (reg/v/f:DI 93 [ s ])) "../ncurses/./base/keyok.c":69:4 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 93 [ s ])
+        (nil)))
+(call_insn 53 52 54 8 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":69:4 813 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>)
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 54 53 55 8 (set (mem/c:SI (plus:DI (reg/f:DI 19 frame)
+                (const_int -12 [0xfffffffffffffff4])) [2 count+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":70:10 75 {*movsi_internal}
+     (nil))
+(insn 55 54 56 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 97 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":71:7 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 56 55 60 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 130)
+            (pc))) "../ncurses/./base/keyok.c":71:7 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 59055804 (nil)))
+ -> 130)
+;;  succ:       18 [5.5% (guessed)]  count:27903866 (estimated locally) (LOOP_EXIT)
+;;              11 [94.5% (guessed)]  count:479439146 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 99 119 120
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 99 119 120
+
+;; basic block 9, loop depth 0, count 507343012 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (RTL)
+;;  pred:       7 [50.0% (guessed)]  count:507343013 (estimated locally)
+;; bb 9 artificial_defs: { }
+;; bb 9 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 97 98 99 119 120
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 97 98 99 119 120
+;; live  gen 	 5 [di]
+;; live  kill	
+(code_label 60 56 61 9 5 (nil) [1 uses])
+(note 61 60 62 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 62 61 63 9 (set (reg:DI 5 di)
+        (reg/v/f:DI 93 [ s ])) "../ncurses/./base/keyok.c":74:4 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 93 [ s ])
+        (nil)))
+(call_insn 63 62 151 9 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":74:4 813 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>)
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       11 [always]  count:507343012 (estimated locally) (FALLTHRU,DFS_BACK)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 99 119 120
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 99 119 120
+
+;; basic block 10, loop depth 0, count 86959664 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (RTL)
+;;  pred:       5 [50.0% (guessed)]  count:86959664 (estimated locally)
+;; bb 10 artificial_defs: { }
+;; bb 10 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 99
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98
+;; lr  def 	 17 [flags] 97 119 120
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 99
+;; live  gen 	 97 119 120
+;; live  kill	 17 [flags]
+(code_label 151 63 150 10 15 (nil) [1 uses])
+(note 150 151 9 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 9 150 165 10 (set (reg/v:SI 97 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/keyok.c":52:9 75 {*movsi_internal}
+     (nil))
+(insn 165 9 38 10 (set (reg/f:DI 119)
+        (plus:DI (reg/f:DI 19 frame)
+            (const_int -12 [0xfffffffffffffff4]))) 206 {*leadi}
+     (nil))
+(insn 38 165 66 10 (parallel [
+            (set (reg/f:DI 120)
+                (plus:DI (reg/v/f:DI 98 [ sp ])
+                    (const_int 168 [0xa8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/keyok.c":67:11 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+;;  succ:       11 [always]  count:86959664 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 99 119 120
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 99 119 120
+
+;; basic block 11, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (RTL)
+;;  pred:       10 [always]  count:86959664 (estimated locally) (FALLTHRU)
+;;              9 [always]  count:507343012 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              8 [94.5% (guessed)]  count:479439146 (estimated locally) (FALLTHRU)
+;; bb 11 artificial_defs: { }
+;; bb 11 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 99 119 120
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 99 119
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 93 112 127
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 99 119 120
+;; live  gen 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 17 [flags] 93 112 127
+;; live  kill	
+(code_label 66 38 67 11 3 (nil) [0 uses])
+(note 67 66 69 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 69 67 70 11 (set (reg/f:DI 112 [ sp_19(D)->_key_ok ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 98 [ sp ])
+                (const_int 168 [0xa8])) [1 sp_19(D)->_key_ok+0 S8 A64])) "../ncurses/./base/keyok.c":65:15 74 {*movdi_internal}
+     (nil))
+(insn 70 69 71 11 (set (reg:DI 2 cx)
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":65:15 74 {*movdi_internal}
+     (nil))
+(insn 71 70 72 11 (set (reg:DI 1 dx)
+        (reg/f:DI 119)) "../ncurses/./base/keyok.c":65:15 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (plus:DI (reg/f:DI 19 frame)
+            (const_int -12 [0xfffffffffffffff4]))
+        (nil)))
+(insn 72 71 73 11 (set (reg:SI 4 si)
+        (reg/v:SI 99 [ c ])) "../ncurses/./base/keyok.c":65:15 75 {*movsi_internal}
+     (nil))
+(insn 73 72 74 11 (set (reg:DI 5 di)
+        (reg/f:DI 112 [ sp_19(D)->_key_ok ])) "../ncurses/./base/keyok.c":65:15 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 112 [ sp_19(D)->_key_ok ])
+        (nil)))
+(call_insn 74 73 185 11 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_expand_try") [flags 0x41]  <function_decl 0x7fc7dbb7ae00 _nc_expand_try>) [0 _nc_expand_try S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":65:15 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:SI 4 si)
+            (expr_list:REG_DEAD (reg:DI 2 cx)
+                (expr_list:REG_DEAD (reg:DI 1 dx)
+                    (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_expand_try") [flags 0x41]  <function_decl 0x7fc7dbb7ae00 _nc_expand_try>)
+                        (nil))))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+(insn 185 74 75 11 (set (reg:DI 127)
+        (reg:DI 0 ax)) "../ncurses/./base/keyok.c":65:15 -1
+     (expr_list:REG_DEAD (reg:DI 0 ax)
+        (nil)))
+(insn 75 185 77 11 (set (reg/v/f:DI 93 [ s ])
+        (reg:DI 127)) "../ncurses/./base/keyok.c":65:15 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 127)
+        (nil)))
+(insn 77 75 78 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 93 [ s ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":66:34 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 78 77 121 11 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 76)
+            (pc))) "../ncurses/./base/keyok.c":66:34 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 1014686028 (nil)))
+ -> 76)
+;;  succ:       7 [94.5% (guessed)]  count:1014686024 (estimated locally)
+;;              18 [5.5% (guessed)]  count:59055800 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 97 98 99 119 120
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 97 98 99 119 120
+
+;; basic block 12, loop depth 0, count 1014686025 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (RTL)
+;;  pred:       15 [94.5% (guessed)]  count:1014686024 (estimated locally)
+;; bb 12 artificial_defs: { }
+;; bb 12 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 92 97 98 99 119 121
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 99 121
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 128
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 92 97 98 99 119 121
+;; live  gen 	 0 [ax] 4 [si] 5 [di] 17 [flags] 128
+;; live  kill	
+(code_label 121 78 82 12 11 (nil) [1 uses])
+(note 82 121 84 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 84 82 85 12 (set (reg:SI 4 si)
+        (reg/v:SI 99 [ c ])) "../ncurses/./base/keyok.c":80:11 75 {*movsi_internal}
+     (nil))
+(insn 85 84 86 12 (set (reg:DI 5 di)
+        (reg/f:DI 121)) "../ncurses/./base/keyok.c":80:11 74 {*movdi_internal}
+     (nil))
+(call_insn 86 85 186 12 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_remove_key") [flags 0x41]  <function_decl 0x7fc7dbb7af00 _nc_remove_key>) [0 _nc_remove_key S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":80:11 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:SI 4 si)
+            (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_remove_key") [flags 0x41]  <function_decl 0x7fc7dbb7af00 _nc_remove_key>)
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 186 86 87 12 (set (reg:SI 128)
+        (reg:SI 0 ax)) "../ncurses/./base/keyok.c":80:11 -1
+     (expr_list:REG_DEAD (reg:SI 0 ax)
+        (nil)))
+(note 87 186 88 12 NOTE_INSN_DELETED)
+(insn 88 87 89 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 128)
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":80:10 7 {*cmpsi_ccno_1}
+     (expr_list:REG_DEAD (reg:SI 128)
+        (nil)))
+(jump_insn 89 88 90 12 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 105)
+            (pc))) "../ncurses/./base/keyok.c":80:10 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 536870916 (nil)))
+ -> 105)
+;;  succ:       13 [50.0% (guessed)]  count:507343013 (estimated locally) (FALLTHRU)
+;;              14 [50.0% (guessed)]  count:507343013 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 92 97 98 99 119 121
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 92 97 98 99 119 121
+
+;; basic block 13, loop depth 0, count 507343012 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (RTL)
+;;  pred:       12 [50.0% (guessed)]  count:507343013 (estimated locally) (FALLTHRU)
+;; bb 13 artificial_defs: { }
+;; bb 13 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 92 98 99 119 121
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 92 98 99
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 97 114 129
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 92 98 99 119 121
+;; live  gen 	 0 [ax] 1 [dx] 4 [si] 5 [di] 17 [flags] 97 114 129
+;; live  kill	 17 [flags]
+(note 90 89 91 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 91 90 92 13 (parallel [
+            (set (reg/f:DI 114)
+                (plus:DI (reg/v/f:DI 98 [ sp ])
+                    (const_int 168 [0xa8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/keyok.c":81:11 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 92 91 93 13 (set (reg:SI 1 dx)
+        (reg/v:SI 99 [ c ])) "../ncurses/./base/keyok.c":81:11 75 {*movsi_internal}
+     (nil))
+(insn 93 92 94 13 (set (reg:DI 4 si)
+        (reg/v/f:DI 92 [ s ])) "../ncurses/./base/keyok.c":81:11 74 {*movdi_internal}
+     (nil))
+(insn 94 93 95 13 (set (reg:DI 5 di)
+        (reg/f:DI 114)) "../ncurses/./base/keyok.c":81:11 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 114)
+        (nil)))
+(call_insn 95 94 187 13 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_add_to_try") [flags 0x41]  <function_decl 0x7fc7dbb7ad00 _nc_add_to_try>) [0 _nc_add_to_try S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":81:11 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:DI 4 si)
+            (expr_list:REG_DEAD (reg:SI 1 dx)
+                (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_add_to_try") [flags 0x41]  <function_decl 0x7fc7dbb7ad00 _nc_add_to_try>)
+                    (nil)))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 187 95 96 13 (set (reg:SI 129)
+        (reg:SI 0 ax)) "../ncurses/./base/keyok.c":81:11 -1
+     (expr_list:REG_DEAD (reg:SI 0 ax)
+        (nil)))
+(insn 96 187 97 13 (set (reg/v:SI 97 [ <retval> ])
+        (reg:SI 129)) "../ncurses/./base/keyok.c":81:11 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 129)
+        (nil)))
+(insn 97 96 98 13 (set (reg:DI 5 di)
+        (reg/v/f:DI 92 [ s ])) "../ncurses/./base/keyok.c":82:4 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 92 [ s ])
+        (nil)))
+(call_insn 98 97 99 13 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":82:4 813 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>)
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 99 98 100 13 (set (mem/c:SI (plus:DI (reg/f:DI 19 frame)
+                (const_int -12 [0xfffffffffffffff4])) [2 count+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":83:10 75 {*movsi_internal}
+     (nil))
+(insn 100 99 101 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 97 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":84:7 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 101 100 105 13 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 130)
+            (pc))) "../ncurses/./base/keyok.c":84:7 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 59055804 (nil)))
+ -> 130)
+;;  succ:       18 [5.5% (guessed)]  count:27903866 (estimated locally) (LOOP_EXIT)
+;;              15 [94.5% (guessed)]  count:479439146 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 99 119 121
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 99 119 121
+
+;; basic block 14, loop depth 0, count 507343012 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (RTL)
+;;  pred:       12 [50.0% (guessed)]  count:507343013 (estimated locally)
+;; bb 14 artificial_defs: { }
+;; bb 14 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 92 97 98 99 119 121
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 92
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 92 97 98 99 119 121
+;; live  gen 	 5 [di]
+;; live  kill	
+(code_label 105 101 106 14 9 (nil) [1 uses])
+(note 106 105 107 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 107 106 108 14 (set (reg:DI 5 di)
+        (reg/v/f:DI 92 [ s ])) "../ncurses/./base/keyok.c":87:4 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 92 [ s ])
+        (nil)))
+(call_insn 108 107 111 14 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":87:4 813 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>)
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       15 [always]  count:507343012 (estimated locally) (FALLTHRU,DFS_BACK)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 99 119 121
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 99 119 121
+
+;; basic block 15, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (RTL)
+;;  pred:       14 [always]  count:507343012 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              6 [always]  count:86959664 (estimated locally) (FALLTHRU)
+;;              13 [94.5% (guessed)]  count:479439146 (estimated locally) (FALLTHRU)
+;; bb 15 artificial_defs: { }
+;; bb 15 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 99 119 121
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 99 119
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 92 116 130
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 99 119 121
+;; live  gen 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 17 [flags] 92 116 130
+;; live  kill	
+(code_label 111 108 112 15 4 (nil) [0 uses])
+(note 112 111 114 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 114 112 115 15 (set (reg/f:DI 116 [ sp_19(D)->_keytry ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 98 [ sp ])
+                (const_int 160 [0xa0])) [1 sp_19(D)->_keytry+0 S8 A64])) "../ncurses/./base/keyok.c":78:15 74 {*movdi_internal}
+     (nil))
+(insn 115 114 116 15 (set (reg:DI 2 cx)
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":78:15 74 {*movdi_internal}
+     (nil))
+(insn 116 115 117 15 (set (reg:DI 1 dx)
+        (reg/f:DI 119)) "../ncurses/./base/keyok.c":78:15 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (plus:DI (reg/f:DI 19 frame)
+            (const_int -12 [0xfffffffffffffff4]))
+        (nil)))
+(insn 117 116 118 15 (set (reg:SI 4 si)
+        (reg/v:SI 99 [ c ])) "../ncurses/./base/keyok.c":78:15 75 {*movsi_internal}
+     (nil))
+(insn 118 117 119 15 (set (reg:DI 5 di)
+        (reg/f:DI 116 [ sp_19(D)->_keytry ])) "../ncurses/./base/keyok.c":78:15 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 116 [ sp_19(D)->_keytry ])
+        (nil)))
+(call_insn 119 118 188 15 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_expand_try") [flags 0x41]  <function_decl 0x7fc7dbb7ae00 _nc_expand_try>) [0 _nc_expand_try S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":78:15 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:SI 4 si)
+            (expr_list:REG_DEAD (reg:DI 2 cx)
+                (expr_list:REG_DEAD (reg:DI 1 dx)
+                    (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_expand_try") [flags 0x41]  <function_decl 0x7fc7dbb7ae00 _nc_expand_try>)
+                        (nil))))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+(insn 188 119 120 15 (set (reg:DI 130)
+        (reg:DI 0 ax)) "../ncurses/./base/keyok.c":78:15 -1
+     (expr_list:REG_DEAD (reg:DI 0 ax)
+        (nil)))
+(insn 120 188 122 15 (set (reg/v/f:DI 92 [ s ])
+        (reg:DI 130)) "../ncurses/./base/keyok.c":78:15 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 130)
+        (nil)))
+(insn 122 120 123 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 92 [ s ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":79:34 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 123 122 143 15 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 121)
+            (pc))) "../ncurses/./base/keyok.c":79:34 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 1014686028 (nil)))
+ -> 121)
+;;  succ:       12 [94.5% (guessed)]  count:1014686024 (estimated locally)
+;;              18 [5.5% (guessed)]  count:59055800 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 92 97 98 99 119 121
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 92 97 98 99 119 121
+
+;; basic block 16, loop depth 0, count 1561636 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (RTL)
+;;  pred:       2 [0.9% (guessed)]  count:1561636 (estimated locally)
+;; bb 16 artificial_defs: { }
+;; bb 16 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 97
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 97
+;; live  kill	
+(code_label 143 123 142 16 13 (nil) [1 uses])
+(note 142 143 12 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 12 142 147 16 (set (reg/v:SI 97 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/keyok.c":52:9 75 {*movsi_internal}
+     (nil))
+;;  succ:       18 [always]  count:1561636 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97
+
+;; basic block 17, loop depth 0, count 4017492 (estimated locally), maybe hot
+;;  prev block 16, next block 18, flags: (RTL)
+;;  pred:       4 [1.1% (guessed)]  count:2008747 (estimated locally)
+;;              3 [1.1% (guessed)]  count:2008746 (estimated locally)
+;; bb 17 artificial_defs: { }
+;; bb 17 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 97
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 97
+;; live  kill	
+(code_label 147 12 146 17 14 (nil) [2 uses])
+(note 146 147 11 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 11 146 130 17 (set (reg/v:SI 97 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/keyok.c":52:9 75 {*movsi_internal}
+     (nil))
+;;  succ:       18 [always]  count:4017492 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97
+
+;; basic block 18, loop depth 0, count 179498460 (estimated locally), maybe hot
+;;  prev block 17, next block 19, flags: (RTL)
+;;  pred:       17 [always]  count:4017492 (estimated locally) (FALLTHRU)
+;;              8 [5.5% (guessed)]  count:27903866 (estimated locally) (LOOP_EXIT)
+;;              11 [5.5% (guessed)]  count:59055800 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;;              13 [5.5% (guessed)]  count:27903866 (estimated locally) (LOOP_EXIT)
+;;              15 [5.5% (guessed)]  count:59055800 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;;              16 [always]  count:1561636 (estimated locally) (FALLTHRU)
+;; bb 18 artificial_defs: { }
+;; bb 18 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 17 [flags]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97
+;; live  gen 	 17 [flags]
+;; live  kill	
+(code_label 130 11 139 18 1 (nil) [2 uses])
+(note 139 130 132 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 132 139 133 18 (parallel [
+            (set (reg:CCZ 17 flags)
+                (unspec:CCZ [
+                        (mem/v/f/c:DI (plus:DI (reg/f:DI 19 frame)
+                                (const_int -8 [0xfffffffffffffff8])) [39 D.9079+0 S8 A64])
+                        (mem/v/f:DI (const_int 40 [0x28]) [6 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_TEST))
+            (clobber (scratch:DI))
+        ]) "../ncurses/./base/keyok.c":95:1 1164 {stack_protect_test_1_di}
+     (nil))
+(jump_insn 133 132 153 18 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 136)
+            (pc))) "../ncurses/./base/keyok.c":95:1 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 1073312332 (nil)))
+ -> 136)
+;;  succ:       20 [100.0% (guessed)]  count:179426661 (estimated locally)
+;;              19 [0.0% (guessed)]  count:71799 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97
+
+;; basic block 19, loop depth 0, count 71799 (estimated locally)
+;;  prev block 18, next block 20, flags: (RTL)
+;;  pred:       18 [0.0% (guessed)]  count:71799 (estimated locally) (FALLTHRU)
+;; bb 19 artificial_defs: { }
+;; bb 19 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	
+;; live  kill	
+(note 153 133 134 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(call_insn 134 153 136 19 (call (mem:QI (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7fc7dbbc2a00 __stack_chk_fail>) [0 __stack_chk_fail S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":95:1 813 {*call}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7fc7dbbc2a00 __stack_chk_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (nil))
+;;  succ:      
+;; lr  out 	 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 7 [sp] 16 [argp] 19 [frame]
+
+;; basic block 20, loop depth 0, count 179426661 (estimated locally), maybe hot
+;;  prev block 19, next block 1, flags: (RTL)
+;;  pred:       18 [100.0% (guessed)]  count:179426661 (estimated locally)
+;; bb 20 artificial_defs: { }
+;; bb 20 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97
+;; lr  def 	 0 [ax]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 136 134 154 20 12 (nil) [1 uses])
+(note 154 136 137 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 137 154 138 20 (set (reg/i:SI 0 ax)
+        (reg/v:SI 97 [ <retval> ])) "../ncurses/./base/keyok.c":95:1 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 97 [ <retval> ])
+        (nil)))
+(insn 138 137 0 20 (use (reg/i:SI 0 ax)) "../ncurses/./base/keyok.c":95:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:179426661 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+
+;; Function keyok (keyok, funcdef_no=92, decl_uid=6430, cgraph_uid=93, symbol_order=92)
+
+
+
+try_optimize_cfg iteration 1
+
+
+
+keyok
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp] 16 [argp] 19 [frame]
+;;  regular block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  eh block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 6 [bp] 7 [sp] 19 [frame]
+;;  regs ever live 	 0 [ax] 1 [dx] 4 [si] 5 [di] 7 [sp]
+;;  ref usage 	r0={2d,1u} r1={3d,1u} r2={2d} r4={3d,2u} r5={3d,2u} r6={1d,2u} r7={1d,3u} r8={1d} r9={1d} r10={1d} r11={1d} r12={1d} r13={1d} r14={1d} r15={1d} r16={1d,1u} r17={1d} r18={1d} r19={1d,2u} r20={2d} r21={2d} r22={2d} r23={2d} r24={2d} r25={2d} r26={2d} r27={2d} r28={1d} r29={1d} r30={1d} r31={1d} r32={1d} r33={1d} r34={1d} r35={1d} r36={2d} r37={2d} r38={1d} r39={1d} r44={1d} r45={1d} r46={1d} r47={1d} r48={1d} r49={1d} r50={1d} r51={1d} r52={1d} r53={1d} r54={1d} r55={1d} r56={1d} r57={1d} r58={1d} r59={1d} r60={1d} r61={1d} r62={1d} r63={1d} r64={1d} r65={1d} r66={1d} r67={1d} r68={1d} r69={1d} r70={1d} r71={1d} r72={1d} r73={1d} r74={1d} r75={1d} r85={1d,1u} r88={1d,1u} r89={1d,1u} r90={1d,1u} r91={1d,1u} 
+;;    total ref usage 113{94d,19u,0e} in 9{8 regular + 1 call} insns.
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (RTL)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 85 88 89 90 91
+;; live  in  	 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 0 [ax] 1 [dx] 4 [si] 5 [di] 85 88 89 90 91
+;; live  kill	
+(note 6 0 20 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 20 6 2 2 (set (reg:SI 90)
+        (reg:SI 5 di [ c ])) "../ncurses/./base/keyok.c":100:1 -1
+     (expr_list:REG_DEAD (reg:SI 5 di [ c ])
+        (nil)))
+(insn 2 20 21 2 (set (reg/v:SI 85 [ c ])
+        (reg:SI 90)) "../ncurses/./base/keyok.c":100:1 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 90)
+        (nil)))
+(insn 21 2 3 2 (set (reg:SI 91)
+        (reg:SI 4 si [ flag ])) "../ncurses/./base/keyok.c":100:1 -1
+     (expr_list:REG_DEAD (reg:SI 4 si [ flag ])
+        (nil)))
+(note 3 21 5 2 NOTE_INSN_DELETED)
+(note 5 3 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 5 9 2 (set (reg:SI 88 [ flag ])
+        (zero_extend:SI (subreg:QI (reg:SI 91) 0))) "../ncurses/./base/keyok.c":101:12 143 {*zero_extendqisi2}
+     (expr_list:REG_DEAD (reg:SI 91)
+        (nil)))
+(insn 9 8 10 2 (set (reg/f:DI 89 [ SP ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7fc7dbb26cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/keyok.c":101:12 74 {*movdi_internal}
+     (nil))
+(insn 10 9 11 2 (set (reg:SI 1 dx)
+        (reg:SI 88 [ flag ])) "../ncurses/./base/keyok.c":101:12 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 88 [ flag ])
+        (nil)))
+(insn 11 10 12 2 (set (reg:SI 4 si)
+        (reg/v:SI 85 [ c ])) "../ncurses/./base/keyok.c":101:12 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 85 [ c ])
+        (nil)))
+(insn 12 11 13 2 (set (reg:DI 5 di)
+        (reg/f:DI 89 [ SP ])) "../ncurses/./base/keyok.c":101:12 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 89 [ SP ])
+        (nil)))
+(call_insn/j 13 12 0 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("keyok_sp") [flags 0x3]  <function_decl 0x7fc7dba1a100 keyok_sp>) [0 keyok_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":101:12 828 {*sibcall_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:SI 4 si)
+            (expr_list:REG_DEAD (reg:SI 1 dx)
+                (expr_list:REG_CALL_DECL (symbol_ref:DI ("keyok_sp") [flags 0x3]  <function_decl 0x7fc7dba1a100 keyok_sp>)
+                    (expr_list:REG_EH_REGION (const_int 0 [0])
+                        (nil))))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+;; lr  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+

@@ -1,0 +1,1063 @@
+
+;; Function whline (whline, funcdef_no=91, decl_uid=6253, cgraph_uid=92, symbol_order=91)
+
+(note 1 0 10 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 119148189 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:119148189 (estimated locally) (FALLTHRU)
+(note 10 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 10 3 2 (set (reg/v/f:DI 168 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_hline.c":50:1 74 {*movdi_internal}
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 169 [ ch ])
+        (reg:SI 4 si [ ch ])) "../ncurses/./base/lib_hline.c":50:1 75 {*movsi_internal}
+     (nil))
+(insn 4 3 5 2 (set (reg/v:SI 170 [ n ])
+        (reg:SI 1 dx [ n ])) "../ncurses/./base/lib_hline.c":50:1 75 {*movsi_internal}
+     (nil))
+(note 5 4 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 5 7 2 (set (reg/f:DI 171)
+        (const_int 40 [0x28])) "../ncurses/./base/lib_hline.c":50:1 74 {*movdi_internal}
+     (nil))
+(insn 7 6 12 2 (parallel [
+            (set (mem/v/f/c:DI (plus:DI (reg/f:DI 19 frame)
+                        (const_int -8 [0xfffffffffffffff8])) [11 D.9119+0 S8 A64])
+                (unspec:DI [
+                        (mem/v/f:DI (reg/f:DI 171) [12 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_SET))
+            (set (scratch:DI)
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":50:1 1159 {stack_protect_set_1_di}
+     (nil))
+(insn 12 7 13 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 168 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_hline.c":55:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 13 12 14 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 216)
+            (pc))) "../ncurses/./base/lib_hline.c":55:8 806 {*jcc}
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 216)
+;;  succ:       4 [99.1% (guessed)]  count:118111600 (estimated locally) (FALLTHRU)
+;;              28 [0.9% (guessed)]  count:1036589 (estimated locally)
+
+;; basic block 4, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [99.1% (guessed)]  count:118111600 (estimated locally) (FALLTHRU)
+(note 14 13 15 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 4 (set (reg:SI 173)
+        (mem:SI (reg/v/f:DI 168 [ win ]) [1 win_80(D)->_cury+0 S4 A64])) "../ncurses/./base/lib_hline.c":56:38 75 {*movsi_internal}
+     (nil))
+(insn 16 15 17 4 (set (reg:DI 172)
+        (sign_extend:DI (reg:SI 173))) "../ncurses/./base/lib_hline.c":56:38 147 {*extendsidi2_rex64}
+     (nil))
+(insn 17 16 18 4 (set (reg:DI 174)
+        (reg:DI 172)) "../ncurses/./base/lib_hline.c":56:34 74 {*movdi_internal}
+     (nil))
+(insn 18 17 19 4 (parallel [
+            (set (reg:DI 175)
+                (ashift:DI (reg:DI 174)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":56:34 656 {*ashldi3_1}
+     (nil))
+(insn 19 18 20 4 (parallel [
+            (set (reg:DI 176)
+                (plus:DI (reg:DI 175)
+                    (reg:DI 172)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":56:34 210 {*adddi_1}
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 172)
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 20 19 21 4 (parallel [
+            (set (reg:DI 177)
+                (ashift:DI (reg:DI 176)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":56:34 656 {*ashldi3_1}
+     (nil))
+(insn 21 20 22 4 (set (reg:DI 176)
+        (reg:DI 177)) "../ncurses/./base/lib_hline.c":56:34 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 172)
+            (const_int 24 [0x18]))
+        (nil)))
+(insn 22 21 23 4 (set (reg/f:DI 178)
+        (mem/f:DI (plus:DI (reg/v/f:DI 168 [ win ])
+                (const_int 56 [0x38])) [6 win_80(D)->_line+0 S8 A64])) "../ncurses/./base/lib_hline.c":56:15 74 {*movdi_internal}
+     (nil))
+(insn 23 22 24 4 (parallel [
+            (set (reg/v/f:DI 146 [ line ])
+                (plus:DI (reg:DI 176)
+                    (reg/f:DI 178)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":56:15 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 168 [ win ])
+                    (const_int 56 [0x38])) [6 win_80(D)->_line+0 S8 A64])
+            (reg:DI 176))
+        (nil)))
+(insn 24 23 25 4 (set (reg/v:SI 147 [ start ])
+        (mem:SI (plus:DI (reg/v/f:DI 168 [ win ])
+                (const_int 4 [0x4])) [1 win_80(D)->_curx+0 S4 A32])) "../ncurses/./base/lib_hline.c":58:6 75 {*movsi_internal}
+     (nil))
+(insn 25 24 26 4 (parallel [
+            (set (reg:SI 179)
+                (plus:SI (reg/v:SI 147 [ start ])
+                    (reg/v:SI 170 [ n ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":59:18 209 {*addsi_1}
+     (nil))
+(insn 26 25 27 4 (parallel [
+            (set (reg:SI 180 [ end ])
+                (plus:SI (reg:SI 179)
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":59:6 209 {*addsi_1}
+     (nil))
+(insn 27 26 28 4 (parallel [
+            (set (reg:SI 153 [ _112 ])
+                (smin:SI (reg:SI 180 [ end ])
+                    (mem:SI (plus:DI (reg/v/f:DI 168 [ win ])
+                            (const_int 12 [0xc])) [1 win_80(D)->_maxx+0 S4 A32])))
+            (clobber (reg:CC 17 flags))
+        ]) 1134 {*sminsi3_1}
+     (nil))
+(insn 28 27 29 4 (set (reg:SI 88 [ _7 ])
+        (mem:SI (plus:DI (reg/v/f:DI 146 [ line ])
+                (const_int 8 [0x8])) [1 line_82->firstchar+0 S4 A64])) "../ncurses/./base/lib_hline.c":64:2 75 {*movsi_internal}
+     (nil))
+(insn 29 28 30 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 88 [ _7 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_hline.c":64:2 11 {*cmpsi_1}
+     (nil))
+(insn 30 29 31 4 (set (reg:QI 182)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_hline.c":64:2 802 {*setcc_qi}
+     (nil))
+(insn 31 30 32 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 182)
+            (const_int 0 [0]))) "../ncurses/./base/lib_hline.c":64:2 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 32 31 217 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 223)
+            (pc))) "../ncurses/./base/lib_hline.c":64:2 806 {*jcc}
+     (int_list:REG_BR_PROB 359703516 (nil))
+ -> 223)
+;;  succ:       7 [33.5% (guessed)]  count:39567386 (estimated locally)
+;;              5 [66.5% (guessed)]  count:78544214 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 78544214 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [66.5% (guessed)]  count:78544214 (estimated locally) (FALLTHRU)
+(note 217 32 33 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 33 217 34 5 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 88 [ _7 ])
+            (reg/v:SI 147 [ start ]))) "../ncurses/./base/lib_hline.c":64:2 11 {*cmpsi_1}
+     (nil))
+(insn 34 33 35 5 (set (reg:QI 184)
+        (gt:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_hline.c":64:2 802 {*setcc_qi}
+     (nil))
+(insn 35 34 36 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 184)
+            (const_int 0 [0]))) "../ncurses/./base/lib_hline.c":64:2 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 36 35 218 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 40)
+            (pc))) "../ncurses/./base/lib_hline.c":64:2 806 {*jcc}
+     (int_list:REG_BR_PROB 532834292 (nil))
+ -> 40)
+;;  succ:       8 [49.6% (guessed)]  count:38976828 (estimated locally)
+;;              6 [50.4% (guessed)]  count:39567386 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 39567386 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       5 [50.4% (guessed)]  count:39567386 (estimated locally) (FALLTHRU)
+(note 218 36 223 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       7 [always]  count:39567386 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 79134772 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [always]  count:39567386 (estimated locally) (FALLTHRU)
+;;              4 [33.5% (guessed)]  count:39567386 (estimated locally)
+(code_label 223 218 38 7 16 (nil) [1 uses])
+(note 38 223 39 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 39 38 40 7 (set (mem:SI (plus:DI (reg/v/f:DI 146 [ line ])
+                (const_int 8 [0x8])) [1 line_82->firstchar+0 S4 A64])
+        (reg/v:SI 147 [ start ])) "../ncurses/./base/lib_hline.c":64:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       8 [always]  count:79134772 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [always]  count:79134772 (estimated locally) (FALLTHRU)
+;;              5 [49.6% (guessed)]  count:38976828 (estimated locally)
+(code_label 40 39 41 8 3 (nil) [1 uses])
+(note 41 40 42 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 42 41 43 8 (set (reg:SI 89 [ _8 ])
+        (mem:SI (plus:DI (reg/v/f:DI 146 [ line ])
+                (const_int 12 [0xc])) [1 line_82->lastchar+0 S4 A32])) "../ncurses/./base/lib_hline.c":64:2 75 {*movsi_internal}
+     (nil))
+(insn 43 42 44 8 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 89 [ _8 ])
+            (reg:SI 153 [ _112 ]))) "../ncurses/./base/lib_hline.c":64:2 11 {*cmpsi_1}
+     (nil))
+(insn 44 43 45 8 (set (reg:QI 186)
+        (lt:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_hline.c":64:2 802 {*setcc_qi}
+     (nil))
+(insn 45 44 46 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 186)
+            (const_int 0 [0]))) "../ncurses/./base/lib_hline.c":64:2 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 46 45 219 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 224)
+            (pc))) "../ncurses/./base/lib_hline.c":64:2 806 {*jcc}
+     (int_list:REG_BR_PROB 359703516 (nil))
+ -> 224)
+;;  succ:       11 [33.5% (guessed)]  count:39567386 (estimated locally)
+;;              9 [66.5% (guessed)]  count:78544214 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 78544214 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       8 [66.5% (guessed)]  count:78544214 (estimated locally) (FALLTHRU)
+(note 219 46 47 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 47 219 48 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 89 [ _8 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_hline.c":64:2 11 {*cmpsi_1}
+     (nil))
+(insn 48 47 49 9 (set (reg:QI 188)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_hline.c":64:2 802 {*setcc_qi}
+     (nil))
+(insn 49 48 50 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 188)
+            (const_int 0 [0]))) "../ncurses/./base/lib_hline.c":64:2 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 50 49 220 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 54)
+            (pc))) "../ncurses/./base/lib_hline.c":64:2 806 {*jcc}
+     (int_list:REG_BR_PROB 532834292 (nil))
+ -> 54)
+;;  succ:       12 [49.6% (guessed)]  count:38976828 (estimated locally)
+;;              10 [50.4% (guessed)]  count:39567386 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 39567386 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       9 [50.4% (guessed)]  count:39567386 (estimated locally) (FALLTHRU)
+(note 220 50 224 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       11 [always]  count:39567386 (estimated locally) (FALLTHRU)
+
+;; basic block 11, loop depth 0, count 79134772 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       10 [always]  count:39567386 (estimated locally) (FALLTHRU)
+;;              8 [33.5% (guessed)]  count:39567386 (estimated locally)
+(code_label 224 220 52 11 17 (nil) [1 uses])
+(note 52 224 53 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 53 52 54 11 (set (mem:SI (plus:DI (reg/v/f:DI 146 [ line ])
+                (const_int 12 [0xc])) [1 line_82->lastchar+0 S4 A32])
+        (reg:SI 153 [ _112 ])) "../ncurses/./base/lib_hline.c":64:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       12 [always]  count:79134772 (estimated locally) (FALLTHRU)
+
+;; basic block 12, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       11 [always]  count:79134772 (estimated locally) (FALLTHRU)
+;;              9 [49.6% (guessed)]  count:38976828 (estimated locally)
+(code_label 54 53 55 12 5 (nil) [1 uses])
+(note 55 54 56 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 56 55 57 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 169 [ ch ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_hline.c":66:5 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 57 56 58 12 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 85)
+            (pc))) "../ncurses/./base/lib_hline.c":66:5 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 85)
+;;  succ:       13 [50.0% (guessed)]  count:59055800 (estimated locally) (FALLTHRU)
+;;              14 [50.0% (guessed)]  count:59055800 (estimated locally)
+
+;; basic block 13, loop depth 0, count 59055800 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       12 [50.0% (guessed)]  count:59055800 (estimated locally) (FALLTHRU)
+(note 58 57 59 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 59 58 60 13 (parallel [
+            (set (reg:DI 189)
+                (plus:DI (reg/f:DI 19 frame)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 210 {*adddi_1}
+     (nil))
+(insn 60 59 61 13 (parallel [
+            (set (reg:DI 190)
+                (plus:DI (reg:DI 189)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 210 {*adddi_1}
+     (nil))
+(insn 61 60 62 13 (set (reg:DI 191 [ D.9120 ])
+        (reg:DI 190)) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 74 {*movdi_internal}
+     (nil))
+(insn 62 61 63 13 (set (mem/c:TI (reg:DI 191 [ D.9120 ]) [0 MEM <char[1:24]> [(void *)&wch + 8B]+0 S16 A64])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 73 {*movti_internal}
+     (nil))
+(insn 63 62 64 13 (set (mem/c:DI (plus:DI (reg:DI 191 [ D.9120 ])
+                (const_int 16 [0x10])) [0 MEM <char[1:24]> [(void *)&wch + 8B]+16 S8 A64])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 74 {*movdi_internal}
+     (nil))
+(call_insn 64 63 65 13 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_acs_map") [flags 0x41]  <function_decl 0x7f06d16d5500 _nc_acs_map>) [0 _nc_acs_map S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_hline.c":67:6 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_acs_map") [flags 0x41]  <function_decl 0x7f06d16d5500 _nc_acs_map>)
+        (nil))
+    (nil))
+(insn 65 64 69 13 (set (reg/f:DI 90 [ _9 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_hline.c":67:6 74 {*movdi_internal}
+     (nil))
+(insn 69 65 70 13 (set (reg:SI 195)
+        (mem:SI (plus:DI (reg/f:DI 90 [ _9 ])
+                (const_int 452 [0x1c4])) [1 MEM[(chtype *)_9 + 452B]+0 S4 A32])) "../ncurses/./base/lib_hline.c":67:6 75 {*movsi_internal}
+     (nil))
+(insn 70 69 71 13 (set (reg:SI 194)
+        (zero_extend:SI (subreg:QI (reg:SI 195) 0))) "../ncurses/./base/lib_hline.c":67:6 143 {*zero_extendqisi2}
+     (expr_list:REG_EQUAL (and:SI (mem:SI (plus:DI (reg/f:DI 90 [ _9 ])
+                    (const_int 452 [0x1c4])) [1 MEM[(chtype *)_9 + 452B]+0 S4 A32])
+            (const_int 255 [0xff]))
+        (nil)))
+(insn 71 70 72 13 (set (mem/c:SI (plus:DI (reg/f:DI 19 frame)
+                (const_int -44 [0xffffffffffffffd4])) [1 wch.chars[0]+0 S4 A32])
+        (reg:SI 194)) "../ncurses/./base/lib_hline.c":67:6 75 {*movsi_internal}
+     (nil))
+(call_insn 72 71 73 13 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_acs_map") [flags 0x41]  <function_decl 0x7f06d16d5500 _nc_acs_map>) [0 _nc_acs_map S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_hline.c":67:6 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_acs_map") [flags 0x41]  <function_decl 0x7f06d16d5500 _nc_acs_map>)
+        (nil))
+    (nil))
+(insn 73 72 74 13 (set (reg/f:DI 94 [ _13 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_hline.c":67:6 74 {*movdi_internal}
+     (nil))
+(insn 74 73 75 13 (set (reg:SI 95 [ _14 ])
+        (mem:SI (plus:DI (reg/f:DI 94 [ _13 ])
+                (const_int 452 [0x1c4])) [1 MEM[(chtype *)_13 + 452B]+0 S4 A32])) "../ncurses/./base/lib_hline.c":67:6 75 {*movsi_internal}
+     (nil))
+(call_insn 75 74 76 13 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_acs_map") [flags 0x41]  <function_decl 0x7f06d16d5500 _nc_acs_map>) [0 _nc_acs_map S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_hline.c":67:6 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_acs_map") [flags 0x41]  <function_decl 0x7f06d16d5500 _nc_acs_map>)
+        (nil))
+    (nil))
+(insn 76 75 77 13 (set (reg/f:DI 97 [ _16 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_hline.c":67:6 74 {*movdi_internal}
+     (nil))
+(insn 77 76 78 13 (set (reg:DI 196)
+        (zero_extend:DI (mem:SI (plus:DI (reg/f:DI 97 [ _16 ])
+                    (const_int 452 [0x1c4])) [1 MEM[(chtype *)_16 + 452B]+0 S4 A32]))) "../ncurses/./base/lib_hline.c":67:6 138 {*zero_extendsidi2}
+     (nil))
+(insn 78 77 79 13 (parallel [
+            (set (reg:DI 197)
+                (lshiftrt:DI (reg:DI 196)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":67:6 703 {*lshrdi3_1}
+     (nil))
+(insn 79 78 80 13 (set (reg:SI 102 [ _21 ])
+        (zero_extend:SI (subreg:QI (reg:DI 197) 0))) "../ncurses/./base/lib_hline.c":67:6 143 {*zero_extendqisi2}
+     (nil))
+(insn 80 79 81 13 (parallel [
+            (set (reg:SI 198)
+                (and:SI (reg:SI 95 [ _14 ])
+                    (const_int -65536 [0xffffffffffff0000])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":67:6 490 {*andsi_1}
+     (nil))
+(insn 81 80 82 13 (parallel [
+            (set (reg:SI 199)
+                (ashift:SI (reg:SI 102 [ _21 ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":67:6 655 {*ashlsi3_1}
+     (nil))
+(insn 82 81 83 13 (parallel [
+            (set (reg:SI 106 [ _27 ])
+                (ior:SI (reg:SI 198)
+                    (reg:SI 199)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":67:6 520 {*iorsi_1}
+     (nil))
+(jump_insn 83 82 84 13 (set (pc)
+        (label_ref 100)) 807 {jump}
+     (nil)
+ -> 100)
+;;  succ:       15 [always]  count:59055800 (estimated locally)
+
+(barrier 84 83 85)
+;; basic block 14, loop depth 0, count 59055800 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       12 [50.0% (guessed)]  count:59055800 (estimated locally)
+(code_label 85 84 86 14 7 (nil) [1 uses])
+(note 86 85 87 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 87 86 88 14 (parallel [
+            (set (reg:DI 200)
+                (plus:DI (reg/f:DI 19 frame)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 210 {*adddi_1}
+     (nil))
+(insn 88 87 89 14 (parallel [
+            (set (reg:DI 201)
+                (plus:DI (reg:DI 200)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 210 {*adddi_1}
+     (nil))
+(insn 89 88 90 14 (set (reg:DI 202 [ D.9121 ])
+        (reg:DI 201)) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 74 {*movdi_internal}
+     (nil))
+(insn 90 89 91 14 (set (mem/c:TI (reg:DI 202 [ D.9121 ]) [0 MEM <char[1:24]> [(void *)&wch + 8B]+0 S16 A64])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 73 {*movti_internal}
+     (nil))
+(insn 91 90 92 14 (set (mem/c:DI (plus:DI (reg:DI 202 [ D.9121 ])
+                (const_int 16 [0x10])) [0 MEM <char[1:24]> [(void *)&wch + 8B]+16 S8 A64])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 74 {*movdi_internal}
+     (nil))
+(insn 92 91 93 14 (parallel [
+            (set (reg:SI 203)
+                (and:SI (reg/v:SI 169 [ ch ])
+                    (const_int 255 [0xff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":69:6 490 {*andsi_1}
+     (nil))
+(insn 93 92 94 14 (set (mem/c:SI (plus:DI (reg/f:DI 19 frame)
+                (const_int -44 [0xffffffffffffffd4])) [1 wch.chars[0]+0 S4 A32])
+        (reg:SI 203)) "../ncurses/./base/lib_hline.c":69:6 75 {*movsi_internal}
+     (nil))
+(insn 94 93 95 14 (set (reg:DI 204)
+        (zero_extend:DI (reg/v:SI 169 [ ch ]))) "../ncurses/./base/lib_hline.c":69:6 138 {*zero_extendsidi2}
+     (nil))
+(insn 95 94 96 14 (parallel [
+            (set (reg:DI 205)
+                (lshiftrt:DI (reg:DI 204)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":69:6 703 {*lshrdi3_1}
+     (nil))
+(insn 96 95 97 14 (set (reg:SI 102 [ _21 ])
+        (zero_extend:SI (subreg:QI (reg:DI 205) 0))) "../ncurses/./base/lib_hline.c":69:6 143 {*zero_extendqisi2}
+     (nil))
+(insn 97 96 98 14 (parallel [
+            (set (reg:SI 206)
+                (and:SI (reg/v:SI 169 [ ch ])
+                    (const_int -65536 [0xffffffffffff0000])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":69:6 490 {*andsi_1}
+     (nil))
+(insn 98 97 99 14 (parallel [
+            (set (reg:SI 207)
+                (ashift:SI (reg:SI 102 [ _21 ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":69:6 655 {*ashlsi3_1}
+     (nil))
+(insn 99 98 100 14 (parallel [
+            (set (reg:SI 106 [ _27 ])
+                (ior:SI (reg:SI 206)
+                    (reg:SI 207)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":69:6 520 {*iorsi_1}
+     (nil))
+;;  succ:       15 [always]  count:59055800 (estimated locally) (FALLTHRU)
+
+;; basic block 15, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       13 [always]  count:59055800 (estimated locally)
+;;              14 [always]  count:59055800 (estimated locally) (FALLTHRU)
+(code_label 100 99 101 15 8 (nil) [1 uses])
+(note 101 100 102 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 102 101 103 15 (set (mem/c:SI (plus:DI (reg/f:DI 19 frame)
+                (const_int -24 [0xffffffffffffffe8])) [1 wch.ext_color+0 S4 A64])
+        (reg:SI 102 [ _21 ])) "../ncurses/./base/lib_hline.c":67:6 75 {*movsi_internal}
+     (nil))
+(insn 103 102 104 15 (set (mem/c:SI (plus:DI (reg/f:DI 19 frame)
+                (const_int -48 [0xffffffffffffffd0])) [1 wch.attr+0 S4 A128])
+        (reg:SI 106 [ _27 ])) "../ncurses/./base/lib_hline.c":67:6 75 {*movsi_internal}
+     (nil))
+(insn 104 103 105 15 (parallel [
+            (set (reg:DI 208)
+                (plus:DI (reg/f:DI 19 frame)
+                    (const_int -80 [0xffffffffffffffb0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":70:8 210 {*adddi_1}
+     (nil))
+(insn 105 104 106 15 (set (mem:TI (pre_dec:DI (reg/f:DI 7 sp)) [0  S16 A8])
+        (mem/c:TI (plus:DI (reg/f:DI 19 frame)
+                (const_int -32 [0xffffffffffffffe0])) [2 wch+16 S16 A128])) "../ncurses/./base/lib_hline.c":70:8 51 {*pushti2}
+     (expr_list:REG_ARGS_SIZE (const_int 16 [0x10])
+        (nil)))
+(insn 106 105 107 15 (set (mem:TI (pre_dec:DI (reg/f:DI 7 sp)) [0  S16 A8])
+        (mem/c:TI (plus:DI (reg/f:DI 19 frame)
+                (const_int -48 [0xffffffffffffffd0])) [2 wch+0 S16 A128])) "../ncurses/./base/lib_hline.c":70:8 51 {*pushti2}
+     (expr_list:REG_ARGS_SIZE (const_int 32 [0x20])
+        (nil)))
+(insn 107 106 108 15 (set (reg:DI 4 si)
+        (reg/v/f:DI 168 [ win ])) "../ncurses/./base/lib_hline.c":70:8 74 {*movdi_internal}
+     (nil))
+(insn 108 107 109 15 (set (reg:DI 5 di)
+        (reg:DI 208)) "../ncurses/./base/lib_hline.c":70:8 74 {*movdi_internal}
+     (nil))
+(call_insn 109 108 110 15 (call (mem:QI (symbol_ref:DI ("_nc_render") [flags 0x41]  <function_decl 0x7f06d149ad00 _nc_render>) [0 _nc_render S1 A8])
+        (const_int 32 [0x20])) "../ncurses/./base/lib_hline.c":70:8 813 {*call}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_render") [flags 0x41]  <function_decl 0x7f06d149ad00 _nc_render>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 110 109 111 15 (set (reg:TI 209)
+        (mem:TI (plus:DI (reg/f:DI 19 frame)
+                (const_int -80 [0xffffffffffffffb0])) [2  S16 A32])) "../ncurses/./base/lib_hline.c":70:8 73 {*movti_internal}
+     (nil))
+(insn 111 110 112 15 (set (mem/c:TI (plus:DI (reg/f:DI 19 frame)
+                (const_int -48 [0xffffffffffffffd0])) [2 wch+0 S16 A128])
+        (reg:TI 209)) "../ncurses/./base/lib_hline.c":70:8 73 {*movti_internal}
+     (nil))
+(insn 112 111 113 15 (set (reg:TI 210)
+        (mem:TI (plus:DI (reg/f:DI 19 frame)
+                (const_int -64 [0xffffffffffffffc0])) [2  S16 A32])) "../ncurses/./base/lib_hline.c":70:8 73 {*movti_internal}
+     (nil))
+(insn 113 112 114 15 (set (mem/c:TI (plus:DI (reg/f:DI 19 frame)
+                (const_int -32 [0xffffffffffffffe0])) [2 wch+16 S16 A128])
+        (reg:TI 210)) "../ncurses/./base/lib_hline.c":70:8 73 {*movti_internal}
+     (nil))
+(insn 114 113 117 15 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":73:5 210 {*adddi_1}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (nil)))
+(insn 117 114 118 15 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:SI 147 [ start ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_hline.c":73:5 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 118 117 119 15 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 141)
+            (pc))) "../ncurses/./base/lib_hline.c":73:5 806 {*jcc}
+     (int_list:REG_BR_PROB 440234148 (nil))
+ -> 141)
+;;  succ:       16 [59.0% (guessed)]  count:69685844 (estimated locally) (FALLTHRU)
+;;              19 [41.0% (guessed)]  count:48425756 (estimated locally)
+
+;; basic block 16, loop depth 0, count 69685844 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       15 [59.0% (guessed)]  count:69685844 (estimated locally) (FALLTHRU)
+(note 119 118 120 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 120 119 121 16 (set (reg/f:DI 117 [ _41 ])
+        (mem/f:DI (reg/v/f:DI 146 [ line ]) [10 line_82->text+0 S8 A64])) "../ncurses/./base/lib_hline.c":73:19 74 {*movdi_internal}
+     (nil))
+(insn 121 120 122 16 (set (reg:DI 211)
+        (sign_extend:DI (reg/v:SI 147 [ start ]))) "../ncurses/./base/lib_hline.c":73:19 147 {*extendsidi2_rex64}
+     (nil))
+(insn 122 121 123 16 (parallel [
+            (set (reg:DI 119 [ _43 ])
+                (ashift:DI (reg:DI 211)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":73:19 656 {*ashldi3_1}
+     (nil))
+(insn 123 122 124 16 (set (reg:SI 122 [ _46 ])
+        (mem:SI (plus:DI (reg/f:DI 117 [ _41 ])
+                (reg:DI 119 [ _43 ])) [1 _44->attr+0 S4 A32])) "../ncurses/./base/lib_hline.c":73:19 75 {*movsi_internal}
+     (nil))
+(insn 124 123 125 16 (parallel [
+            (set (reg:SI 212)
+                (and:SI (reg:SI 122 [ _46 ])
+                    (const_int 254 [0xfe])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":73:19 490 {*andsi_1}
+     (nil))
+(insn 125 124 126 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 212)
+            (const_int 0 [0]))) "../ncurses/./base/lib_hline.c":73:16 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 126 125 127 16 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 141)
+            (pc))) "../ncurses/./base/lib_hline.c":73:16 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 141)
+;;  succ:       17 [50.0% (guessed)]  count:34842922 (estimated locally) (FALLTHRU)
+;;              19 [50.0% (guessed)]  count:34842922 (estimated locally)
+
+;; basic block 17, loop depth 0, count 34842922 (estimated locally), maybe hot
+;;  prev block 16, next block 18, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       16 [50.0% (guessed)]  count:34842922 (estimated locally) (FALLTHRU)
+(note 127 126 128 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 128 127 129 17 (parallel [
+            (set (reg:SI 213)
+                (and:SI (reg:SI 122 [ _46 ])
+                    (const_int 224 [0xe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":73:19 490 {*andsi_1}
+     (nil))
+(insn 129 128 130 17 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 213)
+            (const_int 0 [0]))) "../ncurses/./base/lib_hline.c":73:19 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 130 129 131 17 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 141)
+            (pc))) "../ncurses/./base/lib_hline.c":73:19 806 {*jcc}
+     (int_list:REG_BR_PROB 719407028 (nil))
+ -> 141)
+;;  succ:       18 [33.0% (guessed)]  count:11498164 (estimated locally) (FALLTHRU)
+;;              19 [67.0% (guessed)]  count:23344758 (estimated locally)
+
+;; basic block 18, loop depth 0, count 11498164 (estimated locally), maybe hot
+;;  prev block 17, next block 19, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       17 [33.0% (guessed)]  count:11498164 (estimated locally) (FALLTHRU)
+(note 131 130 132 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 132 131 133 18 (parallel [
+            (set (reg:DI 125 [ _49 ])
+                (plus:DI (reg:DI 119 [ _43 ])
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":74:6 210 {*adddi_1}
+     (nil))
+(insn 133 132 134 18 (parallel [
+            (set (reg/v/f:DI 152 [ _cp ])
+                (plus:DI (reg/f:DI 117 [ _41 ])
+                    (reg:DI 125 [ _49 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":74:6 210 {*adddi_1}
+     (nil))
+(insn 134 133 135 18 (set (mem:TI (reg/v/f:DI 152 [ _cp ]) [0 MEM <char[1:32]> [(void *)_cp_101]+0 S16 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 73 {*movti_internal}
+     (nil))
+(insn 135 134 136 18 (set (mem:TI (plus:DI (reg/v/f:DI 152 [ _cp ])
+                (const_int 16 [0x10])) [0 MEM <char[1:32]> [(void *)_cp_101]+16 S16 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 73 {*movti_internal}
+     (nil))
+(insn 136 135 137 18 (set (mem:SI (plus:DI (reg/v/f:DI 152 [ _cp ])
+                (const_int 4 [0x4])) [1 _cp_101->chars[0]+0 S4 A32])
+        (const_int 32 [0x20])) "../ncurses/./base/lib_hline.c":74:6 75 {*movsi_internal}
+     (nil))
+(insn 137 136 138 18 (set (reg/f:DI 214)
+        (mem/f:DI (reg/v/f:DI 146 [ line ]) [10 line_82->text+0 S8 A64])) "../ncurses/./base/lib_hline.c":74:6 74 {*movdi_internal}
+     (nil))
+(insn 138 137 139 18 (parallel [
+            (set (reg/f:DI 127 [ _51 ])
+                (plus:DI (reg:DI 125 [ _49 ])
+                    (reg/f:DI 214)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":74:6 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (reg/v/f:DI 146 [ line ]) [10 line_82->text+0 S8 A64])
+            (reg:DI 125 [ _49 ]))
+        (nil)))
+(insn 139 138 140 18 (set (mem:SI (plus:DI (reg/f:DI 127 [ _51 ])
+                (const_int 24 [0x18])) [1 _51->ext_color+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./base/lib_hline.c":74:6 75 {*movsi_internal}
+     (nil))
+(insn 140 139 141 18 (parallel [
+            (set (mem:SI (reg/f:DI 127 [ _51 ]) [1 _51->attr+0 S4 A32])
+                (and:SI (mem:SI (reg/f:DI 127 [ _51 ]) [1 _51->attr+0 S4 A32])
+                    (const_int -65281 [0xffffffffffff00ff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":74:6 490 {*andsi_1}
+     (nil))
+;;  succ:       19 [always]  count:11498164 (estimated locally) (FALLTHRU)
+
+;; basic block 19, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 18, next block 20, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       16 [50.0% (guessed)]  count:34842922 (estimated locally)
+;;              18 [always]  count:11498164 (estimated locally) (FALLTHRU)
+;;              15 [41.0% (guessed)]  count:48425756 (estimated locally)
+;;              17 [67.0% (guessed)]  count:23344758 (estimated locally)
+(code_label 141 140 142 19 9 (nil) [3 uses])
+(note 142 141 143 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 143 142 144 19 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 168 [ win ])
+                    (const_int 12 [0xc])) [1 win_80(D)->_maxx+0 S4 A32])
+            (reg:SI 153 [ _112 ]))) "../ncurses/./base/lib_hline.c":76:5 11 {*cmpsi_1}
+     (nil))
+(jump_insn 144 143 145 19 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 167)
+            (pc))) "../ncurses/./base/lib_hline.c":76:5 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 167)
+;;  succ:       20 [50.0% (guessed)]  count:59055800 (estimated locally) (FALLTHRU)
+;;              23 [50.0% (guessed)]  count:59055800 (estimated locally)
+
+;; basic block 20, loop depth 0, count 59055800 (estimated locally), maybe hot
+;;  prev block 19, next block 21, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       19 [50.0% (guessed)]  count:59055800 (estimated locally) (FALLTHRU)
+(note 145 144 146 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 146 145 147 20 (parallel [
+            (set (reg:SI 215)
+                (plus:SI (reg:SI 153 [ _112 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":76:26 209 {*addsi_1}
+     (nil))
+(insn 147 146 148 20 (set (reg:DI 216)
+        (sign_extend:DI (reg:SI 215))) "../ncurses/./base/lib_hline.c":76:26 147 {*extendsidi2_rex64}
+     (nil))
+(insn 148 147 149 20 (parallel [
+            (set (reg:DI 134 [ _58 ])
+                (ashift:DI (reg:DI 216)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":76:26 656 {*ashldi3_1}
+     (nil))
+(insn 149 148 150 20 (set (reg/f:DI 217)
+        (mem/f:DI (reg/v/f:DI 146 [ line ]) [10 line_82->text+0 S8 A64])) "../ncurses/./base/lib_hline.c":76:26 74 {*movdi_internal}
+     (nil))
+(insn 150 149 151 20 (parallel [
+            (set (reg/f:DI 135 [ _59 ])
+                (plus:DI (reg:DI 134 [ _58 ])
+                    (reg/f:DI 217)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":76:26 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (reg/v/f:DI 146 [ line ]) [10 line_82->text+0 S8 A64])
+            (reg:DI 134 [ _58 ]))
+        (nil)))
+(insn 151 150 152 20 (set (reg:SI 137 [ _61 ])
+        (mem:SI (reg/f:DI 135 [ _59 ]) [1 _59->attr+0 S4 A32])) "../ncurses/./base/lib_hline.c":76:26 75 {*movsi_internal}
+     (nil))
+(insn 152 151 153 20 (parallel [
+            (set (reg:SI 218)
+                (and:SI (reg:SI 137 [ _61 ])
+                    (const_int 254 [0xfe])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":76:26 490 {*andsi_1}
+     (nil))
+(insn 153 152 154 20 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 218)
+            (const_int 0 [0]))) "../ncurses/./base/lib_hline.c":76:23 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 154 153 155 20 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 167)
+            (pc))) "../ncurses/./base/lib_hline.c":76:23 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 167)
+;;  succ:       21 [50.0% (guessed)]  count:29527900 (estimated locally) (FALLTHRU)
+;;              23 [50.0% (guessed)]  count:29527900 (estimated locally)
+
+;; basic block 21, loop depth 0, count 29527900 (estimated locally), maybe hot
+;;  prev block 20, next block 22, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       20 [50.0% (guessed)]  count:29527900 (estimated locally) (FALLTHRU)
+(note 155 154 156 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 156 155 157 21 (parallel [
+            (set (reg:SI 219)
+                (and:SI (reg:SI 137 [ _61 ])
+                    (const_int 224 [0xe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":76:26 490 {*andsi_1}
+     (nil))
+(insn 157 156 158 21 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 219)
+            (const_int 0 [0]))) "../ncurses/./base/lib_hline.c":76:26 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 158 157 159 21 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 167)
+            (pc))) "../ncurses/./base/lib_hline.c":76:26 806 {*jcc}
+     (int_list:REG_BR_PROB 719407028 (nil))
+ -> 167)
+;;  succ:       22 [33.0% (guessed)]  count:9744207 (estimated locally) (FALLTHRU)
+;;              23 [67.0% (guessed)]  count:19783693 (estimated locally)
+
+;; basic block 22, loop depth 0, count 9744207 (estimated locally), maybe hot
+;;  prev block 21, next block 23, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       21 [33.0% (guessed)]  count:9744207 (estimated locally) (FALLTHRU)
+(note 159 158 160 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 160 159 161 22 (set (mem:TI (reg/f:DI 135 [ _59 ]) [0 MEM <char[1:32]> [(void *)_59]+0 S16 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 73 {*movti_internal}
+     (nil))
+(insn 161 160 162 22 (set (mem:TI (plus:DI (reg/f:DI 135 [ _59 ])
+                (const_int 16 [0x10])) [0 MEM <char[1:32]> [(void *)_59]+16 S16 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 73 {*movti_internal}
+     (nil))
+(insn 162 161 163 22 (set (mem:SI (plus:DI (reg/f:DI 135 [ _59 ])
+                (const_int 4 [0x4])) [1 _59->chars[0]+0 S4 A32])
+        (const_int 32 [0x20])) "../ncurses/./base/lib_hline.c":77:6 75 {*movsi_internal}
+     (nil))
+(insn 163 162 164 22 (set (reg/f:DI 220)
+        (mem/f:DI (reg/v/f:DI 146 [ line ]) [10 line_82->text+0 S8 A64])) "../ncurses/./base/lib_hline.c":77:6 74 {*movdi_internal}
+     (nil))
+(insn 164 163 165 22 (parallel [
+            (set (reg/f:DI 141 [ _65 ])
+                (plus:DI (reg:DI 134 [ _58 ])
+                    (reg/f:DI 220)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":77:6 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (reg/v/f:DI 146 [ line ]) [10 line_82->text+0 S8 A64])
+            (reg:DI 134 [ _58 ]))
+        (nil)))
+(insn 165 164 166 22 (set (mem:SI (plus:DI (reg/f:DI 141 [ _65 ])
+                (const_int 24 [0x18])) [1 _65->ext_color+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./base/lib_hline.c":77:6 75 {*movsi_internal}
+     (nil))
+(insn 166 165 167 22 (parallel [
+            (set (mem:SI (reg/f:DI 141 [ _65 ]) [1 _65->attr+0 S4 A32])
+                (and:SI (mem:SI (reg/f:DI 141 [ _65 ]) [1 _65->attr+0 S4 A32])
+                    (const_int -65281 [0xffffffffffff00ff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":77:6 490 {*andsi_1}
+     (nil))
+;;  succ:       23 [always]  count:9744207 (estimated locally) (FALLTHRU)
+
+;; basic block 23, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 22, next block 24, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       22 [always]  count:9744207 (estimated locally) (FALLTHRU)
+;;              20 [50.0% (guessed)]  count:29527900 (estimated locally)
+;;              19 [50.0% (guessed)]  count:59055800 (estimated locally)
+;;              21 [67.0% (guessed)]  count:19783693 (estimated locally)
+(code_label 167 166 168 23 10 (nil) [3 uses])
+(note 168 167 169 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 169 168 170 23 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 147 [ start ])
+            (reg:SI 153 [ _112 ]))) "../ncurses/./base/lib_hline.c":80:13 11 {*cmpsi_1}
+     (nil))
+(jump_insn 170 169 197 23 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 176)
+            (pc))) "../ncurses/./base/lib_hline.c":80:13 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 176)
+;;  succ:       25 [89.0% (guessed)]  count:105119324 (estimated locally)
+;;              24 [11.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU)
+
+;; basic block 24, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 23, next block 25, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       23 [11.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU)
+;;              27 [always]  count:105119324 (estimated locally)
+(code_label 197 170 171 24 13 (nil) [1 uses])
+(note 171 197 172 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 172 171 173 24 (set (reg:DI 5 di)
+        (reg/v/f:DI 168 [ win ])) "../ncurses/./base/lib_hline.c":85:2 74 {*movdi_internal}
+     (nil))
+(call_insn 173 172 9 24 (call (mem:QI (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f06d149a700 _nc_synchook>) [0 _nc_synchook S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_hline.c":85:2 813 {*call}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f06d149a700 _nc_synchook>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 9 173 174 24 (set (reg/v:SI 167 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_hline.c":86:7 75 {*movsi_internal}
+     (nil))
+(jump_insn 174 9 175 24 (set (pc)
+        (label_ref:DI 205)) 807 {jump}
+     (nil)
+ -> 205)
+;;  succ:       30 [always]  count:118111600 (estimated locally)
+
+(barrier 175 174 176)
+;; basic block 25, loop depth 0, count 105119324 (estimated locally), maybe hot
+;;  prev block 24, next block 26, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       23 [89.0% (guessed)]  count:105119324 (estimated locally)
+(code_label 176 175 177 25 11 (nil) [1 uses])
+(note 177 176 178 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(insn 178 177 179 25 (set (reg/f:DI 156 [ pretmp_119 ])
+        (mem/f:DI (reg/v/f:DI 146 [ line ]) [10 line_82->text+0 S8 A64])) "../ncurses/./base/lib_hline.c":81:10 74 {*movdi_internal}
+     (nil))
+(insn 179 178 180 25 (set (reg:DI 221)
+        (sign_extend:DI (reg:SI 153 [ _112 ]))) 147 {*extendsidi2_rex64}
+     (nil))
+(insn 180 179 181 25 (parallel [
+            (set (reg:DI 132 [ _56 ])
+                (ashift:DI (reg:DI 221)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) 656 {*ashldi3_1}
+     (nil))
+(insn 181 180 182 25 (parallel [
+            (set (reg:DI 149 [ ivtmp.11 ])
+                (plus:DI (reg/f:DI 156 [ pretmp_119 ])
+                    (reg:DI 132 [ _56 ])))
+            (clobber (reg:CC 17 flags))
+        ]) 210 {*adddi_1}
+     (nil))
+(insn 182 181 183 25 (parallel [
+            (set (reg:DI 222)
+                (plus:DI (reg/f:DI 156 [ pretmp_119 ])
+                    (reg:DI 132 [ _56 ])))
+            (clobber (reg:CC 17 flags))
+        ]) 210 {*adddi_1}
+     (nil))
+(insn 183 182 184 25 (parallel [
+            (set (reg:DI 223)
+                (plus:DI (reg:DI 222)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) 210 {*adddi_1}
+     (nil))
+(insn 184 183 185 25 (parallel [
+            (set (reg:SI 224)
+                (minus:SI (reg:SI 153 [ _112 ])
+                    (reg/v:SI 147 [ start ])))
+            (clobber (reg:CC 17 flags))
+        ]) 282 {*subsi_1}
+     (nil))
+(insn 185 184 186 25 (set (reg:DI 225)
+        (zero_extend:DI (reg:SI 224))) 138 {*zero_extendsidi2}
+     (nil))
+(insn 186 185 187 25 (parallel [
+            (set (reg:DI 226)
+                (ashift:DI (reg:DI 225)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) 656 {*ashldi3_1}
+     (nil))
+(insn 187 186 194 25 (parallel [
+            (set (reg:DI 158 [ _127 ])
+                (minus:DI (reg:DI 223)
+                    (reg:DI 226)))
+            (clobber (reg:CC 17 flags))
+        ]) 283 {*subdi_1}
+     (nil))
+;;  succ:       26 [always]  count:105119324 (estimated locally) (FALLTHRU)
+
+;; basic block 26, loop depth 1, count 955630225 (estimated locally), maybe hot
+;;  prev block 25, next block 27, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       26 [89.0% (guessed)]  count:850510901 (estimated locally) (DFS_BACK)
+;;              25 [always]  count:105119324 (estimated locally) (FALLTHRU)
+(code_label 194 187 188 26 12 (nil) [1 uses])
+(note 188 194 189 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 189 188 190 26 (set (reg:TI 227)
+        (mem/c:TI (plus:DI (reg/f:DI 19 frame)
+                (const_int -48 [0xffffffffffffffd0])) [2 wch+0 S16 A128])) "../ncurses/./base/lib_hline.c":81:22 73 {*movti_internal}
+     (nil))
+(insn 190 189 191 26 (set (mem:TI (reg:DI 149 [ ivtmp.11 ]) [2 MEM[(struct cchar_t *)_135]+0 S16 A32])
+        (reg:TI 227)) "../ncurses/./base/lib_hline.c":81:22 73 {*movti_internal}
+     (nil))
+(insn 191 190 192 26 (set (reg:TI 228)
+        (mem/c:TI (plus:DI (reg/f:DI 19 frame)
+                (const_int -32 [0xffffffffffffffe0])) [2 wch+16 S16 A128])) "../ncurses/./base/lib_hline.c":81:22 73 {*movti_internal}
+     (nil))
+(insn 192 191 193 26 (set (mem:TI (plus:DI (reg:DI 149 [ ivtmp.11 ])
+                (const_int 16 [0x10])) [2 MEM[(struct cchar_t *)_135]+16 S16 A32])
+        (reg:TI 228)) "../ncurses/./base/lib_hline.c":81:22 73 {*movti_internal}
+     (nil))
+(insn 193 192 195 26 (parallel [
+            (set (reg:DI 149 [ ivtmp.11 ])
+                (plus:DI (reg:DI 149 [ ivtmp.11 ])
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_hline.c":80:13 210 {*adddi_1}
+     (nil))
+(insn 195 193 196 26 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 149 [ ivtmp.11 ])
+            (reg:DI 158 [ _127 ]))) "../ncurses/./base/lib_hline.c":80:13 12 {*cmpdi_1}
+     (nil))
+(jump_insn 196 195 200 26 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 194)
+            (pc))) "../ncurses/./base/lib_hline.c":80:13 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 194)
+;;  succ:       26 [89.0% (guessed)]  count:850510901 (estimated locally) (DFS_BACK)
+;;              27 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+
+;; basic block 27, loop depth 0, count 105119324 (estimated locally), maybe hot
+;;  prev block 26, next block 28, flags: (NEW, REACHABLE, RTL)
+;;  pred:       26 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+(note 200 196 198 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 198 200 199 27 (set (pc)
+        (label_ref 197)) 807 {jump}
+     (nil)
+ -> 197)
+;;  succ:       24 [always]  count:105119324 (estimated locally)
+
+(barrier 199 198 216)
+;; basic block 28, loop depth 0, count 1036589 (estimated locally), maybe hot
+;;  prev block 27, next block 30, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [0.9% (guessed)]  count:1036589 (estimated locally)
+(code_label 216 199 215 28 15 (nil) [1 uses])
+(note 215 216 8 28 [bb 28] NOTE_INSN_BASIC_BLOCK)
+(insn 8 215 205 28 (set (reg/v:SI 167 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_hline.c":51:9 75 {*movsi_internal}
+     (nil))
+;;  succ:       30 [always]  count:1036589 (estimated locally) (FALLTHRU)
+
+;; basic block 30, loop depth 0, count 119148189 (estimated locally), maybe hot
+;;  prev block 28, next block 31, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       28 [always]  count:1036589 (estimated locally) (FALLTHRU)
+;;              24 [always]  count:118111600 (estimated locally)
+(code_label 205 8 214 30 1 (nil) [1 uses])
+(note 214 205 206 30 [bb 30] NOTE_INSN_BASIC_BLOCK)
+(insn 206 214 207 30 (set (reg/f:DI 230)
+        (const_int 40 [0x28])) "../ncurses/./base/lib_hline.c":89:1 74 {*movdi_internal}
+     (nil))
+(insn 207 206 208 30 (parallel [
+            (set (reg:CCZ 17 flags)
+                (unspec:CCZ [
+                        (mem/v/f/c:DI (plus:DI (reg/f:DI 19 frame)
+                                (const_int -8 [0xfffffffffffffff8])) [11 D.9119+0 S8 A64])
+                        (mem/v/f:DI (reg/f:DI 230) [12 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_TEST))
+            (clobber (scratch:DI))
+        ]) "../ncurses/./base/lib_hline.c":89:1 1164 {stack_protect_test_1_di}
+     (nil))
+(jump_insn 208 207 221 30 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 211)
+            (pc))) "../ncurses/./base/lib_hline.c":89:1 806 {*jcc}
+     (int_list:REG_BR_PROB 1073312332 (nil))
+ -> 211)
+;;  succ:       32 [100.0% (guessed)]  count:119100530 (estimated locally)
+;;              31 [0.0% (guessed)]  count:47659 (estimated locally) (FALLTHRU)
+
+;; basic block 31, loop depth 0, count 47659 (estimated locally)
+;;  prev block 30, next block 32, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       30 [0.0% (guessed)]  count:47659 (estimated locally) (FALLTHRU)
+(note 221 208 209 31 [bb 31] NOTE_INSN_BASIC_BLOCK)
+(call_insn 209 221 210 31 (call (mem:QI (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7f06d109e000 __stack_chk_fail>) [0 __stack_chk_fail S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_hline.c":89:1 813 {*call}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7f06d109e000 __stack_chk_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (nil))
+;;  succ:      
+
+(barrier 210 209 211)
+;; basic block 32, loop depth 0, count 119100530 (estimated locally), maybe hot
+;;  prev block 31, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       30 [100.0% (guessed)]  count:119100530 (estimated locally)
+(code_label 211 210 222 32 14 (nil) [1 uses])
+(note 222 211 212 32 [bb 32] NOTE_INSN_BASIC_BLOCK)
+(insn 212 222 213 32 (set (reg/i:SI 0 ax)
+        (reg/v:SI 167 [ <retval> ])) "../ncurses/./base/lib_hline.c":89:1 75 {*movsi_internal}
+     (nil))
+(insn 213 212 0 32 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_hline.c":89:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:119100530 (estimated locally) (FALLTHRU)
+

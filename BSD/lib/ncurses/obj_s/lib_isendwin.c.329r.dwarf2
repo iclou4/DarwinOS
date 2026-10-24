@@ -1,0 +1,175 @@
+
+;; Function isendwin_sp (isendwin_sp, funcdef_no=91, decl_uid=6566, cgraph_uid=92, symbol_order=91)
+
+Creating trace 0 : start at note 1
+Creating trace 1 : start at note 30
+Creating trace 2 : start at code_label 24
+Creating trace 3 : start at note 38
+Processing trace 0 : start at note 1
+   saw edge from trace 0 to 1 (via fallthru 0)
+	push trace 1 to worklist
+Processing trace 1 : start at note 30
+   saw edge from trace 1 to 2 (via jump_insn 8)
+	push trace 2 to worklist
+Processing trace 2 : start at code_label 24
+   saw edge from trace 2 to 3 (via fallthru 0)
+	push trace 3 to worklist
+Processing trace 3 : start at note 38
+
+
+isendwin_sp
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 7 [sp]
+;;  regs ever live 	 0 [ax] 5 [di] 17 [flags]
+;;  ref usage 	r0={3d,3u} r1={1d} r2={1d} r4={1d} r5={1d,2u} r7={1d,4u} r17={3d,2u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={1d} r37={1d} 
+;;    total ref usage 32{21d,11u,0e} in 9{9 regular + 0 call} insns.
+(note 1 0 39 NOTE_INSN_DELETED)
+(insn 39 1 5 2 (unspec_volatile [
+            (const_int 0 [0])
+        ] UNSPECV_NOP_ENDBR) 1242 {nop_endbr}
+     (nil))
+(note 5 39 30 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 30 5 3 2 NOTE_INSN_PROLOGUE_END)
+(note 3 30 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn:TI 7 3 8 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 5 di [orig:84 sp ] [84])
+            (const_int 0 [0]))) "../ncurses/./base/lib_isendwin.c":51:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 8 7 9 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 24)
+            (pc))) "../ncurses/./base/lib_isendwin.c":51:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 194239900 (nil)))
+ -> 24)
+(note 9 8 10 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 10 9 11 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/v/f:DI 5 di [orig:84 sp ] [84])
+                    (const_int 736 [0x2e0])) [1 sp_3(D)->_endwin+0 S4 A64])
+            (const_int 3 [0x3]))) "../ncurses/./base/lib_isendwin.c":53:30 11 {*cmpsi_1}
+     (expr_list:REG_DEAD (reg/v/f:DI 5 di [orig:84 sp ] [84])
+        (nil)))
+(insn:TI 11 10 34 3 (set (reg:QI 0 ax [orig:83 <retval> ] [83])
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_isendwin.c":53:30 802 {*setcc_qi}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (nil)))
+(insn 34 11 27 3 (use (reg/i:QI 0 ax)) -1
+     (nil))
+(jump_insn:TI 27 34 28 3 (simple_return) "../ncurses/./base/lib_isendwin.c":53:30 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 28 27 24)
+(code_label 24 28 23 4 3 (nil) [1 uses])
+(note 23 24 37 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 37 23 19 4 (parallel [
+            (set (reg:DI 0 ax [orig:83 <retval> ] [83])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_isendwin.c":52:9 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 19 37 38 4 (use (reg/i:QI 0 ax)) "../ncurses/./base/lib_isendwin.c":54:1 -1
+     (nil))
+(note 38 19 32 4 NOTE_INSN_EPILOGUE_BEG)
+(jump_insn:TI 32 38 33 4 (simple_return) "../ncurses/./base/lib_isendwin.c":54:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 33 32 29)
+(note 29 33 0 NOTE_INSN_DELETED)
+
+;; Function isendwin (isendwin, funcdef_no=92, decl_uid=5687, cgraph_uid=93, symbol_order=92)
+
+Creating trace 0 : start at note 1
+Creating trace 1 : start at note 28
+Creating trace 2 : start at code_label 24
+Creating trace 3 : start at note 34
+Processing trace 0 : start at note 1
+   saw edge from trace 0 to 1 (via fallthru 0)
+	push trace 1 to worklist
+Processing trace 1 : start at note 28
+   saw edge from trace 1 to 2 (via jump_insn 8)
+	push trace 2 to worklist
+Processing trace 2 : start at code_label 24
+   saw edge from trace 2 to 3 (via fallthru 0)
+	push trace 3 to worklist
+Processing trace 3 : start at note 34
+
+
+isendwin
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 7 [sp]
+;;  regs ever live 	 0 [ax] 17 [flags]
+;;  ref usage 	r0={4d,5u} r1={1d} r2={1d} r4={1d} r5={1d} r7={1d,4u} r17={3d,2u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={1d} r37={1d} 
+;;    total ref usage 33{22d,11u,0e} in 10{10 regular + 0 call} insns.
+(note 1 0 35 NOTE_INSN_DELETED)
+(insn 35 1 4 2 (unspec_volatile [
+            (const_int 0 [0])
+        ] UNSPECV_NOP_ENDBR) 1242 {nop_endbr}
+     (nil))
+(note 4 35 28 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 28 4 2 2 NOTE_INSN_PROLOGUE_END)
+(note 2 28 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn:TI 6 2 7 2 (set (reg/f:DI 0 ax [orig:82 SP.0_1 ] [82])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f17aeaa9cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/lib_isendwin.c":60:12 74 {*movdi_internal}
+     (nil))
+(insn:TI 7 6 8 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 0 ax [orig:82 SP.0_1 ] [82])
+            (const_int 0 [0]))) "../ncurses/./base/lib_isendwin.c":51:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 8 7 9 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 24)
+            (pc))) "../ncurses/./base/lib_isendwin.c":51:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 194239900 (nil)))
+ -> 24)
+(note 9 8 10 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 10 9 11 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/f:DI 0 ax [orig:82 SP.0_1 ] [82])
+                    (const_int 736 [0x2e0])) [1 SP.0_1->_endwin+0 S4 A64])
+            (const_int 3 [0x3]))) "../ncurses/./base/lib_isendwin.c":53:30 11 {*cmpsi_1}
+     (expr_list:REG_DEAD (reg/f:DI 0 ax [orig:82 SP.0_1 ] [82])
+        (nil)))
+(insn:TI 11 10 32 3 (set (reg:QI 0 ax [orig:84 <retval> ] [84])
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_isendwin.c":53:30 802 {*setcc_qi}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (nil)))
+(insn 32 11 25 3 (use (reg/i:QI 0 ax)) -1
+     (nil))
+(jump_insn:TI 25 32 26 3 (simple_return) "../ncurses/./base/lib_isendwin.c":53:30 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 26 25 24)
+(code_label 24 26 23 4 7 (nil) [1 uses])
+(note 23 24 33 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 33 23 19 4 (parallel [
+            (set (reg:DI 0 ax [orig:84 <retval> ] [84])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_isendwin.c":52:9 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 19 33 34 4 (use (reg/i:QI 0 ax)) "../ncurses/./base/lib_isendwin.c":61:1 -1
+     (nil))
+(note 34 19 30 4 NOTE_INSN_EPILOGUE_BEG)
+(jump_insn:TI 30 34 31 4 (simple_return) "../ncurses/./base/lib_isendwin.c":61:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 31 30 27)
+(note 27 31 0 NOTE_INSN_DELETED)

@@ -1,0 +1,33 @@
+SUBDIR =
+MK_WERROR = no
+LIB = kxld
+
+.PATH: ${ROOT_SOURCE_DIR}/Kernel/xnu/libkern/kxld
+SRCS =	kxld.c \
+	kxld_array.c \
+	kxld_copyright.c \
+	kxld_demangle.c \
+	kxld_dict.c \
+	kxld_kext.c \
+	kxld_object.c \
+	kxld_reloc.c \
+	kxld_sect.c \
+	kxld_seg.c \
+	kxld_srcversion.c \
+	kxld_splitinfolc.c \
+	kxld_sym.c \
+	kxld_symtab.c \
+	kxld_util.c \
+	kxld_uuid.c \
+	kxld_vtable.c \
+	kxld_versionmin.c
+
+CFLAGS = --sysroot=${RAVYN_SDKROOT} -mmacos-version-min=${MACOS_VERSION_MIN} \
+	-I${.CURDIR:H}/xnu/libkern -I${.CURDIR:H}/xnu/EXTERNAL_HEADERS \
+	-I${.CURDIR:H}/xnu/libkern/libkern -DPRIVATE -g \
+	-Wno-nullability-completeness
+LDFLAGS = --sysroot=${RAVYN_SDKROOT} -mmacos-version-min=${MACOS_VERSION_MIN}
+
+all: lib${LIB}.a
+
+.include <bsd.lib.mk>

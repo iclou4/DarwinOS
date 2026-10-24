@@ -1,0 +1,647 @@
+
+;; Function pecho_wchar (pecho_wchar, funcdef_no=91, decl_uid=7074, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+int pecho_wchar (struct WINDOW * pad, const struct cchar_t * wch)
+{
+  short int _1;
+  int _2;
+  int _3;
+  int _4;
+  int _5;
+  int _6;
+  int _7;
+  int _8;
+  short int _15;
+  int _17;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (pad_10(D) == 0B)
+    goto <bb 6>; [0.45%]
+  else
+    goto <bb 3>; [99.55%]
+;;    succ:       6
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = pad_10(D)->_flags;
+  _15 = _1 & 16;
+  if (_15 == 0)
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 5>; [66.00%]
+;;    succ:       4
+;;                5
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _17 = wecho_wchar (pad_10(D), wch_12(D)); [tail call]
+  goto <bb 6>; [100.00%]
+;;    succ:       6
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+  wadd_wch (pad_10(D), wch_12(D));
+  _2 = pad_10(D)->_pad._pad_right;
+  _3 = pad_10(D)->_pad._pad_bottom;
+  _4 = pad_10(D)->_pad._pad_left;
+  _5 = pad_10(D)->_pad._pad_top;
+  _6 = pad_10(D)->_pad._pad_x;
+  _7 = pad_10(D)->_pad._pad_y;
+  prefresh (pad_10(D), _7, _6, _5, _4, _3, _2);
+;;    succ:       6
+
+;;   basic block 6, loop depth 0
+;;    pred:       2
+;;                4
+;;                5
+  # _8 = PHI <-1(2), _17(4), 0(5)>
+  return _8;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 4 (_4 - 4 )
+Partition 5 (_5 - 5 )
+Partition 6 (_6 - 6 )
+Partition 7 (_7 - 7 )
+Partition 8 (_8 - 8 )
+Partition 10 (pad_10(D) - 10 )
+Partition 12 (wch_12(D) - 12 )
+Partition 15 (_15 - 15 )
+Partition 17 (_17 - 17 )
+Partition 18 (_18(D) - 18 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_8 - 8 17 18 )
+Partition 1, base 1 (pad_10(D) - 10 )
+Partition 2, base 2 (wch_12(D) - 12 )
+
+
+Partition map 
+
+Partition 0 (_8 - 8 )
+Partition 1 (pad_10(D) - 10 )
+Partition 2 (wch_12(D) - 12 )
+Partition 3 (_17 - 17 )
+Partition 4 (_18(D) - 18 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) _8 <-> _18(D)
+(3385, 0) _8 <-> _17
+
+Partition map 
+
+Partition 0 (_8 - 8 )
+Partition 1 (pad_10(D) - 10 )
+Partition 2 (wch_12(D) - 12 )
+Partition 3 (_17 - 17 )
+Partition 4 (_18(D) - 18 )
+
+Coalesce list: (8)_8 & (18)_18(D) [map: 0, 4] : Success -> 0
+Coalesce list: (8)_8 & (17)_17 [map: 0, 3] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_2 - 2 )
+Partition 2 (_3 - 3 )
+Partition 3 (_4 - 4 )
+Partition 4 (_5 - 5 )
+Partition 5 (_6 - 6 )
+Partition 6 (_7 - 7 )
+Partition 7 (_8 - 8 17 18 )
+Partition 8 (pad_10(D) - 10 )
+Partition 9 (wch_12(D) - 12 )
+Partition 10 (_15 - 15 )
+
+
+Replacing Expressions
+_1 replace with --> _1 = pad_10(D)->_flags;
+
+_2 replace with --> _2 = pad_10(D)->_pad._pad_right;
+
+_3 replace with --> _3 = pad_10(D)->_pad._pad_bottom;
+
+_4 replace with --> _4 = pad_10(D)->_pad._pad_left;
+
+_5 replace with --> _5 = pad_10(D)->_pad._pad_top;
+
+_6 replace with --> _6 = pad_10(D)->_pad._pad_x;
+
+_7 replace with --> _7 = pad_10(D)->_pad._pad_y;
+
+_15 replace with --> _15 = _1 & 16;
+
+
+__attribute__((visibility ("default")))
+int pecho_wchar (struct WINDOW * pad, const struct cchar_t * wch)
+{
+  short int _1;
+  int _2;
+  int _3;
+  int _4;
+  int _5;
+  int _6;
+  int _7;
+  int _8;
+  short int _15;
+  int _17;
+  int _18(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (pad_10(D) == 0B)
+    goto <bb 6>; [0.45%]
+  else
+    goto <bb 3>; [99.55%]
+;;    succ:       6
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = pad_10(D)->_flags;
+  _15 = _1 & 16;
+  if (_15 == 0)
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 5>; [66.00%]
+;;    succ:       4
+;;                5
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _17 = wecho_wchar (pad_10(D), wch_12(D)); [tail call]
+  goto <bb 6>; [100.00%]
+;;    succ:       6
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+  wadd_wch (pad_10(D), wch_12(D));
+  _2 = pad_10(D)->_pad._pad_right;
+  _3 = pad_10(D)->_pad._pad_bottom;
+  _4 = pad_10(D)->_pad._pad_left;
+  _5 = pad_10(D)->_pad._pad_top;
+  _6 = pad_10(D)->_pad._pad_x;
+  _7 = pad_10(D)->_pad._pad_y;
+  prefresh (pad_10(D), _7, _6, _5, _4, _3, _2);
+;;    succ:       6
+
+;;   basic block 6, loop depth 0
+;;    pred:       2
+;;                4
+;;                5
+  # _8 = PHI <-1(2), _17(4), 0(5)>
+  return _8;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB2->BB6 : PART.7 = -1
+Inserting a value copy on edge BB5->BB6 : PART.7 = 0
+
+;; Generating RTL for gimple basic block 2
+
+;; if (pad_10(D) == 0B)
+
+(insn 9 8 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 91 [ pad ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_pecho_wchar.c":43:8 -1
+     (nil))
+
+(jump_insn 10 9 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_pecho_wchar.c":43:8 -1
+     (int_list:REG_BR_PROB 4831844 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; if (_15 == 0)
+
+(insn 12 11 13 (set (reg:HI 94)
+        (mem:HI (plus:DI (reg/v/f:DI 91 [ pad ])
+                (const_int 24 [0x18])) [1 pad_10(D)->_flags+0 S2 A64])) "../ncurses/./widechar/lib_pecho_wchar.c":46:8 -1
+     (nil))
+
+(insn 13 12 14 (parallel [
+            (set (reg:HI 93)
+                (and:HI (reg:HI 94)
+                    (const_int 16 [0x10])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_pecho_wchar.c":46:8 -1
+     (expr_list:REG_EQUAL (and:HI (mem:HI (plus:DI (reg/v/f:DI 91 [ pad ])
+                    (const_int 24 [0x18])) [1 pad_10(D)->_flags+0 S2 A64])
+            (const_int 16 [0x10]))
+        (nil)))
+
+(insn 14 13 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 93)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_pecho_wchar.c":46:8 -1
+     (nil))
+
+(jump_insn 15 14 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_pecho_wchar.c":46:8 -1
+     (int_list:REG_BR_PROB 708669604 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; _17 = wecho_wchar (pad_10(D), wch_12(D)); [tail call]
+
+(insn 17 16 18 4 (set (reg:DI 4 si)
+        (reg/v/f:DI 92 [ wch ])) "../ncurses/./widechar/lib_pecho_wchar.c":47:2 -1
+     (nil))
+
+(insn 18 17 19 4 (set (reg:DI 5 di)
+        (reg/v/f:DI 91 [ pad ])) "../ncurses/./widechar/lib_pecho_wchar.c":47:2 -1
+     (nil))
+
+(call_insn/j 19 18 20 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wecho_wchar") [flags 0x41]  <function_decl 0x7f62261a0e00 wecho_wchar>) [0 wecho_wchar S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_pecho_wchar.c":47:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wecho_wchar") [flags 0x41]  <function_decl 0x7f62261a0e00 wecho_wchar>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(barrier 20 19 0)
+
+;; Generating RTL for gimple basic block 5
+
+;; 
+
+(code_label 22 20 23 3 (nil) [0 uses])
+
+(note 23 22 0 NOTE_INSN_BASIC_BLOCK)
+
+;; wadd_wch (pad_10(D), wch_12(D));
+
+(insn 24 23 25 (set (reg:DI 4 si)
+        (reg/v/f:DI 92 [ wch ])) "../ncurses/./widechar/lib_pecho_wchar.c":49:5 -1
+     (nil))
+
+(insn 25 24 26 (set (reg:DI 5 di)
+        (reg/v/f:DI 91 [ pad ])) "../ncurses/./widechar/lib_pecho_wchar.c":49:5 -1
+     (nil))
+
+(call_insn 26 25 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wadd_wch") [flags 0x41]  <function_decl 0x7f62261a0600 wadd_wch>) [0 wadd_wch S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_pecho_wchar.c":49:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wadd_wch") [flags 0x41]  <function_decl 0x7f62261a0600 wadd_wch>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+;; prefresh (pad_10(D), _7, _6, _5, _4, _3, _2);
+
+(insn 27 26 28 (set (reg:SI 95)
+        (mem:SI (plus:DI (reg/v/f:DI 91 [ pad ])
+                (const_int 104 [0x68])) [3 pad_10(D)->_pad._pad_bottom+0 S4 A64])) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+
+(insn 28 27 29 (set (reg:SI 96)
+        (mem:SI (plus:DI (reg/v/f:DI 91 [ pad ])
+                (const_int 100 [0x64])) [3 pad_10(D)->_pad._pad_left+0 S4 A32])) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+
+(insn 29 28 30 (set (reg:SI 97)
+        (mem:SI (plus:DI (reg/v/f:DI 91 [ pad ])
+                (const_int 96 [0x60])) [3 pad_10(D)->_pad._pad_top+0 S4 A64])) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+
+(insn 30 29 31 (set (reg:SI 98)
+        (mem:SI (plus:DI (reg/v/f:DI 91 [ pad ])
+                (const_int 92 [0x5c])) [3 pad_10(D)->_pad._pad_x+0 S4 A32])) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+
+(insn 31 30 32 (set (reg:SI 99)
+        (mem:SI (plus:DI (reg/v/f:DI 91 [ pad ])
+                (const_int 88 [0x58])) [3 pad_10(D)->_pad._pad_y+0 S4 A64])) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+
+(insn 32 31 33 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -8 [0xfffffffffffffff8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (expr_list:REG_ARGS_SIZE (const_int 8 [0x8])
+        (nil)))
+
+(insn 33 32 34 (set (reg:SI 100)
+        (mem:SI (plus:DI (reg/v/f:DI 91 [ pad ])
+                (const_int 108 [0x6c])) [3 pad_10(D)->_pad._pad_right+0 S4 A32])) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+
+(insn 34 33 35 (set (mem:SI (pre_modify:DI (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -8 [0xfffffffffffffff8]))) [0  S4 A32])
+        (reg:SI 100)) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (expr_list:REG_ARGS_SIZE (const_int 16 [0x10])
+        (nil)))
+
+(insn 35 34 36 (set (reg:SI 37 r9)
+        (reg:SI 95)) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+
+(insn 36 35 37 (set (reg:SI 36 r8)
+        (reg:SI 96)) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+
+(insn 37 36 38 (set (reg:SI 2 cx)
+        (reg:SI 97)) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+
+(insn 38 37 39 (set (reg:SI 1 dx)
+        (reg:SI 98)) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+
+(insn 39 38 40 (set (reg:SI 4 si)
+        (reg:SI 99)) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+
+(insn 40 39 41 (set (reg:DI 5 di)
+        (reg/v/f:DI 91 [ pad ])) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+
+(call_insn 41 40 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("prefresh") [flags 0x41]  <function_decl 0x7f62265c1200 prefresh>) [0 prefresh S1 A8])
+            (const_int 16 [0x10]))) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("prefresh") [flags 0x41]  <function_decl 0x7f62265c1200 prefresh>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (expr_list:SI (use (reg:SI 36 r8))
+                        (expr_list:SI (use (reg:SI 37 r9))
+                            (nil))))))))
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 43 42 44 2 (nil) [0 uses])
+
+(note 44 43 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return _8;
+
+(jump_insn 45 44 46 (set (pc)
+        (label_ref 0)) "../ncurses/./widechar/lib_pecho_wchar.c":58:1 -1
+     (nil))
+
+(barrier 46 45 0)
+Edge 2->6 redirected to 9
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 51 from 8 to 9.
+Merging block 8 into block 7...
+Merged blocks 7 and 8.
+Merged 7 and 8 without moving.
+Removing jump 45.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 7 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741823 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741823 (estimated locally) (FALLTHRU)
+(note 7 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 91 [ pad ])
+        (reg:DI 5 di [ pad ])) "../ncurses/./widechar/lib_pecho_wchar.c":40:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 92 [ wch ])
+        (reg:DI 4 si [ wch ])) "../ncurses/./widechar/lib_pecho_wchar.c":40:1 -1
+     (nil))
+(note 4 3 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 4 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 91 [ pad ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_pecho_wchar.c":43:8 -1
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 54)
+            (pc))) "../ncurses/./widechar/lib_pecho_wchar.c":43:8 806 {*jcc}
+     (int_list:REG_BR_PROB 4831844 (nil))
+ -> 54)
+;;  succ:       7 [0.5% (guessed)]  count:4831840 (estimated locally)
+;;              4 [99.5% (guessed)]  count:1068909983 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 1068909983 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [99.5% (guessed)]  count:1068909983 (estimated locally) (FALLTHRU)
+(note 11 10 12 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 4 (set (reg:HI 94)
+        (mem:HI (plus:DI (reg/v/f:DI 91 [ pad ])
+                (const_int 24 [0x18])) [1 pad_10(D)->_flags+0 S2 A64])) "../ncurses/./widechar/lib_pecho_wchar.c":46:8 -1
+     (nil))
+(insn 13 12 14 4 (parallel [
+            (set (reg:HI 93)
+                (and:HI (reg:HI 94)
+                    (const_int 16 [0x10])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_pecho_wchar.c":46:8 -1
+     (expr_list:REG_EQUAL (and:HI (mem:HI (plus:DI (reg/v/f:DI 91 [ pad ])
+                    (const_int 24 [0x18])) [1 pad_10(D)->_flags+0 S2 A64])
+            (const_int 16 [0x10]))
+        (nil)))
+(insn 14 13 15 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 93)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_pecho_wchar.c":46:8 -1
+     (nil))
+(jump_insn 15 14 16 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 22)
+            (pc))) "../ncurses/./widechar/lib_pecho_wchar.c":46:8 -1
+     (int_list:REG_BR_PROB 708669604 (nil))
+ -> 22)
+;;  succ:       5 [34.0% (guessed)]  count:363429398 (estimated locally) (FALLTHRU)
+;;              6 [66.0% (guessed)]  count:705480585 (estimated locally)
+
+;; basic block 5, loop depth 0, count 363429398 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [34.0% (guessed)]  count:363429398 (estimated locally) (FALLTHRU)
+(note 16 15 17 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 5 (set (reg:DI 4 si)
+        (reg/v/f:DI 92 [ wch ])) "../ncurses/./widechar/lib_pecho_wchar.c":47:2 -1
+     (nil))
+(insn 18 17 19 5 (set (reg:DI 5 di)
+        (reg/v/f:DI 91 [ pad ])) "../ncurses/./widechar/lib_pecho_wchar.c":47:2 -1
+     (nil))
+(call_insn/j 19 18 20 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wecho_wchar") [flags 0x41]  <function_decl 0x7f62261a0e00 wecho_wchar>) [0 wecho_wchar S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_pecho_wchar.c":47:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wecho_wchar") [flags 0x41]  <function_decl 0x7f62261a0e00 wecho_wchar>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+;;  succ:       EXIT [always]  count:363429398 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 20 19 22)
+;; basic block 6, loop depth 0, count 705480586 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [66.0% (guessed)]  count:705480585 (estimated locally)
+(code_label 22 20 23 6 3 (nil) [1 uses])
+(note 23 22 24 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 25 6 (set (reg:DI 4 si)
+        (reg/v/f:DI 92 [ wch ])) "../ncurses/./widechar/lib_pecho_wchar.c":49:5 -1
+     (nil))
+(insn 25 24 26 6 (set (reg:DI 5 di)
+        (reg/v/f:DI 91 [ pad ])) "../ncurses/./widechar/lib_pecho_wchar.c":49:5 -1
+     (nil))
+(call_insn 26 25 27 6 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wadd_wch") [flags 0x41]  <function_decl 0x7f62261a0600 wadd_wch>) [0 wadd_wch S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_pecho_wchar.c":49:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wadd_wch") [flags 0x41]  <function_decl 0x7f62261a0600 wadd_wch>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 27 26 28 6 (set (reg:SI 95)
+        (mem:SI (plus:DI (reg/v/f:DI 91 [ pad ])
+                (const_int 104 [0x68])) [3 pad_10(D)->_pad._pad_bottom+0 S4 A64])) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+(insn 28 27 29 6 (set (reg:SI 96)
+        (mem:SI (plus:DI (reg/v/f:DI 91 [ pad ])
+                (const_int 100 [0x64])) [3 pad_10(D)->_pad._pad_left+0 S4 A32])) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+(insn 29 28 30 6 (set (reg:SI 97)
+        (mem:SI (plus:DI (reg/v/f:DI 91 [ pad ])
+                (const_int 96 [0x60])) [3 pad_10(D)->_pad._pad_top+0 S4 A64])) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+(insn 30 29 31 6 (set (reg:SI 98)
+        (mem:SI (plus:DI (reg/v/f:DI 91 [ pad ])
+                (const_int 92 [0x5c])) [3 pad_10(D)->_pad._pad_x+0 S4 A32])) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+(insn 31 30 32 6 (set (reg:SI 99)
+        (mem:SI (plus:DI (reg/v/f:DI 91 [ pad ])
+                (const_int 88 [0x58])) [3 pad_10(D)->_pad._pad_y+0 S4 A64])) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+(insn 32 31 33 6 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -8 [0xfffffffffffffff8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (expr_list:REG_ARGS_SIZE (const_int 8 [0x8])
+        (nil)))
+(insn 33 32 34 6 (set (reg:SI 100)
+        (mem:SI (plus:DI (reg/v/f:DI 91 [ pad ])
+                (const_int 108 [0x6c])) [3 pad_10(D)->_pad._pad_right+0 S4 A32])) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+(insn 34 33 35 6 (set (mem:SI (pre_modify:DI (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -8 [0xfffffffffffffff8]))) [0  S4 A32])
+        (reg:SI 100)) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (expr_list:REG_ARGS_SIZE (const_int 16 [0x10])
+        (nil)))
+(insn 35 34 36 6 (set (reg:SI 37 r9)
+        (reg:SI 95)) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+(insn 36 35 37 6 (set (reg:SI 36 r8)
+        (reg:SI 96)) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+(insn 37 36 38 6 (set (reg:SI 2 cx)
+        (reg:SI 97)) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+(insn 38 37 39 6 (set (reg:SI 1 dx)
+        (reg:SI 98)) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+(insn 39 38 40 6 (set (reg:SI 4 si)
+        (reg:SI 99)) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+(insn 40 39 41 6 (set (reg:DI 5 di)
+        (reg/v/f:DI 91 [ pad ])) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (nil))
+(call_insn 41 40 42 6 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("prefresh") [flags 0x41]  <function_decl 0x7f62265c1200 prefresh>) [0 prefresh S1 A8])
+            (const_int 16 [0x10]))) "../ncurses/./widechar/lib_pecho_wchar.c":50:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("prefresh") [flags 0x41]  <function_decl 0x7f62265c1200 prefresh>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (expr_list:SI (use (reg:SI 36 r8))
+                        (expr_list:SI (use (reg:SI 37 r9))
+                            (nil))))))))
+(insn 42 41 6 6 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 16 [0x10])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_pecho_wchar.c":57:5 -1
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (nil)))
+(insn 6 42 51 6 (set (reg:SI 90 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_pecho_wchar.c":57:5 -1
+     (nil))
+(jump_insn 51 6 52 6 (set (pc)
+        (label_ref:DI 47)) "../ncurses/./widechar/lib_pecho_wchar.c":57:5 807 {jump}
+     (nil)
+ -> 47)
+;;  succ:       9 [always]  count:705480586 (estimated locally)
+
+(barrier 52 51 54)
+;; basic block 7, loop depth 0, count 4831840 (estimated locally), maybe hot
+;;  prev block 6, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [0.5% (guessed)]  count:4831840 (estimated locally)
+(code_label 54 52 53 7 4 (nil) [1 uses])
+(note 53 54 5 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 5 53 47 7 (set (reg:SI 90 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./widechar/lib_pecho_wchar.c":44:2 -1
+     (nil))
+;;  succ:       9 [always]  count:4831840 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 710312426 (estimated locally), maybe hot
+;;  prev block 7, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       7 [always]  count:4831840 (estimated locally) (FALLTHRU)
+;;              6 [always]  count:705480586 (estimated locally)
+(code_label 47 5 50 9 1 (nil) [1 uses])
+(note 50 47 48 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 48 50 49 9 (set (reg/i:SI 0 ax)
+        (reg:SI 90 [ <retval> ])) "../ncurses/./widechar/lib_pecho_wchar.c":58:1 -1
+     (nil))
+(insn 49 48 0 9 (use (reg/i:SI 0 ax)) "../ncurses/./widechar/lib_pecho_wchar.c":58:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:710312426 (estimated locally) (FALLTHRU)
+

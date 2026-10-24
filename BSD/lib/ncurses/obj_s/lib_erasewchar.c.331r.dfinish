@@ -1,0 +1,310 @@
+
+;; Function erasewchar_sp (erasewchar_sp, funcdef_no=91, decl_uid=7191, cgraph_uid=92, symbol_order=91)
+
+(note 1 0 48 NOTE_INSN_DELETED)
+(insn 48 1 6 2 (unspec_volatile [
+            (const_int 0 [0])
+        ] UNSPECV_NOP_ENDBR) 1242 {nop_endbr}
+     (nil))
+(note 6 48 4 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 4 6 10 2 NOTE_INSN_FUNCTION_BEG)
+(note 10 4 36 2 NOTE_INSN_DELETED)
+(insn/f:TI 36 10 37 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 3 bx)) "../ncurses/./widechar/lib_erasewchar.c":48:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 3 bx)
+        (nil)))
+(note 37 36 3 2 NOTE_INSN_PROLOGUE_END)
+(insn 3 37 9 2 (set (reg/v/f:DI 3 bx [orig:85 wch ] [85])
+        (reg:DI 4 si [88])) "../ncurses/./widechar/lib_erasewchar.c":48:1 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 4 si [88])
+        (nil)))
+(call_insn:TI 9 3 33 2 (set (reg:QI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("erasechar_sp") [flags 0x41]  <function_decl 0x7f508708b200 erasechar_sp>) [0 erasechar_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_erasewchar.c":53:18 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("erasechar_sp") [flags 0x41]  <function_decl 0x7f508708b200 erasechar_sp>)
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn:TI 33 9 11 2 (set (reg:QI 36 r8 [89])
+        (reg:QI 0 ax)) "../ncurses/./widechar/lib_erasewchar.c":53:18 77 {*movqi_internal}
+     (nil))
+(insn 11 33 12 2 (set (reg/v:SI 0 ax [orig:83 <retval> ] [83])
+        (sign_extend:SI (reg:QI 0 ax [89]))) "../ncurses/./widechar/lib_erasewchar.c":53:16 153 {extendqisi2}
+     (nil))
+(insn:TI 12 11 13 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 36 r8 [89])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./widechar/lib_erasewchar.c":53:8 9 {*cmpqi_1}
+     (expr_list:REG_DEAD (reg:QI 36 r8 [89])
+        (nil)))
+(jump_insn 13 12 14 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 20)
+            (pc))) "../ncurses/./widechar/lib_erasewchar.c":53:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 11166916 (nil)))
+ -> 20)
+(note 14 13 15 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 15 14 46 3 (set (mem:SI (reg/v/f:DI 3 bx [orig:85 wch ] [85]) [1 *wch_8(D)+0 S4 A32])
+        (reg/v:SI 0 ax [orig:83 <retval> ] [83])) "../ncurses/./widechar/lib_erasewchar.c":54:7 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 3 bx [orig:85 wch ] [85])
+        (expr_list:REG_DEAD (reg/v:SI 0 ax [orig:83 <retval> ] [83])
+            (nil))))
+(insn 46 15 20 3 (parallel [
+            (set (reg:DI 0 ax [orig:83 <retval> ] [83])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_erasewchar.c":55:9 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(code_label 20 46 23 4 1 (nil) [1 uses])
+(note 23 20 47 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(note 47 23 39 4 NOTE_INSN_EPILOGUE_BEG)
+(insn/f:TI 39 47 22 4 (set (reg:DI 3 bx)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./widechar/lib_erasewchar.c":58:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn 22 39 40 4 (use (reg/i:SI 0 ax)) "../ncurses/./widechar/lib_erasewchar.c":58:1 -1
+     (nil))
+(jump_insn:TI 40 22 43 4 (simple_return) "../ncurses/./widechar/lib_erasewchar.c":58:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 43 40 34)
+(note 34 43 0 NOTE_INSN_DELETED)
+
+;; Function erasewchar (erasewchar, funcdef_no=92, decl_uid=6852, cgraph_uid=93, symbol_order=92)
+
+(note 1 0 44 NOTE_INSN_DELETED)
+(insn 44 1 5 2 (unspec_volatile [
+            (const_int 0 [0])
+        ] UNSPECV_NOP_ENDBR) 1242 {nop_endbr}
+     (nil))
+(note 5 44 3 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 3 5 10 2 NOTE_INSN_FUNCTION_BEG)
+(note 10 3 34 2 NOTE_INSN_DELETED)
+(insn/f:TI 34 10 35 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 3 bx)) "../ncurses/./widechar/lib_erasewchar.c":63:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 3 bx)
+        (nil)))
+(note 35 34 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 35 8 2 (set (reg/v/f:DI 3 bx [orig:85 wch ] [85])
+        (reg:DI 5 di [88])) "../ncurses/./widechar/lib_erasewchar.c":63:1 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 5 di [88])
+        (nil)))
+(insn 8 2 9 2 (set (reg:DI 5 di)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f50871afcf0 SP>) [2 SP+0 S8 A64])) "../ncurses/./widechar/lib_erasewchar.c":53:18 74 {*movdi_internal}
+     (nil))
+(call_insn:TI 9 8 31 2 (set (reg:QI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("erasechar_sp") [flags 0x41]  <function_decl 0x7f508708b200 erasechar_sp>) [0 erasechar_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_erasewchar.c":53:18 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("erasechar_sp") [flags 0x41]  <function_decl 0x7f508708b200 erasechar_sp>)
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn:TI 31 9 11 2 (set (reg:QI 36 r8 [89])
+        (reg:QI 0 ax)) "../ncurses/./widechar/lib_erasewchar.c":53:18 77 {*movqi_internal}
+     (nil))
+(insn 11 31 12 2 (set (reg/v:SI 0 ax [orig:84 <retval> ] [84])
+        (sign_extend:SI (reg:QI 0 ax [89]))) "../ncurses/./widechar/lib_erasewchar.c":53:16 153 {extendqisi2}
+     (nil))
+(insn:TI 12 11 13 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 36 r8 [89])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./widechar/lib_erasewchar.c":53:8 9 {*cmpqi_1}
+     (expr_list:REG_DEAD (reg:QI 36 r8 [89])
+        (nil)))
+(jump_insn 13 12 14 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 20)
+            (pc))) "../ncurses/./widechar/lib_erasewchar.c":53:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 11166916 (nil)))
+ -> 20)
+(note 14 13 15 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 15 14 42 3 (set (mem:SI (reg/v/f:DI 3 bx [orig:85 wch ] [85]) [1 *wch_3(D)+0 S4 A32])
+        (reg/v:SI 0 ax [orig:84 <retval> ] [84])) "../ncurses/./widechar/lib_erasewchar.c":54:7 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 3 bx [orig:85 wch ] [85])
+        (expr_list:REG_DEAD (reg/v:SI 0 ax [orig:84 <retval> ] [84])
+            (nil))))
+(insn 42 15 20 3 (parallel [
+            (set (reg:DI 0 ax [orig:84 <retval> ] [84])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_erasewchar.c":55:9 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(code_label 20 42 23 4 8 (nil) [1 uses])
+(note 23 20 43 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(note 43 23 37 4 NOTE_INSN_EPILOGUE_BEG)
+(insn/f:TI 37 43 22 4 (set (reg:DI 3 bx)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./widechar/lib_erasewchar.c":65:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn 22 37 38 4 (use (reg/i:SI 0 ax)) "../ncurses/./widechar/lib_erasewchar.c":65:1 -1
+     (nil))
+(jump_insn:TI 38 22 41 4 (simple_return) "../ncurses/./widechar/lib_erasewchar.c":65:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 41 38 32)
+(note 32 41 0 NOTE_INSN_DELETED)
+
+;; Function killwchar_sp (killwchar_sp, funcdef_no=93, decl_uid=7194, cgraph_uid=94, symbol_order=93)
+
+(note 1 0 45 NOTE_INSN_DELETED)
+(insn 45 1 6 2 (unspec_volatile [
+            (const_int 0 [0])
+        ] UNSPECV_NOP_ENDBR) 1242 {nop_endbr}
+     (nil))
+(note 6 45 4 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 4 6 10 2 NOTE_INSN_FUNCTION_BEG)
+(note 10 4 35 2 NOTE_INSN_DELETED)
+(insn/f:TI 35 10 36 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 3 bx)) "../ncurses/./widechar/lib_erasewchar.c":78:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 3 bx)
+        (nil)))
+(note 36 35 3 2 NOTE_INSN_PROLOGUE_END)
+(insn 3 36 9 2 (set (reg/v/f:DI 3 bx [orig:85 wch ] [85])
+        (reg:DI 4 si [88])) "../ncurses/./widechar/lib_erasewchar.c":78:1 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 4 si [88])
+        (nil)))
+(call_insn:TI 9 3 32 2 (set (reg:QI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("killchar_sp") [flags 0x41]  <function_decl 0x7f5087090000 killchar_sp>) [0 killchar_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_erasewchar.c":83:18 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("killchar_sp") [flags 0x41]  <function_decl 0x7f5087090000 killchar_sp>)
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn:TI 32 9 11 2 (set (reg:QI 36 r8 [89])
+        (reg:QI 0 ax)) "../ncurses/./widechar/lib_erasewchar.c":83:18 77 {*movqi_internal}
+     (nil))
+(insn 11 32 12 2 (set (reg/v:SI 0 ax [orig:83 <retval> ] [83])
+        (sign_extend:SI (reg:QI 0 ax [89]))) "../ncurses/./widechar/lib_erasewchar.c":83:16 153 {extendqisi2}
+     (nil))
+(insn:TI 12 11 13 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 36 r8 [89])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./widechar/lib_erasewchar.c":83:8 9 {*cmpqi_1}
+     (expr_list:REG_DEAD (reg:QI 36 r8 [89])
+        (nil)))
+(jump_insn 13 12 14 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 20)
+            (pc))) "../ncurses/./widechar/lib_erasewchar.c":83:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 11166916 (nil)))
+ -> 20)
+(note 14 13 15 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 15 14 43 3 (set (mem:SI (reg/v/f:DI 3 bx [orig:85 wch ] [85]) [1 *wch_8(D)+0 S4 A32])
+        (reg/v:SI 0 ax [orig:83 <retval> ] [83])) "../ncurses/./widechar/lib_erasewchar.c":84:7 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 3 bx [orig:85 wch ] [85])
+        (expr_list:REG_DEAD (reg/v:SI 0 ax [orig:83 <retval> ] [83])
+            (nil))))
+(insn 43 15 20 3 (parallel [
+            (set (reg:DI 0 ax [orig:83 <retval> ] [83])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_erasewchar.c":85:9 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(code_label 20 43 23 4 14 (nil) [1 uses])
+(note 23 20 44 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(note 44 23 38 4 NOTE_INSN_EPILOGUE_BEG)
+(insn/f:TI 38 44 22 4 (set (reg:DI 3 bx)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./widechar/lib_erasewchar.c":88:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn 22 38 39 4 (use (reg/i:SI 0 ax)) "../ncurses/./widechar/lib_erasewchar.c":88:1 -1
+     (nil))
+(jump_insn:TI 39 22 42 4 (simple_return) "../ncurses/./widechar/lib_erasewchar.c":88:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 42 39 33)
+(note 33 42 0 NOTE_INSN_DELETED)
+
+;; Function killwchar (killwchar, funcdef_no=94, decl_uid=6893, cgraph_uid=95, symbol_order=94)
+
+(note 1 0 44 NOTE_INSN_DELETED)
+(insn 44 1 5 2 (unspec_volatile [
+            (const_int 0 [0])
+        ] UNSPECV_NOP_ENDBR) 1242 {nop_endbr}
+     (nil))
+(note 5 44 3 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 3 5 10 2 NOTE_INSN_FUNCTION_BEG)
+(note 10 3 34 2 NOTE_INSN_DELETED)
+(insn/f:TI 34 10 35 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 3 bx)) "../ncurses/./widechar/lib_erasewchar.c":93:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 3 bx)
+        (nil)))
+(note 35 34 2 2 NOTE_INSN_PROLOGUE_END)
+(insn 2 35 8 2 (set (reg/v/f:DI 3 bx [orig:85 wch ] [85])
+        (reg:DI 5 di [88])) "../ncurses/./widechar/lib_erasewchar.c":93:1 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 5 di [88])
+        (nil)))
+(insn 8 2 9 2 (set (reg:DI 5 di)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f50871afcf0 SP>) [2 SP+0 S8 A64])) "../ncurses/./widechar/lib_erasewchar.c":83:18 74 {*movdi_internal}
+     (nil))
+(call_insn:TI 9 8 31 2 (set (reg:QI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("killchar_sp") [flags 0x41]  <function_decl 0x7f5087090000 killchar_sp>) [0 killchar_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_erasewchar.c":83:18 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("killchar_sp") [flags 0x41]  <function_decl 0x7f5087090000 killchar_sp>)
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn:TI 31 9 11 2 (set (reg:QI 36 r8 [89])
+        (reg:QI 0 ax)) "../ncurses/./widechar/lib_erasewchar.c":83:18 77 {*movqi_internal}
+     (nil))
+(insn 11 31 12 2 (set (reg/v:SI 0 ax [orig:84 <retval> ] [84])
+        (sign_extend:SI (reg:QI 0 ax [89]))) "../ncurses/./widechar/lib_erasewchar.c":83:16 153 {extendqisi2}
+     (nil))
+(insn:TI 12 11 13 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 36 r8 [89])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./widechar/lib_erasewchar.c":83:8 9 {*cmpqi_1}
+     (expr_list:REG_DEAD (reg:QI 36 r8 [89])
+        (nil)))
+(jump_insn 13 12 14 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 20)
+            (pc))) "../ncurses/./widechar/lib_erasewchar.c":83:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 11166916 (nil)))
+ -> 20)
+(note 14 13 15 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 15 14 42 3 (set (mem:SI (reg/v/f:DI 3 bx [orig:85 wch ] [85]) [1 *wch_3(D)+0 S4 A32])
+        (reg/v:SI 0 ax [orig:84 <retval> ] [84])) "../ncurses/./widechar/lib_erasewchar.c":84:7 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 3 bx [orig:85 wch ] [85])
+        (expr_list:REG_DEAD (reg/v:SI 0 ax [orig:84 <retval> ] [84])
+            (nil))))
+(insn 42 15 20 3 (parallel [
+            (set (reg:DI 0 ax [orig:84 <retval> ] [84])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_erasewchar.c":85:9 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(code_label 20 42 23 4 20 (nil) [1 uses])
+(note 23 20 43 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(note 43 23 37 4 NOTE_INSN_EPILOGUE_BEG)
+(insn/f:TI 37 43 22 4 (set (reg:DI 3 bx)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./widechar/lib_erasewchar.c":95:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn 22 37 38 4 (use (reg/i:SI 0 ax)) "../ncurses/./widechar/lib_erasewchar.c":95:1 -1
+     (nil))
+(jump_insn:TI 38 22 41 4 (simple_return) "../ncurses/./widechar/lib_erasewchar.c":95:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 41 38 32)
+(note 32 41 0 NOTE_INSN_DELETED)

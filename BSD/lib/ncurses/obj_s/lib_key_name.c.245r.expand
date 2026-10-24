@@ -1,0 +1,512 @@
+
+;; Function key_name (key_name, funcdef_no=91, decl_uid=6891, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+const char * key_name (wchar_t c)
+{
+  const char * result;
+  const wchar_t * my_wchars;
+  struct cchar_t my_cchar;
+  long unsigned int _3;
+  long unsigned int iftmp.0_13;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  __builtin_memset (&my_cchar, 0, 32);
+  my_cchar.chars[0] = c_7(D);
+  my_wchars_10 = wunctrl (&my_cchar);
+  iftmp.0_13 = __wcstombs_alias (&_nc_globals.key_name, my_wchars_10, 16);
+  _3 = iftmp.0_13 + 18446744073709551615;
+  if (_3 <= 15)
+    goto <bb 3>; [100.00%]
+  else
+    goto <bb 4>; [0.00%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _nc_globals.key_name[iftmp.0_13] = 0;
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+;;                2
+  # result_4 = PHI <&_nc_globals.key_name(3), 0B(2)>
+  my_cchar ={v} {CLOBBER};
+  return result_4;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 2 (_2(D) - 2 )
+Partition 3 (_3 - 3 )
+Partition 4 (result_4 - 4 )
+Partition 7 (c_7(D) - 7 )
+Partition 10 (my_wchars_10 - 10 )
+Partition 13 (iftmp.0_13 - 13 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_2(D) - 2 4 )
+Partition 2, base 1 (c_7(D) - 7 )
+
+
+Partition map 
+
+Partition 0 (_2(D) - 2 )
+Partition 1 (result_4 - 4 )
+Partition 2 (c_7(D) - 7 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) _2(D) <-> result_4
+
+Partition map 
+
+Partition 0 (_2(D) - 2 )
+Partition 1 (result_4 - 4 )
+Partition 2 (c_7(D) - 7 )
+
+Coalesce list: (2)_2(D) & (4)result_4 [map: 0, 1] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_2(D) - 2 4 )
+Partition 1 (_3 - 3 )
+Partition 2 (c_7(D) - 7 )
+Partition 3 (my_wchars_10 - 10 )
+Partition 4 (iftmp.0_13 - 13 )
+
+
+Replacing Expressions
+_3 replace with --> _3 = iftmp.0_13 + 18446744073709551615;
+
+
+__attribute__((visibility ("default")))
+const char * key_name (wchar_t c)
+{
+  const char * result;
+  const wchar_t * my_wchars;
+  struct cchar_t my_cchar;
+  const char * _2(D);
+  long unsigned int _3;
+  long unsigned int iftmp.0_13;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  __builtin_memset (&my_cchar, 0, 32);
+  my_cchar.chars[0] = c_7(D);
+  my_wchars_10 = wunctrl (&my_cchar);
+  iftmp.0_13 = __wcstombs_alias (&_nc_globals.key_name, my_wchars_10, 16);
+  _3 = iftmp.0_13 + 18446744073709551615;
+  if (_3 <= 15)
+    goto <bb 3>; [100.00%]
+  else
+    goto <bb 4>; [0.00%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _nc_globals.key_name[iftmp.0_13] = 0;
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+;;                2
+  # result_4 = PHI <&_nc_globals.key_name(3), 0B(2)>
+  my_cchar ={v} {CLOBBER};
+  return result_4;
+;;    succ:       EXIT
+
+}
+
+
+Partition 0: size 32 align 16
+	my_cchar
+Inserting a value copy on edge BB3->BB4 : PART.0 = &_nc_globals.key_name
+Inserting a value copy on edge BB2->BB4 : PART.0 = 0B
+
+;; Generating RTL for gimple basic block 2
+
+;; __builtin_memset (&my_cchar, 0, 32);
+
+(insn 10 9 11 (parallel [
+            (set (reg:DI 88)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+(insn 11 10 12 (set (mem/c:TI (reg:DI 88) [0 MEM <char[1:32]> [(void *)&my_cchar]+0 S16 A128])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+(insn 12 11 0 (set (mem/c:TI (plus:DI (reg:DI 88)
+                (const_int 16 [0x10])) [0 MEM <char[1:32]> [(void *)&my_cchar]+16 S16 A128])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+;; my_cchar.chars[0] = c_7(D);
+
+(insn 13 12 0 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -44 [0xffffffffffffffd4])) [1 my_cchar.chars[0]+0 S4 A32])
+        (reg/v:SI 86 [ c ])) "../ncurses/./widechar/lib_key_name.c":52:23 -1
+     (nil))
+
+;; my_wchars_10 = wunctrl (&my_cchar);
+
+(insn 14 13 15 (parallel [
+            (set (reg:DI 89)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_key_name.c":55:17 -1
+     (nil))
+
+(insn 15 14 16 (set (reg:DI 5 di)
+        (reg:DI 89)) "../ncurses/./widechar/lib_key_name.c":55:17 -1
+     (nil))
+
+(call_insn 16 15 17 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wunctrl") [flags 0x41]  <function_decl 0x7ff031b32c00 wunctrl>) [0 wunctrl S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_key_name.c":55:17 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wunctrl") [flags 0x41]  <function_decl 0x7ff031b32c00 wunctrl>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+(insn 17 16 0 (set (reg/v/f:DI 83 [ my_wchars ])
+        (reg:DI 0 ax)) "../ncurses/./widechar/lib_key_name.c":55:17 -1
+     (nil))
+
+;; iftmp.0_13 = __wcstombs_alias (&_nc_globals.key_name, my_wchars_10, 16);
+
+(insn 18 17 19 (set (reg:DI 1 dx)
+        (const_int 16 [0x10])) "/usr/include/x86_64-linux-gnu/bits/stdlib.h":140:10 -1
+     (nil))
+
+(insn 19 18 20 (set (reg:DI 4 si)
+        (reg/v/f:DI 83 [ my_wchars ])) "/usr/include/x86_64-linux-gnu/bits/stdlib.h":140:10 -1
+     (nil))
+
+(insn 20 19 21 (set (reg:DI 90)
+        (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7ff031b8dea0 _nc_globals>)
+                (const_int 760 [0x2f8])))) "/usr/include/x86_64-linux-gnu/bits/stdlib.h":140:10 -1
+     (nil))
+
+(insn 21 20 22 (set (reg:DI 5 di)
+        (reg:DI 90)) "/usr/include/x86_64-linux-gnu/bits/stdlib.h":140:10 -1
+     (expr_list:REG_EQUAL (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7ff031b8dea0 _nc_globals>)
+                (const_int 760 [0x2f8])))
+        (nil)))
+
+(call_insn 22 21 23 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*wcstombs") [flags 0x41]  <function_decl 0x7ff032169c00 __wcstombs_alias>) [0 __wcstombs_alias S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdlib.h":140:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*wcstombs") [flags 0x41]  <function_decl 0x7ff032169c00 __wcstombs_alias>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+
+(insn 23 22 0 (set (reg:DI 84 [ iftmp.0_13 ])
+        (reg:DI 0 ax)) "/usr/include/x86_64-linux-gnu/bits/stdlib.h":140:10 -1
+     (nil))
+
+;; if (_3 <= 15)
+
+(insn 24 23 27 (parallel [
+            (set (reg:DI 91)
+                (plus:DI (reg:DI 84 [ iftmp.0_13 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_key_name.c":62:38 -1
+     (nil))
+
+(insn 27 24 28 (set (reg:CC 17 flags)
+        (compare:CC (reg:DI 91)
+            (const_int 15 [0xf]))) "../ncurses/./widechar/lib_key_name.c":62:38 -1
+     (nil))
+
+(jump_insn 28 27 0 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_key_name.c":62:38 -1
+     (int_list:REG_BR_PROB 4 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _nc_globals.key_name[iftmp.0_13] = 0;
+
+(insn 30 29 31 (set (reg/f:DI 92)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7ff031b8dea0 _nc_globals>)) "../ncurses/./widechar/lib_key_name.c":63:14 -1
+     (nil))
+
+(insn 31 30 0 (set (mem:QI (plus:DI (plus:DI (reg/f:DI 92)
+                    (reg:DI 84 [ iftmp.0_13 ]))
+                (const_int 760 [0x2f8])) [0 _nc_globals.key_name[iftmp.0_13]+0 S1 A8])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_key_name.c":63:14 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 4
+
+;; 
+
+(code_label 32 31 33 2 (nil) [0 uses])
+
+(note 33 32 0 NOTE_INSN_BASIC_BLOCK)
+
+;; my_cchar ={v} {CLOBBER};
+
+(nil)
+
+;; return result_4;
+
+(jump_insn 34 33 35 (set (pc)
+        (label_ref 0)) "../ncurses/./widechar/lib_key_name.c":66:12 -1
+     (nil))
+
+(barrier 35 34 0)
+Edge 2->4 redirected to 7
+Predictions for insn 39 bb 6
+  first match heuristics: 99.96%  exec 1073741824 (estimated locally) hit 2147483640 (estimated locally) (200.0%)
+  combined heuristics: 99.96%  exec 1073741824 (estimated locally) hit 2147483640 (estimated locally) (200.0%)
+  noreturn call heuristics: 99.96%  exec 1073741824 (estimated locally) hit 2147483640 (estimated locally) (200.0%)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 46 from 6 to 7.
+Merging block 6 into block 5...
+Merged blocks 5 and 6.
+Merged 5 and 6 without moving.
+Removing jump 34.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 8 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 8 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg/v:SI 86 [ c ])
+        (reg:SI 5 di [ c ])) "../ncurses/./widechar/lib_key_name.c":45:1 -1
+     (nil))
+(note 3 2 4 2 NOTE_INSN_FUNCTION_BEG)
+(insn 4 3 5 2 (set (reg/f:DI 87)
+        (const_int 40 [0x28])) "../ncurses/./widechar/lib_key_name.c":45:1 -1
+     (nil))
+(insn 5 4 10 2 (parallel [
+            (set (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                        (const_int -8 [0xfffffffffffffff8])) [11 D.9080+0 S8 A64])
+                (unspec:DI [
+                        (mem/v/f:DI (reg/f:DI 87) [7 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_SET))
+            (set (scratch:DI)
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_key_name.c":45:1 -1
+     (nil))
+(insn 10 5 11 2 (parallel [
+            (set (reg:DI 88)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 11 10 12 2 (set (mem/c:TI (reg:DI 88) [0 MEM <char[1:32]> [(void *)&my_cchar]+0 S16 A128])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 12 11 13 2 (set (mem/c:TI (plus:DI (reg:DI 88)
+                (const_int 16 [0x10])) [0 MEM <char[1:32]> [(void *)&my_cchar]+16 S16 A128])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 13 12 14 2 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -44 [0xffffffffffffffd4])) [1 my_cchar.chars[0]+0 S4 A32])
+        (reg/v:SI 86 [ c ])) "../ncurses/./widechar/lib_key_name.c":52:23 -1
+     (nil))
+(insn 14 13 15 2 (parallel [
+            (set (reg:DI 89)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_key_name.c":55:17 -1
+     (nil))
+(insn 15 14 16 2 (set (reg:DI 5 di)
+        (reg:DI 89)) "../ncurses/./widechar/lib_key_name.c":55:17 -1
+     (nil))
+(call_insn 16 15 17 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wunctrl") [flags 0x41]  <function_decl 0x7ff031b32c00 wunctrl>) [0 wunctrl S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_key_name.c":55:17 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wunctrl") [flags 0x41]  <function_decl 0x7ff031b32c00 wunctrl>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 17 16 18 2 (set (reg/v/f:DI 83 [ my_wchars ])
+        (reg:DI 0 ax)) "../ncurses/./widechar/lib_key_name.c":55:17 -1
+     (nil))
+(insn 18 17 19 2 (set (reg:DI 1 dx)
+        (const_int 16 [0x10])) "/usr/include/x86_64-linux-gnu/bits/stdlib.h":140:10 -1
+     (nil))
+(insn 19 18 20 2 (set (reg:DI 4 si)
+        (reg/v/f:DI 83 [ my_wchars ])) "/usr/include/x86_64-linux-gnu/bits/stdlib.h":140:10 -1
+     (nil))
+(insn 20 19 21 2 (set (reg:DI 90)
+        (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7ff031b8dea0 _nc_globals>)
+                (const_int 760 [0x2f8])))) "/usr/include/x86_64-linux-gnu/bits/stdlib.h":140:10 -1
+     (nil))
+(insn 21 20 22 2 (set (reg:DI 5 di)
+        (reg:DI 90)) "/usr/include/x86_64-linux-gnu/bits/stdlib.h":140:10 -1
+     (expr_list:REG_EQUAL (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7ff031b8dea0 _nc_globals>)
+                (const_int 760 [0x2f8])))
+        (nil)))
+(call_insn 22 21 23 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*wcstombs") [flags 0x41]  <function_decl 0x7ff032169c00 __wcstombs_alias>) [0 __wcstombs_alias S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdlib.h":140:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("*wcstombs") [flags 0x41]  <function_decl 0x7ff032169c00 __wcstombs_alias>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 23 22 24 2 (set (reg:DI 84 [ iftmp.0_13 ])
+        (reg:DI 0 ax)) "/usr/include/x86_64-linux-gnu/bits/stdlib.h":140:10 -1
+     (nil))
+(insn 24 23 27 2 (parallel [
+            (set (reg:DI 91)
+                (plus:DI (reg:DI 84 [ iftmp.0_13 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_key_name.c":62:38 -1
+     (nil))
+(insn 27 24 28 2 (set (reg:CC 17 flags)
+        (compare:CC (reg:DI 91)
+            (const_int 15 [0xf]))) "../ncurses/./widechar/lib_key_name.c":62:38 -1
+     (nil))
+(jump_insn 28 27 29 2 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 49)
+            (pc))) "../ncurses/./widechar/lib_key_name.c":62:38 806 {*jcc}
+     (int_list:REG_BR_PROB 4 (nil))
+ -> 49)
+;;  succ:       4 [always (guessed)]  count:1073741824 (estimated locally) (FALLTHRU)
+;;              5 [never (guessed)]  count:0 (estimated locally)
+
+;; basic block 4, loop depth 0, count 717307515 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 1073741824 (estimated locally), should be 717307515 (estimated locally)
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [always (guessed)]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 29 28 30 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 30 29 31 4 (set (reg/f:DI 92)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7ff031b8dea0 _nc_globals>)) "../ncurses/./widechar/lib_key_name.c":63:14 -1
+     (nil))
+(insn 31 30 6 4 (set (mem:QI (plus:DI (plus:DI (reg/f:DI 92)
+                    (reg:DI 84 [ iftmp.0_13 ]))
+                (const_int 760 [0x2f8])) [0 _nc_globals.key_name[iftmp.0_13]+0 S1 A8])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_key_name.c":63:14 -1
+     (nil))
+(insn 6 31 46 4 (set (reg/v/f:DI 85 [ <retval> ])
+        (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7ff031b8dea0 _nc_globals>)
+                (const_int 760 [0x2f8])))) "../ncurses/./widechar/lib_key_name.c":64:9 -1
+     (nil))
+(jump_insn 46 6 47 4 (set (pc)
+        (label_ref:DI 36)) 807 {jump}
+     (nil)
+ -> 36)
+;;  succ:       7 [always]  count:717307515 (estimated locally)
+
+(barrier 47 46 49)
+;; basic block 5, loop depth 0, count 0 (estimated locally)
+;;  prev block 4, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [never (guessed)]  count:0 (estimated locally)
+(code_label 49 47 48 5 4 (nil) [1 uses])
+(note 48 49 7 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 7 48 36 5 (set (reg/v/f:DI 85 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_key_name.c":49:25 -1
+     (nil))
+;;  succ:       7 [always]  count:0 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 717307515 (estimated locally), should be 1073741824 (estimated locally)
+;;  prev block 5, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       5 [always]  count:0 (estimated locally) (FALLTHRU)
+;;              4 [always]  count:717307515 (estimated locally)
+(code_label 36 7 45 7 1 (nil) [1 uses])
+(note 45 36 37 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 37 45 38 7 (set (reg/f:DI 94)
+        (const_int 40 [0x28])) "../ncurses/./widechar/lib_key_name.c":67:1 -1
+     (nil))
+(insn 38 37 39 7 (parallel [
+            (set (reg:CCZ 17 flags)
+                (unspec:CCZ [
+                        (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                                (const_int -8 [0xfffffffffffffff8])) [11 D.9080+0 S8 A64])
+                        (mem/v/f:DI (reg/f:DI 94) [7 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_TEST))
+            (clobber (scratch:DI))
+        ]) "../ncurses/./widechar/lib_key_name.c":67:1 -1
+     (nil))
+(jump_insn 39 38 50 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 42)
+            (pc))) "../ncurses/./widechar/lib_key_name.c":67:1 -1
+     (int_list:REG_BR_PROB 1073312332 (nil))
+ -> 42)
+;;  succ:       9 [100.0% (guessed)]  count:1073312328 (estimated locally)
+;;              8 [0.0% (guessed)]  count:429496 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 429496 (estimated locally)
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       7 [0.0% (guessed)]  count:429496 (estimated locally) (FALLTHRU)
+(note 50 39 40 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(call_insn 40 50 41 8 (call (mem:QI (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7ff031c90d00 __stack_chk_fail>) [0 __stack_chk_fail S1 A8])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_key_name.c":67:1 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7ff031c90d00 __stack_chk_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (nil))
+;;  succ:      
+
+(barrier 41 40 42)
+;; basic block 9, loop depth 0, count 1073312328 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       7 [100.0% (guessed)]  count:1073312328 (estimated locally)
+(code_label 42 41 51 9 3 (nil) [1 uses])
+(note 51 42 43 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 43 51 44 9 (set (reg/i:DI 0 ax)
+        (reg/v/f:DI 85 [ <retval> ])) "../ncurses/./widechar/lib_key_name.c":67:1 -1
+     (nil))
+(insn 44 43 0 9 (use (reg/i:DI 0 ax)) "../ncurses/./widechar/lib_key_name.c":67:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073312328 (estimated locally) (FALLTHRU)
+

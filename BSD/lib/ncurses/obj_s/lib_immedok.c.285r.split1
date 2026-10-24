@@ -1,0 +1,104 @@
+
+;; Function immedok (immedok, funcdef_no=91, decl_uid=5648, cgraph_uid=92, symbol_order=91)
+
+
+
+immedok
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp] 16 [argp] 19 [frame]
+;;  regular block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  eh block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 6 [bp] 7 [sp] 19 [frame]
+;;  regs ever live 	 4 [si] 5 [di] 17 [flags]
+;;  ref usage 	r0={1d} r1={1d} r2={1d} r4={1d,1u} r5={1d,1u} r6={1d,4u} r7={1d,4u} r16={1d,3u} r17={1d,1u} r19={1d,4u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={1d} r37={1d} r82={1d,2u} r84={1d,1u} r86={1d,1u} r87={1d,1u} 
+;;    total ref usage 47{24d,23u,0e} in 7{7 regular + 0 call} insns.
+(note 1 0 6 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (HOT_PARTITION, RTL)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 17 [flags] 82 84 86 87
+;; live  in  	 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 17 [flags] 82 84 86 87
+;; live  kill	
+(note 6 1 22 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 22 6 2 2 (set (reg:DI 86)
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_immedok.c":48:1 -1
+     (expr_list:REG_DEAD (reg:DI 5 di [ win ])
+        (nil)))
+(insn 2 22 23 2 (set (reg/v/f:DI 82 [ win ])
+        (reg:DI 86)) "../ncurses/./base/lib_immedok.c":48:1 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 86)
+        (nil)))
+(insn 23 2 3 2 (set (reg:SI 87)
+        (reg:SI 4 si [ flag ])) "../ncurses/./base/lib_immedok.c":48:1 -1
+     (expr_list:REG_DEAD (reg:SI 4 si [ flag ])
+        (nil)))
+(insn 3 23 5 2 (set (reg:SI 84 [ flag ])
+        (reg:SI 87)) "../ncurses/./base/lib_immedok.c":48:1 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 87)
+        (nil)))
+(note 5 3 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 5 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 82 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_immedok.c":51:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 14)
+            (pc))) "../ncurses/./base/lib_immedok.c":51:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 14)
+;;  succ:       3 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+;;              4 [30.0% (guessed)]  count:322122544 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 84
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 84
+
+;; basic block 3, loop depth 0, count 751619281 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (HOT_PARTITION, RTL)
+;;  pred:       2 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 84
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 84
+;; lr  def 	
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 84
+;; live  gen 	
+;; live  kill	
+(note 10 9 11 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 14 3 (set (mem:QI (plus:DI (reg/v/f:DI 82 [ win ])
+                (const_int 42 [0x2a])) [1 win_2(D)->_immed+0 S1 A16])
+        (subreg:QI (reg:SI 84 [ flag ]) 0)) "../ncurses/./base/lib_immedok.c":52:14 77 {*movqi_internal}
+     (expr_list:REG_DEAD (reg:SI 84 [ flag ])
+        (expr_list:REG_DEAD (reg/v/f:DI 82 [ win ])
+            (nil))))
+;;  succ:       4 [always]  count:751619281 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+;; basic block 4, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 3, next block 1, flags: (HOT_PARTITION, RTL)
+;;  pred:       3 [always]  count:751619281 (estimated locally) (FALLTHRU)
+;;              2 [30.0% (guessed)]  count:322122544 (estimated locally)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	
+;; live  kill	
+(code_label 14 11 15 4 1 (nil) [1 uses])
+(note 15 14 0 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+

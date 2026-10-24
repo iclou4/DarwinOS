@@ -1,0 +1,1275 @@
+/*
+ * mtl_raster.c - ravynOS Metal: the software rasterizer.
+ *
+ * This file is the entire hardware requirement of the software backend: it
+ * writes into an ordinary linear framebuffer that lives in memory.  UEFI GOP
+ * gives us one on every video card, so this path works everywhere; a vendor or
+ * paravirtual driver can later implement the same stage interfaces on the GPU
+ * and be selected behind them.
+ *
+ * What it does today:
+ *   - triangles (list and strip), lines (list and strip), points
+ *   - viewport transform, scissor, back/front face culling, winding
+ *   - perspective correct interpolation of up to MTL_MAX_VARYINGS float4s
+ *   - depth buffer with the usual compare functions and write enable
+ *   - fragment discard (alpha test)
+ *   - texture sampling: nearest and bilinear, the usual address modes
+ *   - blending: the MTLBlendFactor/MTLBlendOperation set, plus a write mask
+ *
+ * Deliberately not here yet (next iterations): real clip plane clipping (we
+ * currently drop primitives that cross w <= 0), mipmaps, multisampling,
+ * multiple render targets, instanced attributes.
+ *
+ * Coordinates: window space with y pointing down, like every framebuffer.
+ * Winding therefore reads as the sense seen on screen: a positive signed area
+ * is clockwise on screen.
+ */
+
+#include "mtl_internal.h"
+
+/* ------------------------------------------------------------------------- */
+/* helpers exposed to shaders                                                */
+/* ------------------------------------------------------------------------- */
+
+const void *
+mtl_vertex_pointer(const mtl_vertex_in *in, unsigned int slot,
+    unsigned int stride)
+{
+	const unsigned char *base = (const unsigned char *)in->slots[slot];
+
+	if (base == NULL) {
+		return NULL;
+	}
+	return base + (size_t)in->vertex_id * stride;
+}
+
+mtl_float4
+mtl_read_texture(const struct mtl_texture *texture, long x, long y)
+{
+	const mtl_texture_t *texture_object = (const mtl_texture_t *)texture;
+
+	if (texture_object == NULL || texture_object->pixels == NULL) {
+		return mtl_make_float4(0.0f, 0.0f, 0.0f, 0.0f);
+	}
+	if (x < 0) {
+		x = 0;
+	}
+	if (y < 0) {
+		y = 0;
+	}
+	if ((mtl_size_t)x >= texture_object->width) {
+		x = (long)texture_object->width - 1;
+	}
+	if ((mtl_size_t)y >= texture_object->height) {
+		y = (long)texture_object->height - 1;
+	}
+	return mtl_unpack_bgra(texture_object->pixels[y * (long)texture_object->width + x]);
+}
+
+/* ------------------------------------------------------------------------- */
+/* texture sampling                                                          */
+/* ------------------------------------------------------------------------- */
+
+/* one texture coordinate axis, mapped into [0, n) texel space */
+static long
+wrap_coordinate(long value, long n, MTLSamplerAddressMode mode)
+{
+	if (n <= 0) {
+		return 0;
+	}
+
+	switch (mode) {
+	case MTLSamplerAddressModeRepeat:
+		value %= n;
+		if (value < 0) {
+			value += n;
+		}
+		return value;
+
+	case MTLSamplerAddressModeMirrorRepeat: {
+		long period = 2 * n;
+
+		value %= period;
+		if (value < 0) {
+			value += period;
+		}
+		return (value < n) ? value : (period - 1 - value);
+	}
+
+	case MTLSamplerAddressModeClampToZero:
+		if (value < 0 || value >= n) {
+			return -1;
+		}
+		return value;
+
+	case MTLSamplerAddressModeClampToEdge:
+	case MTLSamplerAddressModeMirrorClampToEdge:
+	default:
+		if (value < 0) {
+			return 0;
+		}
+		if (value >= n) {
+			return n - 1;
+		}
+		return value;
+	}
+}
+
+static mtl_float4
+texel(const mtl_texture_t *texture, long x, long y)
+{
+	if (x < 0 || y < 0) {
+		return mtl_make_float4(0.0f, 0.0f, 0.0f, 0.0f);
+	}
+	return mtl_unpack_bgra(texture->pixels[y * (long)texture->width + x]);
+}
+
+mtl_float4
+mtl_sample_texture_indexed(const mtl_texture_t *texture,
+    const mtl_sampler_t *sampler, mtl_float2 uv)
+{
+	MTLSamplerAddressMode address_s = MTLSamplerAddressModeClampToEdge;
+	MTLSamplerAddressMode address_t = MTLSamplerAddressModeClampToEdge;
+	int linear = 0;
+	long width, height, x, y;
+	float fx, fy, tx, ty;
+	mtl_float4 t00, t10, t01, t11, top, bottom;
+
+	if (texture == NULL || texture->pixels == NULL || texture->width == 0 ||
+	    texture->height == 0) {
+		return mtl_make_float4(0.0f, 0.0f, 0.0f, 0.0f);
+	}
+
+	if (sampler != NULL) {
+		address_s = sampler->address_s;
+		address_t = sampler->address_t;
+		linear = (sampler->mag_filter == MTLSamplerMinMagFilterLinear) ||
+		    (sampler->min_filter == MTLSamplerMinMagFilterLinear);
+	}
+
+	width = (long)texture->width;
+	height = (long)texture->height;
+
+	if (!linear) {
+		x = wrap_coordinate((long)floorf(uv.x * (float)width), width, address_s);
+		y = wrap_coordinate((long)floorf(uv.y * (float)height), height, address_t);
+		return texel(texture, x, y);
+	}
+
+	fx = uv.x * (float)width - 0.5f;
+	fy = uv.y * (float)height - 0.5f;
+	x = (long)floorf(fx);
+	y = (long)floorf(fy);
+	tx = fx - (float)x;
+	ty = fy - (float)y;
+
+	t00 = texel(texture, wrap_coordinate(x, width, address_s),
+	    wrap_coordinate(y, height, address_t));
+	t10 = texel(texture, wrap_coordinate(x + 1, width, address_s),
+	    wrap_coordinate(y, height, address_t));
+	t01 = texel(texture, wrap_coordinate(x, width, address_s),
+	    wrap_coordinate(y + 1, height, address_t));
+	t11 = texel(texture, wrap_coordinate(x + 1, width, address_s),
+	    wrap_coordinate(y + 1, height, address_t));
+
+	top = mtl_f4_lerp(t00, t10, tx);
+	bottom = mtl_f4_lerp(t01, t11, tx);
+	return mtl_f4_lerp(top, bottom, ty);
+}
+
+/* sampler(n)/texture(n) as the fragment function sees them */
+mtl_float4
+mtl_sample_texture(const mtl_fragment_in *in, unsigned int index, mtl_float2 uv)
+{
+	if (in == NULL || index >= MTL_MAX_TEXTURES) {
+		return mtl_make_float4(0.0f, 0.0f, 0.0f, 0.0f);
+	}
+	return mtl_sample_texture_indexed((const mtl_texture_t *)in->textures[index],
+	    (const mtl_sampler_t *)in->samplers[index], uv);
+}
+
+/* ------------------------------------------------------------------------- */
+/* clearing                                                                  */
+/* ------------------------------------------------------------------------- */
+
+void
+mtl_raster_clear_color(mtl_texture_t *texture, mtl_float4 color)
+{
+	uint32_t packed;
+	size_t count, i;
+
+	if (texture == NULL || texture->pixels == NULL) {
+		return;
+	}
+
+	packed = mtl_pack_bgra(color);
+	count = (size_t)texture->width * (size_t)texture->height;
+	uint64_t packed64 = ((uint64_t)packed << 32) | packed;
+	uint64_t *p64 = (uint64_t *)texture->pixels;
+	size_t count64 = count / 2;
+	for (i = 0; i < count64; i++) {
+		p64[i] = packed64;
+	}
+	if (count & 1) {
+		texture->pixels[count - 1] = packed;
+	}
+}
+
+void
+mtl_raster_clear_depth(mtl_texture_t *texture, float depth)
+{
+	size_t count, i;
+
+	if (texture == NULL || texture->depth_values == NULL) {
+		return;
+	}
+
+	count = (size_t)texture->width * (size_t)texture->height;
+	for (i = 0; i < count; i++) {
+		texture->depth_values[i] = depth;
+	}
+}
+
+/* ------------------------------------------------------------------------- */
+/* depth test and blending                                                   */
+/* ------------------------------------------------------------------------- */
+
+static int
+depth_test(MTLCompareFunction function, float incoming, float stored)
+{
+	switch (function) {
+	case MTLCompareFunctionNever:
+		return 0;
+	case MTLCompareFunctionLess:
+		return incoming < stored;
+	case MTLCompareFunctionEqual:
+		return incoming == stored;
+	case MTLCompareFunctionLessEqual:
+		return incoming <= stored;
+	case MTLCompareFunctionGreater:
+		return incoming > stored;
+	case MTLCompareFunctionNotEqual:
+		return incoming != stored;
+	case MTLCompareFunctionGreaterEqual:
+		return incoming >= stored;
+	case MTLCompareFunctionAlways:
+	default:
+		return 1;
+	}
+}
+
+static mtl_float4
+blend_factor(MTLBlendFactor factor, mtl_float4 source, mtl_float4 destination)
+{
+	mtl_float4 one = mtl_make_float4(1.0f, 1.0f, 1.0f, 1.0f);
+	float saturated;
+
+	switch (factor) {
+	case MTLBlendFactorZero:
+		return mtl_make_float4(0.0f, 0.0f, 0.0f, 0.0f);
+	case MTLBlendFactorOne:
+		return one;
+	case MTLBlendFactorSourceColor:
+		return source;
+	case MTLBlendFactorOneMinusSourceColor:
+		return mtl_f4_sub(one, source);
+	case MTLBlendFactorSourceAlpha:
+		return mtl_make_float4(source.w, source.w, source.w, source.w);
+	case MTLBlendFactorOneMinusSourceAlpha:
+		return mtl_make_float4(1.0f - source.w, 1.0f - source.w, 1.0f - source.w,
+		   1.0f - source.w);
+	case MTLBlendFactorDestinationColor:
+		return destination;
+	case MTLBlendFactorOneMinusDestinationColor:
+		return mtl_f4_sub(one, destination);
+	case MTLBlendFactorDestinationAlpha:
+		return mtl_make_float4(destination.w, destination.w, destination.w,
+		   destination.w);
+	case MTLBlendFactorOneMinusDestinationAlpha:
+		return mtl_make_float4(1.0f - destination.w, 1.0f - destination.w,
+		   1.0f - destination.w, 1.0f - destination.w);
+	case MTLBlendFactorSourceAlphaSaturated:
+		saturated = source.w < (1.0f - destination.w) ?
+		    source.w : (1.0f - destination.w);
+		return mtl_make_float4(saturated, saturated, saturated, 1.0f);
+	case MTLBlendFactorBlendColor:
+	case MTLBlendFactorOneMinusBlendColor:
+	default:
+		/* no constant blend colour support yet: behaves like white/black */
+		return (factor == MTLBlendFactorBlendColor) ?
+		    mtl_make_float4(1.0f, 1.0f, 1.0f, 1.0f) :
+		    mtl_make_float4(0.0f, 0.0f, 0.0f, 0.0f);
+	}
+}
+
+static float
+blend_operation(MTLBlendOperation operation, float source, float destination)
+{
+	switch (operation) {
+	case MTLBlendOperationSubtract:
+		return source - destination;
+	case MTLBlendOperationReverseSubtract:
+		return destination - source;
+	case MTLBlendOperationMin:
+		return source < destination ? source : destination;
+	case MTLBlendOperationMax:
+		return source > destination ? source : destination;
+	case MTLBlendOperationAdd:
+	default:
+		return source + destination;
+	}
+}
+
+static mtl_float4
+blend(const mtl_render_pipeline_t *pipeline, mtl_float4 source, mtl_float4 destination)
+{
+	mtl_float4 source_rgb = blend_factor(pipeline->source_rgb, source, destination);
+	mtl_float4 destination_rgb = blend_factor(pipeline->destination_rgb, source,
+	    destination);
+	mtl_float4 source_alpha = blend_factor(pipeline->source_alpha, source,
+	    destination);
+	mtl_float4 destination_alpha = blend_factor(pipeline->destination_alpha, source,
+	    destination);
+	mtl_float4 result;
+
+	result.x = blend_operation(pipeline->operation_rgb, source.x * source_rgb.x,
+	    destination.x * destination_rgb.x);
+	result.y = blend_operation(pipeline->operation_rgb, source.y * source_rgb.y,
+	    destination.y * destination_rgb.y);
+	result.z = blend_operation(pipeline->operation_rgb, source.z * source_rgb.z,
+	    destination.z * destination_rgb.z);
+	result.w = blend_operation(pipeline->operation_alpha, source.w * source_alpha.w,
+	    destination.w * destination_alpha.w);
+	return result;
+}
+
+static inline void
+write_fragment_ptr(mtl_render_state *state, uint32_t *destination, mtl_float4 color, float coverage)
+{
+	const mtl_render_pipeline_t *pipeline = state->pipeline;
+	mtl_float4 result = color;
+
+	if ((!pipeline->blending_enabled || color.w >= 0.999f) &&
+	    coverage >= 1.0f && pipeline->write_mask == MTLColorWriteMaskAll) {
+		*destination = mtl_pack_bgra(color);
+		state->fragments++;
+		return;
+	}
+
+	mtl_float4 previous = mtl_unpack_bgra(*destination);
+
+	if (pipeline->blending_enabled) {
+		result = blend(pipeline, color, previous);
+	}
+
+	/* Subpixel coverage antialiasing */
+	if (coverage < 1.0f) {
+		result = mtl_f4_lerp(previous, result, coverage);
+	}
+
+	if (pipeline->write_mask != MTLColorWriteMaskAll) {
+		if ((pipeline->write_mask & MTLColorWriteMaskRed) == 0) {
+			result.x = previous.x;
+		}
+		if ((pipeline->write_mask & MTLColorWriteMaskGreen) == 0) {
+			result.y = previous.y;
+		}
+		if ((pipeline->write_mask & MTLColorWriteMaskBlue) == 0) {
+			result.z = previous.z;
+		}
+		if ((pipeline->write_mask & MTLColorWriteMaskAlpha) == 0) {
+			result.w = previous.w;
+		}
+	}
+
+	*destination = mtl_pack_bgra(result);
+	state->fragments++;
+}
+
+static inline void
+write_fragment(mtl_render_state *state, long x, long y, mtl_float4 color, float coverage)
+{
+	if (state->color == NULL || state->color->pixels == NULL) {
+		return;
+	}
+	if (x < 0 || y < 0 || (mtl_size_t)x >= state->color->width ||
+	    (mtl_size_t)y >= state->color->height) {
+		return;
+	}
+	write_fragment_ptr(state, &state->color->pixels[y * (long)state->color->width + x], color, coverage);
+}
+
+/* ------------------------------------------------------------------------- */
+/* fragment shading                                                          */
+/* ------------------------------------------------------------------------- */
+
+static void
+prepare_fragment_input(const mtl_render_state *state, mtl_fragment_in *input,
+    mtl_float4 position)
+{
+	unsigned int i;
+
+	memset(input, 0, sizeof(*input));
+	input->position = position;
+	for (i = 0; i < MTL_MAX_SLOTS; i++) {
+		input->slots[i] = state->fragment_slots[i];
+	}
+	for (i = 0; i < MTL_MAX_TEXTURES; i++) {
+		input->textures[i] = state->fragment_textures[i];
+		input->samplers[i] = state->fragment_samplers[i];
+	}
+}
+
+static inline int
+shade_and_write_ptr(mtl_render_state *state, const mtl_fragment_in *input, uint32_t *dest, float coverage)
+{
+	mtl_fragment_out output;
+
+	if (state->pipeline->fragment_function == NULL) {
+		return 1;
+	}
+
+	output.discard = 0;
+	state->pipeline->fragment_function(input, &output);
+	if (output.discard) {
+		return 0;
+	}
+
+	write_fragment_ptr(state, dest, output.color, coverage);
+	return 1;
+}
+
+/* returns 1 when the fragment survived (was not discarded) */
+static int
+shade_and_write(mtl_render_state *state, const mtl_fragment_in *input, float coverage)
+{
+	mtl_fragment_out output;
+
+	if (state->pipeline->fragment_function == NULL) {
+		return 1;
+	}
+
+	output.discard = 0;
+	state->pipeline->fragment_function(input, &output);
+	if (output.discard) {
+		return 0;
+	}
+
+	write_fragment(state, (long)input->position.x, (long)input->position.y,
+	    output.color, coverage);
+	return 1;
+}
+
+/* ------------------------------------------------------------------------- */
+/* primitives                                                                */
+/* ------------------------------------------------------------------------- */
+
+typedef struct {
+	float      x, y, z;
+	float      inv_w;
+	mtl_float4 varying[MTL_MAX_VARYINGS];
+} mtl_window_vertex;
+
+static int
+to_window_space(const mtl_render_state *state, const mtl_vertex_out *in,
+    mtl_window_vertex *out)
+{
+	float w = in->position.w;
+	float ndc_x, ndc_y, ndc_z;
+	unsigned int i;
+
+	/* No clipping yet: a vertex behind the eye would produce nonsense, so the
+	 * whole primitive is dropped.  Real clip-plane clipping is next. */
+	if (w <= 0.0f) {
+		return 0;
+	}
+
+	ndc_x = in->position.x / w;
+	ndc_y = in->position.y / w;
+	ndc_z = in->position.z / w;
+
+	out->x = state->viewport_x + (ndc_x * 0.5f + 0.5f) * state->viewport_width;
+	out->y = state->viewport_y + (0.5f - ndc_y * 0.5f) * state->viewport_height;
+	out->z = ndc_z;
+	out->inv_w = 1.0f / w;
+	for (i = 0; i < MTL_MAX_VARYINGS; i++) {
+		out->varying[i] = in->varying[i];
+	}
+	return 1;
+}
+
+static void
+scissor_bounds(const mtl_render_state *state, long *x0, long *y0, long *x1,
+    long *y1)
+{
+	long target_width = (long)state->color->width;
+	long target_height = (long)state->color->height;
+
+	*x0 = 0;
+	*y0 = 0;
+	*x1 = target_width - 1;
+	*y1 = target_height - 1;
+
+	if (state->scissor_set) {
+		if (state->scissor_x > *x0) {
+			*x0 = state->scissor_x;
+		}
+		if (state->scissor_y > *y0) {
+			*y0 = state->scissor_y;
+		}
+		if (state->scissor_x + state->scissor_width - 1 < *x1) {
+			*x1 = state->scissor_x + state->scissor_width - 1;
+		}
+		if (state->scissor_y + state->scissor_height - 1 < *y1) {
+			*y1 = state->scissor_y + state->scissor_height - 1;
+		}
+	}
+}
+
+static int
+depth_passes(mtl_render_state *state, long x, long y, float depth)
+{
+	if (state->depth == NULL || state->depth->depth_values == NULL) {
+		return 1;
+	}
+	return depth_test(state->depth_compare, depth,
+	    state->depth->depth_values[y * (long)state->depth->width + x]);
+}
+
+static void
+depth_write(mtl_render_state *state, long x, long y, float depth)
+{
+	if (state->depth == NULL || state->depth->depth_values == NULL ||
+	    !state->depth_write) {
+		return;
+	}
+	state->depth->depth_values[y * (long)state->depth->width + x] = depth;
+}
+
+static void
+raster_triangle(mtl_render_state *state, const mtl_vertex_out *first,
+    const mtl_vertex_out *second, const mtl_vertex_out *third)
+{
+	const mtl_vertex_out *vertex[3];
+	mtl_window_vertex window[3];
+	float area, inverse_area;
+	float min_x, max_x, min_y, max_y;
+	int front_facing, i;
+	long x0, y0, x1, y1, px, py;
+
+	vertex[0] = first;
+	vertex[1] = second;
+	vertex[2] = third;
+
+	for (i = 0; i < 3; i++) {
+		if (!to_window_space(state, vertex[i], &window[i])) {
+			return;
+		}
+	}
+
+	area = (window[1].x - window[0].x) * (window[2].y - window[0].y) -
+	    (window[2].x - window[0].x) * (window[1].y - window[0].y);
+	if (area == 0.0f) {
+		return;
+	}
+
+	/* window space has y pointing down, so a positive signed area is the
+	 * clockwise sense as seen on screen */
+	front_facing = (area > 0.0f) ? (state->winding == MTLWindingClockwise) :
+	    (state->winding == MTLWindingCounterClockwise);
+
+	if (state->cull_mode == MTLCullModeFront && front_facing) {
+		return;
+	}
+	if (state->cull_mode == MTLCullModeBack && !front_facing) {
+		return;
+	}
+
+	/* keep the weights positive by orienting the triangle consistently */
+	if (area < 0.0f) {
+		mtl_window_vertex swap = window[1];
+
+		window[1] = window[2];
+		window[2] = swap;
+		area = -area;
+	}
+	inverse_area = 1.0f / area;
+
+	min_x = window[0].x;
+	max_x = window[0].x;
+	min_y = window[0].y;
+	max_y = window[0].y;
+	for (i = 1; i < 3; i++) {
+		if (window[i].x < min_x) {
+			min_x = window[i].x;
+		}
+		if (window[i].x > max_x) {
+			max_x = window[i].x;
+		}
+		if (window[i].y < min_y) {
+			min_y = window[i].y;
+		}
+		if (window[i].y > max_y) {
+			max_y = window[i].y;
+		}
+	}
+
+	scissor_bounds(state, &x0, &y0, &x1, &y1);
+	long aa_x0 = (long)floorf(min_x - 2.0f);
+	long aa_y0 = (long)floorf(min_y - 2.0f);
+	long aa_x1 = (long)ceilf(max_x + 2.0f);
+	long aa_y1 = (long)ceilf(max_y + 2.0f);
+	if (aa_x0 > x0) x0 = aa_x0;
+	if (aa_y0 > y0) y0 = aa_y0;
+	if (aa_x1 < x1) x1 = aa_x1;
+	if (aa_y1 < y1) y1 = aa_y1;
+	if (x0 > x1 || y0 > y1) {
+		return;
+	}
+
+	float dw0_dx = (window[1].y - window[2].y) * inverse_area;
+	float dw0_dy = (window[2].x - window[1].x) * inverse_area;
+	float len0 = sqrtf(dw0_dx * dw0_dx + dw0_dy * dw0_dy);
+	float inv_len0 = len0 > 1e-7f ? (1.0f / len0) : 0.0f;
+
+	float dw1_dx = (window[2].y - window[0].y) * inverse_area;
+	float dw1_dy = (window[0].x - window[2].x) * inverse_area;
+	float len1 = sqrtf(dw1_dx * dw1_dx + dw1_dy * dw1_dy);
+	float inv_len1 = len1 > 1e-7f ? (1.0f / len1) : 0.0f;
+
+	float dw2_dx = -dw0_dx - dw1_dx;
+	float dw2_dy = -dw0_dy - dw1_dy;
+	float len2 = sqrtf(dw2_dx * dw2_dx + dw2_dy * dw2_dy);
+	float inv_len2 = len2 > 1e-7f ? (1.0f / len2) : 0.0f;
+
+	mtl_fragment_in input;
+	prepare_fragment_input(state, &input, mtl_make_float4(0.0f, 0.0f, 0.0f, 1.0f));
+
+	int active_varyings = 0;
+	for (i = 0; i < MTL_MAX_VARYINGS; i++) {
+		if (window[0].varying[i].x != 0.0f || window[0].varying[i].y != 0.0f ||
+		    window[0].varying[i].z != 0.0f || window[0].varying[i].w != 0.0f ||
+		    window[1].varying[i].x != 0.0f || window[1].varying[i].y != 0.0f ||
+		    window[2].varying[i].x != 0.0f || window[2].varying[i].y != 0.0f) {
+			active_varyings = i + 1;
+		}
+	}
+	if (active_varyings == 0) {
+		active_varyings = 1;
+	}
+
+	int is_ortho = (window[0].inv_w == 1.0f && window[1].inv_w == 1.0f && window[2].inv_w == 1.0f);
+	int fast_color_path = (is_ortho && (state->depth == NULL || state->depth->depth_values == NULL) &&
+	    active_varyings == 1 && state->pipeline->write_mask == MTLColorWriteMaskAll);
+
+	mtl_float4 C0 = window[0].varying[0];
+	mtl_float4 C1 = window[1].varying[0];
+	mtl_float4 C2 = window[2].varying[0];
+
+	float dr_dx = dw0_dx * C0.x + dw1_dx * C1.x + dw2_dx * C2.x;
+	float dg_dx = dw0_dx * C0.y + dw1_dx * C1.y + dw2_dx * C2.y;
+	float db_dx = dw0_dx * C0.z + dw1_dx * C1.z + dw2_dx * C2.z;
+
+	state->triangles++;
+
+	if (fast_color_path && state->color && state->color->pixels) {
+		float dd0_dx = dw0_dx * inv_len0;
+		float dd1_dx = dw1_dx * inv_len1;
+		float dd2_dx = dw2_dx * inv_len2;
+		long width = (long)state->color->width;
+
+		int32_t dr_fix = (int32_t)(dr_dx * 255.0f * 65536.0f);
+		int32_t dg_fix = (int32_t)(dg_dx * 255.0f * 65536.0f);
+		int32_t db_fix = (int32_t)(db_dx * 255.0f * 65536.0f);
+
+		float w0_base_0 = (window[1].x * window[2].y - window[1].y * window[2].x) * inverse_area;
+		float w1_base_0 = (window[2].x * window[0].y - window[2].y * window[0].x) * inverse_area;
+
+		for (py = y0; py <= y1; py++) {
+			float fy = (float)py + 0.5f;
+
+			float w0_at_0 = w0_base_0 + fy * dw0_dy;
+			float w1_at_0 = w1_base_0 + fy * dw1_dy;
+			float w2_at_0 = 1.0f - w0_at_0 - w1_at_0;
+
+			/* Exact continuous convex half-plane span bounds: 0 clipping at all angles */
+			float x_min_f = -1e9f;
+			float x_max_f = 1e9f;
+			int skip_scanline = 0;
+			const float aa_margin = 0.55f;
+
+			/* Edge 0 */
+			float rhs0 = -aa_margin * len0 - w0_at_0;
+			if (dw0_dx > 1e-7f) {
+				float b = rhs0 / dw0_dx;
+				if (b > x_min_f) x_min_f = b;
+			} else if (dw0_dx < -1e-7f) {
+				float b = rhs0 / dw0_dx;
+				if (b < x_max_f) x_max_f = b;
+			} else if (rhs0 > 0.0f) {
+				skip_scanline = 1;
+			}
+
+			/* Edge 1 */
+			float rhs1 = -aa_margin * len1 - w1_at_0;
+			if (dw1_dx > 1e-7f) {
+				float b = rhs1 / dw1_dx;
+				if (b > x_min_f) x_min_f = b;
+			} else if (dw1_dx < -1e-7f) {
+				float b = rhs1 / dw1_dx;
+				if (b < x_max_f) x_max_f = b;
+			} else if (rhs1 > 0.0f) {
+				skip_scanline = 1;
+			}
+
+			/* Edge 2 */
+			float rhs2 = -aa_margin * len2 - w2_at_0;
+			if (dw2_dx > 1e-7f) {
+				float b = rhs2 / dw2_dx;
+				if (b > x_min_f) x_min_f = b;
+			} else if (dw2_dx < -1e-7f) {
+				float b = rhs2 / dw2_dx;
+				if (b < x_max_f) x_max_f = b;
+			} else if (rhs2 > 0.0f) {
+				skip_scanline = 1;
+			}
+
+			if (skip_scanline || x_min_f > x_max_f) {
+				continue;
+			}
+
+			long span_x0 = (long)floorf(x_min_f) - 1;
+			long span_x1 = (long)ceilf(x_max_f) + 1;
+			if (span_x0 < x0) span_x0 = x0;
+			if (span_x1 > x1) span_x1 = x1;
+			if (span_x0 > span_x1) continue;
+
+			uint32_t *dest_row = &state->color->pixels[py * width];
+
+			float fx_start = (float)span_x0 + 0.5f;
+			float row_w0 = w0_at_0 + fx_start * dw0_dx;
+			float row_w1 = w1_at_0 + fx_start * dw1_dx;
+			float w2_init = 1.0f - row_w0 - row_w1;
+
+			float cur_d0 = row_w0 * inv_len0;
+			float cur_d1 = row_w1 * inv_len1;
+			float cur_d2 = w2_init * inv_len2;
+
+			int32_t r_fix = (int32_t)((row_w0 * C0.x + row_w1 * C1.x + w2_init * C2.x) * 255.0f * 65536.0f);
+			int32_t g_fix = (int32_t)((row_w0 * C0.y + row_w1 * C1.y + w2_init * C2.y) * 255.0f * 65536.0f);
+			int32_t b_fix = (int32_t)((row_w0 * C0.z + row_w1 * C1.z + w2_init * C2.z) * 255.0f * 65536.0f);
+
+			for (px = span_x0; px <= span_x1; px++) {
+				if (cur_d0 >= -0.5f && cur_d1 >= -0.5f && cur_d2 >= -0.5f) {
+					float min_d = cur_d0 < cur_d1 ? cur_d0 : cur_d1;
+					if (cur_d2 < min_d) min_d = cur_d2;
+					if (min_d >= 0.5f) {
+						/* Solid interior: fast pure bitwise RGB store */
+						dest_row[px] = 0xff000000 | (r_fix & 0x00ff0000) | ((g_fix >> 8) & 0x0000ff00) | ((b_fix >> 16) & 0x000000ff);
+						state->fragments++;
+					} else {
+						/* Subpixel cubic Hermite smoothstep edge */
+						float t = min_d + 0.5f;
+						float cov = t * t * (3.0f - 2.0f * t);
+						uint32_t bg = dest_row[px];
+						float bg_b = (float)(bg & 0xff);
+						float bg_g = (float)((bg >> 8) & 0xff);
+						float bg_r = (float)((bg >> 16) & 0xff);
+						float cur_r = (float)r_fix * (1.0f / (255.0f * 65536.0f));
+						float cur_g = (float)g_fix * (1.0f / (255.0f * 65536.0f));
+						float cur_b = (float)b_fix * (1.0f / (255.0f * 65536.0f));
+						float inv_cov = 1.0f - cov;
+						uint8_t out_r = (uint8_t)(cur_r * 255.0f * cov + bg_r * inv_cov);
+						uint8_t out_g = (uint8_t)(cur_g * 255.0f * cov + bg_g * inv_cov);
+						uint8_t out_b = (uint8_t)(cur_b * 255.0f * cov + bg_b * inv_cov);
+						dest_row[px] = 0xff000000 | ((uint32_t)out_r << 16) | ((uint32_t)out_g << 8) | out_b;
+						state->fragments++;
+					}
+				}
+				cur_d0 += dd0_dx; cur_d1 += dd1_dx; cur_d2 += dd2_dx;
+				r_fix += dr_fix; g_fix += dg_fix; b_fix += db_fix;
+			}
+		}
+		return;
+	}
+
+	for (py = y0; py <= y1; py++) {
+		float fy = (float)py + 0.5f;
+
+		/* Fast span intersection: compute horizontal segment of triangle on scanline fy */
+		float edge_x[6];
+		int edge_count = 0;
+		for (i = 0; i < 3; i++) {
+			int next_i = (i + 1) % 3;
+			float yA = window[i].y;
+			float yB = window[next_i].y;
+			if ((yA <= fy && yB >= fy) || (yB <= fy && yA >= fy)) {
+				float dy = yB - yA;
+				if (fabsf(dy) > 1e-5f) {
+					float t = (fy - yA) / dy;
+					if (edge_count < 6) edge_x[edge_count++] = window[i].x + t * (window[next_i].x - window[i].x);
+				} else {
+					if (edge_count + 1 < 6) {
+						edge_x[edge_count++] = window[i].x;
+						edge_x[edge_count++] = window[next_i].x;
+					}
+				}
+			}
+		}
+		if (edge_count < 2) {
+			continue;
+		}
+		float min_span = edge_x[0];
+		float max_span = edge_x[0];
+		for (i = 1; i < edge_count; i++) {
+			if (edge_x[i] < min_span) min_span = edge_x[i];
+			if (edge_x[i] > max_span) max_span = edge_x[i];
+		}
+
+		long span_x0 = (long)floorf(min_span - 1.0f);
+		long span_x1 = (long)ceilf(max_span + 1.0f);
+		if (span_x0 < x0) span_x0 = x0;
+		if (span_x1 > x1) span_x1 = x1;
+		if (span_x0 > span_x1) {
+			continue;
+		}
+
+		float fx_start = (float)span_x0 + 0.5f;
+		float row_w0 = ((window[1].x - fx_start) * (window[2].y - fy) -
+		    (window[1].y - fy) * (window[2].x - fx_start)) * inverse_area;
+		float row_w1 = ((window[2].x - fx_start) * (window[0].y - fy) -
+		    (window[2].y - fy) * (window[0].x - fx_start)) * inverse_area;
+
+		uint32_t *dest_row = (state->color && state->color->pixels) ?
+		    &state->color->pixels[py * (long)state->color->width + span_x0] : NULL;
+
+		if (fast_color_path && dest_row != NULL) {
+			float w0_init = row_w0;
+			float w1_init = row_w1;
+			float w2_init = 1.0f - w0_init - w1_init;
+
+			float cur_r = w0_init * C0.x + w1_init * C1.x + w2_init * C2.x;
+			float cur_g = w0_init * C0.y + w1_init * C1.y + w2_init * C2.y;
+			float cur_b = w0_init * C0.z + w1_init * C1.z + w2_init * C2.z;
+
+			for (px = span_x0; px <= span_x1; px++) {
+				float center_w0 = row_w0;
+				float center_w1 = row_w1;
+				row_w0 += dw0_dx;
+				row_w1 += dw1_dx;
+
+				float r = cur_r;
+				float g = cur_g;
+				float b = cur_b;
+				cur_r += dr_dx;
+				cur_g += dg_dx;
+				cur_b += db_dx;
+
+				float d0 = center_w0 * inv_len0;
+				if (d0 < -0.5f) continue;
+				float d1 = center_w1 * inv_len1;
+				if (d1 < -0.5f) continue;
+				float center_w2 = 1.0f - center_w0 - center_w1;
+				float d2 = center_w2 * inv_len2;
+				if (d2 < -0.5f) continue;
+
+				float min_d = d0 < d1 ? d0 : d1;
+				if (d2 < min_d) min_d = d2;
+
+				if (min_d >= 0.5f) {
+					uint8_t ur = (uint8_t)(r * 255.0f);
+					uint8_t ug = (uint8_t)(g * 255.0f);
+					uint8_t ub = (uint8_t)(b * 255.0f);
+					dest_row[px - span_x0] = (0xff000000) | ((uint32_t)ur << 16) | ((uint32_t)ug << 8) | (uint32_t)ub;
+					state->fragments++;
+				} else {
+					float t = min_d + 0.5f;
+					float cov = t * t * (3.0f - 2.0f * t);
+					uint32_t bg = dest_row[px - span_x0];
+					float bg_b = (float)(bg & 0xff);
+					float bg_g = (float)((bg >> 8) & 0xff);
+					float bg_r = (float)((bg >> 16) & 0xff);
+					float inv_cov = 1.0f - cov;
+					uint8_t out_r = (uint8_t)(r * 255.0f * cov + bg_r * inv_cov);
+					uint8_t out_g = (uint8_t)(g * 255.0f * cov + bg_g * inv_cov);
+					uint8_t out_b = (uint8_t)(b * 255.0f * cov + bg_b * inv_cov);
+					dest_row[px - span_x0] = (0xff000000) | ((uint32_t)out_r << 16) | ((uint32_t)out_g << 8) | (uint32_t)out_b;
+					state->fragments++;
+				}
+			}
+			continue;
+		}
+
+		for (px = span_x0; px <= span_x1; px++) {
+			float fx = (float)px + 0.5f;
+			float inverse_w, correction0, correction1, correction2;
+			float depth;
+			int k;
+
+			float center_w0 = row_w0;
+			float center_w1 = row_w1;
+			row_w0 += dw0_dx;
+			row_w1 += dw1_dx;
+
+			float d0 = center_w0 * inv_len0;
+			if (d0 < -0.5f) {
+				continue;
+			}
+			float d1 = center_w1 * inv_len1;
+			if (d1 < -0.5f) {
+				continue;
+			}
+			float center_w2 = 1.0f - center_w0 - center_w1;
+			float d2 = center_w2 * inv_len2;
+			if (d2 < -0.5f) {
+				continue;
+			}
+
+			float min_d = d0 < d1 ? d0 : d1;
+			if (d2 < min_d) min_d = d2;
+
+			float coverage = 1.0f;
+			if (min_d < 0.5f) {
+				float t = min_d + 0.5f;
+				coverage = t * t * (3.0f - 2.0f * t);
+			}
+
+			depth = center_w0 * window[0].z + center_w1 * window[1].z +
+			    center_w2 * window[2].z;
+
+			if (!depth_passes(state, px, py, depth)) {
+				continue;
+			}
+
+			if (is_ortho) {
+				correction0 = center_w0;
+				correction1 = center_w1;
+				correction2 = center_w2;
+			} else {
+				inverse_w = center_w0 * window[0].inv_w +
+				    center_w1 * window[1].inv_w + center_w2 * window[2].inv_w;
+				if (inverse_w == 0.0f) {
+					continue;
+				}
+				float inv_tot = 1.0f / inverse_w;
+				correction0 = center_w0 * window[0].inv_w * inv_tot;
+				correction1 = center_w1 * window[1].inv_w * inv_tot;
+				correction2 = center_w2 * window[2].inv_w * inv_tot;
+			}
+
+			input.position.x = fx;
+			input.position.y = fy;
+			input.position.z = depth;
+			for (k = 0; k < active_varyings; k++) {
+				input.varying[k].x = window[0].varying[k].x * correction0 +
+				    window[1].varying[k].x * correction1 +
+				    window[2].varying[k].x * correction2;
+				input.varying[k].y = window[0].varying[k].y * correction0 +
+				    window[1].varying[k].y * correction1 +
+				    window[2].varying[k].y * correction2;
+				input.varying[k].z = window[0].varying[k].z * correction0 +
+				    window[1].varying[k].z * correction1 +
+				    window[2].varying[k].z * correction2;
+				input.varying[k].w = window[0].varying[k].w * correction0 +
+				    window[1].varying[k].w * correction1 +
+				    window[2].varying[k].w * correction2;
+			}
+
+			uint32_t *dest_pixel = dest_row ? &dest_row[px - span_x0] : NULL;
+			if (dest_pixel && shade_and_write_ptr(state, &input, dest_pixel, coverage)) {
+				depth_write(state, px, py, depth);
+			}
+		}
+	}
+}
+
+static void
+raster_line(mtl_render_state *state, const mtl_vertex_out *first,
+    const mtl_vertex_out *second)
+{
+	mtl_window_vertex a, b;
+	float dx, dy, steps, step;
+	int i, count;
+	long x0, y0, x1, y1;
+
+	if (!to_window_space(state, first, &a) ||
+	    !to_window_space(state, second, &b)) {
+		return;
+	}
+
+	scissor_bounds(state, &x0, &y0, &x1, &y1);
+
+	dx = b.x - a.x;
+	dy = b.y - a.y;
+	steps = fabsf(dx) > fabsf(dy) ? fabsf(dx) : fabsf(dy);
+	count = (int)steps + 1;
+	step = (count > 1) ? 1.0f / (float)(count - 1) : 0.0f;
+
+	for (i = 0; i < count; i++) {
+		float t = (float)i * step;
+		mtl_fragment_in input;
+		long px = (long)floorf(a.x + dx * t);
+		long py = (long)floorf(a.y + dy * t);
+		float depth = a.z + (b.z - a.z) * t;
+		unsigned int k;
+
+		if (px < x0 || px > x1 || py < y0 || py > y1) {
+			continue;
+		}
+		if (!depth_passes(state, px, py, depth)) {
+			continue;
+		}
+
+		prepare_fragment_input(state, &input,
+		    mtl_make_float4((float)px + 0.5f, (float)py + 0.5f, depth, 1.0f));
+		for (k = 0; k < MTL_MAX_VARYINGS; k++) {
+			input.varying[k] = mtl_f4_lerp(a.varying[k], b.varying[k], t);
+		}
+		if (shade_and_write(state, &input, 1.0f)) {
+			depth_write(state, px, py, depth);
+		}
+	}
+}
+
+static void
+raster_point(mtl_render_state *state, const mtl_vertex_out *vertex)
+{
+	mtl_window_vertex point;
+	mtl_fragment_in input;
+	long center_x, center_y, side, px, py;
+	float size;
+
+	if (!to_window_space(state, vertex, &point)) {
+		return;
+	}
+
+	size = vertex->point_size > 0.0f ? vertex->point_size : 1.0f;
+	side = (long)ceilf(size);
+	center_x = (long)floorf(point.x);
+	center_y = (long)floorf(point.y);
+
+	for (py = center_y - side / 2; py < center_y - side / 2 + side; py++) {
+		for (px = center_x - side / 2; px < center_x - side / 2 + side;
+		    px++) {
+			unsigned int k;
+
+			if (!depth_passes(state, px, py, point.z)) {
+				continue;
+			}
+			prepare_fragment_input(state, &input,
+			    mtl_make_float4((float)px + 0.5f, (float)py + 0.5f,
+			    point.z, 1.0f));
+			for (k = 0; k < MTL_MAX_VARYINGS; k++) {
+				input.varying[k] = point.varying[k];
+			}
+			if (shade_and_write(state, &input, 1.0f)) {
+				depth_write(state, px, py, point.z);
+			}
+		}
+	}
+}
+
+/* ------------------------------------------------------------------------- */
+/* draw                                                                      */
+/* ------------------------------------------------------------------------- */
+
+void
+mtl_raster_draw(mtl_render_state *state, MTLPrimitiveType primitive_type,
+    mtl_size_t vertex_start, mtl_size_t vertex_count,
+    mtl_size_t instance_count)
+{
+	mtl_vertex_out *vertices;
+	mtl_size_t instance, i;
+
+	if (state->pipeline == NULL || state->color == NULL ||
+	    state->pipeline->vertex_function == NULL || vertex_count == 0) {
+		return;
+	}
+
+	if (instance_count == 0) {
+		instance_count = 1;
+	}
+
+	vertices = (mtl_vertex_out *)calloc((size_t)vertex_count,
+	    sizeof(*vertices));
+	if (vertices == NULL) {
+		return;
+	}
+
+	for (instance = 0; instance < instance_count; instance++) {
+		for (i = 0; i < vertex_count; i++) {
+			mtl_vertex_in input;
+
+			memset(&input, 0, sizeof(input));
+			input.vertex_id = (unsigned int)(vertex_start + i);
+			input.instance_id = (unsigned int)instance;
+			memcpy(input.slots, state->vertex_slots,
+			    sizeof(input.slots));
+			memset(&vertices[i], 0, sizeof(vertices[i]));
+			state->pipeline->vertex_function(&input, &vertices[i]);
+		}
+
+		/* Accelerated Metal pipeline for 2D textured UI quads (WindowServer / AppKit) */
+		int can_accel = (primitive_type == MTLPrimitiveTypeTriangleStrip && vertex_count == 4 &&
+		    state->fragment_textures[0] != NULL &&
+		    state->fragment_textures[0]->pixels != NULL &&
+		    state->color != NULL && state->color->pixels != NULL);
+		if (!can_accel) {
+			fprintf(stderr, "mtl_quad: CANNOT accel prim=%d vc=%lu tex=%p pix=%p col=%p cpix=%p\n",
+			    (int)primitive_type, vertex_count, state->fragment_textures[0],
+			    state->fragment_textures[0] ? state->fragment_textures[0]->pixels : NULL,
+			    state->color, state->color ? state->color->pixels : NULL);
+		}
+		if (can_accel) {
+			mtl_window_vertex w0, w1, w2, w3;
+			if (to_window_space(state, &vertices[0], &w0) &&
+			    to_window_space(state, &vertices[1], &w1) &&
+			    to_window_space(state, &vertices[2], &w2) &&
+			    to_window_space(state, &vertices[3], &w3)) {
+				long qx0 = (long)roundf(w0.x < w2.x ? w0.x : w2.x);
+				long qx1 = (long)roundf(w1.x > w3.x ? w1.x : w3.x);
+				long qy0 = (long)roundf(w0.y < w1.y ? w0.y : w1.y);
+				long qy1 = (long)roundf(w2.y > w3.y ? w2.y : w3.y);
+				long qw = qx1 - qx0;
+				long qh = qy1 - qy0;
+
+				if (qw > 0 && qh > 0) {
+					long cx0, cy0, cx1, cy1;
+					scissor_bounds(state, &cx0, &cy0, &cx1, &cy1);
+					if (qx0 > cx0) cx0 = qx0;
+					if (qy0 > cy0) cy0 = qy0;
+					if (qx1 - 1 < cx1) cx1 = qx1 - 1;
+					if (qy1 - 1 < cy1) cy1 = qy1 - 1;
+
+					if (cx0 <= cx1 && cy0 <= cy1) {
+						const mtl_texture_t *tex = state->fragment_textures[0];
+						const uint32_t *src_pixels = tex->pixels;
+						uint32_t *dst_pixels = state->color->pixels;
+						long dst_w = (long)state->color->width;
+						long src_w = (long)tex->width;
+						long src_h = (long)tex->height;
+						const float R = 16.0f;
+						const float R_outer = 16.5f;
+						const float R_inner = 15.5f;
+						long py, px;
+
+						for (py = cy0; py <= cy1; py++) {
+							long rel_y = py - qy0;
+							if (rel_y < 0 || rel_y >= src_h) continue;
+
+							int topc = rel_y < 16;
+							int botc = rel_y >= (qh - 16);
+							uint32_t *dst_row = &dst_pixels[py * dst_w];
+							const uint32_t *src_row = &src_pixels[rel_y * src_w];
+
+							if (!topc && !botc) {
+								/* Solid interior span: ALWAYS memcpy even under scissor */
+								long cur_dst_x = cx0;
+								long rel_x_start = cur_dst_x - qx0;
+								long span_len = cx1 - cur_dst_x + 1;
+								if (rel_x_start < 0) {
+									span_len += rel_x_start;
+									cur_dst_x -= rel_x_start;
+									rel_x_start = 0;
+								}
+								if (rel_x_start + span_len > src_w) {
+									span_len = src_w - rel_x_start;
+								}
+								if (span_len > 0) {
+									memcpy(&dst_row[cur_dst_x], &src_row[rel_x_start], (size_t)span_len * 4);
+									state->fragments += (unsigned long)span_len;
+								}
+								continue;
+							}
+
+							/* Corners band (analytical subpixel AA, zero-sqrt) */
+							float cy_corner = topc ? R : ((float)qh - R);
+							float ry = (float)rel_y + 0.5f - cy_corner;
+							float ry2 = ry * ry;
+
+							for (px = cx0; px <= cx1; px++) {
+								long rel_x = px - qx0;
+								if (rel_x < 0 || rel_x >= src_w) continue;
+
+								int lcol = rel_x < 16;
+								int rcol = rel_x >= (qw - 16);
+
+								if (lcol || rcol) {
+									float cx_corner = lcol ? R : ((float)qw - R);
+									float rx = (float)rel_x + 0.5f - cx_corner;
+									float d2 = rx * rx + ry2;
+									if (d2 >= 272.25f) {
+										/* Outside window radius: keep whatever is underneath (shadow or lower window) */
+										continue;
+									}
+									if (d2 > 240.25f) {
+										float cov = (272.25f - d2) * 0.03125f;
+										uint32_t s = src_row[rel_x];
+										uint32_t d = dst_row[px]; /* Blend with whatever is underneath */
+										unsigned sa = (unsigned)(((s >> 24) & 0xffu) * cov);
+										unsigned inv = 255u - sa;
+										unsigned r = (((s >> 16) & 0xffu) * sa + ((d >> 16) & 0xffu) * inv + 127u) / 255u;
+										unsigned g = (((s >> 8) & 0xffu) * sa + ((d >> 8) & 0xffu) * inv + 127u) / 255u;
+										unsigned b = ((s & 0xffu) * sa + (d & 0xffu) * inv + 127u) / 255u;
+										dst_row[px] = 0xff000000u | (r << 16) | (g << 8) | b;
+										state->fragments++;
+										continue;
+									}
+								}
+								dst_row[px] = src_row[rel_x];
+								state->fragments++;
+							}
+						}
+						state->triangles += 2;
+						// fprintf(stderr, "mtl_quad: ACCEL DONE qw=%ld qh=%ld frags=%lu\n", qw, qh, state->fragments);
+						continue; /* Next instance */
+					} else {
+						fprintf(stderr, "mtl_quad: scissor clipped out cx=%ld..%ld cy=%ld..%ld\n", cx0, cx1, cy0, cy1);
+						continue;
+					}
+				}
+			} else {
+				fprintf(stderr, "mtl_quad: to_window_space failed\n");
+			}
+		}
+
+		switch (primitive_type) {
+		case MTLPrimitiveTypeTriangle:
+			for (i = 0; i + 2 < vertex_count; i += 3) {
+				raster_triangle(state, &vertices[i], &vertices[i + 1],
+				    &vertices[i + 2]);
+			}
+			break;
+		case MTLPrimitiveTypeTriangleStrip:
+			for (i = 0; i + 2 < vertex_count; i++) {
+				if ((i & 1) == 0) {
+					raster_triangle(state, &vertices[i],
+					    &vertices[i + 1], &vertices[i + 2]);
+				} else {
+					raster_triangle(state, &vertices[i + 1],
+					    &vertices[i], &vertices[i + 2]);
+				}
+			}
+			break;
+		case MTLPrimitiveTypeLine:
+			for (i = 0; i + 1 < vertex_count; i += 2) {
+				raster_line(state, &vertices[i], &vertices[i + 1]);
+			}
+			break;
+		case MTLPrimitiveTypeLineStrip:
+			for (i = 0; i + 1 < vertex_count; i++) {
+				raster_line(state, &vertices[i], &vertices[i + 1]);
+			}
+			break;
+		case MTLPrimitiveTypePoint:
+			for (i = 0; i < vertex_count; i++) {
+				raster_point(state, &vertices[i]);
+			}
+			break;
+		default:
+			break;
+		}
+	}
+
+	free(vertices);
+}

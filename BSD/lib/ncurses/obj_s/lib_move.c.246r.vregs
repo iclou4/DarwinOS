@@ -1,0 +1,251 @@
+
+;; Function wmove (wmove, funcdef_no=91, decl_uid=6288, cgraph_uid=92, symbol_order=91)
+
+(note 1 0 10 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 10 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 10 3 2 (set (reg/v/f:DI 94 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_move.c":49:1 74 {*movdi_internal}
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 95 [ y ])
+        (reg:SI 4 si [ y ])) "../ncurses/./base/lib_move.c":49:1 75 {*movsi_internal}
+     (nil))
+(insn 4 3 5 2 (set (reg/v:SI 96 [ x ])
+        (reg:SI 1 dx [ x ])) "../ncurses/./base/lib_move.c":49:1 75 {*movsi_internal}
+     (nil))
+(note 5 4 12 2 NOTE_INSN_FUNCTION_BEG)
+(insn 12 5 13 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 94 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_move.c":52:8 8 {*cmpdi_ccno_1}
+     (nil))
+(insn 13 12 14 2 (set (reg:QI 98)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_move.c":52:8 802 {*setcc_qi}
+     (nil))
+(insn 14 13 15 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 98)
+            (const_int 0 [0]))) "../ncurses/./base/lib_move.c":52:9 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 15 14 65 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 56)
+            (pc))) "../ncurses/./base/lib_move.c":52:9 806 {*jcc}
+     (int_list:REG_BR_PROB 6317444 (nil))
+ -> 56)
+;;  succ:       9 [0.6% (guessed)]  count:6317440 (estimated locally)
+;;              4 [99.4% (guessed)]  count:1067424384 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 1067424384 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL)
+;;  pred:       2 [99.4% (guessed)]  count:1067424384 (estimated locally) (FALLTHRU)
+(note 65 15 18 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 18 65 19 4 (set (reg:SI 100)
+        (not:SI (reg/v:SI 96 [ x ]))) "../ncurses/./base/lib_move.c":52:9 632 {*one_cmplsi2_1}
+     (nil))
+(insn 19 18 20 4 (parallel [
+            (set (reg:SI 101)
+                (lshiftrt:SI (reg:SI 100)
+                    (const_int 31 [0x1f])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_move.c":52:9 701 {*lshrsi3_1}
+     (nil))
+(insn 20 19 21 4 (set (reg:QI 102)
+        (subreg:QI (reg:SI 101) 0)) "../ncurses/./base/lib_move.c":52:9 77 {*movqi_internal}
+     (nil))
+(insn 21 20 22 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 102)
+            (const_int 0 [0]))) "../ncurses/./base/lib_move.c":52:9 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 22 21 23 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 56)
+            (pc))) "../ncurses/./base/lib_move.c":52:9 806 {*jcc}
+     (int_list:REG_BR_PROB 6354836 (nil))
+ -> 56)
+;;  succ:       5 [99.4% (guessed)]  count:1061106941 (estimated locally) (FALLTHRU)
+;;              9 [0.6% (guessed)]  count:6317443 (estimated locally)
+
+;; basic block 5, loop depth 0, count 1061106945 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [99.4% (guessed)]  count:1061106941 (estimated locally) (FALLTHRU)
+(note 23 22 24 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 25 5 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 94 [ win ])
+                    (const_int 12 [0xc])) [1 win_8(D)->_maxx+0 S4 A32])
+            (reg/v:SI 96 [ x ]))) "../ncurses/./base/lib_move.c":52:9 11 {*cmpsi_1}
+     (nil))
+(insn 25 24 26 5 (set (reg:QI 104)
+        (ge:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_move.c":52:9 802 {*setcc_qi}
+     (nil))
+(insn 26 25 27 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 104)
+            (const_int 0 [0]))) "../ncurses/./base/lib_move.c":52:9 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 27 26 66 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 60)
+            (pc))) "../ncurses/./base/lib_move.c":52:9 806 {*jcc}
+     (int_list:REG_BR_PROB 9461860 (nil))
+ -> 60)
+;;  succ:       10 [0.9% (guessed)]  count:9350517 (estimated locally)
+;;              6 [99.1% (guessed)]  count:1051756428 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 1051756428 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL)
+;;  pred:       5 [99.1% (guessed)]  count:1051756428 (estimated locally) (FALLTHRU)
+(note 66 27 30 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 30 66 31 6 (set (reg:SI 106)
+        (not:SI (reg/v:SI 95 [ y ]))) "../ncurses/./base/lib_move.c":52:9 632 {*one_cmplsi2_1}
+     (nil))
+(insn 31 30 32 6 (parallel [
+            (set (reg:SI 107)
+                (lshiftrt:SI (reg:SI 106)
+                    (const_int 31 [0x1f])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_move.c":52:9 701 {*lshrsi3_1}
+     (nil))
+(insn 32 31 33 6 (set (reg:QI 108)
+        (subreg:QI (reg:SI 107) 0)) "../ncurses/./base/lib_move.c":52:9 77 {*movqi_internal}
+     (nil))
+(insn 33 32 34 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 108)
+            (const_int 0 [0]))) "../ncurses/./base/lib_move.c":52:9 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 34 33 35 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 60)
+            (pc))) "../ncurses/./base/lib_move.c":52:9 806 {*jcc}
+     (int_list:REG_BR_PROB 9545972 (nil))
+ -> 60)
+;;  succ:       7 [99.1% (guessed)]  count:1042405918 (estimated locally) (FALLTHRU)
+;;              10 [0.9% (guessed)]  count:9350510 (estimated locally)
+
+;; basic block 7, loop depth 0, count 1042405918 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       6 [99.1% (guessed)]  count:1042405918 (estimated locally) (FALLTHRU)
+(note 35 34 36 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 36 35 37 7 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 94 [ win ])
+                    (const_int 8 [0x8])) [1 win_8(D)->_maxy+0 S4 A64])
+            (reg/v:SI 95 [ y ]))) "../ncurses/./base/lib_move.c":52:9 11 {*cmpsi_1}
+     (nil))
+(jump_insn 37 36 38 7 (set (pc)
+        (if_then_else (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 64)
+            (pc))) "../ncurses/./base/lib_move.c":52:9 806 {*jcc}
+     (int_list:REG_BR_PROB 21474844 (nil))
+ -> 64)
+;;  succ:       8 [98.0% (guessed)]  count:1021557796 (estimated locally) (FALLTHRU)
+;;              11 [2.0% (guessed)]  count:20848122 (estimated locally)
+
+;; basic block 8, loop depth 0, count 1021557796 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [98.0% (guessed)]  count:1021557796 (estimated locally) (FALLTHRU)
+(note 38 37 39 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 39 38 40 8 (set (mem:SI (plus:DI (reg/v/f:DI 94 [ win ])
+                (const_int 4 [0x4])) [1 win_8(D)->_curx+0 S4 A32])
+        (reg/v:SI 96 [ x ])) "../ncurses/./base/lib_move.c":53:13 75 {*movsi_internal}
+     (nil))
+(insn 40 39 41 8 (set (mem:SI (reg/v/f:DI 94 [ win ]) [1 win_8(D)->_cury+0 S4 A64])
+        (reg/v:SI 95 [ y ])) "../ncurses/./base/lib_move.c":54:13 75 {*movsi_internal}
+     (nil))
+(insn 41 40 42 8 (set (reg:HI 110)
+        (mem:HI (plus:DI (reg/v/f:DI 94 [ win ])
+                (const_int 24 [0x18])) [2 win_8(D)->_flags+0 S2 A64])) "../ncurses/./base/lib_move.c":56:14 76 {*movhi_internal}
+     (nil))
+(insn 42 41 43 8 (parallel [
+            (set (reg:HI 109)
+                (and:HI (reg:HI 110)
+                    (const_int -65 [0xffffffffffffffbf])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_move.c":56:14 489 {*andhi_1}
+     (expr_list:REG_EQUAL (and:HI (mem:HI (plus:DI (reg/v/f:DI 94 [ win ])
+                    (const_int 24 [0x18])) [2 win_8(D)->_flags+0 S2 A64])
+            (const_int -65 [0xffffffffffffffbf]))
+        (nil)))
+(insn 43 42 44 8 (parallel [
+            (set (reg:HI 111)
+                (ior:HI (reg:HI 109)
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_move.c":57:14 518 {*iorhi_1}
+     (nil))
+(insn 44 43 6 8 (set (mem:HI (plus:DI (reg/v/f:DI 94 [ win ])
+                (const_int 24 [0x18])) [2 win_8(D)->_flags+0 S2 A64])
+        (reg:HI 111)) "../ncurses/./base/lib_move.c":57:14 76 {*movhi_internal}
+     (nil))
+(insn 6 44 53 8 (set (reg:SI 93 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_move.c":58:2 75 {*movsi_internal}
+     (nil))
+(jump_insn 53 6 54 8 (set (pc)
+        (label_ref:DI 49)) "../ncurses/./base/lib_move.c":58:2 807 {jump}
+     (nil)
+ -> 49)
+;;  succ:       13 [always]  count:1021557796 (estimated locally)
+
+(barrier 54 53 56)
+;; basic block 9, loop depth 0, count 12634880 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [0.6% (guessed)]  count:6317443 (estimated locally)
+;;              2 [0.6% (guessed)]  count:6317440 (estimated locally)
+(code_label 56 54 55 9 3 (nil) [2 uses])
+(note 55 56 8 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 8 55 57 9 (set (reg:SI 93 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_move.c":60:2 75 {*movsi_internal}
+     (nil))
+(jump_insn 57 8 58 9 (set (pc)
+        (label_ref:DI 49)) 807 {jump}
+     (nil)
+ -> 49)
+;;  succ:       13 [always]  count:12634880 (estimated locally)
+
+(barrier 58 57 60)
+;; basic block 10, loop depth 0, count 18701026 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       6 [0.9% (guessed)]  count:9350510 (estimated locally)
+;;              5 [0.9% (guessed)]  count:9350517 (estimated locally)
+(code_label 60 58 59 10 4 (nil) [2 uses])
+(note 59 60 7 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 7 59 61 10 (set (reg:SI 93 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_move.c":60:2 75 {*movsi_internal}
+     (nil))
+(jump_insn 61 7 62 10 (set (pc)
+        (label_ref:DI 49)) 807 {jump}
+     (nil)
+ -> 49)
+;;  succ:       13 [always]  count:18701026 (estimated locally)
+
+(barrier 62 61 64)
+;; basic block 11, loop depth 0, count 20848122 (estimated locally), maybe hot
+;;  prev block 10, next block 13, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [2.0% (guessed)]  count:20848122 (estimated locally)
+(code_label 64 62 63 11 5 (nil) [1 uses])
+(note 63 64 9 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 9 63 49 11 (set (reg:SI 93 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_move.c":60:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       13 [always]  count:20848122 (estimated locally) (FALLTHRU)
+
+;; basic block 13, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 11, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       11 [always]  count:20848122 (estimated locally) (FALLTHRU)
+;;              8 [always]  count:1021557796 (estimated locally)
+;;              9 [always]  count:12634880 (estimated locally)
+;;              10 [always]  count:18701026 (estimated locally)
+(code_label 49 9 52 13 1 (nil) [3 uses])
+(note 52 49 50 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 50 52 51 13 (set (reg/i:SI 0 ax)
+        (reg:SI 93 [ <retval> ])) "../ncurses/./base/lib_move.c":61:1 75 {*movsi_internal}
+     (nil))
+(insn 51 50 0 13 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_move.c":61:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+

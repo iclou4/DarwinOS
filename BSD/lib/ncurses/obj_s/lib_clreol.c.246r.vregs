@@ -1,0 +1,499 @@
+
+;; Function wclrtoeol (wclrtoeol, funcdef_no=91, decl_uid=6225, cgraph_uid=92, symbol_order=91)
+
+(note 1 0 6 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 122944295 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:122944295 (estimated locally) (FALLTHRU)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 113 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_clreol.c":48:1 74 {*movdi_internal}
+     (nil))
+(note 3 2 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 3 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 113 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_clreol.c":53:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 9 8 23 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 13)
+            (pc))) "../ncurses/./base/lib_clreol.c":53:8 806 {*jcc}
+     (int_list:REG_BR_PROB 1064400276 (nil))
+ -> 13)
+;;  succ:       5 [99.1% (guessed)]  count:121874680 (estimated locally)
+;;              4 [0.9% (guessed)]  count:1069615 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 34033869 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [0.9% (guessed)]  count:1069615 (estimated locally) (FALLTHRU)
+;;              6 [50.0% (guessed)]  count:30468670 (estimated locally)
+;;              8 [1.0% (guessed)]  count:1241270 (estimated locally)
+;;              18 [1.4% (guessed)]  count:1254314 (estimated locally)
+(code_label 23 9 10 4 5 (nil) [3 uses])
+(note 10 23 4 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 4 10 11 4 (set (reg:SI 112 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_clreol.c":49:9 75 {*movsi_internal}
+     (nil))
+(jump_insn 11 4 12 4 (set (pc)
+        (label_ref:DI 108)) 807 {jump}
+     (nil)
+ -> 108)
+;;  succ:       20 [always]  count:34033869 (estimated locally)
+
+(barrier 12 11 13)
+;; basic block 5, loop depth 0, count 121874680 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [99.1% (guessed)]  count:121874680 (estimated locally)
+(code_label 13 12 14 5 2 (nil) [1 uses])
+(note 14 13 15 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 5 (set (reg/v:SI 97 [ y ])
+        (mem:SI (reg/v/f:DI 113 [ win ]) [3 win_24(D)->_cury+0 S4 A64])) "../ncurses/./base/lib_clreol.c":57:17 75 {*movsi_internal}
+     (nil))
+(insn 16 15 17 5 (set (reg/v:SI 98 [ x ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 4 [0x4])) [3 win_24(D)->_curx+0 S4 A32])) "../ncurses/./base/lib_clreol.c":58:17 75 {*movsi_internal}
+     (nil))
+(insn 17 16 18 5 (set (reg:HI 82 [ _1 ])
+        (mem:HI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 24 [0x18])) [1 win_24(D)->_flags+0 S2 A64])) "../ncurses/./base/lib_clreol.c":64:6 76 {*movhi_internal}
+     (nil))
+(insn 18 17 19 5 (set (reg:SI 95 [ pretmp_21 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 8 [0x8])) [3 win_24(D)->_maxy+0 S4 A64])) "../ncurses/./base/lib_clreol.c":65:16 75 {*movsi_internal}
+     (nil))
+(insn 19 18 20 5 (parallel [
+            (set (reg:HI 114)
+                (and:HI (reg:HI 82 [ _1 ])
+                    (const_int 64 [0x40])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":64:5 489 {*andhi_1}
+     (nil))
+(insn 20 19 21 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 114)
+            (const_int 0 [0]))) "../ncurses/./base/lib_clreol.c":64:5 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 21 20 22 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 100)
+            (pc))) "../ncurses/./base/lib_clreol.c":64:5 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 100)
+;;  succ:       6 [50.0% (guessed)]  count:60937340 (estimated locally) (FALLTHRU)
+;;              18 [50.0% (guessed)]  count:60937340 (estimated locally)
+
+;; basic block 6, loop depth 0, count 60937340 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [50.0% (guessed)]  count:60937340 (estimated locally) (FALLTHRU)
+(note 22 21 24 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 24 22 25 6 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 95 [ pretmp_21 ])
+            (reg/v:SI 97 [ y ]))) "../ncurses/./base/lib_clreol.c":65:6 11 {*cmpsi_1}
+     (nil))
+(jump_insn 25 24 26 6 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 23)
+            (pc))) "../ncurses/./base/lib_clreol.c":65:6 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 23)
+;;  succ:       7 [50.0% (guessed)]  count:30468670 (estimated locally) (FALLTHRU)
+;;              4 [50.0% (guessed)]  count:30468670 (estimated locally)
+
+;; basic block 7, loop depth 0, count 30468670 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [50.0% (guessed)]  count:30468670 (estimated locally) (FALLTHRU)
+(note 26 25 27 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 27 26 28 7 (parallel [
+            (set (reg:HI 115)
+                (and:HI (reg:HI 82 [ _1 ])
+                    (const_int -65 [0xffffffffffffffbf])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":66:18 489 {*andhi_1}
+     (nil))
+(insn 28 27 104 7 (set (mem:HI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 24 [0x18])) [1 win_24(D)->_flags+0 S2 A64])
+        (reg:HI 115)) "../ncurses/./base/lib_clreol.c":66:18 76 {*movhi_internal}
+     (nil))
+;;  succ:       8 [always]  count:30468670 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 119352869 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [always]  count:30468670 (estimated locally) (FALLTHRU)
+;;              19 [always]  count:88884200 (estimated locally)
+(code_label 104 28 29 8 10 (nil) [1 uses])
+(note 29 104 30 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 30 29 31 8 (set (reg:SI 84 [ _6 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 12 [0xc])) [3 win_24(D)->_maxx+0 S4 A32])) "../ncurses/./base/lib_clreol.c":75:16 75 {*movsi_internal}
+     (nil))
+(insn 31 30 32 8 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 84 [ _6 ])
+            (reg/v:SI 98 [ x ]))) "../ncurses/./base/lib_clreol.c":75:6 11 {*cmpsi_1}
+     (nil))
+(jump_insn 32 31 33 8 (set (pc)
+        (if_then_else (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 23)
+            (pc))) "../ncurses/./base/lib_clreol.c":75:6 806 {*jcc}
+     (int_list:REG_BR_PROB 11166916 (nil))
+ -> 23)
+;;  succ:       4 [1.0% (guessed)]  count:1241270 (estimated locally)
+;;              9 [99.0% (guessed)]  count:118111599 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       8 [99.0% (guessed)]  count:118111599 (estimated locally) (FALLTHRU)
+(note 33 32 34 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 34 33 35 9 (set (reg:SI 94 [ blank$attr ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 116 [0x74])) [3 win_24(D)->_bkgrnd.attr+0 S4 A32])) "../ncurses/./base/lib_clreol.c":78:8 75 {*movsi_internal}
+     (nil))
+(insn 35 34 36 9 (set (reg:SI 102 [ blank$chars$0 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 120 [0x78])) [3 win_24(D)->_bkgrnd.chars[0]+0 S4 A64])) "../ncurses/./base/lib_clreol.c":78:8 75 {*movsi_internal}
+     (nil))
+(insn 36 35 37 9 (set (reg:SI 103 [ blank$chars$1 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 124 [0x7c])) [3 win_24(D)->_bkgrnd.chars[1]+0 S4 A32])) "../ncurses/./base/lib_clreol.c":78:8 75 {*movsi_internal}
+     (nil))
+(insn 37 36 38 9 (set (reg:SI 104 [ blank$chars$2 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 128 [0x80])) [3 win_24(D)->_bkgrnd.chars[2]+0 S4 A64])) "../ncurses/./base/lib_clreol.c":78:8 75 {*movsi_internal}
+     (nil))
+(insn 38 37 39 9 (set (reg:SI 105 [ blank$chars$3 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 132 [0x84])) [3 win_24(D)->_bkgrnd.chars[3]+0 S4 A32])) "../ncurses/./base/lib_clreol.c":78:8 75 {*movsi_internal}
+     (nil))
+(insn 39 38 40 9 (set (reg:SI 106 [ blank$chars$4 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 136 [0x88])) [3 win_24(D)->_bkgrnd.chars[4]+0 S4 A64])) "../ncurses/./base/lib_clreol.c":78:8 75 {*movsi_internal}
+     (nil))
+(insn 40 39 41 9 (set (reg:SI 107 [ blank$ext_color ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 140 [0x8c])) [3 win_24(D)->_bkgrnd.ext_color+0 S4 A32])) "../ncurses/./base/lib_clreol.c":78:8 75 {*movsi_internal}
+     (nil))
+(insn 41 40 42 9 (set (reg:SI 108 [ blank$rgb_color ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 144 [0x90])) [3 win_24(D)->_bkgrnd.rgb_color+0 S4 A64])) "../ncurses/./base/lib_clreol.c":78:8 75 {*movsi_internal}
+     (nil))
+(insn 42 41 43 9 (set (reg:DI 116)
+        (sign_extend:DI (reg/v:SI 97 [ y ]))) "../ncurses/./base/lib_clreol.c":79:20 147 {*extendsidi2_rex64}
+     (nil))
+(insn 43 42 44 9 (set (reg:DI 117)
+        (reg:DI 116)) "../ncurses/./base/lib_clreol.c":79:20 74 {*movdi_internal}
+     (nil))
+(insn 44 43 45 9 (parallel [
+            (set (reg:DI 118)
+                (ashift:DI (reg:DI 117)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":79:20 656 {*ashldi3_1}
+     (nil))
+(insn 45 44 46 9 (parallel [
+            (set (reg:DI 119)
+                (plus:DI (reg:DI 118)
+                    (reg:DI 116)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":79:20 210 {*adddi_1}
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 116)
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 46 45 47 9 (parallel [
+            (set (reg:DI 120)
+                (ashift:DI (reg:DI 119)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":79:20 656 {*ashldi3_1}
+     (nil))
+(insn 47 46 48 9 (set (reg:DI 119)
+        (reg:DI 120)) "../ncurses/./base/lib_clreol.c":79:20 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 116)
+            (const_int 24 [0x18]))
+        (nil)))
+(insn 48 47 49 9 (set (reg/f:DI 121)
+        (mem/f:DI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 56 [0x38])) [5 win_24(D)->_line+0 S8 A64])) "../ncurses/./base/lib_clreol.c":79:7 74 {*movdi_internal}
+     (nil))
+(insn 49 48 50 9 (parallel [
+            (set (reg/v/f:DI 99 [ line ])
+                (plus:DI (reg:DI 119)
+                    (reg/f:DI 121)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":79:7 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 113 [ win ])
+                    (const_int 56 [0x38])) [5 win_24(D)->_line+0 S8 A64])
+            (reg:DI 119))
+        (nil)))
+(insn 50 49 51 9 (set (reg:SI 88 [ _10 ])
+        (mem:SI (plus:DI (reg/v/f:DI 99 [ line ])
+                (const_int 8 [0x8])) [3 line_29->firstchar+0 S4 A64])) "../ncurses/./base/lib_clreol.c":80:2 75 {*movsi_internal}
+     (nil))
+(insn 51 50 52 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 88 [ _10 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_clreol.c":80:2 11 {*cmpsi_1}
+     (nil))
+(insn 52 51 53 9 (set (reg:QI 123)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_clreol.c":80:2 802 {*setcc_qi}
+     (nil))
+(insn 53 52 54 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 123)
+            (const_int 0 [0]))) "../ncurses/./base/lib_clreol.c":80:2 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 54 53 112 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 114)
+            (pc))) "../ncurses/./base/lib_clreol.c":80:2 806 {*jcc}
+     (int_list:REG_BR_PROB 359703516 (nil))
+ -> 114)
+;;  succ:       12 [33.5% (guessed)]  count:39567386 (estimated locally)
+;;              10 [66.5% (guessed)]  count:78544214 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 78544214 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       9 [66.5% (guessed)]  count:78544214 (estimated locally) (FALLTHRU)
+(note 112 54 55 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 55 112 56 10 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 88 [ _10 ])
+            (reg/v:SI 98 [ x ]))) "../ncurses/./base/lib_clreol.c":80:2 11 {*cmpsi_1}
+     (nil))
+(insn 56 55 57 10 (set (reg:QI 125)
+        (gt:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_clreol.c":80:2 802 {*setcc_qi}
+     (nil))
+(insn 57 56 58 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 125)
+            (const_int 0 [0]))) "../ncurses/./base/lib_clreol.c":80:2 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 58 57 113 10 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 62)
+            (pc))) "../ncurses/./base/lib_clreol.c":80:2 806 {*jcc}
+     (int_list:REG_BR_PROB 532834292 (nil))
+ -> 62)
+;;  succ:       13 [49.6% (guessed)]  count:38976828 (estimated locally)
+;;              11 [50.4% (guessed)]  count:39567386 (estimated locally) (FALLTHRU)
+
+;; basic block 11, loop depth 0, count 39567386 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       10 [50.4% (guessed)]  count:39567386 (estimated locally) (FALLTHRU)
+(note 113 58 114 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       12 [always]  count:39567386 (estimated locally) (FALLTHRU)
+
+;; basic block 12, loop depth 0, count 79134772 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       11 [always]  count:39567386 (estimated locally) (FALLTHRU)
+;;              9 [33.5% (guessed)]  count:39567386 (estimated locally)
+(code_label 114 113 60 12 11 (nil) [1 uses])
+(note 60 114 61 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 61 60 62 12 (set (mem:SI (plus:DI (reg/v/f:DI 99 [ line ])
+                (const_int 8 [0x8])) [3 line_29->firstchar+0 S4 A64])
+        (reg/v:SI 98 [ x ])) "../ncurses/./base/lib_clreol.c":80:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       13 [always]  count:79134772 (estimated locally) (FALLTHRU)
+
+;; basic block 13, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       12 [always]  count:79134772 (estimated locally) (FALLTHRU)
+;;              10 [49.6% (guessed)]  count:38976828 (estimated locally)
+(code_label 62 61 63 13 6 (nil) [1 uses])
+(note 63 62 64 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 64 63 65 13 (set (mem:SI (plus:DI (reg/v/f:DI 99 [ line ])
+                (const_int 12 [0xc])) [3 line_29->lastchar+0 S4 A32])
+        (reg:SI 84 [ _6 ])) "../ncurses/./base/lib_clreol.c":80:2 75 {*movsi_internal}
+     (nil))
+(insn 65 64 66 13 (set (reg/f:DI 89 [ _11 ])
+        (mem/f:DI (reg/v/f:DI 99 [ line ]) [10 line_29->text+0 S8 A64])) "../ncurses/./base/lib_clreol.c":82:14 74 {*movdi_internal}
+     (nil))
+(insn 66 65 67 13 (set (reg:DI 126)
+        (sign_extend:DI (reg/v:SI 98 [ x ]))) "../ncurses/./base/lib_clreol.c":82:20 147 {*extendsidi2_rex64}
+     (nil))
+(insn 67 66 68 13 (parallel [
+            (set (reg:DI 127)
+                (ashift:DI (reg:DI 126)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":82:20 656 {*ashldi3_1}
+     (nil))
+(insn 68 67 69 13 (parallel [
+            (set (reg/v/f:DI 101 [ ptr ])
+                (plus:DI (reg/f:DI 89 [ _11 ])
+                    (reg:DI 127)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":82:6 210 {*adddi_1}
+     (nil))
+(insn 69 68 70 13 (set (reg:DI 128)
+        (sign_extend:DI (reg:SI 84 [ _6 ]))) "../ncurses/./base/lib_clreol.c":83:24 147 {*extendsidi2_rex64}
+     (nil))
+(insn 70 69 71 13 (parallel [
+            (set (reg:DI 129)
+                (ashift:DI (reg:DI 128)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":83:20 656 {*ashldi3_1}
+     (nil))
+(insn 71 70 72 13 (parallel [
+            (set (reg/v/f:DI 100 [ end ])
+                (plus:DI (reg/f:DI 89 [ _11 ])
+                    (reg:DI 129)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":83:6 210 {*adddi_1}
+     (nil))
+(insn 72 71 73 13 (set (reg:CC 17 flags)
+        (compare:CC (reg/v/f:DI 101 [ ptr ])
+            (reg/v/f:DI 100 [ end ]))) "../ncurses/./base/lib_clreol.c":85:13 12 {*cmpdi_1}
+     (nil))
+(jump_insn 73 72 92 13 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 79)
+            (pc))) "../ncurses/./base/lib_clreol.c":85:13 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 79)
+;;  succ:       15 [89.0% (guessed)]  count:105119324 (estimated locally)
+;;              14 [11.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU)
+
+;; basic block 14, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       13 [11.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU)
+;;              16 [always]  count:105119324 (estimated locally)
+(code_label 92 73 74 14 9 (nil) [1 uses])
+(note 74 92 75 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 75 74 76 14 (set (reg:DI 5 di)
+        (reg/v/f:DI 113 [ win ])) "../ncurses/./base/lib_clreol.c":88:2 74 {*movdi_internal}
+     (nil))
+(call_insn 76 75 5 14 (call (mem:QI (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f31df8c0700 _nc_synchook>) [0 _nc_synchook S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_clreol.c":88:2 813 {*call}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f31df8c0700 _nc_synchook>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 5 76 77 14 (set (reg:SI 112 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_clreol.c":89:7 75 {*movsi_internal}
+     (nil))
+(jump_insn 77 5 78 14 (set (pc)
+        (label_ref:DI 108)) 807 {jump}
+     (nil)
+ -> 108)
+;;  succ:       20 [always]  count:118111600 (estimated locally)
+
+(barrier 78 77 79)
+;; basic block 15, loop depth 1, count 955630225 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       15 [89.0% (guessed)]  count:850510901 (estimated locally) (DFS_BACK)
+;;              13 [89.0% (guessed)]  count:105119324 (estimated locally)
+(code_label 79 78 80 15 8 (nil) [2 uses])
+(note 80 79 81 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 81 80 82 15 (parallel [
+            (set (reg/v/f:DI 101 [ ptr ])
+                (plus:DI (reg/v/f:DI 101 [ ptr ])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":86:10 210 {*adddi_1}
+     (nil))
+(insn 82 81 83 15 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -32 [0xffffffffffffffe0])) [3 MEM[(unsigned int *)ptr_36 + -32B]+0 S4 A32])
+        (reg:SI 94 [ blank$attr ])) "../ncurses/./base/lib_clreol.c":86:13 75 {*movsi_internal}
+     (nil))
+(insn 83 82 84 15 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -28 [0xffffffffffffffe4])) [3 MEM[(int *)ptr_36 + -28B]+0 S4 A32])
+        (reg:SI 102 [ blank$chars$0 ])) "../ncurses/./base/lib_clreol.c":86:13 75 {*movsi_internal}
+     (nil))
+(insn 84 83 85 15 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -24 [0xffffffffffffffe8])) [3 MEM[(int *)ptr_36 + -24B]+0 S4 A32])
+        (reg:SI 103 [ blank$chars$1 ])) "../ncurses/./base/lib_clreol.c":86:13 75 {*movsi_internal}
+     (nil))
+(insn 85 84 86 15 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -20 [0xffffffffffffffec])) [3 MEM[(int *)ptr_36 + -20B]+0 S4 A32])
+        (reg:SI 104 [ blank$chars$2 ])) "../ncurses/./base/lib_clreol.c":86:13 75 {*movsi_internal}
+     (nil))
+(insn 86 85 87 15 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -16 [0xfffffffffffffff0])) [3 MEM[(int *)ptr_36 + -16B]+0 S4 A32])
+        (reg:SI 105 [ blank$chars$3 ])) "../ncurses/./base/lib_clreol.c":86:13 75 {*movsi_internal}
+     (nil))
+(insn 87 86 88 15 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -12 [0xfffffffffffffff4])) [3 MEM[(int *)ptr_36 + -12B]+0 S4 A32])
+        (reg:SI 106 [ blank$chars$4 ])) "../ncurses/./base/lib_clreol.c":86:13 75 {*movsi_internal}
+     (nil))
+(insn 88 87 89 15 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -8 [0xfffffffffffffff8])) [3 MEM[(int *)ptr_36 + -8B]+0 S4 A32])
+        (reg:SI 107 [ blank$ext_color ])) "../ncurses/./base/lib_clreol.c":86:13 75 {*movsi_internal}
+     (nil))
+(insn 89 88 90 15 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -4 [0xfffffffffffffffc])) [3 MEM[(int *)ptr_36 + -4B]+0 S4 A32])
+        (reg:SI 108 [ blank$rgb_color ])) "../ncurses/./base/lib_clreol.c":86:13 75 {*movsi_internal}
+     (nil))
+(insn 90 89 91 15 (set (reg:CC 17 flags)
+        (compare:CC (reg/v/f:DI 100 [ end ])
+            (reg/v/f:DI 101 [ ptr ]))) "../ncurses/./base/lib_clreol.c":85:13 12 {*cmpdi_1}
+     (nil))
+(jump_insn 91 90 95 15 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 79)
+            (pc))) "../ncurses/./base/lib_clreol.c":85:13 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 79)
+;;  succ:       15 [89.0% (guessed)]  count:850510901 (estimated locally) (DFS_BACK)
+;;              16 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+
+;; basic block 16, loop depth 0, count 105119324 (estimated locally), maybe hot
+;;  prev block 15, next block 18, flags: (NEW, REACHABLE, RTL)
+;;  pred:       15 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+(note 95 91 93 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 93 95 94 16 (set (pc)
+        (label_ref 92)) 807 {jump}
+     (nil)
+ -> 92)
+;;  succ:       14 [always]  count:105119324 (estimated locally)
+
+(barrier 94 93 100)
+;; basic block 18, loop depth 0, count 90138514 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 60937340 (estimated locally), should be 90138514 (estimated locally)
+;;  prev block 16, next block 19, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [50.0% (guessed)]  count:60937340 (estimated locally)
+(code_label 100 94 101 18 4 (nil) [1 uses])
+(note 101 100 102 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 102 101 103 18 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 95 [ pretmp_21 ])
+            (reg/v:SI 97 [ y ]))) "../ncurses/./base/lib_clreol.c":74:6 11 {*cmpsi_1}
+     (nil))
+(jump_insn 103 102 107 18 (set (pc)
+        (if_then_else (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 23)
+            (pc))) "../ncurses/./base/lib_clreol.c":74:6 806 {*jcc}
+     (int_list:REG_BR_PROB 14941556 (nil))
+ -> 23)
+;;  succ:       4 [1.4% (guessed)]  count:1254314 (estimated locally)
+;;              19 [98.6% (guessed)]  count:88884200 (estimated locally) (FALLTHRU)
+
+;; basic block 19, loop depth 0, count 88884200 (estimated locally), maybe hot
+;;  prev block 18, next block 20, flags: (NEW, REACHABLE, RTL)
+;;  pred:       18 [98.6% (guessed)]  count:88884200 (estimated locally) (FALLTHRU)
+(note 107 103 105 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 105 107 106 19 (set (pc)
+        (label_ref 104)) 807 {jump}
+     (nil)
+ -> 104)
+;;  succ:       8 [always]  count:88884200 (estimated locally)
+
+(barrier 106 105 108)
+;; basic block 20, loop depth 0, count 122944296 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 152145469 (estimated locally), should be 122944296 (estimated locally)
+;;  prev block 19, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       14 [always]  count:118111600 (estimated locally)
+;;              4 [always]  count:34033869 (estimated locally)
+(code_label 108 106 111 20 1 (nil) [2 uses])
+(note 111 108 109 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 109 111 110 20 (set (reg/i:SI 0 ax)
+        (reg:SI 112 [ <retval> ])) "../ncurses/./base/lib_clreol.c":92:1 75 {*movsi_internal}
+     (nil))
+(insn 110 109 0 20 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_clreol.c":92:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:122944296 (estimated locally) (FALLTHRU)
+

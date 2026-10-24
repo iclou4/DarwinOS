@@ -1,0 +1,4951 @@
+
+;; Function where_is_problem (where_is_problem, funcdef_no=95, decl_uid=9191, cgraph_uid=96, symbol_order=98)
+
+void where_is_problem ()
+{
+  char * _1;
+  struct FILE * stderr.5_2;
+  int _nc_curr_line.6_3;
+  struct FILE * stderr.8_4;
+  int _nc_curr_col.9_5;
+  char * _7;
+  char _8;
+  struct FILE * stderr.13_10;
+  struct FILE * stderr.14_11;
+  char * iftmp.4_12;
+  struct FILE * pretmp_25;
+  struct FILE * pretmp_26;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _1 = _nc_globals.comp_sourcename;
+  if (_1 != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 4>; [30.00%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+;;                2
+  # iftmp.4_12 = PHI <_1(3), "?"(2)>
+  stderr.5_2 = stderr;
+  __fprintf_chk (stderr.5_2, 1, "\"%s\"", iftmp.4_12);
+  _nc_curr_line.6_3 = _nc_curr_line;
+  if (_nc_curr_line.6_3 > 0)
+    goto <bb 5>; [41.48%]
+  else
+    goto <bb 6>; [58.52%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  stderr.8_4 = stderr;
+  __fprintf_chk (stderr.8_4, 1, ", line %d", _nc_curr_line.6_3);
+;;    succ:       6
+
+;;   basic block 6, loop depth 0
+;;    pred:       4
+;;                5
+  _nc_curr_col.9_5 = _nc_curr_col;
+  if (_nc_curr_col.9_5 > 0)
+    goto <bb 7>; [41.48%]
+  else
+    goto <bb 8>; [58.52%]
+;;    succ:       7
+;;                8
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+  pretmp_25 = stderr;
+  __fprintf_chk (pretmp_25, 1, ", col %d", _nc_curr_col.9_5);
+;;    succ:       8
+
+;;   basic block 8, loop depth 0
+;;    pred:       6
+;;                7
+  _7 = _nc_globals.comp_termtype;
+  if (_7 != 0B)
+    goto <bb 9>; [70.00%]
+  else
+    goto <bb 11>; [30.00%]
+;;    succ:       9
+;;                11
+
+;;   basic block 9, loop depth 0
+;;    pred:       8
+  _8 = *_7;
+  if (_8 != 0)
+    goto <bb 10>; [33.00%]
+  else
+    goto <bb 11>; [67.00%]
+;;    succ:       10
+;;                11
+
+;;   basic block 10, loop depth 0
+;;    pred:       9
+  pretmp_26 = stderr;
+  __fprintf_chk (pretmp_26, 1, ", terminal \'%s\'", _7);
+;;    succ:       11
+
+;;   basic block 11, loop depth 0
+;;    pred:       9
+;;                10
+;;                8
+  stderr.13_10 = stderr;
+  fputc (58, stderr.13_10);
+  stderr.14_11 = stderr;
+  fputc (32, stderr.14_11); [tail call]
+  return;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (stderr.5_2 - 2 )
+Partition 3 (_nc_curr_line.6_3 - 3 )
+Partition 4 (stderr.8_4 - 4 )
+Partition 5 (_nc_curr_col.9_5 - 5 )
+Partition 7 (_7 - 7 )
+Partition 8 (_8 - 8 )
+Partition 10 (stderr.13_10 - 10 )
+Partition 11 (stderr.14_11 - 11 )
+Partition 12 (iftmp.4_12 - 12 )
+Partition 25 (pretmp_25 - 25 )
+Partition 26 (pretmp_26 - 26 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_1 - 1 12 )
+
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (iftmp.4_12 - 12 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(7000, 0) _1 <-> iftmp.4_12
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (iftmp.4_12 - 12 )
+
+Coalesce list: (1)_1 & (12)iftmp.4_12 [map: 0, 1] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 12 )
+Partition 1 (stderr.5_2 - 2 )
+Partition 2 (_nc_curr_line.6_3 - 3 )
+Partition 3 (stderr.8_4 - 4 )
+Partition 4 (_nc_curr_col.9_5 - 5 )
+Partition 5 (_7 - 7 )
+Partition 6 (_8 - 8 )
+Partition 7 (stderr.13_10 - 10 )
+Partition 8 (stderr.14_11 - 11 )
+Partition 9 (pretmp_25 - 25 )
+Partition 10 (pretmp_26 - 26 )
+
+
+Replacing Expressions
+stderr.5_2 replace with --> stderr.5_2 = stderr;
+
+stderr.8_4 replace with --> stderr.8_4 = stderr;
+
+_8 replace with --> _8 = *_7;
+
+stderr.13_10 replace with --> stderr.13_10 = stderr;
+
+stderr.14_11 replace with --> stderr.14_11 = stderr;
+
+pretmp_25 replace with --> pretmp_25 = stderr;
+
+pretmp_26 replace with --> pretmp_26 = stderr;
+
+
+void where_is_problem ()
+{
+  char * _1;
+  struct FILE * stderr.5_2;
+  int _nc_curr_line.6_3;
+  struct FILE * stderr.8_4;
+  int _nc_curr_col.9_5;
+  char * _7;
+  char _8;
+  struct FILE * stderr.13_10;
+  struct FILE * stderr.14_11;
+  char * iftmp.4_12;
+  struct FILE * pretmp_25;
+  struct FILE * pretmp_26;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _1 = _nc_globals.comp_sourcename;
+  if (_1 != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 4>; [30.00%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+;;                2
+  # iftmp.4_12 = PHI <_1(3), "?"(2)>
+  stderr.5_2 = stderr;
+  __fprintf_chk (stderr.5_2, 1, "\"%s\"", iftmp.4_12);
+  _nc_curr_line.6_3 = _nc_curr_line;
+  if (_nc_curr_line.6_3 > 0)
+    goto <bb 5>; [41.48%]
+  else
+    goto <bb 6>; [58.52%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  stderr.8_4 = stderr;
+  __fprintf_chk (stderr.8_4, 1, ", line %d", _nc_curr_line.6_3);
+;;    succ:       6
+
+;;   basic block 6, loop depth 0
+;;    pred:       4
+;;                5
+  _nc_curr_col.9_5 = _nc_curr_col;
+  if (_nc_curr_col.9_5 > 0)
+    goto <bb 7>; [41.48%]
+  else
+    goto <bb 8>; [58.52%]
+;;    succ:       7
+;;                8
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+  pretmp_25 = stderr;
+  __fprintf_chk (pretmp_25, 1, ", col %d", _nc_curr_col.9_5);
+;;    succ:       8
+
+;;   basic block 8, loop depth 0
+;;    pred:       6
+;;                7
+  _7 = _nc_globals.comp_termtype;
+  if (_7 != 0B)
+    goto <bb 9>; [70.00%]
+  else
+    goto <bb 11>; [30.00%]
+;;    succ:       9
+;;                11
+
+;;   basic block 9, loop depth 0
+;;    pred:       8
+  _8 = *_7;
+  if (_8 != 0)
+    goto <bb 10>; [33.00%]
+  else
+    goto <bb 11>; [67.00%]
+;;    succ:       10
+;;                11
+
+;;   basic block 10, loop depth 0
+;;    pred:       9
+  pretmp_26 = stderr;
+  __fprintf_chk (pretmp_26, 1, ", terminal \'%s\'", _7);
+;;    succ:       11
+
+;;   basic block 11, loop depth 0
+;;    pred:       9
+;;                10
+;;                8
+  stderr.13_10 = stderr;
+  fputc (58, stderr.13_10);
+  stderr.14_11 = stderr;
+  fputc (32, stderr.14_11); [tail call]
+  return;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB2->BB4 : PART.0 = "?"
+
+;; Generating RTL for gimple basic block 2
+
+;; _1 = _nc_globals.comp_sourcename;
+
+(insn 6 5 7 (set (reg/f:DI 93)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":104:31 -1
+     (nil))
+
+(insn 7 6 0 (set (reg/f:DI 82 [ _1 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 93)
+                (const_int 16 [0x10])) [1 _nc_globals.comp_sourcename+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":104:31 -1
+     (nil))
+
+;; if (_1 != 0B)
+
+(insn 8 7 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":104:5 -1
+     (nil))
+
+(jump_insn 9 8 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/comp_error.c":104:5 -1
+     (int_list:REG_BR_PROB 322122548 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; 
+
+(code_label 11 10 12 2 (nil) [0 uses])
+
+(note 12 11 0 NOTE_INSN_BASIC_BLOCK)
+
+;; __fprintf_chk (stderr.5_2, 1, "\"%s\"", iftmp.4_12);
+
+(insn 13 12 14 (set (reg:DI 94)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 14 13 15 (set (reg:DI 2 cx)
+        (reg/f:DI 82 [ _1 ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 15 14 16 (set (reg:DI 95)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f28b7e6c630 *.LC1>)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 16 15 17 (set (reg:DI 1 dx)
+        (reg:DI 95)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f28b7e6c630 *.LC1>)
+        (nil)))
+
+(insn 17 16 18 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 18 17 19 (set (reg:DI 5 di)
+        (reg:DI 94)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 19 18 20 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(call_insn 20 19 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>) [0 __builtin___fprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (nil)))))))
+
+;; _nc_curr_line.6_3 = _nc_curr_line;
+
+(insn 21 20 0 (set (reg:SI 84 [ _nc_curr_line.6_3 ])
+        (mem/c:SI (symbol_ref:DI ("_nc_curr_line") [flags 0x2]  <var_decl 0x7f28b8278000 _nc_curr_line>) [3 _nc_curr_line+0 S4 A32])) "../ncurses/./tinfo/comp_error.c":105:23 -1
+     (nil))
+
+;; if (_nc_curr_line.6_3 > 0)
+
+(insn 24 21 25 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 84 [ _nc_curr_line.6_3 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":105:8 -1
+     (nil))
+
+(jump_insn 25 24 0 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/comp_error.c":105:8 -1
+     (int_list:REG_BR_PROB 628353716 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; __fprintf_chk (stderr.8_4, 1, ", line %d", _nc_curr_line.6_3);
+
+(insn 27 26 28 (set (reg:DI 96)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 28 27 29 (set (reg:SI 2 cx)
+        (reg:SI 84 [ _nc_curr_line.6_3 ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 29 28 30 (set (reg:DI 97)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x7f28b7e6c6c0 *.LC2>)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 30 29 31 (set (reg:DI 1 dx)
+        (reg:DI 97)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x7f28b7e6c6c0 *.LC2>)
+        (nil)))
+
+(insn 31 30 32 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 32 31 33 (set (reg:DI 5 di)
+        (reg:DI 96)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 33 32 34 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(call_insn 34 33 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>) [0 __builtin___fprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:SI (use (reg:SI 2 cx))
+                        (nil)))))))
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 35 34 36 3 (nil) [0 uses])
+
+(note 36 35 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _nc_curr_col.9_5 = _nc_curr_col;
+
+(insn 37 36 0 (set (reg:SI 86 [ _nc_curr_col.9_5 ])
+        (mem/c:SI (symbol_ref:DI ("_nc_curr_col") [flags 0x2]  <var_decl 0x7f28b81e7240 _nc_curr_col>) [3 _nc_curr_col+0 S4 A32])) "../ncurses/./tinfo/comp_error.c":107:22 -1
+     (nil))
+
+;; if (_nc_curr_col.9_5 > 0)
+
+(insn 40 37 41 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 86 [ _nc_curr_col.9_5 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":107:8 -1
+     (nil))
+
+(jump_insn 41 40 0 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/comp_error.c":107:8 -1
+     (int_list:REG_BR_PROB 628353716 (nil)))
+
+;; Generating RTL for gimple basic block 7
+
+;; __fprintf_chk (pretmp_25, 1, ", col %d", _nc_curr_col.9_5);
+
+(insn 43 42 44 (set (reg:DI 98)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 44 43 45 (set (reg:SI 2 cx)
+        (reg:SI 86 [ _nc_curr_col.9_5 ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 45 44 46 (set (reg:DI 99)
+        (symbol_ref/f:DI ("*.LC3") [flags 0x2]  <var_decl 0x7f28b7e6c750 *.LC3>)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 46 45 47 (set (reg:DI 1 dx)
+        (reg:DI 99)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC3") [flags 0x2]  <var_decl 0x7f28b7e6c750 *.LC3>)
+        (nil)))
+
+(insn 47 46 48 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 48 47 49 (set (reg:DI 5 di)
+        (reg:DI 98)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 49 48 50 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(call_insn 50 49 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>) [0 __builtin___fprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:SI (use (reg:SI 2 cx))
+                        (nil)))))))
+
+;; Generating RTL for gimple basic block 8
+
+;; 
+
+(code_label 51 50 52 4 (nil) [0 uses])
+
+(note 52 51 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _7 = _nc_globals.comp_termtype;
+
+(insn 53 52 54 (set (reg/f:DI 100)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":109:9 -1
+     (nil))
+
+(insn 54 53 0 (set (reg/f:DI 87 [ _7 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 100)
+                (const_int 24 [0x18])) [1 _nc_globals.comp_termtype+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":109:9 -1
+     (nil))
+
+;; if (_7 != 0B)
+
+(insn 55 54 56 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 87 [ _7 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":109:8 -1
+     (nil))
+
+(jump_insn 56 55 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/comp_error.c":109:8 -1
+     (int_list:REG_BR_PROB 322122548 (nil)))
+
+;; Generating RTL for gimple basic block 9
+
+;; if (_8 != 0)
+
+(insn 58 57 59 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (reg/f:DI 87 [ _7 ]) [0 *_7+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":109:26 -1
+     (nil))
+
+(jump_insn 59 58 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/comp_error.c":109:26 -1
+     (int_list:REG_BR_PROB 719407028 (nil)))
+
+;; Generating RTL for gimple basic block 10
+
+;; __fprintf_chk (pretmp_26, 1, ", terminal \'%s\'", _7);
+
+(insn 61 60 62 (set (reg:DI 101)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 62 61 63 (set (reg:DI 2 cx)
+        (reg/f:DI 87 [ _7 ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 63 62 64 (set (reg:DI 102)
+        (symbol_ref/f:DI ("*.LC4") [flags 0x2]  <var_decl 0x7f28b7e6c7e0 *.LC4>)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 64 63 65 (set (reg:DI 1 dx)
+        (reg:DI 102)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC4") [flags 0x2]  <var_decl 0x7f28b7e6c7e0 *.LC4>)
+        (nil)))
+
+(insn 65 64 66 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 66 65 67 (set (reg:DI 5 di)
+        (reg:DI 101)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 67 66 68 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(call_insn 68 67 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>) [0 __builtin___fprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (nil)))))))
+
+;; Generating RTL for gimple basic block 11
+
+;; 
+
+(code_label 69 68 70 5 (nil) [0 uses])
+
+(note 70 69 0 NOTE_INSN_BASIC_BLOCK)
+
+;; fputc (58, stderr.13_10);
+
+(insn 71 70 72 (set (reg:DI 103)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":111:5 -1
+     (nil))
+
+(insn 72 71 73 (set (reg:DI 4 si)
+        (reg:DI 103)) "../ncurses/./tinfo/comp_error.c":111:5 -1
+     (nil))
+
+(insn 73 72 74 (set (reg:SI 5 di)
+        (const_int 58 [0x3a])) "../ncurses/./tinfo/comp_error.c":111:5 -1
+     (nil))
+
+(call_insn 74 73 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626300 fputc>) [0 __builtin_fputc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":111:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626300 fputc>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+;; fputc (32, stderr.14_11); [tail call]
+
+(insn 75 74 76 11 (set (reg:DI 104)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":112:5 -1
+     (nil))
+
+(insn 76 75 77 11 (set (reg:DI 4 si)
+        (reg:DI 104)) "../ncurses/./tinfo/comp_error.c":112:5 -1
+     (nil))
+
+(insn 77 76 78 11 (set (reg:SI 5 di)
+        (const_int 32 [0x20])) "../ncurses/./tinfo/comp_error.c":112:5 -1
+     (nil))
+
+(call_insn/j 78 77 79 11 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626300 fputc>) [0 __builtin_fputc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":112:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626300 fputc>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(barrier 79 78 0)
+Edge 2->4 redirected to 14
+Basic block 13 is marked unlikely by forward prop
+deleting block 13
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 2->4 to 6 failed.
+Forwarding edge 2->4 to 6 failed.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 2->4 to 6 failed.
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 4 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 2 7 2 (set (reg/f:DI 93)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":104:31 -1
+     (nil))
+(insn 7 6 8 2 (set (reg/f:DI 82 [ _1 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 93)
+                (const_int 16 [0x10])) [1 _nc_globals.comp_sourcename+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":104:31 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":104:5 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 85)
+            (pc))) "../ncurses/./tinfo/comp_error.c":104:5 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 85)
+;;  succ:       4 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+;;              5 [30.0% (guessed)]  count:322122544 (estimated locally)
+
+;; basic block 4, loop depth 0, count 751619280 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+(note 10 9 82 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 82 10 83 4 (set (pc)
+        (label_ref 11)) -1
+     (nil)
+ -> 11)
+;;  succ:       6 [always]  count:751619280 (estimated locally)
+
+(barrier 83 82 85)
+;; basic block 5, loop depth 0, count 322122544 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [30.0% (guessed)]  count:322122544 (estimated locally)
+(code_label 85 83 84 5 6 (nil) [1 uses])
+(note 84 85 3 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 3 84 11 5 (set (reg/f:DI 82 [ _1 ])
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f28b7e6c5a0 *.LC0>)) "../ncurses/./tinfo/comp_error.c":104:5 -1
+     (nil))
+;;  succ:       6 [always]  count:322122544 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [always]  count:322122544 (estimated locally) (FALLTHRU)
+;;              4 [always]  count:751619280 (estimated locally)
+(code_label 11 3 12 6 2 (nil) [1 uses])
+(note 12 11 13 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 13 12 14 6 (set (reg:DI 94)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 14 13 15 6 (set (reg:DI 2 cx)
+        (reg/f:DI 82 [ _1 ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 15 14 16 6 (set (reg:DI 95)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f28b7e6c630 *.LC1>)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 16 15 17 6 (set (reg:DI 1 dx)
+        (reg:DI 95)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f28b7e6c630 *.LC1>)
+        (nil)))
+(insn 17 16 18 6 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 18 17 19 6 (set (reg:DI 5 di)
+        (reg:DI 94)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 19 18 20 6 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(call_insn 20 19 21 6 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>) [0 __builtin___fprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (nil)))))))
+(insn 21 20 24 6 (set (reg:SI 84 [ _nc_curr_line.6_3 ])
+        (mem/c:SI (symbol_ref:DI ("_nc_curr_line") [flags 0x2]  <var_decl 0x7f28b8278000 _nc_curr_line>) [3 _nc_curr_line+0 S4 A32])) "../ncurses/./tinfo/comp_error.c":105:23 -1
+     (nil))
+(insn 24 21 25 6 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 84 [ _nc_curr_line.6_3 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":105:8 -1
+     (nil))
+(jump_insn 25 24 26 6 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 35)
+            (pc))) "../ncurses/./tinfo/comp_error.c":105:8 -1
+     (int_list:REG_BR_PROB 628353716 (nil))
+ -> 35)
+;;  succ:       7 [41.5% (guessed)]  count:445388112 (estimated locally) (FALLTHRU)
+;;              8 [58.5% (guessed)]  count:628353712 (estimated locally)
+
+;; basic block 7, loop depth 0, count 445388112 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [41.5% (guessed)]  count:445388112 (estimated locally) (FALLTHRU)
+(note 26 25 27 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 27 26 28 7 (set (reg:DI 96)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 28 27 29 7 (set (reg:SI 2 cx)
+        (reg:SI 84 [ _nc_curr_line.6_3 ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 29 28 30 7 (set (reg:DI 97)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x7f28b7e6c6c0 *.LC2>)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 30 29 31 7 (set (reg:DI 1 dx)
+        (reg:DI 97)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x7f28b7e6c6c0 *.LC2>)
+        (nil)))
+(insn 31 30 32 7 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 32 31 33 7 (set (reg:DI 5 di)
+        (reg:DI 96)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 33 32 34 7 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(call_insn 34 33 35 7 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>) [0 __builtin___fprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:SI (use (reg:SI 2 cx))
+                        (nil)))))))
+;;  succ:       8 [always]  count:445388112 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [58.5% (guessed)]  count:628353712 (estimated locally)
+;;              7 [always]  count:445388112 (estimated locally) (FALLTHRU)
+(code_label 35 34 36 8 3 (nil) [1 uses])
+(note 36 35 37 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 37 36 40 8 (set (reg:SI 86 [ _nc_curr_col.9_5 ])
+        (mem/c:SI (symbol_ref:DI ("_nc_curr_col") [flags 0x2]  <var_decl 0x7f28b81e7240 _nc_curr_col>) [3 _nc_curr_col+0 S4 A32])) "../ncurses/./tinfo/comp_error.c":107:22 -1
+     (nil))
+(insn 40 37 41 8 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 86 [ _nc_curr_col.9_5 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":107:8 -1
+     (nil))
+(jump_insn 41 40 42 8 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 51)
+            (pc))) "../ncurses/./tinfo/comp_error.c":107:8 -1
+     (int_list:REG_BR_PROB 628353716 (nil))
+ -> 51)
+;;  succ:       9 [41.5% (guessed)]  count:445388112 (estimated locally) (FALLTHRU)
+;;              10 [58.5% (guessed)]  count:628353712 (estimated locally)
+
+;; basic block 9, loop depth 0, count 445388112 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [41.5% (guessed)]  count:445388112 (estimated locally) (FALLTHRU)
+(note 42 41 43 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 43 42 44 9 (set (reg:DI 98)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 44 43 45 9 (set (reg:SI 2 cx)
+        (reg:SI 86 [ _nc_curr_col.9_5 ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 45 44 46 9 (set (reg:DI 99)
+        (symbol_ref/f:DI ("*.LC3") [flags 0x2]  <var_decl 0x7f28b7e6c750 *.LC3>)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 46 45 47 9 (set (reg:DI 1 dx)
+        (reg:DI 99)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC3") [flags 0x2]  <var_decl 0x7f28b7e6c750 *.LC3>)
+        (nil)))
+(insn 47 46 48 9 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 48 47 49 9 (set (reg:DI 5 di)
+        (reg:DI 98)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 49 48 50 9 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(call_insn 50 49 51 9 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>) [0 __builtin___fprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:SI (use (reg:SI 2 cx))
+                        (nil)))))))
+;;  succ:       10 [always]  count:445388112 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [58.5% (guessed)]  count:628353712 (estimated locally)
+;;              9 [always]  count:445388112 (estimated locally) (FALLTHRU)
+(code_label 51 50 52 10 4 (nil) [1 uses])
+(note 52 51 53 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 53 52 54 10 (set (reg/f:DI 100)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":109:9 -1
+     (nil))
+(insn 54 53 55 10 (set (reg/f:DI 87 [ _7 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 100)
+                (const_int 24 [0x18])) [1 _nc_globals.comp_termtype+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":109:9 -1
+     (nil))
+(insn 55 54 56 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 87 [ _7 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":109:8 -1
+     (nil))
+(jump_insn 56 55 57 10 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 69)
+            (pc))) "../ncurses/./tinfo/comp_error.c":109:8 -1
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 69)
+;;  succ:       11 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+;;              13 [30.0% (guessed)]  count:322122544 (estimated locally)
+
+;; basic block 11, loop depth 0, count 751619281 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       10 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+(note 57 56 58 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 58 57 59 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (reg/f:DI 87 [ _7 ]) [0 *_7+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":109:26 -1
+     (nil))
+(jump_insn 59 58 60 11 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 69)
+            (pc))) "../ncurses/./tinfo/comp_error.c":109:26 -1
+     (int_list:REG_BR_PROB 719407028 (nil))
+ -> 69)
+;;  succ:       12 [33.0% (guessed)]  count:248034361 (estimated locally) (FALLTHRU)
+;;              13 [67.0% (guessed)]  count:503584920 (estimated locally)
+
+;; basic block 12, loop depth 0, count 248034361 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       11 [33.0% (guessed)]  count:248034361 (estimated locally) (FALLTHRU)
+(note 60 59 61 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 61 60 62 12 (set (reg:DI 101)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 62 61 63 12 (set (reg:DI 2 cx)
+        (reg/f:DI 87 [ _7 ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 63 62 64 12 (set (reg:DI 102)
+        (symbol_ref/f:DI ("*.LC4") [flags 0x2]  <var_decl 0x7f28b7e6c7e0 *.LC4>)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 64 63 65 12 (set (reg:DI 1 dx)
+        (reg:DI 102)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC4") [flags 0x2]  <var_decl 0x7f28b7e6c7e0 *.LC4>)
+        (nil)))
+(insn 65 64 66 12 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 66 65 67 12 (set (reg:DI 5 di)
+        (reg:DI 101)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 67 66 68 12 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(call_insn 68 67 69 12 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>) [0 __builtin___fprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (nil)))))))
+;;  succ:       13 [always]  count:248034361 (estimated locally) (FALLTHRU)
+
+;; basic block 13, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 12, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       11 [67.0% (guessed)]  count:503584920 (estimated locally)
+;;              12 [always]  count:248034361 (estimated locally) (FALLTHRU)
+;;              10 [30.0% (guessed)]  count:322122544 (estimated locally)
+(code_label 69 68 70 13 5 (nil) [2 uses])
+(note 70 69 71 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 71 70 72 13 (set (reg:DI 103)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":111:5 -1
+     (nil))
+(insn 72 71 73 13 (set (reg:DI 4 si)
+        (reg:DI 103)) "../ncurses/./tinfo/comp_error.c":111:5 -1
+     (nil))
+(insn 73 72 74 13 (set (reg:SI 5 di)
+        (const_int 58 [0x3a])) "../ncurses/./tinfo/comp_error.c":111:5 -1
+     (nil))
+(call_insn 74 73 75 13 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626300 fputc>) [0 __builtin_fputc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":111:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626300 fputc>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 75 74 76 13 (set (reg:DI 104)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":112:5 -1
+     (nil))
+(insn 76 75 77 13 (set (reg:DI 4 si)
+        (reg:DI 104)) "../ncurses/./tinfo/comp_error.c":112:5 -1
+     (nil))
+(insn 77 76 78 13 (set (reg:SI 5 di)
+        (const_int 32 [0x20])) "../ncurses/./tinfo/comp_error.c":112:5 -1
+     (nil))
+(call_insn/j 78 77 79 13 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626300 fputc>) [0 __builtin_fputc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":112:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626300 fputc>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 79 78 0)
+
+;; Function _nc_get_source (_nc_get_source, funcdef_no=91, decl_uid=9106, cgraph_uid=92, symbol_order=94)
+
+__attribute__((visibility ("default")))
+const char * _nc_get_source ()
+{
+  const char * _2;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _2 = _nc_globals.comp_sourcename;
+  return _2;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 2 (_2 - 2 )
+Partition 3 (_3(D) - 3 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_2 - 2 3 )
+
+
+Partition map 
+
+Partition 0 (_2 - 2 )
+Partition 1 (_3(D) - 3 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) _2 <-> _3(D)
+
+Partition map 
+
+Partition 0 (_2 - 2 )
+Partition 1 (_3(D) - 3 )
+
+Coalesce list: (2)_2 & (3)_3(D) [map: 0, 1] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_2 - 2 3 )
+
+
+Replacing Expressions
+_2 replace with --> _2 = _nc_globals.comp_sourcename;
+
+
+__attribute__((visibility ("default")))
+const char * _nc_get_source ()
+{
+  const char * _2;
+  const char * _3(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _2 = _nc_globals.comp_sourcename;
+  return _2;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; return _2;
+
+(insn 5 4 6 (set (reg/f:DI 84)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":57:12 -1
+     (nil))
+
+(insn 6 5 7 (set (reg/f:DI 85)
+        (mem/f/c:DI (plus:DI (reg/f:DI 84)
+                (const_int 16 [0x10])) [1 _nc_globals.comp_sourcename+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":57:12 -1
+     (nil))
+
+(insn 7 6 8 (set (reg/f:DI 82 [ <retval> ])
+        (reg/f:DI 85)) "../ncurses/./tinfo/comp_error.c":57:12 -1
+     (nil))
+
+(jump_insn 8 7 9 (set (pc)
+        (label_ref 0)) "../ncurses/./tinfo/comp_error.c":57:12 -1
+     (nil))
+
+(barrier 9 8 0)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 8.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 3 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg/f:DI 84)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":57:12 -1
+     (nil))
+(insn 6 5 7 2 (set (reg/f:DI 85)
+        (mem/f/c:DI (plus:DI (reg/f:DI 84)
+                (const_int 16 [0x10])) [1 _nc_globals.comp_sourcename+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":57:12 -1
+     (nil))
+(insn 7 6 11 2 (set (reg/f:DI 82 [ <retval> ])
+        (reg/f:DI 85)) "../ncurses/./tinfo/comp_error.c":57:12 -1
+     (nil))
+(insn 11 7 12 2 (set (reg/i:DI 0 ax)
+        (reg/f:DI 82 [ <retval> ])) "../ncurses/./tinfo/comp_error.c":58:1 -1
+     (nil))
+(insn 12 11 0 2 (use (reg/i:DI 0 ax)) "../ncurses/./tinfo/comp_error.c":58:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+
+;; Function _nc_set_source (_nc_set_source, funcdef_no=92, decl_uid=9112, cgraph_uid=93, symbol_order=95)
+
+__attribute__((visibility ("default")))
+void _nc_set_source (const char * const name)
+{
+  char * _3;
+  int _4;
+  char * _5;
+  char * pretmp_16;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  pretmp_16 = _nc_globals.comp_sourcename;
+  if (name_7(D) == 0B)
+    goto <bb 3>; [17.43%]
+  else
+    goto <bb 4>; [82.57%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  free (pretmp_16);
+  _nc_globals.comp_sourcename = 0B;
+  goto <bb 8>; [100.00%]
+;;    succ:       8
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+  if (pretmp_16 == 0B)
+    goto <bb 5>; [17.43%]
+  else
+    goto <bb 6>; [82.57%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  _3 = strdup (name_7(D));
+  _nc_globals.comp_sourcename = _3;
+  goto <bb 8>; [100.00%]
+;;    succ:       8
+
+;;   basic block 6, loop depth 0
+;;    pred:       4
+  _4 = strcmp (name_7(D), pretmp_16);
+  if (_4 != 0)
+    goto <bb 7>; [33.00%]
+  else
+    goto <bb 8>; [67.00%]
+;;    succ:       7
+;;                8
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+  free (pretmp_16);
+  _5 = strdup (name_7(D));
+  _nc_globals.comp_sourcename = _5;
+;;    succ:       8
+
+;;   basic block 8, loop depth 0
+;;    pred:       3
+;;                5
+;;                6
+;;                7
+  return;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 3 (_3 - 3 )
+Partition 4 (_4 - 4 )
+Partition 5 (_5 - 5 )
+Partition 7 (name_7(D) - 7 )
+Partition 16 (pretmp_16 - 16 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (name_7(D) - 7 )
+
+
+Partition map 
+
+Partition 0 (name_7(D) - 7 )
+
+
+Conflict graph:
+
+After sorting:
+Coalesce List:
+
+Partition map 
+
+Partition 0 (name_7(D) - 7 )
+
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_3 - 3 )
+Partition 1 (_4 - 4 )
+Partition 2 (_5 - 5 )
+Partition 3 (name_7(D) - 7 )
+Partition 4 (pretmp_16 - 16 )
+
+__attribute__((visibility ("default")))
+void _nc_set_source (const char * const name)
+{
+  char * _3;
+  int _4;
+  char * _5;
+  char * pretmp_16;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  pretmp_16 = _nc_globals.comp_sourcename;
+  if (name_7(D) == 0B)
+    goto <bb 3>; [17.43%]
+  else
+    goto <bb 4>; [82.57%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  free (pretmp_16);
+  _nc_globals.comp_sourcename = 0B;
+  goto <bb 8>; [100.00%]
+;;    succ:       8
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+  if (pretmp_16 == 0B)
+    goto <bb 5>; [17.43%]
+  else
+    goto <bb 6>; [82.57%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  _3 = strdup (name_7(D));
+  _nc_globals.comp_sourcename = _3;
+  goto <bb 8>; [100.00%]
+;;    succ:       8
+
+;;   basic block 6, loop depth 0
+;;    pred:       4
+  _4 = strcmp (name_7(D), pretmp_16);
+  if (_4 != 0)
+    goto <bb 7>; [33.00%]
+  else
+    goto <bb 8>; [67.00%]
+;;    succ:       7
+;;                8
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+  free (pretmp_16);
+  _5 = strdup (name_7(D));
+  _nc_globals.comp_sourcename = _5;
+;;    succ:       8
+
+;;   basic block 8, loop depth 0
+;;    pred:       3
+;;                5
+;;                6
+;;                7
+  return;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; pretmp_16 = _nc_globals.comp_sourcename;
+
+(insn 6 5 7 (set (reg/f:DI 87)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":64:7 -1
+     (nil))
+
+(insn 7 6 0 (set (reg/f:DI 85 [ pretmp_16 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 87)
+                (const_int 16 [0x10])) [1 _nc_globals.comp_sourcename+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":64:7 -1
+     (nil))
+
+;; if (name_7(D) == 0B)
+
+(insn 8 7 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 86 [ name ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":63:8 -1
+     (nil))
+
+(jump_insn 9 8 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/comp_error.c":63:8 -1
+     (int_list:REG_BR_PROB 886588628 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; free (pretmp_16);
+
+(insn 11 10 12 (set (reg:DI 5 di)
+        (reg/f:DI 85 [ pretmp_16 ])) "../ncurses/./tinfo/comp_error.c":64:2 -1
+     (nil))
+
+(call_insn 12 11 0 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f28b863fd00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/comp_error.c":64:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f28b863fd00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; _nc_globals.comp_sourcename = 0B;
+
+(insn 13 12 14 (set (reg/f:DI 88)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":65:13 -1
+     (nil))
+
+(insn 14 13 0 (set (mem/f/c:DI (plus:DI (reg/f:DI 88)
+                (const_int 16 [0x10])) [1 _nc_globals.comp_sourcename+0 S8 A64])
+        (const_int 0 [0])) "../ncurses/./tinfo/comp_error.c":65:13 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 4
+
+;; 
+
+(code_label 17 16 18 15 (nil) [0 uses])
+
+(note 18 17 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (pretmp_16 == 0B)
+
+(insn 19 18 20 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 85 [ pretmp_16 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":66:15 -1
+     (nil))
+
+(jump_insn 20 19 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/comp_error.c":66:15 -1
+     (int_list:REG_BR_PROB 886588628 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; _3 = strdup (name_7(D));
+
+(insn 22 21 23 (set (reg:DI 5 di)
+        (reg/v/f:DI 86 [ name ])) "../ncurses/./tinfo/comp_error.c":67:15 -1
+     (nil))
+
+(call_insn 23 22 24 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strdup") [flags 0x41]  <function_decl 0x7f28b8620300 strdup>) [0 __builtin_strdup S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":67:15 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("strdup") [flags 0x41]  <function_decl 0x7f28b8620300 strdup>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+(insn 24 23 25 (set (reg/f:DI 89)
+        (reg:DI 0 ax)) "../ncurses/./tinfo/comp_error.c":67:15 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 89)
+        (nil)))
+
+(insn 25 24 0 (set (reg/f:DI 82 [ _3 ])
+        (reg/f:DI 89)) "../ncurses/./tinfo/comp_error.c":67:15 -1
+     (nil))
+
+;; _nc_globals.comp_sourcename = _3;
+
+(insn 26 25 27 (set (reg/f:DI 90)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":67:13 -1
+     (nil))
+
+(insn 27 26 0 (set (mem/f/c:DI (plus:DI (reg/f:DI 90)
+                (const_int 16 [0x10])) [1 _nc_globals.comp_sourcename+0 S8 A64])
+        (reg/f:DI 82 [ _3 ])) "../ncurses/./tinfo/comp_error.c":67:13 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 30 29 31 17 (nil) [0 uses])
+
+(note 31 30 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _4 = strcmp (name_7(D), pretmp_16);
+
+(insn 32 31 33 (set (reg:DI 4 si)
+        (reg/f:DI 85 [ pretmp_16 ])) "../ncurses/./tinfo/comp_error.c":68:16 -1
+     (nil))
+
+(insn 33 32 34 (set (reg:DI 5 di)
+        (reg/v/f:DI 86 [ name ])) "../ncurses/./tinfo/comp_error.c":68:16 -1
+     (nil))
+
+(call_insn/i 34 33 35 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f28b861dd00 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":68:16 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f28b861dd00 strcmp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 35 34 0 (set (reg:SI 83 [ _4 ])
+        (reg:SI 0 ax)) "../ncurses/./tinfo/comp_error.c":68:16 -1
+     (nil))
+
+;; if (_4 != 0)
+
+(insn 36 35 37 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 83 [ _4 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":68:15 -1
+     (nil))
+
+(jump_insn 37 36 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/comp_error.c":68:15 -1
+     (int_list:REG_BR_PROB 719407028 (nil)))
+
+;; Generating RTL for gimple basic block 7
+
+;; free (pretmp_16);
+
+(insn 39 38 40 (set (reg:DI 5 di)
+        (reg/f:DI 85 [ pretmp_16 ])) "../ncurses/./tinfo/comp_error.c":69:2 -1
+     (nil))
+
+(call_insn 40 39 0 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f28b863fd00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/comp_error.c":69:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f28b863fd00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; _5 = strdup (name_7(D));
+
+(insn 41 40 42 (set (reg:DI 5 di)
+        (reg/v/f:DI 86 [ name ])) "../ncurses/./tinfo/comp_error.c":70:15 -1
+     (nil))
+
+(call_insn 42 41 43 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strdup") [flags 0x41]  <function_decl 0x7f28b8620300 strdup>) [0 __builtin_strdup S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":70:15 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("strdup") [flags 0x41]  <function_decl 0x7f28b8620300 strdup>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+(insn 43 42 44 (set (reg/f:DI 91)
+        (reg:DI 0 ax)) "../ncurses/./tinfo/comp_error.c":70:15 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 91)
+        (nil)))
+
+(insn 44 43 0 (set (reg/f:DI 84 [ _5 ])
+        (reg/f:DI 91)) "../ncurses/./tinfo/comp_error.c":70:15 -1
+     (nil))
+
+;; _nc_globals.comp_sourcename = _5;
+
+(insn 45 44 46 (set (reg/f:DI 92)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":70:13 -1
+     (nil))
+
+(insn 46 45 0 (set (mem/f/c:DI (plus:DI (reg/f:DI 92)
+                (const_int 16 [0x10])) [1 _nc_globals.comp_sourcename+0 S8 A64])
+        (reg/f:DI 84 [ _5 ])) "../ncurses/./tinfo/comp_error.c":70:13 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 8
+
+;; 
+
+(code_label 47 46 48 16 (nil) [0 uses])
+
+(note 48 47 0 NOTE_INSN_BASIC_BLOCK)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 15 from 9 to 10.
+Redirecting jump 28 from 9 to 10.
+Edge 7->9 redirected to 10
+Merging block 9 into block 8...
+Merged blocks 8 and 9.
+Merged 8 and 9 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741823 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741823 (estimated locally) (FALLTHRU)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 86 [ name ])
+        (reg:DI 5 di [ name ])) "../ncurses/./tinfo/comp_error.c":62:1 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg/f:DI 87)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":64:7 -1
+     (nil))
+(insn 7 6 8 2 (set (reg/f:DI 85 [ pretmp_16 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 87)
+                (const_int 16 [0x10])) [1 _nc_globals.comp_sourcename+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":64:7 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 86 [ name ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":63:8 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 17)
+            (pc))) "../ncurses/./tinfo/comp_error.c":63:8 -1
+     (int_list:REG_BR_PROB 886588628 (nil))
+ -> 17)
+;;  succ:       4 [17.4% (guessed)]  count:187153200 (estimated locally) (FALLTHRU)
+;;              5 [82.6% (guessed)]  count:886588623 (estimated locally)
+
+;; basic block 4, loop depth 0, count 187153200 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [17.4% (guessed)]  count:187153200 (estimated locally) (FALLTHRU)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (set (reg:DI 5 di)
+        (reg/f:DI 85 [ pretmp_16 ])) "../ncurses/./tinfo/comp_error.c":64:2 -1
+     (nil))
+(call_insn 12 11 13 4 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f28b863fd00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/comp_error.c":64:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f28b863fd00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 13 12 14 4 (set (reg/f:DI 88)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":65:13 -1
+     (nil))
+(insn 14 13 15 4 (set (mem/f/c:DI (plus:DI (reg/f:DI 88)
+                (const_int 16 [0x10])) [1 _nc_globals.comp_sourcename+0 S8 A64])
+        (const_int 0 [0])) "../ncurses/./tinfo/comp_error.c":65:13 -1
+     (nil))
+(jump_insn 15 14 16 4 (set (pc)
+        (label_ref:DI 49)) 807 {jump}
+     (nil)
+ -> 49)
+;;  succ:       10 [always]  count:187153200 (estimated locally)
+
+(barrier 16 15 17)
+;; basic block 5, loop depth 0, count 886588623 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [82.6% (guessed)]  count:886588623 (estimated locally)
+(code_label 17 16 18 5 15 (nil) [1 uses])
+(note 18 17 19 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 85 [ pretmp_16 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":66:15 -1
+     (nil))
+(jump_insn 20 19 21 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 30)
+            (pc))) "../ncurses/./tinfo/comp_error.c":66:15 -1
+     (int_list:REG_BR_PROB 886588628 (nil))
+ -> 30)
+;;  succ:       6 [17.4% (guessed)]  count:154532397 (estimated locally) (FALLTHRU)
+;;              7 [82.6% (guessed)]  count:732056226 (estimated locally)
+
+;; basic block 6, loop depth 0, count 154532397 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [17.4% (guessed)]  count:154532397 (estimated locally) (FALLTHRU)
+(note 21 20 22 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 23 6 (set (reg:DI 5 di)
+        (reg/v/f:DI 86 [ name ])) "../ncurses/./tinfo/comp_error.c":67:15 -1
+     (nil))
+(call_insn 23 22 24 6 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strdup") [flags 0x41]  <function_decl 0x7f28b8620300 strdup>) [0 __builtin_strdup S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":67:15 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("strdup") [flags 0x41]  <function_decl 0x7f28b8620300 strdup>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 24 23 25 6 (set (reg/f:DI 89)
+        (reg:DI 0 ax)) "../ncurses/./tinfo/comp_error.c":67:15 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 89)
+        (nil)))
+(insn 25 24 26 6 (set (reg/f:DI 82 [ _3 ])
+        (reg/f:DI 89)) "../ncurses/./tinfo/comp_error.c":67:15 -1
+     (nil))
+(insn 26 25 27 6 (set (reg/f:DI 90)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":67:13 -1
+     (nil))
+(insn 27 26 28 6 (set (mem/f/c:DI (plus:DI (reg/f:DI 90)
+                (const_int 16 [0x10])) [1 _nc_globals.comp_sourcename+0 S8 A64])
+        (reg/f:DI 82 [ _3 ])) "../ncurses/./tinfo/comp_error.c":67:13 -1
+     (nil))
+(jump_insn 28 27 29 6 (set (pc)
+        (label_ref:DI 49)) 807 {jump}
+     (nil)
+ -> 49)
+;;  succ:       10 [always]  count:154532397 (estimated locally)
+
+(barrier 29 28 30)
+;; basic block 7, loop depth 0, count 732056227 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [82.6% (guessed)]  count:732056226 (estimated locally)
+(code_label 30 29 31 7 17 (nil) [1 uses])
+(note 31 30 32 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 32 31 33 7 (set (reg:DI 4 si)
+        (reg/f:DI 85 [ pretmp_16 ])) "../ncurses/./tinfo/comp_error.c":68:16 -1
+     (nil))
+(insn 33 32 34 7 (set (reg:DI 5 di)
+        (reg/v/f:DI 86 [ name ])) "../ncurses/./tinfo/comp_error.c":68:16 -1
+     (nil))
+(call_insn/i 34 33 35 7 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f28b861dd00 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":68:16 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f28b861dd00 strcmp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 35 34 36 7 (set (reg:SI 83 [ _4 ])
+        (reg:SI 0 ax)) "../ncurses/./tinfo/comp_error.c":68:16 -1
+     (nil))
+(insn 36 35 37 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 83 [ _4 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":68:15 -1
+     (nil))
+(jump_insn 37 36 38 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 49)
+            (pc))) "../ncurses/./tinfo/comp_error.c":68:15 806 {*jcc}
+     (int_list:REG_BR_PROB 719407028 (nil))
+ -> 49)
+;;  succ:       8 [33.0% (guessed)]  count:241578554 (estimated locally) (FALLTHRU)
+;;              10 [67.0% (guessed)]  count:490477673 (estimated locally)
+
+;; basic block 8, loop depth 0, count 241578553 (estimated locally), maybe hot
+;;  prev block 7, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [33.0% (guessed)]  count:241578554 (estimated locally) (FALLTHRU)
+(note 38 37 39 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 39 38 40 8 (set (reg:DI 5 di)
+        (reg/f:DI 85 [ pretmp_16 ])) "../ncurses/./tinfo/comp_error.c":69:2 -1
+     (nil))
+(call_insn 40 39 41 8 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f28b863fd00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/comp_error.c":69:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f28b863fd00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 41 40 42 8 (set (reg:DI 5 di)
+        (reg/v/f:DI 86 [ name ])) "../ncurses/./tinfo/comp_error.c":70:15 -1
+     (nil))
+(call_insn 42 41 43 8 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strdup") [flags 0x41]  <function_decl 0x7f28b8620300 strdup>) [0 __builtin_strdup S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":70:15 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("strdup") [flags 0x41]  <function_decl 0x7f28b8620300 strdup>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 43 42 44 8 (set (reg/f:DI 91)
+        (reg:DI 0 ax)) "../ncurses/./tinfo/comp_error.c":70:15 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 91)
+        (nil)))
+(insn 44 43 45 8 (set (reg/f:DI 84 [ _5 ])
+        (reg/f:DI 91)) "../ncurses/./tinfo/comp_error.c":70:15 -1
+     (nil))
+(insn 45 44 46 8 (set (reg/f:DI 92)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":70:13 -1
+     (nil))
+(insn 46 45 49 8 (set (mem/f/c:DI (plus:DI (reg/f:DI 92)
+                (const_int 16 [0x10])) [1 _nc_globals.comp_sourcename+0 S8 A64])
+        (reg/f:DI 84 [ _5 ])) "../ncurses/./tinfo/comp_error.c":70:13 -1
+     (nil))
+;;  succ:       10 [always]  count:241578553 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       8 [always]  count:241578553 (estimated locally) (FALLTHRU)
+;;              4 [always]  count:187153200 (estimated locally)
+;;              6 [always]  count:154532397 (estimated locally)
+;;              7 [67.0% (guessed)]  count:490477673 (estimated locally)
+(code_label 49 46 50 10 14 (nil) [3 uses])
+(note 50 49 0 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+
+;; Function _nc_set_type (_nc_set_type, funcdef_no=93, decl_uid=9114, cgraph_uid=94, symbol_order=96)
+
+__attribute__((visibility ("default")))
+void _nc_set_type (const char * const name)
+{
+  char * _1;
+  void * _2;
+  char * _4;
+  char * _14;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _1 = _nc_globals.comp_termtype;
+  if (_1 == 0B)
+    goto <bb 3>; [17.43%]
+  else
+    goto <bb 5>; [82.57%]
+;;    succ:       3
+;;                5
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _2 = malloc (513);
+  _nc_globals.comp_termtype = _2;
+  if (_2 != 0B)
+    goto <bb 5>; [0.00%]
+  else
+    goto <bb 4>; [100.00%]
+;;    succ:       5
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+;;                5
+  goto <bb 7>; [100.00%]
+;;    succ:       7
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+;;                2
+  # _14 = PHI <_2(3), _1(2)>
+  *_14 = 0;
+  if (name_11(D) != 0B)
+    goto <bb 6>; [53.47%]
+  else
+    goto <bb 4>; [46.53%]
+;;    succ:       6
+;;                4
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  _4 = _nc_globals.comp_termtype;
+  __builtin_strncat (_4, name_11(D), 512); [tail call]
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       4
+;;                6
+  return;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 4 (_4 - 4 )
+Partition 11 (name_11(D) - 11 )
+Partition 14 (_14 - 14 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_1 - 1 2 14 )
+Partition 2, base 1 (name_11(D) - 11 )
+
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_2 - 2 )
+Partition 2 (name_11(D) - 11 )
+Partition 3 (_14 - 14 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(16514, 0) _1 <-> _14
+(2, 0) _2 <-> _14
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_2 - 2 )
+Partition 2 (name_11(D) - 11 )
+Partition 3 (_14 - 14 )
+
+Coalesce list: (1)_1 & (14)_14 [map: 0, 3] : Success -> 0
+Coalesce list: (2)_2 & (14)_1 [map: 1, 0] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 2 14 )
+Partition 1 (_4 - 4 )
+Partition 2 (name_11(D) - 11 )
+
+
+Replacing Expressions
+_4 replace with --> _4 = _nc_globals.comp_termtype;
+
+
+__attribute__((visibility ("default")))
+void _nc_set_type (const char * const name)
+{
+  char * _1;
+  void * _2;
+  char * _4;
+  char * _14;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _1 = _nc_globals.comp_termtype;
+  if (_1 == 0B)
+    goto <bb 3>; [17.43%]
+  else
+    goto <bb 5>; [82.57%]
+;;    succ:       3
+;;                5
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _2 = malloc (513);
+  _nc_globals.comp_termtype = _2;
+  if (_2 != 0B)
+    goto <bb 5>; [0.00%]
+  else
+    goto <bb 4>; [100.00%]
+;;    succ:       5
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+;;                5
+  goto <bb 7>; [100.00%]
+;;    succ:       7
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+;;                2
+  # _14 = PHI <_2(3), _1(2)>
+  *_14 = 0;
+  if (name_11(D) != 0B)
+    goto <bb 6>; [53.47%]
+  else
+    goto <bb 4>; [46.53%]
+;;    succ:       6
+;;                4
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  _4 = _nc_globals.comp_termtype;
+  __builtin_strncat (_4, name_11(D), 512); [tail call]
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       4
+;;                6
+  return;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; _1 = _nc_globals.comp_termtype;
+
+(insn 6 5 7 (set (reg/f:DI 85)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":78:9 -1
+     (nil))
+
+(insn 7 6 0 (set (reg/f:DI 82 [ _1 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 85)
+                (const_int 24 [0x18])) [1 _nc_globals.comp_termtype+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":78:9 -1
+     (nil))
+
+;; if (_1 == 0B)
+
+(insn 8 7 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":78:8 -1
+     (nil))
+
+(jump_insn 9 8 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/comp_error.c":78:8 -1
+     (int_list:REG_BR_PROB 886588628 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _2 = malloc (513);
+
+(insn 11 10 12 (set (reg:DI 5 di)
+        (const_int 513 [0x201])) "../ncurses/./tinfo/comp_error.c":79:13 -1
+     (nil))
+
+(call_insn 12 11 13 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x7f28b8646800 malloc>) [0 __builtin_malloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":79:13 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x7f28b8646800 malloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+(insn 13 12 14 (set (reg/f:DI 86)
+        (reg:DI 0 ax)) "../ncurses/./tinfo/comp_error.c":79:13 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 86)
+        (nil)))
+
+(insn 14 13 0 (set (reg/f:DI 82 [ _1 ])
+        (reg/f:DI 86)) "../ncurses/./tinfo/comp_error.c":79:13 -1
+     (nil))
+
+;; _nc_globals.comp_termtype = _2;
+
+(insn 15 14 16 (set (reg/f:DI 87)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":79:11 -1
+     (nil))
+
+(insn 16 15 0 (set (mem/f/c:DI (plus:DI (reg/f:DI 87)
+                (const_int 24 [0x18])) [1 _nc_globals.comp_termtype+0 S8 A64])
+        (reg/f:DI 82 [ _1 ])) "../ncurses/./tinfo/comp_error.c":79:11 -1
+     (nil))
+
+;; if (_2 != 0B)
+
+(insn 17 16 18 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":80:8 -1
+     (nil))
+
+(jump_insn 18 17 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/comp_error.c":80:8 -1
+     (int_list:REG_BR_PROB 4 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; 
+
+(code_label 22 21 23 26 (nil) [0 uses])
+
+(note 23 22 0 NOTE_INSN_BASIC_BLOCK)
+
+;; *_14 = 0;
+
+(insn 24 23 0 (set (mem:QI (reg/f:DI 82 [ _1 ]) [0 *_14+0 S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/comp_error.c":81:14 -1
+     (nil))
+
+;; if (name_11(D) != 0B)
+
+(insn 26 24 27 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 84 [ name ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":82:5 -1
+     (nil))
+
+(jump_insn 27 26 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 25)
+            (pc))) "../ncurses/./tinfo/comp_error.c":82:5 -1
+     (int_list:REG_BR_PROB 499612076 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; __builtin_strncat (_4, name_11(D), 512); [tail call]
+
+(insn 29 28 30 6 (set (reg/f:DI 88)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":83:6 -1
+     (nil))
+
+(insn 30 29 31 6 (set (reg:DI 89)
+        (mem/f/c:DI (plus:DI (reg/f:DI 88)
+                (const_int 24 [0x18])) [1 _nc_globals.comp_termtype+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":138:10 -1
+     (nil))
+
+(insn 31 30 32 6 (set (reg:DI 1 dx)
+        (const_int 512 [0x200])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":138:10 -1
+     (nil))
+
+(insn 32 31 33 6 (set (reg:DI 4 si)
+        (reg/v/f:DI 84 [ name ])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":138:10 -1
+     (nil))
+
+(insn 33 32 34 6 (set (reg:DI 5 di)
+        (reg:DI 89)) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":138:10 -1
+     (nil))
+
+(call_insn/j 34 33 35 6 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strncat") [flags 0x41]  <function_decl 0x7f28b8620a00 __builtin_strncat>) [0 __builtin_strncat S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":138:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("strncat") [flags 0x41]  <function_decl 0x7f28b8620a00 __builtin_strncat>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+
+(barrier 35 34 0)
+
+;; Generating RTL for gimple basic block 7
+
+;; 
+
+(code_label 36 35 37 27 (nil) [0 uses])
+
+(note 37 36 0 NOTE_INSN_BASIC_BLOCK)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 4->5 to 9 failed.
+Redirecting jump 20 from 8 to 9.
+Edge 6->5 redirected to 9
+deleting block 8
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 4->5 to 9 failed.
+Deleted label in block 5.
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 84 [ name ])
+        (reg:DI 5 di [ name ])) "../ncurses/./tinfo/comp_error.c":76:1 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg/f:DI 85)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":78:9 -1
+     (nil))
+(insn 7 6 8 2 (set (reg/f:DI 82 [ _1 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 85)
+                (const_int 24 [0x18])) [1 _nc_globals.comp_termtype+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":78:9 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":78:8 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 22)
+            (pc))) "../ncurses/./tinfo/comp_error.c":78:8 -1
+     (int_list:REG_BR_PROB 886588628 (nil))
+ -> 22)
+;;  succ:       4 [17.4% (guessed)]  count:187153200 (estimated locally) (FALLTHRU)
+;;              6 [82.6% (guessed)]  count:886588624 (estimated locally)
+
+;; basic block 4, loop depth 0, count 322122544 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 187153200 (estimated locally), should be 322122544 (estimated locally)
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [17.4% (guessed)]  count:187153200 (estimated locally) (FALLTHRU)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (set (reg:DI 5 di)
+        (const_int 513 [0x201])) "../ncurses/./tinfo/comp_error.c":79:13 -1
+     (nil))
+(call_insn 12 11 13 4 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x7f28b8646800 malloc>) [0 __builtin_malloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":79:13 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x7f28b8646800 malloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 13 12 14 4 (set (reg/f:DI 86)
+        (reg:DI 0 ax)) "../ncurses/./tinfo/comp_error.c":79:13 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 86)
+        (nil)))
+(insn 14 13 15 4 (set (reg/f:DI 82 [ _1 ])
+        (reg/f:DI 86)) "../ncurses/./tinfo/comp_error.c":79:13 -1
+     (nil))
+(insn 15 14 16 4 (set (reg/f:DI 87)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":79:11 -1
+     (nil))
+(insn 16 15 17 4 (set (mem/f/c:DI (plus:DI (reg/f:DI 87)
+                (const_int 24 [0x18])) [1 _nc_globals.comp_termtype+0 S8 A64])
+        (reg/f:DI 82 [ _1 ])) "../ncurses/./tinfo/comp_error.c":79:11 -1
+     (nil))
+(insn 17 16 18 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":80:8 -1
+     (nil))
+(jump_insn 18 17 19 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 22)
+            (pc))) "../ncurses/./tinfo/comp_error.c":80:8 -1
+     (int_list:REG_BR_PROB 4 (nil))
+ -> 22)
+;;  succ:       6 [never (guessed)]  count:0 (estimated locally)
+;;              5 [always (guessed)]  count:322122544 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 322122544 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [always (guessed)]  count:322122544 (estimated locally) (FALLTHRU)
+(note 19 18 20 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 20 19 21 5 (set (pc)
+        (label_ref:DI 38)) 807 {jump}
+     (nil)
+ -> 38)
+;;  succ:       9 [always]  count:322122544 (estimated locally)
+
+(barrier 21 20 22)
+;; basic block 6, loop depth 0, count 751619281 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 886588624 (estimated locally), should be 751619281 (estimated locally)
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [never (guessed)]  count:0 (estimated locally)
+;;              2 [82.6% (guessed)]  count:886588624 (estimated locally)
+(code_label 22 21 23 6 26 (nil) [2 uses])
+(note 23 22 24 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 26 6 (set (mem:QI (reg/f:DI 82 [ _1 ]) [0 *_14+0 S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/comp_error.c":81:14 -1
+     (nil))
+(insn 26 24 27 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 84 [ name ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":82:5 -1
+     (nil))
+(jump_insn 27 26 28 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 38)
+            (pc))) "../ncurses/./tinfo/comp_error.c":82:5 806 {*jcc}
+     (int_list:REG_BR_PROB 499612076 (nil))
+ -> 38)
+;;  succ:       7 [53.5% (guessed)]  count:401890829 (estimated locally) (FALLTHRU)
+;;              9 [46.5% (guessed)]  count:349728452 (estimated locally)
+
+;; basic block 7, loop depth 0, count 401890828 (estimated locally), maybe hot
+;;  prev block 6, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [53.5% (guessed)]  count:401890829 (estimated locally) (FALLTHRU)
+(note 28 27 29 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 7 (set (reg/f:DI 88)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":83:6 -1
+     (nil))
+(insn 30 29 31 7 (set (reg:DI 89)
+        (mem/f/c:DI (plus:DI (reg/f:DI 88)
+                (const_int 24 [0x18])) [1 _nc_globals.comp_termtype+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":138:10 -1
+     (nil))
+(insn 31 30 32 7 (set (reg:DI 1 dx)
+        (const_int 512 [0x200])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":138:10 -1
+     (nil))
+(insn 32 31 33 7 (set (reg:DI 4 si)
+        (reg/v/f:DI 84 [ name ])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":138:10 -1
+     (nil))
+(insn 33 32 34 7 (set (reg:DI 5 di)
+        (reg:DI 89)) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":138:10 -1
+     (nil))
+(call_insn/j 34 33 35 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strncat") [flags 0x41]  <function_decl 0x7f28b8620a00 __builtin_strncat>) [0 __builtin_strncat S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":138:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("strncat") [flags 0x41]  <function_decl 0x7f28b8620a00 __builtin_strncat>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+;;  succ:       EXIT [always]  count:401890828 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 35 34 38)
+;; basic block 9, loop depth 0, count 671850996 (estimated locally), maybe hot
+;;  prev block 7, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       6 [46.5% (guessed)]  count:349728452 (estimated locally)
+;;              5 [always]  count:322122544 (estimated locally)
+(code_label 38 35 39 9 25 (nil) [2 uses])
+(note 39 38 0 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       EXIT [always]  count:671850996 (estimated locally) (FALLTHRU)
+
+
+;; Function _nc_get_type (_nc_get_type, funcdef_no=94, decl_uid=9110, cgraph_uid=95, symbol_order=97)
+
+__attribute__((visibility ("default")))
+void _nc_get_type (char * name)
+{
+  char * _1;
+  const char * restrict iftmp.0_2;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (name_4(D) != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 6>; [30.00%]
+;;    succ:       3
+;;                6
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = _nc_globals.comp_termtype;
+  if (_1 != 0B)
+    goto <bb 4>; [70.00%]
+  else
+    goto <bb 5>; [30.00%]
+;;    succ:       4
+;;                5
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+;;    succ:       5
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+;;                3
+  # iftmp.0_2 = PHI <_1(4), ""(3)>
+  __builtin_strcpy (name_4(D), iftmp.0_2); [tail call]
+;;    succ:       6
+
+;;   basic block 6, loop depth 0
+;;    pred:       2
+;;                5
+  return;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (iftmp.0_2 - 2 )
+Partition 4 (name_4(D) - 4 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_1 - 1 2 )
+Partition 2, base 1 (name_4(D) - 4 )
+
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (iftmp.0_2 - 2 )
+Partition 2 (name_4(D) - 4 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(4900, 0) _1 <-> iftmp.0_2
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (iftmp.0_2 - 2 )
+Partition 2 (name_4(D) - 4 )
+
+Coalesce list: (1)_1 & (2)iftmp.0_2 [map: 0, 1] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 2 )
+Partition 1 (name_4(D) - 4 )
+
+__attribute__((visibility ("default")))
+void _nc_get_type (char * name)
+{
+  char * _1;
+  const char * restrict iftmp.0_2;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (name_4(D) != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 6>; [30.00%]
+;;    succ:       3
+;;                6
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = _nc_globals.comp_termtype;
+  if (_1 != 0B)
+    goto <bb 4>; [70.00%]
+  else
+    goto <bb 5>; [30.00%]
+;;    succ:       4
+;;                5
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+;;    succ:       5
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+;;                3
+  # iftmp.0_2 = PHI <_1(4), ""(3)>
+  __builtin_strcpy (name_4(D), iftmp.0_2); [tail call]
+;;    succ:       6
+
+;;   basic block 6, loop depth 0
+;;    pred:       2
+;;                5
+  return;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB3->BB5 : PART.0 = ""
+
+;; Generating RTL for gimple basic block 2
+
+;; if (name_4(D) != 0B)
+
+(insn 7 6 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 83 [ name ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":97:8 -1
+     (nil))
+
+(jump_insn 8 7 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/comp_error.c":97:8 -1
+     (int_list:REG_BR_PROB 322122548 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _1 = _nc_globals.comp_termtype;
+
+(insn 10 9 11 (set (reg/f:DI 84)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":98:2 -1
+     (nil))
+
+(insn 11 10 0 (set (reg/f:DI 82 [ _1 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 84)
+                (const_int 24 [0x18])) [1 _nc_globals.comp_termtype+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":98:2 -1
+     (nil))
+
+;; if (_1 != 0B)
+
+(insn 12 11 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":98:2 -1
+     (nil))
+
+(jump_insn 13 12 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/comp_error.c":98:2 -1
+     (int_list:REG_BR_PROB 322122548 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; 
+
+(code_label 15 14 16 36 (nil) [0 uses])
+
+(note 16 15 0 NOTE_INSN_BASIC_BLOCK)
+
+;; __builtin_strcpy (name_4(D), iftmp.0_2); [tail call]
+
+(insn 17 16 18 5 (set (reg:DI 4 si)
+        (reg/f:DI 82 [ _1 ])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":79:10 -1
+     (nil))
+
+(insn 18 17 19 5 (set (reg:DI 5 di)
+        (reg/v/f:DI 83 [ name ])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":79:10 -1
+     (nil))
+
+(call_insn/j 19 18 20 5 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcpy") [flags 0x41]  <function_decl 0x7f28b861de00 __builtin_strcpy>) [0 __builtin_strcpy S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":79:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("strcpy") [flags 0x41]  <function_decl 0x7f28b861de00 __builtin_strcpy>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(barrier 20 19 0)
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 21 20 22 35 (nil) [0 uses])
+
+(note 22 21 0 NOTE_INSN_BASIC_BLOCK)
+Edge 3->5 redirected to 9
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 2->8 redirected to 9
+Forwarding edge 4->5 to 7 failed.
+deleting block 8
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 4->5 to 7 failed.
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 83 [ name ])
+        (reg:DI 5 di [ name ])) "../ncurses/./tinfo/comp_error.c":90:1 -1
+     (nil))
+(note 3 2 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 3 8 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 83 [ name ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":97:8 -1
+     (nil))
+(jump_insn 8 7 9 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 23)
+            (pc))) "../ncurses/./tinfo/comp_error.c":97:8 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 23)
+;;  succ:       4 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+;;              9 [30.0% (guessed)]  count:322122544 (estimated locally)
+
+;; basic block 4, loop depth 0, count 751619281 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+(note 9 8 10 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 10 9 11 4 (set (reg/f:DI 84)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":98:2 -1
+     (nil))
+(insn 11 10 12 4 (set (reg/f:DI 82 [ _1 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 84)
+                (const_int 24 [0x18])) [1 _nc_globals.comp_termtype+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":98:2 -1
+     (nil))
+(insn 12 11 13 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":98:2 -1
+     (nil))
+(jump_insn 13 12 14 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 28)
+            (pc))) "../ncurses/./tinfo/comp_error.c":98:2 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 28)
+;;  succ:       5 [70.0% (guessed)]  count:526133499 (estimated locally) (FALLTHRU)
+;;              6 [30.0% (guessed)]  count:225485782 (estimated locally)
+
+;; basic block 5, loop depth 0, count 526133499 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [70.0% (guessed)]  count:526133499 (estimated locally) (FALLTHRU)
+(note 14 13 25 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 25 14 26 5 (set (pc)
+        (label_ref 15)) -1
+     (nil)
+ -> 15)
+;;  succ:       7 [always]  count:526133499 (estimated locally)
+
+(barrier 26 25 28)
+;; basic block 6, loop depth 0, count 225485782 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [30.0% (guessed)]  count:225485782 (estimated locally)
+(code_label 28 26 27 6 37 (nil) [1 uses])
+(note 27 28 4 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 4 27 15 6 (set (reg/f:DI 82 [ _1 ])
+        (symbol_ref/f:DI ("*.LC5") [flags 0x2]  <var_decl 0x7f28b7e97cf0 *.LC5>)) "../ncurses/./tinfo/comp_error.c":98:2 -1
+     (nil))
+;;  succ:       7 [always]  count:225485782 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 751619281 (estimated locally), maybe hot
+;;  prev block 6, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [always]  count:225485782 (estimated locally) (FALLTHRU)
+;;              5 [always]  count:526133499 (estimated locally)
+(code_label 15 4 16 7 36 (nil) [1 uses])
+(note 16 15 17 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 7 (set (reg:DI 4 si)
+        (reg/f:DI 82 [ _1 ])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":79:10 -1
+     (nil))
+(insn 18 17 19 7 (set (reg:DI 5 di)
+        (reg/v/f:DI 83 [ name ])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":79:10 -1
+     (nil))
+(call_insn/j 19 18 20 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcpy") [flags 0x41]  <function_decl 0x7f28b861de00 __builtin_strcpy>) [0 __builtin_strcpy S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":79:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("strcpy") [flags 0x41]  <function_decl 0x7f28b861de00 __builtin_strcpy>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+;;  succ:       EXIT [always]  count:751619281 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 20 19 23)
+;; basic block 9, loop depth 0, count 322122543 (estimated locally), maybe hot
+;;  prev block 7, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       2 [30.0% (guessed)]  count:322122544 (estimated locally)
+(code_label 23 20 24 9 34 (nil) [1 uses])
+(note 24 23 0 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       EXIT [always]  count:322122543 (estimated locally) (FALLTHRU)
+
+
+;; Function _nc_warning (_nc_warning, funcdef_no=96, decl_uid=9118, cgraph_uid=97, symbol_order=99)
+
+__attribute__((visibility ("default")))
+__attribute__((format (printf, 1, 2)))
+void _nc_warning (const char * const fmt)
+{
+  struct  argp[1];
+  _Bool _nc_suppress_warnings.1_1;
+  struct FILE * stderr.2_2;
+  struct FILE * stderr.3_3;
+  char * _14;
+  struct FILE * stderr.5_15;
+  char * iftmp.4_16;
+  int _nc_curr_line.6_17;
+  struct FILE * stderr.8_18;
+  int _nc_curr_col.9_19;
+  char * _21;
+  char _22;
+  struct FILE * stderr.13_24;
+  struct FILE * stderr.14_25;
+  struct FILE * pretmp_36;
+  struct FILE * pretmp_37;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _nc_suppress_warnings.1_1 = _nc_suppress_warnings;
+  if (_nc_suppress_warnings.1_1 != 0)
+    goto <bb 13>; [51.12%]
+  else
+    goto <bb 3>; [48.88%]
+;;    succ:       13
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _14 = _nc_globals.comp_sourcename;
+  if (_14 != 0B)
+    goto <bb 4>; [70.00%]
+  else
+    goto <bb 5>; [30.00%]
+;;    succ:       4
+;;                5
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+;;    succ:       5
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+;;                4
+  # iftmp.4_16 = PHI <"?"(3), _14(4)>
+  stderr.5_15 = stderr;
+  __fprintf_chk (stderr.5_15, 1, "\"%s\"", iftmp.4_16);
+  _nc_curr_line.6_17 = _nc_curr_line;
+  if (_nc_curr_line.6_17 > 0)
+    goto <bb 6>; [41.48%]
+  else
+    goto <bb 7>; [58.52%]
+;;    succ:       6
+;;                7
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  stderr.8_18 = stderr;
+  __fprintf_chk (stderr.8_18, 1, ", line %d", _nc_curr_line.6_17);
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       5
+;;                6
+  _nc_curr_col.9_19 = _nc_curr_col;
+  if (_nc_curr_col.9_19 > 0)
+    goto <bb 8>; [41.48%]
+  else
+    goto <bb 9>; [58.52%]
+;;    succ:       8
+;;                9
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+  pretmp_36 = stderr;
+  __fprintf_chk (pretmp_36, 1, ", col %d", _nc_curr_col.9_19);
+;;    succ:       9
+
+;;   basic block 9, loop depth 0
+;;    pred:       7
+;;                8
+  _21 = _nc_globals.comp_termtype;
+  if (_21 != 0B)
+    goto <bb 10>; [70.00%]
+  else
+    goto <bb 12>; [30.00%]
+;;    succ:       10
+;;                12
+
+;;   basic block 10, loop depth 0
+;;    pred:       9
+  _22 = *_21;
+  if (_22 != 0)
+    goto <bb 11>; [33.00%]
+  else
+    goto <bb 12>; [67.00%]
+;;    succ:       11
+;;                12
+
+;;   basic block 11, loop depth 0
+;;    pred:       10
+  pretmp_37 = stderr;
+  __fprintf_chk (pretmp_37, 1, ", terminal \'%s\'", _21);
+;;    succ:       12
+
+;;   basic block 12, loop depth 0
+;;    pred:       10
+;;                11
+;;                9
+  stderr.13_24 = stderr;
+  fputc (58, stderr.13_24);
+  stderr.14_25 = stderr;
+  fputc (32, stderr.14_25);
+  __builtin_va_start (&argp, 0);
+  stderr.2_2 = stderr;
+  __vfprintf_chk (stderr.2_2, 1, fmt_8(D), &argp);
+  stderr.3_3 = stderr;
+  __builtin_fputc (10, stderr.3_3);
+;;    succ:       13
+
+;;   basic block 13, loop depth 0
+;;    pred:       12
+;;                2
+  argp ={v} {CLOBBER};
+  return;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_nc_suppress_warnings.1_1 - 1 )
+Partition 2 (stderr.2_2 - 2 )
+Partition 3 (stderr.3_3 - 3 )
+Partition 8 (fmt_8(D) - 8 )
+Partition 14 (_14 - 14 )
+Partition 15 (stderr.5_15 - 15 )
+Partition 16 (iftmp.4_16 - 16 )
+Partition 17 (_nc_curr_line.6_17 - 17 )
+Partition 18 (stderr.8_18 - 18 )
+Partition 19 (_nc_curr_col.9_19 - 19 )
+Partition 21 (_21 - 21 )
+Partition 22 (_22 - 22 )
+Partition 24 (stderr.13_24 - 24 )
+Partition 25 (stderr.14_25 - 25 )
+Partition 36 (pretmp_36 - 36 )
+Partition 37 (pretmp_37 - 37 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (fmt_8(D) - 8 )
+Partition 1, base 1 (_14 - 14 16 )
+
+
+Partition map 
+
+Partition 0 (fmt_8(D) - 8 )
+Partition 1 (_14 - 14 )
+Partition 2 (iftmp.4_16 - 16 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(3422, 0) _14 <-> iftmp.4_16
+
+Partition map 
+
+Partition 0 (fmt_8(D) - 8 )
+Partition 1 (_14 - 14 )
+Partition 2 (iftmp.4_16 - 16 )
+
+Coalesce list: (14)_14 & (16)iftmp.4_16 [map: 1, 2] : Success -> 1
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_nc_suppress_warnings.1_1 - 1 )
+Partition 1 (stderr.2_2 - 2 )
+Partition 2 (stderr.3_3 - 3 )
+Partition 3 (fmt_8(D) - 8 )
+Partition 4 (_14 - 14 16 )
+Partition 5 (stderr.5_15 - 15 )
+Partition 6 (_nc_curr_line.6_17 - 17 )
+Partition 7 (stderr.8_18 - 18 )
+Partition 8 (_nc_curr_col.9_19 - 19 )
+Partition 9 (_21 - 21 )
+Partition 10 (_22 - 22 )
+Partition 11 (stderr.13_24 - 24 )
+Partition 12 (stderr.14_25 - 25 )
+Partition 13 (pretmp_36 - 36 )
+Partition 14 (pretmp_37 - 37 )
+
+
+Replacing Expressions
+_nc_suppress_warnings.1_1 replace with --> _nc_suppress_warnings.1_1 = _nc_suppress_warnings;
+
+stderr.2_2 replace with --> stderr.2_2 = stderr;
+
+stderr.3_3 replace with --> stderr.3_3 = stderr;
+
+stderr.5_15 replace with --> stderr.5_15 = stderr;
+
+stderr.8_18 replace with --> stderr.8_18 = stderr;
+
+_22 replace with --> _22 = *_21;
+
+stderr.13_24 replace with --> stderr.13_24 = stderr;
+
+stderr.14_25 replace with --> stderr.14_25 = stderr;
+
+pretmp_36 replace with --> pretmp_36 = stderr;
+
+pretmp_37 replace with --> pretmp_37 = stderr;
+
+
+__attribute__((visibility ("default")))
+__attribute__((format (printf, 1, 2)))
+void _nc_warning (const char * const fmt)
+{
+  struct  argp[1];
+  _Bool _nc_suppress_warnings.1_1;
+  struct FILE * stderr.2_2;
+  struct FILE * stderr.3_3;
+  char * _14;
+  struct FILE * stderr.5_15;
+  char * iftmp.4_16;
+  int _nc_curr_line.6_17;
+  struct FILE * stderr.8_18;
+  int _nc_curr_col.9_19;
+  char * _21;
+  char _22;
+  struct FILE * stderr.13_24;
+  struct FILE * stderr.14_25;
+  struct FILE * pretmp_36;
+  struct FILE * pretmp_37;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _nc_suppress_warnings.1_1 = _nc_suppress_warnings;
+  if (_nc_suppress_warnings.1_1 != 0)
+    goto <bb 13>; [51.12%]
+  else
+    goto <bb 3>; [48.88%]
+;;    succ:       13
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _14 = _nc_globals.comp_sourcename;
+  if (_14 != 0B)
+    goto <bb 4>; [70.00%]
+  else
+    goto <bb 5>; [30.00%]
+;;    succ:       4
+;;                5
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+;;    succ:       5
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+;;                4
+  # iftmp.4_16 = PHI <"?"(3), _14(4)>
+  stderr.5_15 = stderr;
+  __fprintf_chk (stderr.5_15, 1, "\"%s\"", iftmp.4_16);
+  _nc_curr_line.6_17 = _nc_curr_line;
+  if (_nc_curr_line.6_17 > 0)
+    goto <bb 6>; [41.48%]
+  else
+    goto <bb 7>; [58.52%]
+;;    succ:       6
+;;                7
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  stderr.8_18 = stderr;
+  __fprintf_chk (stderr.8_18, 1, ", line %d", _nc_curr_line.6_17);
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       5
+;;                6
+  _nc_curr_col.9_19 = _nc_curr_col;
+  if (_nc_curr_col.9_19 > 0)
+    goto <bb 8>; [41.48%]
+  else
+    goto <bb 9>; [58.52%]
+;;    succ:       8
+;;                9
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+  pretmp_36 = stderr;
+  __fprintf_chk (pretmp_36, 1, ", col %d", _nc_curr_col.9_19);
+;;    succ:       9
+
+;;   basic block 9, loop depth 0
+;;    pred:       7
+;;                8
+  _21 = _nc_globals.comp_termtype;
+  if (_21 != 0B)
+    goto <bb 10>; [70.00%]
+  else
+    goto <bb 12>; [30.00%]
+;;    succ:       10
+;;                12
+
+;;   basic block 10, loop depth 0
+;;    pred:       9
+  _22 = *_21;
+  if (_22 != 0)
+    goto <bb 11>; [33.00%]
+  else
+    goto <bb 12>; [67.00%]
+;;    succ:       11
+;;                12
+
+;;   basic block 11, loop depth 0
+;;    pred:       10
+  pretmp_37 = stderr;
+  __fprintf_chk (pretmp_37, 1, ", terminal \'%s\'", _21);
+;;    succ:       12
+
+;;   basic block 12, loop depth 0
+;;    pred:       10
+;;                11
+;;                9
+  stderr.13_24 = stderr;
+  fputc (58, stderr.13_24);
+  stderr.14_25 = stderr;
+  fputc (32, stderr.14_25);
+  __builtin_va_start (&argp, 0);
+  stderr.2_2 = stderr;
+  __vfprintf_chk (stderr.2_2, 1, fmt_8(D), &argp);
+  stderr.3_3 = stderr;
+  __builtin_fputc (10, stderr.3_3);
+;;    succ:       13
+
+;;   basic block 13, loop depth 0
+;;    pred:       12
+;;                2
+  argp ={v} {CLOBBER};
+  return;
+;;    succ:       EXIT
+
+}
+
+
+Partition 0: size 24 align 8
+	argp
+Inserting a value copy on edge BB3->BB5 : PART.4 = "?"
+
+;; Generating RTL for gimple basic block 2
+
+;; if (_nc_suppress_warnings.1_1 != 0)
+
+(insn 25 24 26 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:QI (symbol_ref:DI ("_nc_suppress_warnings") [flags 0x2]  <var_decl 0x7f28b82785a0 _nc_suppress_warnings>) [4 _nc_suppress_warnings+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":120:8 -1
+     (nil))
+
+(jump_insn 26 25 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/comp_error.c":120:8 -1
+     (int_list:REG_BR_PROB 548896828 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _14 = _nc_globals.comp_sourcename;
+
+(insn 28 27 29 (set (reg/f:DI 98)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":104:31 -1
+     (nil))
+
+(insn 29 28 0 (set (reg/f:DI 85 [ _14 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 98)
+                (const_int 16 [0x10])) [1 _nc_globals.comp_sourcename+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":104:31 -1
+     (nil))
+
+;; if (_14 != 0B)
+
+(insn 30 29 31 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 85 [ _14 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":104:5 -1
+     (nil))
+
+(jump_insn 31 30 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/comp_error.c":104:5 -1
+     (int_list:REG_BR_PROB 322122548 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; 
+
+(code_label 33 32 34 41 (nil) [0 uses])
+
+(note 34 33 0 NOTE_INSN_BASIC_BLOCK)
+
+;; __fprintf_chk (stderr.5_15, 1, "\"%s\"", iftmp.4_16);
+
+(insn 35 34 36 (set (reg:DI 99)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 36 35 37 (set (reg:DI 2 cx)
+        (reg/f:DI 85 [ _14 ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 37 36 38 (set (reg:DI 100)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f28b7e6c630 *.LC1>)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 38 37 39 (set (reg:DI 1 dx)
+        (reg:DI 100)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f28b7e6c630 *.LC1>)
+        (nil)))
+
+(insn 39 38 40 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 40 39 41 (set (reg:DI 5 di)
+        (reg:DI 99)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 41 40 42 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(call_insn 42 41 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>) [0 __builtin___fprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (nil)))))))
+
+;; _nc_curr_line.6_17 = _nc_curr_line;
+
+(insn 43 42 0 (set (reg:SI 87 [ _nc_curr_line.6_17 ])
+        (mem/c:SI (symbol_ref:DI ("_nc_curr_line") [flags 0x2]  <var_decl 0x7f28b8278000 _nc_curr_line>) [3 _nc_curr_line+0 S4 A32])) "../ncurses/./tinfo/comp_error.c":105:23 -1
+     (nil))
+
+;; if (_nc_curr_line.6_17 > 0)
+
+(insn 46 43 47 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 87 [ _nc_curr_line.6_17 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":105:8 -1
+     (nil))
+
+(jump_insn 47 46 0 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/comp_error.c":105:8 -1
+     (int_list:REG_BR_PROB 628353716 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; __fprintf_chk (stderr.8_18, 1, ", line %d", _nc_curr_line.6_17);
+
+(insn 49 48 50 (set (reg:DI 101)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 50 49 51 (set (reg:SI 2 cx)
+        (reg:SI 87 [ _nc_curr_line.6_17 ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 51 50 52 (set (reg:DI 102)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x7f28b7e6c6c0 *.LC2>)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 52 51 53 (set (reg:DI 1 dx)
+        (reg:DI 102)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x7f28b7e6c6c0 *.LC2>)
+        (nil)))
+
+(insn 53 52 54 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 54 53 55 (set (reg:DI 5 di)
+        (reg:DI 101)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 55 54 56 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(call_insn 56 55 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>) [0 __builtin___fprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:SI (use (reg:SI 2 cx))
+                        (nil)))))))
+
+;; Generating RTL for gimple basic block 7
+
+;; 
+
+(code_label 57 56 58 42 (nil) [0 uses])
+
+(note 58 57 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _nc_curr_col.9_19 = _nc_curr_col;
+
+(insn 59 58 0 (set (reg:SI 89 [ _nc_curr_col.9_19 ])
+        (mem/c:SI (symbol_ref:DI ("_nc_curr_col") [flags 0x2]  <var_decl 0x7f28b81e7240 _nc_curr_col>) [3 _nc_curr_col+0 S4 A32])) "../ncurses/./tinfo/comp_error.c":107:22 -1
+     (nil))
+
+;; if (_nc_curr_col.9_19 > 0)
+
+(insn 62 59 63 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 89 [ _nc_curr_col.9_19 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":107:8 -1
+     (nil))
+
+(jump_insn 63 62 0 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/comp_error.c":107:8 -1
+     (int_list:REG_BR_PROB 628353716 (nil)))
+
+;; Generating RTL for gimple basic block 8
+
+;; __fprintf_chk (pretmp_36, 1, ", col %d", _nc_curr_col.9_19);
+
+(insn 65 64 66 (set (reg:DI 103)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 66 65 67 (set (reg:SI 2 cx)
+        (reg:SI 89 [ _nc_curr_col.9_19 ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 67 66 68 (set (reg:DI 104)
+        (symbol_ref/f:DI ("*.LC3") [flags 0x2]  <var_decl 0x7f28b7e6c750 *.LC3>)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 68 67 69 (set (reg:DI 1 dx)
+        (reg:DI 104)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC3") [flags 0x2]  <var_decl 0x7f28b7e6c750 *.LC3>)
+        (nil)))
+
+(insn 69 68 70 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 70 69 71 (set (reg:DI 5 di)
+        (reg:DI 103)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 71 70 72 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(call_insn 72 71 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>) [0 __builtin___fprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:SI (use (reg:SI 2 cx))
+                        (nil)))))))
+
+;; Generating RTL for gimple basic block 9
+
+;; 
+
+(code_label 73 72 74 43 (nil) [0 uses])
+
+(note 74 73 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _21 = _nc_globals.comp_termtype;
+
+(insn 75 74 76 (set (reg/f:DI 105)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":109:9 -1
+     (nil))
+
+(insn 76 75 0 (set (reg/f:DI 90 [ _21 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 105)
+                (const_int 24 [0x18])) [1 _nc_globals.comp_termtype+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":109:9 -1
+     (nil))
+
+;; if (_21 != 0B)
+
+(insn 77 76 78 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 90 [ _21 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":109:8 -1
+     (nil))
+
+(jump_insn 78 77 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/comp_error.c":109:8 -1
+     (int_list:REG_BR_PROB 322122548 (nil)))
+
+;; Generating RTL for gimple basic block 10
+
+;; if (_22 != 0)
+
+(insn 80 79 81 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (reg/f:DI 90 [ _21 ]) [0 *_21+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":109:26 -1
+     (nil))
+
+(jump_insn 81 80 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/comp_error.c":109:26 -1
+     (int_list:REG_BR_PROB 719407028 (nil)))
+
+;; Generating RTL for gimple basic block 11
+
+;; __fprintf_chk (pretmp_37, 1, ", terminal \'%s\'", _21);
+
+(insn 83 82 84 (set (reg:DI 106)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 84 83 85 (set (reg:DI 2 cx)
+        (reg/f:DI 90 [ _21 ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 85 84 86 (set (reg:DI 107)
+        (symbol_ref/f:DI ("*.LC4") [flags 0x2]  <var_decl 0x7f28b7e6c7e0 *.LC4>)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 86 85 87 (set (reg:DI 1 dx)
+        (reg:DI 107)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC4") [flags 0x2]  <var_decl 0x7f28b7e6c7e0 *.LC4>)
+        (nil)))
+
+(insn 87 86 88 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 88 87 89 (set (reg:DI 5 di)
+        (reg:DI 106)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 89 88 90 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(call_insn 90 89 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>) [0 __builtin___fprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (nil)))))))
+
+;; Generating RTL for gimple basic block 12
+
+;; 
+
+(code_label 91 90 92 44 (nil) [0 uses])
+
+(note 92 91 0 NOTE_INSN_BASIC_BLOCK)
+
+;; fputc (58, stderr.13_24);
+
+(insn 93 92 94 (set (reg:DI 108)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":111:5 -1
+     (nil))
+
+(insn 94 93 95 (set (reg:DI 4 si)
+        (reg:DI 108)) "../ncurses/./tinfo/comp_error.c":111:5 -1
+     (nil))
+
+(insn 95 94 96 (set (reg:SI 5 di)
+        (const_int 58 [0x3a])) "../ncurses/./tinfo/comp_error.c":111:5 -1
+     (nil))
+
+(call_insn 96 95 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626300 fputc>) [0 __builtin_fputc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":111:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626300 fputc>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+;; fputc (32, stderr.14_25);
+
+(insn 97 96 98 (set (reg:DI 109)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":112:5 -1
+     (nil))
+
+(insn 98 97 99 (set (reg:DI 4 si)
+        (reg:DI 109)) "../ncurses/./tinfo/comp_error.c":112:5 -1
+     (nil))
+
+(insn 99 98 100 (set (reg:SI 5 di)
+        (const_int 32 [0x20])) "../ncurses/./tinfo/comp_error.c":112:5 -1
+     (nil))
+
+(call_insn 100 99 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626300 fputc>) [0 __builtin_fputc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":112:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626300 fputc>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+;; __builtin_va_start (&argp, 0);
+
+(insn 101 100 102 (parallel [
+            (set (reg:DI 110)
+                (plus:DI (reg/f:DI 76 virtual-incoming-args)
+                    (const_int 0 [0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_error.c":124:5 -1
+     (nil))
+
+(insn 102 101 103 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -32 [0xffffffffffffffe0])) [17 MEM[(struct [1] *)&argp].gp_offset+0 S4 A64])
+        (const_int 8 [0x8])) "../ncurses/./tinfo/comp_error.c":124:5 -1
+     (nil))
+
+(insn 103 102 104 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -28 [0xffffffffffffffe4])) [17 MEM[(struct [1] *)&argp].fp_offset+0 S4 A32])
+        (const_int 48 [0x30])) "../ncurses/./tinfo/comp_error.c":124:5 -1
+     (nil))
+
+(insn 104 103 105 (set (mem/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [17 MEM[(struct [1] *)&argp].overflow_arg_area+0 S8 A64])
+        (reg/f:DI 76 virtual-incoming-args)) "../ncurses/./tinfo/comp_error.c":124:5 -1
+     (nil))
+
+(insn 105 104 0 (set (mem/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -16 [0xfffffffffffffff0])) [17 MEM[(struct [1] *)&argp].reg_save_area+0 S8 A64])
+        (reg/f:DI 19 frame)) "../ncurses/./tinfo/comp_error.c":124:5 -1
+     (nil))
+
+;; __vfprintf_chk (stderr.2_2, 1, fmt_8(D), &argp);
+
+(insn 106 105 107 (parallel [
+            (set (reg:DI 111)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+
+(insn 107 106 108 (set (reg:DI 112)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+
+(insn 108 107 109 (set (reg:DI 2 cx)
+        (reg:DI 111)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+
+(insn 109 108 110 (set (reg:DI 1 dx)
+        (reg/v/f:DI 96 [ fmt ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+
+(insn 110 109 111 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+
+(insn 111 110 112 (set (reg:DI 5 di)
+        (reg:DI 112)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+
+(call_insn 112 111 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__vfprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fe00 __vfprintf_chk>) [0 __builtin___vfprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__vfprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fe00 __vfprintf_chk>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+
+;; __builtin_fputc (10, stderr.3_3);
+
+(insn 113 112 114 (set (reg:DI 113)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 114 113 115 (set (reg:DI 4 si)
+        (reg:DI 113)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 115 114 116 (set (reg:SI 5 di)
+        (const_int 10 [0xa])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(call_insn 116 115 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626200 __builtin_fputc>) [0 __builtin_fputc S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626200 __builtin_fputc>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+;; Generating RTL for gimple basic block 13
+
+;; 
+
+(code_label 117 116 118 40 (nil) [0 uses])
+
+(note 118 117 0 NOTE_INSN_BASIC_BLOCK)
+
+;; argp ={v} {CLOBBER};
+
+(nil)
+Edge 3->5 redirected to 16
+Predictions for insn 9 bb 14
+  no prediction heuristics: 50.00%  exec 1073741824 (estimated locally) hit 2147483640 (estimated locally) (200.0%)
+  combined heuristics: 50.00%  exec 1073741824 (estimated locally) hit 2147483640 (estimated locally) (200.0%)
+Predictions for insn 122 bb 15
+  first match heuristics: 99.96%  exec 1073741825 (estimated locally) hit 2147483642 (estimated locally) (200.0%)
+  combined heuristics: 99.96%  exec 1073741825 (estimated locally) hit 2147483642 (estimated locally) (200.0%)
+  noreturn call heuristics: 99.96%  exec 1073741825 (estimated locally) hit 2147483642 (estimated locally) (200.0%)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 5 into block 4...
+Merged blocks 4 and 5.
+Merged 4 and 5 without moving.
+Edge 4->17 redirected to 18
+Forwarding edge 6->7 to 9 failed.
+Merging block 17 into block 16...
+Merged blocks 16 and 17.
+Merged 16 and 17 without moving.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 6->7 to 9 failed.
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 23 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 23 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 23 3 2 (set (reg/v/f:DI 96 [ fmt ])
+        (reg:DI 5 di [ fmt ])) "../ncurses/./tinfo/comp_error.c":117:1 -1
+     (nil))
+(insn 3 2 4 2 (set (mem/c:DI (plus:DI (reg/f:DI 19 frame)
+                (const_int 8 [0x8])) [0  S8 A8])
+        (reg:DI 4 si)) "../ncurses/./tinfo/comp_error.c":117:1 -1
+     (nil))
+(insn 4 3 5 2 (set (mem/c:DI (plus:DI (reg/f:DI 19 frame)
+                (const_int 16 [0x10])) [0  S8 A8])
+        (reg:DI 1 dx)) "../ncurses/./tinfo/comp_error.c":117:1 -1
+     (nil))
+(insn 5 4 6 2 (set (mem/c:DI (plus:DI (reg/f:DI 19 frame)
+                (const_int 24 [0x18])) [0  S8 A8])
+        (reg:DI 2 cx)) "../ncurses/./tinfo/comp_error.c":117:1 -1
+     (nil))
+(insn 6 5 7 2 (set (mem/c:DI (plus:DI (reg/f:DI 19 frame)
+                (const_int 32 [0x20])) [0  S8 A8])
+        (reg:DI 36 r8)) "../ncurses/./tinfo/comp_error.c":117:1 -1
+     (nil))
+(insn 7 6 8 2 (set (mem/c:DI (plus:DI (reg/f:DI 19 frame)
+                (const_int 40 [0x28])) [0  S8 A8])
+        (reg:DI 37 r9)) "../ncurses/./tinfo/comp_error.c":117:1 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax)
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":117:1 -1
+     (nil))
+(jump_insn 9 8 131 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 18)
+            (pc))) "../ncurses/./tinfo/comp_error.c":117:1 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 18)
+;;  succ:       4 [50.0% (guessed)]  count:536870912 (estimated locally)
+;;              3 [50.0% (guessed)]  count:536870912 (estimated locally) (FALLTHRU)
+
+;; basic block 3, loop depth 0, count 536870912 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [50.0% (guessed)]  count:536870912 (estimated locally) (FALLTHRU)
+(note 131 9 10 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 10 131 11 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 48 [0x30])) [0  S16 A128])
+        (reg:V4SF 20 xmm0)) "../ncurses/./tinfo/comp_error.c":117:1 -1
+     (nil))
+(insn 11 10 12 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 64 [0x40])) [0  S16 A128])
+        (reg:V4SF 21 xmm1)) "../ncurses/./tinfo/comp_error.c":117:1 -1
+     (nil))
+(insn 12 11 13 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 80 [0x50])) [0  S16 A128])
+        (reg:V4SF 22 xmm2)) "../ncurses/./tinfo/comp_error.c":117:1 -1
+     (nil))
+(insn 13 12 14 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 96 [0x60])) [0  S16 A128])
+        (reg:V4SF 23 xmm3)) "../ncurses/./tinfo/comp_error.c":117:1 -1
+     (nil))
+(insn 14 13 15 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 112 [0x70])) [0  S16 A128])
+        (reg:V4SF 24 xmm4)) "../ncurses/./tinfo/comp_error.c":117:1 -1
+     (nil))
+(insn 15 14 16 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 128 [0x80])) [0  S16 A128])
+        (reg:V4SF 25 xmm5)) "../ncurses/./tinfo/comp_error.c":117:1 -1
+     (nil))
+(insn 16 15 17 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 144 [0x90])) [0  S16 A128])
+        (reg:V4SF 26 xmm6)) "../ncurses/./tinfo/comp_error.c":117:1 -1
+     (nil))
+(insn 17 16 18 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 160 [0xa0])) [0  S16 A128])
+        (reg:V4SF 27 xmm7)) "../ncurses/./tinfo/comp_error.c":117:1 -1
+     (nil))
+;;  succ:       4 [always]  count:536870912 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 3, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [50.0% (guessed)]  count:536870912 (estimated locally)
+;;              3 [always]  count:536870912 (estimated locally) (FALLTHRU)
+(code_label 18 17 132 4 39 (nil) [1 uses])
+(note 132 18 19 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(note 19 132 20 4 NOTE_INSN_FUNCTION_BEG)
+(insn 20 19 21 4 (set (reg/f:DI 97)
+        (const_int 40 [0x28])) "../ncurses/./tinfo/comp_error.c":117:1 -1
+     (nil))
+(insn 21 20 25 4 (parallel [
+            (set (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                        (const_int -8 [0xfffffffffffffff8])) [10 D.9361+0 S8 A64])
+                (unspec:DI [
+                        (mem/v/f:DI (reg/f:DI 97) [6 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_SET))
+            (set (scratch:DI)
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_error.c":117:1 -1
+     (nil))
+(insn 25 21 26 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:QI (symbol_ref:DI ("_nc_suppress_warnings") [flags 0x2]  <var_decl 0x7f28b82785a0 _nc_suppress_warnings>) [4 _nc_suppress_warnings+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":120:8 -1
+     (nil))
+(jump_insn 26 25 27 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 119)
+            (pc))) "../ncurses/./tinfo/comp_error.c":120:8 806 {*jcc}
+     (int_list:REG_BR_PROB 548896828 (nil))
+ -> 119)
+;;  succ:       18 [51.1% (guessed)]  count:548896824 (estimated locally)
+;;              6 [48.9% (guessed)]  count:524845000 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 524844999 (estimated locally), maybe hot
+;;  prev block 4, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [48.9% (guessed)]  count:524845000 (estimated locally) (FALLTHRU)
+(note 27 26 28 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 6 (set (reg/f:DI 98)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":104:31 -1
+     (nil))
+(insn 29 28 30 6 (set (reg/f:DI 85 [ _14 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 98)
+                (const_int 16 [0x10])) [1 _nc_globals.comp_sourcename+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":104:31 -1
+     (nil))
+(insn 30 29 31 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 85 [ _14 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":104:5 -1
+     (nil))
+(jump_insn 31 30 32 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 130)
+            (pc))) "../ncurses/./tinfo/comp_error.c":104:5 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 130)
+;;  succ:       7 [70.0% (guessed)]  count:367391501 (estimated locally) (FALLTHRU)
+;;              8 [30.0% (guessed)]  count:157453498 (estimated locally)
+
+;; basic block 7, loop depth 0, count 367391501 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       6 [70.0% (guessed)]  count:367391501 (estimated locally) (FALLTHRU)
+(note 32 31 127 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 127 32 128 7 (set (pc)
+        (label_ref 33)) -1
+     (nil)
+ -> 33)
+;;  succ:       9 [always]  count:367391501 (estimated locally)
+
+(barrier 128 127 130)
+;; basic block 8, loop depth 0, count 157453498 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       6 [30.0% (guessed)]  count:157453498 (estimated locally)
+(code_label 130 128 129 8 46 (nil) [1 uses])
+(note 129 130 22 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 22 129 33 8 (set (reg/f:DI 85 [ _14 ])
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f28b7e6c5a0 *.LC0>)) "../ncurses/./tinfo/comp_error.c":104:5 -1
+     (nil))
+;;  succ:       9 [always]  count:157453498 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 524844999 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [always]  count:157453498 (estimated locally) (FALLTHRU)
+;;              7 [always]  count:367391501 (estimated locally)
+(code_label 33 22 34 9 41 (nil) [1 uses])
+(note 34 33 35 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 35 34 36 9 (set (reg:DI 99)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 36 35 37 9 (set (reg:DI 2 cx)
+        (reg/f:DI 85 [ _14 ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 37 36 38 9 (set (reg:DI 100)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f28b7e6c630 *.LC1>)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 38 37 39 9 (set (reg:DI 1 dx)
+        (reg:DI 100)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f28b7e6c630 *.LC1>)
+        (nil)))
+(insn 39 38 40 9 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 40 39 41 9 (set (reg:DI 5 di)
+        (reg:DI 99)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 41 40 42 9 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(call_insn 42 41 43 9 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>) [0 __builtin___fprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (nil)))))))
+(insn 43 42 46 9 (set (reg:SI 87 [ _nc_curr_line.6_17 ])
+        (mem/c:SI (symbol_ref:DI ("_nc_curr_line") [flags 0x2]  <var_decl 0x7f28b8278000 _nc_curr_line>) [3 _nc_curr_line+0 S4 A32])) "../ncurses/./tinfo/comp_error.c":105:23 -1
+     (nil))
+(insn 46 43 47 9 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 87 [ _nc_curr_line.6_17 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":105:8 -1
+     (nil))
+(jump_insn 47 46 48 9 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 57)
+            (pc))) "../ncurses/./tinfo/comp_error.c":105:8 -1
+     (int_list:REG_BR_PROB 628353716 (nil))
+ -> 57)
+;;  succ:       10 [41.5% (guessed)]  count:217705707 (estimated locally) (FALLTHRU)
+;;              11 [58.5% (guessed)]  count:307139292 (estimated locally)
+
+;; basic block 10, loop depth 0, count 217705707 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       9 [41.5% (guessed)]  count:217705707 (estimated locally) (FALLTHRU)
+(note 48 47 49 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 49 48 50 10 (set (reg:DI 101)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 50 49 51 10 (set (reg:SI 2 cx)
+        (reg:SI 87 [ _nc_curr_line.6_17 ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 51 50 52 10 (set (reg:DI 102)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x7f28b7e6c6c0 *.LC2>)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 52 51 53 10 (set (reg:DI 1 dx)
+        (reg:DI 102)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x7f28b7e6c6c0 *.LC2>)
+        (nil)))
+(insn 53 52 54 10 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 54 53 55 10 (set (reg:DI 5 di)
+        (reg:DI 101)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 55 54 56 10 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(call_insn 56 55 57 10 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>) [0 __builtin___fprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:SI (use (reg:SI 2 cx))
+                        (nil)))))))
+;;  succ:       11 [always]  count:217705707 (estimated locally) (FALLTHRU)
+
+;; basic block 11, loop depth 0, count 524845000 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       9 [58.5% (guessed)]  count:307139292 (estimated locally)
+;;              10 [always]  count:217705707 (estimated locally) (FALLTHRU)
+(code_label 57 56 58 11 42 (nil) [1 uses])
+(note 58 57 59 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 59 58 62 11 (set (reg:SI 89 [ _nc_curr_col.9_19 ])
+        (mem/c:SI (symbol_ref:DI ("_nc_curr_col") [flags 0x2]  <var_decl 0x7f28b81e7240 _nc_curr_col>) [3 _nc_curr_col+0 S4 A32])) "../ncurses/./tinfo/comp_error.c":107:22 -1
+     (nil))
+(insn 62 59 63 11 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 89 [ _nc_curr_col.9_19 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":107:8 -1
+     (nil))
+(jump_insn 63 62 64 11 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 73)
+            (pc))) "../ncurses/./tinfo/comp_error.c":107:8 -1
+     (int_list:REG_BR_PROB 628353716 (nil))
+ -> 73)
+;;  succ:       12 [41.5% (guessed)]  count:217705708 (estimated locally) (FALLTHRU)
+;;              13 [58.5% (guessed)]  count:307139292 (estimated locally)
+
+;; basic block 12, loop depth 0, count 217705707 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       11 [41.5% (guessed)]  count:217705708 (estimated locally) (FALLTHRU)
+(note 64 63 65 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 65 64 66 12 (set (reg:DI 103)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 66 65 67 12 (set (reg:SI 2 cx)
+        (reg:SI 89 [ _nc_curr_col.9_19 ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 67 66 68 12 (set (reg:DI 104)
+        (symbol_ref/f:DI ("*.LC3") [flags 0x2]  <var_decl 0x7f28b7e6c750 *.LC3>)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 68 67 69 12 (set (reg:DI 1 dx)
+        (reg:DI 104)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC3") [flags 0x2]  <var_decl 0x7f28b7e6c750 *.LC3>)
+        (nil)))
+(insn 69 68 70 12 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 70 69 71 12 (set (reg:DI 5 di)
+        (reg:DI 103)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 71 70 72 12 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(call_insn 72 71 73 12 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>) [0 __builtin___fprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:SI (use (reg:SI 2 cx))
+                        (nil)))))))
+;;  succ:       13 [always]  count:217705707 (estimated locally) (FALLTHRU)
+
+;; basic block 13, loop depth 0, count 524845000 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       11 [58.5% (guessed)]  count:307139292 (estimated locally)
+;;              12 [always]  count:217705707 (estimated locally) (FALLTHRU)
+(code_label 73 72 74 13 43 (nil) [1 uses])
+(note 74 73 75 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 75 74 76 13 (set (reg/f:DI 105)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f28b8179ea0 _nc_globals>)) "../ncurses/./tinfo/comp_error.c":109:9 -1
+     (nil))
+(insn 76 75 77 13 (set (reg/f:DI 90 [ _21 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 105)
+                (const_int 24 [0x18])) [1 _nc_globals.comp_termtype+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":109:9 -1
+     (nil))
+(insn 77 76 78 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 90 [ _21 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":109:8 -1
+     (nil))
+(jump_insn 78 77 79 13 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 91)
+            (pc))) "../ncurses/./tinfo/comp_error.c":109:8 -1
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 91)
+;;  succ:       14 [70.0% (guessed)]  count:367391502 (estimated locally) (FALLTHRU)
+;;              16 [30.0% (guessed)]  count:157453498 (estimated locally)
+
+;; basic block 14, loop depth 0, count 367391502 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       13 [70.0% (guessed)]  count:367391502 (estimated locally) (FALLTHRU)
+(note 79 78 80 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 80 79 81 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (reg/f:DI 90 [ _21 ]) [0 *_21+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":109:26 -1
+     (nil))
+(jump_insn 81 80 82 14 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 91)
+            (pc))) "../ncurses/./tinfo/comp_error.c":109:26 -1
+     (int_list:REG_BR_PROB 719407028 (nil))
+ -> 91)
+;;  succ:       15 [33.0% (guessed)]  count:121239195 (estimated locally) (FALLTHRU)
+;;              16 [67.0% (guessed)]  count:246152307 (estimated locally)
+
+;; basic block 15, loop depth 0, count 121239195 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       14 [33.0% (guessed)]  count:121239195 (estimated locally) (FALLTHRU)
+(note 82 81 83 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 83 82 84 15 (set (reg:DI 106)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 84 83 85 15 (set (reg:DI 2 cx)
+        (reg/f:DI 90 [ _21 ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 85 84 86 15 (set (reg:DI 107)
+        (symbol_ref/f:DI ("*.LC4") [flags 0x2]  <var_decl 0x7f28b7e6c7e0 *.LC4>)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 86 85 87 15 (set (reg:DI 1 dx)
+        (reg:DI 107)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC4") [flags 0x2]  <var_decl 0x7f28b7e6c7e0 *.LC4>)
+        (nil)))
+(insn 87 86 88 15 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 88 87 89 15 (set (reg:DI 5 di)
+        (reg:DI 106)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 89 88 90 15 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(call_insn 90 89 91 15 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>) [0 __builtin___fprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__fprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fa00 __fprintf_chk>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (nil)))))))
+;;  succ:       16 [always]  count:121239195 (estimated locally) (FALLTHRU)
+
+;; basic block 16, loop depth 0, count 524845000 (estimated locally), maybe hot
+;;  prev block 15, next block 18, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       14 [67.0% (guessed)]  count:246152307 (estimated locally)
+;;              15 [always]  count:121239195 (estimated locally) (FALLTHRU)
+;;              13 [30.0% (guessed)]  count:157453498 (estimated locally)
+(code_label 91 90 92 16 44 (nil) [2 uses])
+(note 92 91 93 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 93 92 94 16 (set (reg:DI 108)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":111:5 -1
+     (nil))
+(insn 94 93 95 16 (set (reg:DI 4 si)
+        (reg:DI 108)) "../ncurses/./tinfo/comp_error.c":111:5 -1
+     (nil))
+(insn 95 94 96 16 (set (reg:SI 5 di)
+        (const_int 58 [0x3a])) "../ncurses/./tinfo/comp_error.c":111:5 -1
+     (nil))
+(call_insn 96 95 97 16 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626300 fputc>) [0 __builtin_fputc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":111:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626300 fputc>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 97 96 98 16 (set (reg:DI 109)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "../ncurses/./tinfo/comp_error.c":112:5 -1
+     (nil))
+(insn 98 97 99 16 (set (reg:DI 4 si)
+        (reg:DI 109)) "../ncurses/./tinfo/comp_error.c":112:5 -1
+     (nil))
+(insn 99 98 100 16 (set (reg:SI 5 di)
+        (const_int 32 [0x20])) "../ncurses/./tinfo/comp_error.c":112:5 -1
+     (nil))
+(call_insn 100 99 101 16 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626300 fputc>) [0 __builtin_fputc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":112:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626300 fputc>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 101 100 102 16 (parallel [
+            (set (reg:DI 110)
+                (plus:DI (reg/f:DI 76 virtual-incoming-args)
+                    (const_int 0 [0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_error.c":124:5 -1
+     (nil))
+(insn 102 101 103 16 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -32 [0xffffffffffffffe0])) [17 MEM[(struct [1] *)&argp].gp_offset+0 S4 A64])
+        (const_int 8 [0x8])) "../ncurses/./tinfo/comp_error.c":124:5 -1
+     (nil))
+(insn 103 102 104 16 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -28 [0xffffffffffffffe4])) [17 MEM[(struct [1] *)&argp].fp_offset+0 S4 A32])
+        (const_int 48 [0x30])) "../ncurses/./tinfo/comp_error.c":124:5 -1
+     (nil))
+(insn 104 103 105 16 (set (mem/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [17 MEM[(struct [1] *)&argp].overflow_arg_area+0 S8 A64])
+        (reg/f:DI 76 virtual-incoming-args)) "../ncurses/./tinfo/comp_error.c":124:5 -1
+     (nil))
+(insn 105 104 106 16 (set (mem/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -16 [0xfffffffffffffff0])) [17 MEM[(struct [1] *)&argp].reg_save_area+0 S8 A64])
+        (reg/f:DI 19 frame)) "../ncurses/./tinfo/comp_error.c":124:5 -1
+     (nil))
+(insn 106 105 107 16 (parallel [
+            (set (reg:DI 111)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+(insn 107 106 108 16 (set (reg:DI 112)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+(insn 108 107 109 16 (set (reg:DI 2 cx)
+        (reg:DI 111)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+(insn 109 108 110 16 (set (reg:DI 1 dx)
+        (reg/v/f:DI 96 [ fmt ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+(insn 110 109 111 16 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+(insn 111 110 112 16 (set (reg:DI 5 di)
+        (reg:DI 112)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+(call_insn 112 111 113 16 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__vfprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fe00 __vfprintf_chk>) [0 __builtin___vfprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__vfprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fe00 __vfprintf_chk>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+(insn 113 112 114 16 (set (reg:DI 113)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 114 113 115 16 (set (reg:DI 4 si)
+        (reg:DI 113)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 115 114 116 16 (set (reg:SI 5 di)
+        (const_int 10 [0xa])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(call_insn 116 115 119 16 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626200 __builtin_fputc>) [0 __builtin_fputc S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626200 __builtin_fputc>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+;;  succ:       18 [always]  count:524845000 (estimated locally) (FALLTHRU)
+
+;; basic block 18, loop depth 0, count 1073741825 (estimated locally), maybe hot
+;;  prev block 16, next block 19, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       16 [always]  count:524845000 (estimated locally) (FALLTHRU)
+;;              4 [51.1% (guessed)]  count:548896824 (estimated locally)
+(code_label 119 116 126 18 38 (nil) [1 uses])
+(note 126 119 120 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 120 126 121 18 (set (reg/f:DI 114)
+        (const_int 40 [0x28])) "../ncurses/./tinfo/comp_error.c":128:1 -1
+     (nil))
+(insn 121 120 122 18 (parallel [
+            (set (reg:CCZ 17 flags)
+                (unspec:CCZ [
+                        (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                                (const_int -8 [0xfffffffffffffff8])) [10 D.9361+0 S8 A64])
+                        (mem/v/f:DI (reg/f:DI 114) [6 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_TEST))
+            (clobber (scratch:DI))
+        ]) "../ncurses/./tinfo/comp_error.c":128:1 -1
+     (nil))
+(jump_insn 122 121 133 18 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 125)
+            (pc))) "../ncurses/./tinfo/comp_error.c":128:1 -1
+     (int_list:REG_BR_PROB 1073312332 (nil))
+ -> 125)
+;;  succ:       20 [100.0% (guessed)]  count:1073312329 (estimated locally)
+;;              19 [0.0% (guessed)]  count:429496 (estimated locally) (FALLTHRU)
+
+;; basic block 19, loop depth 0, count 429496 (estimated locally)
+;;  prev block 18, next block 20, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       18 [0.0% (guessed)]  count:429496 (estimated locally) (FALLTHRU)
+(note 133 122 123 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(call_insn 123 133 124 19 (call (mem:QI (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7f28b7e83200 __stack_chk_fail>) [0 __stack_chk_fail S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/comp_error.c":128:1 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7f28b7e83200 __stack_chk_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (nil))
+;;  succ:      
+
+(barrier 124 123 125)
+;; basic block 20, loop depth 0, count 1073312329 (estimated locally), maybe hot
+;;  prev block 19, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       18 [100.0% (guessed)]  count:1073312329 (estimated locally)
+(code_label 125 124 134 20 45 (nil) [1 uses])
+(note 134 125 0 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       EXIT [always]  count:1073312329 (estimated locally) (FALLTHRU)
+
+
+;; Function _nc_err_abort (_nc_err_abort, funcdef_no=97, decl_uid=9108, cgraph_uid=98, symbol_order=100) (executed once)
+
+__attribute__((visibility ("default"), noreturn))
+__attribute__((format (printf, 1, 2)))
+void _nc_err_abort (const char * const fmt)
+{
+  struct  argp[1];
+  struct FILE * stderr.15_1;
+  struct FILE * stderr.16_2;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  where_is_problem ();
+  __builtin_va_start (&argp, 0);
+  stderr.15_1 = stderr;
+  __vfprintf_chk (stderr.15_1, 1, fmt_6(D), &argp);
+  stderr.16_2 = stderr;
+  __builtin_fputc (10, stderr.16_2);
+  exit (1);
+;;    succ:      
+
+}
+
+
+
+Partition map 
+
+Partition 1 (stderr.15_1 - 1 )
+Partition 2 (stderr.16_2 - 2 )
+Partition 6 (fmt_6(D) - 6 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (fmt_6(D) - 6 )
+
+
+Partition map 
+
+Partition 0 (fmt_6(D) - 6 )
+
+
+Conflict graph:
+
+After sorting:
+Coalesce List:
+
+Partition map 
+
+Partition 0 (fmt_6(D) - 6 )
+
+After Coalescing:
+
+Partition map 
+
+Partition 0 (stderr.15_1 - 1 )
+Partition 1 (stderr.16_2 - 2 )
+Partition 2 (fmt_6(D) - 6 )
+
+
+Replacing Expressions
+stderr.15_1 replace with --> stderr.15_1 = stderr;
+
+stderr.16_2 replace with --> stderr.16_2 = stderr;
+
+
+__attribute__((visibility ("default"), noreturn))
+__attribute__((format (printf, 1, 2)))
+void _nc_err_abort (const char * const fmt)
+{
+  struct  argp[1];
+  struct FILE * stderr.15_1;
+  struct FILE * stderr.16_2;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  where_is_problem ();
+  __builtin_va_start (&argp, 0);
+  stderr.15_1 = stderr;
+  __vfprintf_chk (stderr.15_1, 1, fmt_6(D), &argp);
+  stderr.16_2 = stderr;
+  __builtin_fputc (10, stderr.16_2);
+  exit (1);
+;;    succ:      
+
+}
+
+
+Partition 0: size 24 align 8
+	argp
+
+;; Generating RTL for gimple basic block 2
+
+;; where_is_problem ();
+
+(call_insn 24 23 0 (call (mem:QI (symbol_ref:DI ("where_is_problem") [flags 0x3]  <function_decl 0x7f28b8280b00 where_is_problem>) [0 where_is_problem S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/comp_error.c":135:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("where_is_problem") [flags 0x3]  <function_decl 0x7f28b8280b00 where_is_problem>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (nil))
+
+;; __builtin_va_start (&argp, 0);
+
+(insn 25 24 26 (parallel [
+            (set (reg:DI 86)
+                (plus:DI (reg/f:DI 76 virtual-incoming-args)
+                    (const_int 0 [0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_error.c":136:5 -1
+     (nil))
+
+(insn 26 25 27 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -32 [0xffffffffffffffe0])) [17 MEM[(struct [1] *)&argp].gp_offset+0 S4 A64])
+        (const_int 8 [0x8])) "../ncurses/./tinfo/comp_error.c":136:5 -1
+     (nil))
+
+(insn 27 26 28 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -28 [0xffffffffffffffe4])) [17 MEM[(struct [1] *)&argp].fp_offset+0 S4 A32])
+        (const_int 48 [0x30])) "../ncurses/./tinfo/comp_error.c":136:5 -1
+     (nil))
+
+(insn 28 27 29 (set (mem/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [17 MEM[(struct [1] *)&argp].overflow_arg_area+0 S8 A64])
+        (reg/f:DI 76 virtual-incoming-args)) "../ncurses/./tinfo/comp_error.c":136:5 -1
+     (nil))
+
+(insn 29 28 0 (set (mem/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -16 [0xfffffffffffffff0])) [17 MEM[(struct [1] *)&argp].reg_save_area+0 S8 A64])
+        (reg/f:DI 19 frame)) "../ncurses/./tinfo/comp_error.c":136:5 -1
+     (nil))
+
+;; __vfprintf_chk (stderr.15_1, 1, fmt_6(D), &argp);
+
+(insn 30 29 31 (parallel [
+            (set (reg:DI 87)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+
+(insn 31 30 32 (set (reg:DI 88)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+
+(insn 32 31 33 (set (reg:DI 2 cx)
+        (reg:DI 87)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+
+(insn 33 32 34 (set (reg:DI 1 dx)
+        (reg/v/f:DI 84 [ fmt ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+
+(insn 34 33 35 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+
+(insn 35 34 36 (set (reg:DI 5 di)
+        (reg:DI 88)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+
+(call_insn 36 35 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__vfprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fe00 __vfprintf_chk>) [0 __builtin___vfprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__vfprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fe00 __vfprintf_chk>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+
+;; __builtin_fputc (10, stderr.16_2);
+
+(insn 37 36 38 (set (reg:DI 89)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 38 37 39 (set (reg:DI 4 si)
+        (reg:DI 89)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 39 38 40 (set (reg:SI 5 di)
+        (const_int 10 [0xa])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(call_insn 40 39 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626200 __builtin_fputc>) [0 __builtin_fputc S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626200 __builtin_fputc>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+;; exit (1);
+
+(insn 41 40 42 (set (reg:SI 5 di)
+        (const_int 1 [0x1])) "../ncurses/./tinfo/comp_error.c":140:5 -1
+     (nil))
+
+(call_insn 42 41 43 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f28b863cb00 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/comp_error.c":140:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f28b863cb00 exit>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+
+(barrier 43 42 0)
+Predictions for insn 9 bb 3
+  no prediction heuristics: 50.00%  exec 1073741824 (estimated locally) hit 2147483640 (estimated locally) (200.0%)
+  combined heuristics: 50.00%  exec 1073741824 (estimated locally) hit 2147483640 (estimated locally) (200.0%)
+Predictions for insn 47 bb 4
+  first match heuristics: 99.96%  exec 0 (precise) hit 0 (precise) (-nan%)
+;;heuristics;first match;0;0;100.0;
+  combined heuristics: 99.96%  exec 0 (precise) hit 0 (precise) (-nan%)
+;;heuristics;combined;0;0;100.0;
+  noreturn call heuristics: 99.96%  exec 0 (precise) hit 0 (precise) (-nan%)
+;;heuristics;noreturn call;0;0;100.0;
+deleting block 8
+deleting block 7
+deleting block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 5 into block 4...
+Merged blocks 4 and 5.
+Merged 4 and 5 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 22 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 22 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 22 3 2 (set (reg/v/f:DI 84 [ fmt ])
+        (reg:DI 5 di [ fmt ])) "../ncurses/./tinfo/comp_error.c":132:1 -1
+     (nil))
+(insn 3 2 4 2 (set (mem/c:DI (plus:DI (reg/f:DI 19 frame)
+                (const_int 8 [0x8])) [0  S8 A8])
+        (reg:DI 4 si)) "../ncurses/./tinfo/comp_error.c":132:1 -1
+     (nil))
+(insn 4 3 5 2 (set (mem/c:DI (plus:DI (reg/f:DI 19 frame)
+                (const_int 16 [0x10])) [0  S8 A8])
+        (reg:DI 1 dx)) "../ncurses/./tinfo/comp_error.c":132:1 -1
+     (nil))
+(insn 5 4 6 2 (set (mem/c:DI (plus:DI (reg/f:DI 19 frame)
+                (const_int 24 [0x18])) [0  S8 A8])
+        (reg:DI 2 cx)) "../ncurses/./tinfo/comp_error.c":132:1 -1
+     (nil))
+(insn 6 5 7 2 (set (mem/c:DI (plus:DI (reg/f:DI 19 frame)
+                (const_int 32 [0x20])) [0  S8 A8])
+        (reg:DI 36 r8)) "../ncurses/./tinfo/comp_error.c":132:1 -1
+     (nil))
+(insn 7 6 8 2 (set (mem/c:DI (plus:DI (reg/f:DI 19 frame)
+                (const_int 40 [0x28])) [0  S8 A8])
+        (reg:DI 37 r9)) "../ncurses/./tinfo/comp_error.c":132:1 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax)
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":132:1 -1
+     (nil))
+(jump_insn 9 8 52 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 18)
+            (pc))) "../ncurses/./tinfo/comp_error.c":132:1 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 18)
+;;  succ:       4 [50.0% (guessed)]  count:536870912 (estimated locally)
+;;              3 [50.0% (guessed)]  count:536870912 (estimated locally) (FALLTHRU)
+
+;; basic block 3, loop depth 0, count 536870912 (estimated locally)
+;;  prev block 2, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [50.0% (guessed)]  count:536870912 (estimated locally) (FALLTHRU)
+(note 52 9 10 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 10 52 11 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 48 [0x30])) [0  S16 A128])
+        (reg:V4SF 20 xmm0)) "../ncurses/./tinfo/comp_error.c":132:1 -1
+     (nil))
+(insn 11 10 12 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 64 [0x40])) [0  S16 A128])
+        (reg:V4SF 21 xmm1)) "../ncurses/./tinfo/comp_error.c":132:1 -1
+     (nil))
+(insn 12 11 13 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 80 [0x50])) [0  S16 A128])
+        (reg:V4SF 22 xmm2)) "../ncurses/./tinfo/comp_error.c":132:1 -1
+     (nil))
+(insn 13 12 14 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 96 [0x60])) [0  S16 A128])
+        (reg:V4SF 23 xmm3)) "../ncurses/./tinfo/comp_error.c":132:1 -1
+     (nil))
+(insn 14 13 15 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 112 [0x70])) [0  S16 A128])
+        (reg:V4SF 24 xmm4)) "../ncurses/./tinfo/comp_error.c":132:1 -1
+     (nil))
+(insn 15 14 16 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 128 [0x80])) [0  S16 A128])
+        (reg:V4SF 25 xmm5)) "../ncurses/./tinfo/comp_error.c":132:1 -1
+     (nil))
+(insn 16 15 17 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 144 [0x90])) [0  S16 A128])
+        (reg:V4SF 26 xmm6)) "../ncurses/./tinfo/comp_error.c":132:1 -1
+     (nil))
+(insn 17 16 18 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 160 [0xa0])) [0  S16 A128])
+        (reg:V4SF 27 xmm7)) "../ncurses/./tinfo/comp_error.c":132:1 -1
+     (nil))
+;;  succ:       4 [always]  count:536870912 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 3, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [50.0% (guessed)]  count:536870912 (estimated locally)
+;;              3 [always]  count:536870912 (estimated locally) (FALLTHRU)
+(code_label 18 17 53 4 55 (nil) [1 uses])
+(note 53 18 19 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(note 19 53 20 4 NOTE_INSN_FUNCTION_BEG)
+(insn 20 19 21 4 (set (reg/f:DI 85)
+        (const_int 40 [0x28])) "../ncurses/./tinfo/comp_error.c":132:1 -1
+     (nil))
+(insn 21 20 24 4 (parallel [
+            (set (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                        (const_int -8 [0xfffffffffffffff8])) [10 D.9368+0 S8 A64])
+                (unspec:DI [
+                        (mem/v/f:DI (reg/f:DI 85) [6 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_SET))
+            (set (scratch:DI)
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_error.c":132:1 -1
+     (nil))
+(call_insn 24 21 25 4 (call (mem:QI (symbol_ref:DI ("where_is_problem") [flags 0x3]  <function_decl 0x7f28b8280b00 where_is_problem>) [0 where_is_problem S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/comp_error.c":135:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("where_is_problem") [flags 0x3]  <function_decl 0x7f28b8280b00 where_is_problem>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (nil))
+(insn 25 24 26 4 (parallel [
+            (set (reg:DI 86)
+                (plus:DI (reg/f:DI 76 virtual-incoming-args)
+                    (const_int 0 [0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_error.c":136:5 -1
+     (nil))
+(insn 26 25 27 4 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -32 [0xffffffffffffffe0])) [17 MEM[(struct [1] *)&argp].gp_offset+0 S4 A64])
+        (const_int 8 [0x8])) "../ncurses/./tinfo/comp_error.c":136:5 -1
+     (nil))
+(insn 27 26 28 4 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -28 [0xffffffffffffffe4])) [17 MEM[(struct [1] *)&argp].fp_offset+0 S4 A32])
+        (const_int 48 [0x30])) "../ncurses/./tinfo/comp_error.c":136:5 -1
+     (nil))
+(insn 28 27 29 4 (set (mem/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [17 MEM[(struct [1] *)&argp].overflow_arg_area+0 S8 A64])
+        (reg/f:DI 76 virtual-incoming-args)) "../ncurses/./tinfo/comp_error.c":136:5 -1
+     (nil))
+(insn 29 28 30 4 (set (mem/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -16 [0xfffffffffffffff0])) [17 MEM[(struct [1] *)&argp].reg_save_area+0 S8 A64])
+        (reg/f:DI 19 frame)) "../ncurses/./tinfo/comp_error.c":136:5 -1
+     (nil))
+(insn 30 29 31 4 (parallel [
+            (set (reg:DI 87)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+(insn 31 30 32 4 (set (reg:DI 88)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+(insn 32 31 33 4 (set (reg:DI 2 cx)
+        (reg:DI 87)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+(insn 33 32 34 4 (set (reg:DI 1 dx)
+        (reg/v/f:DI 84 [ fmt ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+(insn 34 33 35 4 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+(insn 35 34 36 4 (set (reg:DI 5 di)
+        (reg:DI 88)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+(call_insn 36 35 37 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__vfprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fe00 __vfprintf_chk>) [0 __builtin___vfprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__vfprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fe00 __vfprintf_chk>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+(insn 37 36 38 4 (set (reg:DI 89)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 38 37 39 4 (set (reg:DI 4 si)
+        (reg:DI 89)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 39 38 40 4 (set (reg:SI 5 di)
+        (const_int 10 [0xa])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(call_insn 40 39 41 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626200 __builtin_fputc>) [0 __builtin_fputc S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626200 __builtin_fputc>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 41 40 42 4 (set (reg:SI 5 di)
+        (const_int 1 [0x1])) "../ncurses/./tinfo/comp_error.c":140:5 -1
+     (nil))
+(call_insn 42 41 43 4 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f28b863cb00 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/comp_error.c":140:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f28b863cb00 exit>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+;;  succ:      
+
+(barrier 43 42 0)
+
+;; Function _nc_syserr_abort (_nc_syserr_abort, funcdef_no=98, decl_uid=9116, cgraph_uid=99, symbol_order=101) (executed once)
+
+__attribute__((visibility ("default"), noreturn))
+__attribute__((format (printf, 1, 2)))
+void _nc_syserr_abort (const char * const fmt)
+{
+  struct  argp[1];
+  struct FILE * stderr.17_1;
+  struct FILE * stderr.18_2;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  where_is_problem ();
+  __builtin_va_start (&argp, 0);
+  stderr.17_1 = stderr;
+  __vfprintf_chk (stderr.17_1, 1, fmt_6(D), &argp);
+  stderr.18_2 = stderr;
+  __builtin_fputc (10, stderr.18_2);
+  exit (1);
+;;    succ:      
+
+}
+
+
+
+Partition map 
+
+Partition 1 (stderr.17_1 - 1 )
+Partition 2 (stderr.18_2 - 2 )
+Partition 6 (fmt_6(D) - 6 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (fmt_6(D) - 6 )
+
+
+Partition map 
+
+Partition 0 (fmt_6(D) - 6 )
+
+
+Conflict graph:
+
+After sorting:
+Coalesce List:
+
+Partition map 
+
+Partition 0 (fmt_6(D) - 6 )
+
+After Coalescing:
+
+Partition map 
+
+Partition 0 (stderr.17_1 - 1 )
+Partition 1 (stderr.18_2 - 2 )
+Partition 2 (fmt_6(D) - 6 )
+
+
+Replacing Expressions
+stderr.17_1 replace with --> stderr.17_1 = stderr;
+
+stderr.18_2 replace with --> stderr.18_2 = stderr;
+
+
+__attribute__((visibility ("default"), noreturn))
+__attribute__((format (printf, 1, 2)))
+void _nc_syserr_abort (const char * const fmt)
+{
+  struct  argp[1];
+  struct FILE * stderr.17_1;
+  struct FILE * stderr.18_2;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  where_is_problem ();
+  __builtin_va_start (&argp, 0);
+  stderr.17_1 = stderr;
+  __vfprintf_chk (stderr.17_1, 1, fmt_6(D), &argp);
+  stderr.18_2 = stderr;
+  __builtin_fputc (10, stderr.18_2);
+  exit (1);
+;;    succ:      
+
+}
+
+
+Partition 0: size 24 align 8
+	argp
+
+;; Generating RTL for gimple basic block 2
+
+;; where_is_problem ();
+
+(call_insn 24 23 0 (call (mem:QI (symbol_ref:DI ("where_is_problem") [flags 0x3]  <function_decl 0x7f28b8280b00 where_is_problem>) [0 where_is_problem S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/comp_error.c":148:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("where_is_problem") [flags 0x3]  <function_decl 0x7f28b8280b00 where_is_problem>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (nil))
+
+;; __builtin_va_start (&argp, 0);
+
+(insn 25 24 26 (parallel [
+            (set (reg:DI 86)
+                (plus:DI (reg/f:DI 76 virtual-incoming-args)
+                    (const_int 0 [0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_error.c":149:5 -1
+     (nil))
+
+(insn 26 25 27 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -32 [0xffffffffffffffe0])) [17 MEM[(struct [1] *)&argp].gp_offset+0 S4 A64])
+        (const_int 8 [0x8])) "../ncurses/./tinfo/comp_error.c":149:5 -1
+     (nil))
+
+(insn 27 26 28 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -28 [0xffffffffffffffe4])) [17 MEM[(struct [1] *)&argp].fp_offset+0 S4 A32])
+        (const_int 48 [0x30])) "../ncurses/./tinfo/comp_error.c":149:5 -1
+     (nil))
+
+(insn 28 27 29 (set (mem/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [17 MEM[(struct [1] *)&argp].overflow_arg_area+0 S8 A64])
+        (reg/f:DI 76 virtual-incoming-args)) "../ncurses/./tinfo/comp_error.c":149:5 -1
+     (nil))
+
+(insn 29 28 0 (set (mem/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -16 [0xfffffffffffffff0])) [17 MEM[(struct [1] *)&argp].reg_save_area+0 S8 A64])
+        (reg/f:DI 19 frame)) "../ncurses/./tinfo/comp_error.c":149:5 -1
+     (nil))
+
+;; __vfprintf_chk (stderr.17_1, 1, fmt_6(D), &argp);
+
+(insn 30 29 31 (parallel [
+            (set (reg:DI 87)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+
+(insn 31 30 32 (set (reg:DI 88)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+
+(insn 32 31 33 (set (reg:DI 2 cx)
+        (reg:DI 87)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+
+(insn 33 32 34 (set (reg:DI 1 dx)
+        (reg/v/f:DI 84 [ fmt ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+
+(insn 34 33 35 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+
+(insn 35 34 36 (set (reg:DI 5 di)
+        (reg:DI 88)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+
+(call_insn 36 35 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__vfprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fe00 __vfprintf_chk>) [0 __builtin___vfprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__vfprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fe00 __vfprintf_chk>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+
+;; __builtin_fputc (10, stderr.18_2);
+
+(insn 37 36 38 (set (reg:DI 89)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 38 37 39 (set (reg:DI 4 si)
+        (reg:DI 89)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(insn 39 38 40 (set (reg:SI 5 di)
+        (const_int 10 [0xa])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+
+(call_insn 40 39 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626200 __builtin_fputc>) [0 __builtin_fputc S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626200 __builtin_fputc>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+;; exit (1);
+
+(insn 41 40 42 (set (reg:SI 5 di)
+        (const_int 1 [0x1])) "../ncurses/./tinfo/comp_error.c":163:5 -1
+     (nil))
+
+(call_insn 42 41 43 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f28b863cb00 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/comp_error.c":163:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f28b863cb00 exit>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+
+(barrier 43 42 0)
+Predictions for insn 9 bb 3
+  no prediction heuristics: 50.00%  exec 1073741824 (estimated locally) hit 2147483640 (estimated locally) (200.0%)
+  combined heuristics: 50.00%  exec 1073741824 (estimated locally) hit 2147483640 (estimated locally) (200.0%)
+Predictions for insn 47 bb 4
+  first match heuristics: 99.96%  exec 0 (precise) hit 0 (precise) (-nan%)
+;;heuristics;first match;0;0;100.0;
+  combined heuristics: 99.96%  exec 0 (precise) hit 0 (precise) (-nan%)
+;;heuristics;combined;0;0;100.0;
+  noreturn call heuristics: 99.96%  exec 0 (precise) hit 0 (precise) (-nan%)
+;;heuristics;noreturn call;0;0;100.0;
+deleting block 8
+deleting block 7
+deleting block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 5 into block 4...
+Merged blocks 4 and 5.
+Merged 4 and 5 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 22 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 22 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 22 3 2 (set (reg/v/f:DI 84 [ fmt ])
+        (reg:DI 5 di [ fmt ])) "../ncurses/./tinfo/comp_error.c":145:1 -1
+     (nil))
+(insn 3 2 4 2 (set (mem/c:DI (plus:DI (reg/f:DI 19 frame)
+                (const_int 8 [0x8])) [0  S8 A8])
+        (reg:DI 4 si)) "../ncurses/./tinfo/comp_error.c":145:1 -1
+     (nil))
+(insn 4 3 5 2 (set (mem/c:DI (plus:DI (reg/f:DI 19 frame)
+                (const_int 16 [0x10])) [0  S8 A8])
+        (reg:DI 1 dx)) "../ncurses/./tinfo/comp_error.c":145:1 -1
+     (nil))
+(insn 5 4 6 2 (set (mem/c:DI (plus:DI (reg/f:DI 19 frame)
+                (const_int 24 [0x18])) [0  S8 A8])
+        (reg:DI 2 cx)) "../ncurses/./tinfo/comp_error.c":145:1 -1
+     (nil))
+(insn 6 5 7 2 (set (mem/c:DI (plus:DI (reg/f:DI 19 frame)
+                (const_int 32 [0x20])) [0  S8 A8])
+        (reg:DI 36 r8)) "../ncurses/./tinfo/comp_error.c":145:1 -1
+     (nil))
+(insn 7 6 8 2 (set (mem/c:DI (plus:DI (reg/f:DI 19 frame)
+                (const_int 40 [0x28])) [0  S8 A8])
+        (reg:DI 37 r9)) "../ncurses/./tinfo/comp_error.c":145:1 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax)
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_error.c":145:1 -1
+     (nil))
+(jump_insn 9 8 52 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 18)
+            (pc))) "../ncurses/./tinfo/comp_error.c":145:1 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 18)
+;;  succ:       4 [50.0% (guessed)]  count:536870912 (estimated locally)
+;;              3 [50.0% (guessed)]  count:536870912 (estimated locally) (FALLTHRU)
+
+;; basic block 3, loop depth 0, count 536870912 (estimated locally)
+;;  prev block 2, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [50.0% (guessed)]  count:536870912 (estimated locally) (FALLTHRU)
+(note 52 9 10 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 10 52 11 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 48 [0x30])) [0  S16 A128])
+        (reg:V4SF 20 xmm0)) "../ncurses/./tinfo/comp_error.c":145:1 -1
+     (nil))
+(insn 11 10 12 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 64 [0x40])) [0  S16 A128])
+        (reg:V4SF 21 xmm1)) "../ncurses/./tinfo/comp_error.c":145:1 -1
+     (nil))
+(insn 12 11 13 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 80 [0x50])) [0  S16 A128])
+        (reg:V4SF 22 xmm2)) "../ncurses/./tinfo/comp_error.c":145:1 -1
+     (nil))
+(insn 13 12 14 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 96 [0x60])) [0  S16 A128])
+        (reg:V4SF 23 xmm3)) "../ncurses/./tinfo/comp_error.c":145:1 -1
+     (nil))
+(insn 14 13 15 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 112 [0x70])) [0  S16 A128])
+        (reg:V4SF 24 xmm4)) "../ncurses/./tinfo/comp_error.c":145:1 -1
+     (nil))
+(insn 15 14 16 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 128 [0x80])) [0  S16 A128])
+        (reg:V4SF 25 xmm5)) "../ncurses/./tinfo/comp_error.c":145:1 -1
+     (nil))
+(insn 16 15 17 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 144 [0x90])) [0  S16 A128])
+        (reg:V4SF 26 xmm6)) "../ncurses/./tinfo/comp_error.c":145:1 -1
+     (nil))
+(insn 17 16 18 3 (set (mem/c:V4SF (plus:DI (reg/f:DI 19 frame)
+                (const_int 160 [0xa0])) [0  S16 A128])
+        (reg:V4SF 27 xmm7)) "../ncurses/./tinfo/comp_error.c":145:1 -1
+     (nil))
+;;  succ:       4 [always]  count:536870912 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 3, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [50.0% (guessed)]  count:536870912 (estimated locally)
+;;              3 [always]  count:536870912 (estimated locally) (FALLTHRU)
+(code_label 18 17 53 4 59 (nil) [1 uses])
+(note 53 18 19 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(note 19 53 20 4 NOTE_INSN_FUNCTION_BEG)
+(insn 20 19 21 4 (set (reg/f:DI 85)
+        (const_int 40 [0x28])) "../ncurses/./tinfo/comp_error.c":145:1 -1
+     (nil))
+(insn 21 20 24 4 (parallel [
+            (set (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                        (const_int -8 [0xfffffffffffffff8])) [10 D.9374+0 S8 A64])
+                (unspec:DI [
+                        (mem/v/f:DI (reg/f:DI 85) [6 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_SET))
+            (set (scratch:DI)
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_error.c":145:1 -1
+     (nil))
+(call_insn 24 21 25 4 (call (mem:QI (symbol_ref:DI ("where_is_problem") [flags 0x3]  <function_decl 0x7f28b8280b00 where_is_problem>) [0 where_is_problem S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/comp_error.c":148:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("where_is_problem") [flags 0x3]  <function_decl 0x7f28b8280b00 where_is_problem>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (nil))
+(insn 25 24 26 4 (parallel [
+            (set (reg:DI 86)
+                (plus:DI (reg/f:DI 76 virtual-incoming-args)
+                    (const_int 0 [0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_error.c":149:5 -1
+     (nil))
+(insn 26 25 27 4 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -32 [0xffffffffffffffe0])) [17 MEM[(struct [1] *)&argp].gp_offset+0 S4 A64])
+        (const_int 8 [0x8])) "../ncurses/./tinfo/comp_error.c":149:5 -1
+     (nil))
+(insn 27 26 28 4 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -28 [0xffffffffffffffe4])) [17 MEM[(struct [1] *)&argp].fp_offset+0 S4 A32])
+        (const_int 48 [0x30])) "../ncurses/./tinfo/comp_error.c":149:5 -1
+     (nil))
+(insn 28 27 29 4 (set (mem/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [17 MEM[(struct [1] *)&argp].overflow_arg_area+0 S8 A64])
+        (reg/f:DI 76 virtual-incoming-args)) "../ncurses/./tinfo/comp_error.c":149:5 -1
+     (nil))
+(insn 29 28 30 4 (set (mem/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -16 [0xfffffffffffffff0])) [17 MEM[(struct [1] *)&argp].reg_save_area+0 S8 A64])
+        (reg/f:DI 19 frame)) "../ncurses/./tinfo/comp_error.c":149:5 -1
+     (nil))
+(insn 30 29 31 4 (parallel [
+            (set (reg:DI 87)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+(insn 31 30 32 4 (set (reg:DI 88)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+(insn 32 31 33 4 (set (reg:DI 2 cx)
+        (reg:DI 87)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+(insn 33 32 34 4 (set (reg:DI 1 dx)
+        (reg/v/f:DI 84 [ fmt ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+(insn 34 33 35 4 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+(insn 35 34 36 4 (set (reg:DI 5 di)
+        (reg:DI 88)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (nil))
+(call_insn 36 35 37 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__vfprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fe00 __vfprintf_chk>) [0 __builtin___vfprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":135:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__vfprintf_chk") [flags 0x41]  <function_decl 0x7f28b864fe00 __vfprintf_chk>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+(insn 37 36 38 4 (set (reg:DI 89)
+        (mem/f/c:DI (symbol_ref:DI ("stderr") [flags 0x40]  <var_decl 0x7f28b8738cf0 stderr>) [16 stderr+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 38 37 39 4 (set (reg:DI 4 si)
+        (reg:DI 89)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(insn 39 38 40 4 (set (reg:SI 5 di)
+        (const_int 10 [0xa])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (nil))
+(call_insn 40 39 41 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626200 __builtin_fputc>) [0 __builtin_fputc S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":105:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("fputc") [flags 0x41]  <function_decl 0x7f28b8626200 __builtin_fputc>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 41 40 42 4 (set (reg:SI 5 di)
+        (const_int 1 [0x1])) "../ncurses/./tinfo/comp_error.c":163:5 -1
+     (nil))
+(call_insn 42 41 43 4 (call (mem:QI (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f28b863cb00 exit>) [0 __builtin_exit S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/comp_error.c":163:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("exit") [flags 0x41]  <function_decl 0x7f28b863cb00 exit>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+;;  succ:      
+
+(barrier 43 42 0)

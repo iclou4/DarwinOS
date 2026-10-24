@@ -1,0 +1,1 @@
+#define VNDEVICE 0

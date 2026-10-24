@@ -1,0 +1,50 @@
+
+;; Function immedok (immedok, funcdef_no=91, decl_uid=5648, cgraph_uid=92, symbol_order=91)
+
+(note 1 0 6 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 82 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_immedok.c":48:1 74 {*movdi_internal}
+     (nil))
+(insn 3 2 4 2 (set (reg:SI 84)
+        (reg:SI 4 si [ flag ])) "../ncurses/./base/lib_immedok.c":48:1 75 {*movsi_internal}
+     (nil))
+(insn 4 3 5 2 (set (reg/v:QI 83 [ flag ])
+        (subreg:QI (reg:SI 84) 0)) "../ncurses/./base/lib_immedok.c":48:1 77 {*movqi_internal}
+     (nil))
+(note 5 4 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 5 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 82 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_immedok.c":51:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 14)
+            (pc))) "../ncurses/./base/lib_immedok.c":51:8 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 14)
+;;  succ:       4 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+;;              6 [30.0% (guessed)]  count:322122544 (estimated locally)
+
+;; basic block 4, loop depth 0, count 751619281 (estimated locally), maybe hot
+;;  prev block 2, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 14 4 (set (mem:QI (plus:DI (reg/v/f:DI 82 [ win ])
+                (const_int 42 [0x2a])) [1 win_2(D)->_immed+0 S1 A16])
+        (reg/v:QI 83 [ flag ])) "../ncurses/./base/lib_immedok.c":52:14 77 {*movqi_internal}
+     (nil))
+;;  succ:       6 [always]  count:751619281 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 4, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       4 [always]  count:751619281 (estimated locally) (FALLTHRU)
+;;              2 [30.0% (guessed)]  count:322122544 (estimated locally)
+(code_label 14 11 15 6 1 (nil) [1 uses])
+(note 15 14 0 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+

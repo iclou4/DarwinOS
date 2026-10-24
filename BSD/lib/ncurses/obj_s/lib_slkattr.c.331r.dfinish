@@ -1,0 +1,265 @@
+
+;; Function slk_attr_sp (slk_attr_sp, funcdef_no=91, decl_uid=6652, cgraph_uid=92, symbol_order=91)
+
+(note 1 0 76 NOTE_INSN_DELETED)
+(insn 76 1 6 2 (unspec_volatile [
+            (const_int 0 [0])
+        ] UNSPECV_NOP_ENDBR) 1242 {nop_endbr}
+     (nil))
+(note 6 76 66 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 66 6 3 2 NOTE_INSN_PROLOGUE_END)
+(note 3 66 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn:TI 8 3 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 5 di [orig:93 sp ] [93])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkattr.c":49:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 40)
+            (pc))) "../ncurses/./base/lib_slkattr.c":49:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 194239900 (nil)))
+ -> 40)
+(note 10 9 11 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 11 10 74 3 (set (reg/f:DI 2 cx [orig:82 _1 ] [82])
+        (mem/f:DI (plus:DI (reg/v/f:DI 5 di [orig:93 sp ] [93])
+                (const_int 800 [0x320])) [1 sp_12(D)->_slk+0 S8 A64])) "../ncurses/./base/lib_slkattr.c":49:35 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 5 di [orig:93 sp ] [93])
+        (nil)))
+(insn 74 11 12 3 (parallel [
+            (set (reg:DI 0 ax [orig:92 <retval> ] [92])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkattr.c":56:2 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 12 74 13 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 2 cx [orig:82 _1 ] [82])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkattr.c":49:25 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 13 12 14 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 33)
+            (pc))) "../ncurses/./base/lib_slkattr.c":49:25 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 33)
+(note 14 13 15 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 15 14 17 4 (set (reg:SI 1 dx [orig:83 _2 ] [83])
+        (mem:SI (plus:DI (reg/f:DI 2 cx [orig:82 _1 ] [82])
+                (const_int 32 [0x20])) [3 _1->attr.attr+0 S4 A64])) "../ncurses/./base/lib_slkattr.c":50:18 75 {*movsi_internal}
+     (nil))
+(insn 17 15 62 4 (set (reg:SI 0 ax [orig:84 _3 ] [84])
+        (mem:SI (plus:DI (reg/f:DI 2 cx [orig:82 _1 ] [82])
+                (const_int 56 [0x38])) [3 _1->attr.ext_color+0 S4 A64])) "../ncurses/./base/lib_slkattr.c":51:13 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 2 cx [orig:82 _1 ] [82])
+        (nil)))
+(insn:TI 62 17 56 4 (set (reg/v:SI 4 si [orig:91 result ] [91])
+        (reg:SI 1 dx [orig:83 _2 ] [83])) "../ncurses/./base/lib_slkattr.c":50:9 75 {*movsi_internal}
+     (nil))
+(insn 56 62 16 4 (set (reg:SI 1 dx [102])
+        (zero_extract:SI (reg:SI 1 dx [orig:83 _2 ] [83])
+            (const_int 8 [0x8])
+            (const_int 8 [0x8]))) "../ncurses/./base/lib_slkattr.c":51:13 100 {*extzvsi}
+     (nil))
+(insn:TI 16 56 18 4 (parallel [
+            (set (reg/v:SI 4 si [orig:91 result ] [91])
+                (and:SI (reg/v:SI 4 si [orig:91 result ] [91])
+                    (const_int -65281 [0xffffffffffff00ff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkattr.c":50:9 490 {*andsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 18 16 58 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:84 _3 ] [84])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkattr.c":51:13 7 {*cmpsi_ccno_1}
+     (nil))
+(insn:TI 58 18 26 4 (set (reg:SI 0 ax [103])
+        (if_then_else:SI (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (reg:SI 1 dx [102])
+            (reg:SI 0 ax [103]))) "../ncurses/./base/lib_slkattr.c":51:13 1100 {*movsicc_noc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (expr_list:REG_DEAD (reg:SI 1 dx [102])
+            (nil))))
+(insn:TI 26 58 27 4 (parallel [
+            (set (reg:SI 0 ax [96])
+                (ashift:SI (reg:SI 0 ax [orig:84 _3 ] [84])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkattr.c":53:21 655 {*ashlsi3_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 27 26 28 4 (set (reg:SI 0 ax [97])
+        (zero_extend:SI (reg:HI 0 ax [96]))) "../ncurses/./base/lib_slkattr.c":53:12 144 {*zero_extendhisi2}
+     (nil))
+(insn:TI 28 27 70 4 (parallel [
+            (set (reg/v:SI 0 ax [orig:92 <retval> ] [92])
+                (ior:SI (reg:SI 0 ax [97])
+                    (reg/v:SI 4 si [orig:91 result ] [91])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkattr.c":53:9 520 {*iorsi_1}
+     (expr_list:REG_DEAD (reg/v:SI 4 si [orig:91 result ] [91])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 70 28 59 4 (use (reg/i:SI 0 ax)) -1
+     (nil))
+(jump_insn:TI 59 70 60 4 (simple_return) "../ncurses/./base/lib_slkattr.c":54:2 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 60 59 40)
+(code_label 40 60 39 5 4 (nil) [1 uses])
+(note 39 40 73 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 73 39 33 5 (parallel [
+            (set (reg:DI 0 ax [orig:92 <retval> ] [92])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkattr.c":56:2 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(code_label 33 73 36 6 1 (nil) [1 uses])
+(note 36 33 35 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 35 36 75 6 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_slkattr.c":57:1 -1
+     (nil))
+(note 75 35 68 6 NOTE_INSN_EPILOGUE_BEG)
+(jump_insn:TI 68 75 69 6 (simple_return) "../ncurses/./base/lib_slkattr.c":57:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 69 68 61)
+(note 61 69 0 NOTE_INSN_DELETED)
+
+;; Function slk_attr (slk_attr, funcdef_no=92, decl_uid=6062, cgraph_uid=93, symbol_order=92)
+
+(note 1 0 72 NOTE_INSN_DELETED)
+(insn 72 1 5 2 (unspec_volatile [
+            (const_int 0 [0])
+        ] UNSPECV_NOP_ENDBR) 1242 {nop_endbr}
+     (nil))
+(note 5 72 64 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 64 5 2 2 NOTE_INSN_PROLOGUE_END)
+(note 2 64 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn:TI 7 2 8 2 (set (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f4efeee1cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/lib_slkattr.c":63:12 74 {*movdi_internal}
+     (nil))
+(insn:TI 8 7 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkattr.c":49:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 40)
+            (pc))) "../ncurses/./base/lib_slkattr.c":49:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 194239900 (nil)))
+ -> 40)
+(note 10 9 11 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 11 10 70 3 (set (reg/f:DI 2 cx [orig:83 _4 ] [83])
+        (mem/f:DI (plus:DI (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+                (const_int 800 [0x320])) [1 SP.2_1->_slk+0 S8 A64])) "../ncurses/./base/lib_slkattr.c":49:35 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+        (nil)))
+(insn 70 11 12 3 (parallel [
+            (set (reg:DI 0 ax [orig:93 <retval> ] [93])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkattr.c":56:2 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 12 70 13 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 2 cx [orig:83 _4 ] [83])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkattr.c":49:25 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 13 12 14 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 33)
+            (pc))) "../ncurses/./base/lib_slkattr.c":49:25 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 33)
+(note 14 13 15 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 15 14 17 4 (set (reg:SI 1 dx [orig:84 _5 ] [84])
+        (mem:SI (plus:DI (reg/f:DI 2 cx [orig:83 _4 ] [83])
+                (const_int 32 [0x20])) [3 _4->attr.attr+0 S4 A64])) "../ncurses/./base/lib_slkattr.c":50:18 75 {*movsi_internal}
+     (nil))
+(insn 17 15 60 4 (set (reg:SI 0 ax [orig:86 _7 ] [86])
+        (mem:SI (plus:DI (reg/f:DI 2 cx [orig:83 _4 ] [83])
+                (const_int 56 [0x38])) [3 _4->attr.ext_color+0 S4 A64])) "../ncurses/./base/lib_slkattr.c":51:13 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 2 cx [orig:83 _4 ] [83])
+        (nil)))
+(insn:TI 60 17 54 4 (set (reg/v:SI 4 si [orig:85 result ] [85])
+        (reg:SI 1 dx [orig:84 _5 ] [84])) "../ncurses/./base/lib_slkattr.c":50:9 75 {*movsi_internal}
+     (nil))
+(insn 54 60 16 4 (set (reg:SI 1 dx [101])
+        (zero_extract:SI (reg:SI 1 dx [orig:84 _5 ] [84])
+            (const_int 8 [0x8])
+            (const_int 8 [0x8]))) "../ncurses/./base/lib_slkattr.c":51:13 100 {*extzvsi}
+     (nil))
+(insn:TI 16 54 18 4 (parallel [
+            (set (reg/v:SI 4 si [orig:85 result ] [85])
+                (and:SI (reg/v:SI 4 si [orig:85 result ] [85])
+                    (const_int -65281 [0xffffffffffff00ff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkattr.c":50:9 490 {*andsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 18 16 56 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:86 _7 ] [86])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkattr.c":51:13 7 {*cmpsi_ccno_1}
+     (nil))
+(insn:TI 56 18 26 4 (set (reg:SI 0 ax [102])
+        (if_then_else:SI (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (reg:SI 1 dx [101])
+            (reg:SI 0 ax [102]))) "../ncurses/./base/lib_slkattr.c":51:13 1100 {*movsicc_noc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (expr_list:REG_DEAD (reg:SI 1 dx [101])
+            (nil))))
+(insn:TI 26 56 27 4 (parallel [
+            (set (reg:SI 0 ax [96])
+                (ashift:SI (reg:SI 0 ax [orig:86 _7 ] [86])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkattr.c":53:21 655 {*ashlsi3_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 27 26 28 4 (set (reg:SI 0 ax [97])
+        (zero_extend:SI (reg:HI 0 ax [96]))) "../ncurses/./base/lib_slkattr.c":53:12 144 {*zero_extendhisi2}
+     (nil))
+(insn:TI 28 27 68 4 (parallel [
+            (set (reg/v:SI 0 ax [orig:93 <retval> ] [93])
+                (ior:SI (reg:SI 0 ax [97])
+                    (reg/v:SI 4 si [orig:85 result ] [85])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkattr.c":53:9 520 {*iorsi_1}
+     (expr_list:REG_DEAD (reg/v:SI 4 si [orig:85 result ] [85])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 68 28 57 4 (use (reg/i:SI 0 ax)) -1
+     (nil))
+(jump_insn:TI 57 68 58 4 (simple_return) "../ncurses/./base/lib_slkattr.c":54:2 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 58 57 40)
+(code_label 40 58 39 5 11 (nil) [1 uses])
+(note 39 40 69 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 69 39 33 5 (parallel [
+            (set (reg:DI 0 ax [orig:93 <retval> ] [93])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkattr.c":56:2 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(code_label 33 69 36 6 8 (nil) [1 uses])
+(note 36 33 35 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 35 36 71 6 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_slkattr.c":64:1 -1
+     (nil))
+(note 71 35 66 6 NOTE_INSN_EPILOGUE_BEG)
+(jump_insn:TI 66 71 67 6 (simple_return) "../ncurses/./base/lib_slkattr.c":64:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 67 66 59)
+(note 59 67 0 NOTE_INSN_DELETED)

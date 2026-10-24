@@ -1,0 +1,679 @@
+
+;; Function has_ic_sp (has_ic_sp, funcdef_no=91, decl_uid=6547, cgraph_uid=92, symbol_order=91)
+
+(note 1 0 7 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741823 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741823 (estimated locally) (FALLTHRU)
+(note 7 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 103 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./tinfo/lib_has_cap.c":54:1 74 {*movdi_internal}
+     (nil))
+(note 3 2 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 3 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 103 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":59:9 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 14)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":59:9 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 14)
+;;  succ:       4 [70.0% (guessed)]  count:751619279 (estimated locally) (FALLTHRU)
+;;              5 [30.0% (guessed)]  count:322122544 (estimated locally)
+
+;; basic block 4, loop depth 0, count 751619280 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [70.0% (guessed)]  count:751619279 (estimated locally) (FALLTHRU)
+(note 11 10 12 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/v/f:DI 103 [ sp ])
+                    (const_int 48 [0x30])) [1 sp_9(D)->_term+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":59:9 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 13 12 14 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 19)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":59:9 806 {*jcc}
+     (int_list:REG_BR_PROB 751619284 (nil))
+ -> 19)
+;;  succ:       6 [70.0% (guessed)]  count:526133498 (estimated locally)
+;;              5 [30.0% (guessed)]  count:225485782 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 547608326 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [30.0% (guessed)]  count:225485782 (estimated locally) (FALLTHRU)
+;;              2 [30.0% (guessed)]  count:322122544 (estimated locally)
+(code_label 14 13 15 5 2 (nil) [1 uses])
+(note 15 14 16 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 5 (set (reg/f:DI 104)
+        (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7f261b826f30 _nc_prescreen>)) "../ncurses/./tinfo/lib_has_cap.c":59:9 74 {*movdi_internal}
+     (nil))
+(insn 17 16 18 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f/c:DI (plus:DI (reg/f:DI 104)
+                    (const_int 680 [0x2a8])) [1 _nc_prescreen._cur_term+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":59:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 18 17 19 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 84)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":59:8 806 {*jcc}
+     (int_list:REG_BR_PROB 956022628 (nil))
+ -> 84)
+;;  succ:       6 [11.0% (guessed)]  count:60036792 (estimated locally) (FALLTHRU)
+;;              17 [89.0% (guessed)]  count:487571534 (estimated locally)
+
+;; basic block 6, loop depth 0, count 354334800 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 586170290 (estimated locally), should be 354334800 (estimated locally)
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [11.0% (guessed)]  count:60036792 (estimated locally) (FALLTHRU)
+;;              4 [70.0% (guessed)]  count:526133498 (estimated locally)
+(code_label 19 18 20 6 3 (nil) [1 uses])
+(note 20 19 21 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(call_insn 21 20 22 6 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":60:11 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 22 21 23 6 (set (reg/f:DI 84 [ _13 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":60:11 74 {*movdi_internal}
+     (nil))
+(insn 23 22 24 6 (set (reg/f:DI 105)
+        (mem/f:DI (plus:DI (reg/f:DI 84 [ _13 ])
+                (const_int 720 [0x2d0])) [46 _13->type2.Strings+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":60:11 74 {*movdi_internal}
+     (nil))
+(insn 24 23 25 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 105)
+                    (const_int 416 [0x1a0])) [7 MEM[(char * *)_14 + 416B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":62:45 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 25 24 39 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 35)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":62:45 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 35)
+;;  succ:       7 [70.0% (guessed)]  count:248034361 (estimated locally) (FALLTHRU)
+;;              9 [30.0% (guessed)]  count:106300439 (estimated locally)
+
+;; basic block 7, loop depth 0, count 342741541 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       6 [70.0% (guessed)]  count:248034361 (estimated locally) (FALLTHRU)
+;;              9 [82.6% (guessed)]  count:87772272 (estimated locally)
+;;              12 [70.0% (guessed)]  count:6934908 (estimated locally)
+(code_label 39 25 26 7 8 (nil) [2 uses])
+(note 26 39 27 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(call_insn 27 26 28 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":62:7 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 28 27 29 7 (set (reg/f:DI 96 [ _25 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":62:7 74 {*movdi_internal}
+     (nil))
+(insn 29 28 30 7 (set (reg/f:DI 106)
+        (mem/f:DI (plus:DI (reg/f:DI 96 [ _25 ])
+                (const_int 720 [0x2d0])) [46 _25->type2.Strings+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":62:7 74 {*movdi_internal}
+     (nil))
+(insn 30 29 31 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 106)
+                    (const_int 168 [0xa8])) [7 MEM[(char * *)_26 + 168B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":62:45 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 31 30 34 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 88)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":62:45 806 {*jcc}
+     (int_list:REG_BR_PROB 886588628 (nil))
+ -> 88)
+;;  succ:       15 [82.6% (guessed)]  count:283001690 (estimated locally)
+;;              8 [17.4% (guessed)]  count:59739851 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 59739851 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL)
+;;  pred:       7 [17.4% (guessed)]  count:59739851 (estimated locally) (FALLTHRU)
+(note 34 31 32 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 32 34 33 8 (set (pc)
+        (label_ref 63)) 807 {jump}
+     (nil)
+ -> 63)
+;;  succ:       14 [always]  count:59739851 (estimated locally)
+
+(barrier 33 32 35)
+;; basic block 9, loop depth 0, count 106300439 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [30.0% (guessed)]  count:106300439 (estimated locally)
+(code_label 35 33 36 9 5 (nil) [1 uses])
+(note 36 35 37 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(call_insn 37 36 38 9 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":60:31 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 38 37 40 9 (set (reg/f:DI 87 [ _16 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":60:31 74 {*movdi_internal}
+     (nil))
+(insn 40 38 41 9 (set (reg/f:DI 107)
+        (mem/f:DI (plus:DI (reg/f:DI 87 [ _16 ])
+                (const_int 720 [0x2d0])) [46 _16->type2.Strings+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":60:31 74 {*movdi_internal}
+     (nil))
+(insn 41 40 42 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 107)
+                    (const_int 864 [0x360])) [7 MEM[(char * *)_17 + 864B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":60:28 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 42 41 43 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 39)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":60:28 806 {*jcc}
+     (int_list:REG_BR_PROB 886588628 (nil))
+ -> 39)
+;;  succ:       7 [82.6% (guessed)]  count:87772272 (estimated locally)
+;;              10 [17.4% (guessed)]  count:18528167 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 18528167 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       9 [17.4% (guessed)]  count:18528167 (estimated locally) (FALLTHRU)
+(note 43 42 44 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(call_insn 44 43 45 10 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":61:8 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 45 44 46 10 (set (reg/f:DI 90 [ _19 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":61:8 74 {*movdi_internal}
+     (nil))
+(insn 46 45 47 10 (set (reg/f:DI 108)
+        (mem/f:DI (plus:DI (reg/f:DI 90 [ _19 ])
+                (const_int 720 [0x2d0])) [46 _19->type2.Strings+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":61:8 74 {*movdi_internal}
+     (nil))
+(insn 47 46 48 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 108)
+                    (const_int 248 [0xf8])) [7 MEM[(char * *)_20 + 248B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":61:4 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 48 47 59 10 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 52)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":61:4 806 {*jcc}
+     (int_list:REG_BR_PROB 574129756 (nil))
+ -> 52)
+;;  succ:       12 [53.5% (guessed)]  count:9907011 (estimated locally)
+;;              11 [46.5% (guessed)]  count:8621156 (estimated locally) (FALLTHRU)
+
+;; basic block 11, loop depth 0, count 11593259 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       10 [46.5% (guessed)]  count:8621156 (estimated locally) (FALLTHRU)
+;;              13 [always]  count:2972103 (estimated locally)
+(code_label 59 48 49 11 10 (nil) [1 uses])
+(note 49 59 4 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 4 49 50 11 (set (reg/v:QI 102 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./tinfo/lib_has_cap.c":54:1 77 {*movqi_internal}
+     (nil))
+(jump_insn 50 4 51 11 (set (pc)
+        (label_ref:DI 77)) 807 {jump}
+     (nil)
+ -> 77)
+;;  succ:       19 [always]  count:11593259 (estimated locally)
+
+(barrier 51 50 52)
+;; basic block 12, loop depth 0, count 9907011 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       10 [53.5% (guessed)]  count:9907011 (estimated locally)
+(code_label 52 51 53 12 9 (nil) [1 uses])
+(note 53 52 54 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(call_insn 54 53 55 12 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":61:29 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 55 54 56 12 (set (reg/f:DI 93 [ _22 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":61:29 74 {*movdi_internal}
+     (nil))
+(insn 56 55 57 12 (set (reg/f:DI 109)
+        (mem/f:DI (plus:DI (reg/f:DI 93 [ _22 ])
+                (const_int 720 [0x2d0])) [46 _22->type2.Strings+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":61:29 74 {*movdi_internal}
+     (nil))
+(insn 57 56 58 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 109)
+                    (const_int 336 [0x150])) [7 MEM[(char * *)_23 + 336B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":61:26 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 58 57 62 12 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 39)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":61:26 806 {*jcc}
+     (int_list:REG_BR_PROB 751619284 (nil))
+ -> 39)
+;;  succ:       7 [70.0% (guessed)]  count:6934908 (estimated locally)
+;;              13 [30.0% (guessed)]  count:2972103 (estimated locally) (FALLTHRU)
+
+;; basic block 13, loop depth 0, count 2972103 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL)
+;;  pred:       12 [30.0% (guessed)]  count:2972103 (estimated locally) (FALLTHRU)
+(note 62 58 60 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 60 62 61 13 (set (pc)
+        (label_ref 59)) 807 {jump}
+     (nil)
+ -> 59)
+;;  succ:       11 [always]  count:2972103 (estimated locally)
+
+(barrier 61 60 63)
+;; basic block 14, loop depth 0, count 59739851 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       8 [always]  count:59739851 (estimated locally)
+(code_label 63 61 64 14 7 (nil) [1 uses])
+(note 64 63 65 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(call_insn 65 64 66 14 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":62:27 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 66 65 67 14 (set (reg/f:DI 99 [ _28 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":62:27 74 {*movdi_internal}
+     (nil))
+(insn 67 66 68 14 (set (reg/f:DI 110)
+        (mem/f:DI (plus:DI (reg/f:DI 99 [ _28 ])
+                (const_int 720 [0x2d0])) [46 _28->type2.Strings+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":62:27 74 {*movdi_internal}
+     (nil))
+(insn 68 67 69 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 110)
+                    (const_int 840 [0x348])) [7 MEM[(char * *)_29 + 840B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":62:24 8 {*cmpdi_ccno_1}
+     (nil))
+(insn 69 68 70 14 (set (reg:QI 111)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":62:24 802 {*setcc_qi}
+     (nil))
+(insn 70 69 85 14 (set (reg/v:QI 102 [ <retval> ])
+        (reg:QI 111)) "../ncurses/./tinfo/lib_has_cap.c":62:24 77 {*movqi_internal}
+     (nil))
+(jump_insn 85 70 86 14 (set (pc)
+        (label_ref:DI 77)) 807 {jump}
+     (nil)
+ -> 77)
+;;  succ:       19 [always]  count:59739851 (estimated locally)
+
+(barrier 86 85 88)
+;; basic block 15, loop depth 0, count 283001690 (estimated locally), maybe hot
+;;  prev block 14, next block 17, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [82.6% (guessed)]  count:283001690 (estimated locally)
+(code_label 88 86 87 15 12 (nil) [1 uses])
+(note 87 88 5 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 5 87 81 15 (set (reg/v:QI 102 [ <retval> ])
+        (const_int 1 [0x1])) 77 {*movqi_internal}
+     (nil))
+(jump_insn 81 5 82 15 (set (pc)
+        (label_ref:DI 77)) 807 {jump}
+     (nil)
+ -> 77)
+;;  succ:       19 [always]  count:283001690 (estimated locally)
+
+(barrier 82 81 84)
+;; basic block 17, loop depth 0, count 487571534 (estimated locally), maybe hot
+;;  prev block 15, next block 19, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [89.0% (guessed)]  count:487571534 (estimated locally)
+(code_label 84 82 83 17 11 (nil) [1 uses])
+(note 83 84 6 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 6 83 77 17 (set (reg/v:QI 102 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./tinfo/lib_has_cap.c":55:10 77 {*movqi_internal}
+     (nil))
+;;  succ:       19 [always]  count:487571534 (estimated locally) (FALLTHRU)
+
+;; basic block 19, loop depth 0, count 1073741823 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 841906334 (estimated locally), should be 1073741823 (estimated locally)
+;;  prev block 17, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       17 [always]  count:487571534 (estimated locally) (FALLTHRU)
+;;              11 [always]  count:11593259 (estimated locally)
+;;              14 [always]  count:59739851 (estimated locally)
+;;              15 [always]  count:283001690 (estimated locally)
+(code_label 77 6 80 19 1 (nil) [3 uses])
+(note 80 77 78 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 78 80 79 19 (set (reg/i:QI 0 ax)
+        (reg/v:QI 102 [ <retval> ])) "../ncurses/./tinfo/lib_has_cap.c":66:1 77 {*movqi_internal}
+     (nil))
+(insn 79 78 0 19 (use (reg/i:QI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":66:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741823 (estimated locally) (FALLTHRU)
+
+
+;; Function has_ic (has_ic, funcdef_no=92, decl_uid=5634, cgraph_uid=93, symbol_order=92)
+
+(note 1 0 3 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg:DI 84)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f261b894cf0 SP>) [38 SP+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":72:12 74 {*movdi_internal}
+     (nil))
+(insn 6 5 7 2 (set (reg:DI 5 di)
+        (reg:DI 84)) "../ncurses/./tinfo/lib_has_cap.c":72:12 74 {*movdi_internal}
+     (nil))
+(call_insn/j 7 6 8 2 (set (reg:QI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("has_ic_sp") [flags 0x3]  <function_decl 0x7f261b770900 has_ic_sp>) [0 has_ic_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":72:12 828 {*sibcall_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("has_ic_sp") [flags 0x3]  <function_decl 0x7f261b770900 has_ic_sp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 8 7 0)
+
+;; Function has_il_sp (has_il_sp, funcdef_no=93, decl_uid=6549, cgraph_uid=94, symbol_order=93)
+
+(note 1 0 7 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741823 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741823 (estimated locally) (FALLTHRU)
+(note 7 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 97 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./tinfo/lib_has_cap.c":78:1 74 {*movdi_internal}
+     (nil))
+(note 3 2 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 3 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 97 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":81:9 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 14)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":81:9 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 14)
+;;  succ:       4 [70.0% (guessed)]  count:751619279 (estimated locally) (FALLTHRU)
+;;              5 [30.0% (guessed)]  count:322122544 (estimated locally)
+
+;; basic block 4, loop depth 0, count 751619280 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [70.0% (guessed)]  count:751619279 (estimated locally) (FALLTHRU)
+(note 11 10 12 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/v/f:DI 97 [ sp ])
+                    (const_int 48 [0x30])) [1 sp_9(D)->_term+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":81:9 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 13 12 14 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 19)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":81:9 806 {*jcc}
+     (int_list:REG_BR_PROB 751619284 (nil))
+ -> 19)
+;;  succ:       6 [70.0% (guessed)]  count:526133498 (estimated locally)
+;;              5 [30.0% (guessed)]  count:225485782 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 547608325 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [30.0% (guessed)]  count:225485782 (estimated locally) (FALLTHRU)
+;;              2 [30.0% (guessed)]  count:322122544 (estimated locally)
+(code_label 14 13 15 5 24 (nil) [1 uses])
+(note 15 14 16 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 5 (set (reg/f:DI 98)
+        (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7f261b826f30 _nc_prescreen>)) "../ncurses/./tinfo/lib_has_cap.c":81:9 74 {*movdi_internal}
+     (nil))
+(insn 17 16 18 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f/c:DI (plus:DI (reg/f:DI 98)
+                    (const_int 680 [0x2a8])) [1 _nc_prescreen._cur_term+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":81:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 18 17 19 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 67)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":81:8 806 {*jcc}
+     (int_list:REG_BR_PROB 956022628 (nil))
+ -> 67)
+;;  succ:       6 [11.0% (guessed)]  count:60036791 (estimated locally) (FALLTHRU)
+;;              14 [89.0% (guessed)]  count:487571534 (estimated locally)
+
+;; basic block 6, loop depth 0, count 354334800 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 586170289 (estimated locally), should be 354334800 (estimated locally)
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [11.0% (guessed)]  count:60036791 (estimated locally) (FALLTHRU)
+;;              4 [70.0% (guessed)]  count:526133498 (estimated locally)
+(code_label 19 18 20 6 25 (nil) [1 uses])
+(note 20 19 21 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(call_insn 21 20 22 6 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":82:11 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 22 21 23 6 (set (reg/f:DI 84 [ _13 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":82:11 74 {*movdi_internal}
+     (nil))
+(insn 23 22 24 6 (set (reg/f:DI 99)
+        (mem/f:DI (plus:DI (reg/f:DI 84 [ _13 ])
+                (const_int 720 [0x2d0])) [46 _13->type2.Strings+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":82:11 74 {*movdi_internal}
+     (nil))
+(insn 24 23 25 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 99)
+                    (const_int 424 [0x1a8])) [7 MEM[(char * *)_14 + 424B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":83:48 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 25 24 39 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 35)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":83:48 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 35)
+;;  succ:       7 [70.0% (guessed)]  count:248034361 (estimated locally) (FALLTHRU)
+;;              9 [30.0% (guessed)]  count:106300439 (estimated locally)
+
+;; basic block 7, loop depth 0, count 322444669 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       6 [70.0% (guessed)]  count:248034361 (estimated locally) (FALLTHRU)
+;;              9 [70.0% (guessed)]  count:74410308 (estimated locally)
+(code_label 39 25 26 7 30 (nil) [1 uses])
+(note 26 39 27 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(call_insn 27 26 28 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":83:7 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 28 27 29 7 (set (reg/f:DI 90 [ _19 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":83:7 74 {*movdi_internal}
+     (nil))
+(insn 29 28 30 7 (set (reg/f:DI 100)
+        (mem/f:DI (plus:DI (reg/f:DI 90 [ _19 ])
+                (const_int 720 [0x2d0])) [46 _19->type2.Strings+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":83:7 74 {*movdi_internal}
+     (nil))
+(insn 30 29 31 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 100)
+                    (const_int 176 [0xb0])) [7 MEM[(char * *)_20 + 176B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":83:48 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 31 30 34 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 71)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":83:48 806 {*jcc}
+     (int_list:REG_BR_PROB 886588628 (nil))
+ -> 71)
+;;  succ:       12 [82.6% (guessed)]  count:266242563 (estimated locally)
+;;              8 [17.4% (guessed)]  count:56202106 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 56202106 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL)
+;;  pred:       7 [17.4% (guessed)]  count:56202106 (estimated locally) (FALLTHRU)
+(note 34 31 32 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 32 34 33 8 (set (pc)
+        (label_ref 46)) 807 {jump}
+     (nil)
+ -> 46)
+;;  succ:       11 [always]  count:56202106 (estimated locally)
+
+(barrier 33 32 35)
+;; basic block 9, loop depth 0, count 106300439 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [30.0% (guessed)]  count:106300439 (estimated locally)
+(code_label 35 33 36 9 27 (nil) [1 uses])
+(note 36 35 37 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(call_insn 37 36 38 9 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":82:26 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 38 37 40 9 (set (reg/f:DI 87 [ _16 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":82:26 74 {*movdi_internal}
+     (nil))
+(insn 40 38 41 9 (set (reg/f:DI 101)
+        (mem/f:DI (plus:DI (reg/f:DI 87 [ _16 ])
+                (const_int 720 [0x2d0])) [46 _16->type2.Strings+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":82:26 74 {*movdi_internal}
+     (nil))
+(insn 41 40 42 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 101)
+                    (const_int 880 [0x370])) [7 MEM[(char * *)_17 + 880B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":82:23 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 42 41 45 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 39)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":82:23 806 {*jcc}
+     (int_list:REG_BR_PROB 751619284 (nil))
+ -> 39)
+;;  succ:       7 [70.0% (guessed)]  count:74410308 (estimated locally)
+;;              10 [30.0% (guessed)]  count:31890131 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 31890131 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       9 [30.0% (guessed)]  count:31890131 (estimated locally) (FALLTHRU)
+(note 45 42 4 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 4 45 43 10 (set (reg/v:QI 96 [ <retval> ])
+        (const_int 0 [0])) 77 {*movqi_internal}
+     (nil))
+(jump_insn 43 4 44 10 (set (pc)
+        (label_ref:DI 60)) 807 {jump}
+     (nil)
+ -> 60)
+;;  succ:       16 [always]  count:31890131 (estimated locally)
+
+(barrier 44 43 46)
+;; basic block 11, loop depth 0, count 56202106 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       8 [always]  count:56202106 (estimated locally)
+(code_label 46 44 47 11 29 (nil) [1 uses])
+(note 47 46 48 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(call_insn 48 47 49 11 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":83:22 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 49 48 50 11 (set (reg/f:DI 93 [ _22 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":83:22 74 {*movdi_internal}
+     (nil))
+(insn 50 49 51 11 (set (reg/f:DI 102)
+        (mem/f:DI (plus:DI (reg/f:DI 93 [ _22 ])
+                (const_int 720 [0x2d0])) [46 _22->type2.Strings+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":83:22 74 {*movdi_internal}
+     (nil))
+(insn 51 50 52 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 102)
+                    (const_int 848 [0x350])) [7 MEM[(char * *)_23 + 848B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":83:19 8 {*cmpdi_ccno_1}
+     (nil))
+(insn 52 51 53 11 (set (reg:QI 103)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":83:19 802 {*setcc_qi}
+     (nil))
+(insn 53 52 68 11 (set (reg/v:QI 96 [ <retval> ])
+        (reg:QI 103)) "../ncurses/./tinfo/lib_has_cap.c":83:19 77 {*movqi_internal}
+     (nil))
+(jump_insn 68 53 69 11 (set (pc)
+        (label_ref:DI 60)) 807 {jump}
+     (nil)
+ -> 60)
+;;  succ:       16 [always]  count:56202106 (estimated locally)
+
+(barrier 69 68 71)
+;; basic block 12, loop depth 0, count 266242563 (estimated locally), maybe hot
+;;  prev block 11, next block 14, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [82.6% (guessed)]  count:266242563 (estimated locally)
+(code_label 71 69 70 12 32 (nil) [1 uses])
+(note 70 71 5 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 5 70 64 12 (set (reg/v:QI 96 [ <retval> ])
+        (const_int 1 [0x1])) 77 {*movqi_internal}
+     (nil))
+(jump_insn 64 5 65 12 (set (pc)
+        (label_ref:DI 60)) 807 {jump}
+     (nil)
+ -> 60)
+;;  succ:       16 [always]  count:266242563 (estimated locally)
+
+(barrier 65 64 67)
+;; basic block 14, loop depth 0, count 487571534 (estimated locally), maybe hot
+;;  prev block 12, next block 16, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [89.0% (guessed)]  count:487571534 (estimated locally)
+(code_label 67 65 66 14 31 (nil) [1 uses])
+(note 66 67 6 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 6 66 60 14 (set (reg/v:QI 96 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./tinfo/lib_has_cap.c":79:10 77 {*movqi_internal}
+     (nil))
+;;  succ:       16 [always]  count:487571534 (estimated locally) (FALLTHRU)
+
+;; basic block 16, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 841906334 (estimated locally), should be 1073741824 (estimated locally)
+;;  prev block 14, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       14 [always]  count:487571534 (estimated locally) (FALLTHRU)
+;;              10 [always]  count:31890131 (estimated locally)
+;;              11 [always]  count:56202106 (estimated locally)
+;;              12 [always]  count:266242563 (estimated locally)
+(code_label 60 6 63 16 23 (nil) [3 uses])
+(note 63 60 61 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 61 63 62 16 (set (reg/i:QI 0 ax)
+        (reg/v:QI 96 [ <retval> ])) "../ncurses/./tinfo/lib_has_cap.c":87:1 77 {*movqi_internal}
+     (nil))
+(insn 62 61 0 16 (use (reg/i:QI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":87:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+
+;; Function has_il (has_il, funcdef_no=94, decl_uid=5636, cgraph_uid=95, symbol_order=94)
+
+(note 1 0 3 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg:DI 84)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f261b894cf0 SP>) [38 SP+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":93:12 74 {*movdi_internal}
+     (nil))
+(insn 6 5 7 2 (set (reg:DI 5 di)
+        (reg:DI 84)) "../ncurses/./tinfo/lib_has_cap.c":93:12 74 {*movdi_internal}
+     (nil))
+(call_insn/j 7 6 8 2 (set (reg:QI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("has_il_sp") [flags 0x3]  <function_decl 0x7f261b770a00 has_il_sp>) [0 has_il_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":93:12 828 {*sibcall_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("has_il_sp") [flags 0x3]  <function_decl 0x7f261b770a00 has_il_sp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 8 7 0)

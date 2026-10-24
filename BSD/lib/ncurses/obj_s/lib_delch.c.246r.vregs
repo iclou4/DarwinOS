@@ -1,0 +1,375 @@
+
+;; Function wdelch (wdelch, funcdef_no=91, decl_uid=6233, cgraph_uid=92, symbol_order=91)
+
+(note 1 0 6 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 119148189 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:119148189 (estimated locally) (FALLTHRU)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 113 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_delch.c":48:1 74 {*movdi_internal}
+     (nil))
+(note 3 2 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 3 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 113 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_delch.c":53:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 81)
+            (pc))) "../ncurses/./base/lib_delch.c":53:8 806 {*jcc}
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 81)
+;;  succ:       4 [99.1% (guessed)]  count:118111600 (estimated locally) (FALLTHRU)
+;;              11 [0.9% (guessed)]  count:1036589 (estimated locally)
+
+;; basic block 4, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [99.1% (guessed)]  count:118111600 (estimated locally) (FALLTHRU)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (set (reg:DI 105 [ _64 ])
+        (mem:DI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 116 [0x74])) [0 MEM <unsigned long> [(void *)win_23(D) + 116B]+0 S8 A32])) "../ncurses/./base/lib_delch.c":54:15 74 {*movdi_internal}
+     (nil))
+(insn 12 11 13 4 (set (reg:DI 102 [ _59 ])
+        (mem:DI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 124 [0x7c])) [3 MEM <unsigned long> [(int *)win_23(D) + 124B]+0 S8 A32])) "../ncurses/./base/lib_delch.c":54:15 74 {*movdi_internal}
+     (nil))
+(insn 13 12 14 4 (set (reg:DI 104 [ _63 ])
+        (mem:DI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 132 [0x84])) [3 MEM <unsigned long> [(int *)win_23(D) + 132B]+0 S8 A32])) "../ncurses/./base/lib_delch.c":54:15 74 {*movdi_internal}
+     (nil))
+(insn 14 13 15 4 (set (reg:DI 95 [ _17 ])
+        (mem:DI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 140 [0x8c])) [3 MEM <unsigned long> [(int *)win_23(D) + 140B]+0 S8 A32])) "../ncurses/./base/lib_delch.c":54:15 74 {*movdi_internal}
+     (nil))
+(insn 15 14 16 4 (set (reg:SI 115)
+        (mem:SI (reg/v/f:DI 113 [ win ]) [3 win_23(D)->_cury+0 S4 A64])) "../ncurses/./base/lib_delch.c":55:38 75 {*movsi_internal}
+     (nil))
+(insn 16 15 17 4 (set (reg:DI 114)
+        (sign_extend:DI (reg:SI 115))) "../ncurses/./base/lib_delch.c":55:38 147 {*extendsidi2_rex64}
+     (nil))
+(insn 17 16 18 4 (set (reg:DI 116)
+        (reg:DI 114)) "../ncurses/./base/lib_delch.c":55:34 74 {*movdi_internal}
+     (nil))
+(insn 18 17 19 4 (parallel [
+            (set (reg:DI 117)
+                (ashift:DI (reg:DI 116)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":55:34 656 {*ashldi3_1}
+     (nil))
+(insn 19 18 20 4 (parallel [
+            (set (reg:DI 118)
+                (plus:DI (reg:DI 117)
+                    (reg:DI 114)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":55:34 210 {*adddi_1}
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 114)
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 20 19 21 4 (parallel [
+            (set (reg:DI 119)
+                (ashift:DI (reg:DI 118)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":55:34 656 {*ashldi3_1}
+     (nil))
+(insn 21 20 22 4 (set (reg:DI 118)
+        (reg:DI 119)) "../ncurses/./base/lib_delch.c":55:34 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 114)
+            (const_int 24 [0x18]))
+        (nil)))
+(insn 22 21 23 4 (set (reg/f:DI 120)
+        (mem/f:DI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 56 [0x38])) [1 win_23(D)->_line+0 S8 A64])) "../ncurses/./base/lib_delch.c":55:15 74 {*movdi_internal}
+     (nil))
+(insn 23 22 24 4 (parallel [
+            (set (reg/v/f:DI 97 [ line ])
+                (plus:DI (reg:DI 118)
+                    (reg/f:DI 120)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":55:15 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 113 [ win ])
+                    (const_int 56 [0x38])) [1 win_23(D)->_line+0 S8 A64])
+            (reg:DI 118))
+        (nil)))
+(insn 24 23 25 4 (set (reg/f:DI 86 [ _5 ])
+        (mem/f:DI (reg/v/f:DI 97 [ line ]) [10 line_25->text+0 S8 A64])) "../ncurses/./base/lib_delch.c":56:28 74 {*movdi_internal}
+     (nil))
+(insn 25 24 26 4 (set (reg:SI 87 [ _6 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 12 [0xc])) [3 win_23(D)->_maxx+0 S4 A32])) "../ncurses/./base/lib_delch.c":56:38 75 {*movsi_internal}
+     (nil))
+(insn 26 25 27 4 (set (reg:DI 121)
+        (sign_extend:DI (reg:SI 87 [ _6 ]))) "../ncurses/./base/lib_delch.c":56:38 147 {*extendsidi2_rex64}
+     (nil))
+(insn 27 26 28 4 (parallel [
+            (set (reg:DI 122)
+                (ashift:DI (reg:DI 121)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":56:34 656 {*ashldi3_1}
+     (nil))
+(insn 28 27 29 4 (parallel [
+            (set (reg/v/f:DI 98 [ end ])
+                (plus:DI (reg/f:DI 86 [ _5 ])
+                    (reg:DI 122)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":56:16 210 {*adddi_1}
+     (nil))
+(insn 29 28 30 4 (set (reg:SI 91 [ _10 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 4 [0x4])) [3 win_23(D)->_curx+0 S4 A32])) "../ncurses/./base/lib_delch.c":57:40 75 {*movsi_internal}
+     (nil))
+(insn 30 29 31 4 (set (reg:DI 123)
+        (sign_extend:DI (reg:SI 91 [ _10 ]))) "../ncurses/./base/lib_delch.c":57:40 147 {*extendsidi2_rex64}
+     (nil))
+(insn 31 30 32 4 (parallel [
+            (set (reg:DI 124)
+                (ashift:DI (reg:DI 123)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":57:36 656 {*ashldi3_1}
+     (nil))
+(insn 32 31 33 4 (parallel [
+            (set (reg/v/f:DI 96 [ temp1 ])
+                (plus:DI (reg/f:DI 86 [ _5 ])
+                    (reg:DI 124)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":57:16 210 {*adddi_1}
+     (nil))
+(insn 33 32 34 4 (parallel [
+            (set (reg/v/f:DI 99 [ temp2 ])
+                (plus:DI (reg/v/f:DI 96 [ temp1 ])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":58:22 210 {*adddi_1}
+     (nil))
+(insn 34 33 35 4 (set (reg:SI 94 [ _13 ])
+        (mem:SI (plus:DI (reg/v/f:DI 97 [ line ])
+                (const_int 8 [0x8])) [3 line_25->firstchar+0 S4 A64])) "../ncurses/./base/lib_delch.c":60:2 75 {*movsi_internal}
+     (nil))
+(insn 35 34 36 4 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 91 [ _10 ])
+            (reg:SI 94 [ _13 ]))) "../ncurses/./base/lib_delch.c":60:2 11 {*cmpsi_1}
+     (nil))
+(insn 36 35 37 4 (set (reg:QI 126)
+        (lt:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_delch.c":60:2 802 {*setcc_qi}
+     (nil))
+(insn 37 36 38 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 126)
+            (const_int 0 [0]))) "../ncurses/./base/lib_delch.c":60:2 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 38 37 82 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 84)
+            (pc))) "../ncurses/./base/lib_delch.c":60:2 806 {*jcc}
+     (int_list:REG_BR_PROB 359703516 (nil))
+ -> 84)
+;;  succ:       7 [33.5% (guessed)]  count:39567386 (estimated locally)
+;;              5 [66.5% (guessed)]  count:78544214 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 78544214 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [66.5% (guessed)]  count:78544214 (estimated locally) (FALLTHRU)
+(note 82 38 39 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 39 82 40 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 94 [ _13 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_delch.c":60:2 11 {*cmpsi_1}
+     (nil))
+(insn 40 39 41 5 (set (reg:QI 128)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_delch.c":60:2 802 {*setcc_qi}
+     (nil))
+(insn 41 40 42 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 128)
+            (const_int 0 [0]))) "../ncurses/./base/lib_delch.c":60:2 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 42 41 83 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 46)
+            (pc))) "../ncurses/./base/lib_delch.c":60:2 806 {*jcc}
+     (int_list:REG_BR_PROB 532834292 (nil))
+ -> 46)
+;;  succ:       8 [49.6% (guessed)]  count:38976828 (estimated locally)
+;;              6 [50.4% (guessed)]  count:39567386 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 39567386 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       5 [50.4% (guessed)]  count:39567386 (estimated locally) (FALLTHRU)
+(note 83 42 84 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       7 [always]  count:39567386 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 79134772 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [always]  count:39567386 (estimated locally) (FALLTHRU)
+;;              4 [33.5% (guessed)]  count:39567386 (estimated locally)
+(code_label 84 83 44 7 7 (nil) [1 uses])
+(note 44 84 45 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 45 44 46 7 (set (mem:SI (plus:DI (reg/v/f:DI 97 [ line ])
+                (const_int 8 [0x8])) [3 line_25->firstchar+0 S4 A64])
+        (reg:SI 91 [ _10 ])) "../ncurses/./base/lib_delch.c":60:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       8 [always]  count:79134772 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [always]  count:79134772 (estimated locally) (FALLTHRU)
+;;              5 [49.6% (guessed)]  count:38976828 (estimated locally)
+(code_label 46 45 47 8 3 (nil) [1 uses])
+(note 47 46 48 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 48 47 49 8 (set (mem:SI (plus:DI (reg/v/f:DI 97 [ line ])
+                (const_int 12 [0xc])) [3 line_25->lastchar+0 S4 A32])
+        (reg:SI 87 [ _6 ])) "../ncurses/./base/lib_delch.c":60:2 75 {*movsi_internal}
+     (nil))
+(insn 49 48 50 8 (set (reg:CC 17 flags)
+        (compare:CC (reg/v/f:DI 98 [ end ])
+            (reg/v/f:DI 96 [ temp1 ]))) "../ncurses/./base/lib_delch.c":61:15 12 {*cmpdi_1}
+     (nil))
+(jump_insn 50 49 51 8 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 62)
+            (pc))) "../ncurses/./base/lib_delch.c":61:15 806 {*jcc}
+     (int_list:REG_BR_PROB 118111604 (nil))
+ -> 62)
+;;  succ:       9 [89.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+;;              10 [11.0% (guessed)]  count:12992276 (estimated locally)
+
+;; basic block 9, loop depth 0, count 105119324 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [89.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+(note 51 50 52 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 52 51 53 9 (parallel [
+            (set (reg:DI 129)
+                (plus:DI (reg/v/f:DI 98 [ end ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":62:15 210 {*adddi_1}
+     (nil))
+(insn 53 52 54 9 (parallel [
+            (set (reg:DI 130)
+                (minus:DI (reg:DI 129)
+                    (reg/v/f:DI 96 [ temp1 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":62:15 283 {*subdi_1}
+     (nil))
+(insn 54 53 55 9 (parallel [
+            (set (reg:DI 131)
+                (lshiftrt:DI (reg:DI 130)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":62:15 703 {*lshrdi3_1}
+     (nil))
+(insn 55 54 56 9 (parallel [
+            (set (reg:DI 132)
+                (plus:DI (reg:DI 131)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":62:15 210 {*adddi_1}
+     (nil))
+(insn 56 55 57 9 (parallel [
+            (set (reg:DI 111 [ _74 ])
+                (ashift:DI (reg:DI 132)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":62:15 656 {*ashldi3_1}
+     (nil))
+(insn 57 56 58 9 (set (reg:DI 1 dx)
+        (reg:DI 111 [ _74 ])) "../ncurses/./base/lib_delch.c":62:15 74 {*movdi_internal}
+     (nil))
+(insn 58 57 59 9 (set (reg:DI 4 si)
+        (reg/v/f:DI 99 [ temp2 ])) "../ncurses/./base/lib_delch.c":62:15 74 {*movdi_internal}
+     (nil))
+(insn 59 58 60 9 (set (reg:DI 5 di)
+        (reg/v/f:DI 96 [ temp1 ])) "../ncurses/./base/lib_delch.c":62:15 74 {*movdi_internal}
+     (nil))
+(call_insn 60 59 61 9 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("memmove") [flags 0x41]  <function_decl 0x7f3eb9563a00 __builtin_memmove>) [0 __builtin_memmove S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_delch.c":62:15 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("memmove") [flags 0x41]  <function_decl 0x7f3eb9563a00 __builtin_memmove>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (set (reg:DI 0 ax)
+            (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (nil))))))
+(insn 61 60 62 9 (parallel [
+            (set (reg/v/f:DI 96 [ temp1 ])
+                (plus:DI (reg/v/f:DI 96 [ temp1 ])
+                    (reg:DI 111 [ _74 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":62:12 210 {*adddi_1}
+     (nil))
+;;  succ:       10 [always]  count:105119324 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       9 [always]  count:105119324 (estimated locally) (FALLTHRU)
+;;              8 [11.0% (guessed)]  count:12992276 (estimated locally)
+(code_label 62 61 63 10 5 (nil) [1 uses])
+(note 63 62 64 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 64 63 65 10 (set (mem:DI (reg/v/f:DI 96 [ temp1 ]) [0 MEM <unsigned long> [(void *)temp1_61]+0 S8 A32])
+        (reg:DI 105 [ _64 ])) "../ncurses/./base/lib_delch.c":64:9 74 {*movdi_internal}
+     (nil))
+(insn 65 64 66 10 (set (mem:DI (plus:DI (reg/v/f:DI 96 [ temp1 ])
+                (const_int 8 [0x8])) [3 MEM <unsigned long> [(int *)temp1_61 + 8B]+0 S8 A32])
+        (reg:DI 102 [ _59 ])) "../ncurses/./base/lib_delch.c":64:9 74 {*movdi_internal}
+     (nil))
+(insn 66 65 67 10 (set (mem:DI (plus:DI (reg/v/f:DI 96 [ temp1 ])
+                (const_int 16 [0x10])) [3 MEM <unsigned long> [(int *)temp1_61 + 16B]+0 S8 A32])
+        (reg:DI 104 [ _63 ])) "../ncurses/./base/lib_delch.c":64:9 74 {*movdi_internal}
+     (nil))
+(insn 67 66 68 10 (set (mem:DI (plus:DI (reg/v/f:DI 96 [ temp1 ])
+                (const_int 24 [0x18])) [3 MEM <unsigned long> [(int *)temp1_61 + 24B]+0 S8 A32])
+        (reg:DI 95 [ _17 ])) "../ncurses/./base/lib_delch.c":64:9 74 {*movdi_internal}
+     (nil))
+(insn 68 67 69 10 (set (reg:DI 5 di)
+        (reg/v/f:DI 113 [ win ])) "../ncurses/./base/lib_delch.c":66:2 74 {*movdi_internal}
+     (nil))
+(call_insn 69 68 5 10 (call (mem:QI (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f3eb9194700 _nc_synchook>) [0 _nc_synchook S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_delch.c":66:2 813 {*call}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f3eb9194700 _nc_synchook>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 5 69 78 10 (set (reg/v:SI 112 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_delch.c":67:7 75 {*movsi_internal}
+     (nil))
+(jump_insn 78 5 79 10 (set (pc)
+        (label_ref:DI 74)) 807 {jump}
+     (nil)
+ -> 74)
+;;  succ:       13 [always]  count:118111600 (estimated locally)
+
+(barrier 79 78 81)
+;; basic block 11, loop depth 0, count 1036589 (estimated locally), maybe hot
+;;  prev block 10, next block 13, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [0.9% (guessed)]  count:1036589 (estimated locally)
+(code_label 81 79 80 11 6 (nil) [1 uses])
+(note 80 81 4 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 4 80 74 11 (set (reg/v:SI 112 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_delch.c":49:9 75 {*movsi_internal}
+     (nil))
+;;  succ:       13 [always]  count:1036589 (estimated locally) (FALLTHRU)
+
+;; basic block 13, loop depth 0, count 119148189 (estimated locally), maybe hot
+;;  prev block 11, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       11 [always]  count:1036589 (estimated locally) (FALLTHRU)
+;;              10 [always]  count:118111600 (estimated locally)
+(code_label 74 4 77 13 1 (nil) [1 uses])
+(note 77 74 75 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 75 77 76 13 (set (reg/i:SI 0 ax)
+        (reg/v:SI 112 [ <retval> ])) "../ncurses/./base/lib_delch.c":70:1 75 {*movsi_internal}
+     (nil))
+(insn 76 75 0 13 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_delch.c":70:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:119148189 (estimated locally) (FALLTHRU)
+

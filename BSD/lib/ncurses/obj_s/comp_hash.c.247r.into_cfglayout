@@ -1,0 +1,1030 @@
+
+;; Function _nc_find_entry (_nc_find_entry, funcdef_no=91, decl_uid=9121, cgraph_uid=92, symbol_order=91)
+
+
+
+try_optimize_cfg iteration 1
+
+Removing jump 27.
+Removing jump 51.
+Redirecting fallthru edge 9->10 to 11
+deleting block 10
+
+
+try_optimize_cfg iteration 2
+
+
+
+try_optimize_cfg iteration 1
+
+fix_loop_structure: fixing up loops for function
+;; basic block 2, loop depth 0, count 327400193 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:327400193 (estimated locally) (FALLTHRU)
+(note 6 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 117 [ string ])
+        (reg:DI 5 di [ string ])) "../ncurses/./tinfo/comp_hash.c":57:1 74 {*movdi_internal}
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 118 [ hash_table ])
+        (reg:DI 4 si [ hash_table ])) "../ncurses/./tinfo/comp_hash.c":57:1 74 {*movdi_internal}
+     (nil))
+(note 4 3 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 4 9 2 (set (reg:SI 5 di)
+        (const_int 0 [0])) "../ncurses/./tinfo/comp_hash.c":58:35 75 {*movsi_internal}
+     (nil))
+(call_insn 9 8 10 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_get_hash_table") [flags 0x41]  <function_decl 0x7f193ac27800 _nc_get_hash_table>) [0 _nc_get_hash_table S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":58:35 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_get_hash_table") [flags 0x41]  <function_decl 0x7f193ac27800 _nc_get_hash_table>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 10 9 11 2 (set (reg/f:DI 82 [ _1 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/comp_hash.c":58:35 74 {*movdi_internal}
+     (nil))
+(insn 11 10 12 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (reg/v/f:DI 118 [ hash_table ]))) "../ncurses/./tinfo/comp_hash.c":58:10 12 {*cmpdi_1}
+     (nil))
+(insn 12 11 13 2 (set (reg:QI 120)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":58:10 802 {*setcc_qi}
+     (nil))
+(insn 13 12 14 2 (set (reg:SI 119 [ termcap ])
+        (zero_extend:SI (reg:QI 120))) "../ncurses/./tinfo/comp_hash.c":58:10 143 {*zero_extendqisi2}
+     (nil))
+(insn 14 13 15 2 (set (reg:SI 83 [ _2 ])
+        (reg:SI 119 [ termcap ])) "../ncurses/./tinfo/comp_hash.c":59:28 75 {*movsi_internal}
+     (nil))
+(insn 15 14 16 2 (set (reg:SI 5 di)
+        (reg:SI 83 [ _2 ])) "../ncurses/./tinfo/comp_hash.c":59:28 75 {*movsi_internal}
+     (nil))
+(call_insn 16 15 17 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_get_hash_info") [flags 0x41]  <function_decl 0x7f193ac15f00 _nc_get_hash_info>) [0 _nc_get_hash_info S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":59:28 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_get_hash_info") [flags 0x41]  <function_decl 0x7f193ac15f00 _nc_get_hash_info>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 17 16 18 2 (set (reg/v/f:DI 114 [ data ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/comp_hash.c":59:28 74 {*movdi_internal}
+     (nil))
+(insn 18 17 19 2 (set (reg/f:DI 121)
+        (mem/f:DI (plus:DI (reg/v/f:DI 114 [ data ])
+                (const_int 16 [0x10])) [1 data_41->hash_of+0 S8 A64])) "../ncurses/./tinfo/comp_hash.c":64:17 74 {*movdi_internal}
+     (nil))
+(insn 19 18 20 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 117 [ string ])) "../ncurses/./tinfo/comp_hash.c":64:17 74 {*movdi_internal}
+     (nil))
+(call_insn 20 19 21 2 (set (reg:HI 0 ax)
+        (call (mem:QI (reg/f:DI 121) [0 *_3 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":64:17 824 {*call_value}
+     (expr_list:REG_CALL_DECL (nil)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 21 20 24 2 (set (reg:HI 85 [ _4 ])
+        (reg:HI 0 ax)) "../ncurses/./tinfo/comp_hash.c":64:17 76 {*movhi_internal}
+     (nil))
+(insn 24 21 25 2 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 85 [ _4 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":66:8 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 25 24 31 2 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 29)
+            (pc))) "../ncurses/./tinfo/comp_hash.c":66:8 806 {*jcc}
+     (int_list:REG_BR_PROB 836337508 (nil))
+ -> 29)
+;;  succ:       4 [77.9% (guessed)]  count:255012010 (estimated locally)
+;;              3 [22.1% (guessed)]  count:72388183 (estimated locally) (FALLTHRU)
+
+;; basic block 3, loop depth 0, count 268344394 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [22.1% (guessed)]  count:72388183 (estimated locally) (FALLTHRU)
+;;              4 [29.0% (guessed)]  count:73953483 (estimated locally)
+;;              5 [36.6% (guessed)]  count:66194997 (estimated locally)
+;;              7 [5.5% (guessed)]  count:55807731 (estimated locally)
+(code_label 31 25 26 3 4 (nil) [3 uses])
+(note 26 31 5 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 5 26 29 3 (set (reg/v/f:DI 116 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./tinfo/comp_hash.c":61:36 74 {*movdi_internal}
+     (nil))
+;;  succ:       11 [always]  count:268344394 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 255012010 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [77.9% (guessed)]  count:255012010 (estimated locally)
+(code_label 29 5 30 4 2 (nil) [1 uses])
+(note 30 29 32 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 32 30 33 4 (set (reg:SI 122)
+        (sign_extend:SI (reg:HI 85 [ _4 ]))) "../ncurses/./tinfo/comp_hash.c":67:26 151 {extendhisi2}
+     (nil))
+(insn 33 32 34 4 (set (reg:CC 17 flags)
+        (compare:CC (mem:SI (reg/v/f:DI 114 [ data ]) [3 data_41->table_size+0 S4 A64])
+            (reg:SI 122))) "../ncurses/./tinfo/comp_hash.c":67:2 11 {*cmpsi_1}
+     (nil))
+(jump_insn 34 33 35 4 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 31)
+            (pc))) "../ncurses/./tinfo/comp_hash.c":67:2 806 {*jcc}
+     (int_list:REG_BR_PROB 311385132 (nil))
+ -> 31)
+;;  succ:       5 [71.0% (guessed)]  count:181058527 (estimated locally) (FALLTHRU)
+;;              3 [29.0% (guessed)]  count:73953483 (estimated locally)
+
+;; basic block 5, loop depth 0, count 181058527 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [71.0% (guessed)]  count:181058527 (estimated locally) (FALLTHRU)
+(note 35 34 36 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 36 35 37 5 (set (reg:DI 123)
+        (sign_extend:DI (reg:HI 85 [ _4 ]))) "../ncurses/./tinfo/comp_hash.c":68:21 150 {extendhidi2}
+     (nil))
+(insn 37 36 38 5 (parallel [
+            (set (reg:DI 90 [ _9 ])
+                (ashift:DI (reg:DI 123)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":68:21 656 {*ashldi3_1}
+     (nil))
+(insn 38 37 41 5 (set (reg/f:DI 124)
+        (mem/f:DI (plus:DI (reg/v/f:DI 114 [ data ])
+                (const_int 8 [0x8])) [4 data_41->table_data+0 S8 A64])) "../ncurses/./tinfo/comp_hash.c":68:21 74 {*movdi_internal}
+     (nil))
+(insn 41 38 42 5 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (mem:HI (plus:DI (reg/f:DI 124)
+                    (reg:DI 90 [ _9 ])) [6 *_10+0 S2 A16])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":68:2 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 42 41 43 5 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 31)
+            (pc))) "../ncurses/./tinfo/comp_hash.c":68:2 806 {*jcc}
+     (int_list:REG_BR_PROB 392560012 (nil))
+ -> 31)
+;;  succ:       6 [63.4% (guessed)]  count:114863530 (estimated locally) (FALLTHRU)
+;;              3 [36.6% (guessed)]  count:66194997 (estimated locally)
+
+;; basic block 6, loop depth 0, count 114863530 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [63.4% (guessed)]  count:114863530 (estimated locally) (FALLTHRU)
+(note 43 42 44 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 44 43 45 6 (set (reg:SI 5 di)
+        (reg:SI 83 [ _2 ])) "../ncurses/./tinfo/comp_hash.c":70:15 75 {*movsi_internal}
+     (nil))
+(call_insn 45 44 46 6 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_get_table") [flags 0x41]  <function_decl 0x7f193ac15e00 _nc_get_table>) [0 _nc_get_table S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":70:15 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_get_table") [flags 0x41]  <function_decl 0x7f193ac15e00 _nc_get_table>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 46 45 47 6 (set (reg/v/f:DI 115 [ real_table ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/comp_hash.c":70:15 74 {*movdi_internal}
+     (nil))
+(insn 47 46 48 6 (set (reg/f:DI 125)
+        (mem/f:DI (plus:DI (reg/v/f:DI 114 [ data ])
+                (const_int 8 [0x8])) [4 data_41->table_data+0 S8 A64])) "../ncurses/./tinfo/comp_hash.c":71:37 74 {*movdi_internal}
+     (nil))
+(insn 48 47 49 6 (set (reg:DI 126)
+        (sign_extend:DI (mem:HI (plus:DI (reg/f:DI 125)
+                    (reg:DI 90 [ _9 ])) [6 *_13+0 S2 A16]))) "../ncurses/./tinfo/comp_hash.c":71:37 150 {extendhidi2}
+     (nil))
+(insn 49 48 50 6 (parallel [
+            (set (reg:DI 127)
+                (ashift:DI (reg:DI 126)
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":71:19 656 {*ashldi3_1}
+     (nil))
+(insn 50 49 75 6 (parallel [
+            (set (reg/v/f:DI 116 [ <retval> ])
+                (plus:DI (reg/v/f:DI 115 [ real_table ])
+                    (reg:DI 127)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":71:6 210 {*adddi_1}
+     (nil))
+;;  succ:       9 [always]  count:114863530 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 1, count 1014686025 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       9 [94.5% (guessed)]  count:1014686024 (estimated locally)
+(code_label 75 50 53 7 6 (nil) [1 uses])
+(note 53 75 54 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 54 53 57 7 (set (reg:HI 98 [ _17 ])
+        (mem:HI (plus:DI (reg/v/f:DI 116 [ <retval> ])
+                (const_int 14 [0xe])) [6 ptr_32->nte_link+0 S2 A16])) "../ncurses/./tinfo/comp_hash.c":73:13 76 {*movhi_internal}
+     (nil))
+(insn 57 54 58 7 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 98 [ _17 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":73:9 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 58 57 59 7 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 31)
+            (pc))) "../ncurses/./tinfo/comp_hash.c":73:9 806 {*jcc}
+     (int_list:REG_BR_PROB 59055804 (nil))
+ -> 31)
+;;  succ:       3 [5.5% (guessed)]  count:55807731 (estimated locally)
+;;              8 [94.5% (guessed)]  count:958878294 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 1, count 958878294 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [94.5% (guessed)]  count:958878294 (estimated locally) (FALLTHRU)
+(note 59 58 60 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 60 59 61 8 (set (reg:DI 128)
+        (zero_extend:DI (mem:SI (reg/v/f:DI 114 [ data ]) [3 data_41->table_size+0 S4 A64]))) "../ncurses/./tinfo/comp_hash.c":78:28 138 {*zero_extendsidi2}
+     (nil))
+(insn 61 60 62 8 (set (reg/f:DI 129)
+        (mem/f:DI (plus:DI (reg/v/f:DI 114 [ data ])
+                (const_int 8 [0x8])) [4 data_41->table_data+0 S8 A64])) "../ncurses/./tinfo/comp_hash.c":78:23 74 {*movdi_internal}
+     (nil))
+(insn 62 61 63 8 (set (reg:SI 130)
+        (sign_extend:SI (mem:HI (plus:DI (mult:DI (reg:DI 128)
+                        (const_int 2 [0x2]))
+                    (reg/f:DI 129)) [6 *_23+0 S2 A16]))) "../ncurses/./tinfo/comp_hash.c":78:23 151 {extendhisi2}
+     (nil))
+(insn 63 62 64 8 (set (reg:SI 131)
+        (sign_extend:SI (reg:HI 98 [ _17 ]))) "../ncurses/./tinfo/comp_hash.c":77:29 151 {extendhisi2}
+     (nil))
+(insn 64 63 65 8 (parallel [
+            (set (reg:SI 132)
+                (plus:SI (reg:SI 130)
+                    (reg:SI 131)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":78:5 209 {*addsi_1}
+     (nil))
+(insn 65 64 66 8 (set (reg:DI 133)
+        (sign_extend:DI (reg:SI 132))) "../ncurses/./tinfo/comp_hash.c":78:5 147 {*extendsidi2_rex64}
+     (nil))
+(insn 66 65 67 8 (parallel [
+            (set (reg:DI 134)
+                (ashift:DI (reg:DI 133)
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":77:23 656 {*ashldi3_1}
+     (nil))
+(insn 67 66 68 8 (parallel [
+            (set (reg/v/f:DI 116 [ <retval> ])
+                (plus:DI (reg/v/f:DI 115 [ real_table ])
+                    (reg:DI 134)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":77:10 210 {*adddi_1}
+     (nil))
+;;  succ:       9 [always]  count:958878294 (estimated locally) (FALLTHRU,DFS_BACK)
+
+;; basic block 9, loop depth 1, count 1073741824 (estimated locally), maybe hot
+;;  prev block 8, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       6 [always]  count:114863530 (estimated locally) (FALLTHRU)
+;;              8 [always]  count:958878294 (estimated locally) (FALLTHRU,DFS_BACK)
+(code_label 68 67 69 9 5 (nil) [0 uses])
+(note 69 68 70 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 70 69 71 9 (set (reg/f:DI 135)
+        (mem/f:DI (plus:DI (reg/v/f:DI 114 [ data ])
+                (const_int 24 [0x18])) [5 data_41->compare_names+0 S8 A64])) "../ncurses/./tinfo/comp_hash.c":72:10 74 {*movdi_internal}
+     (nil))
+(insn 71 70 72 9 (set (reg:DI 4 si)
+        (reg/v/f:DI 117 [ string ])) "../ncurses/./tinfo/comp_hash.c":72:10 74 {*movdi_internal}
+     (nil))
+(insn 72 71 73 9 (set (reg:DI 5 di)
+        (mem/f:DI (reg/v/f:DI 116 [ <retval> ]) [7 ptr_32->nte_name+0 S8 A64])) "../ncurses/./tinfo/comp_hash.c":72:10 74 {*movdi_internal}
+     (nil))
+(call_insn 73 72 74 9 (set (reg:SI 0 ax)
+        (call (mem:QI (reg/f:DI 135) [0 *_29 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":72:10 824 {*call_value}
+     (expr_list:REG_CALL_DECL (nil)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 74 73 76 9 (set (reg:SI 112 [ _31 ])
+        (reg:SI 0 ax)) "../ncurses/./tinfo/comp_hash.c":72:10 75 {*movsi_internal}
+     (nil))
+(insn 76 74 77 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 112 [ _31 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":72:9 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 77 76 82 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 75)
+            (pc))) "../ncurses/./tinfo/comp_hash.c":72:9 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 75)
+;;  succ:       7 [94.5% (guessed)]  count:1014686024 (estimated locally)
+;;              11 [5.5% (guessed)]  count:59055800 (estimated locally) (FALLTHRU)
+
+;; basic block 11, loop depth 0, count 327400194 (estimated locally), maybe hot
+;;  prev block 9, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       9 [5.5% (guessed)]  count:59055800 (estimated locally) (FALLTHRU)
+;;              3 [always]  count:268344394 (estimated locally) (FALLTHRU)
+(code_label 82 77 85 11 1 (nil) [0 uses])
+(note 85 82 83 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 83 85 84 11 (set (reg/i:DI 0 ax)
+        (reg/v/f:DI 116 [ <retval> ])) "../ncurses/./tinfo/comp_hash.c":83:1 74 {*movdi_internal}
+     (nil))
+(insn 84 83 0 11 (use (reg/i:DI 0 ax)) "../ncurses/./tinfo/comp_hash.c":83:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:327400194 (estimated locally) (FALLTHRU)
+
+
+;; Function _nc_find_type_entry (_nc_find_type_entry, funcdef_no=92, decl_uid=9050, cgraph_uid=93, symbol_order=92)
+
+
+
+try_optimize_cfg iteration 1
+
+Removing jump 23.
+Removing jump 50.
+Redirecting fallthru edge 11->12 to 13
+deleting block 12
+
+
+try_optimize_cfg iteration 2
+
+
+
+try_optimize_cfg iteration 1
+
+fix_loop_structure: fixing up loops for function
+;; basic block 2, loop depth 0, count 261355232 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:261355232 (estimated locally) (FALLTHRU)
+(note 8 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg/v/f:DI 116 [ string ])
+        (reg:DI 5 di [ string ])) "../ncurses/./tinfo/comp_hash.c":96:1 74 {*movdi_internal}
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 117 [ type ])
+        (reg:SI 4 si [ type ])) "../ncurses/./tinfo/comp_hash.c":96:1 75 {*movsi_internal}
+     (nil))
+(insn 4 3 5 2 (set (reg:SI 119)
+        (reg:SI 1 dx [ termcap ])) "../ncurses/./tinfo/comp_hash.c":96:1 75 {*movsi_internal}
+     (nil))
+(insn 5 4 6 2 (set (reg/v:QI 118 [ termcap ])
+        (subreg:QI (reg:SI 119) 0)) "../ncurses/./tinfo/comp_hash.c":96:1 77 {*movqi_internal}
+     (nil))
+(note 6 5 10 2 NOTE_INSN_FUNCTION_BEG)
+(insn 10 6 11 2 (set (reg:SI 82 [ _1 ])
+        (zero_extend:SI (reg/v:QI 118 [ termcap ]))) "../ncurses/./tinfo/comp_hash.c":98:28 143 {*zero_extendqisi2}
+     (nil))
+(insn 11 10 12 2 (set (reg:SI 5 di)
+        (reg:SI 82 [ _1 ])) "../ncurses/./tinfo/comp_hash.c":98:28 75 {*movsi_internal}
+     (nil))
+(call_insn 12 11 13 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_get_hash_info") [flags 0x41]  <function_decl 0x7f193ac15f00 _nc_get_hash_info>) [0 _nc_get_hash_info S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":98:28 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_get_hash_info") [flags 0x41]  <function_decl 0x7f193ac15f00 _nc_get_hash_info>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 13 12 14 2 (set (reg/v/f:DI 113 [ data ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/comp_hash.c":98:28 74 {*movdi_internal}
+     (nil))
+(insn 14 13 15 2 (set (reg/f:DI 120)
+        (mem/f:DI (plus:DI (reg/v/f:DI 113 [ data ])
+                (const_int 16 [0x10])) [1 data_40->hash_of+0 S8 A64])) "../ncurses/./tinfo/comp_hash.c":99:21 74 {*movdi_internal}
+     (nil))
+(insn 15 14 16 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 116 [ string ])) "../ncurses/./tinfo/comp_hash.c":99:21 74 {*movdi_internal}
+     (nil))
+(call_insn 16 15 17 2 (set (reg:HI 0 ax)
+        (call (mem:QI (reg/f:DI 120) [0 *_2 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":99:21 824 {*call_value}
+     (expr_list:REG_CALL_DECL (nil)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 17 16 20 2 (set (reg:HI 84 [ _3 ])
+        (reg:HI 0 ax)) "../ncurses/./tinfo/comp_hash.c":99:21 76 {*movhi_internal}
+     (nil))
+(insn 20 17 21 2 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 84 [ _3 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":101:8 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 21 20 27 2 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 25)
+            (pc))) "../ncurses/./tinfo/comp_hash.c":101:8 806 {*jcc}
+     (int_list:REG_BR_PROB 836337508 (nil))
+ -> 25)
+;;  succ:       4 [77.9% (guessed)]  count:203569590 (estimated locally)
+;;              3 [22.1% (guessed)]  count:57785642 (estimated locally) (FALLTHRU)
+
+;; basic block 3, loop depth 0, count 241276261 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [22.1% (guessed)]  count:57785642 (estimated locally) (FALLTHRU)
+;;              4 [29.0% (guessed)]  count:59035181 (estimated locally)
+;;              5 [36.6% (guessed)]  count:52841780 (estimated locally)
+;;              6 [14.9% (guessed)]  count:13662201 (estimated locally)
+;;              8 [5.5% (guessed)]  count:57951457 (estimated locally)
+(code_label 27 21 22 3 13 (nil) [4 uses])
+(note 22 27 7 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 7 22 25 3 (set (reg/v/f:DI 115 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./tinfo/comp_hash.c":97:36 74 {*movdi_internal}
+     (nil))
+;;  succ:       13 [always]  count:241276261 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 203569590 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [77.9% (guessed)]  count:203569590 (estimated locally)
+(code_label 25 7 26 4 11 (nil) [1 uses])
+(note 26 25 28 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 28 26 29 4 (set (reg:SI 121)
+        (sign_extend:SI (reg:HI 84 [ _3 ]))) "../ncurses/./tinfo/comp_hash.c":102:26 151 {extendhisi2}
+     (nil))
+(insn 29 28 30 4 (set (reg:CC 17 flags)
+        (compare:CC (mem:SI (reg/v/f:DI 113 [ data ]) [3 data_40->table_size+0 S4 A64])
+            (reg:SI 121))) "../ncurses/./tinfo/comp_hash.c":102:2 11 {*cmpsi_1}
+     (nil))
+(jump_insn 30 29 31 4 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 27)
+            (pc))) "../ncurses/./tinfo/comp_hash.c":102:2 806 {*jcc}
+     (int_list:REG_BR_PROB 311385132 (nil))
+ -> 27)
+;;  succ:       5 [71.0% (guessed)]  count:144534409 (estimated locally) (FALLTHRU)
+;;              3 [29.0% (guessed)]  count:59035181 (estimated locally)
+
+;; basic block 5, loop depth 0, count 144534409 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [71.0% (guessed)]  count:144534409 (estimated locally) (FALLTHRU)
+(note 31 30 32 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 32 31 33 5 (set (reg:DI 122)
+        (sign_extend:DI (reg:HI 84 [ _3 ]))) "../ncurses/./tinfo/comp_hash.c":103:21 150 {extendhidi2}
+     (nil))
+(insn 33 32 34 5 (parallel [
+            (set (reg:DI 89 [ _8 ])
+                (ashift:DI (reg:DI 122)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":103:21 656 {*ashldi3_1}
+     (nil))
+(insn 34 33 37 5 (set (reg/f:DI 123)
+        (mem/f:DI (plus:DI (reg/v/f:DI 113 [ data ])
+                (const_int 8 [0x8])) [4 data_40->table_data+0 S8 A64])) "../ncurses/./tinfo/comp_hash.c":103:21 74 {*movdi_internal}
+     (nil))
+(insn 37 34 38 5 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (mem:HI (plus:DI (reg/f:DI 123)
+                    (reg:DI 89 [ _8 ])) [6 *_9+0 S2 A16])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":103:2 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 38 37 39 5 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 27)
+            (pc))) "../ncurses/./tinfo/comp_hash.c":103:2 806 {*jcc}
+     (int_list:REG_BR_PROB 392560012 (nil))
+ -> 27)
+;;  succ:       6 [63.4% (guessed)]  count:91692629 (estimated locally) (FALLTHRU)
+;;              3 [36.6% (guessed)]  count:52841780 (estimated locally)
+
+;; basic block 6, loop depth 0, count 91692629 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [63.4% (guessed)]  count:91692629 (estimated locally) (FALLTHRU)
+(note 39 38 40 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 40 39 41 6 (set (reg:SI 5 di)
+        (reg:SI 82 [ _1 ])) "../ncurses/./tinfo/comp_hash.c":104:47 75 {*movsi_internal}
+     (nil))
+(call_insn 41 40 42 6 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_get_table") [flags 0x41]  <function_decl 0x7f193ac15e00 _nc_get_table>) [0 _nc_get_table S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":104:47 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_get_table") [flags 0x41]  <function_decl 0x7f193ac15e00 _nc_get_table>)
+        (nil))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn 42 41 43 6 (set (reg/v/f:DI 114 [ table ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/comp_hash.c":104:47 74 {*movdi_internal}
+     (nil))
+(insn 43 42 44 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 114 [ table ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":106:5 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 44 43 45 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 27)
+            (pc))) "../ncurses/./tinfo/comp_hash.c":106:5 806 {*jcc}
+     (int_list:REG_BR_PROB 159987532 (nil))
+ -> 27)
+;;  succ:       7 [85.1% (guessed)]  count:78030428 (estimated locally) (FALLTHRU)
+;;              3 [14.9% (guessed)]  count:13662201 (estimated locally)
+
+;; basic block 7, loop depth 0, count 78030428 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [85.1% (guessed)]  count:78030428 (estimated locally) (FALLTHRU)
+(note 45 44 46 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 46 45 47 7 (set (reg/f:DI 124)
+        (mem/f:DI (plus:DI (reg/v/f:DI 113 [ data ])
+                (const_int 8 [0x8])) [4 data_40->table_data+0 S8 A64])) "../ncurses/./tinfo/comp_hash.c":107:36 74 {*movdi_internal}
+     (nil))
+(insn 47 46 48 7 (set (reg:DI 125)
+        (sign_extend:DI (mem:HI (plus:DI (reg/f:DI 124)
+                    (reg:DI 89 [ _8 ])) [6 *_12+0 S2 A16]))) "../ncurses/./tinfo/comp_hash.c":107:36 150 {extendhidi2}
+     (nil))
+(insn 48 47 49 7 (parallel [
+            (set (reg:DI 126)
+                (ashift:DI (reg:DI 125)
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":107:18 656 {*ashldi3_1}
+     (nil))
+(insn 49 48 69 7 (parallel [
+            (set (reg/v/f:DI 115 [ <retval> ])
+                (plus:DI (reg/v/f:DI 114 [ table ])
+                    (reg:DI 126)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":107:10 210 {*adddi_1}
+     (nil))
+;;  succ:       10 [always]  count:78030428 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 1, count 1053662853 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       10 [66.0% (guessed)]  count:708669600 (estimated locally)
+;;              11 [94.5% (guessed)]  count:344993252 (estimated locally)
+(code_label 69 49 52 8 15 (nil) [2 uses])
+(note 52 69 53 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 53 52 56 8 (set (reg:HI 97 [ _16 ])
+        (mem:HI (plus:DI (reg/v/f:DI 115 [ <retval> ])
+                (const_int 14 [0xe])) [6 ptr_32->nte_link+0 S2 A16])) "../ncurses/./tinfo/comp_hash.c":110:10 76 {*movhi_internal}
+     (nil))
+(insn 56 53 57 8 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 97 [ _16 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":110:6 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 57 56 58 8 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 27)
+            (pc))) "../ncurses/./tinfo/comp_hash.c":110:6 806 {*jcc}
+     (int_list:REG_BR_PROB 59055804 (nil))
+ -> 27)
+;;  succ:       3 [5.5% (guessed)]  count:57951457 (estimated locally)
+;;              9 [94.5% (guessed)]  count:995711396 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 1, count 995711396 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [94.5% (guessed)]  count:995711396 (estimated locally) (FALLTHRU)
+(note 58 57 59 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 59 58 60 9 (set (reg:DI 127)
+        (zero_extend:DI (mem:SI (reg/v/f:DI 113 [ data ]) [3 data_40->table_size+0 S4 A64]))) "../ncurses/./tinfo/comp_hash.c":114:55 138 {*zero_extendsidi2}
+     (nil))
+(insn 60 59 61 9 (set (reg/f:DI 128)
+        (mem/f:DI (plus:DI (reg/v/f:DI 113 [ data ])
+                (const_int 8 [0x8])) [4 data_40->table_data+0 S8 A64])) "../ncurses/./tinfo/comp_hash.c":114:50 74 {*movdi_internal}
+     (nil))
+(insn 61 60 62 9 (set (reg:SI 129)
+        (sign_extend:SI (mem:HI (plus:DI (mult:DI (reg:DI 127)
+                        (const_int 2 [0x2]))
+                    (reg/f:DI 128)) [6 *_22+0 S2 A16]))) "../ncurses/./tinfo/comp_hash.c":114:50 151 {extendhisi2}
+     (nil))
+(insn 62 61 63 9 (set (reg:SI 130)
+        (sign_extend:SI (reg:HI 97 [ _16 ]))) "../ncurses/./tinfo/comp_hash.c":114:21 151 {extendhisi2}
+     (nil))
+(insn 63 62 64 9 (parallel [
+            (set (reg:SI 131)
+                (plus:SI (reg:SI 129)
+                    (reg:SI 130)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":114:32 209 {*addsi_1}
+     (nil))
+(insn 64 63 65 9 (set (reg:DI 132)
+        (sign_extend:DI (reg:SI 131))) "../ncurses/./tinfo/comp_hash.c":114:32 147 {*extendsidi2_rex64}
+     (nil))
+(insn 65 64 66 9 (parallel [
+            (set (reg:DI 133)
+                (ashift:DI (reg:DI 132)
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":114:15 656 {*ashldi3_1}
+     (nil))
+(insn 66 65 67 9 (parallel [
+            (set (reg/v/f:DI 115 [ <retval> ])
+                (plus:DI (reg/v/f:DI 114 [ table ])
+                    (reg:DI 133)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":114:7 210 {*adddi_1}
+     (nil))
+;;  succ:       10 [always]  count:995711396 (estimated locally) (FALLTHRU,DFS_BACK)
+
+;; basic block 10, loop depth 1, count 1073741824 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [always]  count:78030428 (estimated locally) (FALLTHRU)
+;;              9 [always]  count:995711396 (estimated locally) (FALLTHRU,DFS_BACK)
+(code_label 67 66 68 10 14 (nil) [0 uses])
+(note 68 67 70 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 70 68 71 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/v/f:DI 115 [ <retval> ])
+                    (const_int 8 [0x8])) [3 ptr_32->nte_type+0 S4 A64])
+            (reg/v:SI 117 [ type ]))) "../ncurses/./tinfo/comp_hash.c":109:6 11 {*cmpsi_1}
+     (nil))
+(jump_insn 71 70 72 10 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 69)
+            (pc))) "../ncurses/./tinfo/comp_hash.c":109:6 806 {*jcc}
+     (int_list:REG_BR_PROB 708669604 (nil))
+ -> 69)
+;;  succ:       8 [66.0% (guessed)]  count:708669600 (estimated locally)
+;;              11 [34.0% (guessed)]  count:365072224 (estimated locally) (FALLTHRU)
+
+;; basic block 11, loop depth 1, count 365072224 (estimated locally), maybe hot
+;;  prev block 10, next block 13, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       10 [34.0% (guessed)]  count:365072224 (estimated locally) (FALLTHRU)
+(note 72 71 73 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 73 72 74 11 (set (reg/f:DI 134)
+        (mem/f:DI (plus:DI (reg/v/f:DI 113 [ data ])
+                (const_int 24 [0x18])) [5 data_40->compare_names+0 S8 A64])) "../ncurses/./tinfo/comp_hash.c":109:10 74 {*movdi_internal}
+     (nil))
+(insn 74 73 75 11 (set (reg:DI 4 si)
+        (reg/v/f:DI 116 [ string ])) "../ncurses/./tinfo/comp_hash.c":109:10 74 {*movdi_internal}
+     (nil))
+(insn 75 74 76 11 (set (reg:DI 5 di)
+        (mem/f:DI (reg/v/f:DI 115 [ <retval> ]) [7 ptr_32->nte_name+0 S8 A64])) "../ncurses/./tinfo/comp_hash.c":109:10 74 {*movdi_internal}
+     (nil))
+(call_insn 76 75 77 11 (set (reg:SI 0 ax)
+        (call (mem:QI (reg/f:DI 134) [0 *_29 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":109:10 824 {*call_value}
+     (expr_list:REG_CALL_DECL (nil)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 77 76 78 11 (set (reg:SI 112 [ _31 ])
+        (reg:SI 0 ax)) "../ncurses/./tinfo/comp_hash.c":109:10 75 {*movsi_internal}
+     (nil))
+(insn 78 77 79 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 112 [ _31 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":109:6 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 79 78 84 11 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 69)
+            (pc))) "../ncurses/./tinfo/comp_hash.c":109:6 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 69)
+;;  succ:       8 [94.5% (guessed)]  count:344993252 (estimated locally)
+;;              13 [5.5% (guessed)]  count:20078972 (estimated locally) (FALLTHRU)
+
+;; basic block 13, loop depth 0, count 261355233 (estimated locally), maybe hot
+;;  prev block 11, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       11 [5.5% (guessed)]  count:20078972 (estimated locally) (FALLTHRU)
+;;              3 [always]  count:241276261 (estimated locally) (FALLTHRU)
+(code_label 84 79 87 13 10 (nil) [0 uses])
+(note 87 84 85 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 85 87 86 13 (set (reg/i:DI 0 ax)
+        (reg/v/f:DI 115 [ <retval> ])) "../ncurses/./tinfo/comp_hash.c":120:1 74 {*movdi_internal}
+     (nil))
+(insn 86 85 0 13 (use (reg/i:DI 0 ax)) "../ncurses/./tinfo/comp_hash.c":120:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:261355233 (estimated locally) (FALLTHRU)
+
+
+;; Function _nc_find_user_entry (_nc_find_user_entry, funcdef_no=93, decl_uid=9052, cgraph_uid=94, symbol_order=93)
+
+
+
+try_optimize_cfg iteration 1
+
+Removing jump 18.
+Removing jump 45.
+Redirecting fallthru edge 9->10 to 11
+deleting block 10
+
+
+try_optimize_cfg iteration 2
+
+
+
+try_optimize_cfg iteration 1
+
+fix_loop_structure: fixing up loops for function
+;; basic block 2, loop depth 0, count 327400193 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:327400193 (estimated locally) (FALLTHRU)
+(note 5 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 114 [ string ])
+        (reg:DI 5 di [ string ])) "../ncurses/./tinfo/comp_hash.c":125:1 74 {*movdi_internal}
+     (nil))
+(note 3 2 7 2 NOTE_INSN_FUNCTION_BEG)
+(call_insn 7 3 8 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_get_hash_user") [flags 0x41]  <function_decl 0x7f193ac1de00 _nc_get_hash_user>) [0 _nc_get_hash_user S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":126:28 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_get_hash_user") [flags 0x41]  <function_decl 0x7f193ac1de00 _nc_get_hash_user>)
+        (nil))
+    (nil))
+(insn 8 7 9 2 (set (reg/v/f:DI 111 [ data ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/comp_hash.c":126:28 74 {*movdi_internal}
+     (nil))
+(insn 9 8 10 2 (set (reg/f:DI 115)
+        (mem/f:DI (plus:DI (reg/v/f:DI 111 [ data ])
+                (const_int 16 [0x10])) [1 data_36->hash_of+0 S8 A64])) "../ncurses/./tinfo/comp_hash.c":131:17 74 {*movdi_internal}
+     (nil))
+(insn 10 9 11 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 114 [ string ])) "../ncurses/./tinfo/comp_hash.c":131:17 74 {*movdi_internal}
+     (nil))
+(call_insn 11 10 12 2 (set (reg:HI 0 ax)
+        (call (mem:QI (reg/f:DI 115) [0 *_1 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":131:17 824 {*call_value}
+     (expr_list:REG_CALL_DECL (nil)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 12 11 15 2 (set (reg:HI 83 [ _2 ])
+        (reg:HI 0 ax)) "../ncurses/./tinfo/comp_hash.c":131:17 76 {*movhi_internal}
+     (nil))
+(insn 15 12 16 2 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 83 [ _2 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":133:8 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 16 15 22 2 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 20)
+            (pc))) "../ncurses/./tinfo/comp_hash.c":133:8 806 {*jcc}
+     (int_list:REG_BR_PROB 836337508 (nil))
+ -> 20)
+;;  succ:       4 [77.9% (guessed)]  count:255012010 (estimated locally)
+;;              3 [22.1% (guessed)]  count:72388183 (estimated locally) (FALLTHRU)
+
+;; basic block 3, loop depth 0, count 268344394 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [22.1% (guessed)]  count:72388183 (estimated locally) (FALLTHRU)
+;;              4 [29.0% (guessed)]  count:73953483 (estimated locally)
+;;              5 [36.6% (guessed)]  count:66194997 (estimated locally)
+;;              7 [5.5% (guessed)]  count:55807731 (estimated locally)
+(code_label 22 16 17 3 28 (nil) [3 uses])
+(note 17 22 4 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 4 17 20 3 (set (reg/v/f:DI 113 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./tinfo/comp_hash.c":128:36 74 {*movdi_internal}
+     (nil))
+;;  succ:       11 [always]  count:268344394 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 255012010 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [77.9% (guessed)]  count:255012010 (estimated locally)
+(code_label 20 4 21 4 26 (nil) [1 uses])
+(note 21 20 23 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 23 21 24 4 (set (reg:SI 116)
+        (sign_extend:SI (reg:HI 83 [ _2 ]))) "../ncurses/./tinfo/comp_hash.c":134:26 151 {extendhisi2}
+     (nil))
+(insn 24 23 25 4 (set (reg:CC 17 flags)
+        (compare:CC (mem:SI (reg/v/f:DI 111 [ data ]) [3 data_36->table_size+0 S4 A64])
+            (reg:SI 116))) "../ncurses/./tinfo/comp_hash.c":134:2 11 {*cmpsi_1}
+     (nil))
+(jump_insn 25 24 26 4 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 22)
+            (pc))) "../ncurses/./tinfo/comp_hash.c":134:2 806 {*jcc}
+     (int_list:REG_BR_PROB 311385132 (nil))
+ -> 22)
+;;  succ:       5 [71.0% (guessed)]  count:181058527 (estimated locally) (FALLTHRU)
+;;              3 [29.0% (guessed)]  count:73953483 (estimated locally)
+
+;; basic block 5, loop depth 0, count 181058527 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [71.0% (guessed)]  count:181058527 (estimated locally) (FALLTHRU)
+(note 26 25 27 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 27 26 28 5 (set (reg:DI 117)
+        (sign_extend:DI (reg:HI 83 [ _2 ]))) "../ncurses/./tinfo/comp_hash.c":135:21 150 {extendhidi2}
+     (nil))
+(insn 28 27 29 5 (parallel [
+            (set (reg:DI 88 [ _7 ])
+                (ashift:DI (reg:DI 117)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":135:21 656 {*ashldi3_1}
+     (nil))
+(insn 29 28 32 5 (set (reg/f:DI 118)
+        (mem/f:DI (plus:DI (reg/v/f:DI 111 [ data ])
+                (const_int 8 [0x8])) [4 data_36->table_data+0 S8 A64])) "../ncurses/./tinfo/comp_hash.c":135:21 74 {*movdi_internal}
+     (nil))
+(insn 32 29 33 5 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (mem:HI (plus:DI (reg/f:DI 118)
+                    (reg:DI 88 [ _7 ])) [6 *_8+0 S2 A16])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":135:2 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 33 32 34 5 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 22)
+            (pc))) "../ncurses/./tinfo/comp_hash.c":135:2 806 {*jcc}
+     (int_list:REG_BR_PROB 392560012 (nil))
+ -> 22)
+;;  succ:       6 [63.4% (guessed)]  count:114863530 (estimated locally) (FALLTHRU)
+;;              3 [36.6% (guessed)]  count:66194997 (estimated locally)
+
+;; basic block 6, loop depth 0, count 114863530 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [63.4% (guessed)]  count:114863530 (estimated locally) (FALLTHRU)
+(note 34 33 35 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(call_insn 35 34 36 6 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_get_userdefs_table") [flags 0x41]  <function_decl 0x7f193ac1dd00 _nc_get_userdefs_table>) [0 _nc_get_userdefs_table S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":137:15 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_get_userdefs_table") [flags 0x41]  <function_decl 0x7f193ac1dd00 _nc_get_userdefs_table>)
+        (nil))
+    (nil))
+(insn 36 35 37 6 (set (reg/v/f:DI 112 [ real_table ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/comp_hash.c":137:15 74 {*movdi_internal}
+     (nil))
+(insn 37 36 38 6 (set (reg/f:DI 119)
+        (mem/f:DI (plus:DI (reg/v/f:DI 111 [ data ])
+                (const_int 8 [0x8])) [4 data_36->table_data+0 S8 A64])) "../ncurses/./tinfo/comp_hash.c":138:37 74 {*movdi_internal}
+     (nil))
+(insn 38 37 39 6 (set (reg:DI 120)
+        (sign_extend:DI (mem:HI (plus:DI (reg/f:DI 119)
+                    (reg:DI 88 [ _7 ])) [6 *_11+0 S2 A16]))) "../ncurses/./tinfo/comp_hash.c":138:37 150 {extendhidi2}
+     (nil))
+(insn 39 38 40 6 (set (reg:DI 121)
+        (reg:DI 120)) "../ncurses/./tinfo/comp_hash.c":138:19 74 {*movdi_internal}
+     (nil))
+(insn 40 39 41 6 (parallel [
+            (set (reg:DI 122)
+                (ashift:DI (reg:DI 121)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":138:19 656 {*ashldi3_1}
+     (nil))
+(insn 41 40 42 6 (parallel [
+            (set (reg:DI 123)
+                (plus:DI (reg:DI 122)
+                    (reg:DI 120)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":138:19 210 {*adddi_1}
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 120)
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 42 41 43 6 (parallel [
+            (set (reg:DI 124)
+                (ashift:DI (reg:DI 123)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":138:19 656 {*ashldi3_1}
+     (nil))
+(insn 43 42 44 6 (set (reg:DI 123)
+        (reg:DI 124)) "../ncurses/./tinfo/comp_hash.c":138:19 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 120)
+            (const_int 24 [0x18]))
+        (nil)))
+(insn 44 43 73 6 (parallel [
+            (set (reg/v/f:DI 113 [ <retval> ])
+                (plus:DI (reg/v/f:DI 112 [ real_table ])
+                    (reg:DI 123)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":138:6 210 {*adddi_1}
+     (nil))
+;;  succ:       9 [always]  count:114863530 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 1, count 1014686025 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       9 [94.5% (guessed)]  count:1014686024 (estimated locally)
+(code_label 73 44 47 7 30 (nil) [1 uses])
+(note 47 73 48 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 48 47 51 7 (set (reg:HI 96 [ _15 ])
+        (mem:HI (plus:DI (reg/v/f:DI 113 [ <retval> ])
+                (const_int 22 [0x16])) [6 ptr_30->ute_link+0 S2 A16])) "../ncurses/./tinfo/comp_hash.c":140:13 76 {*movhi_internal}
+     (nil))
+(insn 51 48 52 7 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 96 [ _15 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":140:9 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 52 51 53 7 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 22)
+            (pc))) "../ncurses/./tinfo/comp_hash.c":140:9 806 {*jcc}
+     (int_list:REG_BR_PROB 59055804 (nil))
+ -> 22)
+;;  succ:       3 [5.5% (guessed)]  count:55807731 (estimated locally)
+;;              8 [94.5% (guessed)]  count:958878294 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 1, count 958878294 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [94.5% (guessed)]  count:958878294 (estimated locally) (FALLTHRU)
+(note 53 52 54 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 54 53 55 8 (set (reg:DI 125)
+        (zero_extend:DI (mem:SI (reg/v/f:DI 111 [ data ]) [3 data_36->table_size+0 S4 A64]))) "../ncurses/./tinfo/comp_hash.c":145:28 138 {*zero_extendsidi2}
+     (nil))
+(insn 55 54 56 8 (set (reg/f:DI 126)
+        (mem/f:DI (plus:DI (reg/v/f:DI 111 [ data ])
+                (const_int 8 [0x8])) [4 data_36->table_data+0 S8 A64])) "../ncurses/./tinfo/comp_hash.c":145:23 74 {*movdi_internal}
+     (nil))
+(insn 56 55 57 8 (set (reg:SI 127)
+        (sign_extend:SI (mem:HI (plus:DI (mult:DI (reg:DI 125)
+                        (const_int 2 [0x2]))
+                    (reg/f:DI 126)) [6 *_21+0 S2 A16]))) "../ncurses/./tinfo/comp_hash.c":145:23 151 {extendhisi2}
+     (nil))
+(insn 57 56 58 8 (set (reg:SI 128)
+        (sign_extend:SI (reg:HI 96 [ _15 ]))) "../ncurses/./tinfo/comp_hash.c":144:29 151 {extendhisi2}
+     (nil))
+(insn 58 57 59 8 (parallel [
+            (set (reg:SI 129)
+                (plus:SI (reg:SI 127)
+                    (reg:SI 128)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":145:5 209 {*addsi_1}
+     (nil))
+(insn 59 58 60 8 (set (reg:DI 130)
+        (sign_extend:DI (reg:SI 129))) "../ncurses/./tinfo/comp_hash.c":145:5 147 {*extendsidi2_rex64}
+     (nil))
+(insn 60 59 61 8 (set (reg:DI 131)
+        (reg:DI 130)) "../ncurses/./tinfo/comp_hash.c":144:23 74 {*movdi_internal}
+     (nil))
+(insn 61 60 62 8 (parallel [
+            (set (reg:DI 132)
+                (ashift:DI (reg:DI 131)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":144:23 656 {*ashldi3_1}
+     (nil))
+(insn 62 61 63 8 (parallel [
+            (set (reg:DI 133)
+                (plus:DI (reg:DI 132)
+                    (reg:DI 130)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":144:23 210 {*adddi_1}
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 130)
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 63 62 64 8 (parallel [
+            (set (reg:DI 134)
+                (ashift:DI (reg:DI 133)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":144:23 656 {*ashldi3_1}
+     (nil))
+(insn 64 63 65 8 (set (reg:DI 133)
+        (reg:DI 134)) "../ncurses/./tinfo/comp_hash.c":144:23 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 130)
+            (const_int 24 [0x18]))
+        (nil)))
+(insn 65 64 66 8 (parallel [
+            (set (reg/v/f:DI 113 [ <retval> ])
+                (plus:DI (reg/v/f:DI 112 [ real_table ])
+                    (reg:DI 133)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/comp_hash.c":144:10 210 {*adddi_1}
+     (nil))
+;;  succ:       9 [always]  count:958878294 (estimated locally) (FALLTHRU,DFS_BACK)
+
+;; basic block 9, loop depth 1, count 1073741824 (estimated locally), maybe hot
+;;  prev block 8, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       6 [always]  count:114863530 (estimated locally) (FALLTHRU)
+;;              8 [always]  count:958878294 (estimated locally) (FALLTHRU,DFS_BACK)
+(code_label 66 65 67 9 29 (nil) [0 uses])
+(note 67 66 68 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 68 67 69 9 (set (reg/f:DI 135)
+        (mem/f:DI (plus:DI (reg/v/f:DI 111 [ data ])
+                (const_int 24 [0x18])) [5 data_36->compare_names+0 S8 A64])) "../ncurses/./tinfo/comp_hash.c":139:10 74 {*movdi_internal}
+     (nil))
+(insn 69 68 70 9 (set (reg:DI 4 si)
+        (reg/v/f:DI 114 [ string ])) "../ncurses/./tinfo/comp_hash.c":139:10 74 {*movdi_internal}
+     (nil))
+(insn 70 69 71 9 (set (reg:DI 5 di)
+        (mem/f:DI (reg/v/f:DI 113 [ <retval> ]) [7 ptr_30->ute_name+0 S8 A64])) "../ncurses/./tinfo/comp_hash.c":139:10 74 {*movdi_internal}
+     (nil))
+(call_insn 71 70 72 9 (set (reg:SI 0 ax)
+        (call (mem:QI (reg/f:DI 135) [0 *_27 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":139:10 824 {*call_value}
+     (expr_list:REG_CALL_DECL (nil)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 72 71 74 9 (set (reg:SI 110 [ _29 ])
+        (reg:SI 0 ax)) "../ncurses/./tinfo/comp_hash.c":139:10 75 {*movsi_internal}
+     (nil))
+(insn 74 72 75 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 110 [ _29 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/comp_hash.c":139:9 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 75 74 80 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 73)
+            (pc))) "../ncurses/./tinfo/comp_hash.c":139:9 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 73)
+;;  succ:       7 [94.5% (guessed)]  count:1014686024 (estimated locally)
+;;              11 [5.5% (guessed)]  count:59055800 (estimated locally) (FALLTHRU)
+
+;; basic block 11, loop depth 0, count 327400194 (estimated locally), maybe hot
+;;  prev block 9, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       9 [5.5% (guessed)]  count:59055800 (estimated locally) (FALLTHRU)
+;;              3 [always]  count:268344394 (estimated locally) (FALLTHRU)
+(code_label 80 75 83 11 25 (nil) [0 uses])
+(note 83 80 81 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 81 83 82 11 (set (reg/i:DI 0 ax)
+        (reg/v/f:DI 113 [ <retval> ])) "../ncurses/./tinfo/comp_hash.c":150:1 74 {*movdi_internal}
+     (nil))
+(insn 82 81 0 11 (use (reg/i:DI 0 ax)) "../ncurses/./tinfo/comp_hash.c":150:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:327400194 (estimated locally) (FALLTHRU)
+

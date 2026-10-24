@@ -1,0 +1,437 @@
+
+;; Function slk_attr_sp (slk_attr_sp, funcdef_no=91, decl_uid=6652, cgraph_uid=92, symbol_order=91)
+
+
+
+slk_attr_sp
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp] 16 [argp] 19 [frame]
+;;  regular block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  eh block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 6 [bp] 7 [sp] 19 [frame]
+;;  regs ever live 	 0 [ax] 5 [di] 17 [flags]
+;;  ref usage 	r0={2d,2u} r1={1d} r2={1d} r4={1d} r5={1d,1u} r6={1d,6u} r7={1d,6u} r16={1d,5u} r17={7d,3u} r19={1d,6u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={1d} r37={1d} r82={1d,3u} r83={1d,2u} r84={2d,4u} r91={1d,1u} r92={3d,1u} r93={1d,2u} r96={1d,1u} r97={1d,1u} r101={1d,1u} r102={1d,1u} r103={1d,1u} 
+;;    total ref usage 88{41d,47u,0e} in 23{23 regular + 0 call} insns.
+(note 1 0 6 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (HOT_PARTITION, RTL)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 17 [flags] 93 101
+;; live  in  	 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 17 [flags] 93 101
+;; live  kill	
+(note 6 1 54 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 54 6 2 2 (set (reg:DI 101)
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/lib_slkattr.c":46:1 -1
+     (expr_list:REG_DEAD (reg:DI 5 di [ sp ])
+        (nil)))
+(insn 2 54 3 2 (set (reg/v/f:DI 93 [ sp ])
+        (reg:DI 101)) "../ncurses/./base/lib_slkattr.c":46:1 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 101)
+        (nil)))
+(note 3 2 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 3 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 93 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkattr.c":49:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 40)
+            (pc))) "../ncurses/./base/lib_slkattr.c":49:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 194239900 (nil)))
+ -> 40)
+;;  succ:       3 [81.9% (guessed)]  count:879501928 (estimated locally) (FALLTHRU)
+;;              5 [18.1% (guessed)]  count:194239896 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93
+
+;; basic block 3, loop depth 0, count 879501929 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (HOT_PARTITION, RTL)
+;;  pred:       2 [81.9% (guessed)]  count:879501928 (estimated locally) (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93
+;; lr  def 	 17 [flags] 82 92
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93
+;; live  gen 	 17 [flags] 82 92
+;; live  kill	
+(note 10 9 11 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 4 3 (set (reg/f:DI 82 [ _1 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 93 [ sp ])
+                (const_int 800 [0x320])) [1 sp_12(D)->_slk+0 S8 A64])) "../ncurses/./base/lib_slkattr.c":49:35 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 93 [ sp ])
+        (nil)))
+(insn 4 11 12 3 (set (reg/v:SI 92 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkattr.c":56:2 75 {*movsi_internal}
+     (nil))
+(insn 12 4 13 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkattr.c":49:25 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 13 12 14 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 33)
+            (pc))) "../ncurses/./base/lib_slkattr.c":49:25 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 33)
+;;  succ:       4 [70.0% (guessed)]  count:615651353 (estimated locally) (FALLTHRU)
+;;              6 [30.0% (guessed)]  count:263850576 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 92
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 92
+
+;; basic block 4, loop depth 0, count 615651353 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       3 [70.0% (guessed)]  count:615651353 (estimated locally) (FALLTHRU)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82
+;; lr  def 	 17 [flags] 83 84 91 92 96 97 102 103
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82
+;; live  gen 	 17 [flags] 83 84 91 92 96 97 102 103
+;; live  kill	 17 [flags]
+(note 14 13 15 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 4 (set (reg:SI 83 [ _2 ])
+        (mem:SI (plus:DI (reg/f:DI 82 [ _1 ])
+                (const_int 32 [0x20])) [3 _1->attr.attr+0 S4 A64])) "../ncurses/./base/lib_slkattr.c":50:18 75 {*movsi_internal}
+     (nil))
+(insn 16 15 17 4 (parallel [
+            (set (reg/v:SI 91 [ result ])
+                (and:SI (reg:SI 83 [ _2 ])
+                    (const_int -65281 [0xffffffffffff00ff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkattr.c":50:9 490 {*andsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 17 16 18 4 (set (reg:SI 84 [ _3 ])
+        (mem:SI (plus:DI (reg/f:DI 82 [ _1 ])
+                (const_int 56 [0x38])) [3 _1->attr.ext_color+0 S4 A64])) "../ncurses/./base/lib_slkattr.c":51:13 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 82 [ _1 ])
+        (nil)))
+(insn 18 17 55 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 84 [ _3 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkattr.c":51:13 7 {*cmpsi_ccno_1}
+     (nil))
+(insn 55 18 56 4 (set (reg:SI 103)
+        (reg:SI 84 [ _3 ])) "../ncurses/./base/lib_slkattr.c":51:13 75 {*movsi_internal}
+     (nil))
+(insn 56 55 57 4 (set (reg:SI 102)
+        (zero_extract:SI (reg:SI 83 [ _2 ])
+            (const_int 8 [0x8])
+            (const_int 8 [0x8]))) "../ncurses/./base/lib_slkattr.c":51:13 100 {*extzvsi}
+     (nil))
+(insn 57 56 58 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 84 [ _3 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkattr.c":51:13 7 {*cmpsi_ccno_1}
+     (nil))
+(insn 58 57 26 4 (set (reg:SI 84 [ _3 ])
+        (if_then_else:SI (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (reg:SI 102)
+            (reg:SI 103))) "../ncurses/./base/lib_slkattr.c":51:13 1100 {*movsicc_noc}
+     (nil))
+(insn 26 58 27 4 (parallel [
+            (set (reg:SI 96)
+                (ashift:SI (reg:SI 84 [ _3 ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkattr.c":53:21 655 {*ashlsi3_1}
+     (expr_list:REG_DEAD (reg:SI 84 [ _3 ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 27 26 28 4 (set (reg:SI 97)
+        (zero_extend:SI (subreg:HI (reg:SI 96) 0))) "../ncurses/./base/lib_slkattr.c":53:12 144 {*zero_extendhisi2}
+     (expr_list:REG_DEAD (reg:SI 96)
+        (nil)))
+(insn 28 27 59 4 (parallel [
+            (set (reg/v:SI 92 [ <retval> ])
+                (ior:SI (reg:SI 97)
+                    (reg/v:SI 91 [ result ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkattr.c":53:9 520 {*iorsi_1}
+     (expr_list:REG_DEAD (reg:SI 97)
+        (expr_list:REG_DEAD (reg/v:SI 91 [ result ])
+            (expr_list:REG_UNUSED (reg:CC 17 flags)
+                (nil)))))
+(jump_insn 59 28 60 4 (set (pc)
+        (label_ref 33)) "../ncurses/./base/lib_slkattr.c":54:2 -1
+     (nil)
+ -> 33)
+;;  succ:       6 [always]  count:615651353 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 92
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 92
+
+(barrier 60 59 40)
+;; basic block 5, loop depth 0, count 194239896 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (HOT_PARTITION, RTL)
+;;  pred:       2 [18.1% (guessed)]  count:194239896 (estimated locally)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 92
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 92
+;; live  kill	
+(code_label 40 60 39 5 4 (nil) [1 uses])
+(note 39 40 5 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 5 39 33 5 (set (reg/v:SI 92 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkattr.c":56:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       6 [always]  count:194239896 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 92
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 92
+
+;; basic block 6, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 5, next block 1, flags: (HOT_PARTITION, RTL)
+;;  pred:       3 [30.0% (guessed)]  count:263850576 (estimated locally)
+;;              5 [always]  count:194239896 (estimated locally) (FALLTHRU)
+;;              4 [always]  count:615651353 (estimated locally)
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 92
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 92
+;; lr  def 	 0 [ax]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 92
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 33 5 36 6 1 (nil) [2 uses])
+(note 36 33 34 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 34 36 35 6 (set (reg/i:SI 0 ax)
+        (reg/v:SI 92 [ <retval> ])) "../ncurses/./base/lib_slkattr.c":57:1 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 92 [ <retval> ])
+        (nil)))
+(insn 35 34 0 6 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_slkattr.c":57:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+
+;; Function slk_attr (slk_attr, funcdef_no=92, decl_uid=6062, cgraph_uid=93, symbol_order=92)
+
+
+
+slk_attr
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp] 16 [argp] 19 [frame]
+;;  regular block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  eh block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 6 [bp] 7 [sp] 19 [frame]
+;;  regs ever live 	 0 [ax] 17 [flags]
+;;  ref usage 	r0={2d,2u} r1={1d} r2={1d} r4={1d} r5={1d} r6={1d,6u} r7={1d,6u} r16={1d,5u} r17={7d,3u} r19={1d,6u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={1d} r37={1d} r82={1d,2u} r83={1d,3u} r84={1d,2u} r85={1d,1u} r86={2d,4u} r93={3d,1u} r96={1d,1u} r97={1d,1u} r101={1d,1u} r102={1d,1u} 
+;;    total ref usage 85{40d,45u,0e} in 22{22 regular + 0 call} insns.
+(note 1 0 5 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (HOT_PARTITION, RTL)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 17 [flags] 82
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 17 [flags] 82
+;; live  kill	
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 5 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 2 8 2 (set (reg/f:DI 82 [ SP.2_1 ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f4efeee1cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/lib_slkattr.c":63:12 74 {*movdi_internal}
+     (nil))
+(insn 8 7 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ SP.2_1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkattr.c":49:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 40)
+            (pc))) "../ncurses/./base/lib_slkattr.c":49:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 194239900 (nil)))
+ -> 40)
+;;  succ:       3 [81.9% (guessed)]  count:879501928 (estimated locally) (FALLTHRU)
+;;              5 [18.1% (guessed)]  count:194239896 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82
+
+;; basic block 3, loop depth 0, count 879501929 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (HOT_PARTITION, RTL)
+;;  pred:       2 [81.9% (guessed)]  count:879501928 (estimated locally) (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82
+;; lr  def 	 17 [flags] 83 93
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82
+;; live  gen 	 17 [flags] 83 93
+;; live  kill	
+(note 10 9 11 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 3 3 (set (reg/f:DI 83 [ _4 ])
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ SP.2_1 ])
+                (const_int 800 [0x320])) [1 SP.2_1->_slk+0 S8 A64])) "../ncurses/./base/lib_slkattr.c":49:35 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 82 [ SP.2_1 ])
+        (nil)))
+(insn 3 11 12 3 (set (reg/v:SI 93 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkattr.c":56:2 75 {*movsi_internal}
+     (nil))
+(insn 12 3 13 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 83 [ _4 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkattr.c":49:25 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 13 12 14 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 33)
+            (pc))) "../ncurses/./base/lib_slkattr.c":49:25 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 33)
+;;  succ:       4 [70.0% (guessed)]  count:615651353 (estimated locally) (FALLTHRU)
+;;              6 [30.0% (guessed)]  count:263850576 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 83 93
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 83 93
+
+;; basic block 4, loop depth 0, count 615651353 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       3 [70.0% (guessed)]  count:615651353 (estimated locally) (FALLTHRU)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 83
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 83
+;; lr  def 	 17 [flags] 84 85 86 93 96 97 101 102
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 83
+;; live  gen 	 17 [flags] 84 85 86 93 96 97 101 102
+;; live  kill	 17 [flags]
+(note 14 13 15 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 4 (set (reg:SI 84 [ _5 ])
+        (mem:SI (plus:DI (reg/f:DI 83 [ _4 ])
+                (const_int 32 [0x20])) [3 _4->attr.attr+0 S4 A64])) "../ncurses/./base/lib_slkattr.c":50:18 75 {*movsi_internal}
+     (nil))
+(insn 16 15 17 4 (parallel [
+            (set (reg/v:SI 85 [ result ])
+                (and:SI (reg:SI 84 [ _5 ])
+                    (const_int -65281 [0xffffffffffff00ff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkattr.c":50:9 490 {*andsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 17 16 18 4 (set (reg:SI 86 [ _7 ])
+        (mem:SI (plus:DI (reg/f:DI 83 [ _4 ])
+                (const_int 56 [0x38])) [3 _4->attr.ext_color+0 S4 A64])) "../ncurses/./base/lib_slkattr.c":51:13 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 83 [ _4 ])
+        (nil)))
+(insn 18 17 53 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 86 [ _7 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkattr.c":51:13 7 {*cmpsi_ccno_1}
+     (nil))
+(insn 53 18 54 4 (set (reg:SI 102)
+        (reg:SI 86 [ _7 ])) "../ncurses/./base/lib_slkattr.c":51:13 75 {*movsi_internal}
+     (nil))
+(insn 54 53 55 4 (set (reg:SI 101)
+        (zero_extract:SI (reg:SI 84 [ _5 ])
+            (const_int 8 [0x8])
+            (const_int 8 [0x8]))) "../ncurses/./base/lib_slkattr.c":51:13 100 {*extzvsi}
+     (nil))
+(insn 55 54 56 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 86 [ _7 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkattr.c":51:13 7 {*cmpsi_ccno_1}
+     (nil))
+(insn 56 55 26 4 (set (reg:SI 86 [ _7 ])
+        (if_then_else:SI (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (reg:SI 101)
+            (reg:SI 102))) "../ncurses/./base/lib_slkattr.c":51:13 1100 {*movsicc_noc}
+     (nil))
+(insn 26 56 27 4 (parallel [
+            (set (reg:SI 96)
+                (ashift:SI (reg:SI 86 [ _7 ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkattr.c":53:21 655 {*ashlsi3_1}
+     (expr_list:REG_DEAD (reg:SI 86 [ _7 ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 27 26 28 4 (set (reg:SI 97)
+        (zero_extend:SI (subreg:HI (reg:SI 96) 0))) "../ncurses/./base/lib_slkattr.c":53:12 144 {*zero_extendhisi2}
+     (expr_list:REG_DEAD (reg:SI 96)
+        (nil)))
+(insn 28 27 57 4 (parallel [
+            (set (reg/v:SI 93 [ <retval> ])
+                (ior:SI (reg:SI 97)
+                    (reg/v:SI 85 [ result ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkattr.c":53:9 520 {*iorsi_1}
+     (expr_list:REG_DEAD (reg:SI 97)
+        (expr_list:REG_DEAD (reg/v:SI 85 [ result ])
+            (expr_list:REG_UNUSED (reg:CC 17 flags)
+                (nil)))))
+(jump_insn 57 28 58 4 (set (pc)
+        (label_ref 33)) "../ncurses/./base/lib_slkattr.c":54:2 -1
+     (nil)
+ -> 33)
+;;  succ:       6 [always]  count:615651353 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93
+
+(barrier 58 57 40)
+;; basic block 5, loop depth 0, count 194239896 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (HOT_PARTITION, RTL)
+;;  pred:       2 [18.1% (guessed)]  count:194239896 (estimated locally)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 93
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 93
+;; live  kill	
+(code_label 40 58 39 5 11 (nil) [1 uses])
+(note 39 40 4 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 4 39 33 5 (set (reg/v:SI 93 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkattr.c":56:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       6 [always]  count:194239896 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93
+
+;; basic block 6, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 5, next block 1, flags: (HOT_PARTITION, RTL)
+;;  pred:       3 [30.0% (guessed)]  count:263850576 (estimated locally)
+;;              5 [always]  count:194239896 (estimated locally) (FALLTHRU)
+;;              4 [always]  count:615651353 (estimated locally)
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93
+;; lr  def 	 0 [ax]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 33 4 36 6 8 (nil) [2 uses])
+(note 36 33 34 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 34 36 35 6 (set (reg/i:SI 0 ax)
+        (reg/v:SI 93 [ <retval> ])) "../ncurses/./base/lib_slkattr.c":64:1 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 93 [ <retval> ])
+        (nil)))
+(insn 35 34 0 6 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_slkattr.c":64:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+

@@ -1,0 +1,532 @@
+
+;; Function wdelch (wdelch, funcdef_no=91, decl_uid=6233, cgraph_uid=92, symbol_order=91)
+
+
+
+wdelch
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;;  exit block uses 	 0 [ax] 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;;  regs ever live 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 17 [flags] 36 [r8] 37 [r9] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;;  ref usage 	r0={13d,15u} r1={6d,7u} r2={8d,12u} r3={3d,3u} r4={5d,3u} r5={6d,12u} r6={3d,4u,1e} r7={15d,27u} r8={2d} r9={2d} r10={2d} r11={2d} r12={2d} r13={2d} r14={2d} r15={2d} r17={17d,4u} r18={2d} r20={3d} r21={3d} r22={3d} r23={3d} r24={3d} r25={3d} r26={3d} r27={3d} r28={2d} r29={2d} r30={2d} r31={2d} r32={2d} r33={2d} r34={2d} r35={2d} r36={4d,1u} r37={4d,2u} r38={2d} r39={2d} r40={3d,3u} r41={3d,3u} r42={3d,3u} r43={3d,4u} r44={2d} r45={2d} r46={2d} r47={2d} r48={2d} r49={2d} r50={2d} r51={2d} r52={2d} r53={2d} r54={2d} r55={2d} r56={2d} r57={2d} r58={2d} r59={2d} r60={2d} r61={2d} r62={2d} r63={2d} r64={2d} r65={2d} r66={2d} r67={2d} r68={2d} r69={2d} r70={2d} r71={2d} r72={2d} r73={2d} r74={2d} r75={2d} 
+;;    total ref usage 326{222d,103u,1e} in 65{63 regular + 2 call} insns.
+(note 1 0 6 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 119148189 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:119148189 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 5 [di] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; lr  use 	 5 [di] 7 [sp]
+;; lr  def 	 17 [flags]
+;; live  in  	 3 [bx] 5 [di] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(note 6 1 3 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 3 6 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 3 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 5 di [orig:113 win ] [113])
+            (const_int 0 [0]))) "../ncurses/./base/lib_delch.c":53:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 81)
+            (pc))) "../ncurses/./base/lib_delch.c":53:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 9341556 (nil)))
+ -> 81)
+;;  succ:       3 [99.1% (guessed)]  count:118111600 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              9 [0.9% (guessed)]  count:1036589 (estimated locally) (CAN_FALLTHRU)
+;; lr  out 	 3 [bx] 5 [di] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  out 	 3 [bx] 5 [di] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+
+;; basic block 3, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       2 [99.1% (guessed)]  count:118111600 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 5 [di] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; lr  use 	 3 [bx] 5 [di] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 17 [flags] 36 [r8] 37 [r9] 40 [r12] 41 [r13] 42 [r14]
+;; live  in  	 3 [bx] 5 [di] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  gen 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 17 [flags] 36 [r8] 37 [r9] 40 [r12] 41 [r13] 42 [r14]
+;; live  kill	 17 [flags]
+(note 10 9 102 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn/f 102 10 103 3 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 43 r15)) "../ncurses/./base/lib_delch.c":48:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 43 r15)
+        (nil)))
+(insn/f 103 102 104 3 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 42 r14)) "../ncurses/./base/lib_delch.c":48:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 42 r14)
+        (nil)))
+(insn/f 104 103 105 3 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 41 r13)) "../ncurses/./base/lib_delch.c":48:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 41 r13)
+        (nil)))
+(insn/f 105 104 106 3 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 40 r12)) "../ncurses/./base/lib_delch.c":48:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 40 r12)
+        (nil)))
+(insn/f 106 105 107 3 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 6 bp)) "../ncurses/./base/lib_delch.c":48:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 6 bp)
+        (nil)))
+(insn/f 107 106 108 3 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 3 bx)) "../ncurses/./base/lib_delch.c":48:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 3 bx)
+        (nil)))
+(insn/f 108 107 109 3 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -8 [0xfffffffffffffff8])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) "../ncurses/./base/lib_delch.c":48:1 1142 {pro_epilogue_adjust_stack_add_di}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -8 [0xfffffffffffffff8])))
+            (nil))))
+(note 109 108 119 3 NOTE_INSN_PROLOGUE_END)
+(insn 119 109 11 3 (set (reg/v/f:DI 6 bp [orig:113 win ] [113])
+        (reg:DI 5 di [134])) 74 {*movdi_internal}
+     (nil))
+(insn 11 119 12 3 (set (reg:DI 42 r14 [orig:105 _64 ] [105])
+        (mem:DI (plus:DI (reg/f:DI 5 di [orig:113 win ] [113])
+                (const_int 116 [0x74])) [0 MEM <unsigned long> [(void *)win_23(D) + 116B]+0 S8 A32])) "../ncurses/./base/lib_delch.c":54:15 74 {*movdi_internal}
+     (nil))
+(insn 12 11 13 3 (set (reg:DI 41 r13 [orig:102 _59 ] [102])
+        (mem:DI (plus:DI (reg/f:DI 5 di [orig:113 win ] [113])
+                (const_int 124 [0x7c])) [3 MEM <unsigned long> [(int *)win_23(D) + 124B]+0 S8 A32])) "../ncurses/./base/lib_delch.c":54:15 74 {*movdi_internal}
+     (nil))
+(insn 13 12 14 3 (set (reg:DI 40 r12 [orig:104 _63 ] [104])
+        (mem:DI (plus:DI (reg/f:DI 5 di [orig:113 win ] [113])
+                (const_int 132 [0x84])) [3 MEM <unsigned long> [(int *)win_23(D) + 132B]+0 S8 A32])) "../ncurses/./base/lib_delch.c":54:15 74 {*movdi_internal}
+     (nil))
+(insn 14 13 15 3 (set (reg:DI 3 bx [orig:95 _17 ] [95])
+        (mem:DI (plus:DI (reg/f:DI 5 di [orig:113 win ] [113])
+                (const_int 140 [0x8c])) [3 MEM <unsigned long> [(int *)win_23(D) + 140B]+0 S8 A32])) "../ncurses/./base/lib_delch.c":54:15 74 {*movdi_internal}
+     (nil))
+(note 15 14 16 3 NOTE_INSN_DELETED)
+(insn 16 15 18 3 (set (reg:DI 0 ax [orig:114 win_23(D)->_cury ] [114])
+        (sign_extend:DI (mem:SI (reg/f:DI 5 di [orig:113 win ] [113]) [3 win_23(D)->_cury+0 S4 A64]))) "../ncurses/./base/lib_delch.c":55:38 147 {*extendsidi2_rex64}
+     (nil))
+(note 18 16 19 3 NOTE_INSN_DELETED)
+(insn 19 18 20 3 (set (reg:DI 1 dx [118])
+        (plus:DI (ashift:DI (reg:DI 0 ax [orig:114 win_23(D)->_cury ] [114])
+                (const_int 1 [0x1]))
+            (reg:DI 0 ax [orig:114 win_23(D)->_cury ] [114]))) "../ncurses/./base/lib_delch.c":55:34 206 {*leadi}
+     (expr_list:REG_DEAD (reg:DI 0 ax [orig:114 win_23(D)->_cury ] [114])
+        (nil)))
+(note 20 19 22 3 NOTE_INSN_DELETED)
+(insn 22 20 23 3 (set (reg/f:DI 0 ax [orig:120 win_23(D)->_line ] [120])
+        (mem/f:DI (plus:DI (reg/f:DI 5 di [orig:113 win ] [113])
+                (const_int 56 [0x38])) [1 win_23(D)->_line+0 S8 A64])) "../ncurses/./base/lib_delch.c":55:15 74 {*movdi_internal}
+     (expr_list:REG_EQUIV (mem/f:DI (plus:DI (reg/v/f:DI 6 bp [orig:113 win ] [113])
+                (const_int 56 [0x38])) [1 win_23(D)->_line+0 S8 A64])
+        (nil)))
+(insn 23 22 24 3 (set (reg/v/f:DI 1 dx [orig:97 line ] [97])
+        (plus:DI (ashift:DI (reg:DI 1 dx [118])
+                (const_int 3 [0x3]))
+            (reg/f:DI 0 ax [orig:120 win_23(D)->_line ] [120]))) "../ncurses/./base/lib_delch.c":55:15 206 {*leadi}
+     (expr_list:REG_DEAD (reg/f:DI 0 ax [orig:120 win_23(D)->_line ] [120])
+        (nil)))
+(note 24 23 25 3 NOTE_INSN_DELETED)
+(insn 25 24 100 3 (set (reg:DI 0 ax)
+        (sign_extend:DI (mem:SI (plus:DI (reg/f:DI 5 di [orig:113 win ] [113])
+                    (const_int 12 [0xc])) [3 win_23(D)->_maxx+0 S4 A32]))) "../ncurses/./base/lib_delch.c":56:38 147 {*extendsidi2_rex64}
+     (expr_list:REG_DEAD (reg/f:DI 5 di [orig:113 win ] [113])
+        (nil)))
+(insn 100 25 27 3 (set (reg:DI 5 di)
+        (reg:DI 0 ax)) "../ncurses/./base/lib_delch.c":56:38 74 {*movdi_internal}
+     (nil))
+(insn 27 100 28 3 (parallel [
+            (set (reg:DI 0 ax [122])
+                (ashift:DI (reg:DI 0 ax [orig:121 _6 ] [121])
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":56:34 656 {*ashldi3_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 28 27 29 3 (parallel [
+            (set (reg/v/f:DI 0 ax [orig:98 end ] [98])
+                (plus:DI (reg:DI 0 ax [122])
+                    (mem/f:DI (reg/v/f:DI 1 dx [orig:97 line ] [97]) [10 line_25->text+0 S8 A64])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":56:16 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 29 28 101 3 (set (reg:DI 2 cx)
+        (sign_extend:DI (mem:SI (plus:DI (reg/v/f:DI 6 bp [orig:113 win ] [113])
+                    (const_int 4 [0x4])) [3 win_23(D)->_curx+0 S4 A32]))) "../ncurses/./base/lib_delch.c":57:40 147 {*extendsidi2_rex64}
+     (nil))
+(insn 101 29 31 3 (set (reg:DI 4 si)
+        (reg:DI 2 cx)) "../ncurses/./base/lib_delch.c":57:40 74 {*movdi_internal}
+     (nil))
+(insn 31 101 32 3 (parallel [
+            (set (reg:DI 2 cx [124])
+                (ashift:DI (reg:DI 2 cx [orig:123 _10 ] [123])
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":57:36 656 {*ashldi3_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 32 31 97 3 (parallel [
+            (set (reg/v/f:DI 2 cx [orig:96 temp1 ] [96])
+                (plus:DI (reg:DI 2 cx [124])
+                    (mem/f:DI (reg/v/f:DI 1 dx [orig:97 line ] [97]) [10 line_25->text+0 S8 A64])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":57:16 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 97 32 34 3 (set (reg/v/f:DI 36 r8 [orig:99 temp2 ] [99])
+        (plus:DI (reg/v/f:DI 2 cx [orig:96 temp1 ] [96])
+            (const_int 32 [0x20]))) "../ncurses/./base/lib_delch.c":58:22 206 {*leadi}
+     (nil))
+(insn 34 97 35 3 (set (reg:SI 37 r9 [orig:94 _13 ] [94])
+        (mem:SI (plus:DI (reg/v/f:DI 1 dx [orig:97 line ] [97])
+                (const_int 8 [0x8])) [3 line_25->firstchar+0 S4 A64])) "../ncurses/./base/lib_delch.c":60:2 75 {*movsi_internal}
+     (nil))
+(note 35 34 36 3 NOTE_INSN_DELETED)
+(note 36 35 37 3 NOTE_INSN_DELETED)
+(insn 37 36 38 3 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 4 si [orig:91 _10 ] [91])
+            (reg:SI 37 r9 [orig:94 _13 ] [94]))) "../ncurses/./base/lib_delch.c":60:2 11 {*cmpsi_1}
+     (nil))
+(jump_insn 38 37 82 3 (set (pc)
+        (if_then_else (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 84)
+            (pc))) "../ncurses/./base/lib_delch.c":60:2 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 359703516 (nil)))
+ -> 84)
+;;  succ:       5 [33.5% (guessed)]  count:39567386 (estimated locally) (CAN_FALLTHRU)
+;;              4 [66.5% (guessed)]  count:78544214 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 37 [r9] 40 [r12] 41 [r13] 42 [r14]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 37 [r9] 40 [r12] 41 [r13] 42 [r14]
+
+;; basic block 4, loop depth 0, count 78544214 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       3 [66.5% (guessed)]  count:78544214 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 37 [r9] 40 [r12] 41 [r13] 42 [r14]
+;; lr  use 	 7 [sp] 37 [r9]
+;; lr  def 	 17 [flags]
+;; live  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 37 [r9] 40 [r12] 41 [r13] 42 [r14]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(note 82 38 39 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(note 39 82 40 4 NOTE_INSN_DELETED)
+(note 40 39 41 4 NOTE_INSN_DELETED)
+(insn 41 40 42 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 37 r9 [orig:94 _13 ] [94])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_delch.c":60:2 11 {*cmpsi_1}
+     (expr_list:REG_DEAD (reg:SI 37 r9 [orig:94 _13 ] [94])
+        (nil)))
+(jump_insn 42 41 84 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 46)
+            (pc))) "../ncurses/./base/lib_delch.c":60:2 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 532834292 (nil)))
+ -> 46)
+;;  succ:       6 [49.6% (guessed)]  count:38976828 (estimated locally) (CAN_FALLTHRU)
+;;              5 [50.4% (guessed)]  count:39567386 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 40 [r12] 41 [r13] 42 [r14]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 40 [r12] 41 [r13] 42 [r14]
+
+;; basic block 5, loop depth 0, count 79134772 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (REACHABLE, HOT_PARTITION, RTL)
+;;  pred:       4 [50.4% (guessed)]  count:39567386 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              3 [33.5% (guessed)]  count:39567386 (estimated locally) (CAN_FALLTHRU)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 40 [r12] 41 [r13] 42 [r14]
+;; lr  use 	 1 [dx] 4 [si] 7 [sp]
+;; lr  def 	
+;; live  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 40 [r12] 41 [r13] 42 [r14]
+;; live  gen 	
+;; live  kill	
+(code_label 84 42 44 5 7 (nil) [1 uses])
+(note 44 84 45 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 45 44 46 5 (set (mem:SI (plus:DI (reg/v/f:DI 1 dx [orig:97 line ] [97])
+                (const_int 8 [0x8])) [3 line_25->firstchar+0 S4 A64])
+        (reg:SI 4 si [orig:91 _10 ] [91])) "../ncurses/./base/lib_delch.c":60:2 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 4 si [orig:91 _10 ] [91])
+        (nil)))
+;;  succ:       6 [always]  count:79134772 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 5 [di] 6 [bp] 7 [sp] 36 [r8] 40 [r12] 41 [r13] 42 [r14]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 5 [di] 6 [bp] 7 [sp] 36 [r8] 40 [r12] 41 [r13] 42 [r14]
+
+;; basic block 6, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       5 [always]  count:79134772 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              4 [49.6% (guessed)]  count:38976828 (estimated locally) (CAN_FALLTHRU)
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 5 [di] 6 [bp] 7 [sp] 36 [r8] 40 [r12] 41 [r13] 42 [r14]
+;; lr  use 	 0 [ax] 1 [dx] 2 [cx] 5 [di] 7 [sp]
+;; lr  def 	 17 [flags]
+;; live  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 5 [di] 6 [bp] 7 [sp] 36 [r8] 40 [r12] 41 [r13] 42 [r14]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(code_label 46 45 47 6 3 (nil) [1 uses])
+(note 47 46 48 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 48 47 49 6 (set (mem:SI (plus:DI (reg/v/f:DI 1 dx [orig:97 line ] [97])
+                (const_int 12 [0xc])) [3 line_25->lastchar+0 S4 A32])
+        (reg:SI 5 di [orig:87 _6 ] [87])) "../ncurses/./base/lib_delch.c":60:2 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 5 di [orig:87 _6 ] [87])
+        (expr_list:REG_DEAD (reg/v/f:DI 1 dx [orig:97 line ] [97])
+            (nil))))
+(insn 49 48 50 6 (set (reg:CC 17 flags)
+        (compare:CC (reg/v/f:DI 0 ax [orig:98 end ] [98])
+            (reg/v/f:DI 2 cx [orig:96 temp1 ] [96]))) "../ncurses/./base/lib_delch.c":61:15 12 {*cmpdi_1}
+     (nil))
+(jump_insn 50 49 51 6 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 62)
+            (pc))) "../ncurses/./base/lib_delch.c":61:15 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CC 17 flags)
+        (int_list:REG_BR_PROB 118111604 (nil)))
+ -> 62)
+;;  succ:       7 [89.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              8 [11.0% (guessed)]  count:12992276 (estimated locally) (CAN_FALLTHRU)
+;; lr  out 	 0 [ax] 2 [cx] 3 [bx] 6 [bp] 7 [sp] 36 [r8] 40 [r12] 41 [r13] 42 [r14]
+;; live  out 	 0 [ax] 2 [cx] 3 [bx] 6 [bp] 7 [sp] 36 [r8] 40 [r12] 41 [r13] 42 [r14]
+
+;; basic block 7, loop depth 0, count 105119324 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (REACHABLE, HOT_PARTITION, RTL)
+;;  pred:       6 [89.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; bb 7 artificial_defs: { }
+;; bb 7 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 2 [cx] 3 [bx] 6 [bp] 7 [sp] 36 [r8] 40 [r12] 41 [r13] 42 [r14]
+;; lr  use 	 0 [ax] 2 [cx] 7 [sp] 36 [r8]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 43 [r15] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;; live  in  	 0 [ax] 2 [cx] 3 [bx] 6 [bp] 7 [sp] 36 [r8] 40 [r12] 41 [r13] 42 [r14]
+;; live  gen 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 43 [r15]
+;; live  kill	 17 [flags]
+(note 51 50 52 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 52 51 53 7 (parallel [
+            (set (reg/f:DI 0 ax [129])
+                (plus:DI (reg/v/f:DI 0 ax [orig:98 end ] [98])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":62:15 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 53 52 54 7 (parallel [
+            (set (reg:DI 0 ax [130])
+                (minus:DI (reg/f:DI 0 ax [129])
+                    (reg/v/f:DI 2 cx [orig:96 temp1 ] [96])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":62:15 283 {*subdi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(note 54 53 55 7 NOTE_INSN_DELETED)
+(insn 55 54 56 7 (parallel [
+            (set (reg:DI 0 ax [132])
+                (and:DI (reg:DI 0 ax [130])
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":62:15 486 {*anddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 56 55 57 7 (set (reg:DI 43 r15 [orig:111 _74 ] [111])
+        (plus:DI (reg:DI 0 ax [132])
+            (const_int 32 [0x20]))) "../ncurses/./base/lib_delch.c":62:15 206 {*leadi}
+     (expr_list:REG_DEAD (reg:DI 0 ax [132])
+        (nil)))
+(insn 57 56 58 7 (set (reg:DI 1 dx)
+        (reg:DI 43 r15 [orig:111 _74 ] [111])) "../ncurses/./base/lib_delch.c":62:15 74 {*movdi_internal}
+     (nil))
+(insn 58 57 59 7 (set (reg:DI 4 si)
+        (reg/v/f:DI 36 r8 [orig:99 temp2 ] [99])) "../ncurses/./base/lib_delch.c":62:15 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 36 r8 [orig:99 temp2 ] [99])
+        (nil)))
+(insn 59 58 60 7 (set (reg:DI 5 di)
+        (reg/v/f:DI 2 cx [orig:96 temp1 ] [96])) "../ncurses/./base/lib_delch.c":62:15 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 2 cx [orig:96 temp1 ] [96])
+        (nil)))
+(call_insn 60 59 96 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("memmove") [flags 0x41]  <function_decl 0x7f3eb9563a00 __builtin_memmove>) [0 __builtin_memmove S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_delch.c":62:15 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:DI 4 si)
+            (expr_list:REG_DEAD (reg:DI 1 dx)
+                (expr_list:REG_RETURNED (reg/v/f:DI 2 cx [orig:96 temp1 ] [96])
+                    (expr_list:REG_CALL_DECL (symbol_ref:DI ("memmove") [flags 0x41]  <function_decl 0x7f3eb9563a00 __builtin_memmove>)
+                        (expr_list:REG_EH_REGION (const_int 0 [0])
+                            (nil)))))))
+    (expr_list:DI (set (reg:DI 0 ax)
+            (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (nil))))))
+(insn 96 60 61 7 (set (reg/v/f:DI 2 cx [orig:96 temp1 ] [96])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_delch.c":62:15 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 0 ax)
+        (nil)))
+(insn 61 96 62 7 (parallel [
+            (set (reg/v/f:DI 2 cx [orig:96 temp1 ] [96])
+                (plus:DI (reg/v/f:DI 2 cx [orig:96 temp1 ] [96])
+                    (reg:DI 43 r15 [orig:111 _74 ] [111])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":62:12 210 {*adddi_1}
+     (expr_list:REG_DEAD (reg:DI 43 r15 [orig:111 _74 ] [111])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+;;  succ:       8 [always]  count:105119324 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; lr  out 	 2 [cx] 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14]
+;; live  out 	 2 [cx] 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14]
+
+;; basic block 8, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       7 [always]  count:105119324 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              6 [11.0% (guessed)]  count:12992276 (estimated locally) (CAN_FALLTHRU)
+;; bb 8 artificial_defs: { }
+;; bb 8 artificial_uses: { u-1(7){ }}
+;; lr  in  	 2 [cx] 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14]
+;; lr  use 	 2 [cx] 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 42 [r14] 43 [r15] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;; live  in  	 2 [cx] 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14]
+;; live  gen 	 0 [ax] 3 [bx] 5 [di] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  kill	 17 [flags]
+(code_label 62 61 63 8 5 (nil) [1 uses])
+(note 63 62 64 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 64 63 65 8 (set (mem:DI (reg/v/f:DI 2 cx [orig:96 temp1 ] [96]) [0 MEM <unsigned long> [(void *)temp1_61]+0 S8 A32])
+        (reg:DI 42 r14 [orig:105 _64 ] [105])) "../ncurses/./base/lib_delch.c":64:9 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 42 r14 [orig:105 _64 ] [105])
+        (nil)))
+(insn 65 64 66 8 (set (mem:DI (plus:DI (reg/v/f:DI 2 cx [orig:96 temp1 ] [96])
+                (const_int 8 [0x8])) [3 MEM <unsigned long> [(int *)temp1_61 + 8B]+0 S8 A32])
+        (reg:DI 41 r13 [orig:102 _59 ] [102])) "../ncurses/./base/lib_delch.c":64:9 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 41 r13 [orig:102 _59 ] [102])
+        (nil)))
+(insn 66 65 67 8 (set (mem:DI (plus:DI (reg/v/f:DI 2 cx [orig:96 temp1 ] [96])
+                (const_int 16 [0x10])) [3 MEM <unsigned long> [(int *)temp1_61 + 16B]+0 S8 A32])
+        (reg:DI 40 r12 [orig:104 _63 ] [104])) "../ncurses/./base/lib_delch.c":64:9 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 40 r12 [orig:104 _63 ] [104])
+        (nil)))
+(insn 67 66 68 8 (set (mem:DI (plus:DI (reg/v/f:DI 2 cx [orig:96 temp1 ] [96])
+                (const_int 24 [0x18])) [3 MEM <unsigned long> [(int *)temp1_61 + 24B]+0 S8 A32])
+        (reg:DI 3 bx [orig:95 _17 ] [95])) "../ncurses/./base/lib_delch.c":64:9 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 3 bx [orig:95 _17 ] [95])
+        (expr_list:REG_DEAD (reg/v/f:DI 2 cx [orig:96 temp1 ] [96])
+            (nil))))
+(insn 68 67 69 8 (set (reg:DI 5 di)
+        (reg/v/f:DI 6 bp [orig:113 win ] [113])) "../ncurses/./base/lib_delch.c":66:2 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 6 bp [orig:113 win ] [113])
+        (nil)))
+(call_insn 69 68 141 8 (call (mem:QI (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f3eb9194700 _nc_synchook>) [0 _nc_synchook S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_delch.c":66:2 813 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f3eb9194700 _nc_synchook>)
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 141 69 76 8 (parallel [
+            (set (reg:DI 0 ax [orig:112 <retval> ] [112])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_delch.c":67:7 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 76 141 110 8 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_delch.c":70:1 -1
+     (nil))
+(note 110 76 111 8 NOTE_INSN_EPILOGUE_BEG)
+(insn/f 111 110 112 8 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) "../ncurses/./base/lib_delch.c":70:1 1142 {pro_epilogue_adjust_stack_add_di}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 8 [0x8])))
+            (nil))))
+(insn/f 112 111 113 8 (set (reg:DI 3 bx)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./base/lib_delch.c":70:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f 113 112 114 8 (set (reg:DI 6 bp)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./base/lib_delch.c":70:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f 114 113 115 8 (set (reg:DI 40 r12)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./base/lib_delch.c":70:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f 115 114 116 8 (set (reg:DI 41 r13)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./base/lib_delch.c":70:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f 116 115 117 8 (set (reg:DI 42 r14)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./base/lib_delch.c":70:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f 117 116 118 8 (set (reg:DI 43 r15)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./base/lib_delch.c":70:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(jump_insn 118 117 94 8 (simple_return) "../ncurses/./base/lib_delch.c":70:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+;;  succ:       EXIT [always]  count:118111600 (estimated locally)
+;; lr  out 	 0 [ax] 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  out 	 0 [ax] 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+
+(barrier 94 118 81)
+;; basic block 9, loop depth 0, count 1036589 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (REACHABLE, HOT_PARTITION, RTL)
+;;  pred:       2 [0.9% (guessed)]  count:1036589 (estimated locally) (CAN_FALLTHRU)
+;; bb 9 artificial_defs: { }
+;; bb 9 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; lr  use 	 7 [sp]
+;; lr  def 	 0 [ax]
+;; live  in  	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 81 94 80 9 6 (nil) [1 uses])
+(note 80 81 4 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 4 80 123 9 (set (reg/v:SI 0 ax [orig:112 <retval> ] [112])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_delch.c":49:9 75 {*movsi_internal}
+     (expr_list:REG_EQUAL (const_int -1 [0xffffffffffffffff])
+        (nil)))
+(insn 123 4 128 9 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_delch.c":70:1 -1
+     (nil))
+(jump_insn 128 123 127 9 (simple_return) "../ncurses/./base/lib_delch.c":70:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+;;  succ:       EXIT [always]  count:1036589 (estimated locally)
+;; lr  out 	 0 [ax] 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  out 	 0 [ax] 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+
+(barrier 127 128 95)
+(note 95 127 0 NOTE_INSN_DELETED)

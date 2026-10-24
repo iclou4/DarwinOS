@@ -1,0 +1,1 @@
+#define NCONFIG_SCHED_GRRR_CORE 0

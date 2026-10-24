@@ -1,0 +1,211 @@
+
+;; Function use_legacy_coding_sp (use_legacy_coding_sp, funcdef_no=91, decl_uid=6798, cgraph_uid=92, symbol_order=91)
+
+Creating trace 0 : start at note 1
+Creating trace 1 : start at note 52
+Creating trace 2 : start at code_label 32
+Creating trace 3 : start at note 59
+Processing trace 0 : start at note 1
+   saw edge from trace 0 to 1 (via fallthru 0)
+	push trace 1 to worklist
+Processing trace 1 : start at note 52
+   saw edge from trace 1 to 2 (via jump_insn 13)
+	push trace 2 to worklist
+   saw edge from trace 1 to 2 (via jump_insn 17)
+Processing trace 2 : start at code_label 32
+   saw edge from trace 2 to 3 (via fallthru 0)
+	push trace 3 to worklist
+Processing trace 3 : start at note 59
+
+
+use_legacy_coding_sp
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 7 [sp]
+;;  regs ever live 	 0 [ax] 4 [si] 5 [di] 17 [flags]
+;;  ref usage 	r0={3d,3u} r1={1d} r2={1d} r4={1d,2u} r5={1d,3u} r7={1d,5u} r17={2d,2u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={1d} r37={1d} 
+;;    total ref usage 35{20d,15u,0e} in 11{11 regular + 0 call} insns.
+(note 1 0 60 NOTE_INSN_DELETED)
+(insn 60 1 6 2 (unspec_volatile [
+            (const_int 0 [0])
+        ] UNSPECV_NOP_ENDBR) 1242 {nop_endbr}
+     (nil))
+(note 6 60 52 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 52 6 4 2 NOTE_INSN_PROLOGUE_END)
+(note 4 52 10 2 NOTE_INSN_FUNCTION_BEG)
+(note 10 4 11 2 NOTE_INSN_DELETED)
+(note 11 10 12 2 NOTE_INSN_DELETED)
+(insn:TI 12 11 13 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:SI 4 si [orig:88 level ] [88])
+            (const_int 2 [0x2]))) "../ncurses/./base/legacy_coding.c":45:8 11 {*cmpsi_1}
+     (nil))
+(jump_insn 13 12 33 2 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 32)
+            (pc))) "../ncurses/./base/legacy_coding.c":45:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CC 17 flags)
+        (int_list:REG_BR_PROB 10737428 (nil)))
+ -> 32)
+(note 33 13 14 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(note 14 33 15 3 NOTE_INSN_DELETED)
+(note 15 14 16 3 NOTE_INSN_DELETED)
+(insn:TI 16 15 17 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 5 di [orig:87 sp ] [87])
+            (const_int 0 [0]))) "../ncurses/./base/legacy_coding.c":45:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 17 16 18 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 32)
+            (pc))) "../ncurses/./base/legacy_coding.c":45:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 10845876 (nil)))
+ -> 32)
+(note 18 17 19 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 19 18 20 4 (set (reg/v:SI 0 ax [orig:86 <retval> ] [86])
+        (mem:SI (plus:DI (reg/v/f:DI 5 di [orig:87 sp ] [87])
+                (const_int 1512 [0x5e8])) [1 sp_8(D)->_legacy_coding+0 S4 A64])) "../ncurses/./base/legacy_coding.c":46:9 75 {*movsi_internal}
+     (nil))
+(insn 20 19 56 4 (set (mem:SI (plus:DI (reg/v/f:DI 5 di [orig:87 sp ] [87])
+                (const_int 1512 [0x5e8])) [1 sp_8(D)->_legacy_coding+0 S4 A64])
+        (reg/v:SI 4 si [orig:88 level ] [88])) "../ncurses/./base/legacy_coding.c":47:26 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 5 di [orig:87 sp ] [87])
+        (expr_list:REG_DEAD (reg/v:SI 4 si [orig:88 level ] [88])
+            (nil))))
+(insn 56 20 49 4 (use (reg/i:SI 0 ax)) -1
+     (nil))
+(jump_insn:TI 49 56 50 4 (simple_return) 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 50 49 32)
+(code_label 32 50 31 5 3 (nil) [2 uses])
+(note 31 32 5 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 5 31 27 5 (set (reg/v:SI 0 ax [orig:86 <retval> ] [86])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/legacy_coding.c":42:9 75 {*movsi_internal}
+     (nil))
+(insn 27 5 59 5 (use (reg/i:SI 0 ax)) "../ncurses/./base/legacy_coding.c":50:1 -1
+     (nil))
+(note 59 27 54 5 NOTE_INSN_EPILOGUE_BEG)
+(jump_insn:TI 54 59 55 5 (simple_return) "../ncurses/./base/legacy_coding.c":50:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 55 54 51)
+(note 51 55 0 NOTE_INSN_DELETED)
+
+;; Function use_legacy_coding (use_legacy_coding, funcdef_no=92, decl_uid=6448, cgraph_uid=93, symbol_order=92)
+
+Creating trace 0 : start at note 1
+Creating trace 1 : start at note 50
+Creating trace 2 : start at code_label 25
+Creating trace 3 : start at note 56
+Creating trace 4 : start at code_label 32
+Processing trace 0 : start at note 1
+   saw edge from trace 0 to 1 (via fallthru 0)
+	push trace 1 to worklist
+Processing trace 1 : start at note 50
+   saw edge from trace 1 to 4 (via jump_insn 13)
+	push trace 4 to worklist
+   saw edge from trace 1 to 4 (via jump_insn 17)
+   saw edge from trace 1 to 2 (via fallthru 0)
+	push trace 2 to worklist
+Processing trace 2 : start at code_label 25
+   saw edge from trace 2 to 3 (via fallthru 0)
+	push trace 3 to worklist
+Processing trace 3 : start at note 56
+Processing trace 4 : start at code_label 32
+   saw edge from trace 4 to 2 (via jump_insn 54)
+
+
+use_legacy_coding
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 7 [sp]
+;;  regs ever live 	 0 [ax] 5 [di] 17 [flags] 36 [r8]
+;;  ref usage 	r0={3d,5u} r1={1d} r2={1d} r4={1d} r5={1d,2u} r7={1d,6u} r17={2d,2u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={3d,1u} r37={1d} 
+;;    total ref usage 38{22d,16u,0e} in 12{12 regular + 0 call} insns.
+(note 1 0 57 NOTE_INSN_DELETED)
+(insn 57 1 5 2 (unspec_volatile [
+            (const_int 0 [0])
+        ] UNSPECV_NOP_ENDBR) 1242 {nop_endbr}
+     (nil))
+(note 5 57 50 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 50 5 3 2 NOTE_INSN_PROLOGUE_END)
+(note 3 50 10 2 NOTE_INSN_FUNCTION_BEG)
+(note 10 3 11 2 NOTE_INSN_DELETED)
+(note 11 10 7 2 NOTE_INSN_DELETED)
+(insn:TI 7 11 12 2 (set (reg/f:DI 0 ax [orig:82 SP.1_1 ] [82])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f0efe0c3cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/legacy_coding.c":56:12 74 {*movdi_internal}
+     (nil))
+(insn 12 7 13 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:SI 5 di [orig:88 level ] [88])
+            (const_int 2 [0x2]))) "../ncurses/./base/legacy_coding.c":45:8 11 {*cmpsi_1}
+     (nil))
+(jump_insn 13 12 33 2 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 32)
+            (pc))) "../ncurses/./base/legacy_coding.c":45:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CC 17 flags)
+        (int_list:REG_BR_PROB 10737428 (nil)))
+ -> 32)
+(note 33 13 14 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(note 14 33 15 3 NOTE_INSN_DELETED)
+(note 15 14 16 3 NOTE_INSN_DELETED)
+(insn:TI 16 15 17 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 0 ax [orig:82 SP.1_1 ] [82])
+            (const_int 0 [0]))) "../ncurses/./base/legacy_coding.c":45:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 17 16 18 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 32)
+            (pc))) "../ncurses/./base/legacy_coding.c":45:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 10845876 (nil)))
+ -> 32)
+(note 18 17 19 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 19 18 20 4 (set (reg/v:SI 36 r8 [orig:87 <retval> ] [87])
+        (mem:SI (plus:DI (reg/f:DI 0 ax [orig:82 SP.1_1 ] [82])
+                (const_int 1512 [0x5e8])) [1 SP.1_1->_legacy_coding+0 S4 A64])) "../ncurses/./base/legacy_coding.c":46:9 75 {*movsi_internal}
+     (nil))
+(insn 20 19 25 4 (set (mem:SI (plus:DI (reg/f:DI 0 ax [orig:82 SP.1_1 ] [82])
+                (const_int 1512 [0x5e8])) [1 SP.1_1->_legacy_coding+0 S4 A64])
+        (reg/v:SI 5 di [orig:88 level ] [88])) "../ncurses/./base/legacy_coding.c":47:26 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 5 di [orig:88 level ] [88])
+        (expr_list:REG_DEAD (reg/f:DI 0 ax [orig:82 SP.1_1 ] [82])
+            (nil))))
+(code_label 25 20 28 5 11 (nil) [1 uses])
+(note 28 25 26 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 26 28 27 5 (set (reg/i:SI 0 ax)
+        (reg/v:SI 36 r8 [orig:87 <retval> ] [87])) "../ncurses/./base/legacy_coding.c":57:1 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 36 r8 [orig:87 <retval> ] [87])
+        (nil)))
+(insn 27 26 56 5 (use (reg/i:SI 0 ax)) "../ncurses/./base/legacy_coding.c":57:1 -1
+     (nil))
+(note 56 27 52 5 NOTE_INSN_EPILOGUE_BEG)
+(jump_insn:TI 52 56 53 5 (simple_return) "../ncurses/./base/legacy_coding.c":57:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 53 52 32)
+(code_label 32 53 31 6 13 (nil) [2 uses])
+(note 31 32 4 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 4 31 54 6 (set (reg/v:SI 36 r8 [orig:87 <retval> ] [87])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/legacy_coding.c":42:9 75 {*movsi_internal}
+     (nil))
+(jump_insn 54 4 55 6 (set (pc)
+        (label_ref 25)) "../ncurses/./base/legacy_coding.c":56:12 807 {jump}
+     (nil)
+ -> 25)
+(barrier 55 54 49)
+(note 49 55 0 NOTE_INSN_DELETED)

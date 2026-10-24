@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# metallib - Apple Metal Library Tool for ravynOS
+set -e
+
+TC="/Library/Developer/Toolchains/Default.xctoolchain"
+CLANG="$TC/usr/bin/clang++"
+SDK="/home/antonov/projects/build/Developer/Platforms/ravynOS.platform/Developer/SDKs/ravynOS.sdk"
+
+OUT="default.metallib"
+INPUTS=()
+ARGS=()
+
+while [[ $# -gt 0 ]]; do
+	case "$1" in
+		-o)
+			OUT="$2"
+			shift 2
+			;;
+		-*)
+			ARGS+=("$1")
+			shift
+			;;
+		*)
+			INPUTS+=("$1")
+			shift
+			;;
+	esac
+done
+
+if [[ ${#INPUTS[@]} -eq 0 ]]; then
+	echo "metallib: fatal error: no input files" >&2
+	exit 1
+fi
+
+exec "$CLANG" -target x86_64-apple-darwin19 --sysroot="$SDK" \
+	--ld-path="$TC/usr/bin/ld64" \
+	-shared -dylib -fPIC -O2 \
+	"${ARGS[@]}" "${INPUTS[@]}" -o "$OUT"

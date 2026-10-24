@@ -1,0 +1,73 @@
+
+;; Function leaveok (leaveok, funcdef_no=91, decl_uid=5702, cgraph_uid=92, symbol_order=91)
+
+(note 1 0 8 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 8 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg/v/f:DI 83 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_leaveok.c":48:1 74 {*movdi_internal}
+     (nil))
+(insn 3 2 4 2 (set (reg:SI 85)
+        (reg:SI 4 si [ flag ])) "../ncurses/./base/lib_leaveok.c":48:1 75 {*movsi_internal}
+     (nil))
+(insn 4 3 5 2 (set (reg/v:QI 84 [ flag ])
+        (subreg:QI (reg:SI 85) 0)) "../ncurses/./base/lib_leaveok.c":48:1 77 {*movqi_internal}
+     (nil))
+(note 5 4 10 2 NOTE_INSN_FUNCTION_BEG)
+(insn 10 5 11 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 83 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_leaveok.c":51:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 11 10 12 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 25)
+            (pc))) "../ncurses/./base/lib_leaveok.c":51:8 806 {*jcc}
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 25)
+;;  succ:       4 [99.1% (guessed)]  count:1064400272 (estimated locally) (FALLTHRU)
+;;              5 [0.9% (guessed)]  count:9341552 (estimated locally)
+
+;; basic block 4, loop depth 0, count 1064400273 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [99.1% (guessed)]  count:1064400272 (estimated locally) (FALLTHRU)
+(note 12 11 13 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 13 12 6 4 (set (mem:QI (plus:DI (reg/v/f:DI 83 [ win ])
+                (const_int 38 [0x26])) [1 win_3(D)->_leaveok+0 S1 A16])
+        (reg/v:QI 84 [ flag ])) "../ncurses/./base/lib_leaveok.c":52:16 77 {*movqi_internal}
+     (nil))
+(insn 6 13 22 4 (set (reg:SI 82 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_leaveok.c":53:2 75 {*movsi_internal}
+     (nil))
+(jump_insn 22 6 23 4 (set (pc)
+        (label_ref:DI 18)) "../ncurses/./base/lib_leaveok.c":53:2 807 {jump}
+     (nil)
+ -> 18)
+;;  succ:       7 [always]  count:1064400273 (estimated locally)
+
+(barrier 23 22 25)
+;; basic block 5, loop depth 0, count 9341552 (estimated locally), maybe hot
+;;  prev block 4, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [0.9% (guessed)]  count:9341552 (estimated locally)
+(code_label 25 23 24 5 3 (nil) [1 uses])
+(note 24 25 7 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 7 24 18 5 (set (reg:SI 82 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_leaveok.c":55:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       7 [always]  count:9341552 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 5, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       5 [always]  count:9341552 (estimated locally) (FALLTHRU)
+;;              4 [always]  count:1064400273 (estimated locally)
+(code_label 18 7 21 7 1 (nil) [1 uses])
+(note 21 18 19 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 19 21 20 7 (set (reg/i:SI 0 ax)
+        (reg:SI 82 [ <retval> ])) "../ncurses/./base/lib_leaveok.c":56:1 75 {*movsi_internal}
+     (nil))
+(insn 20 19 0 7 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_leaveok.c":56:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+

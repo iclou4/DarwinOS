@@ -1,0 +1,1568 @@
+
+;; Function really_free_termtype (really_free_termtype, funcdef_no=91, decl_uid=9177, cgraph_uid=92, symbol_order=91)
+
+void really_free_termtype (struct TERMTYPE2 * ptr, _Bool freeStrings)
+{
+  char * _1;
+  char * _2;
+  int * _3;
+  char * * _4;
+  char * _5;
+  char * * _6;
+  struct ENTRY * _nc_head.0_7;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (freeStrings_14(D) != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+;;    succ:       3
+;;                5
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = ptr_16(D)->str_table;
+  if (_1 != 0B)
+    goto <bb 4>; [53.47%]
+  else
+    goto <bb 5>; [46.53%]
+;;    succ:       4
+;;                5
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  free (_1);
+;;    succ:       5
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+;;                4
+;;                2
+  _2 = ptr_16(D)->Booleans;
+  if (_2 != 0B)
+    goto <bb 6>; [53.47%]
+  else
+    goto <bb 7>; [46.53%]
+;;    succ:       6
+;;                7
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  free (_2);
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       5
+;;                6
+  _3 = ptr_16(D)->Numbers;
+  if (_3 != 0B)
+    goto <bb 8>; [53.47%]
+  else
+    goto <bb 9>; [46.53%]
+;;    succ:       8
+;;                9
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+  free (_3);
+;;    succ:       9
+
+;;   basic block 9, loop depth 0
+;;    pred:       7
+;;                8
+  _4 = ptr_16(D)->Strings;
+  if (_4 != 0B)
+    goto <bb 10>; [53.47%]
+  else
+    goto <bb 11>; [46.53%]
+;;    succ:       10
+;;                11
+
+;;   basic block 10, loop depth 0
+;;    pred:       9
+  free (_4);
+;;    succ:       11
+
+;;   basic block 11, loop depth 0
+;;    pred:       9
+;;                10
+  if (freeStrings_14(D) != 0)
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 14>; [50.00%]
+;;    succ:       12
+;;                14
+
+;;   basic block 12, loop depth 0
+;;    pred:       11
+  _5 = ptr_16(D)->ext_str_table;
+  if (_5 != 0B)
+    goto <bb 13>; [53.47%]
+  else
+    goto <bb 14>; [46.53%]
+;;    succ:       13
+;;                14
+
+;;   basic block 13, loop depth 0
+;;    pred:       12
+  free (_5);
+;;    succ:       14
+
+;;   basic block 14, loop depth 0
+;;    pred:       12
+;;                13
+;;                11
+  _6 = ptr_16(D)->ext_Names;
+  if (_6 != 0B)
+    goto <bb 15>; [53.47%]
+  else
+    goto <bb 16>; [46.53%]
+;;    succ:       15
+;;                16
+
+;;   basic block 15, loop depth 0
+;;    pred:       14
+  free (_6);
+;;    succ:       16
+
+;;   basic block 16, loop depth 0
+;;    pred:       14
+;;                15
+  __builtin_memset (ptr_16(D), 0, 72);
+  _nc_head.0_7 = _nc_head;
+  _nc_free_entry (_nc_head.0_7, ptr_16(D)); [tail call]
+  return;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 4 (_4 - 4 )
+Partition 5 (_5 - 5 )
+Partition 6 (_6 - 6 )
+Partition 7 (_nc_head.0_7 - 7 )
+Partition 14 (freeStrings_14(D) - 14 )
+Partition 16 (ptr_16(D) - 16 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (freeStrings_14(D) - 14 )
+Partition 1, base 1 (ptr_16(D) - 16 )
+
+
+Partition map 
+
+Partition 0 (freeStrings_14(D) - 14 )
+Partition 1 (ptr_16(D) - 16 )
+
+
+Conflict graph:
+
+After sorting:
+Coalesce List:
+
+Partition map 
+
+Partition 0 (freeStrings_14(D) - 14 )
+Partition 1 (ptr_16(D) - 16 )
+
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_2 - 2 )
+Partition 2 (_3 - 3 )
+Partition 3 (_4 - 4 )
+Partition 4 (_5 - 5 )
+Partition 5 (_6 - 6 )
+Partition 6 (_nc_head.0_7 - 7 )
+Partition 7 (freeStrings_14(D) - 14 )
+Partition 8 (ptr_16(D) - 16 )
+
+
+Replacing Expressions
+_nc_head.0_7 replace with --> _nc_head.0_7 = _nc_head;
+
+
+void really_free_termtype (struct TERMTYPE2 * ptr, _Bool freeStrings)
+{
+  char * _1;
+  char * _2;
+  int * _3;
+  char * * _4;
+  char * _5;
+  char * * _6;
+  struct ENTRY * _nc_head.0_7;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (freeStrings_14(D) != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+;;    succ:       3
+;;                5
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = ptr_16(D)->str_table;
+  if (_1 != 0B)
+    goto <bb 4>; [53.47%]
+  else
+    goto <bb 5>; [46.53%]
+;;    succ:       4
+;;                5
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  free (_1);
+;;    succ:       5
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+;;                4
+;;                2
+  _2 = ptr_16(D)->Booleans;
+  if (_2 != 0B)
+    goto <bb 6>; [53.47%]
+  else
+    goto <bb 7>; [46.53%]
+;;    succ:       6
+;;                7
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  free (_2);
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       5
+;;                6
+  _3 = ptr_16(D)->Numbers;
+  if (_3 != 0B)
+    goto <bb 8>; [53.47%]
+  else
+    goto <bb 9>; [46.53%]
+;;    succ:       8
+;;                9
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+  free (_3);
+;;    succ:       9
+
+;;   basic block 9, loop depth 0
+;;    pred:       7
+;;                8
+  _4 = ptr_16(D)->Strings;
+  if (_4 != 0B)
+    goto <bb 10>; [53.47%]
+  else
+    goto <bb 11>; [46.53%]
+;;    succ:       10
+;;                11
+
+;;   basic block 10, loop depth 0
+;;    pred:       9
+  free (_4);
+;;    succ:       11
+
+;;   basic block 11, loop depth 0
+;;    pred:       9
+;;                10
+  if (freeStrings_14(D) != 0)
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 14>; [50.00%]
+;;    succ:       12
+;;                14
+
+;;   basic block 12, loop depth 0
+;;    pred:       11
+  _5 = ptr_16(D)->ext_str_table;
+  if (_5 != 0B)
+    goto <bb 13>; [53.47%]
+  else
+    goto <bb 14>; [46.53%]
+;;    succ:       13
+;;                14
+
+;;   basic block 13, loop depth 0
+;;    pred:       12
+  free (_5);
+;;    succ:       14
+
+;;   basic block 14, loop depth 0
+;;    pred:       12
+;;                13
+;;                11
+  _6 = ptr_16(D)->ext_Names;
+  if (_6 != 0B)
+    goto <bb 15>; [53.47%]
+  else
+    goto <bb 16>; [46.53%]
+;;    succ:       15
+;;                16
+
+;;   basic block 15, loop depth 0
+;;    pred:       14
+  free (_6);
+;;    succ:       16
+
+;;   basic block 16, loop depth 0
+;;    pred:       14
+;;                15
+  __builtin_memset (ptr_16(D), 0, 72);
+  _nc_head.0_7 = _nc_head;
+  _nc_free_entry (_nc_head.0_7, ptr_16(D)); [tail call]
+  return;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; if (freeStrings_14(D) != 0)
+
+(insn 8 7 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:QI 90 [ freeStrings ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/free_ttype.c":53:8 -1
+     (nil))
+
+(jump_insn 9 8 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/free_ttype.c":53:8 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _1 = ptr_16(D)->str_table;
+
+(insn 11 10 0 (set (reg/f:DI 82 [ _1 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 89 [ ptr ])
+                (const_int 8 [0x8])) [2 ptr_16(D)->str_table+0 S8 A64])) "../ncurses/./tinfo/free_ttype.c":54:2 -1
+     (nil))
+
+;; if (_1 != 0B)
+
+(insn 12 11 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/free_ttype.c":54:2 -1
+     (nil))
+
+(jump_insn 13 12 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/free_ttype.c":54:2 -1
+     (int_list:REG_BR_PROB 499612076 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; free (_1);
+
+(insn 15 14 16 (set (reg:DI 5 di)
+        (reg/f:DI 82 [ _1 ])) "../ncurses/./tinfo/free_ttype.c":54:2 -1
+     (nil))
+
+(call_insn 16 15 0 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":54:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; 
+
+(code_label 17 16 18 2 (nil) [0 uses])
+
+(note 18 17 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _2 = ptr_16(D)->Booleans;
+
+(insn 19 18 0 (set (reg/f:DI 83 [ _2 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 89 [ ptr ])
+                (const_int 16 [0x10])) [2 ptr_16(D)->Booleans+0 S8 A64])) "../ncurses/./tinfo/free_ttype.c":56:5 -1
+     (nil))
+
+;; if (_2 != 0B)
+
+(insn 20 19 21 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 83 [ _2 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/free_ttype.c":56:5 -1
+     (nil))
+
+(jump_insn 21 20 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/free_ttype.c":56:5 -1
+     (int_list:REG_BR_PROB 499612076 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; free (_2);
+
+(insn 23 22 24 (set (reg:DI 5 di)
+        (reg/f:DI 83 [ _2 ])) "../ncurses/./tinfo/free_ttype.c":56:5 -1
+     (nil))
+
+(call_insn 24 23 0 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":56:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; Generating RTL for gimple basic block 7
+
+;; 
+
+(code_label 25 24 26 3 (nil) [0 uses])
+
+(note 26 25 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _3 = ptr_16(D)->Numbers;
+
+(insn 27 26 0 (set (reg/f:DI 84 [ _3 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 89 [ ptr ])
+                (const_int 24 [0x18])) [3 ptr_16(D)->Numbers+0 S8 A64])) "../ncurses/./tinfo/free_ttype.c":57:5 -1
+     (nil))
+
+;; if (_3 != 0B)
+
+(insn 28 27 29 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 84 [ _3 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/free_ttype.c":57:5 -1
+     (nil))
+
+(jump_insn 29 28 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/free_ttype.c":57:5 -1
+     (int_list:REG_BR_PROB 499612076 (nil)))
+
+;; Generating RTL for gimple basic block 8
+
+;; free (_3);
+
+(insn 31 30 32 (set (reg:DI 5 di)
+        (reg/f:DI 84 [ _3 ])) "../ncurses/./tinfo/free_ttype.c":57:5 -1
+     (nil))
+
+(call_insn 32 31 0 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":57:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; Generating RTL for gimple basic block 9
+
+;; 
+
+(code_label 33 32 34 4 (nil) [0 uses])
+
+(note 34 33 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _4 = ptr_16(D)->Strings;
+
+(insn 35 34 0 (set (reg/f:DI 85 [ _4 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 89 [ ptr ])
+                (const_int 32 [0x20])) [4 ptr_16(D)->Strings+0 S8 A64])) "../ncurses/./tinfo/free_ttype.c":58:5 -1
+     (nil))
+
+;; if (_4 != 0B)
+
+(insn 36 35 37 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 85 [ _4 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/free_ttype.c":58:5 -1
+     (nil))
+
+(jump_insn 37 36 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/free_ttype.c":58:5 -1
+     (int_list:REG_BR_PROB 499612076 (nil)))
+
+;; Generating RTL for gimple basic block 10
+
+;; free (_4);
+
+(insn 39 38 40 (set (reg:DI 5 di)
+        (reg/f:DI 85 [ _4 ])) "../ncurses/./tinfo/free_ttype.c":58:5 -1
+     (nil))
+
+(call_insn 40 39 0 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":58:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; Generating RTL for gimple basic block 11
+
+;; 
+
+(code_label 41 40 42 5 (nil) [0 uses])
+
+(note 42 41 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (freeStrings_14(D) != 0)
+
+(insn 43 42 44 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:QI 90 [ freeStrings ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/free_ttype.c":60:8 -1
+     (nil))
+
+(jump_insn 44 43 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/free_ttype.c":60:8 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 12
+
+;; _5 = ptr_16(D)->ext_str_table;
+
+(insn 46 45 0 (set (reg/f:DI 86 [ _5 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 89 [ ptr ])
+                (const_int 40 [0x28])) [2 ptr_16(D)->ext_str_table+0 S8 A64])) "../ncurses/./tinfo/free_ttype.c":61:2 -1
+     (nil))
+
+;; if (_5 != 0B)
+
+(insn 47 46 48 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ _5 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/free_ttype.c":61:2 -1
+     (nil))
+
+(jump_insn 48 47 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/free_ttype.c":61:2 -1
+     (int_list:REG_BR_PROB 499612076 (nil)))
+
+;; Generating RTL for gimple basic block 13
+
+;; free (_5);
+
+(insn 50 49 51 (set (reg:DI 5 di)
+        (reg/f:DI 86 [ _5 ])) "../ncurses/./tinfo/free_ttype.c":61:2 -1
+     (nil))
+
+(call_insn 51 50 0 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":61:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; Generating RTL for gimple basic block 14
+
+;; 
+
+(code_label 52 51 53 6 (nil) [0 uses])
+
+(note 53 52 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _6 = ptr_16(D)->ext_Names;
+
+(insn 54 53 0 (set (reg/f:DI 87 [ _6 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 89 [ ptr ])
+                (const_int 48 [0x30])) [4 ptr_16(D)->ext_Names+0 S8 A64])) "../ncurses/./tinfo/free_ttype.c":63:5 -1
+     (nil))
+
+;; if (_6 != 0B)
+
+(insn 55 54 56 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 87 [ _6 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/free_ttype.c":63:5 -1
+     (nil))
+
+(jump_insn 56 55 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/free_ttype.c":63:5 -1
+     (int_list:REG_BR_PROB 499612076 (nil)))
+
+;; Generating RTL for gimple basic block 15
+
+;; free (_6);
+
+(insn 58 57 59 (set (reg:DI 5 di)
+        (reg/f:DI 87 [ _6 ])) "../ncurses/./tinfo/free_ttype.c":63:5 -1
+     (nil))
+
+(call_insn 59 58 0 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":63:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; Generating RTL for gimple basic block 16
+
+;; 
+
+(code_label 60 59 61 7 (nil) [0 uses])
+
+(note 61 60 0 NOTE_INSN_BASIC_BLOCK)
+
+;; __builtin_memset (ptr_16(D), 0, 72);
+
+(insn 62 61 63 (set (mem:TI (reg/v/f:DI 89 [ ptr ]) [0 MEM <char[1:72]> [(void *)ptr_16(D)]+0 S16 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+(insn 63 62 64 (set (mem:TI (plus:DI (reg/v/f:DI 89 [ ptr ])
+                (const_int 16 [0x10])) [0 MEM <char[1:72]> [(void *)ptr_16(D)]+16 S16 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+(insn 64 63 65 (set (mem:TI (plus:DI (reg/v/f:DI 89 [ ptr ])
+                (const_int 32 [0x20])) [0 MEM <char[1:72]> [(void *)ptr_16(D)]+32 S16 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+(insn 65 64 66 (set (mem:TI (plus:DI (reg/v/f:DI 89 [ ptr ])
+                (const_int 48 [0x30])) [0 MEM <char[1:72]> [(void *)ptr_16(D)]+48 S16 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+(insn 66 65 0 (set (mem:DI (plus:DI (reg/v/f:DI 89 [ ptr ])
+                (const_int 64 [0x40])) [0 MEM <char[1:72]> [(void *)ptr_16(D)]+64 S8 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+;; _nc_free_entry (_nc_head.0_7, ptr_16(D)); [tail call]
+
+(insn 67 66 68 16 (set (reg:DI 92)
+        (mem/f/c:DI (symbol_ref:DI ("_nc_head") [flags 0x40]  <var_decl 0x7faa91b7bb40 _nc_head>) [6 _nc_head+0 S8 A64])) "../ncurses/./tinfo/free_ttype.c":66:5 -1
+     (nil))
+
+(insn 68 67 69 16 (set (reg:DI 4 si)
+        (reg/v/f:DI 89 [ ptr ])) "../ncurses/./tinfo/free_ttype.c":66:5 -1
+     (nil))
+
+(insn 69 68 70 16 (set (reg:DI 5 di)
+        (reg:DI 92)) "../ncurses/./tinfo/free_ttype.c":66:5 -1
+     (nil))
+
+(call_insn/j 70 69 71 16 (call (mem:QI (symbol_ref:DI ("_nc_free_entry") [flags 0x41]  <function_decl 0x7faa91c4ab00 _nc_free_entry>) [0 _nc_free_entry S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":66:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_free_entry") [flags 0x41]  <function_decl 0x7faa91c4ab00 _nc_free_entry>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(barrier 71 70 0)
+Basic block 18 is marked unlikely by forward prop
+deleting block 18
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 89 [ ptr ])
+        (reg:DI 5 di [ ptr ])) "../ncurses/./tinfo/free_ttype.c":50:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg:SI 91)
+        (reg:SI 4 si [ freeStrings ])) "../ncurses/./tinfo/free_ttype.c":50:1 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:QI 90 [ freeStrings ])
+        (subreg:QI (reg:SI 91) 0)) "../ncurses/./tinfo/free_ttype.c":50:1 -1
+     (nil))
+(note 5 4 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 5 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:QI 90 [ freeStrings ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/free_ttype.c":53:8 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 17)
+            (pc))) "../ncurses/./tinfo/free_ttype.c":53:8 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 17)
+;;  succ:       4 [50.0% (guessed)]  count:536870912 (estimated locally) (FALLTHRU)
+;;              6 [50.0% (guessed)]  count:536870912 (estimated locally)
+
+;; basic block 4, loop depth 0, count 536870913 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [50.0% (guessed)]  count:536870912 (estimated locally) (FALLTHRU)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (set (reg/f:DI 82 [ _1 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 89 [ ptr ])
+                (const_int 8 [0x8])) [2 ptr_16(D)->str_table+0 S8 A64])) "../ncurses/./tinfo/free_ttype.c":54:2 -1
+     (nil))
+(insn 12 11 13 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/free_ttype.c":54:2 -1
+     (nil))
+(jump_insn 13 12 14 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 17)
+            (pc))) "../ncurses/./tinfo/free_ttype.c":54:2 -1
+     (int_list:REG_BR_PROB 499612076 (nil))
+ -> 17)
+;;  succ:       5 [53.5% (guessed)]  count:287064877 (estimated locally) (FALLTHRU)
+;;              6 [46.5% (guessed)]  count:249806036 (estimated locally)
+
+;; basic block 5, loop depth 0, count 287064876 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [53.5% (guessed)]  count:287064877 (estimated locally) (FALLTHRU)
+(note 14 13 15 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 5 (set (reg:DI 5 di)
+        (reg/f:DI 82 [ _1 ])) "../ncurses/./tinfo/free_ttype.c":54:2 -1
+     (nil))
+(call_insn 16 15 17 5 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":54:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       6 [always]  count:287064876 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [46.5% (guessed)]  count:249806036 (estimated locally)
+;;              5 [always]  count:287064876 (estimated locally) (FALLTHRU)
+;;              2 [50.0% (guessed)]  count:536870912 (estimated locally)
+(code_label 17 16 18 6 2 (nil) [2 uses])
+(note 18 17 19 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 6 (set (reg/f:DI 83 [ _2 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 89 [ ptr ])
+                (const_int 16 [0x10])) [2 ptr_16(D)->Booleans+0 S8 A64])) "../ncurses/./tinfo/free_ttype.c":56:5 -1
+     (nil))
+(insn 20 19 21 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 83 [ _2 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/free_ttype.c":56:5 -1
+     (nil))
+(jump_insn 21 20 22 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 25)
+            (pc))) "../ncurses/./tinfo/free_ttype.c":56:5 -1
+     (int_list:REG_BR_PROB 499612076 (nil))
+ -> 25)
+;;  succ:       7 [53.5% (guessed)]  count:574129752 (estimated locally) (FALLTHRU)
+;;              8 [46.5% (guessed)]  count:499612072 (estimated locally)
+
+;; basic block 7, loop depth 0, count 574129753 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [53.5% (guessed)]  count:574129752 (estimated locally) (FALLTHRU)
+(note 22 21 23 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 24 7 (set (reg:DI 5 di)
+        (reg/f:DI 83 [ _2 ])) "../ncurses/./tinfo/free_ttype.c":56:5 -1
+     (nil))
+(call_insn 24 23 25 7 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":56:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       8 [always]  count:574129753 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [46.5% (guessed)]  count:499612072 (estimated locally)
+;;              7 [always]  count:574129753 (estimated locally) (FALLTHRU)
+(code_label 25 24 26 8 3 (nil) [1 uses])
+(note 26 25 27 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 27 26 28 8 (set (reg/f:DI 84 [ _3 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 89 [ ptr ])
+                (const_int 24 [0x18])) [3 ptr_16(D)->Numbers+0 S8 A64])) "../ncurses/./tinfo/free_ttype.c":57:5 -1
+     (nil))
+(insn 28 27 29 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 84 [ _3 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/free_ttype.c":57:5 -1
+     (nil))
+(jump_insn 29 28 30 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 33)
+            (pc))) "../ncurses/./tinfo/free_ttype.c":57:5 -1
+     (int_list:REG_BR_PROB 499612076 (nil))
+ -> 33)
+;;  succ:       9 [53.5% (guessed)]  count:574129752 (estimated locally) (FALLTHRU)
+;;              10 [46.5% (guessed)]  count:499612072 (estimated locally)
+
+;; basic block 9, loop depth 0, count 574129753 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [53.5% (guessed)]  count:574129752 (estimated locally) (FALLTHRU)
+(note 30 29 31 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 31 30 32 9 (set (reg:DI 5 di)
+        (reg/f:DI 84 [ _3 ])) "../ncurses/./tinfo/free_ttype.c":57:5 -1
+     (nil))
+(call_insn 32 31 33 9 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":57:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       10 [always]  count:574129753 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [46.5% (guessed)]  count:499612072 (estimated locally)
+;;              9 [always]  count:574129753 (estimated locally) (FALLTHRU)
+(code_label 33 32 34 10 4 (nil) [1 uses])
+(note 34 33 35 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 35 34 36 10 (set (reg/f:DI 85 [ _4 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 89 [ ptr ])
+                (const_int 32 [0x20])) [4 ptr_16(D)->Strings+0 S8 A64])) "../ncurses/./tinfo/free_ttype.c":58:5 -1
+     (nil))
+(insn 36 35 37 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 85 [ _4 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/free_ttype.c":58:5 -1
+     (nil))
+(jump_insn 37 36 38 10 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 41)
+            (pc))) "../ncurses/./tinfo/free_ttype.c":58:5 -1
+     (int_list:REG_BR_PROB 499612076 (nil))
+ -> 41)
+;;  succ:       11 [53.5% (guessed)]  count:574129752 (estimated locally) (FALLTHRU)
+;;              12 [46.5% (guessed)]  count:499612072 (estimated locally)
+
+;; basic block 11, loop depth 0, count 574129753 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       10 [53.5% (guessed)]  count:574129752 (estimated locally) (FALLTHRU)
+(note 38 37 39 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 39 38 40 11 (set (reg:DI 5 di)
+        (reg/f:DI 85 [ _4 ])) "../ncurses/./tinfo/free_ttype.c":58:5 -1
+     (nil))
+(call_insn 40 39 41 11 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":58:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       12 [always]  count:574129753 (estimated locally) (FALLTHRU)
+
+;; basic block 12, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       10 [46.5% (guessed)]  count:499612072 (estimated locally)
+;;              11 [always]  count:574129753 (estimated locally) (FALLTHRU)
+(code_label 41 40 42 12 5 (nil) [1 uses])
+(note 42 41 43 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 43 42 44 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:QI 90 [ freeStrings ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/free_ttype.c":60:8 -1
+     (nil))
+(jump_insn 44 43 45 12 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 52)
+            (pc))) "../ncurses/./tinfo/free_ttype.c":60:8 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 52)
+;;  succ:       13 [50.0% (guessed)]  count:536870912 (estimated locally) (FALLTHRU)
+;;              15 [50.0% (guessed)]  count:536870912 (estimated locally)
+
+;; basic block 13, loop depth 0, count 536870913 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       12 [50.0% (guessed)]  count:536870912 (estimated locally) (FALLTHRU)
+(note 45 44 46 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 46 45 47 13 (set (reg/f:DI 86 [ _5 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 89 [ ptr ])
+                (const_int 40 [0x28])) [2 ptr_16(D)->ext_str_table+0 S8 A64])) "../ncurses/./tinfo/free_ttype.c":61:2 -1
+     (nil))
+(insn 47 46 48 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ _5 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/free_ttype.c":61:2 -1
+     (nil))
+(jump_insn 48 47 49 13 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 52)
+            (pc))) "../ncurses/./tinfo/free_ttype.c":61:2 -1
+     (int_list:REG_BR_PROB 499612076 (nil))
+ -> 52)
+;;  succ:       14 [53.5% (guessed)]  count:287064877 (estimated locally) (FALLTHRU)
+;;              15 [46.5% (guessed)]  count:249806036 (estimated locally)
+
+;; basic block 14, loop depth 0, count 287064876 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       13 [53.5% (guessed)]  count:287064877 (estimated locally) (FALLTHRU)
+(note 49 48 50 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 50 49 51 14 (set (reg:DI 5 di)
+        (reg/f:DI 86 [ _5 ])) "../ncurses/./tinfo/free_ttype.c":61:2 -1
+     (nil))
+(call_insn 51 50 52 14 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":61:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       15 [always]  count:287064876 (estimated locally) (FALLTHRU)
+
+;; basic block 15, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       13 [46.5% (guessed)]  count:249806036 (estimated locally)
+;;              14 [always]  count:287064876 (estimated locally) (FALLTHRU)
+;;              12 [50.0% (guessed)]  count:536870912 (estimated locally)
+(code_label 52 51 53 15 6 (nil) [2 uses])
+(note 53 52 54 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 54 53 55 15 (set (reg/f:DI 87 [ _6 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 89 [ ptr ])
+                (const_int 48 [0x30])) [4 ptr_16(D)->ext_Names+0 S8 A64])) "../ncurses/./tinfo/free_ttype.c":63:5 -1
+     (nil))
+(insn 55 54 56 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 87 [ _6 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/free_ttype.c":63:5 -1
+     (nil))
+(jump_insn 56 55 57 15 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 60)
+            (pc))) "../ncurses/./tinfo/free_ttype.c":63:5 -1
+     (int_list:REG_BR_PROB 499612076 (nil))
+ -> 60)
+;;  succ:       16 [53.5% (guessed)]  count:574129752 (estimated locally) (FALLTHRU)
+;;              17 [46.5% (guessed)]  count:499612072 (estimated locally)
+
+;; basic block 16, loop depth 0, count 574129753 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       15 [53.5% (guessed)]  count:574129752 (estimated locally) (FALLTHRU)
+(note 57 56 58 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 58 57 59 16 (set (reg:DI 5 di)
+        (reg/f:DI 87 [ _6 ])) "../ncurses/./tinfo/free_ttype.c":63:5 -1
+     (nil))
+(call_insn 59 58 60 16 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":63:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7faa92041d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       17 [always]  count:574129753 (estimated locally) (FALLTHRU)
+
+;; basic block 17, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 16, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       15 [46.5% (guessed)]  count:499612072 (estimated locally)
+;;              16 [always]  count:574129753 (estimated locally) (FALLTHRU)
+(code_label 60 59 61 17 7 (nil) [1 uses])
+(note 61 60 62 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 62 61 63 17 (set (mem:TI (reg/v/f:DI 89 [ ptr ]) [0 MEM <char[1:72]> [(void *)ptr_16(D)]+0 S16 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 63 62 64 17 (set (mem:TI (plus:DI (reg/v/f:DI 89 [ ptr ])
+                (const_int 16 [0x10])) [0 MEM <char[1:72]> [(void *)ptr_16(D)]+16 S16 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 64 63 65 17 (set (mem:TI (plus:DI (reg/v/f:DI 89 [ ptr ])
+                (const_int 32 [0x20])) [0 MEM <char[1:72]> [(void *)ptr_16(D)]+32 S16 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 65 64 66 17 (set (mem:TI (plus:DI (reg/v/f:DI 89 [ ptr ])
+                (const_int 48 [0x30])) [0 MEM <char[1:72]> [(void *)ptr_16(D)]+48 S16 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 66 65 67 17 (set (mem:DI (plus:DI (reg/v/f:DI 89 [ ptr ])
+                (const_int 64 [0x40])) [0 MEM <char[1:72]> [(void *)ptr_16(D)]+64 S8 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 67 66 68 17 (set (reg:DI 92)
+        (mem/f/c:DI (symbol_ref:DI ("_nc_head") [flags 0x40]  <var_decl 0x7faa91b7bb40 _nc_head>) [6 _nc_head+0 S8 A64])) "../ncurses/./tinfo/free_ttype.c":66:5 -1
+     (nil))
+(insn 68 67 69 17 (set (reg:DI 4 si)
+        (reg/v/f:DI 89 [ ptr ])) "../ncurses/./tinfo/free_ttype.c":66:5 -1
+     (nil))
+(insn 69 68 70 17 (set (reg:DI 5 di)
+        (reg:DI 92)) "../ncurses/./tinfo/free_ttype.c":66:5 -1
+     (nil))
+(call_insn/j 70 69 71 17 (call (mem:QI (symbol_ref:DI ("_nc_free_entry") [flags 0x41]  <function_decl 0x7faa91c4ab00 _nc_free_entry>) [0 _nc_free_entry S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":66:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_free_entry") [flags 0x41]  <function_decl 0x7faa91c4ab00 _nc_free_entry>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 71 70 0)
+
+;; Function _nc_free_termtype (_nc_free_termtype, funcdef_no=92, decl_uid=8103, cgraph_uid=93, symbol_order=92)
+
+__attribute__((visibility ("default")))
+void _nc_free_termtype (struct TERMTYPE * ptr)
+{
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  really_free_termtype (ptr_2(D), 0); [tail call]
+  return;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 2 (ptr_2(D) - 2 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (ptr_2(D) - 2 )
+
+
+Partition map 
+
+Partition 0 (ptr_2(D) - 2 )
+
+
+Conflict graph:
+
+After sorting:
+Coalesce List:
+
+Partition map 
+
+Partition 0 (ptr_2(D) - 2 )
+
+After Coalescing:
+
+Partition map 
+
+Partition 0 (ptr_2(D) - 2 )
+
+__attribute__((visibility ("default")))
+void _nc_free_termtype (struct TERMTYPE * ptr)
+{
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  really_free_termtype (ptr_2(D), 0); [tail call]
+  return;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; really_free_termtype (ptr_2(D), 0); [tail call]
+
+(insn 6 5 7 2 (set (reg:SI 4 si)
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":72:5 -1
+     (nil))
+
+(insn 7 6 8 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 82 [ ptr ])) "../ncurses/./tinfo/free_ttype.c":72:5 -1
+     (nil))
+
+(call_insn/j 8 7 9 2 (call (mem:QI (symbol_ref:DI ("really_free_termtype") [flags 0x3]  <function_decl 0x7faa91c82200 really_free_termtype>) [0 really_free_termtype S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":72:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("really_free_termtype") [flags 0x3]  <function_decl 0x7faa91c82200 really_free_termtype>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+
+(barrier 9 8 0)
+Basic block 4 is marked unlikely by forward prop
+deleting block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 82 [ ptr ])
+        (reg:DI 5 di [ ptr ])) "../ncurses/./tinfo/free_ttype.c":71:1 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:SI 4 si)
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":72:5 -1
+     (nil))
+(insn 7 6 8 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 82 [ ptr ])) "../ncurses/./tinfo/free_ttype.c":72:5 -1
+     (nil))
+(call_insn/j 8 7 9 2 (call (mem:QI (symbol_ref:DI ("really_free_termtype") [flags 0x3]  <function_decl 0x7faa91c82200 really_free_termtype>) [0 really_free_termtype S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":72:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("really_free_termtype") [flags 0x3]  <function_decl 0x7faa91c82200 really_free_termtype>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 9 8 0)
+
+;; Function _nc_free_termtype1 (_nc_free_termtype1, funcdef_no=93, decl_uid=8105, cgraph_uid=94, symbol_order=93)
+
+__attribute__((visibility ("default")))
+void _nc_free_termtype1 (struct TERMTYPE * ptr)
+{
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  really_free_termtype (ptr_2(D), 1); [tail call]
+  return;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 2 (ptr_2(D) - 2 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (ptr_2(D) - 2 )
+
+
+Partition map 
+
+Partition 0 (ptr_2(D) - 2 )
+
+
+Conflict graph:
+
+After sorting:
+Coalesce List:
+
+Partition map 
+
+Partition 0 (ptr_2(D) - 2 )
+
+After Coalescing:
+
+Partition map 
+
+Partition 0 (ptr_2(D) - 2 )
+
+__attribute__((visibility ("default")))
+void _nc_free_termtype1 (struct TERMTYPE * ptr)
+{
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  really_free_termtype (ptr_2(D), 1); [tail call]
+  return;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; really_free_termtype (ptr_2(D), 1); [tail call]
+
+(insn 6 5 7 2 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "../ncurses/./tinfo/free_ttype.c":81:5 -1
+     (nil))
+
+(insn 7 6 8 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 82 [ ptr ])) "../ncurses/./tinfo/free_ttype.c":81:5 -1
+     (nil))
+
+(call_insn/j 8 7 9 2 (call (mem:QI (symbol_ref:DI ("really_free_termtype") [flags 0x3]  <function_decl 0x7faa91c82200 really_free_termtype>) [0 really_free_termtype S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":81:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("really_free_termtype") [flags 0x3]  <function_decl 0x7faa91c82200 really_free_termtype>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+
+(barrier 9 8 0)
+Basic block 4 is marked unlikely by forward prop
+deleting block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 82 [ ptr ])
+        (reg:DI 5 di [ ptr ])) "../ncurses/./tinfo/free_ttype.c":80:1 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "../ncurses/./tinfo/free_ttype.c":81:5 -1
+     (nil))
+(insn 7 6 8 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 82 [ ptr ])) "../ncurses/./tinfo/free_ttype.c":81:5 -1
+     (nil))
+(call_insn/j 8 7 9 2 (call (mem:QI (symbol_ref:DI ("really_free_termtype") [flags 0x3]  <function_decl 0x7faa91c82200 really_free_termtype>) [0 really_free_termtype S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":81:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("really_free_termtype") [flags 0x3]  <function_decl 0x7faa91c82200 really_free_termtype>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 9 8 0)
+
+;; Function _nc_free_termtype2 (_nc_free_termtype2, funcdef_no=97, decl_uid=8107, cgraph_uid=95, symbol_order=94)
+
+__attribute__((visibility ("default")))
+void _nc_free_termtype2 (struct TERMTYPE2 * ptr)
+{
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  really_free_termtype (ptr_2(D), 1); [tail call]
+  return;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 2 (ptr_2(D) - 2 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (ptr_2(D) - 2 )
+
+
+Partition map 
+
+Partition 0 (ptr_2(D) - 2 )
+
+
+Conflict graph:
+
+After sorting:
+Coalesce List:
+
+Partition map 
+
+Partition 0 (ptr_2(D) - 2 )
+
+After Coalescing:
+
+Partition map 
+
+Partition 0 (ptr_2(D) - 2 )
+
+__attribute__((visibility ("default")))
+void _nc_free_termtype2 (struct TERMTYPE2 * ptr)
+{
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  really_free_termtype (ptr_2(D), 1); [tail call]
+  return;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; really_free_termtype (ptr_2(D), 1); [tail call]
+
+(insn 6 5 7 2 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "../ncurses/./tinfo/free_ttype.c":81:5 -1
+     (nil))
+
+(insn 7 6 8 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 82 [ ptr ])) "../ncurses/./tinfo/free_ttype.c":81:5 -1
+     (nil))
+
+(call_insn/j 8 7 9 2 (call (mem:QI (symbol_ref:DI ("really_free_termtype") [flags 0x3]  <function_decl 0x7faa91c82200 really_free_termtype>) [0 really_free_termtype S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":81:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("really_free_termtype") [flags 0x3]  <function_decl 0x7faa91c82200 really_free_termtype>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+
+(barrier 9 8 0)
+Basic block 4 is marked unlikely by forward prop
+deleting block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 82 [ ptr ])
+        (reg:DI 5 di [ ptr ])) "../ncurses/./tinfo/free_ttype.c":86:1 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "../ncurses/./tinfo/free_ttype.c":81:5 -1
+     (nil))
+(insn 7 6 8 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 82 [ ptr ])) "../ncurses/./tinfo/free_ttype.c":81:5 -1
+     (nil))
+(call_insn/j 8 7 9 2 (call (mem:QI (symbol_ref:DI ("really_free_termtype") [flags 0x3]  <function_decl 0x7faa91c82200 really_free_termtype>) [0 really_free_termtype S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/free_ttype.c":81:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("really_free_termtype") [flags 0x3]  <function_decl 0x7faa91c82200 really_free_termtype>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 9 8 0)
+
+;; Function use_extended_names (use_extended_names, funcdef_no=95, decl_uid=6462, cgraph_uid=96, symbol_order=96)
+
+__attribute__((visibility ("default")))
+int use_extended_names (_Bool flag)
+{
+  int oldflag;
+  _Bool _nc_user_definable.1_1;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _nc_user_definable.1_1 = _nc_user_definable;
+  oldflag_3 = (int) _nc_user_definable.1_1;
+  _nc_user_definable = flag_4(D);
+  return oldflag_3;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_nc_user_definable.1_1 - 1 )
+Partition 3 (oldflag_3 - 3 )
+Partition 4 (flag_4(D) - 4 )
+Partition 6 (_6(D) - 6 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (oldflag_3 - 3 6 )
+Partition 1, base 1 (flag_4(D) - 4 )
+
+
+Partition map 
+
+Partition 0 (oldflag_3 - 3 )
+Partition 1 (flag_4(D) - 4 )
+Partition 2 (_6(D) - 6 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) oldflag_3 <-> _6(D)
+
+Partition map 
+
+Partition 0 (oldflag_3 - 3 )
+Partition 1 (flag_4(D) - 4 )
+Partition 2 (_6(D) - 6 )
+
+Coalesce list: (3)oldflag_3 & (6)_6(D) [map: 0, 2] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_nc_user_definable.1_1 - 1 )
+Partition 1 (oldflag_3 - 3 6 )
+Partition 2 (flag_4(D) - 4 )
+
+
+Replacing Expressions
+_nc_user_definable.1_1 replace with --> _nc_user_definable.1_1 = _nc_user_definable;
+
+
+__attribute__((visibility ("default")))
+int use_extended_names (_Bool flag)
+{
+  int oldflag;
+  _Bool _nc_user_definable.1_1;
+  int _6(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _nc_user_definable.1_1 = _nc_user_definable;
+  oldflag_3 = (int) _nc_user_definable.1_1;
+  _nc_user_definable = flag_4(D);
+  return oldflag_3;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; oldflag_3 = (int) _nc_user_definable.1_1;
+
+(insn 7 6 0 (set (reg/v:SI 83 [ <retval> ])
+        (zero_extend:SI (mem/c:QI (symbol_ref:DI ("_nc_user_definable") [flags 0x2]  <var_decl 0x7faa91b7bc60 _nc_user_definable>) [7 _nc_user_definable+0 S1 A8]))) "../ncurses/./tinfo/free_ttype.c":98:9 -1
+     (nil))
+
+;; _nc_user_definable = flag_4(D);
+
+(insn 8 7 0 (set (mem/c:QI (symbol_ref:DI ("_nc_user_definable") [flags 0x2]  <var_decl 0x7faa91b7bc60 _nc_user_definable>) [7 _nc_user_definable+0 S1 A8])
+        (reg/v:QI 84 [ flag ])) "../ncurses/./tinfo/free_ttype.c":102:24 -1
+     (nil))
+
+;; return oldflag_3;
+
+(jump_insn 9 8 10 (set (pc)
+        (label_ref 0)) "../ncurses/./tinfo/free_ttype.c":103:5 -1
+     (nil))
+
+(barrier 10 9 0)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 9.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg:SI 85)
+        (reg:SI 5 di [ flag ])) "../ncurses/./tinfo/free_ttype.c":97:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:QI 84 [ flag ])
+        (subreg:QI (reg:SI 85) 0)) "../ncurses/./tinfo/free_ttype.c":97:1 -1
+     (nil))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (set (reg/v:SI 83 [ <retval> ])
+        (zero_extend:SI (mem/c:QI (symbol_ref:DI ("_nc_user_definable") [flags 0x2]  <var_decl 0x7faa91b7bc60 _nc_user_definable>) [7 _nc_user_definable+0 S1 A8]))) "../ncurses/./tinfo/free_ttype.c":98:9 -1
+     (nil))
+(insn 8 7 12 2 (set (mem/c:QI (symbol_ref:DI ("_nc_user_definable") [flags 0x2]  <var_decl 0x7faa91b7bc60 _nc_user_definable>) [7 _nc_user_definable+0 S1 A8])
+        (reg/v:QI 84 [ flag ])) "../ncurses/./tinfo/free_ttype.c":102:24 -1
+     (nil))
+(insn 12 8 13 2 (set (reg/i:SI 0 ax)
+        (reg/v:SI 83 [ <retval> ])) "../ncurses/./tinfo/free_ttype.c":104:1 -1
+     (nil))
+(insn 13 12 0 2 (use (reg/i:SI 0 ax)) "../ncurses/./tinfo/free_ttype.c":104:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+

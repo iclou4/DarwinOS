@@ -1,0 +1,900 @@
+
+;; Function has_ic_sp (has_ic_sp, funcdef_no=91, decl_uid=6547, cgraph_uid=92, symbol_order=91)
+
+
+
+has_ic_sp
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp] 16 [argp] 19 [frame]
+;;  regular block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  eh block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 6 [bp] 7 [sp] 19 [frame]
+;;  regs ever live 	 0 [ax] 5 [di] 7 [sp] 17 [flags]
+;;  ref usage 	r0={8d,8u} r1={7d} r2={7d} r4={7d} r5={7d,1u} r6={1d,12u} r7={1d,18u} r8={6d} r9={6d} r10={6d} r11={6d} r12={6d} r13={6d} r14={6d} r15={6d} r16={1d,11u} r17={15d,9u} r18={6d} r19={1d,12u} r20={7d} r21={7d} r22={7d} r23={7d} r24={7d} r25={7d} r26={7d} r27={7d} r28={6d} r29={6d} r30={6d} r31={6d} r32={6d} r33={6d} r34={6d} r35={6d} r36={7d} r37={7d} r38={6d} r39={6d} r44={6d} r45={6d} r46={6d} r47={6d} r48={6d} r49={6d} r50={6d} r51={6d} r52={6d} r53={6d} r54={6d} r55={6d} r56={6d} r57={6d} r58={6d} r59={6d} r60={6d} r61={6d} r62={6d} r63={6d} r64={6d} r65={6d} r66={6d} r67={6d} r68={6d} r69={6d} r70={6d} r71={6d} r72={6d} r73={6d} r74={6d} r75={6d} r84={1d,1u} r87={1d,1u} r90={1d,1u} r93={1d,1u} r96={1d,1u} r99={1d,1u} r102={4d,1u} r103={1d,2u} r105={1d,1u} r106={1d,1u} r107={1d,1u} r108={1d,1u} r109={1d,1u} r110={1d,1u} 
+;;    total ref usage 534{448d,86u,0e} in 42{36 regular + 6 call} insns.
+;; basic block 2, loop depth 0, count 1073741823 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:1073741823 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 17 [flags] 103
+;; live  in  	 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 17 [flags] 103
+;; live  kill	
+(note 7 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 103 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./tinfo/lib_has_cap.c":54:1 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 5 di [ sp ])
+        (nil)))
+(note 3 2 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 3 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 103 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":59:9 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 14)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":59:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 14)
+;;  succ:       3 [70.0% (guessed)]  count:751619279 (estimated locally) (FALLTHRU)
+;;              4 [30.0% (guessed)]  count:322122544 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 103
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 103
+
+;; basic block 3, loop depth 0, count 751619280 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [70.0% (guessed)]  count:751619279 (estimated locally) (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 103
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 103
+;; lr  def 	 17 [flags]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 103
+;; live  gen 	 17 [flags]
+;; live  kill	
+(note 11 10 12 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/v/f:DI 103 [ sp ])
+                    (const_int 48 [0x30])) [1 sp_9(D)->_term+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":59:9 8 {*cmpdi_ccno_1}
+     (expr_list:REG_DEAD (reg/v/f:DI 103 [ sp ])
+        (nil)))
+(jump_insn 13 12 14 3 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 19)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":59:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 751619284 (nil)))
+ -> 19)
+;;  succ:       5 [70.0% (guessed)]  count:526133498 (estimated locally)
+;;              4 [30.0% (guessed)]  count:225485782 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+;; basic block 4, loop depth 0, count 547608326 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       3 [30.0% (guessed)]  count:225485782 (estimated locally) (FALLTHRU)
+;;              2 [30.0% (guessed)]  count:322122544 (estimated locally)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 17 [flags] 102
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 17 [flags] 102
+;; live  kill	
+(code_label 14 13 15 4 2 (nil) [1 uses])
+(note 15 14 6 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 6 15 17 4 (set (reg/v:QI 102 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./tinfo/lib_has_cap.c":55:10 77 {*movqi_internal}
+     (nil))
+(insn 17 6 18 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f/c:DI (const:DI (plus:DI (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7f261b826f30 _nc_prescreen>)
+                        (const_int 680 [0x2a8]))) [1 _nc_prescreen._cur_term+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":59:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 18 17 19 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 77)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":59:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 956022628 (nil)))
+ -> 77)
+;;  succ:       5 [11.0% (guessed)]  count:60036792 (estimated locally) (FALLTHRU)
+;;              12 [89.0% (guessed)]  count:487571534 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 102
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 102
+
+;; basic block 5, loop depth 0, count 354334800 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 586170290 (estimated locally), should be 354334800 (estimated locally)
+;;  prev block 4, next block 6, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [11.0% (guessed)]  count:60036792 (estimated locally) (FALLTHRU)
+;;              3 [70.0% (guessed)]  count:526133498 (estimated locally)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 84 105
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 0 [ax] 17 [flags] 84 105
+;; live  kill	
+(code_label 19 18 20 5 3 (nil) [1 uses])
+(note 20 19 21 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(call_insn 21 20 22 5 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":60:11 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 22 21 23 5 (set (reg/f:DI 84 [ _13 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":60:11 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 0 ax)
+        (nil)))
+(insn 23 22 24 5 (set (reg/f:DI 105 [ _13->type2.Strings ])
+        (mem/f:DI (plus:DI (reg/f:DI 84 [ _13 ])
+                (const_int 720 [0x2d0])) [46 _13->type2.Strings+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":60:11 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 84 [ _13 ])
+        (nil)))
+(insn 24 23 25 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 105 [ _13->type2.Strings ])
+                    (const_int 416 [0x1a0])) [7 MEM[(char * *)_14 + 416B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":62:45 8 {*cmpdi_ccno_1}
+     (expr_list:REG_DEAD (reg/f:DI 105 [ _13->type2.Strings ])
+        (nil)))
+(jump_insn 25 24 39 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 35)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":62:45 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 35)
+;;  succ:       6 [70.0% (guessed)]  count:248034361 (estimated locally) (FALLTHRU)
+;;              7 [30.0% (guessed)]  count:106300439 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+;; basic block 6, loop depth 0, count 342741541 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       5 [70.0% (guessed)]  count:248034361 (estimated locally) (FALLTHRU)
+;;              7 [82.6% (guessed)]  count:87772272 (estimated locally)
+;;              10 [70.0% (guessed)]  count:6934908 (estimated locally)
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 96 102 106
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 0 [ax] 17 [flags] 96 102 106
+;; live  kill	
+(code_label 39 25 26 6 8 (nil) [2 uses])
+(note 26 39 27 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(call_insn 27 26 28 6 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":62:7 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 28 27 29 6 (set (reg/f:DI 96 [ _25 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":62:7 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 0 ax)
+        (nil)))
+(insn 29 28 5 6 (set (reg/f:DI 106 [ _25->type2.Strings ])
+        (mem/f:DI (plus:DI (reg/f:DI 96 [ _25 ])
+                (const_int 720 [0x2d0])) [46 _25->type2.Strings+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":62:7 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 96 [ _25 ])
+        (nil)))
+(insn 5 29 30 6 (set (reg/v:QI 102 [ <retval> ])
+        (const_int 1 [0x1])) 77 {*movqi_internal}
+     (nil))
+(insn 30 5 31 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 106 [ _25->type2.Strings ])
+                    (const_int 168 [0xa8])) [7 MEM[(char * *)_26 + 168B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":62:45 8 {*cmpdi_ccno_1}
+     (expr_list:REG_DEAD (reg/f:DI 106 [ _25->type2.Strings ])
+        (nil)))
+(jump_insn 31 30 35 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 77)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":62:45 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 886588628 (nil)))
+ -> 77)
+;;  succ:       12 [82.6% (guessed)]  count:283001690 (estimated locally)
+;;              11 [17.4% (guessed)]  count:59739851 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 102
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 102
+
+;; basic block 7, loop depth 0, count 106300439 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       5 [30.0% (guessed)]  count:106300439 (estimated locally)
+;; bb 7 artificial_defs: { }
+;; bb 7 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 87 107
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 0 [ax] 17 [flags] 87 107
+;; live  kill	
+(code_label 35 31 36 7 5 (nil) [1 uses])
+(note 36 35 37 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(call_insn 37 36 38 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":60:31 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 38 37 40 7 (set (reg/f:DI 87 [ _16 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":60:31 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 0 ax)
+        (nil)))
+(insn 40 38 41 7 (set (reg/f:DI 107 [ _16->type2.Strings ])
+        (mem/f:DI (plus:DI (reg/f:DI 87 [ _16 ])
+                (const_int 720 [0x2d0])) [46 _16->type2.Strings+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":60:31 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 87 [ _16 ])
+        (nil)))
+(insn 41 40 42 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 107 [ _16->type2.Strings ])
+                    (const_int 864 [0x360])) [7 MEM[(char * *)_17 + 864B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":60:28 8 {*cmpdi_ccno_1}
+     (expr_list:REG_DEAD (reg/f:DI 107 [ _16->type2.Strings ])
+        (nil)))
+(jump_insn 42 41 43 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 39)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":60:28 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 886588628 (nil)))
+ -> 39)
+;;  succ:       6 [82.6% (guessed)]  count:87772272 (estimated locally)
+;;              8 [17.4% (guessed)]  count:18528167 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+;; basic block 8, loop depth 0, count 18528167 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       7 [17.4% (guessed)]  count:18528167 (estimated locally) (FALLTHRU)
+;; bb 8 artificial_defs: { }
+;; bb 8 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 90 108
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 0 [ax] 17 [flags] 90 108
+;; live  kill	
+(note 43 42 44 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(call_insn 44 43 45 8 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":61:8 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 45 44 46 8 (set (reg/f:DI 90 [ _19 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":61:8 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 0 ax)
+        (nil)))
+(insn 46 45 47 8 (set (reg/f:DI 108 [ _19->type2.Strings ])
+        (mem/f:DI (plus:DI (reg/f:DI 90 [ _19 ])
+                (const_int 720 [0x2d0])) [46 _19->type2.Strings+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":61:8 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 90 [ _19 ])
+        (nil)))
+(insn 47 46 48 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 108 [ _19->type2.Strings ])
+                    (const_int 248 [0xf8])) [7 MEM[(char * *)_20 + 248B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":61:4 8 {*cmpdi_ccno_1}
+     (expr_list:REG_DEAD (reg/f:DI 108 [ _19->type2.Strings ])
+        (nil)))
+(jump_insn 48 47 59 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 52)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":61:4 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 574129756 (nil)))
+ -> 52)
+;;  succ:       10 [53.5% (guessed)]  count:9907011 (estimated locally)
+;;              9 [46.5% (guessed)]  count:8621156 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+;; basic block 9, loop depth 0, count 11593259 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       8 [46.5% (guessed)]  count:8621156 (estimated locally) (FALLTHRU)
+;;              10 [30.0% (guessed)]  count:2972103 (estimated locally) (FALLTHRU)
+;; bb 9 artificial_defs: { }
+;; bb 9 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 102
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 102
+;; live  kill	
+(code_label 59 48 49 9 10 (nil) [0 uses])
+(note 49 59 4 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 4 49 52 9 (set (reg/v:QI 102 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./tinfo/lib_has_cap.c":54:1 77 {*movqi_internal}
+     (nil))
+;;  succ:       12 [always]  count:11593259 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 102
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 102
+
+;; basic block 10, loop depth 0, count 9907011 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       8 [53.5% (guessed)]  count:9907011 (estimated locally)
+;; bb 10 artificial_defs: { }
+;; bb 10 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 93 109
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 0 [ax] 17 [flags] 93 109
+;; live  kill	
+(code_label 52 4 53 10 9 (nil) [1 uses])
+(note 53 52 54 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(call_insn 54 53 55 10 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":61:29 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 55 54 56 10 (set (reg/f:DI 93 [ _22 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":61:29 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 0 ax)
+        (nil)))
+(insn 56 55 57 10 (set (reg/f:DI 109 [ _22->type2.Strings ])
+        (mem/f:DI (plus:DI (reg/f:DI 93 [ _22 ])
+                (const_int 720 [0x2d0])) [46 _22->type2.Strings+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":61:29 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 93 [ _22 ])
+        (nil)))
+(insn 57 56 58 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 109 [ _22->type2.Strings ])
+                    (const_int 336 [0x150])) [7 MEM[(char * *)_23 + 336B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":61:26 8 {*cmpdi_ccno_1}
+     (expr_list:REG_DEAD (reg/f:DI 109 [ _22->type2.Strings ])
+        (nil)))
+(jump_insn 58 57 64 10 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 39)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":61:26 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 751619284 (nil)))
+ -> 39)
+;;  succ:       6 [70.0% (guessed)]  count:6934908 (estimated locally)
+;;              9 [30.0% (guessed)]  count:2972103 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+;; basic block 11, loop depth 0, count 59739851 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       6 [17.4% (guessed)]  count:59739851 (estimated locally) (FALLTHRU)
+;; bb 11 artificial_defs: { }
+;; bb 11 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 99 102 110
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 0 [ax] 17 [flags] 99 102 110
+;; live  kill	
+(note 64 58 65 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(call_insn 65 64 66 11 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":62:27 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 66 65 67 11 (set (reg/f:DI 99 [ _28 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":62:27 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 0 ax)
+        (nil)))
+(insn 67 66 68 11 (set (reg/f:DI 110 [ _28->type2.Strings ])
+        (mem/f:DI (plus:DI (reg/f:DI 99 [ _28 ])
+                (const_int 720 [0x2d0])) [46 _28->type2.Strings+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":62:27 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 99 [ _28 ])
+        (nil)))
+(insn 68 67 69 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 110 [ _28->type2.Strings ])
+                    (const_int 840 [0x348])) [7 MEM[(char * *)_29 + 840B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":62:24 8 {*cmpdi_ccno_1}
+     (expr_list:REG_DEAD (reg/f:DI 110 [ _28->type2.Strings ])
+        (nil)))
+(insn 69 68 77 11 (set (reg/v:QI 102 [ <retval> ])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":62:24 802 {*setcc_qi}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (nil)))
+;;  succ:       12 [always]  count:59739851 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 102
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 102
+
+;; basic block 12, loop depth 0, count 1073741823 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 841906334 (estimated locally), should be 1073741823 (estimated locally)
+;;  prev block 11, next block 1, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [89.0% (guessed)]  count:487571534 (estimated locally)
+;;              9 [always]  count:11593259 (estimated locally) (FALLTHRU)
+;;              11 [always]  count:59739851 (estimated locally) (FALLTHRU)
+;;              6 [82.6% (guessed)]  count:283001690 (estimated locally)
+;; bb 12 artificial_defs: { }
+;; bb 12 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 102
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 102
+;; lr  def 	 0 [ax]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 102
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 77 69 80 12 1 (nil) [2 uses])
+(note 80 77 78 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 78 80 79 12 (set (reg/i:QI 0 ax)
+        (reg/v:QI 102 [ <retval> ])) "../ncurses/./tinfo/lib_has_cap.c":66:1 77 {*movqi_internal}
+     (expr_list:REG_DEAD (reg/v:QI 102 [ <retval> ])
+        (nil)))
+(insn 79 78 0 12 (use (reg/i:QI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":66:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741823 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+
+;; Function has_ic (has_ic, funcdef_no=92, decl_uid=5634, cgraph_uid=93, symbol_order=92)
+
+
+
+has_ic
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp] 16 [argp] 19 [frame]
+;;  regular block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  eh block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 6 [bp] 7 [sp] 19 [frame]
+;;  regs ever live 	 0 [ax] 5 [di] 7 [sp]
+;;  ref usage 	r0={2d,1u} r1={2d} r2={2d} r4={2d} r5={3d,1u} r6={1d,2u} r7={1d,3u} r8={1d} r9={1d} r10={1d} r11={1d} r12={1d} r13={1d} r14={1d} r15={1d} r16={1d,1u} r17={1d} r18={1d} r19={1d,2u} r20={2d} r21={2d} r22={2d} r23={2d} r24={2d} r25={2d} r26={2d} r27={2d} r28={1d} r29={1d} r30={1d} r31={1d} r32={1d} r33={1d} r34={1d} r35={1d} r36={2d} r37={2d} r38={1d} r39={1d} r44={1d} r45={1d} r46={1d} r47={1d} r48={1d} r49={1d} r50={1d} r51={1d} r52={1d} r53={1d} r54={1d} r55={1d} r56={1d} r57={1d} r58={1d} r59={1d} r60={1d} r61={1d} r62={1d} r63={1d} r64={1d} r65={1d} r66={1d} r67={1d} r68={1d} r69={1d} r70={1d} r71={1d} r72={1d} r73={1d} r74={1d} r75={1d} r84={1d,1u} 
+;;    total ref usage 99{88d,11u,0e} in 3{2 regular + 1 call} insns.
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 84
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 0 [ax] 5 [di] 84
+;; live  kill	
+(note 3 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg/f:DI 84 [ SP ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f261b894cf0 SP>) [38 SP+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":72:12 74 {*movdi_internal}
+     (nil))
+(insn 6 5 7 2 (set (reg:DI 5 di)
+        (reg/f:DI 84 [ SP ])) "../ncurses/./tinfo/lib_has_cap.c":72:12 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 84 [ SP ])
+        (nil)))
+(call_insn/j 7 6 0 2 (set (reg:QI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("has_ic_sp") [flags 0x3]  <function_decl 0x7f261b770900 has_ic_sp>) [0 has_ic_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":72:12 828 {*sibcall_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("has_ic_sp") [flags 0x3]  <function_decl 0x7f261b770900 has_ic_sp>)
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+;; lr  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+
+;; Function has_il_sp (has_il_sp, funcdef_no=93, decl_uid=6549, cgraph_uid=94, symbol_order=93)
+
+
+
+has_il_sp
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp] 16 [argp] 19 [frame]
+;;  regular block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  eh block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 6 [bp] 7 [sp] 19 [frame]
+;;  regs ever live 	 0 [ax] 5 [di] 7 [sp] 17 [flags]
+;;  ref usage 	r0={6d,6u} r1={5d} r2={5d} r4={5d} r5={5d,1u} r6={1d,10u} r7={1d,14u} r8={4d} r9={4d} r10={4d} r11={4d} r12={4d} r13={4d} r14={4d} r15={4d} r16={1d,9u} r17={11d,7u} r18={4d} r19={1d,10u} r20={5d} r21={5d} r22={5d} r23={5d} r24={5d} r25={5d} r26={5d} r27={5d} r28={4d} r29={4d} r30={4d} r31={4d} r32={4d} r33={4d} r34={4d} r35={4d} r36={5d} r37={5d} r38={4d} r39={4d} r44={4d} r45={4d} r46={4d} r47={4d} r48={4d} r49={4d} r50={4d} r51={4d} r52={4d} r53={4d} r54={4d} r55={4d} r56={4d} r57={4d} r58={4d} r59={4d} r60={4d} r61={4d} r62={4d} r63={4d} r64={4d} r65={4d} r66={4d} r67={4d} r68={4d} r69={4d} r70={4d} r71={4d} r72={4d} r73={4d} r74={4d} r75={4d} r84={1d,1u} r87={1d,1u} r90={1d,1u} r93={1d,1u} r96={4d,1u} r97={1d,2u} r99={1d,1u} r100={1d,1u} r101={1d,1u} r102={1d,1u} 
+;;    total ref usage 376{308d,68u,0e} in 32{28 regular + 4 call} insns.
+;; basic block 2, loop depth 0, count 1073741823 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:1073741823 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 17 [flags] 97
+;; live  in  	 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 17 [flags] 97
+;; live  kill	
+(note 7 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 97 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./tinfo/lib_has_cap.c":78:1 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 5 di [ sp ])
+        (nil)))
+(note 3 2 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 3 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 97 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":81:9 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 14)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":81:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 14)
+;;  succ:       3 [70.0% (guessed)]  count:751619279 (estimated locally) (FALLTHRU)
+;;              4 [30.0% (guessed)]  count:322122544 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97
+
+;; basic block 3, loop depth 0, count 751619280 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [70.0% (guessed)]  count:751619279 (estimated locally) (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97
+;; lr  def 	 17 [flags]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97
+;; live  gen 	 17 [flags]
+;; live  kill	
+(note 11 10 12 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/v/f:DI 97 [ sp ])
+                    (const_int 48 [0x30])) [1 sp_9(D)->_term+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":81:9 8 {*cmpdi_ccno_1}
+     (expr_list:REG_DEAD (reg/v/f:DI 97 [ sp ])
+        (nil)))
+(jump_insn 13 12 14 3 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 19)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":81:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 751619284 (nil)))
+ -> 19)
+;;  succ:       5 [70.0% (guessed)]  count:526133498 (estimated locally)
+;;              4 [30.0% (guessed)]  count:225485782 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+;; basic block 4, loop depth 0, count 547608325 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       3 [30.0% (guessed)]  count:225485782 (estimated locally) (FALLTHRU)
+;;              2 [30.0% (guessed)]  count:322122544 (estimated locally)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 17 [flags] 96
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 17 [flags] 96
+;; live  kill	
+(code_label 14 13 15 4 24 (nil) [1 uses])
+(note 15 14 6 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 6 15 17 4 (set (reg/v:QI 96 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./tinfo/lib_has_cap.c":79:10 77 {*movqi_internal}
+     (nil))
+(insn 17 6 18 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f/c:DI (const:DI (plus:DI (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7f261b826f30 _nc_prescreen>)
+                        (const_int 680 [0x2a8]))) [1 _nc_prescreen._cur_term+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":81:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 18 17 19 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 60)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":81:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 956022628 (nil)))
+ -> 60)
+;;  succ:       5 [11.0% (guessed)]  count:60036791 (estimated locally) (FALLTHRU)
+;;              10 [89.0% (guessed)]  count:487571534 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96
+
+;; basic block 5, loop depth 0, count 354334800 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 586170289 (estimated locally), should be 354334800 (estimated locally)
+;;  prev block 4, next block 6, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [11.0% (guessed)]  count:60036791 (estimated locally) (FALLTHRU)
+;;              3 [70.0% (guessed)]  count:526133498 (estimated locally)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 84 99
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 0 [ax] 17 [flags] 84 99
+;; live  kill	
+(code_label 19 18 20 5 25 (nil) [1 uses])
+(note 20 19 21 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(call_insn 21 20 22 5 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":82:11 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 22 21 23 5 (set (reg/f:DI 84 [ _13 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":82:11 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 0 ax)
+        (nil)))
+(insn 23 22 24 5 (set (reg/f:DI 99 [ _13->type2.Strings ])
+        (mem/f:DI (plus:DI (reg/f:DI 84 [ _13 ])
+                (const_int 720 [0x2d0])) [46 _13->type2.Strings+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":82:11 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 84 [ _13 ])
+        (nil)))
+(insn 24 23 25 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 99 [ _13->type2.Strings ])
+                    (const_int 424 [0x1a8])) [7 MEM[(char * *)_14 + 424B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":83:48 8 {*cmpdi_ccno_1}
+     (expr_list:REG_DEAD (reg/f:DI 99 [ _13->type2.Strings ])
+        (nil)))
+(jump_insn 25 24 39 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 35)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":83:48 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 35)
+;;  succ:       6 [70.0% (guessed)]  count:248034361 (estimated locally) (FALLTHRU)
+;;              7 [30.0% (guessed)]  count:106300439 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+;; basic block 6, loop depth 0, count 322444669 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       5 [70.0% (guessed)]  count:248034361 (estimated locally) (FALLTHRU)
+;;              7 [70.0% (guessed)]  count:74410308 (estimated locally)
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 90 96 100
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 0 [ax] 17 [flags] 90 96 100
+;; live  kill	
+(code_label 39 25 26 6 30 (nil) [1 uses])
+(note 26 39 27 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(call_insn 27 26 28 6 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":83:7 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 28 27 29 6 (set (reg/f:DI 90 [ _19 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":83:7 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 0 ax)
+        (nil)))
+(insn 29 28 5 6 (set (reg/f:DI 100 [ _19->type2.Strings ])
+        (mem/f:DI (plus:DI (reg/f:DI 90 [ _19 ])
+                (const_int 720 [0x2d0])) [46 _19->type2.Strings+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":83:7 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 90 [ _19 ])
+        (nil)))
+(insn 5 29 30 6 (set (reg/v:QI 96 [ <retval> ])
+        (const_int 1 [0x1])) 77 {*movqi_internal}
+     (nil))
+(insn 30 5 31 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 100 [ _19->type2.Strings ])
+                    (const_int 176 [0xb0])) [7 MEM[(char * *)_20 + 176B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":83:48 8 {*cmpdi_ccno_1}
+     (expr_list:REG_DEAD (reg/f:DI 100 [ _19->type2.Strings ])
+        (nil)))
+(jump_insn 31 30 35 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 60)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":83:48 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 886588628 (nil)))
+ -> 60)
+;;  succ:       10 [82.6% (guessed)]  count:266242563 (estimated locally)
+;;              9 [17.4% (guessed)]  count:56202106 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96
+
+;; basic block 7, loop depth 0, count 106300439 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       5 [30.0% (guessed)]  count:106300439 (estimated locally)
+;; bb 7 artificial_defs: { }
+;; bb 7 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 87 101
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 0 [ax] 17 [flags] 87 101
+;; live  kill	
+(code_label 35 31 36 7 27 (nil) [1 uses])
+(note 36 35 37 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(call_insn 37 36 38 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":82:26 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 38 37 40 7 (set (reg/f:DI 87 [ _16 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":82:26 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 0 ax)
+        (nil)))
+(insn 40 38 41 7 (set (reg/f:DI 101 [ _16->type2.Strings ])
+        (mem/f:DI (plus:DI (reg/f:DI 87 [ _16 ])
+                (const_int 720 [0x2d0])) [46 _16->type2.Strings+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":82:26 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 87 [ _16 ])
+        (nil)))
+(insn 41 40 42 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 101 [ _16->type2.Strings ])
+                    (const_int 880 [0x370])) [7 MEM[(char * *)_17 + 880B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":82:23 8 {*cmpdi_ccno_1}
+     (expr_list:REG_DEAD (reg/f:DI 101 [ _16->type2.Strings ])
+        (nil)))
+(jump_insn 42 41 45 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 39)
+            (pc))) "../ncurses/./tinfo/lib_has_cap.c":82:23 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 751619284 (nil)))
+ -> 39)
+;;  succ:       6 [70.0% (guessed)]  count:74410308 (estimated locally)
+;;              8 [30.0% (guessed)]  count:31890131 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+;; basic block 8, loop depth 0, count 31890131 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       7 [30.0% (guessed)]  count:31890131 (estimated locally) (FALLTHRU)
+;; bb 8 artificial_defs: { }
+;; bb 8 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 96
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 96
+;; live  kill	
+(note 45 42 4 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 4 45 47 8 (set (reg/v:QI 96 [ <retval> ])
+        (const_int 0 [0])) 77 {*movqi_internal}
+     (nil))
+;;  succ:       10 [always]  count:31890131 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96
+
+;; basic block 9, loop depth 0, count 56202106 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       6 [17.4% (guessed)]  count:56202106 (estimated locally) (FALLTHRU)
+;; bb 9 artificial_defs: { }
+;; bb 9 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 93 96 102
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 0 [ax] 17 [flags] 93 96 102
+;; live  kill	
+(note 47 4 48 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(call_insn 48 47 49 9 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":83:22 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f261b808600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 49 48 50 9 (set (reg/f:DI 93 [ _22 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":83:22 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 0 ax)
+        (nil)))
+(insn 50 49 51 9 (set (reg/f:DI 102 [ _22->type2.Strings ])
+        (mem/f:DI (plus:DI (reg/f:DI 93 [ _22 ])
+                (const_int 720 [0x2d0])) [46 _22->type2.Strings+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":83:22 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 93 [ _22 ])
+        (nil)))
+(insn 51 50 52 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 102 [ _22->type2.Strings ])
+                    (const_int 848 [0x350])) [7 MEM[(char * *)_23 + 848B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":83:19 8 {*cmpdi_ccno_1}
+     (expr_list:REG_DEAD (reg/f:DI 102 [ _22->type2.Strings ])
+        (nil)))
+(insn 52 51 60 9 (set (reg/v:QI 96 [ <retval> ])
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":83:19 802 {*setcc_qi}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (nil)))
+;;  succ:       10 [always]  count:56202106 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96
+
+;; basic block 10, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 841906334 (estimated locally), should be 1073741824 (estimated locally)
+;;  prev block 9, next block 1, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [89.0% (guessed)]  count:487571534 (estimated locally)
+;;              8 [always]  count:31890131 (estimated locally) (FALLTHRU)
+;;              9 [always]  count:56202106 (estimated locally) (FALLTHRU)
+;;              6 [82.6% (guessed)]  count:266242563 (estimated locally)
+;; bb 10 artificial_defs: { }
+;; bb 10 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96
+;; lr  def 	 0 [ax]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 60 52 63 10 23 (nil) [2 uses])
+(note 63 60 61 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 61 63 62 10 (set (reg/i:QI 0 ax)
+        (reg/v:QI 96 [ <retval> ])) "../ncurses/./tinfo/lib_has_cap.c":87:1 77 {*movqi_internal}
+     (expr_list:REG_DEAD (reg/v:QI 96 [ <retval> ])
+        (nil)))
+(insn 62 61 0 10 (use (reg/i:QI 0 ax)) "../ncurses/./tinfo/lib_has_cap.c":87:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+
+;; Function has_il (has_il, funcdef_no=94, decl_uid=5636, cgraph_uid=95, symbol_order=94)
+
+
+
+has_il
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp] 16 [argp] 19 [frame]
+;;  regular block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  eh block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 6 [bp] 7 [sp] 19 [frame]
+;;  regs ever live 	 0 [ax] 5 [di] 7 [sp]
+;;  ref usage 	r0={2d,1u} r1={2d} r2={2d} r4={2d} r5={3d,1u} r6={1d,2u} r7={1d,3u} r8={1d} r9={1d} r10={1d} r11={1d} r12={1d} r13={1d} r14={1d} r15={1d} r16={1d,1u} r17={1d} r18={1d} r19={1d,2u} r20={2d} r21={2d} r22={2d} r23={2d} r24={2d} r25={2d} r26={2d} r27={2d} r28={1d} r29={1d} r30={1d} r31={1d} r32={1d} r33={1d} r34={1d} r35={1d} r36={2d} r37={2d} r38={1d} r39={1d} r44={1d} r45={1d} r46={1d} r47={1d} r48={1d} r49={1d} r50={1d} r51={1d} r52={1d} r53={1d} r54={1d} r55={1d} r56={1d} r57={1d} r58={1d} r59={1d} r60={1d} r61={1d} r62={1d} r63={1d} r64={1d} r65={1d} r66={1d} r67={1d} r68={1d} r69={1d} r70={1d} r71={1d} r72={1d} r73={1d} r74={1d} r75={1d} r84={1d,1u} 
+;;    total ref usage 99{88d,11u,0e} in 3{2 regular + 1 call} insns.
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 84
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 0 [ax] 5 [di] 84
+;; live  kill	
+(note 3 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg/f:DI 84 [ SP ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f261b894cf0 SP>) [38 SP+0 S8 A64])) "../ncurses/./tinfo/lib_has_cap.c":93:12 74 {*movdi_internal}
+     (nil))
+(insn 6 5 7 2 (set (reg:DI 5 di)
+        (reg/f:DI 84 [ SP ])) "../ncurses/./tinfo/lib_has_cap.c":93:12 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 84 [ SP ])
+        (nil)))
+(call_insn/j 7 6 0 2 (set (reg:QI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("has_il_sp") [flags 0x3]  <function_decl 0x7f261b770a00 has_il_sp>) [0 has_il_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_has_cap.c":93:12 828 {*sibcall_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("has_il_sp") [flags 0x3]  <function_decl 0x7f261b770a00 has_il_sp>)
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+;; lr  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+

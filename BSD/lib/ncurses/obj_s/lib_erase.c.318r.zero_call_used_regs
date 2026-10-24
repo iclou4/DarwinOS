@@ -1,0 +1,880 @@
+
+;; Function werase (werase, funcdef_no=91, decl_uid=6240, cgraph_uid=92, symbol_order=91)
+
+
+
+werase
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;;  exit block uses 	 0 [ax] 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;;  regs ever live 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 17 [flags] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;;  ref usage 	r0={10d,23u} r1={6d,6u} r2={3d,1u} r3={3d,3u} r4={3d,1u} r5={4d,7u} r6={9d,12u} r7={15d,45u} r8={1d} r9={1d} r10={1d} r11={1d} r12={1d} r13={1d} r14={1d} r15={1d} r17={24d,11u} r18={1d} r20={2d} r21={2d} r22={2d} r23={2d} r24={2d} r25={2d} r26={2d} r27={2d} r28={1d} r29={1d} r30={1d} r31={1d} r32={1d} r33={1d} r34={1d} r35={1d} r36={3d,1u} r37={3d,1u} r38={2d,1u} r39={2d,1u} r40={4d,6u} r41={4d,6u} r42={8d,10u,1e} r43={5d,16u} r44={1d} r45={1d} r46={1d} r47={1d} r48={1d} r49={1d} r50={1d} r51={1d} r52={1d} r53={1d} r54={1d} r55={1d} r56={1d} r57={1d} r58={1d} r59={1d} r60={1d} r61={1d} r62={1d} r63={1d} r64={1d} r65={1d} r66={1d} r67={1d} r68={1d} r69={1d} r70={1d} r71={1d} r72={1d} r73={1d} r74={1d} r75={1d} 
+;;    total ref usage 325{173d,151u,1e} in 100{99 regular + 1 call} insns.
+(note 1 0 6 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 14726180 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:14726180 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 5 [di] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; lr  use 	 5 [di] 7 [sp]
+;; lr  def 	 17 [flags]
+;; live  in  	 3 [bx] 5 [di] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(note 6 1 3 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 3 6 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn:TI 8 3 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 5 di [orig:124 win ] [124])
+            (const_int 0 [0]))) "../ncurses/./base/lib_erase.c":55:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 130)
+            (pc))) "../ncurses/./base/lib_erase.c":55:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 9341556 (nil)))
+ -> 130)
+;;  succ:       3 [99.1% (guessed)]  count:14598062 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              19 [0.9% (guessed)]  count:128118 (estimated locally) (CAN_FALLTHRU)
+;; lr  out 	 3 [bx] 5 [di] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  out 	 3 [bx] 5 [di] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+
+;; basic block 3, loop depth 0, count 14598063 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       2 [99.1% (guessed)]  count:14598062 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 5 [di] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; lr  use 	 3 [bx] 5 [di] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; lr  def 	 0 [ax] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 17 [flags] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 43 [r15]
+;; live  in  	 3 [bx] 5 [di] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  gen 	 0 [ax] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 17 [flags] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 43 [r15]
+;; live  kill	 17 [flags]
+(note 10 9 276 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn/f:TI 276 10 293 3 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 43 r15)) "../ncurses/./base/lib_erase.c":49:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 43 r15)
+        (nil)))
+(insn 293 276 277 3 (set (reg/v/f:DI 43 r15 [orig:124 win ] [124])
+        (reg:DI 5 di [144])) 74 {*movdi_internal}
+     (nil))
+(insn/f:TI 277 293 278 3 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 42 r14)) "../ncurses/./base/lib_erase.c":49:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 42 r14)
+        (nil)))
+(insn/f:TI 278 277 279 3 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 41 r13)) "../ncurses/./base/lib_erase.c":49:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 41 r13)
+        (nil)))
+(insn/f:TI 279 278 280 3 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 40 r12)) "../ncurses/./base/lib_erase.c":49:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 40 r12)
+        (nil)))
+(insn/f:TI 280 279 281 3 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 6 bp)) "../ncurses/./base/lib_erase.c":49:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 6 bp)
+        (nil)))
+(insn/f:TI 281 280 282 3 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 3 bx)) "../ncurses/./base/lib_erase.c":49:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 3 bx)
+        (nil)))
+(insn/f:TI 282 281 283 3 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -40 [0xffffffffffffffd8])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) "../ncurses/./base/lib_erase.c":49:1 1142 {pro_epilogue_adjust_stack_add_di}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -40 [0xffffffffffffffd8])))
+            (nil))))
+(note 283 282 19 3 NOTE_INSN_PROLOGUE_END)
+(insn 19 283 11 3 (set (reg:DI 0 ax)
+        (sign_extend:DI (mem:SI (plus:DI (reg/v/f:DI 43 r15 [orig:124 win ] [124])
+                    (const_int 8 [0x8])) [3 win_34(D)->_maxy+0 S4 A64]))) "../ncurses/./base/lib_erase.c":61:22 147 {*extendsidi2_rex64}
+     (nil))
+(insn 11 19 12 3 (set (reg:SI 4 si [orig:97 blank$attr ] [97])
+        (mem:SI (plus:DI (reg/f:DI 5 di [orig:124 win ] [124])
+                (const_int 116 [0x74])) [3 win_34(D)->_bkgrnd.attr+0 S4 A32])) "../ncurses/./base/lib_erase.c":60:8 75 {*movsi_internal}
+     (nil))
+(insn:TI 12 11 14 3 (set (reg:SI 2 cx [orig:93 blank$chars$0 ] [93])
+        (mem:SI (plus:DI (reg/f:DI 5 di [orig:124 win ] [124])
+                (const_int 120 [0x78])) [3 win_34(D)->_bkgrnd.chars[0]+0 S4 A64])) "../ncurses/./base/lib_erase.c":60:8 75 {*movsi_internal}
+     (nil))
+(insn 14 12 13 3 (set (reg:SI 36 r8 [orig:107 blank$chars$2 ] [107])
+        (mem:SI (plus:DI (reg/v/f:DI 43 r15 [orig:124 win ] [124])
+                (const_int 128 [0x80])) [3 win_34(D)->_bkgrnd.chars[2]+0 S4 A64])) "../ncurses/./base/lib_erase.c":60:8 75 {*movsi_internal}
+     (nil))
+(insn:TI 13 14 15 3 (set (reg:SI 5 di [orig:106 blank$chars$1 ] [106])
+        (mem:SI (plus:DI (reg/f:DI 5 di [orig:124 win ] [124])
+                (const_int 124 [0x7c])) [3 win_34(D)->_bkgrnd.chars[1]+0 S4 A32])) "../ncurses/./base/lib_erase.c":60:8 75 {*movsi_internal}
+     (nil))
+(insn 15 13 16 3 (set (reg:SI 37 r9 [orig:108 blank$chars$3 ] [108])
+        (mem:SI (plus:DI (reg/v/f:DI 43 r15 [orig:124 win ] [124])
+                (const_int 132 [0x84])) [3 win_34(D)->_bkgrnd.chars[3]+0 S4 A32])) "../ncurses/./base/lib_erase.c":60:8 75 {*movsi_internal}
+     (nil))
+(insn:TI 16 15 17 3 (set (reg:SI 38 r10 [orig:110 blank$chars$4 ] [110])
+        (mem:SI (plus:DI (reg/v/f:DI 43 r15 [orig:124 win ] [124])
+                (const_int 136 [0x88])) [3 win_34(D)->_bkgrnd.chars[4]+0 S4 A64])) "../ncurses/./base/lib_erase.c":60:8 75 {*movsi_internal}
+     (nil))
+(insn 17 16 18 3 (set (reg:SI 39 r11 [orig:112 blank$ext_color ] [112])
+        (mem:SI (plus:DI (reg/v/f:DI 43 r15 [orig:124 win ] [124])
+                (const_int 140 [0x8c])) [3 win_34(D)->_bkgrnd.ext_color+0 S4 A32])) "../ncurses/./base/lib_erase.c":60:8 75 {*movsi_internal}
+     (nil))
+(insn:TI 18 17 22 3 (set (reg:SI 3 bx [orig:113 blank$rgb_color ] [113])
+        (mem:SI (plus:DI (reg/v/f:DI 43 r15 [orig:124 win ] [124])
+                (const_int 144 [0x90])) [3 win_34(D)->_bkgrnd.rgb_color+0 S4 A64])) "../ncurses/./base/lib_erase.c":60:8 75 {*movsi_internal}
+     (nil))
+(insn 22 18 23 3 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:SI 0 ax [orig:118 _86 ] [118])
+            (const_int 0 [0]))) "../ncurses/./base/lib_erase.c":61:16 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 23 22 32 3 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 91)
+            (pc))) "../ncurses/./base/lib_erase.c":61:16 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGOC 17 flags)
+        (int_list:REG_BR_PROB 118111604 (nil)))
+ -> 91)
+;;  succ:       4 [89.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              18 [11.0% (guessed)]  count:1605787 (estimated locally) (CAN_FALLTHRU)
+;; lr  out 	 0 [ax] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 43 [r15]
+;; live  out 	 0 [ax] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 43 [r15]
+
+;; basic block 4, loop depth 0, count 12992276 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (REACHABLE, HOT_PARTITION, RTL)
+;;  pred:       3 [89.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 43 [r15]
+;; lr  use 	 0 [ax] 7 [sp] 43 [r15]
+;; lr  def 	 0 [ax] 1 [dx] 17 [flags] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  in  	 0 [ax] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 43 [r15]
+;; live  gen 	 0 [ax] 1 [dx] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  kill	 17 [flags]
+(note 32 23 263 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(note 263 32 40 4 NOTE_INSN_DELETED)
+(note 40 263 42 4 NOTE_INSN_DELETED)
+(note 42 40 71 4 NOTE_INSN_DELETED)
+(note 71 42 36 4 NOTE_INSN_DELETED)
+(insn:TI 36 71 33 4 (set (reg:DI 40 r12 [orig:89 ivtmp.35 ] [89])
+        (mem/f:DI (plus:DI (reg/v/f:DI 43 r15 [orig:124 win ] [124])
+                (const_int 56 [0x38])) [7 win_34(D)->_line+0 S8 A64])) 74 {*movdi_internal}
+     (nil))
+(insn 33 36 41 4 (set (reg:DI 1 dx)
+        (sign_extend:DI (mem:SI (plus:DI (reg/v/f:DI 43 r15 [orig:124 win ] [124])
+                    (const_int 12 [0xc])) [3 win_34(D)->_maxx+0 S4 A32]))) "../ncurses/./base/lib_erase.c":65:22 147 {*extendsidi2_rex64}
+     (nil))
+(insn 41 33 173 4 (set (reg:DI 0 ax [130])
+        (plus:DI (ashift:DI (reg:DI 0 ax [orig:127 _86 ] [127])
+                (const_int 1 [0x1]))
+            (reg:DI 0 ax [orig:127 _86 ] [127]))) 206 {*leadi}
+     (nil))
+(insn 173 41 273 4 (set (mem/c:DI (plus:DI (reg/f:DI 7 sp)
+                (const_int 16 [0x10])) [11 %sfp+-16 S8 A64])
+        (reg/v/f:DI 43 r15 [orig:124 win ] [124])) 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 43 r15 [orig:124 win ] [124])
+        (nil)))
+(insn:TI 273 173 275 4 (set (reg:DI 41 r13 [orig:142 ivtmp.35 ] [142])
+        (plus:DI (reg:DI 40 r12 [orig:89 ivtmp.35 ] [89])
+            (const_int 24 [0x18]))) 206 {*leadi}
+     (nil))
+(insn 275 273 35 4 (set (reg:DI 42 r14)
+        (reg:DI 1 dx)) "../ncurses/./base/lib_erase.c":65:22 74 {*movdi_internal}
+     (nil))
+(insn 35 275 44 4 (parallel [
+            (set (reg:DI 1 dx [orig:125 _5 ] [125])
+                (ashift:DI (reg:DI 1 dx [orig:125 _5 ] [125])
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":65:18 656 {*ashldi3_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 44 35 253 4 (set (reg:DI 0 ax [orig:122 _95 ] [122])
+        (plus:DI (ashift:DI (reg:DI 0 ax [130])
+                (const_int 3 [0x3]))
+            (reg:DI 41 r13 [orig:142 ivtmp.35 ] [142]))) 206 {*leadi}
+     (nil))
+(insn 253 44 174 4 (set (mem/c:DI (reg/f:DI 7 sp) [11 %sfp+-32 S8 A64])
+        (reg:DI 1 dx [orig:125 _5 ] [125])) "../ncurses/./base/lib_erase.c":65:18 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 1 dx [orig:125 _5 ] [125])
+        (nil)))
+(insn 174 253 254 4 (set (reg:SI 43 r15 [orig:83 _5 ] [83])
+        (reg:SI 42 r14 [orig:83 _5 ] [83])) 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 42 r14 [orig:83 _5 ] [83])
+        (nil)))
+(insn:TI 254 174 88 4 (set (mem/c:DI (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])) [11 %sfp+-24 S8 A64])
+        (reg:DI 0 ax [orig:122 _95 ] [122])) 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 0 ax [orig:122 _95 ] [122])
+        (nil)))
+;;  succ:       5 [always]  count:12992276 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; lr  out 	 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; live  out 	 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+
+;; basic block 5, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       4 [always]  count:12992276 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              10 [always]  count:105119324 (estimated locally) (DFS_BACK,CAN_FALLTHRU)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(7){ }}
+;; lr  in  	 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; lr  use 	 7 [sp] 40 [r12]
+;; lr  def 	 0 [ax] 1 [dx] 6 [bp] 17 [flags]
+;; live  in  	 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; live  gen 	 0 [ax] 1 [dx] 6 [bp] 17 [flags]
+;; live  kill	 17 [flags]
+(code_label 88 254 45 5 7 (nil) [1 uses])
+(note 45 88 50 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(note 50 45 47 5 NOTE_INSN_DELETED)
+(insn:TI 47 50 255 5 (set (reg/v/f:DI 0 ax [orig:90 start ] [90])
+        (mem/f:DI (reg:DI 40 r12 [orig:89 ivtmp.35 ] [89]) [10 MEM[(struct cchar_t * *)_87]+0 S8 A64])) "../ncurses/./base/lib_erase.c":64:12 74 {*movdi_internal}
+     (nil))
+(insn 255 47 49 5 (set (reg:DI 1 dx [orig:85 _7 ] [85])
+        (mem/c:DI (reg/f:DI 7 sp) [11 %sfp+-32 S8 A64])) "../ncurses/./base/lib_erase.c":65:10 74 {*movdi_internal}
+     (nil))
+(insn:TI 49 255 48 5 (set (reg:SI 6 bp [orig:87 _9 ] [87])
+        (mem:SI (reg/v/f:DI 0 ax [orig:90 start ] [90]) [3 start_42->attr+0 S4 A32])) "../ncurses/./base/lib_erase.c":72:6 75 {*movsi_internal}
+     (nil))
+(insn 48 49 272 5 (parallel [
+            (set (reg/v/f:DI 1 dx [orig:109 end ] [109])
+                (plus:DI (reg/v/f:DI 0 ax [orig:90 start ] [90])
+                    (reg:DI 1 dx [orig:85 _7 ] [85])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":65:10 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 272 48 52 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (and:QI (reg:QI 6 bp [orig:87 _9 ] [87])
+                (const_int -2 [0xfffffffffffffffe]))
+            (const_int 0 [0]))) "../ncurses/./base/lib_erase.c":72:6 472 {*testqi_1_maybe_si}
+     (nil))
+(jump_insn 52 272 53 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 80)
+            (pc))) "../ncurses/./base/lib_erase.c":72:6 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 536870916 (nil)))
+ -> 80)
+;;  succ:       6 [50.0% (guessed)]  count:59055800 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              7 [50.0% (guessed)]  count:59055800 (estimated locally) (CAN_FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+
+;; basic block 6, loop depth 0, count 59055800 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       5 [50.0% (guessed)]  count:59055800 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; lr  use 	 6 [bp] 7 [sp]
+;; lr  def 	 6 [bp] 17 [flags]
+;; live  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; live  gen 	 6 [bp] 17 [flags]
+;; live  kill	
+(note 53 52 54 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(note 54 53 327 6 NOTE_INSN_DELETED)
+(insn:TI 327 54 56 6 (parallel [
+            (set (reg:CCZ 17 flags)
+                (compare:CCZ (and:SI (reg:SI 6 bp [orig:87 _9 ] [87])
+                        (const_int 224 [0xe0]))
+                    (const_int 0 [0])))
+            (set (reg:SI 6 bp [orig:87 _9 ] [87])
+                (and:SI (reg:SI 6 bp [orig:87 _9 ] [87])
+                    (const_int 224 [0xe0])))
+        ]) "../ncurses/./base/lib_erase.c":72:6 499 {*andsi_2}
+     (expr_list:REG_UNUSED (reg:SI 6 bp [orig:87 _9 ] [87])
+        (nil)))
+(jump_insn:TI 56 327 80 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 319)
+            (pc))) "../ncurses/./base/lib_erase.c":72:6 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 289910300 (nil)))
+ -> 319)
+;;  succ:       11 [27.0% (guessed)]  count:15945066 (estimated locally) (CAN_FALLTHRU)
+;;              7 [73.0% (guessed)]  count:43110734 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+
+;; basic block 7, loop depth 0, count 118111601 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       5 [50.0% (guessed)]  count:59055800 (estimated locally) (CAN_FALLTHRU)
+;;              6 [73.0% (guessed)]  count:43110734 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              14 [2.4% (guessed)]  count:3150297 (estimated locally) (CAN_FALLTHRU,LOOP_EXIT)
+;;              11 [30.0% (guessed)]  count:4783520 (estimated locally) (CAN_FALLTHRU)
+;;              12 [2.4% (guessed)]  count:264161 (estimated locally) (CAN_FALLTHRU)
+;;              16 [always]  count:7747089 (estimated locally) (CAN_FALLTHRU,LOOP_EXIT)
+;; bb 7 artificial_defs: { }
+;; bb 7 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; lr  use 	 0 [ax] 1 [dx] 7 [sp]
+;; lr  def 	 17 [flags]
+;; live  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(code_label 80 56 81 7 4 (nil) [5 uses])
+(note 81 80 82 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 82 81 83 7 (set (reg:CC 17 flags)
+        (compare:CC (reg/v/f:DI 0 ax [orig:90 start ] [90])
+            (reg/v/f:DI 1 dx [orig:109 end ] [109]))) "../ncurses/./base/lib_erase.c":85:26 12 {*cmpdi_1}
+     (nil))
+(jump_insn 83 82 104 7 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 117)
+            (pc))) "../ncurses/./base/lib_erase.c":85:26 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CC 17 flags)
+        (int_list:REG_BR_PROB 118111604 (nil)))
+ -> 117)
+;;  succ:       8 [89.0% (guessed)]  count:105119325 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              9 [11.0% (guessed)]  count:12992276 (estimated locally) (CAN_FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+
+;; basic block 8, loop depth 0, count 955630225 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       8 [89.0% (guessed)]  count:850510901 (estimated locally) (DFS_BACK,CAN_FALLTHRU)
+;;              7 [89.0% (guessed)]  count:105119325 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; bb 8 artificial_defs: { }
+;; bb 8 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; lr  use 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; lr  def 	 0 [ax] 17 [flags]
+;; live  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; live  gen 	 0 [ax] 17 [flags]
+;; live  kill	 17 [flags]
+(code_label 104 83 105 8 6 (nil) [1 uses])
+(note 105 104 106 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 106 105 114 8 (set (mem:SI (reg/v/f:DI 0 ax [orig:90 start ] [90]) [3 MEM[(unsigned int *)sp_77]+0 S4 A32])
+        (reg:SI 4 si [orig:97 blank$attr ] [97])) "../ncurses/./base/lib_erase.c":86:7 75 {*movsi_internal}
+     (nil))
+(insn 114 106 107 8 (parallel [
+            (set (reg/v/f:DI 0 ax [orig:90 start ] [90])
+                (plus:DI (reg/v/f:DI 0 ax [orig:90 start ] [90])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":85:36 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 107 114 108 8 (set (mem:SI (plus:DI (reg/v/f:DI 0 ax [orig:90 start ] [90])
+                (const_int -28 [0xffffffffffffffe4])) [3 MEM[(int *)sp_77 + 4B]+0 S4 A32])
+        (reg:SI 2 cx [orig:93 blank$chars$0 ] [93])) "../ncurses/./base/lib_erase.c":86:7 75 {*movsi_internal}
+     (nil))
+(insn:TI 108 107 109 8 (set (mem:SI (plus:DI (reg/v/f:DI 0 ax [orig:90 start ] [90])
+                (const_int -24 [0xffffffffffffffe8])) [3 MEM[(int *)sp_77 + 8B]+0 S4 A32])
+        (reg:SI 5 di [orig:106 blank$chars$1 ] [106])) "../ncurses/./base/lib_erase.c":86:7 75 {*movsi_internal}
+     (nil))
+(insn:TI 109 108 110 8 (set (mem:SI (plus:DI (reg/v/f:DI 0 ax [orig:90 start ] [90])
+                (const_int -20 [0xffffffffffffffec])) [3 MEM[(int *)sp_77 + 12B]+0 S4 A32])
+        (reg:SI 36 r8 [orig:107 blank$chars$2 ] [107])) "../ncurses/./base/lib_erase.c":86:7 75 {*movsi_internal}
+     (nil))
+(insn:TI 110 109 111 8 (set (mem:SI (plus:DI (reg/v/f:DI 0 ax [orig:90 start ] [90])
+                (const_int -16 [0xfffffffffffffff0])) [3 MEM[(int *)sp_77 + 16B]+0 S4 A32])
+        (reg:SI 37 r9 [orig:108 blank$chars$3 ] [108])) "../ncurses/./base/lib_erase.c":86:7 75 {*movsi_internal}
+     (nil))
+(insn:TI 111 110 112 8 (set (mem:SI (plus:DI (reg/v/f:DI 0 ax [orig:90 start ] [90])
+                (const_int -12 [0xfffffffffffffff4])) [3 MEM[(int *)sp_77 + 20B]+0 S4 A32])
+        (reg:SI 38 r10 [orig:110 blank$chars$4 ] [110])) "../ncurses/./base/lib_erase.c":86:7 75 {*movsi_internal}
+     (nil))
+(insn:TI 112 111 113 8 (set (mem:SI (plus:DI (reg/v/f:DI 0 ax [orig:90 start ] [90])
+                (const_int -8 [0xfffffffffffffff8])) [3 MEM[(int *)sp_77 + 24B]+0 S4 A32])
+        (reg:SI 39 r11 [orig:112 blank$ext_color ] [112])) "../ncurses/./base/lib_erase.c":86:7 75 {*movsi_internal}
+     (nil))
+(insn:TI 113 112 115 8 (set (mem:SI (plus:DI (reg/v/f:DI 0 ax [orig:90 start ] [90])
+                (const_int -4 [0xfffffffffffffffc])) [3 MEM[(int *)sp_77 + 28B]+0 S4 A32])
+        (reg:SI 3 bx [orig:113 blank$rgb_color ] [113])) "../ncurses/./base/lib_erase.c":86:7 75 {*movsi_internal}
+     (nil))
+(insn 115 113 116 8 (set (reg:CC 17 flags)
+        (compare:CC (reg/v/f:DI 1 dx [orig:109 end ] [109])
+            (reg/v/f:DI 0 ax [orig:90 start ] [90]))) "../ncurses/./base/lib_erase.c":85:26 12 {*cmpdi_1}
+     (nil))
+(jump_insn 116 115 117 8 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 104)
+            (pc))) "../ncurses/./base/lib_erase.c":85:26 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CC 17 flags)
+        (int_list:REG_BR_PROB 955630228 (nil)))
+ -> 104)
+;;  succ:       8 [89.0% (guessed)]  count:850510901 (estimated locally) (DFS_BACK,CAN_FALLTHRU)
+;;              9 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU,CAN_FALLTHRU,LOOP_EXIT)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+
+;; basic block 9, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       7 [11.0% (guessed)]  count:12992276 (estimated locally) (CAN_FALLTHRU)
+;;              8 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU,CAN_FALLTHRU,LOOP_EXIT)
+;; bb 9 artificial_defs: { }
+;; bb 9 artificial_uses: { u-1(7){ }}
+;; lr  in  	 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; lr  use 	 7 [sp] 40 [r12] 41 [r13] 43 [r15]
+;; lr  def 	 17 [flags] 40 [r12]
+;; live  in  	 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; live  gen 	 17 [flags] 40 [r12]
+;; live  kill	
+(code_label 117 116 84 9 10 (nil) [1 uses])
+(note 84 117 261 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(note 261 84 266 9 NOTE_INSN_DELETED)
+(note 266 261 85 9 NOTE_INSN_DELETED)
+(insn:TI 85 266 86 9 (set (mem:SI (plus:DI (reg:DI 40 r12 [orig:89 ivtmp.35 ] [89])
+                (const_int 8 [0x8])) [3 MEM[(int *)_87 + 8B]+0 S4 A64])
+        (const_int 0 [0])) "../ncurses/./base/lib_erase.c":88:30 75 {*movsi_internal}
+     (nil))
+(insn:TI 86 85 135 9 (set (mem:SI (plus:DI (reg:DI 40 r12 [orig:89 ivtmp.35 ] [89])
+                (const_int 12 [0xc])) [3 MEM[(int *)_87 + 12B]+0 S4 A32])
+        (reg:SI 43 r15 [orig:83 _5 ] [83])) "../ncurses/./base/lib_erase.c":89:29 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:DI 40 r12 [orig:89 ivtmp.35 ] [89])
+        (nil)))
+(insn 135 86 89 9 (set (reg:DI 40 r12 [orig:89 ivtmp.35 ] [89])
+        (reg:DI 41 r13 [orig:142 ivtmp.35 ] [142])) "../ncurses/./base/lib_erase.c":61:16 74 {*movdi_internal}
+     (nil))
+(insn 89 135 90 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 41 r13 [orig:142 ivtmp.35 ] [142])
+            (mem/c:DI (plus:DI (reg/f:DI 7 sp)
+                    (const_int 8 [0x8])) [11 %sfp+-24 S8 A64]))) "../ncurses/./base/lib_erase.c":61:16 12 {*cmpdi_1}
+     (nil))
+(jump_insn 90 89 138 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 248)
+            (pc))) "../ncurses/./base/lib_erase.c":61:16 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 118111604 (nil)))
+ -> 248)
+;;  succ:       10 [89.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              17 [11.0% (guessed)]  count:12992276 (estimated locally) (CAN_FALLTHRU,LOOP_EXIT)
+;; lr  out 	 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; live  out 	 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+
+;; basic block 10, loop depth 0, count 105119324 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       9 [89.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; bb 10 artificial_defs: { }
+;; bb 10 artificial_uses: { u-1(7){ }}
+;; lr  in  	 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; lr  use 	 7 [sp] 41 [r13]
+;; lr  def 	 17 [flags] 41 [r13]
+;; live  in  	 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; live  gen 	 41 [r13]
+;; live  kill	 17 [flags]
+(note 138 90 315 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 315 138 320 10 (parallel [
+            (set (reg:DI 41 r13 [orig:142 ivtmp.35 ] [142])
+                (plus:DI (reg:DI 41 r13 [orig:142 ivtmp.35 ] [142])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(jump_insn 320 315 321 10 (set (pc)
+        (label_ref 88)) 807 {jump}
+     (nil)
+ -> 88)
+;;  succ:       5 [always]  count:105119324 (estimated locally) (DFS_BACK,CAN_FALLTHRU)
+;; lr  out 	 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; live  out 	 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+
+(barrier 321 320 319)
+;; basic block 11, loop depth 0, count 15945066 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       6 [27.0% (guessed)]  count:15945066 (estimated locally) (CAN_FALLTHRU)
+;; bb 11 artificial_defs: { }
+;; bb 11 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; lr  use 	 7 [sp]
+;; lr  def 	 17 [flags] 42 [r14]
+;; live  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; live  gen 	 17 [flags] 42 [r14]
+;; live  kill	
+(code_label 319 321 57 11 26 (nil) [1 uses])
+(note 57 319 265 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 265 57 58 11 (set (reg/v/f:DI 42 r14 [orig:124 win ] [124])
+        (mem/c:DI (plus:DI (reg/f:DI 7 sp)
+                (const_int 16 [0x10])) [11 %sfp+-16 S8 A64])) "../ncurses/./base/lib_erase.c":72:6 74 {*movdi_internal}
+     (nil))
+(insn:TI 58 265 59 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/v/f:DI 42 r14 [orig:124 win ] [124])
+                    (const_int 80 [0x50])) [1 win_34(D)->_parent+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_erase.c":72:6 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn:TI 59 58 60 11 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 80)
+            (pc))) "../ncurses/./base/lib_erase.c":72:6 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 80)
+;;  succ:       12 [70.0% (guessed)]  count:11161546 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              7 [30.0% (guessed)]  count:4783520 (estimated locally) (CAN_FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+
+;; basic block 12, loop depth 0, count 11161546 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       11 [70.0% (guessed)]  count:11161546 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; bb 12 artificial_defs: { }
+;; bb 12 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; lr  use 	 7 [sp] 42 [r14]
+;; lr  def 	 17 [flags] 42 [r14]
+;; live  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  gen 	 17 [flags] 42 [r14]
+;; live  kill	
+(note 60 59 61 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 61 60 64 12 (set (reg:SI 42 r14 [orig:111 iftmp.0_45 ] [111])
+        (mem:SI (plus:DI (reg/v/f:DI 42 r14 [orig:124 win ] [124])
+                (const_int 20 [0x14])) [3 win_34(D)->_begx+0 S4 A32])) "../ncurses/./base/lib_erase.c":72:6 75 {*movsi_internal}
+     (nil))
+(insn:TI 64 61 65 12 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 42 r14 [orig:111 iftmp.0_45 ] [111])
+            (const_int 0 [0]))) "../ncurses/./base/lib_erase.c":72:6 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 65 64 66 12 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 80)
+            (pc))) "../ncurses/./base/lib_erase.c":72:6 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCNO 17 flags)
+        (int_list:REG_BR_PROB 25412292 (nil)))
+ -> 80)
+;;  succ:       13 [97.6% (guessed)]  count:10897385 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              7 [2.4% (guessed)]  count:264161 (estimated locally) (CAN_FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+
+;; basic block 13, loop depth 0, count 10897385 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       12 [97.6% (guessed)]  count:10897385 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; bb 13 artificial_defs: { }
+;; bb 13 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; lr  use 	 0 [ax] 7 [sp] 42 [r14]
+;; lr  def 	 6 [bp] 17 [flags] 42 [r14]
+;; live  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  gen 	 6 [bp] 42 [r14]
+;; live  kill	 17 [flags]
+(note 66 65 268 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(note 268 66 68 13 NOTE_INSN_DELETED)
+(note 68 268 264 13 NOTE_INSN_DELETED)
+(note 264 68 269 13 NOTE_INSN_DELETED)
+(insn:TI 269 264 316 13 (set (reg:DI 6 bp [orig:117 ivtmp.26 ] [117])
+        (plus:DI (reg/v/f:DI 0 ax [orig:90 start ] [90])
+            (const_int -32 [0xffffffffffffffe0]))) 206 {*leadi}
+     (nil))
+(insn 316 269 267 13 (parallel [
+            (set (reg:DI 42 r14 [135])
+                (zero_extend:DI (plus:SI (reg:SI 42 r14 [orig:111 iftmp.0_45 ] [111])
+                        (const_int -1 [0xffffffffffffffff]))))
+            (clobber (reg:CC 17 flags))
+        ]) 211 {addsi_1_zext}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 267 316 70 13 (set (mem/c:DI (plus:DI (reg/f:DI 7 sp)
+                (const_int 24 [0x18])) [11 %sfp+-8 S8 A64])
+        (reg:DI 6 bp [orig:117 ivtmp.26 ] [117])) 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 6 bp [orig:117 ivtmp.26 ] [117])
+        (nil)))
+(insn 70 267 258 13 (parallel [
+            (set (reg:DI 42 r14 [136])
+                (ashift:DI (reg:DI 42 r14 [135])
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) 656 {*ashldi3_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 258 70 72 13 (set (reg:DI 6 bp [137])
+        (const_int -64 [0xffffffffffffffc0])) 74 {*movdi_internal}
+     (nil))
+(insn:TI 72 258 270 13 (parallel [
+            (set (reg:DI 6 bp [137])
+                (minus:DI (reg:DI 6 bp [137])
+                    (reg:DI 42 r14 [136])))
+            (clobber (reg:CC 17 flags))
+        ]) 283 {*subdi_1}
+     (expr_list:REG_DEAD (reg:DI 42 r14 [136])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (expr_list:REG_EQUAL (minus:DI (const_int -64 [0xffffffffffffffc0])
+                    (reg:DI 42 r14 [136]))
+                (nil)))))
+(insn:TI 270 72 188 13 (set (reg:DI 42 r14 [orig:98 _20 ] [98])
+        (plus:DI (reg/v/f:DI 0 ax [orig:90 start ] [90])
+            (reg:DI 6 bp [137]))) 206 {*leadi}
+     (expr_list:REG_DEAD (reg:DI 6 bp [137])
+        (expr_list:REG_DEAD (reg/v/f:DI 0 ax [orig:90 start ] [90])
+            (nil))))
+(insn 188 270 322 13 (set (reg:DI 6 bp [orig:117 ivtmp.26 ] [117])
+        (mem/c:DI (plus:DI (reg/f:DI 7 sp)
+                (const_int 24 [0x18])) [11 %sfp+-8 S8 A64])) 74 {*movdi_internal}
+     (nil))
+(jump_insn 322 188 323 13 (set (pc)
+        (label_ref 98)) 807 {jump}
+     (nil)
+ -> 98)
+;;  succ:       15 [always]  count:10897385 (estimated locally) (CAN_FALLTHRU)
+;; lr  out 	 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  out 	 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+
+(barrier 323 322 95)
+;; basic block 14, loop depth 0, count 133109072 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       15 [94.5% (guessed)]  count:133109071 (estimated locally) (CAN_FALLTHRU)
+;; bb 14 artificial_defs: { }
+;; bb 14 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; lr  use 	 6 [bp] 7 [sp] 42 [r14]
+;; lr  def 	 6 [bp] 17 [flags]
+;; live  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  gen 	 6 [bp] 17 [flags]
+;; live  kill	 17 [flags]
+(code_label 95 323 96 14 5 (nil) [1 uses])
+(note 96 95 97 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 97 96 99 14 (parallel [
+            (set (reg:DI 6 bp [orig:117 ivtmp.26 ] [117])
+                (plus:DI (reg:DI 6 bp [orig:117 ivtmp.26 ] [117])
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":72:6 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 99 97 100 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 42 r14 [orig:98 _20 ] [98])
+            (reg:DI 6 bp [orig:117 ivtmp.26 ] [117]))) "../ncurses/./base/lib_erase.c":72:6 12 {*cmpdi_1}
+     (nil))
+(jump_insn 100 99 98 14 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 80)
+            (pc))) "../ncurses/./base/lib_erase.c":72:6 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 25412292 (nil)))
+ -> 80)
+;;  succ:       15 [97.6% (guessed)]  count:129958775 (estimated locally) (FALLTHRU,DFS_BACK,CAN_FALLTHRU)
+;;              7 [2.4% (guessed)]  count:3150297 (estimated locally) (CAN_FALLTHRU,LOOP_EXIT)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+
+;; basic block 15, loop depth 0, count 140856160 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       14 [97.6% (guessed)]  count:129958775 (estimated locally) (FALLTHRU,DFS_BACK,CAN_FALLTHRU)
+;;              13 [always]  count:10897385 (estimated locally) (CAN_FALLTHRU)
+;; bb 15 artificial_defs: { }
+;; bb 15 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; lr  use 	 6 [bp] 7 [sp]
+;; lr  def 	 0 [ax] 17 [flags]
+;; live  in  	 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  gen 	 0 [ax] 17 [flags]
+;; live  kill	
+(code_label 98 100 74 15 9 (nil) [1 uses])
+(note 74 98 76 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(note 76 74 77 15 NOTE_INSN_DELETED)
+(note 77 76 78 15 NOTE_INSN_DELETED)
+(insn:TI 78 77 75 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (reg:DI 6 bp [orig:117 ivtmp.26 ] [117]) [3 MEM[(unsigned int *)_31]+0 S1 A32])
+            (const_int 1 [0x1]))) "../ncurses/./base/lib_erase.c":72:6 9 {*cmpqi_1}
+     (nil))
+(insn 75 78 79 15 (set (reg/v/f:DI 0 ax [orig:90 start ] [90])
+        (reg:DI 6 bp [orig:117 ivtmp.26 ] [117])) 74 {*movdi_internal}
+     (nil))
+(jump_insn:TI 79 75 324 15 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 95)
+            (pc))) "../ncurses/./base/lib_erase.c":72:6 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 1014686028 (nil)))
+ -> 95)
+;;  succ:       16 [5.5% (guessed)]  count:7747089 (estimated locally) (FALLTHRU)
+;;              14 [94.5% (guessed)]  count:133109071 (estimated locally) (CAN_FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+
+;; basic block 16, loop depth 0, count 7747089 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (NEW, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       15 [5.5% (guessed)]  count:7747089 (estimated locally) (FALLTHRU)
+;; bb 16 artificial_defs: { }
+;; bb 16 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; lr  use 	 7 [sp]
+;; lr  def 	
+;; live  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; live  gen 	
+;; live  kill	
+(note 324 79 325 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(jump_insn:TI 325 324 326 16 (set (pc)
+        (label_ref 80)) 807 {jump}
+     (nil)
+ -> 80)
+;;  succ:       7 [always]  count:7747089 (estimated locally) (CAN_FALLTHRU,LOOP_EXIT)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 43 [r15]
+
+(barrier 326 325 248)
+;; basic block 17, loop depth 0, count 12992276 (estimated locally), maybe hot
+;;  prev block 16, next block 18, flags: (REACHABLE, HOT_PARTITION, RTL)
+;;  pred:       9 [11.0% (guessed)]  count:12992276 (estimated locally) (CAN_FALLTHRU,LOOP_EXIT)
+;; bb 17 artificial_defs: { }
+;; bb 17 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	 43 [r15]
+;; live  in  	 7 [sp]
+;; live  gen 	 43 [r15]
+;; live  kill	
+(code_label 248 326 247 17 20 (nil) [1 uses])
+(note 247 248 216 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 216 247 91 17 (set (reg/v/f:DI 43 r15 [orig:124 win ] [124])
+        (mem/c:DI (plus:DI (reg/f:DI 7 sp)
+                (const_int 16 [0x10])) [11 %sfp+-16 S8 A64])) 74 {*movdi_internal}
+     (nil))
+;;  succ:       18 [always]  count:12992276 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; lr  out 	 7 [sp] 43 [r15]
+;; live  out 	 7 [sp] 43 [r15]
+
+;; basic block 18, loop depth 0, count 14598063 (estimated locally), maybe hot
+;;  prev block 17, next block 19, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       17 [always]  count:12992276 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              3 [11.0% (guessed)]  count:1605787 (estimated locally) (CAN_FALLTHRU)
+;; bb 18 artificial_defs: { }
+;; bb 18 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp] 43 [r15]
+;; lr  use 	 7 [sp] 43 [r15]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 41 [r13] 42 [r14] 43 [r15] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;; live  in  	 7 [sp] 43 [r15]
+;; live  gen 	 0 [ax] 3 [bx] 5 [di] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  kill	 17 [flags]
+(code_label 91 216 24 18 8 (nil) [1 uses])
+(note 24 91 26 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 26 24 27 18 (parallel [
+            (set (mem:HI (plus:DI (reg/v/f:DI 43 r15 [orig:124 win ] [124])
+                        (const_int 24 [0x18])) [5 win_34(D)->_flags+0 S2 A64])
+                (and:HI (mem:HI (plus:DI (reg/v/f:DI 43 r15 [orig:124 win ] [124])
+                            (const_int 24 [0x18])) [5 win_34(D)->_flags+0 S2 A64])
+                    (const_int -65 [0xffffffffffffffbf])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":92:14 489 {*andhi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 27 26 25 18 (set (reg:DI 5 di)
+        (reg/v/f:DI 43 r15 [orig:124 win ] [124])) "../ncurses/./base/lib_erase.c":93:2 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 43 r15 [orig:124 win ] [124])
+        (nil)))
+(insn:TI 25 27 28 18 (set (mem:DI (reg/v/f:DI 43 r15 [orig:124 win ] [124]) [3 MEM <unsigned long> [(int *)win_34(D)]+0 S8 A64])
+        (const_int 0 [0])) "../ncurses/./base/lib_erase.c":91:26 74 {*movdi_internal}
+     (nil))
+(call_insn:TI 28 25 328 18 (call (mem:QI (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7feca05ba700 _nc_synchook>) [0 _nc_synchook S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_erase.c":93:2 813 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7feca05ba700 _nc_synchook>)
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(note 328 28 285 18 NOTE_INSN_EPILOGUE_BEG)
+(insn/f 285 328 318 18 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 40 [0x28])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) "../ncurses/./base/lib_erase.c":97:1 1142 {pro_epilogue_adjust_stack_add_di}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 40 [0x28])))
+            (nil))))
+(insn 318 285 127 18 (parallel [
+            (set (reg:DI 0 ax [orig:123 <retval> ] [123])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":94:7 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 127 318 286 18 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_erase.c":97:1 -1
+     (nil))
+(insn/f:TI 286 127 287 18 (set (reg:DI 3 bx)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./base/lib_erase.c":97:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f 287 286 288 18 (set (reg:DI 6 bp)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./base/lib_erase.c":97:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f:TI 288 287 289 18 (set (reg:DI 40 r12)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./base/lib_erase.c":97:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f 289 288 290 18 (set (reg:DI 41 r13)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./base/lib_erase.c":97:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f:TI 290 289 291 18 (set (reg:DI 42 r14)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./base/lib_erase.c":97:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f 291 290 292 18 (set (reg:DI 43 r15)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./base/lib_erase.c":97:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(jump_insn:TI 292 291 155 18 (simple_return) "../ncurses/./base/lib_erase.c":97:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+;;  succ:       EXIT [always]  count:14598063 (estimated locally)
+;; lr  out 	 0 [ax] 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  out 	 0 [ax] 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+
+(barrier 155 292 130)
+;; basic block 19, loop depth 0, count 128118 (estimated locally), maybe hot
+;;  prev block 18, next block 1, flags: (REACHABLE, HOT_PARTITION, RTL)
+;;  pred:       2 [0.9% (guessed)]  count:128118 (estimated locally) (CAN_FALLTHRU)
+;; bb 19 artificial_defs: { }
+;; bb 19 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; lr  use 	 7 [sp]
+;; lr  def 	 0 [ax]
+;; live  in  	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 130 155 129 19 11 (nil) [1 uses])
+(note 129 130 4 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 4 129 297 19 (set (reg/v:SI 0 ax [orig:123 <retval> ] [123])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_erase.c":50:9 75 {*movsi_internal}
+     (expr_list:REG_EQUAL (const_int -1 [0xffffffffffffffff])
+        (nil)))
+(insn 297 4 302 19 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_erase.c":97:1 -1
+     (nil))
+(jump_insn:TI 302 297 301 19 (simple_return) "../ncurses/./base/lib_erase.c":97:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+;;  succ:       EXIT [always]  count:128118 (estimated locally)
+;; lr  out 	 0 [ax] 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  out 	 0 [ax] 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+
+(barrier 301 302 249)
+(note 249 301 0 NOTE_INSN_DELETED)

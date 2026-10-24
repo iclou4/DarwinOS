@@ -1,0 +1,2322 @@
+
+;; Function is_linetouched (is_linetouched, funcdef_no=91, decl_uid=5690, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+_Bool is_linetouched (struct WINDOW * win, int line)
+{
+  int _1;
+  struct ldat * _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  struct ldat * _5;
+  int _6;
+  _Bool _7;
+  _Bool _11;
+  _Bool _12;
+  _Bool _13;
+  _Bool _14;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (win_8(D) == 0B)
+    goto <bb 5>; [18.09%]
+  else
+    goto <bb 3>; [81.91%]
+;;    succ:       5
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = win_8(D)->_maxy;
+  _14 = line_10(D) < 0;
+  _13 = _1 < line_10(D);
+  _12 = _13 | _14;
+  if (_12 != 0)
+    goto <bb 5>; [51.40%]
+  else
+    goto <bb 4>; [48.60%]
+;;    succ:       5
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _2 = win_8(D)->_line;
+  _3 = (long unsigned int) line_10(D);
+  _4 = _3 * 24;
+  _5 = _2 + _4;
+  _6 = _5->firstchar;
+  _11 = _6 != -1;
+;;    succ:       5
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+;;                4
+;;                2
+  # _7 = PHI <0(3), _11(4), 0(2)>
+  return _7;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 4 (_4 - 4 )
+Partition 5 (_5 - 5 )
+Partition 6 (_6 - 6 )
+Partition 7 (_7 - 7 )
+Partition 8 (win_8(D) - 8 )
+Partition 10 (line_10(D) - 10 )
+Partition 11 (_11 - 11 )
+Partition 12 (_12 - 12 )
+Partition 13 (_13 - 13 )
+Partition 14 (_14 - 14 )
+Partition 17 (_17(D) - 17 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_7 - 7 11 17 )
+Partition 1, base 1 (win_8(D) - 8 )
+Partition 2, base 2 (line_10(D) - 10 )
+
+
+Partition map 
+
+Partition 0 (_7 - 7 )
+Partition 1 (win_8(D) - 8 )
+Partition 2 (line_10(D) - 10 )
+Partition 3 (_11 - 11 )
+Partition 4 (_17(D) - 17 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) _7 <-> _17(D)
+(3981, 0) _7 <-> _11
+
+Partition map 
+
+Partition 0 (_7 - 7 )
+Partition 1 (win_8(D) - 8 )
+Partition 2 (line_10(D) - 10 )
+Partition 3 (_11 - 11 )
+Partition 4 (_17(D) - 17 )
+
+Coalesce list: (7)_7 & (17)_17(D) [map: 0, 4] : Success -> 0
+Coalesce list: (7)_7 & (11)_11 [map: 0, 3] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_2 - 2 )
+Partition 2 (_3 - 3 )
+Partition 3 (_4 - 4 )
+Partition 4 (_5 - 5 )
+Partition 5 (_6 - 6 )
+Partition 6 (_7 - 7 11 17 )
+Partition 7 (win_8(D) - 8 )
+Partition 8 (line_10(D) - 10 )
+Partition 9 (_12 - 12 )
+Partition 10 (_13 - 13 )
+Partition 11 (_14 - 14 )
+
+
+Replacing Expressions
+_1 replace with --> _1 = win_8(D)->_maxy;
+
+_2 replace with --> _2 = win_8(D)->_line;
+
+_3 replace with --> _3 = (long unsigned int) line_10(D);
+
+_4 replace with --> _4 = _3 * 24;
+
+_5 replace with --> _5 = _2 + _4;
+
+_6 replace with --> _6 = _5->firstchar;
+
+_12 replace with --> _12 = _13 | _14;
+
+_13 replace with --> _13 = _1 < line_10(D);
+
+_14 replace with --> _14 = line_10(D) < 0;
+
+
+__attribute__((visibility ("default")))
+_Bool is_linetouched (struct WINDOW * win, int line)
+{
+  int _1;
+  struct ldat * _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  struct ldat * _5;
+  int _6;
+  _Bool _7;
+  _Bool _11;
+  _Bool _12;
+  _Bool _13;
+  _Bool _14;
+  _Bool _17(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (win_8(D) == 0B)
+    goto <bb 5>; [18.09%]
+  else
+    goto <bb 3>; [81.91%]
+;;    succ:       5
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = win_8(D)->_maxy;
+  _14 = line_10(D) < 0;
+  _13 = _1 < line_10(D);
+  _12 = _13 | _14;
+  if (_12 != 0)
+    goto <bb 5>; [51.40%]
+  else
+    goto <bb 4>; [48.60%]
+;;    succ:       5
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _2 = win_8(D)->_line;
+  _3 = (long unsigned int) line_10(D);
+  _4 = _3 * 24;
+  _5 = _2 + _4;
+  _6 = _5->firstchar;
+  _11 = _6 != -1;
+;;    succ:       5
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+;;                4
+;;                2
+  # _7 = PHI <0(3), _11(4), 0(2)>
+  return _7;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB3->BB5 : PART.6 = 0
+Inserting a value copy on edge BB2->BB5 : PART.6 = 0
+
+;; Generating RTL for gimple basic block 2
+
+;; if (win_8(D) == 0B)
+
+(insn 9 8 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 92 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":57:8 -1
+     (nil))
+
+(jump_insn 10 9 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_touch.c":57:8 -1
+     (int_list:REG_BR_PROB 194239900 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; if (_12 != 0)
+
+(insn 12 11 13 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 92 [ win ])
+                    (const_int 8 [0x8])) [1 win_8(D)->_maxy+0 S4 A64])
+            (reg/v:SI 93 [ line ]))) "../ncurses/./base/lib_touch.c":57:14 -1
+     (nil))
+
+(insn 13 12 14 (set (reg:QI 95)
+        (lt:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":57:14 -1
+     (nil))
+
+(insn 14 13 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 95)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":57:37 -1
+     (nil))
+
+(jump_insn 15 14 18 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_touch.c":57:37 -1
+     (int_list:REG_BR_PROB 275938772 (nil)))
+
+(insn 18 15 19 (parallel [
+            (set (reg:SI 97)
+                (lshiftrt:SI (reg/v:SI 93 [ line ])
+                    (const_int 31 [0x1f])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":57:37 -1
+     (nil))
+
+(insn 19 18 20 (set (reg:QI 98)
+        (subreg:QI (reg:SI 97) 0)) "../ncurses/./base/lib_touch.c":57:37 -1
+     (nil))
+
+(insn 20 19 21 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 98)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":57:37 -1
+     (nil))
+
+(jump_insn 21 20 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_touch.c":57:37 -1
+     (int_list:REG_BR_PROB 371378612 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; _11 = _6 != -1;
+
+(insn 23 22 24 (set (reg:DI 99)
+        (sign_extend:DI (reg/v:SI 93 [ line ]))) "../ncurses/./base/lib_touch.c":61:5 -1
+     (nil))
+
+(insn 24 23 25 (set (reg/f:DI 100)
+        (mem/f:DI (plus:DI (reg/v/f:DI 92 [ win ])
+                (const_int 56 [0x38])) [5 win_8(D)->_line+0 S8 A64])) "../ncurses/./base/lib_touch.c":61:5 -1
+     (nil))
+
+(insn 25 24 26 (set (reg:DI 102)
+        (reg:DI 99)) "../ncurses/./base/lib_touch.c":61:5 -1
+     (nil))
+
+(insn 26 25 27 (parallel [
+            (set (reg:DI 103)
+                (ashift:DI (reg:DI 102)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":61:5 -1
+     (nil))
+
+(insn 27 26 28 (parallel [
+            (set (reg:DI 104)
+                (plus:DI (reg:DI 103)
+                    (reg:DI 99)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":61:5 -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 99)
+            (const_int 3 [0x3]))
+        (nil)))
+
+(insn 28 27 29 (parallel [
+            (set (reg:DI 105)
+                (ashift:DI (reg:DI 104)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":61:5 -1
+     (nil))
+
+(insn 29 28 30 (set (reg:DI 104)
+        (reg:DI 105)) "../ncurses/./base/lib_touch.c":61:5 -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 99)
+            (const_int 24 [0x18]))
+        (nil)))
+
+(insn 30 29 31 (set (reg:DI 101)
+        (reg:DI 104)) "../ncurses/./base/lib_touch.c":61:5 -1
+     (nil))
+
+(insn 31 30 32 (parallel [
+            (set (reg/f:DI 106)
+                (plus:DI (reg/f:DI 100)
+                    (reg:DI 101)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":61:5 -1
+     (nil))
+
+(insn 32 31 33 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/f:DI 106)
+                    (const_int 8 [0x8])) [1 _5->firstchar+0 S4 A64])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_touch.c":61:5 -1
+     (nil))
+
+(insn 33 32 34 (set (reg:QI 107)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":61:5 -1
+     (nil))
+
+(insn 34 33 0 (set (reg:QI 91 [ <retval> ])
+        (reg:QI 107)) "../ncurses/./base/lib_touch.c":61:5 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 5
+
+;; 
+
+(code_label 35 34 36 2 (nil) [0 uses])
+
+(note 36 35 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return _7;
+
+(jump_insn 37 36 38 (set (pc)
+        (label_ref 0)) "../ncurses/./base/lib_touch.c":62:1 -1
+     (nil))
+
+(barrier 38 37 0)
+Edge 2->5 redirected to 8
+Edge 3->5 redirected to 9
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 43 from 9 to 10.
+Redirecting jump 47 from 9 to 10.
+Merging block 9 into block 8...
+Merged blocks 8 and 9.
+Merged 8 and 9 without moving.
+Removing jump 37.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 7 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 7 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 92 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_touch.c":53:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 93 [ line ])
+        (reg:SI 4 si [ line ])) "../ncurses/./base/lib_touch.c":53:1 -1
+     (nil))
+(note 4 3 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 4 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 92 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":57:8 -1
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 46)
+            (pc))) "../ncurses/./base/lib_touch.c":57:8 806 {*jcc}
+     (int_list:REG_BR_PROB 194239900 (nil))
+ -> 46)
+;;  succ:       7 [18.1% (guessed)]  count:194239896 (estimated locally)
+;;              4 [81.9% (guessed)]  count:879501928 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 879501929 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [81.9% (guessed)]  count:879501928 (estimated locally) (FALLTHRU)
+(note 11 10 12 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 4 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 92 [ win ])
+                    (const_int 8 [0x8])) [1 win_8(D)->_maxy+0 S4 A64])
+            (reg/v:SI 93 [ line ]))) "../ncurses/./base/lib_touch.c":57:14 -1
+     (nil))
+(insn 13 12 14 4 (set (reg:QI 95)
+        (lt:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":57:14 -1
+     (nil))
+(insn 14 13 15 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 95)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":57:37 -1
+     (nil))
+(jump_insn 15 14 51 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 50)
+            (pc))) "../ncurses/./base/lib_touch.c":57:37 806 {*jcc}
+     (int_list:REG_BR_PROB 275938772 (nil))
+ -> 50)
+;;  succ:       8 [25.7% (guessed)]  count:226021445 (estimated locally)
+;;              5 [74.3% (guessed)]  count:653480484 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 653480484 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL)
+;;  pred:       4 [74.3% (guessed)]  count:653480484 (estimated locally) (FALLTHRU)
+(note 51 15 18 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 18 51 19 5 (parallel [
+            (set (reg:SI 97)
+                (lshiftrt:SI (reg/v:SI 93 [ line ])
+                    (const_int 31 [0x1f])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":57:37 -1
+     (nil))
+(insn 19 18 20 5 (set (reg:QI 98)
+        (subreg:QI (reg:SI 97) 0)) "../ncurses/./base/lib_touch.c":57:37 -1
+     (nil))
+(insn 20 19 21 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 98)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":57:37 -1
+     (nil))
+(jump_insn 21 20 22 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 50)
+            (pc))) "../ncurses/./base/lib_touch.c":57:37 806 {*jcc}
+     (int_list:REG_BR_PROB 371378612 (nil))
+ -> 50)
+;;  succ:       8 [34.6% (guessed)]  count:226021439 (estimated locally)
+;;              6 [65.4% (guessed)]  count:427459045 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 427459043 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [65.4% (guessed)]  count:427459045 (estimated locally) (FALLTHRU)
+(note 22 21 23 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 24 6 (set (reg:DI 99)
+        (sign_extend:DI (reg/v:SI 93 [ line ]))) "../ncurses/./base/lib_touch.c":61:5 -1
+     (nil))
+(insn 24 23 25 6 (set (reg/f:DI 100)
+        (mem/f:DI (plus:DI (reg/v/f:DI 92 [ win ])
+                (const_int 56 [0x38])) [5 win_8(D)->_line+0 S8 A64])) "../ncurses/./base/lib_touch.c":61:5 -1
+     (nil))
+(insn 25 24 26 6 (set (reg:DI 102)
+        (reg:DI 99)) "../ncurses/./base/lib_touch.c":61:5 -1
+     (nil))
+(insn 26 25 27 6 (parallel [
+            (set (reg:DI 103)
+                (ashift:DI (reg:DI 102)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":61:5 -1
+     (nil))
+(insn 27 26 28 6 (parallel [
+            (set (reg:DI 104)
+                (plus:DI (reg:DI 103)
+                    (reg:DI 99)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":61:5 -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 99)
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 28 27 29 6 (parallel [
+            (set (reg:DI 105)
+                (ashift:DI (reg:DI 104)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":61:5 -1
+     (nil))
+(insn 29 28 30 6 (set (reg:DI 104)
+        (reg:DI 105)) "../ncurses/./base/lib_touch.c":61:5 -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 99)
+            (const_int 24 [0x18]))
+        (nil)))
+(insn 30 29 31 6 (set (reg:DI 101)
+        (reg:DI 104)) "../ncurses/./base/lib_touch.c":61:5 -1
+     (nil))
+(insn 31 30 32 6 (parallel [
+            (set (reg/f:DI 106)
+                (plus:DI (reg/f:DI 100)
+                    (reg:DI 101)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":61:5 -1
+     (nil))
+(insn 32 31 33 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/f:DI 106)
+                    (const_int 8 [0x8])) [1 _5->firstchar+0 S4 A64])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_touch.c":61:5 -1
+     (nil))
+(insn 33 32 34 6 (set (reg:QI 107)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":61:5 -1
+     (nil))
+(insn 34 33 43 6 (set (reg:QI 91 [ <retval> ])
+        (reg:QI 107)) "../ncurses/./base/lib_touch.c":61:5 -1
+     (nil))
+(jump_insn 43 34 44 6 (set (pc)
+        (label_ref:DI 39)) "../ncurses/./base/lib_touch.c":61:5 807 {jump}
+     (nil)
+ -> 39)
+;;  succ:       10 [always]  count:427459043 (estimated locally)
+
+(barrier 44 43 46)
+;; basic block 7, loop depth 0, count 194239896 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [18.1% (guessed)]  count:194239896 (estimated locally)
+(code_label 46 44 45 7 3 (nil) [1 uses])
+(note 45 46 6 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 6 45 47 7 (set (reg:QI 91 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_touch.c":58:2 -1
+     (nil))
+(jump_insn 47 6 48 7 (set (pc)
+        (label_ref:DI 39)) 807 {jump}
+     (nil)
+ -> 39)
+;;  succ:       10 [always]  count:194239896 (estimated locally)
+
+(barrier 48 47 50)
+;; basic block 8, loop depth 0, count 452042884 (estimated locally), maybe hot
+;;  prev block 7, next block 10, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [34.6% (guessed)]  count:226021439 (estimated locally)
+;;              4 [25.7% (guessed)]  count:226021445 (estimated locally)
+(code_label 50 48 49 8 4 (nil) [2 uses])
+(note 49 50 5 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 5 49 39 8 (set (reg:QI 91 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_touch.c":58:2 -1
+     (nil))
+;;  succ:       10 [always]  count:452042884 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       8 [always]  count:452042884 (estimated locally) (FALLTHRU)
+;;              6 [always]  count:427459043 (estimated locally)
+;;              7 [always]  count:194239896 (estimated locally)
+(code_label 39 5 42 10 1 (nil) [2 uses])
+(note 42 39 40 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 40 42 41 10 (set (reg/i:QI 0 ax)
+        (reg:QI 91 [ <retval> ])) "../ncurses/./base/lib_touch.c":62:1 -1
+     (nil))
+(insn 41 40 0 10 (use (reg/i:QI 0 ax)) "../ncurses/./base/lib_touch.c":62:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+
+;; Function is_wintouched (is_wintouched, funcdef_no=92, decl_uid=5692, cgraph_uid=93, symbol_order=92)
+
+__attribute__((visibility ("default")))
+_Bool is_wintouched (struct WINDOW * win)
+{
+  unsigned long ivtmp.14;
+  int i;
+  struct ldat * _1;
+  int _5;
+  _Bool _8;
+  int _13;
+  struct ldat * _15;
+  void * _16;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (win_9(D) != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 7>; [30.00%]
+;;    succ:       3
+;;                7
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _13 = win_9(D)->_maxy;
+  if (_13 >= 0)
+    goto <bb 4>; [94.50%]
+  else
+    goto <bb 7>; [5.50%]
+;;    succ:       4
+;;                7
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _1 = win_9(D)->_line;
+  _15 = _1 + 8;
+  ivtmp.14_6 = (unsigned long) _15;
+;;    succ:       5
+
+;;   basic block 5, loop depth 1
+;;    pred:       6
+;;                4
+  # i_14 = PHI <i_11(6), 0(4)>
+  # ivtmp.14_12 = PHI <ivtmp.14_7(6), ivtmp.14_6(4)>
+  _16 = (void *) ivtmp.14_12;
+  _5 = MEM[(int *)_16];
+  if (_5 != -1)
+    goto <bb 7>; [5.50%]
+  else
+    goto <bb 6>; [94.50%]
+;;    succ:       7
+;;                6
+
+;;   basic block 6, loop depth 1
+;;    pred:       5
+  i_11 = i_14 + 1;
+  ivtmp.14_7 = ivtmp.14_12 + 24;
+  if (i_11 <= _13)
+    goto <bb 5>; [94.50%]
+  else
+    goto <bb 7>; [5.50%]
+;;    succ:       5
+;;                7
+
+;;   basic block 7, loop depth 0
+;;    pred:       5
+;;                3
+;;                2
+;;                6
+  # _8 = PHI <1(5), 0(3), 0(2), 0(6)>
+  return _8;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 3 (_3(D) - 3 )
+Partition 5 (_5 - 5 )
+Partition 6 (ivtmp.14_6 - 6 )
+Partition 7 (ivtmp.14_7 - 7 )
+Partition 8 (_8 - 8 )
+Partition 9 (win_9(D) - 9 )
+Partition 11 (i_11 - 11 )
+Partition 12 (ivtmp.14_12 - 12 )
+Partition 13 (_13 - 13 )
+Partition 14 (i_14 - 14 )
+Partition 15 (_15 - 15 )
+Partition 16 (_16 - 16 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_3(D) - 3 8 )
+Partition 1, base 1 (ivtmp.14_6 - 6 7 12 )
+Partition 4, base 2 (win_9(D) - 9 )
+Partition 5, base 3 (i_11 - 11 14 )
+
+
+Partition map 
+
+Partition 0 (_3(D) - 3 )
+Partition 1 (ivtmp.14_6 - 6 )
+Partition 2 (ivtmp.14_7 - 7 )
+Partition 3 (_8 - 8 )
+Partition 4 (win_9(D) - 9 )
+Partition 5 (i_11 - 11 )
+Partition 6 (ivtmp.14_12 - 12 )
+Partition 7 (i_14 - 14 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(16878, 0) i_11 <-> i_14
+(16878, 0) ivtmp.14_7 <-> ivtmp.14_12
+(1528, 0) _3(D) <-> _8
+(1011, 0) ivtmp.14_6 <-> ivtmp.14_12
+
+Partition map 
+
+Partition 0 (_3(D) - 3 )
+Partition 1 (ivtmp.14_6 - 6 )
+Partition 2 (ivtmp.14_7 - 7 )
+Partition 3 (_8 - 8 )
+Partition 4 (win_9(D) - 9 )
+Partition 5 (i_11 - 11 )
+Partition 6 (ivtmp.14_12 - 12 )
+Partition 7 (i_14 - 14 )
+
+Coalesce list: (11)i_11 & (14)i_14 [map: 5, 7] : Success -> 5
+Coalesce list: (7)ivtmp.14_7 & (12)ivtmp.14_12 [map: 2, 6] : Success -> 2
+Coalesce list: (3)_3(D) & (8)_8 [map: 0, 3] : Success -> 0
+Coalesce list: (6)ivtmp.14_6 & (12)ivtmp.14_7 [map: 1, 2] : Success -> 2
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_3(D) - 3 8 )
+Partition 2 (_5 - 5 )
+Partition 3 (ivtmp.14_7 - 6 7 12 )
+Partition 4 (win_9(D) - 9 )
+Partition 5 (i_11 - 11 14 )
+Partition 6 (_13 - 13 )
+Partition 7 (_15 - 15 )
+Partition 8 (_16 - 16 )
+
+
+Replacing Expressions
+_1 replace with --> _1 = win_9(D)->_line;
+
+_5 replace with --> _5 = MEM[(int *)_16];
+
+_15 replace with --> _15 = _1 + 8;
+
+_16 replace with --> _16 = (void *) ivtmp.14_12;
+
+
+__attribute__((visibility ("default")))
+_Bool is_wintouched (struct WINDOW * win)
+{
+  unsigned long ivtmp.14;
+  int i;
+  struct ldat * _1;
+  _Bool _3(D);
+  int _5;
+  _Bool _8;
+  int _13;
+  struct ldat * _15;
+  void * _16;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (win_9(D) != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 7>; [30.00%]
+;;    succ:       3
+;;                7
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _13 = win_9(D)->_maxy;
+  if (_13 >= 0)
+    goto <bb 4>; [94.50%]
+  else
+    goto <bb 7>; [5.50%]
+;;    succ:       4
+;;                7
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _1 = win_9(D)->_line;
+  _15 = _1 + 8;
+  ivtmp.14_6 = (unsigned long) _15;
+;;    succ:       5
+
+;;   basic block 5, loop depth 1
+;;    pred:       6
+;;                4
+  # i_14 = PHI <i_11(6), 0(4)>
+  # ivtmp.14_12 = PHI <ivtmp.14_7(6), ivtmp.14_6(4)>
+  _16 = (void *) ivtmp.14_12;
+  _5 = MEM[(int *)_16];
+  if (_5 != -1)
+    goto <bb 7>; [5.50%]
+  else
+    goto <bb 6>; [94.50%]
+;;    succ:       7
+;;                6
+
+;;   basic block 6, loop depth 1
+;;    pred:       5
+  i_11 = i_14 + 1;
+  ivtmp.14_7 = ivtmp.14_12 + 24;
+  if (i_11 <= _13)
+    goto <bb 5>; [94.50%]
+  else
+    goto <bb 7>; [5.50%]
+;;    succ:       5
+;;                7
+
+;;   basic block 7, loop depth 0
+;;    pred:       5
+;;                3
+;;                2
+;;                6
+  # _8 = PHI <1(5), 0(3), 0(2), 0(6)>
+  return _8;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB4->BB5 : PART.5 = 0
+Inserting a value copy on edge BB5->BB7 : PART.1 = 1
+Inserting a value copy on edge BB3->BB7 : PART.1 = 0
+Inserting a value copy on edge BB2->BB7 : PART.1 = 0
+Inserting a value copy on edge BB6->BB7 : PART.1 = 0
+
+;; Generating RTL for gimple basic block 2
+
+;; if (win_9(D) != 0B)
+
+(insn 11 10 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 90 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":69:8 -1
+     (nil))
+
+(jump_insn 12 11 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_touch.c":69:8 -1
+     (int_list:REG_BR_PROB 322122548 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _13 = win_9(D)->_maxy;
+
+(insn 14 13 0 (set (reg:SI 86 [ _13 ])
+        (mem:SI (plus:DI (reg/v/f:DI 90 [ win ])
+                (const_int 8 [0x8])) [1 win_9(D)->_maxy+0 S4 A64])) "../ncurses/./base/lib_touch.c":72:22 -1
+     (nil))
+
+;; if (_13 >= 0)
+
+(insn 17 14 18 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:SI 86 [ _13 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":72:16 -1
+     (nil))
+
+(jump_insn 18 17 0 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_touch.c":72:16 -1
+     (int_list:REG_BR_PROB 59055804 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; ivtmp.14_6 = (unsigned long) _15;
+
+(insn 20 19 21 (set (reg/f:DI 91)
+        (mem/f:DI (plus:DI (reg/v/f:DI 90 [ win ])
+                (const_int 56 [0x38])) [5 win_9(D)->_line+0 S8 A64])) -1
+     (nil))
+
+(insn 21 20 0 (parallel [
+            (set (reg:DI 84 [ ivtmp.14 ])
+                (plus:DI (reg/f:DI 91)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 90 [ win ])
+                    (const_int 56 [0x38])) [5 win_9(D)->_line+0 S8 A64])
+            (const_int 8 [0x8]))
+        (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; if (_5 != -1)
+
+(insn 23 22 24 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (reg:DI 84 [ ivtmp.14 ]) [1 MEM[(int *)_16]+0 S4 A64])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_touch.c":73:9 -1
+     (nil))
+
+(jump_insn 24 23 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_touch.c":73:9 -1
+     (int_list:REG_BR_PROB 59055804 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; i_11 = i_14 + 1;
+
+(insn 26 25 0 (parallel [
+            (set (reg/v:SI 85 [ i ])
+                (plus:SI (reg/v:SI 85 [ i ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":72:32 -1
+     (nil))
+
+;; ivtmp.14_7 = ivtmp.14_12 + 24;
+
+(insn 27 26 0 (parallel [
+            (set (reg:DI 84 [ ivtmp.14 ])
+                (plus:DI (reg:DI 84 [ ivtmp.14 ])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":72:16 -1
+     (nil))
+
+;; if (i_11 <= _13)
+
+(insn 29 27 30 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 85 [ i ])
+            (reg:SI 86 [ _13 ]))) "../ncurses/./base/lib_touch.c":72:16 -1
+     (nil))
+
+(jump_insn 30 29 0 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 28)
+            (pc))) "../ncurses/./base/lib_touch.c":72:16 -1
+     (int_list:REG_BR_PROB 1014686028 (nil)))
+
+;; Generating RTL for gimple basic block 7
+
+;; 
+
+(code_label 31 30 32 7 (nil) [0 uses])
+
+(note 32 31 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return _8;
+
+(jump_insn 33 32 34 (set (pc)
+        (label_ref 0)) "../ncurses/./base/lib_touch.c":77:1 -1
+     (nil))
+
+(barrier 34 33 0)
+Edge 2->7 redirected to 11
+Edge 3->7 redirected to 12
+Edge 5->7 redirected to 13
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 40 from 12 to 13.
+Redirecting jump 44 from 12 to 13.
+Redirecting jump 48 from 12 to 13.
+Merging block 12 into block 11...
+Merged blocks 11 and 12.
+Merged 11 and 12 without moving.
+Removing jump 33.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 9 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 164090757 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:164090757 (estimated locally) (FALLTHRU)
+(note 9 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 9 3 2 (set (reg/v/f:DI 90 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_touch.c":66:1 -1
+     (nil))
+(note 3 2 11 2 NOTE_INSN_FUNCTION_BEG)
+(insn 11 3 12 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 90 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":69:8 -1
+     (nil))
+(jump_insn 12 11 13 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 43)
+            (pc))) "../ncurses/./base/lib_touch.c":69:8 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 43)
+;;  succ:       4 [70.0% (guessed)]  count:114863530 (estimated locally) (FALLTHRU)
+;;              9 [30.0% (guessed)]  count:49227227 (estimated locally)
+
+;; basic block 4, loop depth 0, count 114863530 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [70.0% (guessed)]  count:114863530 (estimated locally) (FALLTHRU)
+(note 13 12 14 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 14 13 17 4 (set (reg:SI 86 [ _13 ])
+        (mem:SI (plus:DI (reg/v/f:DI 90 [ win ])
+                (const_int 8 [0x8])) [1 win_9(D)->_maxy+0 S4 A64])) "../ncurses/./base/lib_touch.c":72:22 -1
+     (nil))
+(insn 17 14 18 4 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:SI 86 [ _13 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":72:16 -1
+     (nil))
+(jump_insn 18 17 19 4 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 47)
+            (pc))) "../ncurses/./base/lib_touch.c":72:16 806 {*jcc}
+     (int_list:REG_BR_PROB 59055804 (nil))
+ -> 47)
+;;  succ:       5 [94.5% (guessed)]  count:108546036 (estimated locally) (FALLTHRU)
+;;              10 [5.5% (guessed)]  count:6317494 (estimated locally)
+
+;; basic block 5, loop depth 0, count 108546036 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [94.5% (guessed)]  count:108546036 (estimated locally) (FALLTHRU)
+(note 19 18 20 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 21 5 (set (reg/f:DI 91)
+        (mem/f:DI (plus:DI (reg/v/f:DI 90 [ win ])
+                (const_int 56 [0x38])) [5 win_9(D)->_line+0 S8 A64])) -1
+     (nil))
+(insn 21 20 4 5 (parallel [
+            (set (reg:DI 84 [ ivtmp.14 ])
+                (plus:DI (reg/f:DI 91)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 90 [ win ])
+                    (const_int 56 [0x38])) [5 win_9(D)->_line+0 S8 A64])
+            (const_int 8 [0x8]))
+        (nil)))
+(insn 4 21 28 5 (set (reg/v:SI 85 [ i ])
+        (const_int 0 [0])) "../ncurses/./base/lib_touch.c":72:9 -1
+     (nil))
+;;  succ:       6 [always]  count:108546036 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 1, count 1014686026 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [94.5% (guessed)]  count:906139989 (estimated locally) (DFS_BACK)
+;;              5 [always]  count:108546036 (estimated locally) (FALLTHRU)
+(code_label 28 4 22 6 8 (nil) [1 uses])
+(note 22 28 23 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 24 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (reg:DI 84 [ ivtmp.14 ]) [1 MEM[(int *)_16]+0 S4 A64])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_touch.c":73:9 -1
+     (nil))
+(jump_insn 24 23 25 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 51)
+            (pc))) "../ncurses/./base/lib_touch.c":73:9 806 {*jcc}
+     (int_list:REG_BR_PROB 59055804 (nil))
+ -> 51)
+;;  succ:       11 [5.5% (guessed)]  count:55807731 (estimated locally)
+;;              7 [94.5% (guessed)]  count:958878295 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 1, count 958878295 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [94.5% (guessed)]  count:958878295 (estimated locally) (FALLTHRU)
+(note 25 24 26 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 26 25 27 7 (parallel [
+            (set (reg/v:SI 85 [ i ])
+                (plus:SI (reg/v:SI 85 [ i ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":72:32 -1
+     (nil))
+(insn 27 26 29 7 (parallel [
+            (set (reg:DI 84 [ ivtmp.14 ])
+                (plus:DI (reg:DI 84 [ ivtmp.14 ])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":72:16 -1
+     (nil))
+(insn 29 27 30 7 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 85 [ i ])
+            (reg:SI 86 [ _13 ]))) "../ncurses/./base/lib_touch.c":72:16 -1
+     (nil))
+(jump_insn 30 29 39 7 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 28)
+            (pc))) "../ncurses/./base/lib_touch.c":72:16 -1
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 28)
+;;  succ:       6 [94.5% (guessed)]  count:906139989 (estimated locally) (DFS_BACK)
+;;              8 [5.5% (guessed)]  count:52738306 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 52738306 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       7 [5.5% (guessed)]  count:52738306 (estimated locally) (FALLTHRU)
+(note 39 30 8 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 8 39 40 8 (set (reg:QI 89 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_touch.c":76:5 -1
+     (nil))
+(jump_insn 40 8 41 8 (set (pc)
+        (label_ref:DI 35)) 807 {jump}
+     (nil)
+ -> 35)
+;;  succ:       13 [always]  count:52738306 (estimated locally)
+
+(barrier 41 40 43)
+;; basic block 9, loop depth 0, count 49227227 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [30.0% (guessed)]  count:49227227 (estimated locally)
+(code_label 43 41 42 9 9 (nil) [1 uses])
+(note 42 43 7 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 7 42 44 9 (set (reg:QI 89 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_touch.c":76:5 -1
+     (nil))
+(jump_insn 44 7 45 9 (set (pc)
+        (label_ref:DI 35)) 807 {jump}
+     (nil)
+ -> 35)
+;;  succ:       13 [always]  count:49227227 (estimated locally)
+
+(barrier 45 44 47)
+;; basic block 10, loop depth 0, count 6317494 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [5.5% (guessed)]  count:6317494 (estimated locally)
+(code_label 47 45 46 10 10 (nil) [1 uses])
+(note 46 47 6 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 6 46 48 10 (set (reg:QI 89 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_touch.c":76:5 -1
+     (nil))
+(jump_insn 48 6 49 10 (set (pc)
+        (label_ref:DI 35)) 807 {jump}
+     (nil)
+ -> 35)
+;;  succ:       13 [always]  count:6317494 (estimated locally)
+
+(barrier 49 48 51)
+;; basic block 11, loop depth 0, count 55807731 (estimated locally), maybe hot
+;;  prev block 10, next block 13, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       6 [5.5% (guessed)]  count:55807731 (estimated locally)
+(code_label 51 49 50 11 11 (nil) [1 uses])
+(note 50 51 5 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 5 50 35 11 (set (reg:QI 89 [ <retval> ])
+        (const_int 1 [0x1])) "../ncurses/./base/lib_touch.c":74:3 -1
+     (nil))
+;;  succ:       13 [always]  count:55807731 (estimated locally) (FALLTHRU)
+
+;; basic block 13, loop depth 0, count 164090758 (estimated locally), maybe hot
+;;  prev block 11, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       11 [always]  count:55807731 (estimated locally) (FALLTHRU)
+;;              8 [always]  count:52738306 (estimated locally)
+;;              9 [always]  count:49227227 (estimated locally)
+;;              10 [always]  count:6317494 (estimated locally)
+(code_label 35 5 38 13 6 (nil) [3 uses])
+(note 38 35 36 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 36 38 37 13 (set (reg/i:QI 0 ax)
+        (reg:QI 89 [ <retval> ])) "../ncurses/./base/lib_touch.c":77:1 -1
+     (nil))
+(insn 37 36 0 13 (use (reg/i:QI 0 ax)) "../ncurses/./base/lib_touch.c":77:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:164090758 (estimated locally) (FALLTHRU)
+
+
+;; Function wtouchln (wtouchln, funcdef_no=93, decl_uid=6325, cgraph_uid=94, symbol_order=93)
+
+__attribute__((visibility ("default")))
+int wtouchln (struct WINDOW * win, int y, int n, int changed)
+{
+  long unsigned int ivtmp.27;
+  int i;
+  _Bool _1;
+  int _4;
+  int _5;
+  _Bool _8;
+  int _11;
+  _Bool _12;
+  int iftmp.1_13;
+  _Bool _14;
+  _Bool _21;
+  int iftmp.1_22;
+  long unsigned int _25;
+  int _30;
+  struct ldat * pretmp_31;
+  _Bool _35;
+  struct ldat * _49;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _1 = win_16(D) == 0B;
+  _30 = n_17(D) | y_18(D);
+  _14 = _30 < 0;
+  _35 = _1 | _14;
+  if (_35 != 0)
+    goto <bb 9>; [1.76%]
+  else
+    goto <bb 3>; [98.24%]
+;;    succ:       9
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _4 = win_16(D)->_maxy;
+  if (_4 < y_18(D))
+    goto <bb 9>; [1.04%]
+  else
+    goto <bb 4>; [98.96%]
+;;    succ:       9
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _5 = n_17(D) + y_18(D);
+  if (_5 <= y_18(D))
+    goto <bb 5>; [10.70%]
+  else
+    goto <bb 6>; [89.30%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+;;                8
+  goto <bb 9>; [100.00%]
+;;    succ:       9
+
+;;   basic block 6, loop depth 0
+;;    pred:       4
+  _25 = (long unsigned int) y_18(D);
+  ivtmp.27_32 = _25 * 24;
+  pretmp_31 = win_16(D)->_line;
+;;    succ:       7
+
+;;   basic block 7, loop depth 1
+;;    pred:       8
+;;                6
+  # i_28 = PHI <i_24(8), y_18(D)(6)>
+  # ivtmp.27_34 = PHI <ivtmp.27_33(8), ivtmp.27_32(6)>
+  _49 = pretmp_31 + ivtmp.27_34;
+  if (changed_20(D) != 0)
+    goto <bb 10>; [50.00%]
+  else
+    goto <bb 11>; [50.00%]
+;;    succ:       10
+;;                11
+
+;;   basic block 8, loop depth 1
+;;    pred:       10
+;;                11
+  # iftmp.1_13 = PHI <iftmp.1_22(10), -1(11)>
+  _49->lastchar = iftmp.1_13;
+  i_24 = i_28 + 1;
+  _21 = _4 < i_24;
+  _12 = _5 <= i_24;
+  _8 = _12 | _21;
+  ivtmp.27_33 = ivtmp.27_34 + 24;
+  if (_8 != 0)
+    goto <bb 5>; [10.70%]
+  else
+    goto <bb 7>; [89.30%]
+;;    succ:       5
+;;                7
+
+;;   basic block 9, loop depth 0
+;;    pred:       3
+;;                5
+;;                2
+  # _11 = PHI <-1(3), 0(5), -1(2)>
+  return _11;
+;;    succ:       EXIT
+
+;;   basic block 10, loop depth 1
+;;    pred:       7
+  _49->firstchar = 0;
+  iftmp.1_22 = win_16(D)->_maxx;
+  goto <bb 8>; [100.00%]
+;;    succ:       8
+
+;;   basic block 11, loop depth 1
+;;    pred:       7
+  _49->firstchar = -1;
+  goto <bb 8>; [100.00%]
+;;    succ:       8
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (_2(D) - 2 )
+Partition 4 (_4 - 4 )
+Partition 5 (_5 - 5 )
+Partition 8 (_8 - 8 )
+Partition 11 (_11 - 11 )
+Partition 12 (_12 - 12 )
+Partition 13 (iftmp.1_13 - 13 )
+Partition 14 (_14 - 14 )
+Partition 16 (win_16(D) - 16 )
+Partition 17 (n_17(D) - 17 )
+Partition 18 (y_18(D) - 18 )
+Partition 20 (changed_20(D) - 20 )
+Partition 21 (_21 - 21 )
+Partition 22 (iftmp.1_22 - 22 )
+Partition 24 (i_24 - 24 )
+Partition 25 (_25 - 25 )
+Partition 28 (i_28 - 28 )
+Partition 30 (_30 - 30 )
+Partition 31 (pretmp_31 - 31 )
+Partition 32 (ivtmp.27_32 - 32 )
+Partition 33 (ivtmp.27_33 - 33 )
+Partition 34 (ivtmp.27_34 - 34 )
+Partition 35 (_35 - 35 )
+Partition 49 (_49 - 49 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_2(D) - 2 11 )
+Partition 2, base 1 (iftmp.1_13 - 13 22 )
+Partition 3, base 2 (win_16(D) - 16 )
+Partition 4, base 3 (n_17(D) - 17 )
+Partition 5, base 4 (y_18(D) - 18 24 28 )
+Partition 6, base 5 (changed_20(D) - 20 )
+Partition 10, base 6 (ivtmp.27_32 - 32 33 34 )
+
+
+Partition map 
+
+Partition 0 (_2(D) - 2 )
+Partition 1 (_11 - 11 )
+Partition 2 (iftmp.1_13 - 13 )
+Partition 3 (win_16(D) - 16 )
+Partition 4 (n_17(D) - 17 )
+Partition 5 (y_18(D) - 18 )
+Partition 6 (changed_20(D) - 20 )
+Partition 7 (iftmp.1_22 - 22 )
+Partition 8 (i_24 - 24 )
+Partition 9 (i_28 - 28 )
+Partition 10 (ivtmp.27_32 - 32 )
+Partition 11 (ivtmp.27_33 - 33 )
+Partition 12 (ivtmp.27_34 - 34 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(15950, 0) i_24 <-> i_28
+(15950, 0) ivtmp.27_33 <-> ivtmp.27_34
+(4465, 0) iftmp.1_13 <-> iftmp.1_22
+(1100, 0) _2(D) <-> _11
+(955, 0) y_18(D) <-> i_28
+(955, 0) ivtmp.27_32 <-> ivtmp.27_34
+
+Partition map 
+
+Partition 0 (_2(D) - 2 )
+Partition 1 (_11 - 11 )
+Partition 2 (iftmp.1_13 - 13 )
+Partition 3 (win_16(D) - 16 )
+Partition 4 (n_17(D) - 17 )
+Partition 5 (y_18(D) - 18 )
+Partition 6 (changed_20(D) - 20 )
+Partition 7 (iftmp.1_22 - 22 )
+Partition 8 (i_24 - 24 )
+Partition 9 (i_28 - 28 )
+Partition 10 (ivtmp.27_32 - 32 )
+Partition 11 (ivtmp.27_33 - 33 )
+Partition 12 (ivtmp.27_34 - 34 )
+
+Coalesce list: (24)i_24 & (28)i_28 [map: 8, 9] : Success -> 8
+Coalesce list: (33)ivtmp.27_33 & (34)ivtmp.27_34 [map: 11, 12] : Success -> 11
+Coalesce list: (13)iftmp.1_13 & (22)iftmp.1_22 [map: 2, 7] : Success -> 2
+Coalesce list: (2)_2(D) & (11)_11 [map: 0, 1] : Success -> 0
+Coalesce list: (18)y_18(D) & (28)i_24 [map: 5, 8] : Success -> 8
+Coalesce list: (32)ivtmp.27_32 & (34)ivtmp.27_33 [map: 10, 11] : Success -> 11
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_2(D) - 2 11 )
+Partition 2 (_4 - 4 )
+Partition 3 (_5 - 5 )
+Partition 4 (_8 - 8 )
+Partition 5 (_12 - 12 )
+Partition 6 (iftmp.1_13 - 13 22 )
+Partition 7 (_14 - 14 )
+Partition 8 (win_16(D) - 16 )
+Partition 9 (n_17(D) - 17 )
+Partition 10 (changed_20(D) - 20 )
+Partition 11 (_21 - 21 )
+Partition 12 (i_24 - 18 24 28 )
+Partition 13 (_25 - 25 )
+Partition 14 (_30 - 30 )
+Partition 15 (pretmp_31 - 31 )
+Partition 16 (ivtmp.27_33 - 32 33 34 )
+Partition 17 (_35 - 35 )
+Partition 18 (_49 - 49 )
+
+
+Replacing Expressions
+_1 replace with --> _1 = win_16(D) == 0B;
+
+_8 replace with --> _8 = _12 | _21;
+
+_12 replace with --> _12 = _5 <= i_24;
+
+_14 replace with --> _14 = _30 < 0;
+
+_21 replace with --> _21 = _4 < i_24;
+
+_25 replace with --> _25 = (long unsigned int) y_18(D);
+
+_30 replace with --> _30 = n_17(D) | y_18(D);
+
+_35 replace with --> _35 = _1 | _14;
+
+
+__attribute__((visibility ("default")))
+int wtouchln (struct WINDOW * win, int y, int n, int changed)
+{
+  long unsigned int ivtmp.27;
+  int i;
+  _Bool _1;
+  int _2(D);
+  int _4;
+  int _5;
+  _Bool _8;
+  int _11;
+  _Bool _12;
+  int iftmp.1_13;
+  _Bool _14;
+  _Bool _21;
+  int iftmp.1_22;
+  long unsigned int _25;
+  int _30;
+  struct ldat * pretmp_31;
+  _Bool _35;
+  struct ldat * _49;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _1 = win_16(D) == 0B;
+  _30 = n_17(D) | y_18(D);
+  _14 = _30 < 0;
+  _35 = _1 | _14;
+  if (_35 != 0)
+    goto <bb 9>; [1.76%]
+  else
+    goto <bb 3>; [98.24%]
+;;    succ:       9
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _4 = win_16(D)->_maxy;
+  if (_4 < y_18(D))
+    goto <bb 9>; [1.04%]
+  else
+    goto <bb 4>; [98.96%]
+;;    succ:       9
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _5 = n_17(D) + y_18(D);
+  if (_5 <= y_18(D))
+    goto <bb 5>; [10.70%]
+  else
+    goto <bb 6>; [89.30%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+;;                8
+  goto <bb 9>; [100.00%]
+;;    succ:       9
+
+;;   basic block 6, loop depth 0
+;;    pred:       4
+  _25 = (long unsigned int) y_18(D);
+  ivtmp.27_32 = _25 * 24;
+  pretmp_31 = win_16(D)->_line;
+;;    succ:       7
+
+;;   basic block 7, loop depth 1
+;;    pred:       8
+;;                6
+  # i_28 = PHI <i_24(8), y_18(D)(6)>
+  # ivtmp.27_34 = PHI <ivtmp.27_33(8), ivtmp.27_32(6)>
+  _49 = pretmp_31 + ivtmp.27_34;
+  if (changed_20(D) != 0)
+    goto <bb 10>; [50.00%]
+  else
+    goto <bb 11>; [50.00%]
+;;    succ:       10
+;;                11
+
+;;   basic block 8, loop depth 1
+;;    pred:       10
+;;                11
+  # iftmp.1_13 = PHI <iftmp.1_22(10), -1(11)>
+  _49->lastchar = iftmp.1_13;
+  i_24 = i_28 + 1;
+  _21 = _4 < i_24;
+  _12 = _5 <= i_24;
+  _8 = _12 | _21;
+  ivtmp.27_33 = ivtmp.27_34 + 24;
+  if (_8 != 0)
+    goto <bb 5>; [10.70%]
+  else
+    goto <bb 7>; [89.30%]
+;;    succ:       5
+;;                7
+
+;;   basic block 9, loop depth 0
+;;    pred:       3
+;;                5
+;;                2
+  # _11 = PHI <-1(3), 0(5), -1(2)>
+  return _11;
+;;    succ:       EXIT
+
+;;   basic block 10, loop depth 1
+;;    pred:       7
+  _49->firstchar = 0;
+  iftmp.1_22 = win_16(D)->_maxx;
+  goto <bb 8>; [100.00%]
+;;    succ:       8
+
+;;   basic block 11, loop depth 1
+;;    pred:       7
+  _49->firstchar = -1;
+  goto <bb 8>; [100.00%]
+;;    succ:       8
+
+}
+
+
+Inserting a value copy on edge BB11->BB8 : PART.6 = -1
+Inserting a value copy on edge BB3->BB9 : PART.1 = -1
+Inserting a value copy on edge BB5->BB9 : PART.1 = 0
+Inserting a value copy on edge BB2->BB9 : PART.1 = -1
+
+;; Generating RTL for gimple basic block 2
+Swap operands in stmt:
+_35 = _1 | _14;
+Cost left opnd=1, right opnd=2
+
+;; if (_35 != 0)
+
+(insn 13 12 16 (parallel [
+            (set (reg:SI 101)
+                (ior:SI (reg/v:SI 99 [ n ])
+                    (reg/v:SI 98 [ y ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":86:20 -1
+     (nil))
+
+(insn 16 13 17 (parallel [
+            (set (reg:SI 103)
+                (lshiftrt:SI (reg:SI 101)
+                    (const_int 31 [0x1f])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":86:20 -1
+     (nil))
+
+(insn 17 16 18 (set (reg:QI 104)
+        (subreg:QI (reg:SI 103) 0)) "../ncurses/./base/lib_touch.c":86:25 -1
+     (nil))
+
+(insn 18 17 19 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 104)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":86:25 -1
+     (nil))
+
+(jump_insn 19 18 20 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_touch.c":86:25 -1
+     (int_list:REG_BR_PROB 9461860 (nil)))
+
+(insn 20 19 21 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 97 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":86:9 -1
+     (nil))
+
+(insn 21 20 22 (set (reg:QI 106)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":86:9 -1
+     (nil))
+
+(insn 22 21 23 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 106)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":86:25 -1
+     (nil))
+
+(jump_insn 23 22 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_touch.c":86:25 -1
+     (int_list:REG_BR_PROB 9545972 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _4 = win_16(D)->_maxy;
+
+(insn 25 24 0 (set (reg:SI 83 [ _4 ])
+        (mem:SI (plus:DI (reg/v/f:DI 97 [ win ])
+                (const_int 8 [0x8])) [1 win_16(D)->_maxy+0 S4 A64])) "../ncurses/./base/lib_touch.c":86:47 -1
+     (nil))
+
+;; if (_4 < y_18(D))
+
+(insn 26 25 27 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 83 [ _4 ])
+            (reg/v:SI 98 [ y ]))) "../ncurses/./base/lib_touch.c":86:36 -1
+     (nil))
+
+(jump_insn 27 26 0 (set (pc)
+        (if_then_else (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_touch.c":86:36 -1
+     (int_list:REG_BR_PROB 11166916 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; _5 = n_17(D) + y_18(D);
+
+(insn 29 28 0 (parallel [
+            (set (reg:SI 84 [ _5 ])
+                (plus:SI (reg/v:SI 99 [ n ])
+                    (reg/v:SI 98 [ y ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":89:23 -1
+     (nil))
+
+;; if (_5 <= y_18(D))
+
+(insn 30 29 31 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 84 [ _5 ])
+            (reg/v:SI 98 [ y ]))) "../ncurses/./base/lib_touch.c":90:5 -1
+     (nil))
+
+(jump_insn 31 30 0 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_touch.c":90:5 -1
+     (int_list:REG_BR_PROB 958878300 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 35 34 36 18 (nil) [0 uses])
+
+(note 36 35 0 NOTE_INSN_BASIC_BLOCK)
+
+;; ivtmp.27_32 = _25 * 24;
+
+(insn 37 36 38 (set (reg:DI 107)
+        (sign_extend:DI (reg/v:SI 98 [ y ]))) -1
+     (nil))
+
+(insn 38 37 39 (set (reg:DI 108)
+        (reg:DI 107)) -1
+     (nil))
+
+(insn 39 38 40 (parallel [
+            (set (reg:DI 109)
+                (ashift:DI (reg:DI 108)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+(insn 40 39 41 (parallel [
+            (set (reg:DI 110)
+                (plus:DI (reg:DI 109)
+                    (reg:DI 107)))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 107)
+            (const_int 3 [0x3]))
+        (nil)))
+
+(insn 41 40 42 (parallel [
+            (set (reg:DI 111)
+                (ashift:DI (reg:DI 110)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+(insn 42 41 43 (set (reg:DI 110)
+        (reg:DI 111)) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 107)
+            (const_int 24 [0x18]))
+        (nil)))
+
+(insn 43 42 0 (set (reg:DI 93 [ ivtmp.27 ])
+        (reg:DI 110)) -1
+     (nil))
+
+;; pretmp_31 = win_16(D)->_line;
+
+(insn 44 43 0 (set (reg/f:DI 92 [ pretmp_31 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 97 [ win ])
+                (const_int 56 [0x38])) [5 win_16(D)->_line+0 S8 A64])) "../ncurses/./base/lib_touch.c":92:5 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 7
+
+;; _49 = pretmp_31 + ivtmp.27_34;
+
+(insn 46 45 0 (parallel [
+            (set (reg/f:DI 95 [ _49 ])
+                (plus:DI (reg/f:DI 92 [ pretmp_31 ])
+                    (reg:DI 93 [ ivtmp.27 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":92:12 -1
+     (nil))
+
+;; if (changed_20(D) != 0)
+
+(insn 47 46 48 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 100 [ changed ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":92:28 -1
+     (nil))
+
+(jump_insn 48 47 51 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_touch.c":92:28 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+(note 51 48 49 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 49 51 50 13 (set (pc)
+        (label_ref 0)) -1
+     (nil))
+
+(barrier 50 49 0)
+
+;; Generating RTL for gimple basic block 8
+
+;; _49->lastchar = iftmp.1_13;
+
+(insn 53 52 0 (set (mem:SI (plus:DI (reg/f:DI 95 [ _49 ])
+                (const_int 12 [0xc])) [1 _49->lastchar+0 S4 A32])
+        (reg:SI 87 [ iftmp.1_13 ])) "../ncurses/./base/lib_touch.c":93:25 -1
+     (nil))
+
+;; i_24 = i_28 + 1;
+
+(insn 54 53 0 (parallel [
+            (set (reg/v:SI 98 [ y ])
+                (plus:SI (reg/v:SI 98 [ y ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":89:29 -1
+     (nil))
+
+;; ivtmp.27_33 = ivtmp.27_34 + 24;
+
+(insn 55 54 0 (parallel [
+            (set (reg:DI 93 [ ivtmp.27 ])
+                (plus:DI (reg:DI 93 [ ivtmp.27 ])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":90:5 -1
+     (nil))
+
+;; if (_8 != 0)
+
+(insn 57 55 58 8 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 84 [ _5 ])
+            (reg/v:SI 98 [ y ]))) "../ncurses/./base/lib_touch.c":89:19 -1
+     (nil))
+
+(insn 58 57 59 8 (set (reg:QI 113)
+        (le:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":89:19 -1
+     (nil))
+
+(insn 59 58 60 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 113)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":90:5 -1
+     (nil))
+
+(jump_insn 60 59 61 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 56)
+            (pc))) "../ncurses/./base/lib_touch.c":90:5 -1
+     (int_list:REG_BR_PROB 57431772 (nil)))
+
+(insn 61 60 62 8 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 83 [ _4 ])
+            (reg/v:SI 98 [ y ]))) "../ncurses/./base/lib_touch.c":90:5 -1
+     (nil))
+
+(insn 62 61 63 8 (set (reg:QI 115)
+        (lt:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":90:5 -1
+     (nil))
+
+(insn 63 62 64 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 115)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":90:5 -1
+     (nil))
+
+(jump_insn 64 63 68 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 56)
+            (pc))) "../ncurses/./base/lib_touch.c":90:5 -1
+     (int_list:REG_BR_PROB 60677236 (nil)))
+
+(note 68 64 66 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 66 68 67 14 (set (pc)
+        (label_ref 65)) -1
+     (nil))
+
+(barrier 67 66 0)
+
+;; Generating RTL for gimple basic block 9
+
+;; 
+
+(code_label 69 67 70 17 (nil) [0 uses])
+
+(note 70 69 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return _11;
+
+(jump_insn 71 70 72 (set (pc)
+        (label_ref 0)) "../ncurses/./base/lib_touch.c":98:1 -1
+     (nil))
+
+(barrier 72 71 0)
+
+;; Generating RTL for gimple basic block 10
+
+;; 
+
+(code_label 73 72 74 19 (nil) [0 uses])
+
+(note 74 73 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _49->firstchar = 0;
+
+(insn 75 74 0 (set (mem:SI (plus:DI (reg/f:DI 95 [ _49 ])
+                (const_int 8 [0x8])) [1 _49->firstchar+0 S4 A64])
+        (const_int 0 [0])) "../ncurses/./base/lib_touch.c":92:26 -1
+     (nil))
+
+;; iftmp.1_22 = win_16(D)->_maxx;
+
+(insn 76 75 0 (set (reg:SI 87 [ iftmp.1_13 ])
+        (mem:SI (plus:DI (reg/v/f:DI 97 [ win ])
+                (const_int 12 [0xc])) [1 win_16(D)->_maxx+0 S4 A32])) "../ncurses/./base/lib_touch.c":93:27 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 11
+
+;; 
+
+(code_label 80 79 81 20 (nil) [0 uses])
+
+(note 81 80 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _49->firstchar = -1;
+
+(insn 82 81 0 (set (mem:SI (plus:DI (reg/f:DI 95 [ _49 ])
+                (const_int 8 [0x8])) [1 _49->firstchar+0 S4 A64])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_touch.c":92:26 -1
+     (nil))
+Edge 2->9 redirected to 16
+Edge 3->9 redirected to 17
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 33 from 16 to 19.
+Forwarding edge 9->10 to 18 failed.
+Redirecting jump 91 from 16 to 19.
+Merging block 16 into block 15...
+Merged blocks 15 and 16.
+Merged 15 and 16 without moving.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 9->10 to 18 failed.
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 11 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 118153002 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:118153002 (estimated locally) (FALLTHRU)
+(note 11 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 11 3 2 (set (reg/v/f:DI 97 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_touch.c":81:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 98 [ y ])
+        (reg:SI 4 si [ y ])) "../ncurses/./base/lib_touch.c":81:1 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:SI 99 [ n ])
+        (reg:SI 1 dx [ n ])) "../ncurses/./base/lib_touch.c":81:1 -1
+     (nil))
+(insn 5 4 6 2 (set (reg/v:SI 100 [ changed ])
+        (reg:SI 2 cx [ changed ])) "../ncurses/./base/lib_touch.c":81:1 -1
+     (nil))
+(note 6 5 13 2 NOTE_INSN_FUNCTION_BEG)
+(insn 13 6 16 2 (parallel [
+            (set (reg:SI 101)
+                (ior:SI (reg/v:SI 99 [ n ])
+                    (reg/v:SI 98 [ y ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":86:20 -1
+     (nil))
+(insn 16 13 17 2 (parallel [
+            (set (reg:SI 103)
+                (lshiftrt:SI (reg:SI 101)
+                    (const_int 31 [0x1f])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":86:20 -1
+     (nil))
+(insn 17 16 18 2 (set (reg:QI 104)
+        (subreg:QI (reg:SI 103) 0)) "../ncurses/./base/lib_touch.c":86:25 -1
+     (nil))
+(insn 18 17 19 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 104)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":86:25 -1
+     (nil))
+(jump_insn 19 18 95 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 90)
+            (pc))) "../ncurses/./base/lib_touch.c":86:25 806 {*jcc}
+     (int_list:REG_BR_PROB 9461860 (nil))
+ -> 90)
+;;  succ:       14 [0.9% (guessed)]  count:1041169 (estimated locally)
+;;              4 [99.1% (guessed)]  count:117111833 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 117111833 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL)
+;;  pred:       2 [99.1% (guessed)]  count:117111833 (estimated locally) (FALLTHRU)
+(note 95 19 20 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 20 95 21 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 97 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":86:9 -1
+     (nil))
+(insn 21 20 22 4 (set (reg:QI 106)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":86:9 -1
+     (nil))
+(insn 22 21 23 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 106)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":86:25 -1
+     (nil))
+(jump_insn 23 22 24 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 90)
+            (pc))) "../ncurses/./base/lib_touch.c":86:25 806 {*jcc}
+     (int_list:REG_BR_PROB 9545972 (nil))
+ -> 90)
+;;  succ:       14 [0.9% (guessed)]  count:1041168 (estimated locally)
+;;              5 [99.1% (guessed)]  count:116070665 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 116070665 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [99.1% (guessed)]  count:116070665 (estimated locally) (FALLTHRU)
+(note 24 23 25 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 25 24 26 5 (set (reg:SI 83 [ _4 ])
+        (mem:SI (plus:DI (reg/v/f:DI 97 [ win ])
+                (const_int 8 [0x8])) [1 win_16(D)->_maxy+0 S4 A64])) "../ncurses/./base/lib_touch.c":86:47 -1
+     (nil))
+(insn 26 25 27 5 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 83 [ _4 ])
+            (reg/v:SI 98 [ y ]))) "../ncurses/./base/lib_touch.c":86:36 -1
+     (nil))
+(jump_insn 27 26 28 5 (set (pc)
+        (if_then_else (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 94)
+            (pc))) "../ncurses/./base/lib_touch.c":86:36 806 {*jcc}
+     (int_list:REG_BR_PROB 11166916 (nil))
+ -> 94)
+;;  succ:       15 [1.0% (guessed)]  count:1207135 (estimated locally)
+;;              6 [99.0% (guessed)]  count:114863530 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 114863530 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [99.0% (guessed)]  count:114863530 (estimated locally) (FALLTHRU)
+(note 28 27 29 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 6 (parallel [
+            (set (reg:SI 84 [ _5 ])
+                (plus:SI (reg/v:SI 99 [ n ])
+                    (reg/v:SI 98 [ y ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":89:23 -1
+     (nil))
+(insn 30 29 31 6 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 84 [ _5 ])
+            (reg/v:SI 98 [ y ]))) "../ncurses/./base/lib_touch.c":90:5 -1
+     (nil))
+(jump_insn 31 30 56 6 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 35)
+            (pc))) "../ncurses/./base/lib_touch.c":90:5 -1
+     (int_list:REG_BR_PROB 958878300 (nil))
+ -> 35)
+;;  succ:       7 [10.7% (guessed)]  count:12287526 (estimated locally) (FALLTHRU)
+;;              8 [89.3% (guessed)]  count:102576004 (estimated locally)
+
+;; basic block 7, loop depth 0, count 114863528 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       6 [10.7% (guessed)]  count:12287526 (estimated locally) (FALLTHRU)
+;;              12 [5.7% (guessed)]  count:51287996 (estimated locally)
+;;              11 [5.3% (guessed)]  count:51288005 (estimated locally)
+(code_label 56 31 32 7 21 (nil) [2 uses])
+(note 32 56 9 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 9 32 33 7 (set (reg:SI 96 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_touch.c":97:5 -1
+     (nil))
+(jump_insn 33 9 34 7 (set (pc)
+        (label_ref:DI 85)) "../ncurses/./base/lib_touch.c":90:5 807 {jump}
+     (nil)
+ -> 85)
+;;  succ:       19 [always]  count:114863528 (estimated locally)
+
+(barrier 34 33 35)
+;; basic block 8, loop depth 0, count 102576004 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [89.3% (guessed)]  count:102576004 (estimated locally)
+(code_label 35 34 36 8 18 (nil) [1 uses])
+(note 36 35 37 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 37 36 38 8 (set (reg:DI 107)
+        (sign_extend:DI (reg/v:SI 98 [ y ]))) -1
+     (nil))
+(insn 38 37 39 8 (set (reg:DI 108)
+        (reg:DI 107)) -1
+     (nil))
+(insn 39 38 40 8 (parallel [
+            (set (reg:DI 109)
+                (ashift:DI (reg:DI 108)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 40 39 41 8 (parallel [
+            (set (reg:DI 110)
+                (plus:DI (reg:DI 109)
+                    (reg:DI 107)))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 107)
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 41 40 42 8 (parallel [
+            (set (reg:DI 111)
+                (ashift:DI (reg:DI 110)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 42 41 43 8 (set (reg:DI 110)
+        (reg:DI 111)) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 107)
+            (const_int 24 [0x18]))
+        (nil)))
+(insn 43 42 44 8 (set (reg:DI 93 [ ivtmp.27 ])
+        (reg:DI 110)) -1
+     (nil))
+(insn 44 43 65 8 (set (reg/f:DI 92 [ pretmp_31 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 97 [ win ])
+                (const_int 56 [0x38])) [5 win_16(D)->_line+0 S8 A64])) "../ncurses/./base/lib_touch.c":92:5 -1
+     (nil))
+;;  succ:       9 [always]  count:102576004 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 1, count 958878295 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [always]  count:102576004 (estimated locally) (FALLTHRU)
+;;              13 [always]  count:856302293 (estimated locally)
+(code_label 65 44 45 9 22 (nil) [1 uses])
+(note 45 65 46 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 46 45 47 9 (parallel [
+            (set (reg/f:DI 95 [ _49 ])
+                (plus:DI (reg/f:DI 92 [ pretmp_31 ])
+                    (reg:DI 93 [ ivtmp.27 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":92:12 -1
+     (nil))
+(insn 47 46 48 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 100 [ changed ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":92:28 -1
+     (nil))
+(jump_insn 48 47 51 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 73)
+            (pc))) "../ncurses/./base/lib_touch.c":92:28 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 73)
+;;  succ:       17 [50.0% (guessed)]  count:479439148 (estimated locally)
+;;              10 [50.0% (guessed)]  count:479439148 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 1, count 479439148 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL)
+;;  pred:       9 [50.0% (guessed)]  count:479439148 (estimated locally) (FALLTHRU)
+(note 51 48 49 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 49 51 50 10 (set (pc)
+        (label_ref 80)) -1
+     (nil)
+ -> 80)
+;;  succ:       18 [always]  count:479439148 (estimated locally)
+
+(barrier 50 49 77)
+;; basic block 11, loop depth 1, count 958878295 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       17 [always]  count:479439148 (estimated locally)
+;;              18 [always (guessed)]  count:479439147 (estimated locally)
+(code_label 77 50 52 11 23 (nil) [2 uses])
+(note 52 77 53 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 53 52 54 11 (set (mem:SI (plus:DI (reg/f:DI 95 [ _49 ])
+                (const_int 12 [0xc])) [1 _49->lastchar+0 S4 A32])
+        (reg:SI 87 [ iftmp.1_13 ])) "../ncurses/./base/lib_touch.c":93:25 -1
+     (nil))
+(insn 54 53 55 11 (parallel [
+            (set (reg/v:SI 98 [ y ])
+                (plus:SI (reg/v:SI 98 [ y ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":89:29 -1
+     (nil))
+(insn 55 54 57 11 (parallel [
+            (set (reg:DI 93 [ ivtmp.27 ])
+                (plus:DI (reg:DI 93 [ ivtmp.27 ])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_touch.c":90:5 -1
+     (nil))
+(insn 57 55 58 11 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 84 [ _5 ])
+            (reg/v:SI 98 [ y ]))) "../ncurses/./base/lib_touch.c":89:19 -1
+     (nil))
+(insn 58 57 59 11 (set (reg:QI 113)
+        (le:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":89:19 -1
+     (nil))
+(insn 59 58 60 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 113)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":90:5 -1
+     (nil))
+(jump_insn 60 59 96 11 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 56)
+            (pc))) "../ncurses/./base/lib_touch.c":90:5 -1
+     (int_list:REG_BR_PROB 57431772 (nil))
+ -> 56)
+;;  succ:       7 [5.3% (guessed)]  count:51288005 (estimated locally)
+;;              12 [94.7% (guessed)]  count:907590290 (estimated locally) (FALLTHRU)
+
+;; basic block 12, loop depth 1, count 907590290 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL)
+;;  pred:       11 [94.7% (guessed)]  count:907590290 (estimated locally) (FALLTHRU)
+(note 96 60 61 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 61 96 62 12 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 83 [ _4 ])
+            (reg/v:SI 98 [ y ]))) "../ncurses/./base/lib_touch.c":90:5 -1
+     (nil))
+(insn 62 61 63 12 (set (reg:QI 115)
+        (lt:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":90:5 -1
+     (nil))
+(insn 63 62 64 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 115)
+            (const_int 0 [0]))) "../ncurses/./base/lib_touch.c":90:5 -1
+     (nil))
+(jump_insn 64 63 68 12 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 56)
+            (pc))) "../ncurses/./base/lib_touch.c":90:5 -1
+     (int_list:REG_BR_PROB 60677236 (nil))
+ -> 56)
+;;  succ:       7 [5.7% (guessed)]  count:51287996 (estimated locally)
+;;              13 [94.3% (guessed)]  count:856302294 (estimated locally) (FALLTHRU,DFS_BACK)
+
+;; basic block 13, loop depth 1, count 856302293 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL)
+;;  pred:       12 [94.3% (guessed)]  count:856302294 (estimated locally) (FALLTHRU,DFS_BACK)
+(note 68 64 66 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 66 68 67 13 (set (pc)
+        (label_ref 65)) -1
+     (nil)
+ -> 65)
+;;  succ:       9 [always]  count:856302293 (estimated locally)
+
+(barrier 67 66 90)
+;; basic block 14, loop depth 0, count 2082337 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [0.9% (guessed)]  count:1041168 (estimated locally)
+;;              2 [0.9% (guessed)]  count:1041169 (estimated locally)
+(code_label 90 67 89 14 24 (nil) [2 uses])
+(note 89 90 10 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 10 89 91 14 (set (reg:SI 96 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_touch.c":87:2 -1
+     (nil))
+(jump_insn 91 10 92 14 (set (pc)
+        (label_ref:DI 85)) 807 {jump}
+     (nil)
+ -> 85)
+;;  succ:       19 [always]  count:2082337 (estimated locally)
+
+(barrier 92 91 94)
+;; basic block 15, loop depth 0, count 1207135 (estimated locally), maybe hot
+;;  prev block 14, next block 17, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [1.0% (guessed)]  count:1207135 (estimated locally)
+(code_label 94 92 93 15 25 (nil) [1 uses])
+(note 93 94 8 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 8 93 71 15 (set (reg:SI 96 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_touch.c":87:2 -1
+     (nil))
+(jump_insn 71 8 72 15 (set (pc)
+        (label_ref 85)) "../ncurses/./base/lib_touch.c":98:1 -1
+     (nil)
+ -> 85)
+;;  succ:       19 [always]  count:1207135 (estimated locally)
+
+(barrier 72 71 73)
+;; basic block 17, loop depth 1, count 479439148 (estimated locally), maybe hot
+;;  prev block 15, next block 18, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       9 [50.0% (guessed)]  count:479439148 (estimated locally)
+(code_label 73 72 74 17 19 (nil) [1 uses])
+(note 74 73 75 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 75 74 76 17 (set (mem:SI (plus:DI (reg/f:DI 95 [ _49 ])
+                (const_int 8 [0x8])) [1 _49->firstchar+0 S4 A64])
+        (const_int 0 [0])) "../ncurses/./base/lib_touch.c":92:26 -1
+     (nil))
+(insn 76 75 78 17 (set (reg:SI 87 [ iftmp.1_13 ])
+        (mem:SI (plus:DI (reg/v/f:DI 97 [ win ])
+                (const_int 12 [0xc])) [1 win_16(D)->_maxx+0 S4 A32])) "../ncurses/./base/lib_touch.c":93:27 -1
+     (nil))
+(jump_insn 78 76 79 17 (set (pc)
+        (label_ref 77)) -1
+     (nil)
+ -> 77)
+;;  succ:       11 [always]  count:479439148 (estimated locally)
+
+(barrier 79 78 80)
+;; basic block 18, loop depth 1, count 479439147 (estimated locally), maybe hot
+;;  prev block 17, next block 19, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       10 [always]  count:479439148 (estimated locally)
+(code_label 80 79 81 18 20 (nil) [1 uses])
+(note 81 80 82 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 82 81 7 18 (set (mem:SI (plus:DI (reg/f:DI 95 [ _49 ])
+                (const_int 8 [0x8])) [1 _49->firstchar+0 S4 A64])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_touch.c":92:26 -1
+     (nil))
+(insn 7 82 83 18 (set (reg:SI 87 [ iftmp.1_13 ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_touch.c":93:27 -1
+     (nil))
+(jump_insn 83 7 84 18 (set (pc)
+        (label_ref 77)) "../ncurses/./base/lib_touch.c":92:26 -1
+     (nil)
+ -> 77)
+;;  succ:       11 [always (guessed)]  count:479439147 (estimated locally)
+
+(barrier 84 83 85)
+;; basic block 19, loop depth 0, count 118153003 (estimated locally), maybe hot
+;;  prev block 18, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       15 [always]  count:1207135 (estimated locally)
+;;              7 [always]  count:114863528 (estimated locally)
+;;              14 [always]  count:2082337 (estimated locally)
+(code_label 85 84 88 19 16 (nil) [3 uses])
+(note 88 85 86 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 86 88 87 19 (set (reg/i:SI 0 ax)
+        (reg:SI 96 [ <retval> ])) "../ncurses/./base/lib_touch.c":98:1 -1
+     (nil))
+(insn 87 86 0 19 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_touch.c":98:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:118153003 (estimated locally) (FALLTHRU)
+

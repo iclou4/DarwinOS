@@ -1,0 +1,732 @@
+
+;; Function wattr_on (wattr_on, funcdef_no=93, decl_uid=6188, cgraph_uid=94, symbol_order=93)
+
+__attribute__((visibility ("default")))
+int wattr_on (struct WINDOW * win, attr_t at, void * opts)
+{
+  unsigned int _1;
+  int _6;
+  unsigned int _12;
+  unsigned int _13;
+  unsigned int _15;
+  int _16;
+  unsigned int pretmp_35;
+  long unsigned int _36;
+  long unsigned int _37;
+  int _38;
+  int _39;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (win_20(D) != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 10>; [0.87%]
+;;    succ:       3
+;;                10
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = at_22(D) & 65280;
+  _36 = (long unsigned int) at_22(D);
+  _37 = _36 >> 8;
+  _38 = (int) _37;
+  _39 = _38 & 255;
+  if (_1 != 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+;;    succ:       5
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+;;                5
+  goto <bb 7>; [100.00%]
+;;    succ:       7
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+  win_20(D)->_color = _39;
+  if (opts_24(D) != 0B)
+    goto <bb 6>; [70.00%]
+  else
+    goto <bb 4>; [30.00%]
+;;    succ:       6
+;;                4
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  _6 = MEM[(const int *)opts_24(D)];
+  win_20(D)->_color = _6;
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       4
+;;                6
+  pretmp_35 = win_20(D)->_attrs;
+  if (_39 != 0)
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+;;    succ:       8
+;;                9
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+  _12 = pretmp_35 & 4294902015;
+  _13 = _12 | at_22(D);
+  win_20(D)->_attrs = _13;
+  goto <bb 10>; [100.00%]
+;;    succ:       10
+
+;;   basic block 9, loop depth 0
+;;    pred:       7
+  _15 = at_22(D) | pretmp_35;
+  win_20(D)->_attrs = _15;
+;;    succ:       10
+
+;;   basic block 10, loop depth 0
+;;    pred:       9
+;;                2
+;;                8
+  # _16 = PHI <_39(9), -1(2), 0(8)>
+  return _16;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 3 (_3(D) - 3 )
+Partition 6 (_6 - 6 )
+Partition 12 (_12 - 12 )
+Partition 13 (_13 - 13 )
+Partition 15 (_15 - 15 )
+Partition 16 (_16 - 16 )
+Partition 20 (win_20(D) - 20 )
+Partition 22 (at_22(D) - 22 )
+Partition 24 (opts_24(D) - 24 )
+Partition 35 (pretmp_35 - 35 )
+Partition 36 (_36 - 36 )
+Partition 37 (_37 - 37 )
+Partition 38 (_38 - 38 )
+Partition 39 (_39 - 39 )
+
+
+Coalescible Partition map 
+
+Partition 1, base 0 (_3(D) - 3 16 39 )
+Partition 2, base 1 (win_20(D) - 20 )
+Partition 3, base 2 (at_22(D) - 22 )
+Partition 4, base 3 (opts_24(D) - 24 )
+
+
+Partition map 
+
+Partition 0 (_3(D) - 3 )
+Partition 1 (_16 - 16 )
+Partition 2 (win_20(D) - 20 )
+Partition 3 (at_22(D) - 22 )
+Partition 4 (opts_24(D) - 24 )
+Partition 5 (_39 - 39 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) _3(D) <-> _16
+(4957, 0) _16 <-> _39
+
+Partition map 
+
+Partition 0 (_3(D) - 3 )
+Partition 1 (_16 - 16 )
+Partition 2 (win_20(D) - 20 )
+Partition 3 (at_22(D) - 22 )
+Partition 4 (opts_24(D) - 24 )
+Partition 5 (_39 - 39 )
+
+Coalesce list: (3)_3(D) & (16)_16 [map: 0, 1] : Success -> 0
+Coalesce list: (16)_3(D) & (39)_39 [map: 0, 5] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_3(D) - 3 16 39 )
+Partition 2 (_6 - 6 )
+Partition 3 (_12 - 12 )
+Partition 4 (_13 - 13 )
+Partition 5 (_15 - 15 )
+Partition 6 (win_20(D) - 20 )
+Partition 7 (at_22(D) - 22 )
+Partition 8 (opts_24(D) - 24 )
+Partition 9 (pretmp_35 - 35 )
+Partition 10 (_36 - 36 )
+Partition 11 (_37 - 37 )
+Partition 12 (_38 - 38 )
+
+
+Replacing Expressions
+_1 replace with --> _1 = at_22(D) & 65280;
+
+_12 replace with --> _12 = pretmp_35 & 4294902015;
+
+_13 replace with --> _13 = _12 | at_22(D);
+
+_15 replace with --> _15 = at_22(D) | pretmp_35;
+
+_36 replace with --> _36 = (long unsigned int) at_22(D);
+
+_37 replace with --> _37 = _36 >> 8;
+
+_38 replace with --> _38 = (int) _37;
+
+
+__attribute__((visibility ("default")))
+int wattr_on (struct WINDOW * win, attr_t at, void * opts)
+{
+  unsigned int _1;
+  int _3(D);
+  int _6;
+  unsigned int _12;
+  unsigned int _13;
+  unsigned int _15;
+  int _16;
+  unsigned int pretmp_35;
+  long unsigned int _36;
+  long unsigned int _37;
+  int _38;
+  int _39;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (win_20(D) != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 10>; [0.87%]
+;;    succ:       3
+;;                10
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = at_22(D) & 65280;
+  _36 = (long unsigned int) at_22(D);
+  _37 = _36 >> 8;
+  _38 = (int) _37;
+  _39 = _38 & 255;
+  if (_1 != 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+;;    succ:       5
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+;;                5
+  goto <bb 7>; [100.00%]
+;;    succ:       7
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+  win_20(D)->_color = _39;
+  if (opts_24(D) != 0B)
+    goto <bb 6>; [70.00%]
+  else
+    goto <bb 4>; [30.00%]
+;;    succ:       6
+;;                4
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  _6 = MEM[(const int *)opts_24(D)];
+  win_20(D)->_color = _6;
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       4
+;;                6
+  pretmp_35 = win_20(D)->_attrs;
+  if (_39 != 0)
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+;;    succ:       8
+;;                9
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+  _12 = pretmp_35 & 4294902015;
+  _13 = _12 | at_22(D);
+  win_20(D)->_attrs = _13;
+  goto <bb 10>; [100.00%]
+;;    succ:       10
+
+;;   basic block 9, loop depth 0
+;;    pred:       7
+  _15 = at_22(D) | pretmp_35;
+  win_20(D)->_attrs = _15;
+;;    succ:       10
+
+;;   basic block 10, loop depth 0
+;;    pred:       9
+;;                2
+;;                8
+  # _16 = PHI <_39(9), -1(2), 0(8)>
+  return _16;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB2->BB10 : PART.1 = -1
+Inserting a value copy on edge BB8->BB10 : PART.1 = 0
+
+;; Generating RTL for gimple basic block 2
+
+;; if (win_20(D) != 0B)
+
+(insn 10 9 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 92 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_wattron.c":52:8 -1
+     (nil))
+
+(jump_insn 11 10 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_wattron.c":52:8 -1
+     (int_list:REG_BR_PROB 9341556 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _39 = _38 & 255;
+
+(insn 13 12 14 (set (reg:DI 95)
+        (zero_extend:DI (reg/v:SI 93 [ at ]))) "../ncurses/./base/lib_wattron.c":57:2 -1
+     (nil))
+
+(insn 14 13 15 (parallel [
+            (set (reg:DI 96)
+                (lshiftrt:DI (reg:DI 95)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_wattron.c":57:2 -1
+     (nil))
+
+(insn 15 14 0 (set (reg:SI 91 [ <retval> ])
+        (zero_extend:SI (subreg:QI (reg:DI 96) 0))) "../ncurses/./base/lib_wattron.c":57:2 -1
+     (nil))
+
+;; if (_1 != 0)
+
+(insn 16 15 17 (parallel [
+            (set (reg:SI 97)
+                (and:SI (reg/v:SI 93 [ at ])
+                    (const_int 65280 [0xff00])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_wattron.c":57:2 -1
+     (nil))
+
+(insn 17 16 18 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 97)
+            (const_int 0 [0]))) "../ncurses/./base/lib_wattron.c":57:2 -1
+     (nil))
+
+(jump_insn 18 17 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_wattron.c":57:2 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; Generating RTL for gimple basic block 5
+
+;; 
+
+(code_label 22 21 23 3 (nil) [0 uses])
+
+(note 23 22 0 NOTE_INSN_BASIC_BLOCK)
+
+;; win_20(D)->_color = _39;
+
+(insn 24 23 0 (set (mem:SI (plus:DI (reg/v/f:DI 92 [ win ])
+                (const_int 148 [0x94])) [1 win_20(D)->_color+0 S4 A32])
+        (reg:SI 91 [ <retval> ])) "../ncurses/./base/lib_wattron.c":57:2 -1
+     (nil))
+
+;; if (opts_24(D) != 0B)
+
+(insn 26 24 27 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 94 [ opts ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_wattron.c":57:2 -1
+     (nil))
+
+(jump_insn 27 26 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 25)
+            (pc))) "../ncurses/./base/lib_wattron.c":57:2 -1
+     (int_list:REG_BR_PROB 322122548 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; _6 = MEM[(const int *)opts_24(D)];
+
+(insn 29 28 0 (set (reg:SI 83 [ _6 ])
+        (mem:SI (reg/v/f:DI 94 [ opts ]) [1 MEM[(const int *)opts_24(D)]+0 S4 A32])) "../ncurses/./base/lib_wattron.c":57:2 -1
+     (nil))
+
+;; win_20(D)->_color = _6;
+
+(insn 30 29 0 (set (mem:SI (plus:DI (reg/v/f:DI 92 [ win ])
+                (const_int 148 [0x94])) [1 win_20(D)->_color+0 S4 A32])
+        (reg:SI 83 [ _6 ])) "../ncurses/./base/lib_wattron.c":57:2 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 7
+
+;; 
+
+(code_label 31 30 32 4 (nil) [0 uses])
+
+(note 32 31 0 NOTE_INSN_BASIC_BLOCK)
+
+;; pretmp_35 = win_20(D)->_attrs;
+
+(insn 33 32 0 (set (reg:SI 87 [ pretmp_35 ])
+        (mem:SI (plus:DI (reg/v/f:DI 92 [ win ])
+                (const_int 28 [0x1c])) [1 win_20(D)->_attrs+0 S4 A32])) "../ncurses/./base/lib_wattron.c":63:2 -1
+     (nil))
+
+;; if (_39 != 0)
+
+(insn 34 33 35 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 91 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_wattron.c":63:2 -1
+     (nil))
+
+(jump_insn 35 34 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_wattron.c":63:2 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 8
+
+;; win_20(D)->_attrs = _13;
+
+(insn 37 36 38 (parallel [
+            (set (reg:SI 98)
+                (and:SI (reg:SI 87 [ pretmp_35 ])
+                    (const_int -65281 [0xffffffffffff00ff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_wattron.c":63:2 -1
+     (nil))
+
+(insn 38 37 39 (parallel [
+            (set (reg:SI 99)
+                (ior:SI (reg:SI 98)
+                    (reg/v:SI 93 [ at ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_wattron.c":63:2 -1
+     (nil))
+
+(insn 39 38 0 (set (mem:SI (plus:DI (reg/v/f:DI 92 [ win ])
+                (const_int 28 [0x1c])) [1 win_20(D)->_attrs+0 S4 A32])
+        (reg:SI 99)) "../ncurses/./base/lib_wattron.c":63:2 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 9
+
+;; 
+
+(code_label 42 41 43 6 (nil) [0 uses])
+
+(note 43 42 0 NOTE_INSN_BASIC_BLOCK)
+
+;; win_20(D)->_attrs = _15;
+
+(insn 44 43 45 (parallel [
+            (set (reg:SI 100)
+                (ior:SI (reg/v:SI 93 [ at ])
+                    (reg:SI 87 [ pretmp_35 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_wattron.c":63:2 -1
+     (nil))
+
+(insn 45 44 0 (set (mem:SI (plus:DI (reg/v/f:DI 92 [ win ])
+                (const_int 28 [0x1c])) [1 win_20(D)->_attrs+0 S4 A32])
+        (reg:SI 100)) "../ncurses/./base/lib_wattron.c":63:2 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 10
+
+;; 
+
+(code_label 46 45 47 2 (nil) [0 uses])
+
+(note 47 46 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return _16;
+
+(jump_insn 48 47 49 (set (pc)
+        (label_ref 0)) "../ncurses/./base/lib_wattron.c":67:1 -1
+     (nil))
+
+(barrier 49 48 0)
+Edge 2->10 redirected to 13
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 4->5 to 8 failed.
+Edge 6->5 redirected to 8
+Redirecting jump 40 from 12 to 13.
+Redirecting jump 54 from 12 to 13.
+Merging block 12 into block 11...
+Merged blocks 11 and 12.
+Merged 11 and 12 without moving.
+Removing jump 48.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 4->5 to 8 failed.
+Deleted label in block 5.
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 8 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741823 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741823 (estimated locally) (FALLTHRU)
+(note 8 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg/v/f:DI 92 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_wattron.c":50:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 93 [ at ])
+        (reg:SI 4 si [ at ])) "../ncurses/./base/lib_wattron.c":50:1 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v/f:DI 94 [ opts ])
+        (reg:DI 1 dx [ opts ])) "../ncurses/./base/lib_wattron.c":50:1 -1
+     (nil))
+(note 5 4 10 2 NOTE_INSN_FUNCTION_BEG)
+(insn 10 5 11 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 92 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_wattron.c":52:8 -1
+     (nil))
+(jump_insn 11 10 12 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 57)
+            (pc))) "../ncurses/./base/lib_wattron.c":52:8 806 {*jcc}
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 57)
+;;  succ:       4 [99.1% (guessed)]  count:1064400271 (estimated locally) (FALLTHRU)
+;;              11 [0.9% (guessed)]  count:9341552 (estimated locally)
+
+;; basic block 4, loop depth 0, count 1064400271 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [99.1% (guessed)]  count:1064400271 (estimated locally) (FALLTHRU)
+(note 12 11 13 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 13 12 14 4 (set (reg:DI 95)
+        (zero_extend:DI (reg/v:SI 93 [ at ]))) "../ncurses/./base/lib_wattron.c":57:2 -1
+     (nil))
+(insn 14 13 15 4 (parallel [
+            (set (reg:DI 96)
+                (lshiftrt:DI (reg:DI 95)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_wattron.c":57:2 -1
+     (nil))
+(insn 15 14 16 4 (set (reg:SI 91 [ <retval> ])
+        (zero_extend:SI (subreg:QI (reg:DI 96) 0))) "../ncurses/./base/lib_wattron.c":57:2 -1
+     (nil))
+(insn 16 15 17 4 (parallel [
+            (set (reg:SI 97)
+                (and:SI (reg/v:SI 93 [ at ])
+                    (const_int 65280 [0xff00])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_wattron.c":57:2 -1
+     (nil))
+(insn 17 16 18 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 97)
+            (const_int 0 [0]))) "../ncurses/./base/lib_wattron.c":57:2 -1
+     (nil))
+(jump_insn 18 17 19 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 22)
+            (pc))) "../ncurses/./base/lib_wattron.c":57:2 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 22)
+;;  succ:       6 [50.0% (guessed)]  count:532200136 (estimated locally)
+;;              5 [50.0% (guessed)]  count:532200136 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 532200136 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [50.0% (guessed)]  count:532200136 (estimated locally) (FALLTHRU)
+(note 19 18 20 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 20 19 21 5 (set (pc)
+        (label_ref 31)) -1
+     (nil)
+ -> 31)
+;;  succ:       8 [always]  count:532200136 (estimated locally)
+
+(barrier 21 20 22)
+;; basic block 6, loop depth 0, count 532200135 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [50.0% (guessed)]  count:532200136 (estimated locally)
+(code_label 22 21 23 6 3 (nil) [1 uses])
+(note 23 22 24 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 26 6 (set (mem:SI (plus:DI (reg/v/f:DI 92 [ win ])
+                (const_int 148 [0x94])) [1 win_20(D)->_color+0 S4 A32])
+        (reg:SI 91 [ <retval> ])) "../ncurses/./base/lib_wattron.c":57:2 -1
+     (nil))
+(insn 26 24 27 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 94 [ opts ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_wattron.c":57:2 -1
+     (nil))
+(jump_insn 27 26 28 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 31)
+            (pc))) "../ncurses/./base/lib_wattron.c":57:2 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 31)
+;;  succ:       7 [70.0% (guessed)]  count:372540096 (estimated locally) (FALLTHRU)
+;;              8 [30.0% (guessed)]  count:159660039 (estimated locally)
+
+;; basic block 7, loop depth 0, count 372540097 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [70.0% (guessed)]  count:372540096 (estimated locally) (FALLTHRU)
+(note 28 27 29 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 7 (set (reg:SI 83 [ _6 ])
+        (mem:SI (reg/v/f:DI 94 [ opts ]) [1 MEM[(const int *)opts_24(D)]+0 S4 A32])) "../ncurses/./base/lib_wattron.c":57:2 -1
+     (nil))
+(insn 30 29 31 7 (set (mem:SI (plus:DI (reg/v/f:DI 92 [ win ])
+                (const_int 148 [0x94])) [1 win_20(D)->_color+0 S4 A32])
+        (reg:SI 83 [ _6 ])) "../ncurses/./base/lib_wattron.c":57:2 -1
+     (nil))
+;;  succ:       8 [always]  count:372540097 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 1064400272 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [always]  count:532200136 (estimated locally)
+;;              7 [always]  count:372540097 (estimated locally) (FALLTHRU)
+;;              6 [30.0% (guessed)]  count:159660039 (estimated locally)
+(code_label 31 30 32 8 4 (nil) [2 uses])
+(note 32 31 33 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 33 32 34 8 (set (reg:SI 87 [ pretmp_35 ])
+        (mem:SI (plus:DI (reg/v/f:DI 92 [ win ])
+                (const_int 28 [0x1c])) [1 win_20(D)->_attrs+0 S4 A32])) "../ncurses/./base/lib_wattron.c":63:2 -1
+     (nil))
+(insn 34 33 35 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 91 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_wattron.c":63:2 -1
+     (nil))
+(jump_insn 35 34 36 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 42)
+            (pc))) "../ncurses/./base/lib_wattron.c":63:2 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 42)
+;;  succ:       9 [50.0% (guessed)]  count:532200136 (estimated locally) (FALLTHRU)
+;;              10 [50.0% (guessed)]  count:532200136 (estimated locally)
+
+;; basic block 9, loop depth 0, count 532200136 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       8 [50.0% (guessed)]  count:532200136 (estimated locally) (FALLTHRU)
+(note 36 35 37 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 37 36 38 9 (parallel [
+            (set (reg:SI 98)
+                (and:SI (reg:SI 87 [ pretmp_35 ])
+                    (const_int -65281 [0xffffffffffff00ff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_wattron.c":63:2 -1
+     (nil))
+(insn 38 37 39 9 (parallel [
+            (set (reg:SI 99)
+                (ior:SI (reg:SI 98)
+                    (reg/v:SI 93 [ at ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_wattron.c":63:2 -1
+     (nil))
+(insn 39 38 7 9 (set (mem:SI (plus:DI (reg/v/f:DI 92 [ win ])
+                (const_int 28 [0x1c])) [1 win_20(D)->_attrs+0 S4 A32])
+        (reg:SI 99)) "../ncurses/./base/lib_wattron.c":63:2 -1
+     (nil))
+(insn 7 39 40 9 (set (reg:SI 91 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_wattron.c":64:2 -1
+     (nil))
+(jump_insn 40 7 41 9 (set (pc)
+        (label_ref:DI 50)) 807 {jump}
+     (nil)
+ -> 50)
+;;  succ:       13 [always]  count:532200136 (estimated locally)
+
+(barrier 41 40 42)
+;; basic block 10, loop depth 0, count 532200136 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       8 [50.0% (guessed)]  count:532200136 (estimated locally)
+(code_label 42 41 43 10 6 (nil) [1 uses])
+(note 43 42 44 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 44 43 45 10 (parallel [
+            (set (reg:SI 100)
+                (ior:SI (reg/v:SI 93 [ at ])
+                    (reg:SI 87 [ pretmp_35 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_wattron.c":63:2 -1
+     (nil))
+(insn 45 44 54 10 (set (mem:SI (plus:DI (reg/v/f:DI 92 [ win ])
+                (const_int 28 [0x1c])) [1 win_20(D)->_attrs+0 S4 A32])
+        (reg:SI 100)) "../ncurses/./base/lib_wattron.c":63:2 -1
+     (nil))
+(jump_insn 54 45 55 10 (set (pc)
+        (label_ref:DI 50)) 807 {jump}
+     (nil)
+ -> 50)
+;;  succ:       13 [always]  count:532200136 (estimated locally)
+
+(barrier 55 54 57)
+;; basic block 11, loop depth 0, count 9341552 (estimated locally), maybe hot
+;;  prev block 10, next block 13, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [0.9% (guessed)]  count:9341552 (estimated locally)
+(code_label 57 55 56 11 7 (nil) [1 uses])
+(note 56 57 6 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 6 56 50 11 (set (reg:SI 91 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_wattron.c":66:2 -1
+     (nil))
+;;  succ:       13 [always]  count:9341552 (estimated locally) (FALLTHRU)
+
+;; basic block 13, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 11, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       11 [always]  count:9341552 (estimated locally) (FALLTHRU)
+;;              9 [always]  count:532200136 (estimated locally)
+;;              10 [always]  count:532200136 (estimated locally)
+(code_label 50 6 53 13 1 (nil) [2 uses])
+(note 53 50 51 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 51 53 52 13 (set (reg/i:SI 0 ax)
+        (reg:SI 91 [ <retval> ])) "../ncurses/./base/lib_wattron.c":67:1 -1
+     (nil))
+(insn 52 51 0 13 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_wattron.c":67:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+

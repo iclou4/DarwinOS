@@ -1,0 +1,1017 @@
+
+;; Function termname_sp (termname_sp, funcdef_no=91, decl_uid=6687, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+char * termname_sp (struct SCREEN * sp)
+{
+  char * name;
+  struct TERMINAL * _1;
+  struct TERMINAL * _2;
+  struct TERMINAL * _3;
+  struct TERMINAL * iftmp.2_7;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (sp_8(D) != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 5>; [30.00%]
+;;    succ:       3
+;;                5
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = sp_8(D)->_term;
+  if (_1 != 0B)
+    goto <bb 6>; [70.00%]
+  else
+    goto <bb 4>; [30.00%]
+;;    succ:       6
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _2 = _nc_prescreen._cur_term;
+  if (_2 != 0B)
+    goto <bb 6>; [0.00%]
+  else
+    goto <bb 7>; [100.00%]
+;;    succ:       6
+;;                7
+
+;;   basic block 5, loop depth 0
+;;    pred:       2
+  _3 = _nc_prescreen._cur_term;
+  if (_3 != 0B)
+    goto <bb 6>; [64.55%]
+  else
+    goto <bb 7>; [35.45%]
+;;    succ:       6
+;;                7
+
+;;   basic block 6, loop depth 0
+;;    pred:       4
+;;                5
+;;                3
+  # iftmp.2_7 = PHI <_2(4), _3(5), _1(3)>
+  name_14 = iftmp.2_7->_termname;
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       5
+;;                6
+;;                4
+  # name_5 = PHI <_3(5), name_14(6), _2(4)>
+  return name_5;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 5 (name_5 - 5 )
+Partition 7 (iftmp.2_7 - 7 )
+Partition 8 (sp_8(D) - 8 )
+Partition 12 (_12(D) - 12 )
+Partition 14 (name_14 - 14 )
+
+
+Coalescible Partition map 
+
+Partition 1, base 0 (_1 - 1 2 3 5 7 12 14 )
+Partition 5, base 1 (sp_8(D) - 8 )
+
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_2 - 2 )
+Partition 2 (_3 - 3 )
+Partition 3 (name_5 - 5 )
+Partition 4 (iftmp.2_7 - 7 )
+Partition 5 (sp_8(D) - 8 )
+Partition 6 (_12(D) - 12 )
+Partition 7 (name_14 - 14 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) name_5 <-> _12(D)
+(9800, 0) _1 <-> iftmp.2_7
+(7100, 0) name_5 <-> name_14
+(4200, 0) _2 <-> name_5
+(3872, 0) _3 <-> iftmp.2_7
+(2128, 0) _3 <-> name_5
+(2, 0) _2 <-> iftmp.2_7
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_2 - 2 )
+Partition 2 (_3 - 3 )
+Partition 3 (name_5 - 5 )
+Partition 4 (iftmp.2_7 - 7 )
+Partition 5 (sp_8(D) - 8 )
+Partition 6 (_12(D) - 12 )
+Partition 7 (name_14 - 14 )
+
+Coalesce list: (5)name_5 & (12)_12(D) [map: 3, 6] : Success -> 3
+Coalesce list: (1)_1 & (7)iftmp.2_7 [map: 0, 4] : Success -> 0
+Coalesce list: (5)name_5 & (14)name_14 [map: 3, 7] : Success -> 3
+Coalesce list: (2)_2 & (5)name_5 [map: 1, 3] : Success -> 3
+Coalesce list: (3)_3 & (7)_1 [map: 2, 0] : Success -> 0
+Coalesce list: (3)_1 & (5)name_5 [map: 0, 3] : Success -> 3
+Coalesce list: (2)name_5 & (7)name_5: Already Coalesced.
+After Coalescing:
+
+Partition map 
+
+Partition 0 (name_5 - 1 2 3 5 7 12 14 )
+Partition 1 (sp_8(D) - 8 )
+
+__attribute__((visibility ("default")))
+char * termname_sp (struct SCREEN * sp)
+{
+  char * name;
+  struct TERMINAL * _1;
+  struct TERMINAL * _2;
+  struct TERMINAL * _3;
+  struct TERMINAL * iftmp.2_7;
+  char * _12(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (sp_8(D) != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 5>; [30.00%]
+;;    succ:       3
+;;                5
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = sp_8(D)->_term;
+  if (_1 != 0B)
+    goto <bb 6>; [70.00%]
+  else
+    goto <bb 4>; [30.00%]
+;;    succ:       6
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _2 = _nc_prescreen._cur_term;
+  if (_2 != 0B)
+    goto <bb 6>; [0.00%]
+  else
+    goto <bb 7>; [100.00%]
+;;    succ:       6
+;;                7
+
+;;   basic block 5, loop depth 0
+;;    pred:       2
+  _3 = _nc_prescreen._cur_term;
+  if (_3 != 0B)
+    goto <bb 6>; [64.55%]
+  else
+    goto <bb 7>; [35.45%]
+;;    succ:       6
+;;                7
+
+;;   basic block 6, loop depth 0
+;;    pred:       4
+;;                5
+;;                3
+  # iftmp.2_7 = PHI <_2(4), _3(5), _1(3)>
+  name_14 = iftmp.2_7->_termname;
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       5
+;;                6
+;;                4
+  # name_5 = PHI <_3(5), name_14(6), _2(4)>
+  return name_5;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; if (sp_8(D) != 0B)
+
+(insn 6 5 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 83 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_termname.c":42:29 -1
+     (nil))
+
+(jump_insn 7 6 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/lib_termname.c":42:29 -1
+     (int_list:REG_BR_PROB 322122548 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _1 = sp_8(D)->_term;
+
+(insn 9 8 0 (set (reg/v/f:DI 82 [ <retval> ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 83 [ sp ])
+                (const_int 48 [0x30])) [1 sp_8(D)->_term+0 S8 A64])) "../ncurses/./tinfo/lib_termname.c":42:9 -1
+     (nil))
+
+;; if (_1 != 0B)
+
+(insn 10 9 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 82 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_termname.c":42:29 -1
+     (nil))
+
+(jump_insn 11 10 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/lib_termname.c":42:29 -1
+     (int_list:REG_BR_PROB 751619284 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; _2 = _nc_prescreen._cur_term;
+
+(insn 13 12 14 (set (reg/f:DI 84)
+        (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7fdf07705f30 _nc_prescreen>)) "../ncurses/./tinfo/lib_termname.c":42:9 -1
+     (nil))
+
+(insn 14 13 0 (set (reg/v/f:DI 82 [ <retval> ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 84)
+                (const_int 680 [0x2a8])) [1 _nc_prescreen._cur_term+0 S8 A64])) "../ncurses/./tinfo/lib_termname.c":42:9 -1
+     (nil))
+
+;; if (_2 != 0B)
+
+(insn 15 14 16 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 82 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_termname.c":42:8 -1
+     (nil))
+
+(jump_insn 16 15 19 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/lib_termname.c":42:8 -1
+     (int_list:REG_BR_PROB 4 (nil)))
+
+(note 19 16 17 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 17 19 18 9 (set (pc)
+        (label_ref 0)) "../ncurses/./tinfo/lib_termname.c":42:8 -1
+     (nil))
+
+(barrier 18 17 0)
+
+;; Generating RTL for gimple basic block 5
+
+;; 
+
+(code_label 20 18 21 2 (nil) [0 uses])
+
+(note 21 20 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _3 = _nc_prescreen._cur_term;
+
+(insn 22 21 23 (set (reg/f:DI 85)
+        (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7fdf07705f30 _nc_prescreen>)) "../ncurses/./tinfo/lib_termname.c":42:9 -1
+     (nil))
+
+(insn 23 22 0 (set (reg/v/f:DI 82 [ <retval> ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 85)
+                (const_int 680 [0x2a8])) [1 _nc_prescreen._cur_term+0 S8 A64])) "../ncurses/./tinfo/lib_termname.c":42:9 -1
+     (nil))
+
+;; if (_3 != 0B)
+
+(insn 24 23 25 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 82 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_termname.c":42:8 -1
+     (nil))
+
+(jump_insn 25 24 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/lib_termname.c":42:8 -1
+     (int_list:REG_BR_PROB 380690276 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 26 25 27 3 (nil) [0 uses])
+
+(note 27 26 0 NOTE_INSN_BASIC_BLOCK)
+
+;; name_14 = iftmp.2_7->_termname;
+
+(insn 28 27 0 (set (reg/v/f:DI 82 [ <retval> ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ <retval> ])
+                (const_int 200 [0xc8])) [7 iftmp.2_7->_termname+0 S8 A64])) "../ncurses/./tinfo/lib_termname.c":43:7 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 7
+
+;; 
+
+(code_label 29 28 30 4 (nil) [0 uses])
+
+(note 30 29 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return name_5;
+
+(jump_insn 31 30 32 (set (pc)
+        (label_ref 0)) "../ncurses/./tinfo/lib_termname.c":50:5 -1
+     (nil))
+
+(barrier 32 31 0)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 5->6 to 10 failed.
+Redirecting jump 17 from 9 to 10.
+Edge 7->9 redirected to 10
+Merging block 9 into block 8...
+Merged blocks 8 and 9.
+Merged 8 and 9 without moving.
+Removing jump 31.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 5->6 to 10 failed.
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 83 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./tinfo/lib_termname.c":36:1 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 83 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_termname.c":42:29 -1
+     (nil))
+(jump_insn 7 6 8 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 20)
+            (pc))) "../ncurses/./tinfo/lib_termname.c":42:29 -1
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 20)
+;;  succ:       4 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+;;              7 [30.0% (guessed)]  count:322122544 (estimated locally)
+
+;; basic block 4, loop depth 0, count 751619281 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+(note 8 7 9 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 9 8 10 4 (set (reg/v/f:DI 82 [ <retval> ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 83 [ sp ])
+                (const_int 48 [0x30])) [1 sp_8(D)->_term+0 S8 A64])) "../ncurses/./tinfo/lib_termname.c":42:9 -1
+     (nil))
+(insn 10 9 11 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 82 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_termname.c":42:29 -1
+     (nil))
+(jump_insn 11 10 12 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 26)
+            (pc))) "../ncurses/./tinfo/lib_termname.c":42:29 -1
+     (int_list:REG_BR_PROB 751619284 (nil))
+ -> 26)
+;;  succ:       8 [70.0% (guessed)]  count:526133499 (estimated locally)
+;;              5 [30.0% (guessed)]  count:225485782 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 225485782 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [30.0% (guessed)]  count:225485782 (estimated locally) (FALLTHRU)
+(note 12 11 13 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 13 12 14 5 (set (reg/f:DI 84)
+        (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7fdf07705f30 _nc_prescreen>)) "../ncurses/./tinfo/lib_termname.c":42:9 -1
+     (nil))
+(insn 14 13 15 5 (set (reg/v/f:DI 82 [ <retval> ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 84)
+                (const_int 680 [0x2a8])) [1 _nc_prescreen._cur_term+0 S8 A64])) "../ncurses/./tinfo/lib_termname.c":42:9 -1
+     (nil))
+(insn 15 14 16 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 82 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_termname.c":42:8 -1
+     (nil))
+(jump_insn 16 15 19 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 26)
+            (pc))) "../ncurses/./tinfo/lib_termname.c":42:8 -1
+     (int_list:REG_BR_PROB 4 (nil))
+ -> 26)
+;;  succ:       8 [never (guessed)]  count:0 (estimated locally)
+;;              6 [always (guessed)]  count:225485782 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 225485782 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       5 [always (guessed)]  count:225485782 (estimated locally) (FALLTHRU)
+(note 19 16 17 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 17 19 18 6 (set (pc)
+        (label_ref:DI 33)) "../ncurses/./tinfo/lib_termname.c":42:8 807 {jump}
+     (nil)
+ -> 33)
+;;  succ:       10 [always]  count:225485782 (estimated locally)
+
+(barrier 18 17 20)
+;; basic block 7, loop depth 0, count 322122544 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [30.0% (guessed)]  count:322122544 (estimated locally)
+(code_label 20 18 21 7 2 (nil) [1 uses])
+(note 21 20 22 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 23 7 (set (reg/f:DI 85)
+        (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7fdf07705f30 _nc_prescreen>)) "../ncurses/./tinfo/lib_termname.c":42:9 -1
+     (nil))
+(insn 23 22 24 7 (set (reg/v/f:DI 82 [ <retval> ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 85)
+                (const_int 680 [0x2a8])) [1 _nc_prescreen._cur_term+0 S8 A64])) "../ncurses/./tinfo/lib_termname.c":42:9 -1
+     (nil))
+(insn 24 23 25 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 82 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_termname.c":42:8 -1
+     (nil))
+(jump_insn 25 24 26 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 33)
+            (pc))) "../ncurses/./tinfo/lib_termname.c":42:8 806 {*jcc}
+     (int_list:REG_BR_PROB 380690276 (nil))
+ -> 33)
+;;  succ:       8 [64.5% (guessed)]  count:207915464 (estimated locally) (FALLTHRU)
+;;              10 [35.5% (guessed)]  count:114207080 (estimated locally)
+
+;; basic block 8, loop depth 0, count 762356697 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 734048963 (estimated locally), should be 762356697 (estimated locally)
+;;  prev block 7, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [never (guessed)]  count:0 (estimated locally)
+;;              7 [64.5% (guessed)]  count:207915464 (estimated locally) (FALLTHRU)
+;;              4 [70.0% (guessed)]  count:526133499 (estimated locally)
+(code_label 26 25 27 8 3 (nil) [2 uses])
+(note 27 26 28 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 33 8 (set (reg/v/f:DI 82 [ <retval> ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ <retval> ])
+                (const_int 200 [0xc8])) [7 iftmp.2_7->_termname+0 S8 A64])) "../ncurses/./tinfo/lib_termname.c":43:7 -1
+     (nil))
+;;  succ:       10 [always]  count:762356697 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 1102049559 (estimated locally), should be 1073741824 (estimated locally)
+;;  prev block 8, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       8 [always]  count:762356697 (estimated locally) (FALLTHRU)
+;;              6 [always]  count:225485782 (estimated locally)
+;;              7 [35.5% (guessed)]  count:114207080 (estimated locally)
+(code_label 33 28 36 10 1 (nil) [2 uses])
+(note 36 33 34 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 34 36 35 10 (set (reg/i:DI 0 ax)
+        (reg/v/f:DI 82 [ <retval> ])) "../ncurses/./tinfo/lib_termname.c":51:1 -1
+     (nil))
+(insn 35 34 0 10 (use (reg/i:DI 0 ax)) "../ncurses/./tinfo/lib_termname.c":51:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+
+;; Function termname (termname, funcdef_no=92, decl_uid=6111, cgraph_uid=93, symbol_order=92)
+
+__attribute__((visibility ("default")))
+char * termname ()
+{
+  char * name;
+  struct SCREEN * SP.4_1;
+  struct TERMINAL * _4;
+  struct TERMINAL * _5;
+  struct TERMINAL * _7;
+  struct TERMINAL * iftmp.2_13;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.4_1 = SP;
+  if (SP.4_1 != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 5>; [30.00%]
+;;    succ:       3
+;;                5
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _4 = SP.4_1->_term;
+  if (_4 != 0B)
+    goto <bb 6>; [70.00%]
+  else
+    goto <bb 4>; [30.00%]
+;;    succ:       6
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _5 = _nc_prescreen._cur_term;
+  if (_5 != 0B)
+    goto <bb 6>; [0.00%]
+  else
+    goto <bb 7>; [100.00%]
+;;    succ:       6
+;;                7
+
+;;   basic block 5, loop depth 0
+;;    pred:       2
+  _7 = _nc_prescreen._cur_term;
+  if (_7 != 0B)
+    goto <bb 6>; [64.55%]
+  else
+    goto <bb 7>; [35.45%]
+;;    succ:       6
+;;                7
+
+;;   basic block 6, loop depth 0
+;;    pred:       3
+;;                4
+;;                5
+  # iftmp.2_13 = PHI <_4(3), _5(4), _7(5)>
+  name_14 = iftmp.2_13->_termname;
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       5
+;;                6
+;;                4
+  # name_15 = PHI <_7(5), name_14(6), _5(4)>
+  return name_15;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (SP.4_1 - 1 )
+Partition 4 (_4 - 4 )
+Partition 5 (_5 - 5 )
+Partition 7 (_7 - 7 )
+Partition 13 (iftmp.2_13 - 13 )
+Partition 14 (name_14 - 14 )
+Partition 15 (name_15 - 15 )
+Partition 22 (_22(D) - 22 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_4 - 4 5 7 13 14 15 22 )
+
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_5 - 5 )
+Partition 2 (_7 - 7 )
+Partition 3 (iftmp.2_13 - 13 )
+Partition 4 (name_14 - 14 )
+Partition 5 (name_15 - 15 )
+Partition 6 (_22(D) - 22 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) name_15 <-> _22(D)
+(9800, 0) _4 <-> iftmp.2_13
+(7100, 0) name_14 <-> name_15
+(4200, 0) _5 <-> name_15
+(3872, 0) _7 <-> iftmp.2_13
+(2128, 0) _7 <-> name_15
+(2, 0) _5 <-> iftmp.2_13
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_5 - 5 )
+Partition 2 (_7 - 7 )
+Partition 3 (iftmp.2_13 - 13 )
+Partition 4 (name_14 - 14 )
+Partition 5 (name_15 - 15 )
+Partition 6 (_22(D) - 22 )
+
+Coalesce list: (15)name_15 & (22)_22(D) [map: 5, 6] : Success -> 5
+Coalesce list: (4)_4 & (13)iftmp.2_13 [map: 0, 3] : Success -> 0
+Coalesce list: (14)name_14 & (15)name_15 [map: 4, 5] : Success -> 5
+Coalesce list: (5)_5 & (15)name_15 [map: 1, 5] : Success -> 5
+Coalesce list: (7)_7 & (13)_4 [map: 2, 0] : Success -> 0
+Coalesce list: (7)_4 & (15)name_15 [map: 0, 5] : Success -> 5
+Coalesce list: (5)name_15 & (13)name_15: Already Coalesced.
+After Coalescing:
+
+Partition map 
+
+Partition 0 (SP.4_1 - 1 )
+Partition 1 (name_15 - 4 5 7 13 14 15 22 )
+
+__attribute__((visibility ("default")))
+char * termname ()
+{
+  char * name;
+  struct SCREEN * SP.4_1;
+  struct TERMINAL * _4;
+  struct TERMINAL * _5;
+  struct TERMINAL * _7;
+  struct TERMINAL * iftmp.2_13;
+  char * _22(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.4_1 = SP;
+  if (SP.4_1 != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 5>; [30.00%]
+;;    succ:       3
+;;                5
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _4 = SP.4_1->_term;
+  if (_4 != 0B)
+    goto <bb 6>; [70.00%]
+  else
+    goto <bb 4>; [30.00%]
+;;    succ:       6
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _5 = _nc_prescreen._cur_term;
+  if (_5 != 0B)
+    goto <bb 6>; [0.00%]
+  else
+    goto <bb 7>; [100.00%]
+;;    succ:       6
+;;                7
+
+;;   basic block 5, loop depth 0
+;;    pred:       2
+  _7 = _nc_prescreen._cur_term;
+  if (_7 != 0B)
+    goto <bb 6>; [64.55%]
+  else
+    goto <bb 7>; [35.45%]
+;;    succ:       6
+;;                7
+
+;;   basic block 6, loop depth 0
+;;    pred:       3
+;;                4
+;;                5
+  # iftmp.2_13 = PHI <_4(3), _5(4), _7(5)>
+  name_14 = iftmp.2_13->_termname;
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       5
+;;                6
+;;                4
+  # name_15 = PHI <_7(5), name_14(6), _5(4)>
+  return name_15;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; SP.4_1 = SP;
+
+(insn 5 4 0 (set (reg/f:DI 82 [ SP.4_1 ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7fdf07773cf0 SP>) [38 SP+0 S8 A64])) "../ncurses/./tinfo/lib_termname.c":57:12 -1
+     (nil))
+
+;; if (SP.4_1 != 0B)
+
+(insn 6 5 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ SP.4_1 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_termname.c":42:29 -1
+     (nil))
+
+(jump_insn 7 6 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/lib_termname.c":42:29 -1
+     (int_list:REG_BR_PROB 322122548 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _4 = SP.4_1->_term;
+
+(insn 9 8 0 (set (reg/v/f:DI 83 [ <retval> ])
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ SP.4_1 ])
+                (const_int 48 [0x30])) [1 SP.4_1->_term+0 S8 A64])) "../ncurses/./tinfo/lib_termname.c":42:9 -1
+     (nil))
+
+;; if (_4 != 0B)
+
+(insn 10 9 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 83 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_termname.c":42:29 -1
+     (nil))
+
+(jump_insn 11 10 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/lib_termname.c":42:29 -1
+     (int_list:REG_BR_PROB 751619284 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; _5 = _nc_prescreen._cur_term;
+
+(insn 13 12 14 (set (reg/f:DI 84)
+        (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7fdf07705f30 _nc_prescreen>)) "../ncurses/./tinfo/lib_termname.c":42:9 -1
+     (nil))
+
+(insn 14 13 0 (set (reg/v/f:DI 83 [ <retval> ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 84)
+                (const_int 680 [0x2a8])) [1 _nc_prescreen._cur_term+0 S8 A64])) "../ncurses/./tinfo/lib_termname.c":42:9 -1
+     (nil))
+
+;; if (_5 != 0B)
+
+(insn 15 14 16 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 83 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_termname.c":42:8 -1
+     (nil))
+
+(jump_insn 16 15 19 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/lib_termname.c":42:8 -1
+     (int_list:REG_BR_PROB 4 (nil)))
+
+(note 19 16 17 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 17 19 18 9 (set (pc)
+        (label_ref 0)) "../ncurses/./tinfo/lib_termname.c":42:8 -1
+     (nil))
+
+(barrier 18 17 0)
+
+;; Generating RTL for gimple basic block 5
+
+;; 
+
+(code_label 20 18 21 12 (nil) [0 uses])
+
+(note 21 20 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _7 = _nc_prescreen._cur_term;
+
+(insn 22 21 23 (set (reg/f:DI 85)
+        (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7fdf07705f30 _nc_prescreen>)) "../ncurses/./tinfo/lib_termname.c":42:9 -1
+     (nil))
+
+(insn 23 22 0 (set (reg/v/f:DI 83 [ <retval> ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 85)
+                (const_int 680 [0x2a8])) [1 _nc_prescreen._cur_term+0 S8 A64])) "../ncurses/./tinfo/lib_termname.c":42:9 -1
+     (nil))
+
+;; if (_7 != 0B)
+
+(insn 24 23 25 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 83 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_termname.c":42:8 -1
+     (nil))
+
+(jump_insn 25 24 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/lib_termname.c":42:8 -1
+     (int_list:REG_BR_PROB 380690276 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 26 25 27 13 (nil) [0 uses])
+
+(note 27 26 0 NOTE_INSN_BASIC_BLOCK)
+
+;; name_14 = iftmp.2_13->_termname;
+
+(insn 28 27 0 (set (reg/v/f:DI 83 [ <retval> ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 83 [ <retval> ])
+                (const_int 200 [0xc8])) [7 iftmp.2_13->_termname+0 S8 A64])) "../ncurses/./tinfo/lib_termname.c":43:7 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 7
+
+;; 
+
+(code_label 29 28 30 14 (nil) [0 uses])
+
+(note 30 29 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return name_15;
+
+(jump_insn 31 30 32 (set (pc)
+        (label_ref 0)) "../ncurses/./tinfo/lib_termname.c":57:12 -1
+     (nil))
+
+(barrier 32 31 0)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 5->6 to 10 failed.
+Redirecting jump 17 from 9 to 10.
+Edge 7->9 redirected to 10
+Merging block 9 into block 8...
+Merged blocks 8 and 9.
+Merged 8 and 9 without moving.
+Removing jump 31.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 5->6 to 10 failed.
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 3 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg/f:DI 82 [ SP.4_1 ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7fdf07773cf0 SP>) [38 SP+0 S8 A64])) "../ncurses/./tinfo/lib_termname.c":57:12 -1
+     (nil))
+(insn 6 5 7 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ SP.4_1 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_termname.c":42:29 -1
+     (nil))
+(jump_insn 7 6 8 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 20)
+            (pc))) "../ncurses/./tinfo/lib_termname.c":42:29 -1
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 20)
+;;  succ:       4 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+;;              7 [30.0% (guessed)]  count:322122544 (estimated locally)
+
+;; basic block 4, loop depth 0, count 751619281 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+(note 8 7 9 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 9 8 10 4 (set (reg/v/f:DI 83 [ <retval> ])
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ SP.4_1 ])
+                (const_int 48 [0x30])) [1 SP.4_1->_term+0 S8 A64])) "../ncurses/./tinfo/lib_termname.c":42:9 -1
+     (nil))
+(insn 10 9 11 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 83 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_termname.c":42:29 -1
+     (nil))
+(jump_insn 11 10 12 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 26)
+            (pc))) "../ncurses/./tinfo/lib_termname.c":42:29 -1
+     (int_list:REG_BR_PROB 751619284 (nil))
+ -> 26)
+;;  succ:       8 [70.0% (guessed)]  count:526133499 (estimated locally)
+;;              5 [30.0% (guessed)]  count:225485782 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 225485782 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [30.0% (guessed)]  count:225485782 (estimated locally) (FALLTHRU)
+(note 12 11 13 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 13 12 14 5 (set (reg/f:DI 84)
+        (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7fdf07705f30 _nc_prescreen>)) "../ncurses/./tinfo/lib_termname.c":42:9 -1
+     (nil))
+(insn 14 13 15 5 (set (reg/v/f:DI 83 [ <retval> ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 84)
+                (const_int 680 [0x2a8])) [1 _nc_prescreen._cur_term+0 S8 A64])) "../ncurses/./tinfo/lib_termname.c":42:9 -1
+     (nil))
+(insn 15 14 16 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 83 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_termname.c":42:8 -1
+     (nil))
+(jump_insn 16 15 19 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 26)
+            (pc))) "../ncurses/./tinfo/lib_termname.c":42:8 -1
+     (int_list:REG_BR_PROB 4 (nil))
+ -> 26)
+;;  succ:       8 [never (guessed)]  count:0 (estimated locally)
+;;              6 [always (guessed)]  count:225485782 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 225485782 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       5 [always (guessed)]  count:225485782 (estimated locally) (FALLTHRU)
+(note 19 16 17 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 17 19 18 6 (set (pc)
+        (label_ref:DI 33)) "../ncurses/./tinfo/lib_termname.c":42:8 807 {jump}
+     (nil)
+ -> 33)
+;;  succ:       10 [always]  count:225485782 (estimated locally)
+
+(barrier 18 17 20)
+;; basic block 7, loop depth 0, count 322122544 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [30.0% (guessed)]  count:322122544 (estimated locally)
+(code_label 20 18 21 7 12 (nil) [1 uses])
+(note 21 20 22 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 23 7 (set (reg/f:DI 85)
+        (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7fdf07705f30 _nc_prescreen>)) "../ncurses/./tinfo/lib_termname.c":42:9 -1
+     (nil))
+(insn 23 22 24 7 (set (reg/v/f:DI 83 [ <retval> ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 85)
+                (const_int 680 [0x2a8])) [1 _nc_prescreen._cur_term+0 S8 A64])) "../ncurses/./tinfo/lib_termname.c":42:9 -1
+     (nil))
+(insn 24 23 25 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 83 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_termname.c":42:8 -1
+     (nil))
+(jump_insn 25 24 26 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 33)
+            (pc))) "../ncurses/./tinfo/lib_termname.c":42:8 806 {*jcc}
+     (int_list:REG_BR_PROB 380690276 (nil))
+ -> 33)
+;;  succ:       8 [64.5% (guessed)]  count:207915464 (estimated locally) (FALLTHRU)
+;;              10 [35.5% (guessed)]  count:114207080 (estimated locally)
+
+;; basic block 8, loop depth 0, count 762356697 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 734048963 (estimated locally), should be 762356697 (estimated locally)
+;;  prev block 7, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [70.0% (guessed)]  count:526133499 (estimated locally)
+;;              5 [never (guessed)]  count:0 (estimated locally)
+;;              7 [64.5% (guessed)]  count:207915464 (estimated locally) (FALLTHRU)
+(code_label 26 25 27 8 13 (nil) [2 uses])
+(note 27 26 28 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 33 8 (set (reg/v/f:DI 83 [ <retval> ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 83 [ <retval> ])
+                (const_int 200 [0xc8])) [7 iftmp.2_13->_termname+0 S8 A64])) "../ncurses/./tinfo/lib_termname.c":43:7 -1
+     (nil))
+;;  succ:       10 [always]  count:762356697 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 1102049559 (estimated locally), should be 1073741824 (estimated locally)
+;;  prev block 8, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       8 [always]  count:762356697 (estimated locally) (FALLTHRU)
+;;              6 [always]  count:225485782 (estimated locally)
+;;              7 [35.5% (guessed)]  count:114207080 (estimated locally)
+(code_label 33 28 36 10 11 (nil) [2 uses])
+(note 36 33 34 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 34 36 35 10 (set (reg/i:DI 0 ax)
+        (reg/v/f:DI 83 [ <retval> ])) "../ncurses/./tinfo/lib_termname.c":58:1 -1
+     (nil))
+(insn 35 34 0 10 (use (reg/i:DI 0 ax)) "../ncurses/./tinfo/lib_termname.c":58:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+

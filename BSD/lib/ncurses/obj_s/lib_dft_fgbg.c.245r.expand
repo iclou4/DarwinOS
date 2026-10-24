@@ -1,0 +1,1577 @@
+
+;; Function assume_default_colors_sp (assume_default_colors_sp, funcdef_no=93, decl_uid=6714, cgraph_uid=94, symbol_order=93)
+
+__attribute__((visibility ("default")))
+int assume_default_colors_sp (struct SCREEN * sp, int fg, int bg)
+{
+  _Bool save;
+  int code;
+  struct term * _1;
+  char * * _2;
+  char * _3;
+  struct term * _4;
+  char * * _5;
+  char * _6;
+  struct term * _7;
+  char * * _8;
+  char * _9;
+  int _13;
+  _Bool _14;
+  int _15;
+  int _16;
+  struct colorpair_t * _17;
+  short int _18;
+  int _19;
+  short int _20;
+  int _21;
+  int _23;
+  _Bool _44;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (sp_25(D) != 0B)
+    goto <bb 4>; [98.26%]
+  else
+    goto <bb 3>; [1.74%]
+;;    succ:       4
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+;;                6
+;;                5
+  goto <bb 9>; [100.00%]
+;;    succ:       9
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+  _1 = _nc_cur_term ();
+  _2 = _1->type2.Strings;
+  _3 = MEM[(char * *)_2 + 2376B];
+  if (_3 != 0B)
+    goto <bb 5>; [70.00%]
+  else
+    goto <bb 6>; [30.00%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+;;                6
+  _7 = _nc_cur_term ();
+  _8 = _7->type2.Strings;
+  _9 = MEM[(char * *)_8 + 2400B];
+  if (_9 == 0B)
+    goto <bb 7>; [91.18%]
+  else
+    goto <bb 3>; [8.82%]
+;;    succ:       7
+;;                3
+
+;;   basic block 6, loop depth 0
+;;    pred:       4
+  _4 = _nc_cur_term ();
+  _5 = _4->type2.Strings;
+  _6 = MEM[(char * *)_5 + 2384B];
+  if (_6 != 0B)
+    goto <bb 5>; [99.13%]
+  else
+    goto <bb 3>; [0.87%]
+;;    succ:       5
+;;                3
+
+;;   basic block 7, loop depth 0
+;;    pred:       5
+  _23 = fg_30(D) | bg_31(D);
+  _44 = _23 < 0;
+  sp_25(D)->_default_color = _44;
+  _13 = tigetflag ("AX");
+  _14 = _13 == 1;
+  sp_25(D)->_has_sgr_39_49 = _14;
+  _15 = MAX_EXPR <fg_30(D), -1>;
+  sp_25(D)->_default_fg = _15;
+  _16 = MAX_EXPR <bg_31(D), -1>;
+  sp_25(D)->_default_bg = _16;
+  _17 = sp_25(D)->_color_pairs;
+  if (_17 != 0B)
+    goto <bb 8>; [53.47%]
+  else
+    goto <bb 9>; [46.53%]
+;;    succ:       8
+;;                9
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+  save_37 = sp_25(D)->_default_color;
+  MEM <unsigned short> [(_Bool *)sp_25(D) + 1518B] = 257;
+  _18 = (short int) bg_31(D);
+  _19 = (int) _18;
+  _20 = (short int) fg_30(D);
+  _21 = (int) _20;
+  init_pair_sp (sp_25(D), 0, _21, _19);
+  sp_25(D)->_default_color = save_37;
+;;    succ:       9
+
+;;   basic block 9, loop depth 0
+;;    pred:       3
+;;                7
+;;                8
+  # code_22 = PHI <-1(3), 0(7), 0(8)>
+  return code_22;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 4 (_4 - 4 )
+Partition 5 (_5 - 5 )
+Partition 6 (_6 - 6 )
+Partition 7 (_7 - 7 )
+Partition 8 (_8 - 8 )
+Partition 9 (_9 - 9 )
+Partition 13 (_13 - 13 )
+Partition 14 (_14 - 14 )
+Partition 15 (_15 - 15 )
+Partition 16 (_16 - 16 )
+Partition 17 (_17 - 17 )
+Partition 18 (_18 - 18 )
+Partition 19 (_19 - 19 )
+Partition 20 (_20 - 20 )
+Partition 21 (_21 - 21 )
+Partition 22 (code_22 - 22 )
+Partition 23 (_23 - 23 )
+Partition 25 (sp_25(D) - 25 )
+Partition 30 (fg_30(D) - 30 )
+Partition 31 (bg_31(D) - 31 )
+Partition 37 (save_37 - 37 )
+Partition 38 (_38(D) - 38 )
+Partition 44 (_44 - 44 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (code_22 - 22 38 )
+Partition 1, base 1 (sp_25(D) - 25 )
+Partition 2, base 2 (fg_30(D) - 30 )
+Partition 3, base 3 (bg_31(D) - 31 )
+
+
+Partition map 
+
+Partition 0 (code_22 - 22 )
+Partition 1 (sp_25(D) - 25 )
+Partition 2 (fg_30(D) - 30 )
+Partition 3 (bg_31(D) - 31 )
+Partition 4 (_38(D) - 38 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) code_22 <-> _38(D)
+
+Partition map 
+
+Partition 0 (code_22 - 22 )
+Partition 1 (sp_25(D) - 25 )
+Partition 2 (fg_30(D) - 30 )
+Partition 3 (bg_31(D) - 31 )
+Partition 4 (_38(D) - 38 )
+
+Coalesce list: (22)code_22 & (38)_38(D) [map: 0, 4] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_2 - 2 )
+Partition 2 (_3 - 3 )
+Partition 3 (_4 - 4 )
+Partition 4 (_5 - 5 )
+Partition 5 (_6 - 6 )
+Partition 6 (_7 - 7 )
+Partition 7 (_8 - 8 )
+Partition 8 (_9 - 9 )
+Partition 9 (_13 - 13 )
+Partition 10 (_14 - 14 )
+Partition 11 (_15 - 15 )
+Partition 12 (_16 - 16 )
+Partition 13 (_17 - 17 )
+Partition 14 (_18 - 18 )
+Partition 15 (_19 - 19 )
+Partition 16 (_20 - 20 )
+Partition 17 (_21 - 21 )
+Partition 18 (code_22 - 22 38 )
+Partition 19 (_23 - 23 )
+Partition 20 (sp_25(D) - 25 )
+Partition 21 (fg_30(D) - 30 )
+Partition 22 (bg_31(D) - 31 )
+Partition 23 (save_37 - 37 )
+Partition 24 (_44 - 44 )
+
+
+Replacing Expressions
+_2 replace with --> _2 = _1->type2.Strings;
+
+_3 replace with --> _3 = MEM[(char * *)_2 + 2376B];
+
+_5 replace with --> _5 = _4->type2.Strings;
+
+_6 replace with --> _6 = MEM[(char * *)_5 + 2384B];
+
+_8 replace with --> _8 = _7->type2.Strings;
+
+_9 replace with --> _9 = MEM[(char * *)_8 + 2400B];
+
+_14 replace with --> _14 = _13 == 1;
+
+_15 replace with --> _15 = MAX_EXPR <fg_30(D), -1>;
+
+_16 replace with --> _16 = MAX_EXPR <bg_31(D), -1>;
+
+_17 replace with --> _17 = sp_25(D)->_color_pairs;
+
+_18 replace with --> _18 = (short int) bg_31(D);
+
+_19 replace with --> _19 = (int) _18;
+
+_20 replace with --> _20 = (short int) fg_30(D);
+
+_21 replace with --> _21 = (int) _20;
+
+_23 replace with --> _23 = fg_30(D) | bg_31(D);
+
+_44 replace with --> _44 = _23 < 0;
+
+
+__attribute__((visibility ("default")))
+int assume_default_colors_sp (struct SCREEN * sp, int fg, int bg)
+{
+  _Bool save;
+  int code;
+  struct term * _1;
+  char * * _2;
+  char * _3;
+  struct term * _4;
+  char * * _5;
+  char * _6;
+  struct term * _7;
+  char * * _8;
+  char * _9;
+  int _13;
+  _Bool _14;
+  int _15;
+  int _16;
+  struct colorpair_t * _17;
+  short int _18;
+  int _19;
+  short int _20;
+  int _21;
+  int _23;
+  int _38(D);
+  _Bool _44;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (sp_25(D) != 0B)
+    goto <bb 4>; [98.26%]
+  else
+    goto <bb 3>; [1.74%]
+;;    succ:       4
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+;;                6
+;;                5
+  goto <bb 9>; [100.00%]
+;;    succ:       9
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+  _1 = _nc_cur_term ();
+  _2 = _1->type2.Strings;
+  _3 = MEM[(char * *)_2 + 2376B];
+  if (_3 != 0B)
+    goto <bb 5>; [70.00%]
+  else
+    goto <bb 6>; [30.00%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+;;                6
+  _7 = _nc_cur_term ();
+  _8 = _7->type2.Strings;
+  _9 = MEM[(char * *)_8 + 2400B];
+  if (_9 == 0B)
+    goto <bb 7>; [91.18%]
+  else
+    goto <bb 3>; [8.82%]
+;;    succ:       7
+;;                3
+
+;;   basic block 6, loop depth 0
+;;    pred:       4
+  _4 = _nc_cur_term ();
+  _5 = _4->type2.Strings;
+  _6 = MEM[(char * *)_5 + 2384B];
+  if (_6 != 0B)
+    goto <bb 5>; [99.13%]
+  else
+    goto <bb 3>; [0.87%]
+;;    succ:       5
+;;                3
+
+;;   basic block 7, loop depth 0
+;;    pred:       5
+  _23 = fg_30(D) | bg_31(D);
+  _44 = _23 < 0;
+  sp_25(D)->_default_color = _44;
+  _13 = tigetflag ("AX");
+  _14 = _13 == 1;
+  sp_25(D)->_has_sgr_39_49 = _14;
+  _15 = MAX_EXPR <fg_30(D), -1>;
+  sp_25(D)->_default_fg = _15;
+  _16 = MAX_EXPR <bg_31(D), -1>;
+  sp_25(D)->_default_bg = _16;
+  _17 = sp_25(D)->_color_pairs;
+  if (_17 != 0B)
+    goto <bb 8>; [53.47%]
+  else
+    goto <bb 9>; [46.53%]
+;;    succ:       8
+;;                9
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+  save_37 = sp_25(D)->_default_color;
+  MEM <unsigned short> [(_Bool *)sp_25(D) + 1518B] = 257;
+  _18 = (short int) bg_31(D);
+  _19 = (int) _18;
+  _20 = (short int) fg_30(D);
+  _21 = (int) _20;
+  init_pair_sp (sp_25(D), 0, _21, _19);
+  sp_25(D)->_default_color = save_37;
+;;    succ:       9
+
+;;   basic block 9, loop depth 0
+;;    pred:       3
+;;                7
+;;                8
+  # code_22 = PHI <-1(3), 0(7), 0(8)>
+  return code_22;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB3->BB9 : PART.18 = -1
+Inserting a value copy on edge BB7->BB9 : PART.18 = 0
+Inserting a value copy on edge BB8->BB9 : PART.18 = 0
+
+;; Generating RTL for gimple basic block 2
+
+;; if (sp_25(D) != 0B)
+
+(insn 11 10 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 104 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":72:8 -1
+     (nil))
+
+(jump_insn 12 11 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_dft_fgbg.c":72:8 -1
+     (int_list:REG_BR_PROB 1055058724 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; 
+
+(code_label 16 15 17 2 (nil) [0 uses])
+
+(note 17 16 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _1 = _nc_cur_term ();
+
+(call_insn 18 17 19 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f7615829600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":76:7 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f7615829600 _nc_cur_term>)
+        (nil))
+    (nil))
+
+(insn 19 18 0 (set (reg/f:DI 82 [ _1 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_dft_fgbg.c":76:7 -1
+     (nil))
+
+;; if (_3 != 0B)
+
+(insn 20 19 21 (set (reg/f:DI 107)
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ _1 ])
+                (const_int 720 [0x2d0])) [4 _1->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_dft_fgbg.c":76:7 -1
+     (nil))
+
+(insn 21 20 22 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 107)
+                    (const_int 2376 [0x948])) [7 MEM[(char * *)_2 + 2376B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":76:5 -1
+     (nil))
+
+(jump_insn 22 21 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_dft_fgbg.c":76:5 -1
+     (int_list:REG_BR_PROB 322122548 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; _7 = _nc_cur_term ();
+
+(call_insn 24 23 25 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f7615829600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":76:37 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f7615829600 _nc_cur_term>)
+        (nil))
+    (nil))
+
+(insn 25 24 0 (set (reg/f:DI 88 [ _7 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_dft_fgbg.c":76:37 -1
+     (nil))
+
+;; if (_9 == 0B)
+
+(insn 26 25 27 5 (set (reg/f:DI 108)
+        (mem/f:DI (plus:DI (reg/f:DI 88 [ _7 ])
+                (const_int 720 [0x2d0])) [4 _7->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_dft_fgbg.c":76:37 -1
+     (nil))
+
+(insn 27 26 28 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 108)
+                    (const_int 2400 [0x960])) [7 MEM[(char * *)_8 + 2400B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":76:33 -1
+     (nil))
+
+(jump_insn 28 27 32 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_dft_fgbg.c":76:33 -1
+     (int_list:REG_BR_PROB 979037796 (nil)))
+
+(note 32 28 30 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 30 32 31 11 (set (pc)
+        (label_ref 29)) -1
+     (nil))
+
+(barrier 31 30 0)
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 33 31 34 4 (nil) [0 uses])
+
+(note 34 33 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _4 = _nc_cur_term ();
+
+(call_insn 35 34 36 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f7615829600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":76:20 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f7615829600 _nc_cur_term>)
+        (nil))
+    (nil))
+
+(insn 36 35 0 (set (reg/f:DI 85 [ _4 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_dft_fgbg.c":76:20 -1
+     (nil))
+
+;; if (_6 != 0B)
+
+(insn 38 36 39 6 (set (reg/f:DI 109)
+        (mem/f:DI (plus:DI (reg/f:DI 85 [ _4 ])
+                (const_int 720 [0x2d0])) [4 _4->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_dft_fgbg.c":76:20 -1
+     (nil))
+
+(insn 39 38 40 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 109)
+                    (const_int 2384 [0x950])) [7 MEM[(char * *)_5 + 2384B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":76:17 -1
+     (nil))
+
+(jump_insn 40 39 43 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 37)
+            (pc))) "../ncurses/./base/lib_dft_fgbg.c":76:17 -1
+     (int_list:REG_BR_PROB 1064400276 (nil)))
+
+(note 43 40 41 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 41 43 42 12 (set (pc)
+        (label_ref 29)) -1
+     (nil))
+
+(barrier 42 41 0)
+
+;; Generating RTL for gimple basic block 7
+
+;; 
+
+(code_label 44 42 45 5 (nil) [0 uses])
+
+(note 45 44 0 NOTE_INSN_BASIC_BLOCK)
+
+;; sp_25(D)->_default_color = _44;
+
+(insn 46 45 49 (parallel [
+            (set (reg:SI 110)
+                (ior:SI (reg/v:SI 105 [ fg ])
+                    (reg/v:SI 106 [ bg ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_dft_fgbg.c":78:32 -1
+     (nil))
+
+(insn 49 46 50 (parallel [
+            (set (reg:SI 111)
+                (lshiftrt:SI (reg:SI 110)
+                    (const_int 31 [0x1f])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_dft_fgbg.c":78:32 -1
+     (nil))
+
+(insn 50 49 0 (set (mem:QI (plus:DI (reg/v/f:DI 104 [ sp ])
+                (const_int 1519 [0x5ef])) [3 sp_25(D)->_default_color+0 S1 A8])
+        (subreg:QI (reg:SI 111) 0)) "../ncurses/./base/lib_dft_fgbg.c":78:30 -1
+     (nil))
+
+;; _13 = tigetflag ("AX");
+
+(insn 51 50 52 (set (reg:DI 112)
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f7615940bd0 *.LC0>)) "../ncurses/./base/lib_dft_fgbg.c":79:33 -1
+     (nil))
+
+(insn 52 51 53 (set (reg:DI 5 di)
+        (reg:DI 112)) "../ncurses/./base/lib_dft_fgbg.c":79:33 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f7615940bd0 *.LC0>)
+        (nil)))
+
+(call_insn 53 52 54 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("tigetflag") [flags 0x41]  <function_decl 0x7f761577a500 tigetflag>) [0 tigetflag S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":79:33 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("tigetflag") [flags 0x41]  <function_decl 0x7f761577a500 tigetflag>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+(insn 54 53 0 (set (reg:SI 91 [ _13 ])
+        (reg:SI 0 ax)) "../ncurses/./base/lib_dft_fgbg.c":79:33 -1
+     (nil))
+
+;; sp_25(D)->_has_sgr_39_49 = _14;
+
+(insn 55 54 56 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 91 [ _13 ])
+            (const_int 1 [0x1]))) "../ncurses/./base/lib_dft_fgbg.c":79:56 -1
+     (nil))
+
+(insn 56 55 57 (set (reg:QI 113)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":79:56 -1
+     (nil))
+
+(insn 57 56 0 (set (mem:QI (plus:DI (reg/v/f:DI 104 [ sp ])
+                (const_int 1520 [0x5f0])) [3 sp_25(D)->_has_sgr_39_49+0 S1 A64])
+        (reg:QI 113)) "../ncurses/./base/lib_dft_fgbg.c":79:30 -1
+     (nil))
+
+;; sp_25(D)->_default_fg = _15;
+
+(insn 58 57 59 (parallel [
+            (set (reg:SI 114)
+                (smax:SI (reg/v:SI 105 [ fg ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_dft_fgbg.c":80:64 -1
+     (nil))
+
+(insn 59 58 0 (set (mem:SI (plus:DI (reg/v/f:DI 104 [ sp ])
+                (const_int 1524 [0x5f4])) [1 sp_25(D)->_default_fg+0 S4 A32])
+        (reg:SI 114)) "../ncurses/./base/lib_dft_fgbg.c":80:27 -1
+     (nil))
+
+;; sp_25(D)->_default_bg = _16;
+
+(insn 60 59 61 (parallel [
+            (set (reg:SI 115)
+                (smax:SI (reg/v:SI 106 [ bg ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_dft_fgbg.c":81:64 -1
+     (nil))
+
+(insn 61 60 0 (set (mem:SI (plus:DI (reg/v/f:DI 104 [ sp ])
+                (const_int 1528 [0x5f8])) [1 sp_25(D)->_default_bg+0 S4 A64])
+        (reg:SI 115)) "../ncurses/./base/lib_dft_fgbg.c":81:27 -1
+     (nil))
+
+;; if (_17 != 0B)
+
+(insn 62 61 63 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/v/f:DI 104 [ sp ])
+                    (const_int 968 [0x3c8])) [2 sp_25(D)->_color_pairs+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":82:9 -1
+     (nil))
+
+(jump_insn 63 62 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_dft_fgbg.c":82:9 -1
+     (int_list:REG_BR_PROB 499612076 (nil)))
+
+;; Generating RTL for gimple basic block 8
+
+;; save_37 = sp_25(D)->_default_color;
+
+(insn 65 64 0 (set (reg/v:QI 101 [ save ])
+        (mem:QI (plus:DI (reg/v/f:DI 104 [ sp ])
+                (const_int 1519 [0x5ef])) [3 sp_25(D)->_default_color+0 S1 A8])) "../ncurses/./base/lib_dft_fgbg.c":83:8 -1
+     (nil))
+
+;; MEM <unsigned short> [(_Bool *)sp_25(D) + 1518B] = 257;
+
+(insn 66 65 0 (set (mem:HI (plus:DI (reg/v/f:DI 104 [ sp ])
+                (const_int 1518 [0x5ee])) [3 MEM <unsigned short> [(_Bool *)sp_25(D) + 1518B]+0 S2 A16])
+        (const_int 257 [0x101])) "../ncurses/./base/lib_dft_fgbg.c":84:27 -1
+     (nil))
+
+;; init_pair_sp (sp_25(D), 0, _21, _19);
+
+(insn 67 66 68 (set (reg:SI 116)
+        (sign_extend:SI (subreg:HI (reg/v:SI 106 [ bg ]) 0))) "../ncurses/./base/lib_dft_fgbg.c":86:3 -1
+     (nil))
+
+(insn 68 67 69 (set (reg:SI 117)
+        (sign_extend:SI (subreg:HI (reg/v:SI 105 [ fg ]) 0))) "../ncurses/./base/lib_dft_fgbg.c":86:3 -1
+     (nil))
+
+(insn 69 68 70 (set (reg:SI 2 cx)
+        (reg:SI 116)) "../ncurses/./base/lib_dft_fgbg.c":86:3 -1
+     (nil))
+
+(insn 70 69 71 (set (reg:SI 1 dx)
+        (reg:SI 117)) "../ncurses/./base/lib_dft_fgbg.c":86:3 -1
+     (nil))
+
+(insn 71 70 72 (set (reg:SI 4 si)
+        (const_int 0 [0])) "../ncurses/./base/lib_dft_fgbg.c":86:3 -1
+     (nil))
+
+(insn 72 71 73 (set (reg:DI 5 di)
+        (reg/v/f:DI 104 [ sp ])) "../ncurses/./base/lib_dft_fgbg.c":86:3 -1
+     (nil))
+
+(call_insn 73 72 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("init_pair_sp") [flags 0x41]  <function_decl 0x7f7615791c00 init_pair_sp>) [0 init_pair_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":86:3 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("init_pair_sp") [flags 0x41]  <function_decl 0x7f7615791c00 init_pair_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (nil))))))
+
+;; sp_25(D)->_default_color = save_37;
+
+(insn 74 73 0 (set (mem:QI (plus:DI (reg/v/f:DI 104 [ sp ])
+                (const_int 1519 [0x5ef])) [3 sp_25(D)->_default_color+0 S1 A8])
+        (reg/v:QI 101 [ save ])) "../ncurses/./base/lib_dft_fgbg.c":89:27 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 9
+
+;; 
+
+(code_label 75 74 76 3 (nil) [0 uses])
+
+(note 76 75 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return code_22;
+
+(jump_insn 77 76 78 (set (pc)
+        (label_ref 0)) "../ncurses/./base/lib_dft_fgbg.c":95:5 -1
+     (nil))
+
+(barrier 78 77 0)
+Edge 7->9 redirected to 14
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 14 from 13 to 14.
+Forwarding edge 6->7 to 4 failed.
+Forwarding edge 8->9 to 4 failed.
+Redirecting jump 83 from 13 to 14.
+Merging block 13 into block 12...
+Merged blocks 12 and 13.
+Merged 12 and 13 without moving.
+Removing jump 77.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 6->7 to 4 failed.
+Forwarding edge 8->9 to 4 failed.
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 9 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741823 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741823 (estimated locally) (FALLTHRU)
+(note 9 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 9 3 2 (set (reg/v/f:DI 104 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/lib_dft_fgbg.c":68:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 105 [ fg ])
+        (reg:SI 4 si [ fg ])) "../ncurses/./base/lib_dft_fgbg.c":68:1 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:SI 106 [ bg ])
+        (reg:SI 1 dx [ bg ])) "../ncurses/./base/lib_dft_fgbg.c":68:1 -1
+     (nil))
+(note 5 4 11 2 NOTE_INSN_FUNCTION_BEG)
+(insn 11 5 12 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 104 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":72:8 -1
+     (nil))
+(jump_insn 12 11 29 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 16)
+            (pc))) "../ncurses/./base/lib_dft_fgbg.c":72:8 -1
+     (int_list:REG_BR_PROB 1055058724 (nil))
+ -> 16)
+;;  succ:       5 [98.3% (guessed)]  count:1055058719 (estimated locally)
+;;              4 [1.7% (guessed)]  count:18683104 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 114250113 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [1.7% (guessed)]  count:18683104 (estimated locally) (FALLTHRU)
+;;              7 [always]  count:92813306 (estimated locally)
+;;              9 [always]  count:2753703 (estimated locally)
+(code_label 29 12 13 4 6 (nil) [2 uses])
+(note 13 29 6 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 6 13 14 4 (set (reg/v:SI 103 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_dft_fgbg.c":69:9 -1
+     (nil))
+(jump_insn 14 6 15 4 (set (pc)
+        (label_ref:DI 79)) 807 {jump}
+     (nil)
+ -> 79)
+;;  succ:       14 [always]  count:114250113 (estimated locally)
+
+(barrier 15 14 16)
+;; basic block 5, loop depth 0, count 1055058719 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [98.3% (guessed)]  count:1055058719 (estimated locally)
+(code_label 16 15 17 5 2 (nil) [1 uses])
+(note 17 16 18 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(call_insn 18 17 19 5 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f7615829600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":76:7 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f7615829600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 19 18 20 5 (set (reg/f:DI 82 [ _1 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_dft_fgbg.c":76:7 -1
+     (nil))
+(insn 20 19 21 5 (set (reg/f:DI 107)
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ _1 ])
+                (const_int 720 [0x2d0])) [4 _1->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_dft_fgbg.c":76:7 -1
+     (nil))
+(insn 21 20 22 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 107)
+                    (const_int 2376 [0x948])) [7 MEM[(char * *)_2 + 2376B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":76:5 -1
+     (nil))
+(jump_insn 22 21 37 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 33)
+            (pc))) "../ncurses/./base/lib_dft_fgbg.c":76:5 -1
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 33)
+;;  succ:       6 [70.0% (guessed)]  count:738541106 (estimated locally) (FALLTHRU)
+;;              8 [30.0% (guessed)]  count:316517613 (estimated locally)
+
+;; basic block 6, loop depth 0, count 1052305017 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [70.0% (guessed)]  count:738541106 (estimated locally) (FALLTHRU)
+;;              8 [99.1% (guessed)]  count:313763910 (estimated locally)
+(code_label 37 22 23 6 7 (nil) [1 uses])
+(note 23 37 24 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(call_insn 24 23 25 6 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f7615829600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":76:37 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f7615829600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 25 24 26 6 (set (reg/f:DI 88 [ _7 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_dft_fgbg.c":76:37 -1
+     (nil))
+(insn 26 25 27 6 (set (reg/f:DI 108)
+        (mem/f:DI (plus:DI (reg/f:DI 88 [ _7 ])
+                (const_int 720 [0x2d0])) [4 _7->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_dft_fgbg.c":76:37 -1
+     (nil))
+(insn 27 26 28 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 108)
+                    (const_int 2400 [0x960])) [7 MEM[(char * *)_8 + 2400B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":76:33 -1
+     (nil))
+(jump_insn 28 27 32 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 44)
+            (pc))) "../ncurses/./base/lib_dft_fgbg.c":76:33 -1
+     (int_list:REG_BR_PROB 979037796 (nil))
+ -> 44)
+;;  succ:       10 [91.2% (guessed)]  count:959491711 (estimated locally)
+;;              7 [8.8% (guessed)]  count:92813306 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 92813306 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL)
+;;  pred:       6 [8.8% (guessed)]  count:92813306 (estimated locally) (FALLTHRU)
+(note 32 28 30 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 30 32 31 7 (set (pc)
+        (label_ref 29)) -1
+     (nil)
+ -> 29)
+;;  succ:       4 [always]  count:92813306 (estimated locally)
+
+(barrier 31 30 33)
+;; basic block 8, loop depth 0, count 316517613 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [30.0% (guessed)]  count:316517613 (estimated locally)
+(code_label 33 31 34 8 4 (nil) [1 uses])
+(note 34 33 35 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(call_insn 35 34 36 8 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f7615829600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":76:20 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f7615829600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 36 35 38 8 (set (reg/f:DI 85 [ _4 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_dft_fgbg.c":76:20 -1
+     (nil))
+(insn 38 36 39 8 (set (reg/f:DI 109)
+        (mem/f:DI (plus:DI (reg/f:DI 85 [ _4 ])
+                (const_int 720 [0x2d0])) [4 _4->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_dft_fgbg.c":76:20 -1
+     (nil))
+(insn 39 38 40 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 109)
+                    (const_int 2384 [0x950])) [7 MEM[(char * *)_5 + 2384B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":76:17 -1
+     (nil))
+(jump_insn 40 39 43 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 37)
+            (pc))) "../ncurses/./base/lib_dft_fgbg.c":76:17 -1
+     (int_list:REG_BR_PROB 1064400276 (nil))
+ -> 37)
+;;  succ:       6 [99.1% (guessed)]  count:313763910 (estimated locally)
+;;              9 [0.9% (guessed)]  count:2753703 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 2753703 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL)
+;;  pred:       8 [0.9% (guessed)]  count:2753703 (estimated locally) (FALLTHRU)
+(note 43 40 41 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 41 43 42 9 (set (pc)
+        (label_ref 29)) -1
+     (nil)
+ -> 29)
+;;  succ:       4 [always]  count:2753703 (estimated locally)
+
+(barrier 42 41 44)
+;; basic block 10, loop depth 0, count 959491711 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       6 [91.2% (guessed)]  count:959491711 (estimated locally)
+(code_label 44 42 45 10 5 (nil) [1 uses])
+(note 45 44 46 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 46 45 49 10 (parallel [
+            (set (reg:SI 110)
+                (ior:SI (reg/v:SI 105 [ fg ])
+                    (reg/v:SI 106 [ bg ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_dft_fgbg.c":78:32 -1
+     (nil))
+(insn 49 46 50 10 (parallel [
+            (set (reg:SI 111)
+                (lshiftrt:SI (reg:SI 110)
+                    (const_int 31 [0x1f])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_dft_fgbg.c":78:32 -1
+     (nil))
+(insn 50 49 51 10 (set (mem:QI (plus:DI (reg/v/f:DI 104 [ sp ])
+                (const_int 1519 [0x5ef])) [3 sp_25(D)->_default_color+0 S1 A8])
+        (subreg:QI (reg:SI 111) 0)) "../ncurses/./base/lib_dft_fgbg.c":78:30 -1
+     (nil))
+(insn 51 50 52 10 (set (reg:DI 112)
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f7615940bd0 *.LC0>)) "../ncurses/./base/lib_dft_fgbg.c":79:33 -1
+     (nil))
+(insn 52 51 53 10 (set (reg:DI 5 di)
+        (reg:DI 112)) "../ncurses/./base/lib_dft_fgbg.c":79:33 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f7615940bd0 *.LC0>)
+        (nil)))
+(call_insn 53 52 54 10 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("tigetflag") [flags 0x41]  <function_decl 0x7f761577a500 tigetflag>) [0 tigetflag S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":79:33 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("tigetflag") [flags 0x41]  <function_decl 0x7f761577a500 tigetflag>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 54 53 55 10 (set (reg:SI 91 [ _13 ])
+        (reg:SI 0 ax)) "../ncurses/./base/lib_dft_fgbg.c":79:33 -1
+     (nil))
+(insn 55 54 56 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 91 [ _13 ])
+            (const_int 1 [0x1]))) "../ncurses/./base/lib_dft_fgbg.c":79:56 -1
+     (nil))
+(insn 56 55 57 10 (set (reg:QI 113)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":79:56 -1
+     (nil))
+(insn 57 56 58 10 (set (mem:QI (plus:DI (reg/v/f:DI 104 [ sp ])
+                (const_int 1520 [0x5f0])) [3 sp_25(D)->_has_sgr_39_49+0 S1 A64])
+        (reg:QI 113)) "../ncurses/./base/lib_dft_fgbg.c":79:30 -1
+     (nil))
+(insn 58 57 59 10 (parallel [
+            (set (reg:SI 114)
+                (smax:SI (reg/v:SI 105 [ fg ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_dft_fgbg.c":80:64 -1
+     (nil))
+(insn 59 58 60 10 (set (mem:SI (plus:DI (reg/v/f:DI 104 [ sp ])
+                (const_int 1524 [0x5f4])) [1 sp_25(D)->_default_fg+0 S4 A32])
+        (reg:SI 114)) "../ncurses/./base/lib_dft_fgbg.c":80:27 -1
+     (nil))
+(insn 60 59 61 10 (parallel [
+            (set (reg:SI 115)
+                (smax:SI (reg/v:SI 106 [ bg ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_dft_fgbg.c":81:64 -1
+     (nil))
+(insn 61 60 62 10 (set (mem:SI (plus:DI (reg/v/f:DI 104 [ sp ])
+                (const_int 1528 [0x5f8])) [1 sp_25(D)->_default_bg+0 S4 A64])
+        (reg:SI 115)) "../ncurses/./base/lib_dft_fgbg.c":81:27 -1
+     (nil))
+(insn 62 61 63 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/v/f:DI 104 [ sp ])
+                    (const_int 968 [0x3c8])) [2 sp_25(D)->_color_pairs+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":82:9 -1
+     (nil))
+(jump_insn 63 62 64 10 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 86)
+            (pc))) "../ncurses/./base/lib_dft_fgbg.c":82:9 806 {*jcc}
+     (int_list:REG_BR_PROB 499612076 (nil))
+ -> 86)
+;;  succ:       11 [53.5% (guessed)]  count:513040217 (estimated locally) (FALLTHRU)
+;;              12 [46.5% (guessed)]  count:446451494 (estimated locally)
+
+;; basic block 11, loop depth 0, count 513040217 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       10 [53.5% (guessed)]  count:513040217 (estimated locally) (FALLTHRU)
+(note 64 63 65 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 65 64 66 11 (set (reg/v:QI 101 [ save ])
+        (mem:QI (plus:DI (reg/v/f:DI 104 [ sp ])
+                (const_int 1519 [0x5ef])) [3 sp_25(D)->_default_color+0 S1 A8])) "../ncurses/./base/lib_dft_fgbg.c":83:8 -1
+     (nil))
+(insn 66 65 67 11 (set (mem:HI (plus:DI (reg/v/f:DI 104 [ sp ])
+                (const_int 1518 [0x5ee])) [3 MEM <unsigned short> [(_Bool *)sp_25(D) + 1518B]+0 S2 A16])
+        (const_int 257 [0x101])) "../ncurses/./base/lib_dft_fgbg.c":84:27 -1
+     (nil))
+(insn 67 66 68 11 (set (reg:SI 116)
+        (sign_extend:SI (subreg:HI (reg/v:SI 106 [ bg ]) 0))) "../ncurses/./base/lib_dft_fgbg.c":86:3 -1
+     (nil))
+(insn 68 67 69 11 (set (reg:SI 117)
+        (sign_extend:SI (subreg:HI (reg/v:SI 105 [ fg ]) 0))) "../ncurses/./base/lib_dft_fgbg.c":86:3 -1
+     (nil))
+(insn 69 68 70 11 (set (reg:SI 2 cx)
+        (reg:SI 116)) "../ncurses/./base/lib_dft_fgbg.c":86:3 -1
+     (nil))
+(insn 70 69 71 11 (set (reg:SI 1 dx)
+        (reg:SI 117)) "../ncurses/./base/lib_dft_fgbg.c":86:3 -1
+     (nil))
+(insn 71 70 72 11 (set (reg:SI 4 si)
+        (const_int 0 [0])) "../ncurses/./base/lib_dft_fgbg.c":86:3 -1
+     (nil))
+(insn 72 71 73 11 (set (reg:DI 5 di)
+        (reg/v/f:DI 104 [ sp ])) "../ncurses/./base/lib_dft_fgbg.c":86:3 -1
+     (nil))
+(call_insn 73 72 74 11 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("init_pair_sp") [flags 0x41]  <function_decl 0x7f7615791c00 init_pair_sp>) [0 init_pair_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":86:3 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("init_pair_sp") [flags 0x41]  <function_decl 0x7f7615791c00 init_pair_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (nil))))))
+(insn 74 73 8 11 (set (mem:QI (plus:DI (reg/v/f:DI 104 [ sp ])
+                (const_int 1519 [0x5ef])) [3 sp_25(D)->_default_color+0 S1 A8])
+        (reg/v:QI 101 [ save ])) "../ncurses/./base/lib_dft_fgbg.c":89:27 -1
+     (nil))
+(insn 8 74 83 11 (set (reg/v:SI 103 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_dft_fgbg.c":91:11 -1
+     (nil))
+(jump_insn 83 8 84 11 (set (pc)
+        (label_ref:DI 79)) 807 {jump}
+     (nil)
+ -> 79)
+;;  succ:       14 [always]  count:513040217 (estimated locally)
+
+(barrier 84 83 86)
+;; basic block 12, loop depth 0, count 446451494 (estimated locally), maybe hot
+;;  prev block 11, next block 14, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       10 [46.5% (guessed)]  count:446451494 (estimated locally)
+(code_label 86 84 85 12 8 (nil) [1 uses])
+(note 85 86 7 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 7 85 79 12 (set (reg/v:SI 103 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_dft_fgbg.c":91:11 -1
+     (nil))
+;;  succ:       14 [always]  count:446451494 (estimated locally) (FALLTHRU)
+
+;; basic block 14, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 12, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       12 [always]  count:446451494 (estimated locally) (FALLTHRU)
+;;              4 [always]  count:114250113 (estimated locally)
+;;              11 [always]  count:513040217 (estimated locally)
+(code_label 79 7 82 14 1 (nil) [2 uses])
+(note 82 79 80 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 80 82 81 14 (set (reg/i:SI 0 ax)
+        (reg/v:SI 103 [ <retval> ])) "../ncurses/./base/lib_dft_fgbg.c":96:1 -1
+     (nil))
+(insn 81 80 0 14 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_dft_fgbg.c":96:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+
+;; Function use_default_colors_sp (use_default_colors_sp, funcdef_no=91, decl_uid=6795, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+int use_default_colors_sp (struct SCREEN * sp)
+{
+  int _4;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _4 = assume_default_colors_sp (sp_2(D), -1, -1); [tail call]
+  return _4;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 2 (sp_2(D) - 2 )
+Partition 4 (_4 - 4 )
+Partition 5 (_5(D) - 5 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (sp_2(D) - 2 )
+Partition 1, base 1 (_4 - 4 5 )
+
+
+Partition map 
+
+Partition 0 (sp_2(D) - 2 )
+Partition 1 (_4 - 4 )
+Partition 2 (_5(D) - 5 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) _4 <-> _5(D)
+
+Partition map 
+
+Partition 0 (sp_2(D) - 2 )
+Partition 1 (_4 - 4 )
+Partition 2 (_5(D) - 5 )
+
+Coalesce list: (4)_4 & (5)_5(D) [map: 1, 2] : Success -> 1
+After Coalescing:
+
+Partition map 
+
+Partition 0 (sp_2(D) - 2 )
+Partition 1 (_4 - 4 5 )
+
+__attribute__((visibility ("default")))
+int use_default_colors_sp (struct SCREEN * sp)
+{
+  int _4;
+  int _5(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _4 = assume_default_colors_sp (sp_2(D), -1, -1); [tail call]
+  return _4;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; _4 = assume_default_colors_sp (sp_2(D), -1, -1); [tail call]
+
+(insn 6 5 7 2 (set (reg:SI 1 dx)
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_dft_fgbg.c":51:5 -1
+     (nil))
+
+(insn 7 6 8 2 (set (reg:SI 4 si)
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_dft_fgbg.c":51:5 -1
+     (nil))
+
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 83 [ sp ])) "../ncurses/./base/lib_dft_fgbg.c":51:5 -1
+     (nil))
+
+(call_insn/j 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("assume_default_colors_sp") [flags 0x3]  <function_decl 0x7f76157a4000 assume_default_colors_sp>) [0 assume_default_colors_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":51:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("assume_default_colors_sp") [flags 0x3]  <function_decl 0x7f76157a4000 assume_default_colors_sp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+
+(barrier 10 9 0)
+Basic block 4 is marked unlikely by forward prop
+deleting block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 83 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/lib_dft_fgbg.c":49:1 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:SI 1 dx)
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_dft_fgbg.c":51:5 -1
+     (nil))
+(insn 7 6 8 2 (set (reg:SI 4 si)
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_dft_fgbg.c":51:5 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 83 [ sp ])) "../ncurses/./base/lib_dft_fgbg.c":51:5 -1
+     (nil))
+(call_insn/j 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("assume_default_colors_sp") [flags 0x3]  <function_decl 0x7f76157a4000 assume_default_colors_sp>) [0 assume_default_colors_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":51:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("assume_default_colors_sp") [flags 0x3]  <function_decl 0x7f76157a4000 assume_default_colors_sp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 10 9 0)
+
+;; Function use_default_colors (use_default_colors, funcdef_no=92, decl_uid=6446, cgraph_uid=93, symbol_order=92)
+
+__attribute__((visibility ("default")))
+int use_default_colors ()
+{
+  struct SCREEN * SP.0_1;
+  int _3;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.0_1 = SP;
+  _3 = assume_default_colors_sp (SP.0_1, -1, -1); [tail call]
+  return _3;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (SP.0_1 - 1 )
+Partition 3 (_3 - 3 )
+Partition 5 (_5(D) - 5 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_3 - 3 5 )
+
+
+Partition map 
+
+Partition 0 (_3 - 3 )
+Partition 1 (_5(D) - 5 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) _3 <-> _5(D)
+
+Partition map 
+
+Partition 0 (_3 - 3 )
+Partition 1 (_5(D) - 5 )
+
+Coalesce list: (3)_3 & (5)_5(D) [map: 0, 1] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (SP.0_1 - 1 )
+Partition 1 (_3 - 3 5 )
+
+
+Replacing Expressions
+SP.0_1 replace with --> SP.0_1 = SP;
+
+
+__attribute__((visibility ("default")))
+int use_default_colors ()
+{
+  struct SCREEN * SP.0_1;
+  int _3;
+  int _5(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.0_1 = SP;
+  _3 = assume_default_colors_sp (SP.0_1, -1, -1); [tail call]
+  return _3;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; _3 = assume_default_colors_sp (SP.0_1, -1, -1); [tail call]
+
+(insn 5 4 6 2 (set (reg:DI 84)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f76158b5cf0 SP>) [37 SP+0 S8 A64])) "../ncurses/./base/lib_dft_fgbg.c":51:5 -1
+     (nil))
+
+(insn 6 5 7 2 (set (reg:SI 1 dx)
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_dft_fgbg.c":51:5 -1
+     (nil))
+
+(insn 7 6 8 2 (set (reg:SI 4 si)
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_dft_fgbg.c":51:5 -1
+     (nil))
+
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (reg:DI 84)) "../ncurses/./base/lib_dft_fgbg.c":51:5 -1
+     (nil))
+
+(call_insn/j 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("assume_default_colors_sp") [flags 0x3]  <function_decl 0x7f76157a4000 assume_default_colors_sp>) [0 assume_default_colors_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":51:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("assume_default_colors_sp") [flags 0x3]  <function_decl 0x7f76157a4000 assume_default_colors_sp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+
+(barrier 10 9 0)
+Basic block 4 is marked unlikely by forward prop
+deleting block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 3 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg:DI 84)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f76158b5cf0 SP>) [37 SP+0 S8 A64])) "../ncurses/./base/lib_dft_fgbg.c":51:5 -1
+     (nil))
+(insn 6 5 7 2 (set (reg:SI 1 dx)
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_dft_fgbg.c":51:5 -1
+     (nil))
+(insn 7 6 8 2 (set (reg:SI 4 si)
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_dft_fgbg.c":51:5 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (reg:DI 84)) "../ncurses/./base/lib_dft_fgbg.c":51:5 -1
+     (nil))
+(call_insn/j 9 8 10 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("assume_default_colors_sp") [flags 0x3]  <function_decl 0x7f76157a4000 assume_default_colors_sp>) [0 assume_default_colors_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":51:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("assume_default_colors_sp") [flags 0x3]  <function_decl 0x7f76157a4000 assume_default_colors_sp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 10 9 0)
+
+;; Function assume_default_colors (assume_default_colors, funcdef_no=94, decl_uid=6379, cgraph_uid=95, symbol_order=94)
+
+__attribute__((visibility ("default")))
+int assume_default_colors (int fg, int bg)
+{
+  struct SCREEN * SP.1_1;
+  int _6;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.1_1 = SP;
+  _6 = assume_default_colors_sp (SP.1_1, fg_3(D), bg_4(D)); [tail call]
+  return _6;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (SP.1_1 - 1 )
+Partition 3 (fg_3(D) - 3 )
+Partition 4 (bg_4(D) - 4 )
+Partition 6 (_6 - 6 )
+Partition 7 (_7(D) - 7 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (fg_3(D) - 3 )
+Partition 1, base 1 (bg_4(D) - 4 )
+Partition 2, base 2 (_6 - 6 7 )
+
+
+Partition map 
+
+Partition 0 (fg_3(D) - 3 )
+Partition 1 (bg_4(D) - 4 )
+Partition 2 (_6 - 6 )
+Partition 3 (_7(D) - 7 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) _6 <-> _7(D)
+
+Partition map 
+
+Partition 0 (fg_3(D) - 3 )
+Partition 1 (bg_4(D) - 4 )
+Partition 2 (_6 - 6 )
+Partition 3 (_7(D) - 7 )
+
+Coalesce list: (6)_6 & (7)_7(D) [map: 2, 3] : Success -> 2
+After Coalescing:
+
+Partition map 
+
+Partition 0 (SP.1_1 - 1 )
+Partition 1 (fg_3(D) - 3 )
+Partition 2 (bg_4(D) - 4 )
+Partition 3 (_6 - 6 7 )
+
+
+Replacing Expressions
+SP.1_1 replace with --> SP.1_1 = SP;
+
+
+__attribute__((visibility ("default")))
+int assume_default_colors (int fg, int bg)
+{
+  struct SCREEN * SP.1_1;
+  int _6;
+  int _7(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.1_1 = SP;
+  _6 = assume_default_colors_sp (SP.1_1, fg_3(D), bg_4(D)); [tail call]
+  return _6;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; _6 = assume_default_colors_sp (SP.1_1, fg_3(D), bg_4(D)); [tail call]
+
+(insn 7 6 8 2 (set (reg:DI 86)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f76158b5cf0 SP>) [37 SP+0 S8 A64])) "../ncurses/./base/lib_dft_fgbg.c":102:12 -1
+     (nil))
+
+(insn 8 7 9 2 (set (reg:SI 1 dx)
+        (reg/v:SI 85 [ bg ])) "../ncurses/./base/lib_dft_fgbg.c":102:12 -1
+     (nil))
+
+(insn 9 8 10 2 (set (reg:SI 4 si)
+        (reg/v:SI 84 [ fg ])) "../ncurses/./base/lib_dft_fgbg.c":102:12 -1
+     (nil))
+
+(insn 10 9 11 2 (set (reg:DI 5 di)
+        (reg:DI 86)) "../ncurses/./base/lib_dft_fgbg.c":102:12 -1
+     (nil))
+
+(call_insn/j 11 10 12 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("assume_default_colors_sp") [flags 0x3]  <function_decl 0x7f76157a4000 assume_default_colors_sp>) [0 assume_default_colors_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":102:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("assume_default_colors_sp") [flags 0x3]  <function_decl 0x7f76157a4000 assume_default_colors_sp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+
+(barrier 12 11 0)
+Basic block 4 is marked unlikely by forward prop
+deleting block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v:SI 84 [ fg ])
+        (reg:SI 5 di [ fg ])) "../ncurses/./base/lib_dft_fgbg.c":101:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 85 [ bg ])
+        (reg:SI 4 si [ bg ])) "../ncurses/./base/lib_dft_fgbg.c":101:1 -1
+     (nil))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (set (reg:DI 86)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f76158b5cf0 SP>) [37 SP+0 S8 A64])) "../ncurses/./base/lib_dft_fgbg.c":102:12 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:SI 1 dx)
+        (reg/v:SI 85 [ bg ])) "../ncurses/./base/lib_dft_fgbg.c":102:12 -1
+     (nil))
+(insn 9 8 10 2 (set (reg:SI 4 si)
+        (reg/v:SI 84 [ fg ])) "../ncurses/./base/lib_dft_fgbg.c":102:12 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:DI 5 di)
+        (reg:DI 86)) "../ncurses/./base/lib_dft_fgbg.c":102:12 -1
+     (nil))
+(call_insn/j 11 10 12 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("assume_default_colors_sp") [flags 0x3]  <function_decl 0x7f76157a4000 assume_default_colors_sp>) [0 assume_default_colors_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_dft_fgbg.c":102:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("assume_default_colors_sp") [flags 0x3]  <function_decl 0x7f76157a4000 assume_default_colors_sp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 12 11 0)

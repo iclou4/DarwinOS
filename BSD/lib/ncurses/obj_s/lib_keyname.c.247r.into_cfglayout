@@ -1,0 +1,1373 @@
+
+;; Function keyname_sp.part.0 (keyname_sp.part.0, funcdef_no=93, decl_uid=9303, cgraph_uid=106, symbol_order=111)
+
+
+
+try_optimize_cfg iteration 1
+
+Removing jump 29.
+Removing jump 41.
+Redirecting fallthru edge 9->10 to 13
+deleting block 10
+Removing jump 72.
+Deleted label in block 13.
+Removing jump 292.
+Redirecting fallthru edge 19->20 to 22
+deleting block 20
+Removing jump 296.
+Removing jump 156.
+Removing jump 165.
+Removing jump 190.
+Removing jump 204.
+Redirecting fallthru edge 39->40 to 43
+deleting block 40
+Redirecting fallthru edge 41->42 to 49
+deleting block 42
+Redirecting fallthru edge 45->46 to 49
+deleting block 46
+Removing jump 274.
+Removing jump 280.
+
+
+try_optimize_cfg iteration 2
+
+
+
+try_optimize_cfg iteration 1
+
+fix_loop_structure: fixing up loops for function
+;; basic block 2, loop depth 0, count 38234569 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:38234569 (estimated locally) (FALLTHRU)
+(note 19 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 19 3 2 (set (reg/v/f:DI 137 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/lib_keyname.c":325:1 74 {*movdi_internal}
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 138 [ c ])
+        (reg:SI 4 si [ c ])) "../ncurses/lib_keyname.c":325:1 75 {*movsi_internal}
+     (nil))
+(note 4 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 4 6 2 (set (reg/f:DI 139)
+        (const_int 40 [0x28])) "../ncurses/lib_keyname.c":325:1 74 {*movdi_internal}
+     (nil))
+(insn 6 5 21 2 (parallel [
+            (set (mem/v/f/c:DI (plus:DI (reg/f:DI 19 frame)
+                        (const_int -8 [0xfffffffffffffff8])) [41 D.9368+0 S8 A64])
+                (unspec:DI [
+                        (mem/v/f:DI (reg/f:DI 139) [9 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_SET))
+            (set (scratch:DI)
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":325:1 1159 {stack_protect_set_1_di}
+     (nil))
+(insn 21 6 7 2 (set (reg:DI 105 [ ivtmp.40 ])
+        (const:DI (plus:DI (symbol_ref:DI ("_nc_key_names") [flags 0x2]  <var_decl 0x7f95fdc44990 _nc_key_names>)
+                (const_int 8 [0x8])))) 74 {*movdi_internal}
+     (nil))
+(insn 7 21 8 2 (set (reg:SI 92 [ pretmp_23 ])
+        (const_int 348 [0x15c])) "../ncurses/lib_keyname.c":325:1 75 {*movsi_internal}
+     (nil))
+(insn 8 7 40 2 (set (reg:HI 83 [ _8 ])
+        (const_int 0 [0])) "../ncurses/lib_keyname.c":334:31 76 {*movhi_internal}
+     (nil))
+;;  succ:       3 [always (guessed)]  count:38234569 (estimated locally) (FALLTHRU)
+
+;; basic block 3, loop depth 1, count 337758054 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [always]  count:301626387 (estimated locally) (FALLTHRU)
+;;              2 [always (guessed)]  count:38234569 (estimated locally) (FALLTHRU)
+(code_label 40 8 22 3 5 (nil) [0 uses])
+(note 22 40 23 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 24 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 138 [ c ])
+            (reg:SI 92 [ pretmp_23 ]))) "../ncurses/lib_keyname.c":335:7 11 {*cmpsi_1}
+     (nil))
+(jump_insn 24 23 25 3 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 31)
+            (pc))) "../ncurses/lib_keyname.c":335:7 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 31)
+;;  succ:       4 [5.5% (guessed)]  count:18576693 (estimated locally) (FALLTHRU)
+;;              5 [94.5% (guessed)]  count:319181361 (estimated locally)
+
+;; basic block 4, loop depth 0, count 18576693 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       3 [5.5% (guessed)]  count:18576693 (estimated locally) (FALLTHRU)
+(note 25 24 26 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 26 25 27 4 (set (reg:DI 141)
+        (sign_extend:DI (reg:HI 83 [ _8 ]))) "../ncurses/lib_keyname.c":336:64 150 {extendhidi2}
+     (nil))
+(insn 27 26 28 4 (set (reg:DI 142)
+        (symbol_ref:DI ("key_names") [flags 0x2]  <var_decl 0x7f95fdc44ab0 key_names>)) "../ncurses/lib_keyname.c":336:12 74 {*movdi_internal}
+     (nil))
+(insn 28 27 31 4 (parallel [
+            (set (reg/v/f:DI 136 [ <retval> ])
+                (plus:DI (reg:DI 141)
+                    (reg:DI 142)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":336:12 210 {*adddi_1}
+     (nil))
+;;  succ:       50 [always]  count:18576693 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 1, count 319181362 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       3 [94.5% (guessed)]  count:319181361 (estimated locally)
+(code_label 31 28 32 5 2 (nil) [1 uses])
+(note 32 31 33 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 33 32 34 5 (parallel [
+            (set (reg:DI 105 [ ivtmp.40 ])
+                (plus:DI (reg:DI 105 [ ivtmp.40 ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":334:39 210 {*adddi_1}
+     (nil))
+(insn 34 33 35 5 (set (reg/f:DI 86 [ _13 ])
+        (reg:DI 105 [ ivtmp.40 ])) 74 {*movdi_internal}
+     (nil))
+(insn 35 34 36 5 (set (reg:HI 83 [ _8 ])
+        (mem:HI (plus:DI (reg/f:DI 86 [ _13 ])
+                (const_int -8 [0xfffffffffffffff8])) [3 MEM[(short int *)_13 + -8B]+0 S2 A64])) "../ncurses/lib_keyname.c":334:31 76 {*movhi_internal}
+     (nil))
+(insn 36 35 37 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 83 [ _8 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/lib_keyname.c":334:39 10 {*cmphi_1}
+     (nil))
+(jump_insn 37 36 38 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 43)
+            (pc))) "../ncurses/lib_keyname.c":334:39 806 {*jcc}
+     (int_list:REG_BR_PROB 59055804 (nil))
+ -> 43)
+;;  succ:       6 [94.5% (guessed)]  count:301626387 (estimated locally) (FALLTHRU)
+;;              7 [5.5% (guessed)]  count:17554975 (estimated locally)
+
+;; basic block 6, loop depth 1, count 301626387 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [94.5% (guessed)]  count:301626387 (estimated locally) (FALLTHRU)
+(note 38 37 39 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 39 38 43 6 (set (reg:SI 92 [ pretmp_23 ])
+        (mem:SI (plus:DI (reg/f:DI 86 [ _13 ])
+                (const_int -4 [0xfffffffffffffffc])) [1 MEM[(int *)_13 + -4B]+0 S4 A32])) "../ncurses/lib_keyname.c":335:24 75 {*movsi_internal}
+     (nil))
+;;  succ:       3 [always]  count:301626387 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 19657876 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 17554975 (estimated locally), should be 19657876 (estimated locally)
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [5.5% (guessed)]  count:17554975 (estimated locally)
+(code_label 43 39 44 7 4 (nil) [1 uses])
+(note 44 43 47 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 47 44 48 7 (set (reg:CC 17 flags)
+        (compare:CC (reg/v:SI 138 [ c ])
+            (const_int 255 [0xff]))) "../ncurses/lib_keyname.c":341:6 11 {*cmpsi_1}
+     (nil))
+(jump_insn 48 47 49 7 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 192)
+            (pc))) "../ncurses/lib_keyname.c":341:6 806 {*jcc}
+     (int_list:REG_BR_PROB 29527924 (nil))
+ -> 192)
+;;  succ:       8 [97.2% (guessed)]  count:19117284 (estimated locally) (FALLTHRU)
+;;              33 [2.8% (guessed)]  count:540592 (estimated locally)
+
+;; basic block 8, loop depth 0, count 19117285 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [97.2% (guessed)]  count:19117284 (estimated locally) (FALLTHRU)
+(note 49 48 50 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 50 49 51 8 (set (reg/f:DI 143)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f95fdb45ea0 _nc_globals>)) "../ncurses/lib_keyname.c":342:8 74 {*movdi_internal}
+     (nil))
+(insn 51 50 52 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f/c:DI (plus:DI (reg/f:DI 143)
+                    (const_int 72 [0x48])) [2 _nc_globals.keyname_table+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/lib_keyname.c":342:7 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 52 51 68 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 59)
+            (pc))) "../ncurses/lib_keyname.c":342:7 806 {*jcc}
+     (int_list:REG_BR_PROB 187153204 (nil))
+ -> 59)
+;;  succ:       11 [17.4% (guessed)]  count:3332143 (estimated locally)
+;;              9 [82.6% (guessed)]  count:15785142 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 16268810 (estimated locally), maybe hot
+;;  prev block 8, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       8 [82.6% (guessed)]  count:15785142 (estimated locally) (FALLTHRU)
+;;              11 [14.5% (guessed)]  count:483668 (estimated locally)
+(code_label 68 52 53 9 10 (nil) [1 uses])
+(note 53 68 54 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 54 53 55 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 137 [ sp ])
+            (const_int 0 [0]))) "../ncurses/lib_keyname.c":346:32 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 55 54 59 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 295)
+            (pc))) "../ncurses/lib_keyname.c":346:32 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 295)
+;;  succ:       14 [30.0% (guessed)]  count:4880643 (estimated locally)
+;;              13 [70.0% (guessed)]  count:11388167 (estimated locally) (FALLTHRU)
+
+;; basic block 11, loop depth 0, count 3332143 (estimated locally), maybe hot
+;;  prev block 9, next block 12, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [17.4% (guessed)]  count:3332143 (estimated locally)
+(code_label 59 55 60 11 7 (nil) [1 uses])
+(note 60 59 61 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 61 60 62 11 (set (reg:DI 4 si)
+        (const_int 8 [0x8])) "../ncurses/lib_keyname.c":343:15 74 {*movdi_internal}
+     (nil))
+(insn 62 61 63 11 (set (reg:DI 5 di)
+        (const_int 256 [0x100])) "../ncurses/lib_keyname.c":343:15 74 {*movdi_internal}
+     (nil))
+(call_insn 63 62 64 11 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7f95fe004600 calloc>) [0 __builtin_calloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/lib_keyname.c":343:15 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7f95fe004600 calloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 64 63 65 11 (set (reg/f:DI 144)
+        (reg:DI 0 ax)) "../ncurses/lib_keyname.c":343:15 74 {*movdi_internal}
+     (expr_list:REG_NOALIAS (reg/f:DI 144)
+        (nil)))
+(insn 65 64 66 11 (set (reg/f:DI 88 [ _15 ])
+        (reg/f:DI 144)) "../ncurses/lib_keyname.c":343:15 74 {*movdi_internal}
+     (nil))
+(insn 66 65 67 11 (set (reg/f:DI 145)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f95fdb45ea0 _nc_globals>)) "../ncurses/lib_keyname.c":343:13 74 {*movdi_internal}
+     (nil))
+(insn 67 66 69 11 (set (mem/f/c:DI (plus:DI (reg/f:DI 145)
+                (const_int 72 [0x48])) [2 _nc_globals.keyname_table+0 S8 A64])
+        (reg/f:DI 88 [ _15 ])) "../ncurses/lib_keyname.c":343:13 74 {*movdi_internal}
+     (nil))
+(insn 69 67 70 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 88 [ _15 ])
+            (const_int 0 [0]))) "../ncurses/lib_keyname.c":345:7 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 70 69 194 11 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 68)
+            (pc))) "../ncurses/lib_keyname.c":345:7 806 {*jcc}
+     (int_list:REG_BR_PROB 155856028 (nil))
+ -> 68)
+;;  succ:       9 [14.5% (guessed)]  count:483668 (estimated locally)
+;;              12 [85.5% (guessed)]  count:2848475 (estimated locally) (FALLTHRU)
+
+;; basic block 12, loop depth 0, count 4272713 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       11 [85.5% (guessed)]  count:2848475 (estimated locally) (FALLTHRU)
+;;              33 [never (guessed)]  count:0 (estimated locally)
+;;              34 [14.9% (guessed)]  count:1424238 (estimated locally)
+(code_label 194 70 71 12 20 (nil) [2 uses])
+(note 71 194 18 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 18 71 75 12 (set (reg/v/f:DI 136 [ <retval> ])
+        (const_int 0 [0])) 74 {*movdi_internal}
+     (nil))
+;;  succ:       50 [always]  count:4272713 (estimated locally) (FALLTHRU)
+
+;; basic block 13, loop depth 0, count 11388166 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       9 [70.0% (guessed)]  count:11388167 (estimated locally) (FALLTHRU)
+(note 75 18 76 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 76 75 77 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/v/f:DI 137 [ sp ])
+                    (const_int 792 [0x318])) [1 sp_17(D)->_use_meta+0 S4 A64])
+            (const_int 0 [0]))) "../ncurses/lib_keyname.c":346:32 7 {*cmpsi_ccno_1}
+     (nil))
+(insn 77 76 78 13 (set (reg:QI 147)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/lib_keyname.c":346:32 802 {*setcc_qi}
+     (nil))
+(insn 78 77 79 13 (set (reg:SI 146)
+        (zero_extend:SI (reg:QI 147))) "../ncurses/lib_keyname.c":346:32 143 {*zero_extendqisi2}
+     (nil))
+(insn 79 78 80 13 (set (reg:SI 91 [ iftmp.1_20 ])
+        (reg:SI 146)) "../ncurses/lib_keyname.c":346:32 75 {*movsi_internal}
+     (nil))
+(insn 80 79 295 13 (parallel [
+            (set (reg:SI 133 [ prephitmp_135 ])
+                (plus:SI (reg:SI 91 [ iftmp.1_20 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":349:29 209 {*addsi_1}
+     (nil))
+;;  succ:       15 [always]  count:11388166 (estimated locally) (FALLTHRU)
+
+;; basic block 14, loop depth 0, count 4880643 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       9 [30.0% (guessed)]  count:4880643 (estimated locally)
+(code_label 295 80 294 14 29 (nil) [1 uses])
+(note 294 295 9 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 9 294 10 14 (set (reg:SI 133 [ prephitmp_135 ])
+        (const_int 2 [0x2])) 75 {*movsi_internal}
+     (nil))
+(insn 10 9 81 14 (set (reg:SI 91 [ iftmp.1_20 ])
+        (const_int 1 [0x1])) "../ncurses/lib_keyname.c":346:32 75 {*movsi_internal}
+     (nil))
+;;  succ:       15 [always]  count:4880643 (estimated locally) (FALLTHRU)
+
+;; basic block 15, loop depth 0, count 16268809 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       14 [always]  count:4880643 (estimated locally) (FALLTHRU)
+;;              13 [always]  count:11388166 (estimated locally) (FALLTHRU)
+(code_label 81 10 82 15 8 (nil) [0 uses])
+(note 82 81 83 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 83 82 84 15 (set (reg/f:DI 148)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f95fdb45ea0 _nc_globals>)) "../ncurses/lib_keyname.c":349:9 74 {*movdi_internal}
+     (nil))
+(insn 84 83 85 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c:SI (plus:DI (reg/f:DI 148)
+                    (const_int 80 [0x50])) [1 _nc_globals.init_keyname+0 S4 A64])
+            (reg:SI 133 [ prephitmp_135 ]))) "../ncurses/lib_keyname.c":349:8 11 {*cmpsi_1}
+     (nil))
+(jump_insn 85 84 86 15 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 110)
+            (pc))) "../ncurses/lib_keyname.c":349:8 806 {*jcc}
+     (int_list:REG_BR_PROB 365072228 (nil))
+ -> 110)
+;;  succ:       16 [66.0% (guessed)]  count:10737414 (estimated locally) (FALLTHRU)
+;;              21 [34.0% (guessed)]  count:5531395 (estimated locally)
+
+;; basic block 16, loop depth 0, count 10737414 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       15 [66.0% (guessed)]  count:10737414 (estimated locally) (FALLTHRU)
+(note 86 85 87 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 87 86 88 16 (set (reg/f:DI 149)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f95fdb45ea0 _nc_globals>)) "../ncurses/lib_keyname.c":350:13 74 {*movdi_internal}
+     (nil))
+(insn 88 87 89 16 (set (mem/c:SI (plus:DI (reg/f:DI 149)
+                (const_int 80 [0x50])) [1 _nc_globals.init_keyname+0 S4 A64])
+        (reg:SI 133 [ prephitmp_135 ])) "../ncurses/lib_keyname.c":350:13 75 {*movsi_internal}
+     (nil))
+(insn 89 88 90 16 (set (reg/f:DI 150)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f95fdb45ea0 _nc_globals>)) "../ncurses/lib_keyname.c":352:11 74 {*movdi_internal}
+     (nil))
+(insn 90 89 11 16 (set (reg/f:DI 129 [ prephitmp_124 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 150)
+                (const_int 72 [0x48])) [2 _nc_globals.keyname_table+0 S8 A64])) "../ncurses/lib_keyname.c":352:11 74 {*movdi_internal}
+     (nil))
+(insn 11 90 104 16 (set (reg:DI 134 [ ivtmp.20 ])
+        (const_int 0 [0])) "../ncurses/lib_keyname.c":352:11 74 {*movdi_internal}
+     (nil))
+;;  succ:       17 [always (guessed)]  count:10737414 (estimated locally) (FALLTHRU)
+
+;; basic block 17, loop depth 1, count 1063004409 (estimated locally), maybe hot
+;;  prev block 16, next block 18, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       19 [99.0% (guessed)]  count:1052266997 (estimated locally) (DFS_BACK)
+;;              16 [always (guessed)]  count:10737414 (estimated locally) (FALLTHRU)
+(code_label 104 11 91 17 13 (nil) [1 uses])
+(note 91 104 92 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 92 91 93 17 (set (reg/f:DI 94 [ _27 ])
+        (mem/f:DI (plus:DI (reg/f:DI 129 [ prephitmp_124 ])
+                (reg:DI 134 [ ivtmp.20 ])) [8 *_26+0 S8 A64])) "../ncurses/lib_keyname.c":352:18 74 {*movdi_internal}
+     (nil))
+(insn 93 92 94 17 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 94 [ _27 ])
+            (const_int 0 [0]))) "../ncurses/lib_keyname.c":352:10 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 94 93 95 17 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 101)
+            (pc))) "../ncurses/lib_keyname.c":352:10 806 {*jcc}
+     (int_list:REG_BR_PROB 499612076 (nil))
+ -> 101)
+;;  succ:       18 [53.5% (guessed)]  count:568388456 (estimated locally) (FALLTHRU)
+;;              19 [46.5% (guessed)]  count:494615953 (estimated locally)
+
+;; basic block 18, loop depth 1, count 568388457 (estimated locally), maybe hot
+;;  prev block 17, next block 19, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       17 [53.5% (guessed)]  count:568388456 (estimated locally) (FALLTHRU)
+(note 95 94 96 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 96 95 97 18 (set (reg:DI 5 di)
+        (reg/f:DI 94 [ _27 ])) "../ncurses/lib_keyname.c":353:8 74 {*movdi_internal}
+     (nil))
+(call_insn 97 96 98 18 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f95fe00bd00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/lib_keyname.c":353:8 813 {*call}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f95fe00bd00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 98 97 99 18 (set (reg/f:DI 151)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f95fdb45ea0 _nc_globals>)) "../ncurses/lib_keyname.c":353:8 74 {*movdi_internal}
+     (nil))
+(insn 99 98 100 18 (set (reg/f:DI 129 [ prephitmp_124 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 151)
+                (const_int 72 [0x48])) [2 _nc_globals.keyname_table+0 S8 A64])) "../ncurses/lib_keyname.c":353:8 74 {*movdi_internal}
+     (nil))
+(insn 100 99 101 18 (set (mem/f:DI (plus:DI (reg/f:DI 129 [ prephitmp_124 ])
+                (reg:DI 134 [ ivtmp.20 ])) [8 *_29+0 S8 A64])
+        (const_int 0 [0])) "../ncurses/lib_keyname.c":353:8 74 {*movdi_internal}
+     (nil))
+;;  succ:       19 [always]  count:568388457 (estimated locally) (FALLTHRU)
+
+;; basic block 19, loop depth 1, count 1063004410 (estimated locally), maybe hot
+;;  prev block 18, next block 21, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       17 [46.5% (guessed)]  count:494615953 (estimated locally)
+;;              18 [always]  count:568388457 (estimated locally) (FALLTHRU)
+(code_label 101 100 102 19 12 (nil) [1 uses])
+(note 102 101 103 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 103 102 105 19 (parallel [
+            (set (reg:DI 134 [ ivtmp.20 ])
+                (plus:DI (reg:DI 134 [ ivtmp.20 ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":351:20 210 {*adddi_1}
+     (nil))
+(insn 105 103 106 19 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 134 [ ivtmp.20 ])
+            (const_int 2048 [0x800]))) "../ncurses/lib_keyname.c":351:20 12 {*cmpdi_1}
+     (nil))
+(jump_insn 106 105 110 19 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 104)
+            (pc))) "../ncurses/lib_keyname.c":351:20 806 {*jcc}
+     (int_list:REG_BR_PROB 1062895956 (nil))
+ -> 104)
+;;  succ:       17 [99.0% (guessed)]  count:1052266997 (estimated locally) (DFS_BACK)
+;;              22 [1.0% (guessed)]  count:10737413 (estimated locally) (FALLTHRU)
+
+;; basic block 21, loop depth 0, count 5531395 (estimated locally), maybe hot
+;;  prev block 19, next block 22, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       15 [34.0% (guessed)]  count:5531395 (estimated locally)
+(code_label 110 106 111 21 11 (nil) [1 uses])
+(note 111 110 112 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 112 111 113 21 (set (reg/f:DI 152)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f95fdb45ea0 _nc_globals>)) "../ncurses/lib_keyname.c":359:9 74 {*movdi_internal}
+     (nil))
+(insn 113 112 114 21 (set (reg/f:DI 129 [ prephitmp_124 ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 152)
+                (const_int 72 [0x48])) [2 _nc_globals.keyname_table+0 S8 A64])) "../ncurses/lib_keyname.c":359:9 74 {*movdi_internal}
+     (nil))
+;;  succ:       22 [always]  count:5531395 (estimated locally) (FALLTHRU)
+
+;; basic block 22, loop depth 0, count 16268811 (estimated locally), maybe hot
+;;  prev block 21, next block 23, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       21 [always]  count:5531395 (estimated locally) (FALLTHRU)
+;;              19 [1.0% (guessed)]  count:10737413 (estimated locally) (FALLTHRU)
+(code_label 114 113 115 22 14 (nil) [0 uses])
+(note 115 114 116 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 116 115 117 22 (set (reg:DI 153)
+        (sign_extend:DI (reg/v:SI 138 [ c ]))) "../ncurses/lib_keyname.c":359:16 147 {*extendsidi2_rex64}
+     (nil))
+(insn 117 116 118 22 (parallel [
+            (set (reg:DI 97 [ _33 ])
+                (ashift:DI (reg:DI 153)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":359:16 656 {*ashldi3_1}
+     (nil))
+(insn 118 117 119 22 (parallel [
+            (set (reg/f:DI 130 [ prephitmp_128 ])
+                (plus:DI (reg/f:DI 129 [ prephitmp_124 ])
+                    (reg:DI 97 [ _33 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":359:16 210 {*adddi_1}
+     (nil))
+(insn 119 118 120 22 (set (reg/v/f:DI 136 [ <retval> ])
+        (mem/f:DI (reg/f:DI 130 [ prephitmp_128 ]) [8 *_34+0 S8 A64])) "../ncurses/lib_keyname.c":359:16 74 {*movdi_internal}
+     (nil))
+(insn 120 119 121 22 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 136 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/lib_keyname.c":359:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 121 120 122 22 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 282)
+            (pc))) "../ncurses/lib_keyname.c":359:8 806 {*jcc}
+     (int_list:REG_BR_PROB 751619284 (nil))
+ -> 282)
+;;  succ:       23 [30.0% (guessed)]  count:4880643 (estimated locally) (FALLTHRU)
+;;              50 [70.0% (guessed)]  count:11388168 (estimated locally)
+
+;; basic block 23, loop depth 0, count 4880643 (estimated locally), maybe hot
+;;  prev block 22, next block 24, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       22 [30.0% (guessed)]  count:4880643 (estimated locally) (FALLTHRU)
+(note 122 121 125 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 125 122 126 23 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 138 [ c ])
+            (const_int 127 [0x7f]))) "../ncurses/lib_keyname.c":363:13 11 {*cmpsi_1}
+     (nil))
+(insn 126 125 127 23 (set (reg:QI 155)
+        (gt:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/lib_keyname.c":363:13 802 {*setcc_qi}
+     (nil))
+(insn 127 126 128 23 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 155)
+            (const_int 0 [0]))) "../ncurses/lib_keyname.c":363:9 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 128 127 302 23 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 299)
+            (pc))) "../ncurses/lib_keyname.c":363:9 806 {*jcc}
+     (int_list:REG_BR_PROB 359703516 (nil))
+ -> 299)
+;;  succ:       26 [33.5% (guessed)]  count:1635015 (estimated locally)
+;;              24 [66.5% (guessed)]  count:3245628 (estimated locally) (FALLTHRU)
+
+;; basic block 24, loop depth 0, count 3245628 (estimated locally), maybe hot
+;;  prev block 23, next block 25, flags: (NEW, REACHABLE, RTL)
+;;  pred:       23 [66.5% (guessed)]  count:3245628 (estimated locally) (FALLTHRU)
+(note 302 128 129 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 129 302 130 24 (parallel [
+            (set (reg:QI 156)
+                (and:QI (subreg:QI (reg:SI 91 [ iftmp.1_20 ]) 0)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":363:20 491 {*andqi_1}
+     (nil))
+(insn 130 129 131 24 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 156)
+            (const_int 0 [0]))) "../ncurses/lib_keyname.c":363:9 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 131 130 132 24 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 299)
+            (pc))) "../ncurses/lib_keyname.c":363:9 806 {*jcc}
+     (int_list:REG_BR_PROB 540907540 (nil))
+ -> 299)
+;;  succ:       25 [49.6% (guessed)]  count:1610612 (estimated locally) (FALLTHRU)
+;;              26 [50.4% (guessed)]  count:1635016 (estimated locally)
+
+;; basic block 25, loop depth 0, count 1610612 (estimated locally), maybe hot
+;;  prev block 24, next block 26, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       24 [49.6% (guessed)]  count:1610612 (estimated locally) (FALLTHRU)
+(note 132 131 133 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(insn 133 132 134 25 (parallel [
+            (set (reg:DI 157)
+                (plus:DI (reg/f:DI 19 frame)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":79:10 210 {*adddi_1}
+     (nil))
+(insn 134 133 135 25 (set (mem/c:HI (reg:DI 157) [0 MEM <char[1:3]> [(void *)&name]+0 S2 A128])
+        (const_int 11597 [0x2d4d])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":79:10 76 {*movhi_internal}
+     (nil))
+(insn 135 134 136 25 (set (mem/c:QI (plus:DI (reg:DI 157)
+                (const_int 2 [0x2])) [0 MEM <char[1:3]> [(void *)&name]+2 S1 A16])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":79:10 77 {*movqi_internal}
+     (nil))
+(insn 136 135 13 25 (parallel [
+            (set (reg/v:SI 138 [ c ])
+                (plus:SI (reg/v:SI 138 [ c ])
+                    (const_int -128 [0xffffffffffffff80])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":366:10 209 {*addsi_1}
+     (nil))
+(insn 13 136 14 25 (parallel [
+            (set (reg:DI 140)
+                (plus:DI (reg/f:DI 19 frame)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":365:9 210 {*adddi_1}
+     (nil))
+(insn 14 13 299 25 (parallel [
+            (set (reg/v/f:DI 102 [ p ])
+                (plus:DI (reg:DI 140)
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":365:9 210 {*adddi_1}
+     (nil))
+;;  succ:       27 [always]  count:1610612 (estimated locally) (FALLTHRU)
+
+;; basic block 26, loop depth 0, count 3270031 (estimated locally), maybe hot
+;;  prev block 25, next block 27, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       24 [50.4% (guessed)]  count:1635016 (estimated locally)
+;;              23 [33.5% (guessed)]  count:1635015 (estimated locally)
+(code_label 299 14 298 26 30 (nil) [2 uses])
+(note 298 299 12 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 12 298 137 26 (parallel [
+            (set (reg/v/f:DI 102 [ p ])
+                (plus:DI (reg/f:DI 19 frame)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":361:12 210 {*adddi_1}
+     (nil))
+;;  succ:       27 [always]  count:3270031 (estimated locally) (FALLTHRU)
+
+;; basic block 27, loop depth 0, count 4880643 (estimated locally), maybe hot
+;;  prev block 26, next block 28, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       26 [always]  count:3270031 (estimated locally) (FALLTHRU)
+;;              25 [always]  count:1610612 (estimated locally) (FALLTHRU)
+(code_label 137 12 138 27 16 (nil) [0 uses])
+(note 138 137 141 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(insn 141 138 142 27 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 138 [ c ])
+            (const_int 31 [0x1f]))) "../ncurses/lib_keyname.c":368:9 11 {*cmpsi_1}
+     (nil))
+(jump_insn 142 141 143 27 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 158)
+            (pc))) "../ncurses/lib_keyname.c":368:9 806 {*jcc}
+     (int_list:REG_BR_PROB 719407028 (nil))
+ -> 158)
+;;  succ:       28 [33.0% (guessed)]  count:1610612 (estimated locally) (FALLTHRU)
+;;              29 [67.0% (guessed)]  count:3270031 (estimated locally)
+
+;; basic block 28, loop depth 0, count 1610612 (estimated locally), maybe hot
+;;  prev block 27, next block 29, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       27 [33.0% (guessed)]  count:1610612 (estimated locally) (FALLTHRU)
+(note 143 142 144 28 [bb 28] NOTE_INSN_BASIC_BLOCK)
+(insn 144 143 145 28 (parallel [
+            (set (reg:SI 158)
+                (plus:SI (reg/v:SI 138 [ c ])
+                    (const_int 64 [0x40])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":369:7 209 {*addsi_1}
+     (nil))
+(insn 145 144 146 28 (set (reg:SI 36 r8)
+        (reg:SI 158)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 75 {*movsi_internal}
+     (nil))
+(insn 146 145 147 28 (set (reg:DI 159)
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f95fd86d120 *.LC0>)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 74 {*movdi_internal}
+     (nil))
+(insn 147 146 148 28 (set (reg:DI 2 cx)
+        (reg:DI 159)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f95fd86d120 *.LC0>)
+        (nil)))
+(insn 148 147 149 28 (set (reg:DI 1 dx)
+        (const_int 20 [0x14])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 74 {*movdi_internal}
+     (nil))
+(insn 149 148 150 28 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 75 {*movsi_internal}
+     (nil))
+(insn 150 149 151 28 (set (reg:DI 5 di)
+        (reg/v/f:DI 102 [ p ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 74 {*movdi_internal}
+     (nil))
+(insn 151 150 152 28 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 77 {*movqi_internal}
+     (nil))
+(call_insn 152 151 153 28 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__sprintf_chk") [flags 0x41]  <function_decl 0x7f95fe01b300 __builtin___sprintf_chk>) [0 __builtin___sprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__sprintf_chk") [flags 0x41]  <function_decl 0x7f95fe01b300 __builtin___sprintf_chk>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (expr_list:SI (use (reg:SI 36 r8))
+                            (nil))))))))
+(insn 153 152 154 28 (set (reg/f:DI 160)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f95fdb45ea0 _nc_globals>)) "../ncurses/lib_keyname.c":374:6 74 {*movdi_internal}
+     (nil))
+(insn 154 153 155 28 (set (reg/f:DI 161)
+        (mem/f/c:DI (plus:DI (reg/f:DI 160)
+                (const_int 72 [0x48])) [2 _nc_globals.keyname_table+0 S8 A64])) "../ncurses/lib_keyname.c":374:13 74 {*movdi_internal}
+     (nil))
+(insn 155 154 158 28 (parallel [
+            (set (reg/f:DI 130 [ prephitmp_128 ])
+                (plus:DI (reg:DI 97 [ _33 ])
+                    (reg/f:DI 161)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":374:13 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 160)
+                    (const_int 72 [0x48])) [2 _nc_globals.keyname_table+0 S8 A64])
+            (reg:DI 97 [ _33 ]))
+        (nil)))
+;;  succ:       32 [always]  count:1610612 (estimated locally) (FALLTHRU)
+
+;; basic block 29, loop depth 0, count 3270031 (estimated locally), maybe hot
+;;  prev block 28, next block 30, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       27 [67.0% (guessed)]  count:3270031 (estimated locally)
+(code_label 158 155 159 29 17 (nil) [1 uses])
+(note 159 158 160 29 [bb 29] NOTE_INSN_BASIC_BLOCK)
+(insn 160 159 161 29 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 138 [ c ])
+            (const_int 127 [0x7f]))) "../ncurses/lib_keyname.c":370:14 11 {*cmpsi_1}
+     (nil))
+(jump_insn 161 160 162 29 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 167)
+            (pc))) "../ncurses/lib_keyname.c":370:14 806 {*jcc}
+     (int_list:REG_BR_PROB 708669604 (nil))
+ -> 167)
+;;  succ:       30 [34.0% (guessed)]  count:1111811 (estimated locally) (FALLTHRU)
+;;              31 [66.0% (guessed)]  count:2158220 (estimated locally)
+
+;; basic block 30, loop depth 0, count 1111811 (estimated locally), maybe hot
+;;  prev block 29, next block 31, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       29 [34.0% (guessed)]  count:1111811 (estimated locally) (FALLTHRU)
+(note 162 161 163 30 [bb 30] NOTE_INSN_BASIC_BLOCK)
+(insn 163 162 164 30 (set (mem:HI (reg/v/f:DI 102 [ p ]) [0 MEM <char[1:3]> [(void *)p_42]+0 S2 A16])
+        (const_int 16222 [0x3f5e])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":79:10 76 {*movhi_internal}
+     (nil))
+(insn 164 163 167 30 (set (mem:QI (plus:DI (reg/v/f:DI 102 [ p ])
+                (const_int 2 [0x2])) [0 MEM <char[1:3]> [(void *)p_42]+2 S1 A16])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":79:10 77 {*movqi_internal}
+     (nil))
+;;  succ:       32 [always]  count:1111811 (estimated locally) (FALLTHRU)
+
+;; basic block 31, loop depth 0, count 2158220 (estimated locally), maybe hot
+;;  prev block 30, next block 32, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       29 [66.0% (guessed)]  count:2158220 (estimated locally)
+(code_label 167 164 168 31 19 (nil) [1 uses])
+(note 168 167 169 31 [bb 31] NOTE_INSN_BASIC_BLOCK)
+(insn 169 168 170 31 (set (reg:SI 36 r8)
+        (reg/v:SI 138 [ c ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 75 {*movsi_internal}
+     (nil))
+(insn 170 169 171 31 (set (reg:DI 162)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f95fd86d1b0 *.LC1>)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 74 {*movdi_internal}
+     (nil))
+(insn 171 170 172 31 (set (reg:DI 2 cx)
+        (reg:DI 162)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f95fd86d1b0 *.LC1>)
+        (nil)))
+(insn 172 171 173 31 (set (reg:DI 1 dx)
+        (const_int 20 [0x14])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 74 {*movdi_internal}
+     (nil))
+(insn 173 172 174 31 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 75 {*movsi_internal}
+     (nil))
+(insn 174 173 175 31 (set (reg:DI 5 di)
+        (reg/v/f:DI 102 [ p ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 74 {*movdi_internal}
+     (nil))
+(insn 175 174 176 31 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 77 {*movqi_internal}
+     (nil))
+(call_insn 176 175 177 31 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__sprintf_chk") [flags 0x41]  <function_decl 0x7f95fe01b300 __builtin___sprintf_chk>) [0 __builtin___sprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__sprintf_chk") [flags 0x41]  <function_decl 0x7f95fe01b300 __builtin___sprintf_chk>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (expr_list:SI (use (reg:SI 36 r8))
+                            (nil))))))))
+(insn 177 176 178 31 (set (reg/f:DI 163)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f95fdb45ea0 _nc_globals>)) "../ncurses/lib_keyname.c":374:6 74 {*movdi_internal}
+     (nil))
+(insn 178 177 179 31 (set (reg/f:DI 164)
+        (mem/f/c:DI (plus:DI (reg/f:DI 163)
+                (const_int 72 [0x48])) [2 _nc_globals.keyname_table+0 S8 A64])) "../ncurses/lib_keyname.c":374:13 74 {*movdi_internal}
+     (nil))
+(insn 179 178 180 31 (parallel [
+            (set (reg/f:DI 130 [ prephitmp_128 ])
+                (plus:DI (reg:DI 97 [ _33 ])
+                    (reg/f:DI 164)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":374:13 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f/c:DI (plus:DI (reg/f:DI 163)
+                    (const_int 72 [0x48])) [2 _nc_globals.keyname_table+0 S8 A64])
+            (reg:DI 97 [ _33 ]))
+        (nil)))
+;;  succ:       32 [always]  count:2158220 (estimated locally) (FALLTHRU)
+
+;; basic block 32, loop depth 0, count 4880643 (estimated locally), maybe hot
+;;  prev block 31, next block 33, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       28 [always]  count:1610612 (estimated locally) (FALLTHRU)
+;;              30 [always]  count:1111811 (estimated locally) (FALLTHRU)
+;;              31 [always]  count:2158220 (estimated locally) (FALLTHRU)
+(code_label 180 179 181 32 18 (nil) [0 uses])
+(note 181 180 182 32 [bb 32] NOTE_INSN_BASIC_BLOCK)
+(insn 182 181 183 32 (parallel [
+            (set (reg:DI 165)
+                (plus:DI (reg/f:DI 19 frame)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":374:19 210 {*adddi_1}
+     (nil))
+(insn 183 182 184 32 (set (reg:DI 5 di)
+        (reg:DI 165)) "../ncurses/lib_keyname.c":374:19 74 {*movdi_internal}
+     (nil))
+(call_insn 184 183 185 32 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strdup") [flags 0x41]  <function_decl 0x7f95fdfec300 strdup>) [0 __builtin_strdup S1 A8])
+            (const_int 0 [0]))) "../ncurses/lib_keyname.c":374:19 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("strdup") [flags 0x41]  <function_decl 0x7f95fdfec300 strdup>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 185 184 186 32 (set (reg/f:DI 166)
+        (reg:DI 0 ax)) "../ncurses/lib_keyname.c":374:19 74 {*movdi_internal}
+     (expr_list:REG_NOALIAS (reg/f:DI 166)
+        (nil)))
+(insn 186 185 187 32 (set (reg/v/f:DI 136 [ <retval> ])
+        (reg/f:DI 166)) "../ncurses/lib_keyname.c":374:19 74 {*movdi_internal}
+     (nil))
+(insn 187 186 192 32 (set (mem/f:DI (reg/f:DI 130 [ prephitmp_128 ]) [8 *prephitmp_128+0 S8 A64])
+        (reg/v/f:DI 136 [ <retval> ])) "../ncurses/lib_keyname.c":374:17 74 {*movdi_internal}
+     (nil))
+;;  succ:       50 [always]  count:4880643 (estimated locally) (FALLTHRU)
+
+;; basic block 33, loop depth 0, count 9558642 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 540592 (estimated locally), should be 9558642 (estimated locally)
+;;  prev block 32, next block 34, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [2.8% (guessed)]  count:540592 (estimated locally)
+(code_label 192 187 193 33 6 (nil) [1 uses])
+(note 193 192 195 33 [bb 33] NOTE_INSN_BASIC_BLOCK)
+(insn 195 193 196 33 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 137 [ sp ])
+            (const_int 0 [0]))) "../ncurses/lib_keyname.c":379:13 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 196 195 197 33 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 194)
+            (pc))) "../ncurses/lib_keyname.c":379:13 806 {*jcc}
+     (int_list:REG_BR_PROB 4 (nil))
+ -> 194)
+;;  succ:       34 [always (guessed)]  count:9558642 (estimated locally) (FALLTHRU)
+;;              12 [never (guessed)]  count:0 (estimated locally)
+
+;; basic block 34, loop depth 0, count 9558642 (estimated locally), maybe hot
+;;  prev block 33, next block 35, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       33 [always (guessed)]  count:9558642 (estimated locally) (FALLTHRU)
+(note 197 196 198 34 [bb 34] NOTE_INSN_BASIC_BLOCK)
+(insn 198 197 199 34 (set (reg/f:DI 106 [ _57 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 137 [ sp ])
+                (const_int 48 [0x30])) [5 sp_17(D)->_term+0 S8 A64])) "../ncurses/lib_keyname.c":379:32 74 {*movdi_internal}
+     (nil))
+(insn 199 198 200 34 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 106 [ _57 ])
+            (const_int 0 [0]))) "../ncurses/lib_keyname.c":379:29 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 200 199 201 34 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 194)
+            (pc))) "../ncurses/lib_keyname.c":379:29 806 {*jcc}
+     (int_list:REG_BR_PROB 159987532 (nil))
+ -> 194)
+;;  succ:       35 [85.1% (guessed)]  count:8134404 (estimated locally) (FALLTHRU)
+;;              12 [14.9% (guessed)]  count:1424238 (estimated locally)
+
+;; basic block 35, loop depth 0, count 8134405 (estimated locally), maybe hot
+;;  prev block 34, next block 36, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       34 [85.1% (guessed)]  count:8134404 (estimated locally) (FALLTHRU)
+(note 201 200 202 35 [bb 35] NOTE_INSN_BASIC_BLOCK)
+(insn 202 201 203 35 (set (reg/v:SI 107 [ save_trace ])
+        (mem/c:SI (symbol_ref:DI ("_nc_tracing") [flags 0x40]  <var_decl 0x7f95fdc447e0 _nc_tracing>) [1 _nc_tracing+0 S4 A32])) "../ncurses/lib_keyname.c":383:13 75 {*movsi_internal}
+     (nil))
+(insn 203 202 16 35 (set (mem/c:SI (symbol_ref:DI ("_nc_tracing") [flags 0x40]  <var_decl 0x7f95fdc447e0 _nc_tracing>) [1 _nc_tracing+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/lib_keyname.c":385:16 75 {*movsi_internal}
+     (nil))
+(insn 16 203 261 35 (set (reg/v:SI 127 [ j ])
+        (const_int 0 [0])) "../ncurses/lib_keyname.c":386:11 75 {*movsi_internal}
+     (nil))
+;;  succ:       44 [always]  count:8134405 (estimated locally) (FALLTHRU)
+
+;; basic block 36, loop depth 1, count 67905835 (estimated locally), maybe hot
+;;  prev block 35, next block 37, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       45 [94.5% (guessed)]  count:67905835 (estimated locally)
+(code_label 261 16 206 36 27 (nil) [1 uses])
+(note 206 261 207 36 [bb 36] NOTE_INSN_BASIC_BLOCK)
+(insn 207 206 15 36 (set (reg/f:DI 108 [ _60 ])
+        (mem/f:DI (plus:DI (reg/f:DI 106 [ _57 ])
+                (const_int 720 [0x2d0])) [2 MEM[(struct TERMTYPE2 *)_57 + 688B].Strings+0 S8 A64])) "../ncurses/lib_keyname.c":388:12 74 {*movdi_internal}
+     (nil))
+(insn 15 207 241 36 (set (reg:DI 128 [ ivtmp.24 ])
+        (const_int 414 [0x19e])) "../ncurses/lib_keyname.c":388:12 74 {*movdi_internal}
+     (nil))
+;;  succ:       37 [always]  count:67905835 (estimated locally) (FALLTHRU)
+
+;; basic block 37, loop depth 2, count 743094517 (estimated locally), maybe hot
+;;  prev block 36, next block 38, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       41 [94.5% (guessed)]  count:675188683 (estimated locally) (DFS_BACK)
+;;              36 [always]  count:67905835 (estimated locally) (FALLTHRU)
+(code_label 241 15 208 37 25 (nil) [1 uses])
+(note 208 241 209 37 [bb 37] NOTE_INSN_BASIC_BLOCK)
+(insn 209 208 210 37 (set (reg/v:SI 104 [ k ])
+        (subreg:SI (reg:DI 128 [ ivtmp.24 ]) 0)) 75 {*movsi_internal}
+     (nil))
+(insn 210 209 211 37 (set (reg/f:DI 109 [ _65 ])
+        (mem/f:DI (plus:DI (mult:DI (reg:DI 128 [ ivtmp.24 ])
+                    (const_int 8 [0x8]))
+                (reg/f:DI 108 [ _60 ])) [8 MEM[(char * *)_60 + ivtmp.24_95 * 8]+0 S8 A64])) "../ncurses/lib_keyname.c":388:21 74 {*movdi_internal}
+     (nil))
+(insn 211 210 212 37 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 109 [ _65 ])
+            (const_int 0 [0]))) "../ncurses/lib_keyname.c":388:9 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 212 211 213 37 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 238)
+            (pc))) "../ncurses/lib_keyname.c":388:9 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 238)
+;;  succ:       38 [70.0% (guessed)]  count:520166164 (estimated locally) (FALLTHRU)
+;;              41 [30.0% (guessed)]  count:222928353 (estimated locally)
+
+;; basic block 38, loop depth 2, count 520166164 (estimated locally), maybe hot
+;;  prev block 37, next block 39, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       37 [70.0% (guessed)]  count:520166164 (estimated locally) (FALLTHRU)
+(note 213 212 214 38 [bb 38] NOTE_INSN_BASIC_BLOCK)
+(insn 214 213 215 38 (set (reg:DI 4 si)
+        (reg/f:DI 109 [ _65 ])) "../ncurses/lib_keyname.c":388:37 74 {*movdi_internal}
+     (nil))
+(insn 215 214 216 38 (set (reg:DI 5 di)
+        (reg/v/f:DI 136 [ <retval> ])) "../ncurses/lib_keyname.c":388:37 74 {*movdi_internal}
+     (nil))
+(call_insn/i 216 215 217 38 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f95fdfe9d00 strcmp>) [0 __builtin_strcmp S1 A8])
+            (const_int 0 [0]))) "../ncurses/lib_keyname.c":388:37 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("strcmp") [flags 0x41]  <function_decl 0x7f95fdfe9d00 strcmp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 217 216 218 38 (set (reg:SI 110 [ _67 ])
+        (reg:SI 0 ax)) "../ncurses/lib_keyname.c":388:37 75 {*movsi_internal}
+     (nil))
+(insn 218 217 219 38 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 110 [ _67 ])
+            (const_int 0 [0]))) "../ncurses/lib_keyname.c":388:33 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 219 218 220 38 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 238)
+            (pc))) "../ncurses/lib_keyname.c":388:33 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 238)
+;;  succ:       39 [5.5% (guessed)]  count:28609139 (estimated locally) (FALLTHRU)
+;;              41 [94.5% (guessed)]  count:491557025 (estimated locally)
+
+;; basic block 39, loop depth 1, count 28609139 (estimated locally), maybe hot
+;;  prev block 38, next block 41, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       38 [5.5% (guessed)]  count:28609139 (estimated locally) (FALLTHRU)
+(note 220 219 221 39 [bb 39] NOTE_INSN_BASIC_BLOCK)
+(insn 221 220 222 39 (set (reg:SI 167)
+        (zero_extend:SI (mem:HI (plus:DI (reg/f:DI 106 [ _57 ])
+                    (const_int 754 [0x2f2])) [3 MEM[(struct TERMTYPE2 *)_57 + 688B].ext_Strings+0 S2 A16]))) "../ncurses/lib_keyname.c":389:16 144 {*zero_extendhisi2}
+     (nil))
+(insn 222 221 223 39 (parallel [
+            (set (reg:SI 168)
+                (minus:SI (reg:SI 135 [ _140 ])
+                    (reg:SI 167)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":389:16 282 {*subsi_1}
+     (nil))
+(insn 223 222 224 39 (parallel [
+            (set (reg:SI 169)
+                (minus:SI (reg/v:SI 104 [ k ])
+                    (reg:SI 168)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":389:16 282 {*subsi_1}
+     (nil))
+(insn 224 223 225 39 (set (reg:SI 170)
+        (zero_extend:SI (mem:HI (plus:DI (reg/f:DI 106 [ _57 ])
+                    (const_int 752 [0x2f0])) [3 MEM[(struct TERMTYPE2 *)_57 + 688B].ext_Numbers+0 S2 A64]))) "../ncurses/lib_keyname.c":389:16 144 {*zero_extendhisi2}
+     (nil))
+(insn 225 224 226 39 (set (reg:SI 171)
+        (zero_extend:SI (mem:HI (plus:DI (reg/f:DI 106 [ _57 ])
+                    (const_int 750 [0x2ee])) [3 MEM[(struct TERMTYPE2 *)_57 + 688B].ext_Booleans+0 S2 A16]))) "../ncurses/lib_keyname.c":389:16 144 {*zero_extendhisi2}
+     (nil))
+(insn 226 225 227 39 (parallel [
+            (set (reg:SI 172)
+                (plus:SI (reg:SI 170)
+                    (reg:SI 171)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":389:16 209 {*addsi_1}
+     (nil))
+(insn 227 226 228 39 (parallel [
+            (set (reg:SI 173)
+                (plus:SI (reg:SI 169)
+                    (reg:SI 172)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":389:16 209 {*addsi_1}
+     (nil))
+(insn 228 227 229 39 (set (reg:DI 174)
+        (sign_extend:DI (reg:SI 173))) "../ncurses/lib_keyname.c":389:16 147 {*extendsidi2_rex64}
+     (nil))
+(insn 229 228 230 39 (set (reg/f:DI 175)
+        (mem/f:DI (plus:DI (reg/f:DI 106 [ _57 ])
+                (const_int 736 [0x2e0])) [2 MEM[(struct TERMTYPE2 *)_57 + 688B].ext_Names+0 S8 A64])) "../ncurses/lib_keyname.c":389:16 74 {*movdi_internal}
+     (nil))
+(insn 230 229 231 39 (set (reg/f:DI 125 [ iftmp.4_84 ])
+        (mem/f:DI (plus:DI (mult:DI (reg:DI 174)
+                    (const_int 8 [0x8]))
+                (reg/f:DI 175)) [8 *_83+0 S8 A64])) "../ncurses/lib_keyname.c":389:16 74 {*movdi_internal}
+     (nil))
+(insn 231 230 232 39 (set (reg:DI 5 di)
+        (reg/v/f:DI 136 [ <retval> ])) "../ncurses/lib_keyname.c":393:5 74 {*movdi_internal}
+     (nil))
+(call_insn 232 231 233 39 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f95fe00bd00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/lib_keyname.c":393:5 813 {*call}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f95fe00bd00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 233 232 234 39 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 125 [ iftmp.4_84 ])
+            (const_int 0 [0]))) "../ncurses/lib_keyname.c":394:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 234 233 238 39 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 301)
+            (pc))) "../ncurses/lib_keyname.c":394:8 806 {*jcc}
+     (int_list:REG_BR_PROB 148331372 (nil))
+ -> 301)
+;;  succ:       47 [13.8% (guessed)]  count:3952191 (estimated locally)
+;;              43 [86.2% (guessed)]  count:24656948 (estimated locally) (FALLTHRU)
+
+;; basic block 41, loop depth 2, count 714485379 (estimated locally), maybe hot
+;;  prev block 39, next block 43, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       38 [94.5% (guessed)]  count:491557025 (estimated locally)
+;;              37 [30.0% (guessed)]  count:222928353 (estimated locally)
+(code_label 238 234 239 41 22 (nil) [2 uses])
+(note 239 238 240 41 [bb 41] NOTE_INSN_BASIC_BLOCK)
+(insn 240 239 242 41 (parallel [
+            (set (reg:DI 128 [ ivtmp.24 ])
+                (plus:DI (reg:DI 128 [ ivtmp.24 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":387:25 210 {*adddi_1}
+     (nil))
+(insn 242 240 243 41 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 135 [ _140 ])
+            (subreg:SI (reg:DI 128 [ ivtmp.24 ]) 0))) "../ncurses/lib_keyname.c":387:25 11 {*cmpsi_1}
+     (nil))
+(jump_insn 243 242 247 41 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 241)
+            (pc))) "../ncurses/lib_keyname.c":387:25 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 241)
+;;  succ:       37 [94.5% (guessed)]  count:675188683 (estimated locally) (DFS_BACK)
+;;              49 [5.5% (guessed)]  count:39296696 (estimated locally) (FALLTHRU)
+
+;; basic block 43, loop depth 1, count 67905834 (estimated locally), maybe hot
+;;  prev block 41, next block 44, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       49 [always]  count:43248887 (estimated locally) (FALLTHRU)
+;;              39 [86.2% (guessed)]  count:24656948 (estimated locally) (FALLTHRU)
+(code_label 247 243 248 43 24 (nil) [0 uses])
+(note 248 247 249 43 [bb 43] NOTE_INSN_BASIC_BLOCK)
+(insn 249 248 250 43 (parallel [
+            (set (reg/v:SI 127 [ j ])
+                (plus:SI (reg/v:SI 127 [ j ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/lib_keyname.c":386:83 209 {*addsi_1}
+     (nil))
+;;  succ:       44 [always]  count:67905834 (estimated locally) (FALLTHRU,DFS_BACK)
+
+;; basic block 44, loop depth 1, count 76040239 (estimated locally), maybe hot
+;;  prev block 43, next block 45, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       35 [always]  count:8134405 (estimated locally) (FALLTHRU)
+;;              43 [always]  count:67905834 (estimated locally) (FALLTHRU,DFS_BACK)
+(code_label 250 249 251 44 21 (nil) [0 uses])
+(note 251 250 252 44 [bb 44] NOTE_INSN_BASIC_BLOCK)
+(insn 252 251 253 44 (set (reg:SI 1 dx)
+        (reg/v:SI 127 [ j ])) "../ncurses/lib_keyname.c":386:25 75 {*movsi_internal}
+     (nil))
+(insn 253 252 254 44 (set (reg:SI 4 si)
+        (reg/v:SI 138 [ c ])) "../ncurses/lib_keyname.c":386:25 75 {*movsi_internal}
+     (nil))
+(insn 254 253 255 44 (set (reg:DI 5 di)
+        (reg/v/f:DI 137 [ sp ])) "../ncurses/lib_keyname.c":386:25 74 {*movdi_internal}
+     (nil))
+(call_insn 255 254 256 44 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("keybound_sp") [flags 0x41]  <function_decl 0x7f95fdaa7000 keybound_sp>) [0 keybound_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/lib_keyname.c":386:25 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("keybound_sp") [flags 0x41]  <function_decl 0x7f95fdaa7000 keybound_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 256 255 257 44 (set (reg/v/f:DI 136 [ <retval> ])
+        (reg:DI 0 ax)) "../ncurses/lib_keyname.c":386:25 74 {*movdi_internal}
+     (nil))
+(insn 257 256 258 44 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 136 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/lib_keyname.c":386:74 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 258 257 259 44 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 269)
+            (pc))) "../ncurses/lib_keyname.c":386:74 806 {*jcc}
+     (int_list:REG_BR_PROB 59055804 (nil))
+ -> 269)
+;;  succ:       45 [94.5% (guessed)]  count:71858026 (estimated locally) (FALLTHRU)
+;;              48 [5.5% (guessed)]  count:4182213 (estimated locally)
+
+;; basic block 45, loop depth 1, count 71858026 (estimated locally), maybe hot
+;;  prev block 44, next block 47, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       44 [94.5% (guessed)]  count:71858026 (estimated locally) (FALLTHRU)
+(note 259 258 260 45 [bb 45] NOTE_INSN_BASIC_BLOCK)
+(insn 260 259 264 45 (set (reg:SI 135 [ _140 ])
+        (zero_extend:SI (mem:HI (plus:DI (reg/f:DI 106 [ _57 ])
+                    (const_int 748 [0x2ec])) [3 MEM[(struct TERMTYPE2 *)_57 + 688B].num_Strings+0 S2 A32]))) "../ncurses/lib_keyname.c":387:27 144 {*zero_extendhisi2}
+     (nil))
+(insn 264 260 265 45 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 135 [ _140 ])
+            (const_int 414 [0x19e]))) "../ncurses/lib_keyname.c":387:25 11 {*cmpsi_1}
+     (nil))
+(jump_insn 265 264 301 45 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 261)
+            (pc))) "../ncurses/lib_keyname.c":387:25 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 261)
+;;  succ:       36 [94.5% (guessed)]  count:67905835 (estimated locally)
+;;              49 [5.5% (guessed)]  count:3952191 (estimated locally) (FALLTHRU)
+
+;; basic block 47, loop depth 0, count 3952191 (estimated locally), maybe hot
+;;  prev block 45, next block 48, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       39 [13.8% (guessed)]  count:3952191 (estimated locally)
+(code_label 301 265 300 47 31 (nil) [1 uses])
+(note 300 301 17 47 [bb 47] NOTE_INSN_BASIC_BLOCK)
+(insn 17 300 269 47 (set (reg/v/f:DI 136 [ <retval> ])
+        (reg/f:DI 125 [ iftmp.4_84 ])) 74 {*movdi_internal}
+     (nil))
+;;  succ:       48 [always]  count:3952191 (estimated locally) (FALLTHRU)
+
+;; basic block 48, loop depth 0, count 8134405 (estimated locally), maybe hot
+;;  prev block 47, next block 49, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       47 [always]  count:3952191 (estimated locally) (FALLTHRU)
+;;              44 [5.5% (guessed)]  count:4182213 (estimated locally)
+(code_label 269 17 270 48 23 (nil) [1 uses])
+(note 270 269 271 48 [bb 48] NOTE_INSN_BASIC_BLOCK)
+(insn 271 270 276 48 (set (mem/c:SI (symbol_ref:DI ("_nc_tracing") [flags 0x40]  <var_decl 0x7f95fdc447e0 _nc_tracing>) [1 _nc_tracing+0 S4 A32])
+        (reg/v:SI 107 [ save_trace ])) "../ncurses/lib_keyname.c":397:16 75 {*movsi_internal}
+     (nil))
+;;  succ:       50 [always]  count:8134405 (estimated locally) (FALLTHRU)
+
+;; basic block 49, loop depth 1, count 43248887 (estimated locally), maybe hot
+;;  prev block 48, next block 50, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       41 [5.5% (guessed)]  count:39296696 (estimated locally) (FALLTHRU)
+;;              45 [5.5% (guessed)]  count:3952191 (estimated locally) (FALLTHRU)
+(code_label 276 271 277 49 26 (nil) [0 uses])
+(note 277 276 278 49 [bb 49] NOTE_INSN_BASIC_BLOCK)
+(insn 278 277 279 49 (set (reg:DI 5 di)
+        (reg/v/f:DI 136 [ <retval> ])) "../ncurses/lib_keyname.c":393:5 74 {*movdi_internal}
+     (nil))
+(call_insn 279 278 282 49 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f95fe00bd00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/lib_keyname.c":393:5 813 {*call}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f95fe00bd00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       43 [always]  count:43248887 (estimated locally) (FALLTHRU)
+
+;; basic block 50, loop depth 0, count 38234571 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 47252622 (estimated locally), should be 38234571 (estimated locally)
+;;  prev block 49, next block 51, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       48 [always]  count:8134405 (estimated locally) (FALLTHRU)
+;;              4 [always]  count:18576693 (estimated locally) (FALLTHRU)
+;;              12 [always]  count:4272713 (estimated locally) (FALLTHRU)
+;;              22 [70.0% (guessed)]  count:11388168 (estimated locally)
+;;              32 [always]  count:4880643 (estimated locally) (FALLTHRU)
+(code_label 282 279 291 50 1 (nil) [1 uses])
+(note 291 282 283 50 [bb 50] NOTE_INSN_BASIC_BLOCK)
+(insn 283 291 284 50 (set (reg/f:DI 177)
+        (const_int 40 [0x28])) "../ncurses/lib_keyname.c":402:1 74 {*movdi_internal}
+     (nil))
+(insn 284 283 285 50 (parallel [
+            (set (reg:CCZ 17 flags)
+                (unspec:CCZ [
+                        (mem/v/f/c:DI (plus:DI (reg/f:DI 19 frame)
+                                (const_int -8 [0xfffffffffffffff8])) [41 D.9368+0 S8 A64])
+                        (mem/v/f:DI (reg/f:DI 177) [9 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_TEST))
+            (clobber (scratch:DI))
+        ]) "../ncurses/lib_keyname.c":402:1 1164 {stack_protect_test_1_di}
+     (nil))
+(jump_insn 285 284 303 50 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 288)
+            (pc))) "../ncurses/lib_keyname.c":402:1 806 {*jcc}
+     (int_list:REG_BR_PROB 1073312332 (nil))
+ -> 288)
+;;  succ:       52 [100.0% (guessed)]  count:38219277 (estimated locally)
+;;              51 [0.0% (guessed)]  count:15294 (estimated locally) (FALLTHRU)
+
+;; basic block 51, loop depth 0, count 15294 (estimated locally)
+;;  prev block 50, next block 52, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       50 [0.0% (guessed)]  count:15294 (estimated locally) (FALLTHRU)
+(note 303 285 286 51 [bb 51] NOTE_INSN_BASIC_BLOCK)
+(call_insn 286 303 288 51 (call (mem:QI (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7f95fd850900 __stack_chk_fail>) [0 __stack_chk_fail S1 A8])
+        (const_int 0 [0])) "../ncurses/lib_keyname.c":402:1 813 {*call}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7f95fd850900 __stack_chk_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (nil))
+;;  succ:      
+
+;; basic block 52, loop depth 0, count 38219277 (estimated locally), maybe hot
+;;  prev block 51, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       50 [100.0% (guessed)]  count:38219277 (estimated locally)
+(code_label 288 286 304 52 28 (nil) [1 uses])
+(note 304 288 289 52 [bb 52] NOTE_INSN_BASIC_BLOCK)
+(insn 289 304 290 52 (set (reg/i:DI 0 ax)
+        (reg/v/f:DI 136 [ <retval> ])) "../ncurses/lib_keyname.c":402:1 74 {*movdi_internal}
+     (nil))
+(insn 290 289 0 52 (use (reg/i:DI 0 ax)) "../ncurses/lib_keyname.c":402:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:38219277 (estimated locally) (FALLTHRU)
+
+
+;; Function keyname_sp (keyname_sp, funcdef_no=91, decl_uid=6569, cgraph_uid=92, symbol_order=93)
+
+
+
+try_optimize_cfg iteration 1
+
+;; basic block 2, loop depth 0, count 57931165 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:57931165 (estimated locally) (FALLTHRU)
+(note 6 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 83 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/lib_keyname.c":326:1 74 {*movdi_internal}
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 84 [ c ])
+        (reg:SI 4 si [ c ])) "../ncurses/lib_keyname.c":326:1 75 {*movsi_internal}
+     (nil))
+(note 4 3 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 4 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 84 [ c ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/lib_keyname.c":330:5 11 {*cmpsi_1}
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 16)
+            (pc))) "../ncurses/lib_keyname.c":330:5 806 {*jcc}
+     (int_list:REG_BR_PROB 365072228 (nil))
+ -> 16)
+;;  succ:       4 [34.0% (guessed)]  count:19696596 (estimated locally)
+;;              3 [66.0% (guessed)]  count:38234569 (estimated locally) (FALLTHRU)
+
+;; basic block 3, loop depth 0, count 38234569 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [66.0% (guessed)]  count:38234569 (estimated locally) (FALLTHRU)
+(note 10 9 11 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 3 (set (reg:SI 4 si)
+        (reg/v:SI 84 [ c ])) 75 {*movsi_internal}
+     (nil))
+(insn 12 11 13 3 (set (reg:DI 5 di)
+        (reg/v/f:DI 83 [ sp ])) 74 {*movdi_internal}
+     (nil))
+(call_insn/j 13 12 16 3 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("keyname_sp.part.0") [flags 0x3]  <function_decl 0x7f95fd834e00 keyname_sp.part.0>) [0 keyname_sp.part.0 S1 A8])
+            (const_int 0 [0]))) 828 {*sibcall_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("keyname_sp.part.0") [flags 0x3]  <function_decl 0x7f95fd834e00 keyname_sp.part.0>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+;;  succ:       EXIT [always]  count:38234569 (estimated locally) (ABNORMAL,SIBCALL)
+
+;; basic block 4, loop depth 0, count 19696598 (estimated locally), maybe hot
+;;  prev block 3, next block 1, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [34.0% (guessed)]  count:19696596 (estimated locally)
+(code_label 16 13 17 4 65 (nil) [1 uses])
+(note 17 16 5 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 5 17 21 4 (set (reg/v/f:DI 82 [ <retval> ])
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x7f95fd89e6c0 *.LC2>)) "../ncurses/lib_keyname.c":331:10 74 {*movdi_internal}
+     (nil))
+(insn 21 5 22 4 (set (reg/i:DI 0 ax)
+        (reg/v/f:DI 82 [ <retval> ])) "../ncurses/lib_keyname.c":402:1 74 {*movdi_internal}
+     (nil))
+(insn 22 21 0 4 (use (reg/i:DI 0 ax)) "../ncurses/lib_keyname.c":402:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:19696598 (estimated locally) (FALLTHRU)
+
+
+;; Function keyname (keyname, funcdef_no=92, decl_uid=5694, cgraph_uid=93, symbol_order=94)
+
+
+
+try_optimize_cfg iteration 1
+
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 5 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v:SI 84 [ c ])
+        (reg:SI 5 di [ c ])) "../ncurses/lib_keyname.c":406:1 75 {*movsi_internal}
+     (nil))
+(note 3 2 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 3 8 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 84 [ c ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/lib_keyname.c":330:5 11 {*cmpsi_1}
+     (nil))
+(jump_insn 8 7 9 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 16)
+            (pc))) "../ncurses/lib_keyname.c":330:5 806 {*jcc}
+     (int_list:REG_BR_PROB 365072228 (nil))
+ -> 16)
+;;  succ:       4 [34.0% (guessed)]  count:365072224 (estimated locally)
+;;              3 [66.0% (guessed)]  count:708669600 (estimated locally) (FALLTHRU)
+
+;; basic block 3, loop depth 0, count 708669601 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [66.0% (guessed)]  count:708669600 (estimated locally) (FALLTHRU)
+(note 9 8 10 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 10 9 11 3 (set (reg:DI 85)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f95fdbb3cf0 SP>) [30 SP+0 S8 A64])) 74 {*movdi_internal}
+     (nil))
+(insn 11 10 12 3 (set (reg:SI 4 si)
+        (reg/v:SI 84 [ c ])) 75 {*movsi_internal}
+     (nil))
+(insn 12 11 13 3 (set (reg:DI 5 di)
+        (reg:DI 85)) 74 {*movdi_internal}
+     (nil))
+(call_insn/j 13 12 16 3 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("keyname_sp.part.0") [flags 0x3]  <function_decl 0x7f95fd834e00 keyname_sp.part.0>) [0 keyname_sp.part.0 S1 A8])
+            (const_int 0 [0]))) 828 {*sibcall_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("keyname_sp.part.0") [flags 0x3]  <function_decl 0x7f95fd834e00 keyname_sp.part.0>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+;;  succ:       EXIT [always]  count:708669601 (estimated locally) (ABNORMAL,SIBCALL)
+
+;; basic block 4, loop depth 0, count 365072223 (estimated locally), maybe hot
+;;  prev block 3, next block 1, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [34.0% (guessed)]  count:365072224 (estimated locally)
+(code_label 16 13 17 4 67 (nil) [1 uses])
+(note 17 16 4 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 4 17 21 4 (set (reg/v/f:DI 83 [ <retval> ])
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x7f95fd89e6c0 *.LC2>)) "../ncurses/lib_keyname.c":331:10 74 {*movdi_internal}
+     (nil))
+(insn 21 4 22 4 (set (reg/i:DI 0 ax)
+        (reg/v/f:DI 83 [ <retval> ])) "../ncurses/lib_keyname.c":408:1 74 {*movdi_internal}
+     (nil))
+(insn 22 21 0 4 (use (reg/i:DI 0 ax)) "../ncurses/lib_keyname.c":408:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:365072223 (estimated locally) (FALLTHRU)
+

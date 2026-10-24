@@ -1,0 +1,1965 @@
+
+;; Function werase (werase, funcdef_no=91, decl_uid=6240, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+int werase (struct WINDOW * win)
+{
+  unsigned long ivtmp.35;
+  unsigned long ivtmp.26;
+  int blank$rgb_color;
+  int blank$ext_color;
+  int blank$chars$4;
+  int blank$chars$3;
+  int blank$chars$2;
+  int blank$chars$1;
+  int blank$chars$0;
+  unsigned int blank$attr;
+  struct cchar_t * end;
+  struct cchar_t * sp;
+  struct cchar_t * start;
+  int code;
+  struct ldat * _1;
+  int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  unsigned int _8;
+  int _9;
+  int _10;
+  int _13;
+  struct WINDOW * _14;
+  unsigned int _16;
+  int _17;
+  int _18;
+  unsigned long _20;
+  short int _22;
+  short int _23;
+  unsigned long _26;
+  unsigned long _27;
+  unsigned int _28;
+  unsigned int _29;
+  unsigned long _30;
+  void * _31;
+  int iftmp.0_45;
+  unsigned long _72;
+  unsigned long _81;
+  struct cchar_t * _82;
+  int _86;
+  void * _87;
+  unsigned long _91;
+  unsigned long _92;
+  unsigned long _95;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (win_34(D) != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 16>; [0.87%]
+;;    succ:       3
+;;                16
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  blank$attr_19 = win_34(D)->_bkgrnd.attr;
+  blank$chars$0_15 = win_34(D)->_bkgrnd.chars[0];
+  blank$chars$1_33 = win_34(D)->_bkgrnd.chars[1];
+  blank$chars$2_36 = win_34(D)->_bkgrnd.chars[2];
+  blank$chars$3_41 = win_34(D)->_bkgrnd.chars[3];
+  blank$chars$4_44 = win_34(D)->_bkgrnd.chars[4];
+  blank$ext_color_46 = win_34(D)->_bkgrnd.ext_color;
+  blank$rgb_color_50 = win_34(D)->_bkgrnd.rgb_color;
+  _86 = win_34(D)->_maxy;
+  if (_86 >= 0)
+    goto <bb 5>; [89.00%]
+  else
+    goto <bb 4>; [11.00%]
+;;    succ:       5
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+;;                13
+  MEM <unsigned long> [(int *)win_34(D)] = 0;
+  _22 = win_34(D)->_flags;
+  _23 = _22 & -65;
+  win_34(D)->_flags = _23;
+  _nc_synchook (win_34(D));
+  goto <bb 16>; [100.00%]
+;;    succ:       16
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+  _1 = win_34(D)->_line;
+  _5 = win_34(D)->_maxx;
+  _6 = (long unsigned int) _5;
+  _7 = _6 * 32;
+  ivtmp.35_49 = (unsigned long) _1;
+  _91 = (unsigned long) _86;
+  _92 = _91 * 24;
+  _72 = ivtmp.35_49 + 24;
+  _95 = _72 + _92;
+;;    succ:       6
+
+;;   basic block 6, loop depth 1
+;;    pred:       13
+;;                5
+  # ivtmp.35_11 = PHI <ivtmp.35_48(13), ivtmp.35_49(5)>
+  _87 = (void *) ivtmp.35_11;
+  start_42 = MEM[(struct cchar_t * *)_87];
+  end_43 = start_42 + _7;
+  _8 = start_42->attr;
+  _9 = (int) _8;
+  _10 = _9 & 254;
+  if (_10 != 0)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+;;    succ:       7
+;;                12
+
+;;   basic block 7, loop depth 1
+;;    pred:       6
+  _13 = _9 & 224;
+  if (_13 == 0)
+    goto <bb 8>; [27.00%]
+  else
+    goto <bb 12>; [73.00%]
+;;    succ:       8
+;;                12
+
+;;   basic block 8, loop depth 1
+;;    pred:       7
+  _14 = win_34(D)->_parent;
+  if (_14 != 0B)
+    goto <bb 9>; [70.00%]
+  else
+    goto <bb 12>; [30.00%]
+;;    succ:       9
+;;                12
+
+;;   basic block 9, loop depth 1
+;;    pred:       8
+  iftmp.0_45 = win_34(D)->_begx;
+  if (iftmp.0_45 > 0)
+    goto <bb 10>; [97.63%]
+  else
+    goto <bb 12>; [2.37%]
+;;    succ:       10
+;;                12
+
+;;   basic block 10, loop depth 1
+;;    pred:       9
+  _82 = start_42 + 18446744073709551584;
+  ivtmp.26_83 = (unsigned long) _82;
+  _30 = (unsigned long) start_42;
+  _29 = (unsigned int) iftmp.0_45;
+  _28 = _29 + 4294967295;
+  _27 = (unsigned long) _28;
+  _26 = _27 * 32;
+  _81 = 18446744073709551552 - _26;
+  _20 = _30 + _81;
+;;    succ:       11
+
+;;   basic block 11, loop depth 2
+;;    pred:       14
+;;                10
+  # ivtmp.26_85 = PHI <ivtmp.26_84(14), ivtmp.26_83(10)>
+  _31 = (void *) ivtmp.26_85;
+  _16 = MEM[(unsigned int *)_31];
+  _17 = (int) _16;
+  _18 = _17 & 255;
+  if (_18 == 1)
+    goto <bb 12>; [5.50%]
+  else
+    goto <bb 14>; [94.50%]
+;;    succ:       12
+;;                14
+
+;;   basic block 12, loop depth 1
+;;    pred:       6
+;;                7
+;;                11
+;;                8
+;;                14
+;;                9
+  # sp_12 = PHI <start_42(6), start_42(7), _31(11), start_42(8), _31(14), start_42(9)>
+  if (sp_12 <= end_43)
+    goto <bb 15>; [89.00%]
+  else
+    goto <bb 13>; [11.00%]
+;;    succ:       15
+;;                13
+
+;;   basic block 13, loop depth 1
+;;    pred:       12
+;;                15
+  MEM[(int *)_87 + 8B] = 0;
+  MEM[(int *)_87 + 12B] = _5;
+  ivtmp.35_48 = ivtmp.35_11 + 24;
+  if (ivtmp.35_48 != _95)
+    goto <bb 6>; [89.00%]
+  else
+    goto <bb 4>; [11.00%]
+;;    succ:       6
+;;                4
+
+;;   basic block 14, loop depth 2
+;;    pred:       11
+  ivtmp.26_84 = ivtmp.26_85 + 18446744073709551584;
+  if (_20 != ivtmp.26_84)
+    goto <bb 11>; [97.63%]
+  else
+    goto <bb 12>; [2.37%]
+;;    succ:       11
+;;                12
+
+;;   basic block 15, loop depth 2
+;;    pred:       15
+;;                12
+  # sp_77 = PHI <sp_54(15), sp_12(12)>
+  MEM[(unsigned int *)sp_77] = blank$attr_19;
+  MEM[(int *)sp_77 + 4B] = blank$chars$0_15;
+  MEM[(int *)sp_77 + 8B] = blank$chars$1_33;
+  MEM[(int *)sp_77 + 12B] = blank$chars$2_36;
+  MEM[(int *)sp_77 + 16B] = blank$chars$3_41;
+  MEM[(int *)sp_77 + 20B] = blank$chars$4_44;
+  MEM[(int *)sp_77 + 24B] = blank$ext_color_46;
+  MEM[(int *)sp_77 + 28B] = blank$rgb_color_50;
+  sp_54 = sp_77 + 32;
+  if (end_43 >= sp_54)
+    goto <bb 15>; [89.00%]
+  else
+    goto <bb 13>; [11.00%]
+;;    succ:       15
+;;                13
+
+;;   basic block 16, loop depth 0
+;;    pred:       2
+;;                4
+  # code_24 = PHI <-1(2), 0(4)>
+  return code_24;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 5 (_5 - 5 )
+Partition 6 (_6 - 6 )
+Partition 7 (_7 - 7 )
+Partition 8 (_8 - 8 )
+Partition 9 (_9 - 9 )
+Partition 10 (_10 - 10 )
+Partition 11 (ivtmp.35_11 - 11 )
+Partition 12 (sp_12 - 12 )
+Partition 13 (_13 - 13 )
+Partition 14 (_14 - 14 )
+Partition 15 (blank$chars$0_15 - 15 )
+Partition 16 (_16 - 16 )
+Partition 17 (_17 - 17 )
+Partition 18 (_18 - 18 )
+Partition 19 (blank$attr_19 - 19 )
+Partition 20 (_20 - 20 )
+Partition 22 (_22 - 22 )
+Partition 23 (_23 - 23 )
+Partition 24 (code_24 - 24 )
+Partition 26 (_26 - 26 )
+Partition 27 (_27 - 27 )
+Partition 28 (_28 - 28 )
+Partition 29 (_29 - 29 )
+Partition 30 (_30 - 30 )
+Partition 31 (_31 - 31 )
+Partition 33 (blank$chars$1_33 - 33 )
+Partition 34 (win_34(D) - 34 )
+Partition 36 (blank$chars$2_36 - 36 )
+Partition 37 (_37(D) - 37 )
+Partition 41 (blank$chars$3_41 - 41 )
+Partition 42 (start_42 - 42 )
+Partition 43 (end_43 - 43 )
+Partition 44 (blank$chars$4_44 - 44 )
+Partition 45 (iftmp.0_45 - 45 )
+Partition 46 (blank$ext_color_46 - 46 )
+Partition 48 (ivtmp.35_48 - 48 )
+Partition 49 (ivtmp.35_49 - 49 )
+Partition 50 (blank$rgb_color_50 - 50 )
+Partition 54 (sp_54 - 54 )
+Partition 55 (blank$attr_55(D) - 55 )
+Partition 56 (blank$chars$0_56(D) - 56 )
+Partition 57 (blank$chars$1_57(D) - 57 )
+Partition 58 (blank$chars$2_58(D) - 58 )
+Partition 59 (blank$chars$3_59(D) - 59 )
+Partition 60 (blank$chars$4_60(D) - 60 )
+Partition 61 (blank$ext_color_61(D) - 61 )
+Partition 62 (blank$rgb_color_62(D) - 62 )
+Partition 72 (_72 - 72 )
+Partition 77 (sp_77 - 77 )
+Partition 81 (_81 - 81 )
+Partition 82 (_82 - 82 )
+Partition 83 (ivtmp.26_83 - 83 )
+Partition 84 (ivtmp.26_84 - 84 )
+Partition 85 (ivtmp.26_85 - 85 )
+Partition 86 (_86 - 86 )
+Partition 87 (_87 - 87 )
+Partition 91 (_91 - 91 )
+Partition 92 (_92 - 92 )
+Partition 95 (_95 - 95 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (ivtmp.35_11 - 11 48 49 )
+Partition 1, base 1 (sp_12 - 12 31 42 54 77 )
+Partition 2, base 2 (code_24 - 24 37 )
+Partition 4, base 3 (win_34(D) - 34 )
+Partition 11, base 4 (ivtmp.26_83 - 83 84 85 )
+
+
+Partition map 
+
+Partition 0 (ivtmp.35_11 - 11 )
+Partition 1 (sp_12 - 12 )
+Partition 2 (code_24 - 24 )
+Partition 3 (_31 - 31 )
+Partition 4 (win_34(D) - 34 )
+Partition 5 (_37(D) - 37 )
+Partition 6 (start_42 - 42 )
+Partition 7 (ivtmp.35_48 - 48 )
+Partition 8 (ivtmp.35_49 - 49 )
+Partition 9 (sp_54 - 54 )
+Partition 10 (sp_77 - 77 )
+Partition 11 (ivtmp.26_83 - 83 )
+Partition 12 (ivtmp.26_84 - 84 )
+Partition 13 (ivtmp.26_85 - 85 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(15842, 0) sp_54 <-> sp_77
+(2420, 0) ivtmp.26_84 <-> ivtmp.26_85
+(1998, 0) sp_12 <-> start_42
+(1958, 0) ivtmp.35_11 <-> ivtmp.35_48
+(1958, 0) sp_12 <-> sp_77
+(202, 0) sp_12 <-> _31
+(137, 0) code_24 <-> _37(D)
+(121, 0) ivtmp.35_11 <-> ivtmp.35_49
+(101, 0) ivtmp.26_83 <-> ivtmp.26_85
+
+Partition map 
+
+Partition 0 (ivtmp.35_11 - 11 )
+Partition 1 (sp_12 - 12 )
+Partition 2 (code_24 - 24 )
+Partition 3 (_31 - 31 )
+Partition 4 (win_34(D) - 34 )
+Partition 5 (_37(D) - 37 )
+Partition 6 (start_42 - 42 )
+Partition 7 (ivtmp.35_48 - 48 )
+Partition 8 (ivtmp.35_49 - 49 )
+Partition 9 (sp_54 - 54 )
+Partition 10 (sp_77 - 77 )
+Partition 11 (ivtmp.26_83 - 83 )
+Partition 12 (ivtmp.26_84 - 84 )
+Partition 13 (ivtmp.26_85 - 85 )
+
+Coalesce list: (54)sp_54 & (77)sp_77 [map: 9, 10] : Success -> 9
+Coalesce list: (84)ivtmp.26_84 & (85)ivtmp.26_85 [map: 12, 13] : Success -> 12
+Coalesce list: (12)sp_12 & (42)start_42 [map: 1, 6] : Success -> 1
+Coalesce list: (11)ivtmp.35_11 & (48)ivtmp.35_48 [map: 0, 7] : Success -> 0
+Coalesce list: (12)sp_12 & (77)sp_54 [map: 1, 9] : Success -> 1
+Coalesce list: (12)sp_12 & (31)_31 [map: 1, 3] : Success -> 1
+Coalesce list: (24)code_24 & (37)_37(D) [map: 2, 5] : Success -> 2
+Coalesce list: (11)ivtmp.35_11 & (49)ivtmp.35_49 [map: 0, 8] : Success -> 0
+Coalesce list: (83)ivtmp.26_83 & (85)ivtmp.26_84 [map: 11, 12] : Success -> 12
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_5 - 5 )
+Partition 2 (_6 - 6 )
+Partition 3 (_7 - 7 )
+Partition 4 (_8 - 8 )
+Partition 5 (_9 - 9 )
+Partition 6 (_10 - 10 )
+Partition 7 (ivtmp.35_11 - 11 48 49 )
+Partition 8 (sp_12 - 12 31 42 54 77 )
+Partition 9 (_13 - 13 )
+Partition 10 (_14 - 14 )
+Partition 11 (blank$chars$0_15 - 15 )
+Partition 12 (_16 - 16 )
+Partition 13 (_17 - 17 )
+Partition 14 (_18 - 18 )
+Partition 15 (blank$attr_19 - 19 )
+Partition 16 (_20 - 20 )
+Partition 17 (_22 - 22 )
+Partition 18 (_23 - 23 )
+Partition 19 (code_24 - 24 37 )
+Partition 20 (_26 - 26 )
+Partition 21 (_27 - 27 )
+Partition 22 (_28 - 28 )
+Partition 23 (_29 - 29 )
+Partition 24 (_30 - 30 )
+Partition 25 (blank$chars$1_33 - 33 )
+Partition 26 (win_34(D) - 34 )
+Partition 27 (blank$chars$2_36 - 36 )
+Partition 28 (blank$chars$3_41 - 41 )
+Partition 29 (end_43 - 43 )
+Partition 30 (blank$chars$4_44 - 44 )
+Partition 31 (iftmp.0_45 - 45 )
+Partition 32 (blank$ext_color_46 - 46 )
+Partition 33 (blank$rgb_color_50 - 50 )
+Partition 34 (_72 - 72 )
+Partition 35 (_81 - 81 )
+Partition 36 (_82 - 82 )
+Partition 37 (ivtmp.26_84 - 83 84 85 )
+Partition 38 (_86 - 86 )
+Partition 39 (_87 - 87 )
+Partition 40 (_91 - 91 )
+Partition 41 (_92 - 92 )
+Partition 42 (_95 - 95 )
+
+
+Replacing Expressions
+_1 replace with --> _1 = win_34(D)->_line;
+
+_6 replace with --> _6 = (long unsigned int) _5;
+
+_8 replace with --> _8 = start_42->attr;
+
+_10 replace with --> _10 = _9 & 254;
+
+_13 replace with --> _13 = _9 & 224;
+
+_14 replace with --> _14 = win_34(D)->_parent;
+
+_16 replace with --> _16 = MEM[(unsigned int *)_31];
+
+_17 replace with --> _17 = (int) _16;
+
+_18 replace with --> _18 = _17 & 255;
+
+_22 replace with --> _22 = win_34(D)->_flags;
+
+_23 replace with --> _23 = _22 & -65;
+
+_26 replace with --> _26 = _27 * 32;
+
+_27 replace with --> _27 = (unsigned long) _28;
+
+_28 replace with --> _28 = _29 + 4294967295;
+
+_29 replace with --> _29 = (unsigned int) iftmp.0_45;
+
+_30 replace with --> _30 = (unsigned long) start_42;
+
+_72 replace with --> _72 = ivtmp.35_49 + 24;
+
+_81 replace with --> _81 = 18446744073709551552 - _26;
+
+_82 replace with --> _82 = start_42 + 18446744073709551584;
+
+_91 replace with --> _91 = (unsigned long) _86;
+
+_92 replace with --> _92 = _91 * 24;
+
+
+__attribute__((visibility ("default")))
+int werase (struct WINDOW * win)
+{
+  unsigned long ivtmp.35;
+  unsigned long ivtmp.26;
+  int blank$rgb_color;
+  int blank$ext_color;
+  int blank$chars$4;
+  int blank$chars$3;
+  int blank$chars$2;
+  int blank$chars$1;
+  int blank$chars$0;
+  unsigned int blank$attr;
+  struct cchar_t * end;
+  struct cchar_t * sp;
+  struct cchar_t * start;
+  int code;
+  struct ldat * _1;
+  int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  unsigned int _8;
+  int _9;
+  int _10;
+  int _13;
+  struct WINDOW * _14;
+  unsigned int _16;
+  int _17;
+  int _18;
+  unsigned long _20;
+  short int _22;
+  short int _23;
+  unsigned long _26;
+  unsigned long _27;
+  unsigned int _28;
+  unsigned int _29;
+  unsigned long _30;
+  void * _31;
+  int _37(D);
+  int iftmp.0_45;
+  unsigned long _72;
+  unsigned long _81;
+  struct cchar_t * _82;
+  int _86;
+  void * _87;
+  unsigned long _91;
+  unsigned long _92;
+  unsigned long _95;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (win_34(D) != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 16>; [0.87%]
+;;    succ:       3
+;;                16
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  blank$attr_19 = win_34(D)->_bkgrnd.attr;
+  blank$chars$0_15 = win_34(D)->_bkgrnd.chars[0];
+  blank$chars$1_33 = win_34(D)->_bkgrnd.chars[1];
+  blank$chars$2_36 = win_34(D)->_bkgrnd.chars[2];
+  blank$chars$3_41 = win_34(D)->_bkgrnd.chars[3];
+  blank$chars$4_44 = win_34(D)->_bkgrnd.chars[4];
+  blank$ext_color_46 = win_34(D)->_bkgrnd.ext_color;
+  blank$rgb_color_50 = win_34(D)->_bkgrnd.rgb_color;
+  _86 = win_34(D)->_maxy;
+  if (_86 >= 0)
+    goto <bb 5>; [89.00%]
+  else
+    goto <bb 4>; [11.00%]
+;;    succ:       5
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+;;                13
+  MEM <unsigned long> [(int *)win_34(D)] = 0;
+  _22 = win_34(D)->_flags;
+  _23 = _22 & -65;
+  win_34(D)->_flags = _23;
+  _nc_synchook (win_34(D));
+  goto <bb 16>; [100.00%]
+;;    succ:       16
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+  _1 = win_34(D)->_line;
+  _5 = win_34(D)->_maxx;
+  _6 = (long unsigned int) _5;
+  _7 = _6 * 32;
+  ivtmp.35_49 = (unsigned long) _1;
+  _91 = (unsigned long) _86;
+  _92 = _91 * 24;
+  _72 = ivtmp.35_49 + 24;
+  _95 = _72 + _92;
+;;    succ:       6
+
+;;   basic block 6, loop depth 1
+;;    pred:       13
+;;                5
+  # ivtmp.35_11 = PHI <ivtmp.35_48(13), ivtmp.35_49(5)>
+  _87 = (void *) ivtmp.35_11;
+  start_42 = MEM[(struct cchar_t * *)_87];
+  end_43 = start_42 + _7;
+  _8 = start_42->attr;
+  _9 = (int) _8;
+  _10 = _9 & 254;
+  if (_10 != 0)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+;;    succ:       7
+;;                12
+
+;;   basic block 7, loop depth 1
+;;    pred:       6
+  _13 = _9 & 224;
+  if (_13 == 0)
+    goto <bb 8>; [27.00%]
+  else
+    goto <bb 12>; [73.00%]
+;;    succ:       8
+;;                12
+
+;;   basic block 8, loop depth 1
+;;    pred:       7
+  _14 = win_34(D)->_parent;
+  if (_14 != 0B)
+    goto <bb 9>; [70.00%]
+  else
+    goto <bb 12>; [30.00%]
+;;    succ:       9
+;;                12
+
+;;   basic block 9, loop depth 1
+;;    pred:       8
+  iftmp.0_45 = win_34(D)->_begx;
+  if (iftmp.0_45 > 0)
+    goto <bb 10>; [97.63%]
+  else
+    goto <bb 12>; [2.37%]
+;;    succ:       10
+;;                12
+
+;;   basic block 10, loop depth 1
+;;    pred:       9
+  _82 = start_42 + 18446744073709551584;
+  ivtmp.26_83 = (unsigned long) _82;
+  _30 = (unsigned long) start_42;
+  _29 = (unsigned int) iftmp.0_45;
+  _28 = _29 + 4294967295;
+  _27 = (unsigned long) _28;
+  _26 = _27 * 32;
+  _81 = 18446744073709551552 - _26;
+  _20 = _30 + _81;
+;;    succ:       11
+
+;;   basic block 11, loop depth 2
+;;    pred:       14
+;;                10
+  # ivtmp.26_85 = PHI <ivtmp.26_84(14), ivtmp.26_83(10)>
+  _31 = (void *) ivtmp.26_85;
+  _16 = MEM[(unsigned int *)_31];
+  _17 = (int) _16;
+  _18 = _17 & 255;
+  if (_18 == 1)
+    goto <bb 12>; [5.50%]
+  else
+    goto <bb 14>; [94.50%]
+;;    succ:       12
+;;                14
+
+;;   basic block 12, loop depth 1
+;;    pred:       6
+;;                7
+;;                11
+;;                8
+;;                14
+;;                9
+  # sp_12 = PHI <start_42(6), start_42(7), _31(11), start_42(8), _31(14), start_42(9)>
+  if (sp_12 <= end_43)
+    goto <bb 15>; [89.00%]
+  else
+    goto <bb 13>; [11.00%]
+;;    succ:       15
+;;                13
+
+;;   basic block 13, loop depth 1
+;;    pred:       12
+;;                15
+  MEM[(int *)_87 + 8B] = 0;
+  MEM[(int *)_87 + 12B] = _5;
+  ivtmp.35_48 = ivtmp.35_11 + 24;
+  if (ivtmp.35_48 != _95)
+    goto <bb 6>; [89.00%]
+  else
+    goto <bb 4>; [11.00%]
+;;    succ:       6
+;;                4
+
+;;   basic block 14, loop depth 2
+;;    pred:       11
+  ivtmp.26_84 = ivtmp.26_85 + 18446744073709551584;
+  if (_20 != ivtmp.26_84)
+    goto <bb 11>; [97.63%]
+  else
+    goto <bb 12>; [2.37%]
+;;    succ:       11
+;;                12
+
+;;   basic block 15, loop depth 2
+;;    pred:       15
+;;                12
+  # sp_77 = PHI <sp_54(15), sp_12(12)>
+  MEM[(unsigned int *)sp_77] = blank$attr_19;
+  MEM[(int *)sp_77 + 4B] = blank$chars$0_15;
+  MEM[(int *)sp_77 + 8B] = blank$chars$1_33;
+  MEM[(int *)sp_77 + 12B] = blank$chars$2_36;
+  MEM[(int *)sp_77 + 16B] = blank$chars$3_41;
+  MEM[(int *)sp_77 + 20B] = blank$chars$4_44;
+  MEM[(int *)sp_77 + 24B] = blank$ext_color_46;
+  MEM[(int *)sp_77 + 28B] = blank$rgb_color_50;
+  sp_54 = sp_77 + 32;
+  if (end_43 >= sp_54)
+    goto <bb 15>; [89.00%]
+  else
+    goto <bb 13>; [11.00%]
+;;    succ:       15
+;;                13
+
+;;   basic block 16, loop depth 0
+;;    pred:       2
+;;                4
+  # code_24 = PHI <-1(2), 0(4)>
+  return code_24;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB2->BB16 : PART.19 = -1
+Inserting a value copy on edge BB4->BB16 : PART.19 = 0
+
+;; Generating RTL for gimple basic block 2
+
+;; if (win_34(D) != 0B)
+
+(insn 8 7 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 124 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_erase.c":55:8 -1
+     (nil))
+
+(jump_insn 9 8 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_erase.c":55:8 -1
+     (int_list:REG_BR_PROB 9341556 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; blank$attr_19 = win_34(D)->_bkgrnd.attr;
+
+(insn 11 10 0 (set (reg:SI 97 [ blank$attr ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 116 [0x74])) [3 win_34(D)->_bkgrnd.attr+0 S4 A32])) "../ncurses/./base/lib_erase.c":60:8 -1
+     (nil))
+
+;; blank$chars$0_15 = win_34(D)->_bkgrnd.chars[0];
+
+(insn 12 11 0 (set (reg:SI 93 [ blank$chars$0 ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 120 [0x78])) [3 win_34(D)->_bkgrnd.chars[0]+0 S4 A64])) "../ncurses/./base/lib_erase.c":60:8 -1
+     (nil))
+
+;; blank$chars$1_33 = win_34(D)->_bkgrnd.chars[1];
+
+(insn 13 12 0 (set (reg:SI 106 [ blank$chars$1 ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 124 [0x7c])) [3 win_34(D)->_bkgrnd.chars[1]+0 S4 A32])) "../ncurses/./base/lib_erase.c":60:8 -1
+     (nil))
+
+;; blank$chars$2_36 = win_34(D)->_bkgrnd.chars[2];
+
+(insn 14 13 0 (set (reg:SI 107 [ blank$chars$2 ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 128 [0x80])) [3 win_34(D)->_bkgrnd.chars[2]+0 S4 A64])) "../ncurses/./base/lib_erase.c":60:8 -1
+     (nil))
+
+;; blank$chars$3_41 = win_34(D)->_bkgrnd.chars[3];
+
+(insn 15 14 0 (set (reg:SI 108 [ blank$chars$3 ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 132 [0x84])) [3 win_34(D)->_bkgrnd.chars[3]+0 S4 A32])) "../ncurses/./base/lib_erase.c":60:8 -1
+     (nil))
+
+;; blank$chars$4_44 = win_34(D)->_bkgrnd.chars[4];
+
+(insn 16 15 0 (set (reg:SI 110 [ blank$chars$4 ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 136 [0x88])) [3 win_34(D)->_bkgrnd.chars[4]+0 S4 A64])) "../ncurses/./base/lib_erase.c":60:8 -1
+     (nil))
+
+;; blank$ext_color_46 = win_34(D)->_bkgrnd.ext_color;
+
+(insn 17 16 0 (set (reg:SI 112 [ blank$ext_color ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 140 [0x8c])) [3 win_34(D)->_bkgrnd.ext_color+0 S4 A32])) "../ncurses/./base/lib_erase.c":60:8 -1
+     (nil))
+
+;; blank$rgb_color_50 = win_34(D)->_bkgrnd.rgb_color;
+
+(insn 18 17 0 (set (reg:SI 113 [ blank$rgb_color ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 144 [0x90])) [3 win_34(D)->_bkgrnd.rgb_color+0 S4 A64])) "../ncurses/./base/lib_erase.c":60:8 -1
+     (nil))
+
+;; _86 = win_34(D)->_maxy;
+
+(insn 19 18 0 (set (reg:SI 118 [ _86 ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 8 [0x8])) [3 win_34(D)->_maxy+0 S4 A64])) "../ncurses/./base/lib_erase.c":61:22 -1
+     (nil))
+
+;; if (_86 >= 0)
+
+(insn 22 19 23 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:SI 118 [ _86 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_erase.c":61:16 -1
+     (nil))
+
+(jump_insn 23 22 0 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_erase.c":61:16 -1
+     (int_list:REG_BR_PROB 955630228 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; MEM <unsigned long> [(int *)win_34(D)] = 0;
+
+(insn 25 24 0 (set (mem:DI (reg/v/f:DI 124 [ win ]) [3 MEM <unsigned long> [(int *)win_34(D)]+0 S8 A64])
+        (const_int 0 [0])) "../ncurses/./base/lib_erase.c":91:26 -1
+     (nil))
+
+;; win_34(D)->_flags = _23;
+
+(insn 26 25 0 (parallel [
+            (set (mem:HI (plus:DI (reg/v/f:DI 124 [ win ])
+                        (const_int 24 [0x18])) [5 win_34(D)->_flags+0 S2 A64])
+                (and:HI (mem:HI (plus:DI (reg/v/f:DI 124 [ win ])
+                            (const_int 24 [0x18])) [5 win_34(D)->_flags+0 S2 A64])
+                    (const_int -65 [0xffffffffffffffbf])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":92:14 -1
+     (nil))
+
+;; _nc_synchook (win_34(D));
+
+(insn 27 26 28 (set (reg:DI 5 di)
+        (reg/v/f:DI 124 [ win ])) "../ncurses/./base/lib_erase.c":93:2 -1
+     (nil))
+
+(call_insn 28 27 0 (call (mem:QI (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7feca05ba700 _nc_synchook>) [0 _nc_synchook S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_erase.c":93:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7feca05ba700 _nc_synchook>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; 
+
+(code_label 31 30 32 3 (nil) [0 uses])
+
+(note 32 31 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _5 = win_34(D)->_maxx;
+
+(insn 33 32 0 (set (reg:SI 83 [ _5 ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 12 [0xc])) [3 win_34(D)->_maxx+0 S4 A32])) "../ncurses/./base/lib_erase.c":65:22 -1
+     (nil))
+
+;; _7 = _6 * 32;
+
+(insn 34 33 35 (set (reg:DI 125)
+        (sign_extend:DI (reg:SI 83 [ _5 ]))) "../ncurses/./base/lib_erase.c":65:22 -1
+     (nil))
+
+(insn 35 34 0 (parallel [
+            (set (reg:DI 85 [ _7 ])
+                (ashift:DI (reg:DI 125)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":65:18 -1
+     (nil))
+
+;; ivtmp.35_49 = (unsigned long) _1;
+
+(insn 36 35 0 (set (reg:DI 89 [ ivtmp.35 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 56 [0x38])) [7 win_34(D)->_line+0 S8 A64])) -1
+     (nil))
+
+;; _95 = _72 + _92;
+
+(insn 37 36 38 (parallel [
+            (set (reg:DI 126)
+                (plus:DI (reg:DI 89 [ ivtmp.35 ])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+(insn 38 37 39 (set (reg:DI 127)
+        (sign_extend:DI (reg:SI 118 [ _86 ]))) -1
+     (nil))
+
+(insn 39 38 40 (set (reg:DI 128)
+        (reg:DI 127)) -1
+     (nil))
+
+(insn 40 39 41 (parallel [
+            (set (reg:DI 129)
+                (ashift:DI (reg:DI 128)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+(insn 41 40 42 (parallel [
+            (set (reg:DI 130)
+                (plus:DI (reg:DI 129)
+                    (reg:DI 127)))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 127)
+            (const_int 3 [0x3]))
+        (nil)))
+
+(insn 42 41 43 (parallel [
+            (set (reg:DI 131)
+                (ashift:DI (reg:DI 130)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+(insn 43 42 44 (set (reg:DI 130)
+        (reg:DI 131)) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 127)
+            (const_int 24 [0x18]))
+        (nil)))
+
+(insn 44 43 0 (parallel [
+            (set (reg:DI 122 [ _95 ])
+                (plus:DI (reg:DI 126)
+                    (reg:DI 130)))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+;; Generating RTL for gimple basic block 6
+
+;; _87 = (void *) ivtmp.35_11;
+
+(insn 46 45 0 (set (reg/f:DI 119 [ _87 ])
+        (reg:DI 89 [ ivtmp.35 ])) -1
+     (nil))
+
+;; start_42 = MEM[(struct cchar_t * *)_87];
+
+(insn 47 46 0 (set (reg/v/f:DI 90 [ start ])
+        (mem/f:DI (reg/f:DI 119 [ _87 ]) [10 MEM[(struct cchar_t * *)_87]+0 S8 A64])) "../ncurses/./base/lib_erase.c":64:12 -1
+     (nil))
+
+;; end_43 = start_42 + _7;
+
+(insn 48 47 0 (parallel [
+            (set (reg/v/f:DI 109 [ end ])
+                (plus:DI (reg/v/f:DI 90 [ start ])
+                    (reg:DI 85 [ _7 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":65:10 -1
+     (nil))
+
+;; _9 = (int) _8;
+
+(insn 49 48 0 (set (reg:SI 87 [ _9 ])
+        (mem:SI (reg/v/f:DI 90 [ start ]) [3 start_42->attr+0 S4 A32])) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+
+;; if (_10 != 0)
+
+(insn 50 49 51 (parallel [
+            (set (reg:SI 132)
+                (and:SI (reg:SI 87 [ _9 ])
+                    (const_int 254 [0xfe])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+
+(insn 51 50 52 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 132)
+            (const_int 0 [0]))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+
+(jump_insn 52 51 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 7
+
+;; if (_13 == 0)
+
+(insn 54 53 55 (parallel [
+            (set (reg:SI 133)
+                (and:SI (reg:SI 87 [ _9 ])
+                    (const_int 224 [0xe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+
+(insn 55 54 56 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 133)
+            (const_int 0 [0]))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+
+(jump_insn 56 55 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (int_list:REG_BR_PROB 783831532 (nil)))
+
+;; Generating RTL for gimple basic block 8
+
+;; if (_14 != 0B)
+
+(insn 58 57 59 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/v/f:DI 124 [ win ])
+                    (const_int 80 [0x50])) [1 win_34(D)->_parent+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+
+(jump_insn 59 58 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (int_list:REG_BR_PROB 322122548 (nil)))
+
+;; Generating RTL for gimple basic block 9
+
+;; iftmp.0_45 = win_34(D)->_begx;
+
+(insn 61 60 0 (set (reg:SI 111 [ iftmp.0_45 ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 20 [0x14])) [3 win_34(D)->_begx+0 S4 A32])) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+
+;; if (iftmp.0_45 > 0)
+
+(insn 64 61 65 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 111 [ iftmp.0_45 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+
+(jump_insn 65 64 0 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (int_list:REG_BR_PROB 25412292 (nil)))
+
+;; Generating RTL for gimple basic block 10
+Swap operands in stmt:
+_20 = _30 + _81;
+Cost left opnd=0, right opnd=3
+
+;; ivtmp.26_83 = (unsigned long) _82;
+
+(insn 67 66 0 (parallel [
+            (set (reg:DI 117 [ ivtmp.26 ])
+                (plus:DI (reg/v/f:DI 90 [ start ])
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+;; _20 = _81 + _30;
+
+(insn 68 67 69 (parallel [
+            (set (reg:SI 134)
+                (plus:SI (reg:SI 111 [ iftmp.0_45 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+(insn 69 68 70 (set (reg:DI 135)
+        (zero_extend:DI (reg:SI 134))) -1
+     (nil))
+
+(insn 70 69 71 (parallel [
+            (set (reg:DI 136)
+                (ashift:DI (reg:DI 135)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+(insn 71 70 72 (set (reg:DI 138)
+        (const_int -64 [0xffffffffffffffc0])) -1
+     (nil))
+
+(insn 72 71 73 (parallel [
+            (set (reg:DI 137)
+                (minus:DI (reg:DI 138)
+                    (reg:DI 136)))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+(insn 73 72 0 (parallel [
+            (set (reg:DI 98 [ _20 ])
+                (plus:DI (reg/v/f:DI 90 [ start ])
+                    (reg:DI 137)))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+;; Generating RTL for gimple basic block 11
+
+;; _31 = (void *) ivtmp.26_85;
+
+(insn 75 74 0 (set (reg/v/f:DI 90 [ start ])
+        (reg:DI 117 [ ivtmp.26 ])) -1
+     (nil))
+
+;; if (_18 == 1)
+
+(insn 76 75 77 (set (reg:SI 140)
+        (mem:SI (reg/v/f:DI 90 [ start ]) [3 MEM[(unsigned int *)_31]+0 S4 A32])) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+
+(insn 77 76 78 (set (reg:SI 139)
+        (zero_extend:SI (subreg:QI (reg:SI 140) 0))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (expr_list:REG_EQUAL (and:SI (mem:SI (reg/v/f:DI 90 [ start ]) [3 MEM[(unsigned int *)_31]+0 S4 A32])
+            (const_int 255 [0xff]))
+        (nil)))
+
+(insn 78 77 79 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 139)
+            (const_int 1 [0x1]))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+
+(jump_insn 79 78 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (int_list:REG_BR_PROB 1014686028 (nil)))
+
+;; Generating RTL for gimple basic block 12
+
+;; 
+
+(code_label 80 79 81 4 (nil) [0 uses])
+
+(note 81 80 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (sp_12 <= end_43)
+
+(insn 82 81 83 (set (reg:CC 17 flags)
+        (compare:CC (reg/v/f:DI 90 [ start ])
+            (reg/v/f:DI 109 [ end ]))) "../ncurses/./base/lib_erase.c":85:26 -1
+     (nil))
+
+(jump_insn 83 82 0 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_erase.c":85:26 -1
+     (int_list:REG_BR_PROB 955630228 (nil)))
+
+;; Generating RTL for gimple basic block 13
+
+;; MEM[(int *)_87 + 8B] = 0;
+
+(insn 85 84 0 (set (mem:SI (plus:DI (reg/f:DI 119 [ _87 ])
+                (const_int 8 [0x8])) [3 MEM[(int *)_87 + 8B]+0 S4 A64])
+        (const_int 0 [0])) "../ncurses/./base/lib_erase.c":88:30 -1
+     (nil))
+
+;; MEM[(int *)_87 + 12B] = _5;
+
+(insn 86 85 0 (set (mem:SI (plus:DI (reg/f:DI 119 [ _87 ])
+                (const_int 12 [0xc])) [3 MEM[(int *)_87 + 12B]+0 S4 A32])
+        (reg:SI 83 [ _5 ])) "../ncurses/./base/lib_erase.c":89:29 -1
+     (nil))
+
+;; ivtmp.35_48 = ivtmp.35_11 + 24;
+
+(insn 87 86 0 (parallel [
+            (set (reg:DI 89 [ ivtmp.35 ])
+                (plus:DI (reg:DI 89 [ ivtmp.35 ])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":61:16 -1
+     (nil))
+
+;; if (ivtmp.35_48 != _95)
+
+(insn 89 87 90 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 89 [ ivtmp.35 ])
+            (reg:DI 122 [ _95 ]))) "../ncurses/./base/lib_erase.c":61:16 -1
+     (nil))
+
+(jump_insn 90 89 94 13 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 88)
+            (pc))) "../ncurses/./base/lib_erase.c":61:16 -1
+     (int_list:REG_BR_PROB 955630228 (nil)))
+
+(note 94 90 92 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 92 94 93 18 (set (pc)
+        (label_ref 91)) -1
+     (nil))
+
+(barrier 93 92 0)
+
+;; Generating RTL for gimple basic block 14
+
+;; 
+
+(code_label 95 93 96 5 (nil) [0 uses])
+
+(note 96 95 0 NOTE_INSN_BASIC_BLOCK)
+
+;; ivtmp.26_84 = ivtmp.26_85 + 18446744073709551584;
+
+(insn 97 96 0 (parallel [
+            (set (reg:DI 117 [ ivtmp.26 ])
+                (plus:DI (reg:DI 117 [ ivtmp.26 ])
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+
+;; if (_20 != ivtmp.26_84)
+
+(insn 99 97 100 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 98 [ _20 ])
+            (reg:DI 117 [ ivtmp.26 ]))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+
+(jump_insn 100 99 103 14 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 98)
+            (pc))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (int_list:REG_BR_PROB 1048329540 (nil)))
+
+(note 103 100 101 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 101 103 102 19 (set (pc)
+        (label_ref 80)) -1
+     (nil))
+
+(barrier 102 101 0)
+
+;; Generating RTL for gimple basic block 15
+
+;; 
+
+(code_label 104 102 105 6 (nil) [0 uses])
+
+(note 105 104 0 NOTE_INSN_BASIC_BLOCK)
+
+;; MEM[(unsigned int *)sp_77] = blank$attr_19;
+
+(insn 106 105 0 (set (mem:SI (reg/v/f:DI 90 [ start ]) [3 MEM[(unsigned int *)sp_77]+0 S4 A32])
+        (reg:SI 97 [ blank$attr ])) "../ncurses/./base/lib_erase.c":86:7 -1
+     (nil))
+
+;; MEM[(int *)sp_77 + 4B] = blank$chars$0_15;
+
+(insn 107 106 0 (set (mem:SI (plus:DI (reg/v/f:DI 90 [ start ])
+                (const_int 4 [0x4])) [3 MEM[(int *)sp_77 + 4B]+0 S4 A32])
+        (reg:SI 93 [ blank$chars$0 ])) "../ncurses/./base/lib_erase.c":86:7 -1
+     (nil))
+
+;; MEM[(int *)sp_77 + 8B] = blank$chars$1_33;
+
+(insn 108 107 0 (set (mem:SI (plus:DI (reg/v/f:DI 90 [ start ])
+                (const_int 8 [0x8])) [3 MEM[(int *)sp_77 + 8B]+0 S4 A32])
+        (reg:SI 106 [ blank$chars$1 ])) "../ncurses/./base/lib_erase.c":86:7 -1
+     (nil))
+
+;; MEM[(int *)sp_77 + 12B] = blank$chars$2_36;
+
+(insn 109 108 0 (set (mem:SI (plus:DI (reg/v/f:DI 90 [ start ])
+                (const_int 12 [0xc])) [3 MEM[(int *)sp_77 + 12B]+0 S4 A32])
+        (reg:SI 107 [ blank$chars$2 ])) "../ncurses/./base/lib_erase.c":86:7 -1
+     (nil))
+
+;; MEM[(int *)sp_77 + 16B] = blank$chars$3_41;
+
+(insn 110 109 0 (set (mem:SI (plus:DI (reg/v/f:DI 90 [ start ])
+                (const_int 16 [0x10])) [3 MEM[(int *)sp_77 + 16B]+0 S4 A32])
+        (reg:SI 108 [ blank$chars$3 ])) "../ncurses/./base/lib_erase.c":86:7 -1
+     (nil))
+
+;; MEM[(int *)sp_77 + 20B] = blank$chars$4_44;
+
+(insn 111 110 0 (set (mem:SI (plus:DI (reg/v/f:DI 90 [ start ])
+                (const_int 20 [0x14])) [3 MEM[(int *)sp_77 + 20B]+0 S4 A32])
+        (reg:SI 110 [ blank$chars$4 ])) "../ncurses/./base/lib_erase.c":86:7 -1
+     (nil))
+
+;; MEM[(int *)sp_77 + 24B] = blank$ext_color_46;
+
+(insn 112 111 0 (set (mem:SI (plus:DI (reg/v/f:DI 90 [ start ])
+                (const_int 24 [0x18])) [3 MEM[(int *)sp_77 + 24B]+0 S4 A32])
+        (reg:SI 112 [ blank$ext_color ])) "../ncurses/./base/lib_erase.c":86:7 -1
+     (nil))
+
+;; MEM[(int *)sp_77 + 28B] = blank$rgb_color_50;
+
+(insn 113 112 0 (set (mem:SI (plus:DI (reg/v/f:DI 90 [ start ])
+                (const_int 28 [0x1c])) [3 MEM[(int *)sp_77 + 28B]+0 S4 A32])
+        (reg:SI 113 [ blank$rgb_color ])) "../ncurses/./base/lib_erase.c":86:7 -1
+     (nil))
+
+;; sp_54 = sp_77 + 32;
+
+(insn 114 113 0 (parallel [
+            (set (reg/v/f:DI 90 [ start ])
+                (plus:DI (reg/v/f:DI 90 [ start ])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":85:36 -1
+     (nil))
+
+;; if (end_43 >= sp_54)
+
+(insn 115 114 116 15 (set (reg:CC 17 flags)
+        (compare:CC (reg/v/f:DI 109 [ end ])
+            (reg/v/f:DI 90 [ start ]))) "../ncurses/./base/lib_erase.c":85:26 -1
+     (nil))
+
+(jump_insn 116 115 120 15 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 104)
+            (pc))) "../ncurses/./base/lib_erase.c":85:26 -1
+     (int_list:REG_BR_PROB 955630228 (nil)))
+
+(note 120 116 118 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 118 120 119 20 (set (pc)
+        (label_ref 117)) -1
+     (nil))
+
+(barrier 119 118 0)
+
+;; Generating RTL for gimple basic block 16
+
+;; 
+
+(code_label 121 119 122 2 (nil) [0 uses])
+
+(note 122 121 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return code_24;
+
+(jump_insn 123 122 124 (set (pc)
+        (label_ref 0)) "../ncurses/./base/lib_erase.c":96:5 -1
+     (nil))
+
+(barrier 124 123 0)
+Edge 2->16 redirected to 22
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 29 from 21 to 22.
+Forwarding edge 14->15 to 5 failed.
+Forwarding edge 16->17 to 13 failed.
+Forwarding edge 18->19 to 14 failed.
+Merging block 21 into block 20...
+Merged blocks 20 and 21.
+Merged 20 and 21 without moving.
+Removing jump 123.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 14->15 to 5 failed.
+Forwarding edge 16->17 to 13 failed.
+Forwarding edge 18->19 to 14 failed.
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 14726180 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:14726180 (estimated locally) (FALLTHRU)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 124 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_erase.c":49:1 -1
+     (nil))
+(note 3 2 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 3 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 124 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_erase.c":55:8 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 130)
+            (pc))) "../ncurses/./base/lib_erase.c":55:8 806 {*jcc}
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 130)
+;;  succ:       4 [99.1% (guessed)]  count:14598062 (estimated locally) (FALLTHRU)
+;;              20 [0.9% (guessed)]  count:128118 (estimated locally)
+
+;; basic block 4, loop depth 0, count 14598063 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [99.1% (guessed)]  count:14598062 (estimated locally) (FALLTHRU)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (set (reg:SI 97 [ blank$attr ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 116 [0x74])) [3 win_34(D)->_bkgrnd.attr+0 S4 A32])) "../ncurses/./base/lib_erase.c":60:8 -1
+     (nil))
+(insn 12 11 13 4 (set (reg:SI 93 [ blank$chars$0 ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 120 [0x78])) [3 win_34(D)->_bkgrnd.chars[0]+0 S4 A64])) "../ncurses/./base/lib_erase.c":60:8 -1
+     (nil))
+(insn 13 12 14 4 (set (reg:SI 106 [ blank$chars$1 ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 124 [0x7c])) [3 win_34(D)->_bkgrnd.chars[1]+0 S4 A32])) "../ncurses/./base/lib_erase.c":60:8 -1
+     (nil))
+(insn 14 13 15 4 (set (reg:SI 107 [ blank$chars$2 ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 128 [0x80])) [3 win_34(D)->_bkgrnd.chars[2]+0 S4 A64])) "../ncurses/./base/lib_erase.c":60:8 -1
+     (nil))
+(insn 15 14 16 4 (set (reg:SI 108 [ blank$chars$3 ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 132 [0x84])) [3 win_34(D)->_bkgrnd.chars[3]+0 S4 A32])) "../ncurses/./base/lib_erase.c":60:8 -1
+     (nil))
+(insn 16 15 17 4 (set (reg:SI 110 [ blank$chars$4 ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 136 [0x88])) [3 win_34(D)->_bkgrnd.chars[4]+0 S4 A64])) "../ncurses/./base/lib_erase.c":60:8 -1
+     (nil))
+(insn 17 16 18 4 (set (reg:SI 112 [ blank$ext_color ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 140 [0x8c])) [3 win_34(D)->_bkgrnd.ext_color+0 S4 A32])) "../ncurses/./base/lib_erase.c":60:8 -1
+     (nil))
+(insn 18 17 19 4 (set (reg:SI 113 [ blank$rgb_color ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 144 [0x90])) [3 win_34(D)->_bkgrnd.rgb_color+0 S4 A64])) "../ncurses/./base/lib_erase.c":60:8 -1
+     (nil))
+(insn 19 18 22 4 (set (reg:SI 118 [ _86 ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 8 [0x8])) [3 win_34(D)->_maxy+0 S4 A64])) "../ncurses/./base/lib_erase.c":61:22 -1
+     (nil))
+(insn 22 19 23 4 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:SI 118 [ _86 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_erase.c":61:16 -1
+     (nil))
+(jump_insn 23 22 91 4 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 31)
+            (pc))) "../ncurses/./base/lib_erase.c":61:16 -1
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 31)
+;;  succ:       6 [89.0% (guessed)]  count:12992276 (estimated locally)
+;;              5 [11.0% (guessed)]  count:1605787 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 14598063 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [11.0% (guessed)]  count:1605787 (estimated locally) (FALLTHRU)
+;;              15 [always]  count:12992276 (estimated locally)
+(code_label 91 23 24 5 8 (nil) [1 uses])
+(note 24 91 25 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 25 24 26 5 (set (mem:DI (reg/v/f:DI 124 [ win ]) [3 MEM <unsigned long> [(int *)win_34(D)]+0 S8 A64])
+        (const_int 0 [0])) "../ncurses/./base/lib_erase.c":91:26 -1
+     (nil))
+(insn 26 25 27 5 (parallel [
+            (set (mem:HI (plus:DI (reg/v/f:DI 124 [ win ])
+                        (const_int 24 [0x18])) [5 win_34(D)->_flags+0 S2 A64])
+                (and:HI (mem:HI (plus:DI (reg/v/f:DI 124 [ win ])
+                            (const_int 24 [0x18])) [5 win_34(D)->_flags+0 S2 A64])
+                    (const_int -65 [0xffffffffffffffbf])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":92:14 -1
+     (nil))
+(insn 27 26 28 5 (set (reg:DI 5 di)
+        (reg/v/f:DI 124 [ win ])) "../ncurses/./base/lib_erase.c":93:2 -1
+     (nil))
+(call_insn 28 27 5 5 (call (mem:QI (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7feca05ba700 _nc_synchook>) [0 _nc_synchook S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_erase.c":93:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7feca05ba700 _nc_synchook>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 5 28 29 5 (set (reg/v:SI 123 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_erase.c":94:7 -1
+     (nil))
+(jump_insn 29 5 30 5 (set (pc)
+        (label_ref:DI 125)) "../ncurses/./base/lib_erase.c":93:2 807 {jump}
+     (nil)
+ -> 125)
+;;  succ:       22 [always]  count:14598063 (estimated locally)
+
+(barrier 30 29 31)
+;; basic block 6, loop depth 0, count 12992276 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [89.0% (guessed)]  count:12992276 (estimated locally)
+(code_label 31 30 32 6 3 (nil) [1 uses])
+(note 32 31 33 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 33 32 34 6 (set (reg:SI 83 [ _5 ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 12 [0xc])) [3 win_34(D)->_maxx+0 S4 A32])) "../ncurses/./base/lib_erase.c":65:22 -1
+     (nil))
+(insn 34 33 35 6 (set (reg:DI 125)
+        (sign_extend:DI (reg:SI 83 [ _5 ]))) "../ncurses/./base/lib_erase.c":65:22 -1
+     (nil))
+(insn 35 34 36 6 (parallel [
+            (set (reg:DI 85 [ _7 ])
+                (ashift:DI (reg:DI 125)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":65:18 -1
+     (nil))
+(insn 36 35 37 6 (set (reg:DI 89 [ ivtmp.35 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 56 [0x38])) [7 win_34(D)->_line+0 S8 A64])) -1
+     (nil))
+(insn 37 36 38 6 (parallel [
+            (set (reg:DI 126)
+                (plus:DI (reg:DI 89 [ ivtmp.35 ])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 38 37 39 6 (set (reg:DI 127)
+        (sign_extend:DI (reg:SI 118 [ _86 ]))) -1
+     (nil))
+(insn 39 38 40 6 (set (reg:DI 128)
+        (reg:DI 127)) -1
+     (nil))
+(insn 40 39 41 6 (parallel [
+            (set (reg:DI 129)
+                (ashift:DI (reg:DI 128)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 41 40 42 6 (parallel [
+            (set (reg:DI 130)
+                (plus:DI (reg:DI 129)
+                    (reg:DI 127)))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 127)
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 42 41 43 6 (parallel [
+            (set (reg:DI 131)
+                (ashift:DI (reg:DI 130)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 43 42 44 6 (set (reg:DI 130)
+        (reg:DI 131)) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 127)
+            (const_int 24 [0x18]))
+        (nil)))
+(insn 44 43 88 6 (parallel [
+            (set (reg:DI 122 [ _95 ])
+                (plus:DI (reg:DI 126)
+                    (reg:DI 130)))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+;;  succ:       7 [always]  count:12992276 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 1, count 118111600 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       14 [89.0% (guessed)]  count:105119324 (estimated locally) (DFS_BACK)
+;;              6 [always]  count:12992276 (estimated locally) (FALLTHRU)
+(code_label 88 44 45 7 7 (nil) [1 uses])
+(note 45 88 46 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 46 45 47 7 (set (reg/f:DI 119 [ _87 ])
+        (reg:DI 89 [ ivtmp.35 ])) -1
+     (nil))
+(insn 47 46 48 7 (set (reg/v/f:DI 90 [ start ])
+        (mem/f:DI (reg/f:DI 119 [ _87 ]) [10 MEM[(struct cchar_t * *)_87]+0 S8 A64])) "../ncurses/./base/lib_erase.c":64:12 -1
+     (nil))
+(insn 48 47 49 7 (parallel [
+            (set (reg/v/f:DI 109 [ end ])
+                (plus:DI (reg/v/f:DI 90 [ start ])
+                    (reg:DI 85 [ _7 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":65:10 -1
+     (nil))
+(insn 49 48 50 7 (set (reg:SI 87 [ _9 ])
+        (mem:SI (reg/v/f:DI 90 [ start ]) [3 start_42->attr+0 S4 A32])) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+(insn 50 49 51 7 (parallel [
+            (set (reg:SI 132)
+                (and:SI (reg:SI 87 [ _9 ])
+                    (const_int 254 [0xfe])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+(insn 51 50 52 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 132)
+            (const_int 0 [0]))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+(jump_insn 52 51 53 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 80)
+            (pc))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 80)
+;;  succ:       8 [50.0% (guessed)]  count:59055800 (estimated locally) (FALLTHRU)
+;;              13 [50.0% (guessed)]  count:59055800 (estimated locally)
+
+;; basic block 8, loop depth 1, count 59055800 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [50.0% (guessed)]  count:59055800 (estimated locally) (FALLTHRU)
+(note 53 52 54 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 54 53 55 8 (parallel [
+            (set (reg:SI 133)
+                (and:SI (reg:SI 87 [ _9 ])
+                    (const_int 224 [0xe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+(insn 55 54 56 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 133)
+            (const_int 0 [0]))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+(jump_insn 56 55 57 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 80)
+            (pc))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (int_list:REG_BR_PROB 783831532 (nil))
+ -> 80)
+;;  succ:       9 [27.0% (guessed)]  count:15945066 (estimated locally) (FALLTHRU)
+;;              13 [73.0% (guessed)]  count:43110734 (estimated locally)
+
+;; basic block 9, loop depth 1, count 15945066 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [27.0% (guessed)]  count:15945066 (estimated locally) (FALLTHRU)
+(note 57 56 58 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 58 57 59 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/v/f:DI 124 [ win ])
+                    (const_int 80 [0x50])) [1 win_34(D)->_parent+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+(jump_insn 59 58 60 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 80)
+            (pc))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 80)
+;;  succ:       10 [70.0% (guessed)]  count:11161546 (estimated locally) (FALLTHRU)
+;;              13 [30.0% (guessed)]  count:4783520 (estimated locally)
+
+;; basic block 10, loop depth 1, count 11161546 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       9 [70.0% (guessed)]  count:11161546 (estimated locally) (FALLTHRU)
+(note 60 59 61 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 61 60 64 10 (set (reg:SI 111 [ iftmp.0_45 ])
+        (mem:SI (plus:DI (reg/v/f:DI 124 [ win ])
+                (const_int 20 [0x14])) [3 win_34(D)->_begx+0 S4 A32])) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+(insn 64 61 65 10 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 111 [ iftmp.0_45 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+(jump_insn 65 64 66 10 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 80)
+            (pc))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (int_list:REG_BR_PROB 25412292 (nil))
+ -> 80)
+;;  succ:       11 [97.6% (guessed)]  count:10897385 (estimated locally) (FALLTHRU)
+;;              13 [2.4% (guessed)]  count:264161 (estimated locally)
+
+;; basic block 11, loop depth 1, count 10897385 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       10 [97.6% (guessed)]  count:10897385 (estimated locally) (FALLTHRU)
+(note 66 65 67 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 67 66 68 11 (parallel [
+            (set (reg:DI 117 [ ivtmp.26 ])
+                (plus:DI (reg/v/f:DI 90 [ start ])
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 68 67 69 11 (parallel [
+            (set (reg:SI 134)
+                (plus:SI (reg:SI 111 [ iftmp.0_45 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 69 68 70 11 (set (reg:DI 135)
+        (zero_extend:DI (reg:SI 134))) -1
+     (nil))
+(insn 70 69 71 11 (parallel [
+            (set (reg:DI 136)
+                (ashift:DI (reg:DI 135)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 71 70 72 11 (set (reg:DI 138)
+        (const_int -64 [0xffffffffffffffc0])) -1
+     (nil))
+(insn 72 71 73 11 (parallel [
+            (set (reg:DI 137)
+                (minus:DI (reg:DI 138)
+                    (reg:DI 136)))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 73 72 98 11 (parallel [
+            (set (reg:DI 98 [ _20 ])
+                (plus:DI (reg/v/f:DI 90 [ start ])
+                    (reg:DI 137)))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+;;  succ:       12 [always]  count:10897385 (estimated locally) (FALLTHRU)
+
+;; basic block 12, loop depth 2, count 140856160 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       16 [97.6% (guessed)]  count:129958775 (estimated locally) (DFS_BACK)
+;;              11 [always]  count:10897385 (estimated locally) (FALLTHRU)
+(code_label 98 73 74 12 9 (nil) [1 uses])
+(note 74 98 75 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 75 74 76 12 (set (reg/v/f:DI 90 [ start ])
+        (reg:DI 117 [ ivtmp.26 ])) -1
+     (nil))
+(insn 76 75 77 12 (set (reg:SI 140)
+        (mem:SI (reg/v/f:DI 90 [ start ]) [3 MEM[(unsigned int *)_31]+0 S4 A32])) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+(insn 77 76 78 12 (set (reg:SI 139)
+        (zero_extend:SI (subreg:QI (reg:SI 140) 0))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (expr_list:REG_EQUAL (and:SI (mem:SI (reg/v/f:DI 90 [ start ]) [3 MEM[(unsigned int *)_31]+0 S4 A32])
+            (const_int 255 [0xff]))
+        (nil)))
+(insn 78 77 79 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 139)
+            (const_int 1 [0x1]))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+(jump_insn 79 78 80 12 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 95)
+            (pc))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 95)
+;;  succ:       13 [5.5% (guessed)]  count:7747089 (estimated locally) (FALLTHRU)
+;;              16 [94.5% (guessed)]  count:133109071 (estimated locally)
+
+;; basic block 13, loop depth 1, count 118111601 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [50.0% (guessed)]  count:59055800 (estimated locally)
+;;              8 [73.0% (guessed)]  count:43110734 (estimated locally)
+;;              12 [5.5% (guessed)]  count:7747089 (estimated locally) (FALLTHRU)
+;;              9 [30.0% (guessed)]  count:4783520 (estimated locally)
+;;              10 [2.4% (guessed)]  count:264161 (estimated locally)
+;;              17 [always]  count:3150297 (estimated locally)
+(code_label 80 79 81 13 4 (nil) [5 uses])
+(note 81 80 82 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 82 81 83 13 (set (reg:CC 17 flags)
+        (compare:CC (reg/v/f:DI 90 [ start ])
+            (reg/v/f:DI 109 [ end ]))) "../ncurses/./base/lib_erase.c":85:26 -1
+     (nil))
+(jump_insn 83 82 117 13 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 104)
+            (pc))) "../ncurses/./base/lib_erase.c":85:26 -1
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 104)
+;;  succ:       18 [89.0% (guessed)]  count:105119325 (estimated locally)
+;;              14 [11.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU)
+
+;; basic block 14, loop depth 1, count 118111600 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       13 [11.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU)
+;;              19 [always]  count:105119324 (estimated locally)
+(code_label 117 83 84 14 10 (nil) [1 uses])
+(note 84 117 85 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 85 84 86 14 (set (mem:SI (plus:DI (reg/f:DI 119 [ _87 ])
+                (const_int 8 [0x8])) [3 MEM[(int *)_87 + 8B]+0 S4 A64])
+        (const_int 0 [0])) "../ncurses/./base/lib_erase.c":88:30 -1
+     (nil))
+(insn 86 85 87 14 (set (mem:SI (plus:DI (reg/f:DI 119 [ _87 ])
+                (const_int 12 [0xc])) [3 MEM[(int *)_87 + 12B]+0 S4 A32])
+        (reg:SI 83 [ _5 ])) "../ncurses/./base/lib_erase.c":89:29 -1
+     (nil))
+(insn 87 86 89 14 (parallel [
+            (set (reg:DI 89 [ ivtmp.35 ])
+                (plus:DI (reg:DI 89 [ ivtmp.35 ])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":61:16 -1
+     (nil))
+(insn 89 87 90 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 89 [ ivtmp.35 ])
+            (reg:DI 122 [ _95 ]))) "../ncurses/./base/lib_erase.c":61:16 -1
+     (nil))
+(jump_insn 90 89 94 14 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 88)
+            (pc))) "../ncurses/./base/lib_erase.c":61:16 -1
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 88)
+;;  succ:       7 [89.0% (guessed)]  count:105119324 (estimated locally) (DFS_BACK)
+;;              15 [11.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU)
+
+;; basic block 15, loop depth 0, count 12992276 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL)
+;;  pred:       14 [11.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU)
+(note 94 90 92 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 92 94 93 15 (set (pc)
+        (label_ref 91)) -1
+     (nil)
+ -> 91)
+;;  succ:       5 [always]  count:12992276 (estimated locally)
+
+(barrier 93 92 95)
+;; basic block 16, loop depth 2, count 133109072 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       12 [94.5% (guessed)]  count:133109071 (estimated locally)
+(code_label 95 93 96 16 5 (nil) [1 uses])
+(note 96 95 97 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 97 96 99 16 (parallel [
+            (set (reg:DI 117 [ ivtmp.26 ])
+                (plus:DI (reg:DI 117 [ ivtmp.26 ])
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+(insn 99 97 100 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 98 [ _20 ])
+            (reg:DI 117 [ ivtmp.26 ]))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (nil))
+(jump_insn 100 99 103 16 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 98)
+            (pc))) "../ncurses/./base/lib_erase.c":72:6 -1
+     (int_list:REG_BR_PROB 1048329540 (nil))
+ -> 98)
+;;  succ:       12 [97.6% (guessed)]  count:129958775 (estimated locally) (DFS_BACK)
+;;              17 [2.4% (guessed)]  count:3150297 (estimated locally) (FALLTHRU)
+
+;; basic block 17, loop depth 1, count 3150297 (estimated locally), maybe hot
+;;  prev block 16, next block 18, flags: (NEW, REACHABLE, RTL)
+;;  pred:       16 [2.4% (guessed)]  count:3150297 (estimated locally) (FALLTHRU)
+(note 103 100 101 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 101 103 102 17 (set (pc)
+        (label_ref 80)) -1
+     (nil)
+ -> 80)
+;;  succ:       13 [always]  count:3150297 (estimated locally)
+
+(barrier 102 101 104)
+;; basic block 18, loop depth 2, count 955630225 (estimated locally), maybe hot
+;;  prev block 17, next block 19, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       18 [89.0% (guessed)]  count:850510901 (estimated locally) (DFS_BACK)
+;;              13 [89.0% (guessed)]  count:105119325 (estimated locally)
+(code_label 104 102 105 18 6 (nil) [2 uses])
+(note 105 104 106 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 106 105 107 18 (set (mem:SI (reg/v/f:DI 90 [ start ]) [3 MEM[(unsigned int *)sp_77]+0 S4 A32])
+        (reg:SI 97 [ blank$attr ])) "../ncurses/./base/lib_erase.c":86:7 -1
+     (nil))
+(insn 107 106 108 18 (set (mem:SI (plus:DI (reg/v/f:DI 90 [ start ])
+                (const_int 4 [0x4])) [3 MEM[(int *)sp_77 + 4B]+0 S4 A32])
+        (reg:SI 93 [ blank$chars$0 ])) "../ncurses/./base/lib_erase.c":86:7 -1
+     (nil))
+(insn 108 107 109 18 (set (mem:SI (plus:DI (reg/v/f:DI 90 [ start ])
+                (const_int 8 [0x8])) [3 MEM[(int *)sp_77 + 8B]+0 S4 A32])
+        (reg:SI 106 [ blank$chars$1 ])) "../ncurses/./base/lib_erase.c":86:7 -1
+     (nil))
+(insn 109 108 110 18 (set (mem:SI (plus:DI (reg/v/f:DI 90 [ start ])
+                (const_int 12 [0xc])) [3 MEM[(int *)sp_77 + 12B]+0 S4 A32])
+        (reg:SI 107 [ blank$chars$2 ])) "../ncurses/./base/lib_erase.c":86:7 -1
+     (nil))
+(insn 110 109 111 18 (set (mem:SI (plus:DI (reg/v/f:DI 90 [ start ])
+                (const_int 16 [0x10])) [3 MEM[(int *)sp_77 + 16B]+0 S4 A32])
+        (reg:SI 108 [ blank$chars$3 ])) "../ncurses/./base/lib_erase.c":86:7 -1
+     (nil))
+(insn 111 110 112 18 (set (mem:SI (plus:DI (reg/v/f:DI 90 [ start ])
+                (const_int 20 [0x14])) [3 MEM[(int *)sp_77 + 20B]+0 S4 A32])
+        (reg:SI 110 [ blank$chars$4 ])) "../ncurses/./base/lib_erase.c":86:7 -1
+     (nil))
+(insn 112 111 113 18 (set (mem:SI (plus:DI (reg/v/f:DI 90 [ start ])
+                (const_int 24 [0x18])) [3 MEM[(int *)sp_77 + 24B]+0 S4 A32])
+        (reg:SI 112 [ blank$ext_color ])) "../ncurses/./base/lib_erase.c":86:7 -1
+     (nil))
+(insn 113 112 114 18 (set (mem:SI (plus:DI (reg/v/f:DI 90 [ start ])
+                (const_int 28 [0x1c])) [3 MEM[(int *)sp_77 + 28B]+0 S4 A32])
+        (reg:SI 113 [ blank$rgb_color ])) "../ncurses/./base/lib_erase.c":86:7 -1
+     (nil))
+(insn 114 113 115 18 (parallel [
+            (set (reg/v/f:DI 90 [ start ])
+                (plus:DI (reg/v/f:DI 90 [ start ])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_erase.c":85:36 -1
+     (nil))
+(insn 115 114 116 18 (set (reg:CC 17 flags)
+        (compare:CC (reg/v/f:DI 109 [ end ])
+            (reg/v/f:DI 90 [ start ]))) "../ncurses/./base/lib_erase.c":85:26 -1
+     (nil))
+(jump_insn 116 115 120 18 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 104)
+            (pc))) "../ncurses/./base/lib_erase.c":85:26 -1
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 104)
+;;  succ:       18 [89.0% (guessed)]  count:850510901 (estimated locally) (DFS_BACK)
+;;              19 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+
+;; basic block 19, loop depth 1, count 105119324 (estimated locally), maybe hot
+;;  prev block 18, next block 20, flags: (NEW, REACHABLE, RTL)
+;;  pred:       18 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+(note 120 116 118 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 118 120 119 19 (set (pc)
+        (label_ref 117)) -1
+     (nil)
+ -> 117)
+;;  succ:       14 [always]  count:105119324 (estimated locally)
+
+(barrier 119 118 130)
+;; basic block 20, loop depth 0, count 128118 (estimated locally), maybe hot
+;;  prev block 19, next block 22, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [0.9% (guessed)]  count:128118 (estimated locally)
+(code_label 130 119 129 20 11 (nil) [1 uses])
+(note 129 130 4 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 4 129 125 20 (set (reg/v:SI 123 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_erase.c":50:9 -1
+     (nil))
+;;  succ:       22 [always]  count:128118 (estimated locally) (FALLTHRU)
+
+;; basic block 22, loop depth 0, count 14726181 (estimated locally), maybe hot
+;;  prev block 20, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       20 [always]  count:128118 (estimated locally) (FALLTHRU)
+;;              5 [always]  count:14598063 (estimated locally)
+(code_label 125 4 128 22 1 (nil) [1 uses])
+(note 128 125 126 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 126 128 127 22 (set (reg/i:SI 0 ax)
+        (reg/v:SI 123 [ <retval> ])) "../ncurses/./base/lib_erase.c":97:1 -1
+     (nil))
+(insn 127 126 0 22 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_erase.c":97:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:14726181 (estimated locally) (FALLTHRU)
+

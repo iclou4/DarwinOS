@@ -1,0 +1,575 @@
+
+;; Function ungetch_sp (ungetch_sp, funcdef_no=91, decl_uid=6693, cgraph_uid=92, symbol_order=91)
+
+Creating trace 0 : start at note 1
+Creating trace 1 : start at note 109
+Creating trace 2 : start at code_label 50
+Creating trace 3 : start at code_label 57
+Creating trace 4 : start at code_label 85
+Creating trace 5 : start at code_label 135
+Creating trace 6 : start at code_label 77
+Creating trace 7 : start at note 138
+Processing trace 0 : start at note 1
+   saw edge from trace 0 to 1 (via fallthru 0)
+	push trace 1 to worklist
+Processing trace 1 : start at note 109
+   saw edge from trace 1 to 6 (via jump_insn 15)
+	push trace 6 to worklist
+   saw edge from trace 1 to 6 (via jump_insn 21)
+   saw edge from trace 1 to 5 (via jump_insn 27)
+	push trace 5 to worklist
+   saw edge from trace 1 to 4 (via jump_insn 45)
+	push trace 4 to worklist
+   saw edge from trace 1 to 2 (via fallthru 0)
+	push trace 2 to worklist
+Processing trace 2 : start at code_label 50
+   saw edge from trace 2 to 3 (via jump_insn 54)
+	push trace 3 to worklist
+   saw edge from trace 2 to 3 (via fallthru 0)
+Processing trace 3 : start at code_label 57
+Processing trace 4 : start at code_label 85
+   saw edge from trace 4 to 2 (via jump_insn 136)
+Processing trace 5 : start at code_label 135
+Processing trace 6 : start at code_label 77
+   saw edge from trace 6 to 7 (via fallthru 0)
+	push trace 7 to worklist
+Processing trace 7 : start at note 138
+
+
+ungetch_sp
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 7 [sp]
+;;  regs ever live 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 17 [flags]
+;;  ref usage 	r0={12d,15u} r1={6d,4u} r2={2d,4u} r4={1d,2u} r5={1d,10u} r7={1d,12u} r17={10d,6u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={1d} r37={1d} 
+;;    total ref usage 96{43d,53u,0e} in 41{41 regular + 0 call} insns.
+(note 1 0 139 NOTE_INSN_DELETED)
+(insn 139 1 12 2 (unspec_volatile [
+            (const_int 0 [0])
+        ] UNSPECV_NOP_ENDBR) 1242 {nop_endbr}
+     (nil))
+(note 12 139 109 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 109 12 4 2 NOTE_INSN_PROLOGUE_END)
+(note 4 109 14 2 NOTE_INSN_FUNCTION_BEG)
+(insn:TI 14 4 15 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 5 di [orig:92 sp ] [92])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":68:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 15 14 16 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 77)
+            (pc))) "../ncurses/./base/lib_ungetch.c":68:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 9341556 (nil)))
+ -> 77)
+(note 16 15 17 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 17 16 20 3 (set (reg:HI 2 cx [orig:82 _1 ] [82])
+        (mem:HI (plus:DI (reg/v/f:DI 5 di [orig:92 sp ] [92])
+                (const_int 730 [0x2da])) [1 sp_20(D)->_fifotail+0 S2 A16])) "../ncurses/./base/lib_ungetch.c":68:23 76 {*movhi_internal}
+     (nil))
+(insn:TI 20 17 21 3 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 2 cx [orig:82 _1 ] [82])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":68:20 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 21 20 22 3 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 77)
+            (pc))) "../ncurses/./base/lib_ungetch.c":68:20 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGOC 17 flags)
+        (int_list:REG_BR_PROB 15032388 (nil)))
+ -> 77)
+(note 22 21 23 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 23 22 26 4 (set (reg:HI 0 ax [orig:83 _2 ] [83])
+        (mem:HI (plus:DI (reg/v/f:DI 5 di [orig:92 sp ] [92])
+                (const_int 728 [0x2d8])) [1 sp_20(D)->_fifohead+0 S2 A64])) "../ncurses/./base/lib_ungetch.c":69:6 76 {*movhi_internal}
+     (nil))
+(insn:TI 26 23 27 4 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 0 ax [orig:83 _2 ] [83])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":69:5 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 27 26 43 4 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 135)
+            (pc))) "../ncurses/./base/lib_ungetch.c":69:5 806 {*jcc}
+     (int_list:REG_BR_PROB 440234148 (nil))
+ -> 135)
+(note 43 27 45 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(jump_insn:TI 45 43 46 5 (set (pc)
+        (if_then_else (eq (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 85)
+            (pc))) "../ncurses/./base/lib_ungetch.c":74:6 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGOC 17 flags)
+        (int_list:REG_BR_PROB 536870916 (nil)))
+ -> 85)
+(note 46 45 47 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(note 47 46 105 6 NOTE_INSN_DELETED)
+(insn:TI 105 47 49 6 (parallel [
+            (set (reg:SI 0 ax [orig:89 _10 ] [89])
+                (plus:SI (reg:SI 0 ax [orig:83 _2 ] [83])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":74:6 209 {*addsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 49 105 50 6 (set (reg:SI 1 dx [orig:90 prephitmp_23 ] [90])
+        (zero_extend:SI (reg:HI 0 ax [orig:89 _10 ] [89]))) "../ncurses/./base/lib_ungetch.c":77:12 144 {*zero_extendhisi2}
+     (nil))
+(code_label 50 49 51 7 6 (nil) [1 uses])
+(note 51 50 52 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 52 51 53 7 (set (mem:HI (plus:DI (reg/v/f:DI 5 di [orig:92 sp ] [92])
+                (const_int 728 [0x2d8])) [1 sp_20(D)->_fifohead+0 S2 A64])
+        (reg:HI 0 ax [orig:89 _10 ] [89])) 76 {*movhi_internal}
+     (nil))
+(insn 53 52 54 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 2 cx [orig:82 _1 ] [82])
+            (reg:HI 0 ax [orig:89 _10 ] [89]))) "../ncurses/./base/lib_ungetch.c":74:6 10 {*cmphi_1}
+     (expr_list:REG_DEAD (reg:HI 2 cx [orig:82 _1 ] [82])
+        (expr_list:REG_DEAD (reg:HI 0 ax [orig:89 _10 ] [89])
+            (nil))))
+(jump_insn 54 53 55 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 57)
+            (pc))) "../ncurses/./base/lib_ungetch.c":74:6 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 708669604 (nil)))
+ -> 57)
+(note 55 54 121 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 121 55 122 8 (set (reg:HI 0 ax)
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":74:6 76 {*movhi_internal}
+     (nil))
+(insn:TI 122 121 57 8 (set (mem:HI (plus:DI (reg/v/f:DI 5 di [orig:92 sp ] [92])
+                (const_int 730 [0x2da])) [1 sp_20(D)->_fifotail+0 S2 A16])
+        (reg:HI 0 ax)) "../ncurses/./base/lib_ungetch.c":74:6 76 {*movhi_internal}
+     (expr_list:REG_DEAD (reg:HI 0 ax)
+        (nil)))
+(code_label 57 122 58 9 5 (nil) [1 uses])
+(note 58 57 60 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(note 60 58 59 9 NOTE_INSN_DELETED)
+(insn:TI 59 60 61 9 (set (reg:DI 0 ax [orig:94 prephitmp_23 ] [94])
+        (sign_extend:DI (reg:SI 1 dx [orig:90 prephitmp_23 ] [90]))) "../ncurses/./base/lib_ungetch.c":77:18 147 {*extendsidi2_rex64}
+     (expr_list:REG_DEAD (reg:SI 1 dx [orig:90 prephitmp_23 ] [90])
+        (nil)))
+(insn:TI 61 59 120 9 (set (mem:SI (plus:DI (plus:DI (mult:DI (reg:DI 0 ax [orig:94 prephitmp_23 ] [94])
+                        (const_int 4 [0x4]))
+                    (reg/v/f:DI 5 di [orig:92 sp ] [92]))
+                (const_int 180 [0xb4])) [3 sp_20(D)->_fifo[prephitmp_26]+0 S4 A32])
+        (reg/v:SI 4 si [orig:93 ch ] [93])) "../ncurses/./base/lib_ungetch.c":77:18 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 5 di [orig:92 sp ] [92])
+        (expr_list:REG_DEAD (reg/v:SI 4 si [orig:93 ch ] [93])
+            (expr_list:REG_DEAD (reg:DI 0 ax [orig:94 prephitmp_23 ] [94])
+                (nil)))))
+(insn 120 61 113 9 (parallel [
+            (set (reg:DI 0 ax [orig:91 <retval> ] [91])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":85:5 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 113 120 99 9 (use (reg/i:SI 0 ax)) -1
+     (nil))
+(jump_insn:TI 99 113 100 9 (simple_return) 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 100 99 85)
+(code_label 85 100 84 10 10 (nil) [1 uses])
+(note 84 85 6 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 6 84 7 10 (set (reg:SI 1 dx [orig:90 prephitmp_23 ] [90])
+        (const_int 136 [0x88])) 75 {*movsi_internal}
+     (nil))
+(insn 7 6 136 10 (set (reg:HI 0 ax [orig:89 _10 ] [89])
+        (const_int 136 [0x88])) "../ncurses/./base/lib_ungetch.c":74:6 76 {*movhi_internal}
+     (nil))
+(jump_insn 136 7 137 10 (set (pc)
+        (label_ref 50)) 807 {jump}
+     (nil)
+ -> 50)
+(barrier 137 136 135)
+(code_label 135 137 28 11 12 (nil) [1 uses])
+(note 28 135 91 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 91 28 106 11 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:HI 2 cx [orig:82 _1 ] [82])
+            (const_int 136 [0x88]))) "../ncurses/./base/lib_ungetch.c":71:6 10 {*cmphi_1}
+     (expr_list:REG_DEAD (reg:HI 2 cx [orig:82 _1 ] [82])
+        (nil)))
+(insn 106 91 103 11 (set (reg:SI 0 ax [97])
+        (plus:SI (reg:SI 2 cx [orig:82 _1 ] [82])
+            (const_int 1 [0x1]))) "../ncurses/./base/lib_ungetch.c":71:6 205 {*leasi}
+     (nil))
+(insn 103 106 107 11 (set (reg:HI 1 dx [98])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":71:6 76 {*movhi_internal}
+     (expr_list:REG_EQUIV (const_int -1 [0xffffffffffffffff])
+        (nil)))
+(insn:TI 107 103 123 11 (set (reg:SI 0 ax [orig:86 _5 ] [86])
+        (if_then_else:SI (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (reg:SI 0 ax [97])
+            (reg:SI 1 dx [98]))) "../ncurses/./base/lib_ungetch.c":71:6 1100 {*movsicc_noc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (expr_list:REG_DEAD (reg:SI 1 dx [98])
+            (nil))))
+(insn 123 107 124 11 (parallel [
+            (set (reg:SI 1 dx)
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":70:11 67 {*movsi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 124 123 125 11 (set (mem:HI (plus:DI (reg/v/f:DI 5 di [orig:92 sp ] [92])
+                (const_int 728 [0x2d8])) [1 sp_20(D)->_fifohead+0 S2 A64])
+        (reg:HI 1 dx)) "../ncurses/./base/lib_ungetch.c":70:11 76 {*movhi_internal}
+     (expr_list:REG_DEAD (reg:HI 1 dx)
+        (nil)))
+(insn 125 124 38 11 (parallel [
+            (set (reg:DI 1 dx [orig:90 prephitmp_23 ] [90])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 38 125 39 11 (set (mem:HI (plus:DI (reg/v/f:DI 5 di [orig:92 sp ] [92])
+                (const_int 730 [0x2da])) [1 sp_20(D)->_fifotail+0 S2 A16])
+        (reg:HI 0 ax [orig:86 _5 ] [86])) 76 {*movhi_internal}
+     (nil))
+(insn:TI 39 38 127 11 (set (mem:HI (plus:DI (reg/v/f:DI 5 di [orig:92 sp ] [92])
+                (const_int 732 [0x2dc])) [1 sp_20(D)->_fifopeek+0 S2 A32])
+        (reg:HI 0 ax [orig:86 _5 ] [86])) "../ncurses/./base/lib_ungetch.c":72:11 76 {*movhi_internal}
+     (expr_list:REG_DEAD (reg:HI 0 ax [orig:86 _5 ] [86])
+        (nil)))
+(insn 127 39 128 11 (set (reg:DI 0 ax [orig:94 prephitmp_23 ] [94])
+        (sign_extend:DI (reg:SI 1 dx [orig:90 prephitmp_23 ] [90]))) "../ncurses/./base/lib_ungetch.c":77:18 147 {*extendsidi2_rex64}
+     (expr_list:REG_DEAD (reg:SI 1 dx [orig:90 prephitmp_23 ] [90])
+        (nil)))
+(insn:TI 128 127 129 11 (set (mem:SI (plus:DI (plus:DI (mult:DI (reg:DI 0 ax [orig:94 prephitmp_23 ] [94])
+                        (const_int 4 [0x4]))
+                    (reg/v/f:DI 5 di [orig:92 sp ] [92]))
+                (const_int 180 [0xb4])) [3 sp_20(D)->_fifo[prephitmp_26]+0 S4 A32])
+        (reg/v:SI 4 si [orig:93 ch ] [93])) "../ncurses/./base/lib_ungetch.c":77:18 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 5 di [orig:92 sp ] [92])
+        (expr_list:REG_DEAD (reg/v:SI 4 si [orig:93 ch ] [93])
+            (expr_list:REG_DEAD (reg:DI 0 ax [orig:94 prephitmp_23 ] [94])
+                (nil)))))
+(insn 129 128 130 11 (parallel [
+            (set (reg:DI 0 ax [orig:91 <retval> ] [91])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":85:5 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 130 129 131 11 (use (reg/i:SI 0 ax)) -1
+     (nil))
+(jump_insn:TI 131 130 134 11 (simple_return) 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 134 131 77)
+(code_label 77 134 76 12 8 (nil) [2 uses])
+(note 76 77 9 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 9 76 68 12 (set (reg/v:SI 0 ax [orig:91 <retval> ] [91])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":64:9 75 {*movsi_internal}
+     (nil))
+(insn 68 9 138 12 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_ungetch.c":88:1 -1
+     (nil))
+(note 138 68 111 12 NOTE_INSN_EPILOGUE_BEG)
+(jump_insn:TI 111 138 112 12 (simple_return) "../ncurses/./base/lib_ungetch.c":88:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 112 111 104)
+(note 104 112 0 NOTE_INSN_DELETED)
+
+;; Function ungetch (ungetch, funcdef_no=92, decl_uid=6123, cgraph_uid=93, symbol_order=92)
+
+Creating trace 0 : start at note 1
+Creating trace 1 : start at note 107
+Creating trace 2 : start at code_label 50
+Creating trace 3 : start at code_label 57
+Creating trace 4 : start at code_label 85
+Creating trace 5 : start at code_label 131
+Creating trace 6 : start at code_label 77
+Creating trace 7 : start at note 134
+Processing trace 0 : start at note 1
+   saw edge from trace 0 to 1 (via fallthru 0)
+	push trace 1 to worklist
+Processing trace 1 : start at note 107
+   saw edge from trace 1 to 6 (via jump_insn 15)
+	push trace 6 to worklist
+   saw edge from trace 1 to 6 (via jump_insn 21)
+   saw edge from trace 1 to 5 (via jump_insn 27)
+	push trace 5 to worklist
+   saw edge from trace 1 to 4 (via jump_insn 45)
+	push trace 4 to worklist
+   saw edge from trace 1 to 2 (via fallthru 0)
+	push trace 2 to worklist
+Processing trace 2 : start at code_label 50
+   saw edge from trace 2 to 3 (via jump_insn 54)
+	push trace 3 to worklist
+   saw edge from trace 2 to 3 (via fallthru 0)
+Processing trace 3 : start at code_label 57
+Processing trace 4 : start at code_label 85
+   saw edge from trace 4 to 2 (via jump_insn 132)
+Processing trace 5 : start at code_label 131
+Processing trace 6 : start at code_label 77
+   saw edge from trace 6 to 7 (via fallthru 0)
+	push trace 7 to worklist
+Processing trace 7 : start at note 134
+
+
+ungetch
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 7 [sp]
+;;  regs ever live 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 17 [flags]
+;;  ref usage 	r0={5d,14u} r1={9d,11u} r2={6d,4u} r4={2d,4u} r5={1d,2u} r7={1d,12u} r17={10d,6u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={1d} r37={1d} 
+;;    total ref usage 97{44d,53u,0e} in 42{42 regular + 0 call} insns.
+(note 1 0 135 NOTE_INSN_DELETED)
+(insn 135 1 11 2 (unspec_volatile [
+            (const_int 0 [0])
+        ] UNSPECV_NOP_ENDBR) 1242 {nop_endbr}
+     (nil))
+(note 11 135 107 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 107 11 3 2 NOTE_INSN_PROLOGUE_END)
+(note 3 107 13 2 NOTE_INSN_FUNCTION_BEG)
+(insn:TI 13 3 14 2 (set (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f9a0ac00cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/lib_ungetch.c":93:12 74 {*movdi_internal}
+     (nil))
+(insn:TI 14 13 15 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":68:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 15 14 16 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 77)
+            (pc))) "../ncurses/./base/lib_ungetch.c":68:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 9341556 (nil)))
+ -> 77)
+(note 16 15 17 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 17 16 20 3 (set (reg:HI 4 si [orig:83 _6 ] [83])
+        (mem:HI (plus:DI (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+                (const_int 730 [0x2da])) [1 SP.2_1->_fifotail+0 S2 A16])) "../ncurses/./base/lib_ungetch.c":68:23 76 {*movhi_internal}
+     (nil))
+(insn:TI 20 17 21 3 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 4 si [orig:83 _6 ] [83])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":68:20 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 21 20 22 3 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 77)
+            (pc))) "../ncurses/./base/lib_ungetch.c":68:20 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGOC 17 flags)
+        (int_list:REG_BR_PROB 15032388 (nil)))
+ -> 77)
+(note 22 21 23 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 23 22 26 4 (set (reg:HI 1 dx [orig:84 _7 ] [84])
+        (mem:HI (plus:DI (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+                (const_int 728 [0x2d8])) [1 SP.2_1->_fifohead+0 S2 A64])) "../ncurses/./base/lib_ungetch.c":69:6 76 {*movhi_internal}
+     (nil))
+(insn:TI 26 23 27 4 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 1 dx [orig:84 _7 ] [84])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":69:5 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 27 26 43 4 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 131)
+            (pc))) "../ncurses/./base/lib_ungetch.c":69:5 806 {*jcc}
+     (int_list:REG_BR_PROB 440234148 (nil))
+ -> 131)
+(note 43 27 45 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(jump_insn:TI 45 43 46 5 (set (pc)
+        (if_then_else (eq (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 85)
+            (pc))) "../ncurses/./base/lib_ungetch.c":74:6 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGOC 17 flags)
+        (int_list:REG_BR_PROB 536870916 (nil)))
+ -> 85)
+(note 46 45 47 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(note 47 46 103 6 NOTE_INSN_DELETED)
+(insn:TI 103 47 49 6 (parallel [
+            (set (reg:SI 1 dx [orig:90 _15 ] [90])
+                (plus:SI (reg:SI 1 dx [orig:84 _7 ] [84])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":74:6 209 {*addsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 49 103 50 6 (set (reg:SI 2 cx [orig:91 prephitmp_26 ] [91])
+        (zero_extend:SI (reg:HI 1 dx [orig:90 _15 ] [90]))) "../ncurses/./base/lib_ungetch.c":77:12 144 {*zero_extendhisi2}
+     (nil))
+(code_label 50 49 51 7 18 (nil) [1 uses])
+(note 51 50 52 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 52 51 53 7 (set (mem:HI (plus:DI (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+                (const_int 728 [0x2d8])) [1 SP.2_1->_fifohead+0 S2 A64])
+        (reg:HI 1 dx [orig:90 _15 ] [90])) 76 {*movhi_internal}
+     (nil))
+(insn 53 52 54 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 4 si [orig:83 _6 ] [83])
+            (reg:HI 1 dx [orig:90 _15 ] [90]))) "../ncurses/./base/lib_ungetch.c":74:6 10 {*cmphi_1}
+     (expr_list:REG_DEAD (reg:HI 4 si [orig:83 _6 ] [83])
+        (expr_list:REG_DEAD (reg:HI 1 dx [orig:90 _15 ] [90])
+            (nil))))
+(jump_insn 54 53 55 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 57)
+            (pc))) "../ncurses/./base/lib_ungetch.c":74:6 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 708669604 (nil)))
+ -> 57)
+(note 55 54 117 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 117 55 118 8 (set (reg:HI 1 dx)
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":74:6 76 {*movhi_internal}
+     (nil))
+(insn:TI 118 117 57 8 (set (mem:HI (plus:DI (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+                (const_int 730 [0x2da])) [1 SP.2_1->_fifotail+0 S2 A16])
+        (reg:HI 1 dx)) "../ncurses/./base/lib_ungetch.c":74:6 76 {*movhi_internal}
+     (expr_list:REG_DEAD (reg:HI 1 dx)
+        (nil)))
+(code_label 57 118 58 9 17 (nil) [1 uses])
+(note 58 57 60 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(note 60 58 59 9 NOTE_INSN_DELETED)
+(insn:TI 59 60 61 9 (set (reg:DI 1 dx [orig:94 prephitmp_26 ] [94])
+        (sign_extend:DI (reg:SI 2 cx [orig:91 prephitmp_26 ] [91]))) "../ncurses/./base/lib_ungetch.c":77:18 147 {*extendsidi2_rex64}
+     (expr_list:REG_DEAD (reg:SI 2 cx [orig:91 prephitmp_26 ] [91])
+        (nil)))
+(insn:TI 61 59 116 9 (set (mem:SI (plus:DI (plus:DI (mult:DI (reg:DI 1 dx [orig:94 prephitmp_26 ] [94])
+                        (const_int 4 [0x4]))
+                    (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82]))
+                (const_int 180 [0xb4])) [3 SP.2_1->_fifo[prephitmp_29]+0 S4 A32])
+        (reg/v:SI 5 di [orig:93 ch ] [93])) "../ncurses/./base/lib_ungetch.c":77:18 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 5 di [orig:93 ch ] [93])
+        (expr_list:REG_DEAD (reg:DI 1 dx [orig:94 prephitmp_26 ] [94])
+            (expr_list:REG_DEAD (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+                (nil)))))
+(insn 116 61 111 9 (parallel [
+            (set (reg:DI 0 ax [orig:92 <retval> ] [92])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":85:5 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 111 116 97 9 (use (reg/i:SI 0 ax)) -1
+     (nil))
+(jump_insn:TI 97 111 98 9 (simple_return) 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 98 97 85)
+(code_label 85 98 84 10 22 (nil) [1 uses])
+(note 84 85 5 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 5 84 6 10 (set (reg:SI 2 cx [orig:91 prephitmp_26 ] [91])
+        (const_int 136 [0x88])) 75 {*movsi_internal}
+     (nil))
+(insn 6 5 132 10 (set (reg:HI 1 dx [orig:90 _15 ] [90])
+        (const_int 136 [0x88])) "../ncurses/./base/lib_ungetch.c":74:6 76 {*movhi_internal}
+     (nil))
+(jump_insn 132 6 133 10 (set (pc)
+        (label_ref 50)) 807 {jump}
+     (nil)
+ -> 50)
+(barrier 133 132 131)
+(code_label 131 133 28 11 23 (nil) [1 uses])
+(note 28 131 90 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 90 28 104 11 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:HI 4 si [orig:83 _6 ] [83])
+            (const_int 136 [0x88]))) "../ncurses/./base/lib_ungetch.c":71:6 10 {*cmphi_1}
+     (expr_list:REG_DEAD (reg:HI 4 si [orig:83 _6 ] [83])
+        (nil)))
+(insn 104 90 101 11 (set (reg:SI 1 dx [97])
+        (plus:SI (reg:SI 4 si [orig:83 _6 ] [83])
+            (const_int 1 [0x1]))) "../ncurses/./base/lib_ungetch.c":71:6 205 {*leasi}
+     (nil))
+(insn 101 104 105 11 (set (reg:HI 2 cx [98])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":71:6 76 {*movhi_internal}
+     (expr_list:REG_EQUIV (const_int -1 [0xffffffffffffffff])
+        (nil)))
+(insn:TI 105 101 119 11 (set (reg:SI 1 dx [orig:87 _10 ] [87])
+        (if_then_else:SI (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (reg:SI 1 dx [97])
+            (reg:SI 2 cx [98]))) "../ncurses/./base/lib_ungetch.c":71:6 1100 {*movsicc_noc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (expr_list:REG_DEAD (reg:SI 2 cx [98])
+            (nil))))
+(insn 119 105 120 11 (parallel [
+            (set (reg:SI 2 cx)
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":70:11 67 {*movsi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 120 119 121 11 (set (mem:HI (plus:DI (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+                (const_int 728 [0x2d8])) [1 SP.2_1->_fifohead+0 S2 A64])
+        (reg:HI 2 cx)) "../ncurses/./base/lib_ungetch.c":70:11 76 {*movhi_internal}
+     (expr_list:REG_DEAD (reg:HI 2 cx)
+        (nil)))
+(insn 121 120 38 11 (parallel [
+            (set (reg:DI 2 cx [orig:91 prephitmp_26 ] [91])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 38 121 39 11 (set (mem:HI (plus:DI (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+                (const_int 730 [0x2da])) [1 SP.2_1->_fifotail+0 S2 A16])
+        (reg:HI 1 dx [orig:87 _10 ] [87])) 76 {*movhi_internal}
+     (nil))
+(insn:TI 39 38 123 11 (set (mem:HI (plus:DI (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+                (const_int 732 [0x2dc])) [1 SP.2_1->_fifopeek+0 S2 A32])
+        (reg:HI 1 dx [orig:87 _10 ] [87])) "../ncurses/./base/lib_ungetch.c":72:11 76 {*movhi_internal}
+     (expr_list:REG_DEAD (reg:HI 1 dx [orig:87 _10 ] [87])
+        (nil)))
+(insn 123 39 124 11 (set (reg:DI 1 dx [orig:94 prephitmp_26 ] [94])
+        (sign_extend:DI (reg:SI 2 cx [orig:91 prephitmp_26 ] [91]))) "../ncurses/./base/lib_ungetch.c":77:18 147 {*extendsidi2_rex64}
+     (expr_list:REG_DEAD (reg:SI 2 cx [orig:91 prephitmp_26 ] [91])
+        (nil)))
+(insn:TI 124 123 125 11 (set (mem:SI (plus:DI (plus:DI (mult:DI (reg:DI 1 dx [orig:94 prephitmp_26 ] [94])
+                        (const_int 4 [0x4]))
+                    (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82]))
+                (const_int 180 [0xb4])) [3 SP.2_1->_fifo[prephitmp_29]+0 S4 A32])
+        (reg/v:SI 5 di [orig:93 ch ] [93])) "../ncurses/./base/lib_ungetch.c":77:18 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 5 di [orig:93 ch ] [93])
+        (expr_list:REG_DEAD (reg:DI 1 dx [orig:94 prephitmp_26 ] [94])
+            (expr_list:REG_DEAD (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+                (nil)))))
+(insn 125 124 126 11 (parallel [
+            (set (reg:DI 0 ax [orig:92 <retval> ] [92])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":85:5 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 126 125 127 11 (use (reg/i:SI 0 ax)) -1
+     (nil))
+(jump_insn:TI 127 126 130 11 (simple_return) 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 130 127 77)
+(code_label 77 130 76 12 20 (nil) [2 uses])
+(note 76 77 8 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 8 76 68 12 (set (reg/v:SI 0 ax [orig:92 <retval> ] [92])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":64:9 75 {*movsi_internal}
+     (nil))
+(insn 68 8 134 12 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_ungetch.c":94:1 -1
+     (nil))
+(note 134 68 109 12 NOTE_INSN_EPILOGUE_BEG)
+(jump_insn:TI 109 134 110 12 (simple_return) "../ncurses/./base/lib_ungetch.c":94:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 110 109 102)
+(note 102 110 0 NOTE_INSN_DELETED)

@@ -1,0 +1,1599 @@
+
+;; Function wclrtoeol (wclrtoeol, funcdef_no=91, decl_uid=6225, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+int wclrtoeol (struct WINDOW * win)
+{
+  int blank$rgb_color;
+  int blank$ext_color;
+  int blank$chars$4;
+  int blank$chars$3;
+  int blank$chars$2;
+  int blank$chars$1;
+  int blank$chars$0;
+  unsigned int blank$attr;
+  int x;
+  int y;
+  struct ldat * line;
+  struct cchar_t * end;
+  struct cchar_t * ptr;
+  short int _1;
+  short int _3;
+  int _6;
+  struct ldat * _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  int _10;
+  struct cchar_t * _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  int _18;
+  int pretmp_21;
+  short int _23;
+  _Bool _64;
+  _Bool _65;
+  _Bool _75;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (win_24(D) != 0B)
+    goto <bb 4>; [99.13%]
+  else
+    goto <bb 3>; [0.87%]
+;;    succ:       4
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+;;                5
+;;                7
+;;                14
+  goto <bb 13>; [100.00%]
+;;    succ:       13
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+  y_26 = win_24(D)->_cury;
+  x_27 = win_24(D)->_curx;
+  _1 = win_24(D)->_flags;
+  _23 = _1 & 64;
+  pretmp_21 = win_24(D)->_maxy;
+  if (_23 != 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 14>; [50.00%]
+;;    succ:       5
+;;                14
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  if (pretmp_21 > y_26)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 3>; [50.00%]
+;;    succ:       6
+;;                3
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  _3 = _1 & -65;
+  win_24(D)->_flags = _3;
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       14
+;;                6
+  _6 = win_24(D)->_maxx;
+  if (_6 < x_27)
+    goto <bb 3>; [1.04%]
+  else
+    goto <bb 8>; [98.96%]
+;;    succ:       3
+;;                8
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+  blank$attr_16 = win_24(D)->_bkgrnd.attr;
+  blank$chars$0_37 = win_24(D)->_bkgrnd.chars[0];
+  blank$chars$1_38 = win_24(D)->_bkgrnd.chars[1];
+  blank$chars$2_39 = win_24(D)->_bkgrnd.chars[2];
+  blank$chars$3_40 = win_24(D)->_bkgrnd.chars[3];
+  blank$chars$4_41 = win_24(D)->_bkgrnd.chars[4];
+  blank$ext_color_42 = win_24(D)->_bkgrnd.ext_color;
+  blank$rgb_color_43 = win_24(D)->_bkgrnd.rgb_color;
+  _7 = win_24(D)->_line;
+  _8 = (long unsigned int) y_26;
+  _9 = _8 * 24;
+  line_29 = _7 + _9;
+  _10 = line_29->firstchar;
+  _65 = _10 > x_27;
+  _64 = _10 == -1;
+  _75 = _64 | _65;
+  if (_75 != 0)
+    goto <bb 9>; [67.00%]
+  else
+    goto <bb 10>; [33.00%]
+;;    succ:       9
+;;                10
+
+;;   basic block 9, loop depth 0
+;;    pred:       8
+  line_29->firstchar = x_27;
+;;    succ:       10
+
+;;   basic block 10, loop depth 0
+;;    pred:       8
+;;                9
+  line_29->lastchar = _6;
+  _11 = line_29->text;
+  _12 = (long unsigned int) x_27;
+  _13 = _12 * 32;
+  ptr_32 = _11 + _13;
+  _14 = (long unsigned int) _6;
+  _15 = _14 * 32;
+  end_33 = _11 + _15;
+  if (ptr_32 <= end_33)
+    goto <bb 12>; [89.00%]
+  else
+    goto <bb 11>; [11.00%]
+;;    succ:       12
+;;                11
+
+;;   basic block 11, loop depth 0
+;;    pred:       10
+;;                12
+  _nc_synchook (win_24(D));
+  goto <bb 13>; [100.00%]
+;;    succ:       13
+
+;;   basic block 12, loop depth 1
+;;    pred:       12
+;;                10
+  # ptr_63 = PHI <ptr_36(12), ptr_32(10)>
+  ptr_36 = ptr_63 + 32;
+  MEM[(unsigned int *)ptr_36 + -32B] = blank$attr_16;
+  MEM[(int *)ptr_36 + -28B] = blank$chars$0_37;
+  MEM[(int *)ptr_36 + -24B] = blank$chars$1_38;
+  MEM[(int *)ptr_36 + -20B] = blank$chars$2_39;
+  MEM[(int *)ptr_36 + -16B] = blank$chars$3_40;
+  MEM[(int *)ptr_36 + -12B] = blank$chars$4_41;
+  MEM[(int *)ptr_36 + -8B] = blank$ext_color_42;
+  MEM[(int *)ptr_36 + -4B] = blank$rgb_color_43;
+  if (end_33 >= ptr_36)
+    goto <bb 12>; [89.00%]
+  else
+    goto <bb 11>; [11.00%]
+;;    succ:       12
+;;                11
+
+;;   basic block 13, loop depth 0
+;;    pred:       3
+;;                11
+  # _18 = PHI <-1(3), 0(11)>
+  return _18;
+;;    succ:       EXIT
+
+;;   basic block 14, loop depth 0
+;;    pred:       4
+  if (pretmp_21 < y_26)
+    goto <bb 3>; [1.39%]
+  else
+    goto <bb 7>; [98.61%]
+;;    succ:       3
+;;                7
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 3 (_3 - 3 )
+Partition 6 (_6 - 6 )
+Partition 7 (_7 - 7 )
+Partition 8 (_8 - 8 )
+Partition 9 (_9 - 9 )
+Partition 10 (_10 - 10 )
+Partition 11 (_11 - 11 )
+Partition 12 (_12 - 12 )
+Partition 13 (_13 - 13 )
+Partition 14 (_14 - 14 )
+Partition 15 (_15 - 15 )
+Partition 16 (blank$attr_16 - 16 )
+Partition 18 (_18 - 18 )
+Partition 21 (pretmp_21 - 21 )
+Partition 23 (_23 - 23 )
+Partition 24 (win_24(D) - 24 )
+Partition 26 (y_26 - 26 )
+Partition 27 (x_27 - 27 )
+Partition 29 (line_29 - 29 )
+Partition 32 (ptr_32 - 32 )
+Partition 33 (end_33 - 33 )
+Partition 36 (ptr_36 - 36 )
+Partition 37 (blank$chars$0_37 - 37 )
+Partition 38 (blank$chars$1_38 - 38 )
+Partition 39 (blank$chars$2_39 - 39 )
+Partition 40 (blank$chars$3_40 - 40 )
+Partition 41 (blank$chars$4_41 - 41 )
+Partition 42 (blank$ext_color_42 - 42 )
+Partition 43 (blank$rgb_color_43 - 43 )
+Partition 44 (blank$attr_44(D) - 44 )
+Partition 45 (blank$chars$0_45(D) - 45 )
+Partition 46 (blank$chars$1_46(D) - 46 )
+Partition 47 (blank$chars$2_47(D) - 47 )
+Partition 48 (blank$chars$3_48(D) - 48 )
+Partition 49 (blank$chars$4_49(D) - 49 )
+Partition 50 (blank$ext_color_50(D) - 50 )
+Partition 51 (blank$rgb_color_51(D) - 51 )
+Partition 62 (_62(D) - 62 )
+Partition 63 (ptr_63 - 63 )
+Partition 64 (_64 - 64 )
+Partition 65 (_65 - 65 )
+Partition 75 (_75 - 75 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_18 - 18 62 )
+Partition 1, base 1 (win_24(D) - 24 )
+Partition 2, base 2 (ptr_32 - 32 36 63 )
+
+
+Partition map 
+
+Partition 0 (_18 - 18 )
+Partition 1 (win_24(D) - 24 )
+Partition 2 (ptr_32 - 32 )
+Partition 3 (ptr_36 - 36 )
+Partition 4 (_62(D) - 62 )
+Partition 5 (ptr_63 - 63 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(15842, 0) ptr_36 <-> ptr_63
+(1958, 0) ptr_32 <-> ptr_63
+(1145, 0) _18 <-> _62(D)
+
+Partition map 
+
+Partition 0 (_18 - 18 )
+Partition 1 (win_24(D) - 24 )
+Partition 2 (ptr_32 - 32 )
+Partition 3 (ptr_36 - 36 )
+Partition 4 (_62(D) - 62 )
+Partition 5 (ptr_63 - 63 )
+
+Coalesce list: (36)ptr_36 & (63)ptr_63 [map: 3, 5] : Success -> 3
+Coalesce list: (32)ptr_32 & (63)ptr_36 [map: 2, 3] : Success -> 3
+Coalesce list: (18)_18 & (62)_62(D) [map: 0, 4] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_3 - 3 )
+Partition 2 (_6 - 6 )
+Partition 3 (_7 - 7 )
+Partition 4 (_8 - 8 )
+Partition 5 (_9 - 9 )
+Partition 6 (_10 - 10 )
+Partition 7 (_11 - 11 )
+Partition 8 (_12 - 12 )
+Partition 9 (_13 - 13 )
+Partition 10 (_14 - 14 )
+Partition 11 (_15 - 15 )
+Partition 12 (blank$attr_16 - 16 )
+Partition 13 (_18 - 18 62 )
+Partition 14 (pretmp_21 - 21 )
+Partition 15 (_23 - 23 )
+Partition 16 (win_24(D) - 24 )
+Partition 17 (y_26 - 26 )
+Partition 18 (x_27 - 27 )
+Partition 19 (line_29 - 29 )
+Partition 20 (end_33 - 33 )
+Partition 21 (ptr_36 - 32 36 63 )
+Partition 22 (blank$chars$0_37 - 37 )
+Partition 23 (blank$chars$1_38 - 38 )
+Partition 24 (blank$chars$2_39 - 39 )
+Partition 25 (blank$chars$3_40 - 40 )
+Partition 26 (blank$chars$4_41 - 41 )
+Partition 27 (blank$ext_color_42 - 42 )
+Partition 28 (blank$rgb_color_43 - 43 )
+Partition 29 (_64 - 64 )
+Partition 30 (_65 - 65 )
+Partition 31 (_75 - 75 )
+
+
+Replacing Expressions
+_3 replace with --> _3 = _1 & -65;
+
+_7 replace with --> _7 = win_24(D)->_line;
+
+_8 replace with --> _8 = (long unsigned int) y_26;
+
+_9 replace with --> _9 = _8 * 24;
+
+_12 replace with --> _12 = (long unsigned int) x_27;
+
+_13 replace with --> _13 = _12 * 32;
+
+_14 replace with --> _14 = (long unsigned int) _6;
+
+_15 replace with --> _15 = _14 * 32;
+
+_23 replace with --> _23 = _1 & 64;
+
+_64 replace with --> _64 = _10 == -1;
+
+_65 replace with --> _65 = _10 > x_27;
+
+_75 replace with --> _75 = _64 | _65;
+
+
+__attribute__((visibility ("default")))
+int wclrtoeol (struct WINDOW * win)
+{
+  int blank$rgb_color;
+  int blank$ext_color;
+  int blank$chars$4;
+  int blank$chars$3;
+  int blank$chars$2;
+  int blank$chars$1;
+  int blank$chars$0;
+  unsigned int blank$attr;
+  int x;
+  int y;
+  struct ldat * line;
+  struct cchar_t * end;
+  struct cchar_t * ptr;
+  short int _1;
+  short int _3;
+  int _6;
+  struct ldat * _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  int _10;
+  struct cchar_t * _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  int _18;
+  int pretmp_21;
+  short int _23;
+  int _62(D);
+  _Bool _64;
+  _Bool _65;
+  _Bool _75;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (win_24(D) != 0B)
+    goto <bb 4>; [99.13%]
+  else
+    goto <bb 3>; [0.87%]
+;;    succ:       4
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+;;                5
+;;                7
+;;                14
+  goto <bb 13>; [100.00%]
+;;    succ:       13
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+  y_26 = win_24(D)->_cury;
+  x_27 = win_24(D)->_curx;
+  _1 = win_24(D)->_flags;
+  _23 = _1 & 64;
+  pretmp_21 = win_24(D)->_maxy;
+  if (_23 != 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 14>; [50.00%]
+;;    succ:       5
+;;                14
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  if (pretmp_21 > y_26)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 3>; [50.00%]
+;;    succ:       6
+;;                3
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  _3 = _1 & -65;
+  win_24(D)->_flags = _3;
+;;    succ:       7
+
+;;   basic block 7, loop depth 0
+;;    pred:       14
+;;                6
+  _6 = win_24(D)->_maxx;
+  if (_6 < x_27)
+    goto <bb 3>; [1.04%]
+  else
+    goto <bb 8>; [98.96%]
+;;    succ:       3
+;;                8
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+  blank$attr_16 = win_24(D)->_bkgrnd.attr;
+  blank$chars$0_37 = win_24(D)->_bkgrnd.chars[0];
+  blank$chars$1_38 = win_24(D)->_bkgrnd.chars[1];
+  blank$chars$2_39 = win_24(D)->_bkgrnd.chars[2];
+  blank$chars$3_40 = win_24(D)->_bkgrnd.chars[3];
+  blank$chars$4_41 = win_24(D)->_bkgrnd.chars[4];
+  blank$ext_color_42 = win_24(D)->_bkgrnd.ext_color;
+  blank$rgb_color_43 = win_24(D)->_bkgrnd.rgb_color;
+  _7 = win_24(D)->_line;
+  _8 = (long unsigned int) y_26;
+  _9 = _8 * 24;
+  line_29 = _7 + _9;
+  _10 = line_29->firstchar;
+  _65 = _10 > x_27;
+  _64 = _10 == -1;
+  _75 = _64 | _65;
+  if (_75 != 0)
+    goto <bb 9>; [67.00%]
+  else
+    goto <bb 10>; [33.00%]
+;;    succ:       9
+;;                10
+
+;;   basic block 9, loop depth 0
+;;    pred:       8
+  line_29->firstchar = x_27;
+;;    succ:       10
+
+;;   basic block 10, loop depth 0
+;;    pred:       8
+;;                9
+  line_29->lastchar = _6;
+  _11 = line_29->text;
+  _12 = (long unsigned int) x_27;
+  _13 = _12 * 32;
+  ptr_32 = _11 + _13;
+  _14 = (long unsigned int) _6;
+  _15 = _14 * 32;
+  end_33 = _11 + _15;
+  if (ptr_32 <= end_33)
+    goto <bb 12>; [89.00%]
+  else
+    goto <bb 11>; [11.00%]
+;;    succ:       12
+;;                11
+
+;;   basic block 11, loop depth 0
+;;    pred:       10
+;;                12
+  _nc_synchook (win_24(D));
+  goto <bb 13>; [100.00%]
+;;    succ:       13
+
+;;   basic block 12, loop depth 1
+;;    pred:       12
+;;                10
+  # ptr_63 = PHI <ptr_36(12), ptr_32(10)>
+  ptr_36 = ptr_63 + 32;
+  MEM[(unsigned int *)ptr_36 + -32B] = blank$attr_16;
+  MEM[(int *)ptr_36 + -28B] = blank$chars$0_37;
+  MEM[(int *)ptr_36 + -24B] = blank$chars$1_38;
+  MEM[(int *)ptr_36 + -20B] = blank$chars$2_39;
+  MEM[(int *)ptr_36 + -16B] = blank$chars$3_40;
+  MEM[(int *)ptr_36 + -12B] = blank$chars$4_41;
+  MEM[(int *)ptr_36 + -8B] = blank$ext_color_42;
+  MEM[(int *)ptr_36 + -4B] = blank$rgb_color_43;
+  if (end_33 >= ptr_36)
+    goto <bb 12>; [89.00%]
+  else
+    goto <bb 11>; [11.00%]
+;;    succ:       12
+;;                11
+
+;;   basic block 13, loop depth 0
+;;    pred:       3
+;;                11
+  # _18 = PHI <-1(3), 0(11)>
+  return _18;
+;;    succ:       EXIT
+
+;;   basic block 14, loop depth 0
+;;    pred:       4
+  if (pretmp_21 < y_26)
+    goto <bb 3>; [1.39%]
+  else
+    goto <bb 7>; [98.61%]
+;;    succ:       3
+;;                7
+
+}
+
+
+Inserting a value copy on edge BB3->BB13 : PART.13 = -1
+Inserting a value copy on edge BB11->BB13 : PART.13 = 0
+
+;; Generating RTL for gimple basic block 2
+
+;; if (win_24(D) != 0B)
+
+(insn 8 7 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 113 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_clreol.c":53:8 -1
+     (nil))
+
+(jump_insn 9 8 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_clreol.c":53:8 -1
+     (int_list:REG_BR_PROB 1064400276 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; 
+
+(code_label 13 12 14 2 (nil) [0 uses])
+
+(note 14 13 0 NOTE_INSN_BASIC_BLOCK)
+
+;; y_26 = win_24(D)->_cury;
+
+(insn 15 14 0 (set (reg/v:SI 97 [ y ])
+        (mem:SI (reg/v/f:DI 113 [ win ]) [3 win_24(D)->_cury+0 S4 A64])) "../ncurses/./base/lib_clreol.c":57:17 -1
+     (nil))
+
+;; x_27 = win_24(D)->_curx;
+
+(insn 16 15 0 (set (reg/v:SI 98 [ x ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 4 [0x4])) [3 win_24(D)->_curx+0 S4 A32])) "../ncurses/./base/lib_clreol.c":58:17 -1
+     (nil))
+
+;; _1 = win_24(D)->_flags;
+
+(insn 17 16 0 (set (reg:HI 82 [ _1 ])
+        (mem:HI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 24 [0x18])) [1 win_24(D)->_flags+0 S2 A64])) "../ncurses/./base/lib_clreol.c":64:6 -1
+     (nil))
+
+;; pretmp_21 = win_24(D)->_maxy;
+
+(insn 18 17 0 (set (reg:SI 95 [ pretmp_21 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 8 [0x8])) [3 win_24(D)->_maxy+0 S4 A64])) "../ncurses/./base/lib_clreol.c":65:16 -1
+     (nil))
+
+;; if (_23 != 0)
+
+(insn 19 18 20 (parallel [
+            (set (reg:HI 114)
+                (and:HI (reg:HI 82 [ _1 ])
+                    (const_int 64 [0x40])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":64:5 -1
+     (nil))
+
+(insn 20 19 21 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 114)
+            (const_int 0 [0]))) "../ncurses/./base/lib_clreol.c":64:5 -1
+     (nil))
+
+(jump_insn 21 20 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_clreol.c":64:5 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; if (pretmp_21 > y_26)
+
+(insn 24 22 25 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 95 [ pretmp_21 ])
+            (reg/v:SI 97 [ y ]))) "../ncurses/./base/lib_clreol.c":65:6 -1
+     (nil))
+
+(jump_insn 25 24 0 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 23)
+            (pc))) "../ncurses/./base/lib_clreol.c":65:6 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; win_24(D)->_flags = _3;
+
+(insn 27 26 28 (parallel [
+            (set (reg:HI 115)
+                (and:HI (reg:HI 82 [ _1 ])
+                    (const_int -65 [0xffffffffffffffbf])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":66:18 -1
+     (nil))
+
+(insn 28 27 0 (set (mem:HI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 24 [0x18])) [1 win_24(D)->_flags+0 S2 A64])
+        (reg:HI 115)) "../ncurses/./base/lib_clreol.c":66:18 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 7
+
+;; _6 = win_24(D)->_maxx;
+
+(insn 30 29 0 (set (reg:SI 84 [ _6 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 12 [0xc])) [3 win_24(D)->_maxx+0 S4 A32])) "../ncurses/./base/lib_clreol.c":75:16 -1
+     (nil))
+
+;; if (_6 < x_27)
+
+(insn 31 30 32 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 84 [ _6 ])
+            (reg/v:SI 98 [ x ]))) "../ncurses/./base/lib_clreol.c":75:6 -1
+     (nil))
+
+(jump_insn 32 31 0 (set (pc)
+        (if_then_else (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 23)
+            (pc))) "../ncurses/./base/lib_clreol.c":75:6 -1
+     (int_list:REG_BR_PROB 11166916 (nil)))
+
+;; Generating RTL for gimple basic block 8
+
+;; blank$attr_16 = win_24(D)->_bkgrnd.attr;
+
+(insn 34 33 0 (set (reg:SI 94 [ blank$attr ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 116 [0x74])) [3 win_24(D)->_bkgrnd.attr+0 S4 A32])) "../ncurses/./base/lib_clreol.c":78:8 -1
+     (nil))
+
+;; blank$chars$0_37 = win_24(D)->_bkgrnd.chars[0];
+
+(insn 35 34 0 (set (reg:SI 102 [ blank$chars$0 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 120 [0x78])) [3 win_24(D)->_bkgrnd.chars[0]+0 S4 A64])) "../ncurses/./base/lib_clreol.c":78:8 -1
+     (nil))
+
+;; blank$chars$1_38 = win_24(D)->_bkgrnd.chars[1];
+
+(insn 36 35 0 (set (reg:SI 103 [ blank$chars$1 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 124 [0x7c])) [3 win_24(D)->_bkgrnd.chars[1]+0 S4 A32])) "../ncurses/./base/lib_clreol.c":78:8 -1
+     (nil))
+
+;; blank$chars$2_39 = win_24(D)->_bkgrnd.chars[2];
+
+(insn 37 36 0 (set (reg:SI 104 [ blank$chars$2 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 128 [0x80])) [3 win_24(D)->_bkgrnd.chars[2]+0 S4 A64])) "../ncurses/./base/lib_clreol.c":78:8 -1
+     (nil))
+
+;; blank$chars$3_40 = win_24(D)->_bkgrnd.chars[3];
+
+(insn 38 37 0 (set (reg:SI 105 [ blank$chars$3 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 132 [0x84])) [3 win_24(D)->_bkgrnd.chars[3]+0 S4 A32])) "../ncurses/./base/lib_clreol.c":78:8 -1
+     (nil))
+
+;; blank$chars$4_41 = win_24(D)->_bkgrnd.chars[4];
+
+(insn 39 38 0 (set (reg:SI 106 [ blank$chars$4 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 136 [0x88])) [3 win_24(D)->_bkgrnd.chars[4]+0 S4 A64])) "../ncurses/./base/lib_clreol.c":78:8 -1
+     (nil))
+
+;; blank$ext_color_42 = win_24(D)->_bkgrnd.ext_color;
+
+(insn 40 39 0 (set (reg:SI 107 [ blank$ext_color ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 140 [0x8c])) [3 win_24(D)->_bkgrnd.ext_color+0 S4 A32])) "../ncurses/./base/lib_clreol.c":78:8 -1
+     (nil))
+
+;; blank$rgb_color_43 = win_24(D)->_bkgrnd.rgb_color;
+
+(insn 41 40 0 (set (reg:SI 108 [ blank$rgb_color ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 144 [0x90])) [3 win_24(D)->_bkgrnd.rgb_color+0 S4 A64])) "../ncurses/./base/lib_clreol.c":78:8 -1
+     (nil))
+
+;; line_29 = _7 + _9;
+
+(insn 42 41 43 (set (reg:DI 116)
+        (sign_extend:DI (reg/v:SI 97 [ y ]))) "../ncurses/./base/lib_clreol.c":79:20 -1
+     (nil))
+
+(insn 43 42 44 (set (reg:DI 117)
+        (reg:DI 116)) "../ncurses/./base/lib_clreol.c":79:20 -1
+     (nil))
+
+(insn 44 43 45 (parallel [
+            (set (reg:DI 118)
+                (ashift:DI (reg:DI 117)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":79:20 -1
+     (nil))
+
+(insn 45 44 46 (parallel [
+            (set (reg:DI 119)
+                (plus:DI (reg:DI 118)
+                    (reg:DI 116)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":79:20 -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 116)
+            (const_int 3 [0x3]))
+        (nil)))
+
+(insn 46 45 47 (parallel [
+            (set (reg:DI 120)
+                (ashift:DI (reg:DI 119)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":79:20 -1
+     (nil))
+
+(insn 47 46 48 (set (reg:DI 119)
+        (reg:DI 120)) "../ncurses/./base/lib_clreol.c":79:20 -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 116)
+            (const_int 24 [0x18]))
+        (nil)))
+
+(insn 48 47 49 (set (reg/f:DI 121)
+        (mem/f:DI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 56 [0x38])) [5 win_24(D)->_line+0 S8 A64])) "../ncurses/./base/lib_clreol.c":79:7 -1
+     (nil))
+
+(insn 49 48 0 (parallel [
+            (set (reg/v/f:DI 99 [ line ])
+                (plus:DI (reg:DI 119)
+                    (reg/f:DI 121)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":79:7 -1
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 113 [ win ])
+                    (const_int 56 [0x38])) [5 win_24(D)->_line+0 S8 A64])
+            (reg:DI 119))
+        (nil)))
+
+;; _10 = line_29->firstchar;
+
+(insn 50 49 0 (set (reg:SI 88 [ _10 ])
+        (mem:SI (plus:DI (reg/v/f:DI 99 [ line ])
+                (const_int 8 [0x8])) [3 line_29->firstchar+0 S4 A64])) "../ncurses/./base/lib_clreol.c":80:2 -1
+     (nil))
+
+;; if (_75 != 0)
+
+(insn 51 50 52 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 88 [ _10 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_clreol.c":80:2 -1
+     (nil))
+
+(insn 52 51 53 (set (reg:QI 123)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_clreol.c":80:2 -1
+     (nil))
+
+(insn 53 52 54 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 123)
+            (const_int 0 [0]))) "../ncurses/./base/lib_clreol.c":80:2 -1
+     (nil))
+
+(jump_insn 54 53 55 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 59)
+            (pc))) "../ncurses/./base/lib_clreol.c":80:2 -1
+     (int_list:REG_BR_PROB 359703516 (nil)))
+
+(insn 55 54 56 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 88 [ _10 ])
+            (reg/v:SI 98 [ x ]))) "../ncurses/./base/lib_clreol.c":80:2 -1
+     (nil))
+
+(insn 56 55 57 (set (reg:QI 125)
+        (gt:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_clreol.c":80:2 -1
+     (nil))
+
+(insn 57 56 58 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 125)
+            (const_int 0 [0]))) "../ncurses/./base/lib_clreol.c":80:2 -1
+     (nil))
+
+(jump_insn 58 57 59 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_clreol.c":80:2 -1
+     (int_list:REG_BR_PROB 532834292 (nil)))
+
+(code_label 59 58 0 7 (nil) [0 uses])
+
+;; Generating RTL for gimple basic block 9
+
+;; line_29->firstchar = x_27;
+
+(insn 61 60 0 (set (mem:SI (plus:DI (reg/v/f:DI 99 [ line ])
+                (const_int 8 [0x8])) [3 line_29->firstchar+0 S4 A64])
+        (reg/v:SI 98 [ x ])) "../ncurses/./base/lib_clreol.c":80:2 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 10
+
+;; 
+
+(code_label 62 61 63 6 (nil) [0 uses])
+
+(note 63 62 0 NOTE_INSN_BASIC_BLOCK)
+
+;; line_29->lastchar = _6;
+
+(insn 64 63 0 (set (mem:SI (plus:DI (reg/v/f:DI 99 [ line ])
+                (const_int 12 [0xc])) [3 line_29->lastchar+0 S4 A32])
+        (reg:SI 84 [ _6 ])) "../ncurses/./base/lib_clreol.c":80:2 -1
+     (nil))
+
+;; _11 = line_29->text;
+
+(insn 65 64 0 (set (reg/f:DI 89 [ _11 ])
+        (mem/f:DI (reg/v/f:DI 99 [ line ]) [10 line_29->text+0 S8 A64])) "../ncurses/./base/lib_clreol.c":82:14 -1
+     (nil))
+
+;; ptr_32 = _11 + _13;
+
+(insn 66 65 67 (set (reg:DI 126)
+        (sign_extend:DI (reg/v:SI 98 [ x ]))) "../ncurses/./base/lib_clreol.c":82:20 -1
+     (nil))
+
+(insn 67 66 68 (parallel [
+            (set (reg:DI 127)
+                (ashift:DI (reg:DI 126)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":82:20 -1
+     (nil))
+
+(insn 68 67 0 (parallel [
+            (set (reg/v/f:DI 101 [ ptr ])
+                (plus:DI (reg/f:DI 89 [ _11 ])
+                    (reg:DI 127)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":82:6 -1
+     (nil))
+
+;; end_33 = _11 + _15;
+
+(insn 69 68 70 (set (reg:DI 128)
+        (sign_extend:DI (reg:SI 84 [ _6 ]))) "../ncurses/./base/lib_clreol.c":83:24 -1
+     (nil))
+
+(insn 70 69 71 (parallel [
+            (set (reg:DI 129)
+                (ashift:DI (reg:DI 128)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":83:20 -1
+     (nil))
+
+(insn 71 70 0 (parallel [
+            (set (reg/v/f:DI 100 [ end ])
+                (plus:DI (reg/f:DI 89 [ _11 ])
+                    (reg:DI 129)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":83:6 -1
+     (nil))
+
+;; if (ptr_32 <= end_33)
+
+(insn 72 71 73 (set (reg:CC 17 flags)
+        (compare:CC (reg/v/f:DI 101 [ ptr ])
+            (reg/v/f:DI 100 [ end ]))) "../ncurses/./base/lib_clreol.c":85:13 -1
+     (nil))
+
+(jump_insn 73 72 0 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_clreol.c":85:13 -1
+     (int_list:REG_BR_PROB 955630228 (nil)))
+
+;; Generating RTL for gimple basic block 11
+
+;; _nc_synchook (win_24(D));
+
+(insn 75 74 76 (set (reg:DI 5 di)
+        (reg/v/f:DI 113 [ win ])) "../ncurses/./base/lib_clreol.c":88:2 -1
+     (nil))
+
+(call_insn 76 75 0 (call (mem:QI (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f31df8c0700 _nc_synchook>) [0 _nc_synchook S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_clreol.c":88:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f31df8c0700 _nc_synchook>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; Generating RTL for gimple basic block 12
+
+;; 
+
+(code_label 79 78 80 8 (nil) [0 uses])
+
+(note 80 79 0 NOTE_INSN_BASIC_BLOCK)
+
+;; ptr_36 = ptr_63 + 32;
+
+(insn 81 80 0 (parallel [
+            (set (reg/v/f:DI 101 [ ptr ])
+                (plus:DI (reg/v/f:DI 101 [ ptr ])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":86:10 -1
+     (nil))
+
+;; MEM[(unsigned int *)ptr_36 + -32B] = blank$attr_16;
+
+(insn 82 81 0 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -32 [0xffffffffffffffe0])) [3 MEM[(unsigned int *)ptr_36 + -32B]+0 S4 A32])
+        (reg:SI 94 [ blank$attr ])) "../ncurses/./base/lib_clreol.c":86:13 -1
+     (nil))
+
+;; MEM[(int *)ptr_36 + -28B] = blank$chars$0_37;
+
+(insn 83 82 0 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -28 [0xffffffffffffffe4])) [3 MEM[(int *)ptr_36 + -28B]+0 S4 A32])
+        (reg:SI 102 [ blank$chars$0 ])) "../ncurses/./base/lib_clreol.c":86:13 -1
+     (nil))
+
+;; MEM[(int *)ptr_36 + -24B] = blank$chars$1_38;
+
+(insn 84 83 0 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -24 [0xffffffffffffffe8])) [3 MEM[(int *)ptr_36 + -24B]+0 S4 A32])
+        (reg:SI 103 [ blank$chars$1 ])) "../ncurses/./base/lib_clreol.c":86:13 -1
+     (nil))
+
+;; MEM[(int *)ptr_36 + -20B] = blank$chars$2_39;
+
+(insn 85 84 0 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -20 [0xffffffffffffffec])) [3 MEM[(int *)ptr_36 + -20B]+0 S4 A32])
+        (reg:SI 104 [ blank$chars$2 ])) "../ncurses/./base/lib_clreol.c":86:13 -1
+     (nil))
+
+;; MEM[(int *)ptr_36 + -16B] = blank$chars$3_40;
+
+(insn 86 85 0 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -16 [0xfffffffffffffff0])) [3 MEM[(int *)ptr_36 + -16B]+0 S4 A32])
+        (reg:SI 105 [ blank$chars$3 ])) "../ncurses/./base/lib_clreol.c":86:13 -1
+     (nil))
+
+;; MEM[(int *)ptr_36 + -12B] = blank$chars$4_41;
+
+(insn 87 86 0 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -12 [0xfffffffffffffff4])) [3 MEM[(int *)ptr_36 + -12B]+0 S4 A32])
+        (reg:SI 106 [ blank$chars$4 ])) "../ncurses/./base/lib_clreol.c":86:13 -1
+     (nil))
+
+;; MEM[(int *)ptr_36 + -8B] = blank$ext_color_42;
+
+(insn 88 87 0 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -8 [0xfffffffffffffff8])) [3 MEM[(int *)ptr_36 + -8B]+0 S4 A32])
+        (reg:SI 107 [ blank$ext_color ])) "../ncurses/./base/lib_clreol.c":86:13 -1
+     (nil))
+
+;; MEM[(int *)ptr_36 + -4B] = blank$rgb_color_43;
+
+(insn 89 88 0 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -4 [0xfffffffffffffffc])) [3 MEM[(int *)ptr_36 + -4B]+0 S4 A32])
+        (reg:SI 108 [ blank$rgb_color ])) "../ncurses/./base/lib_clreol.c":86:13 -1
+     (nil))
+
+;; if (end_33 >= ptr_36)
+
+(insn 90 89 91 12 (set (reg:CC 17 flags)
+        (compare:CC (reg/v/f:DI 100 [ end ])
+            (reg/v/f:DI 101 [ ptr ]))) "../ncurses/./base/lib_clreol.c":85:13 -1
+     (nil))
+
+(jump_insn 91 90 95 12 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 79)
+            (pc))) "../ncurses/./base/lib_clreol.c":85:13 -1
+     (int_list:REG_BR_PROB 955630228 (nil)))
+
+(note 95 91 93 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 93 95 94 16 (set (pc)
+        (label_ref 92)) -1
+     (nil))
+
+(barrier 94 93 0)
+
+;; Generating RTL for gimple basic block 13
+
+;; 
+
+(code_label 96 94 97 3 (nil) [0 uses])
+
+(note 97 96 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return _18;
+
+(jump_insn 98 97 99 (set (pc)
+        (label_ref 0)) "../ncurses/./base/lib_clreol.c":92:1 -1
+     (nil))
+
+(barrier 99 98 0)
+
+;; Generating RTL for gimple basic block 14
+
+;; 
+
+(code_label 100 99 101 4 (nil) [0 uses])
+
+(note 101 100 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (pretmp_21 < y_26)
+
+(insn 102 101 103 14 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 95 [ pretmp_21 ])
+            (reg/v:SI 97 [ y ]))) "../ncurses/./base/lib_clreol.c":74:6 -1
+     (nil))
+
+(jump_insn 103 102 107 14 (set (pc)
+        (if_then_else (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 23)
+            (pc))) "../ncurses/./base/lib_clreol.c":74:6 -1
+     (int_list:REG_BR_PROB 14941556 (nil)))
+
+(note 107 103 105 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 105 107 106 17 (set (pc)
+        (label_ref 104)) -1
+     (nil))
+
+(barrier 106 105 0)
+Purged non-fallthru edges from bb 20
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 11 from 17 to 20.
+Edge 9->11 redirected to 12
+Forwarding edge 10->11 to 12 failed.
+Deleted label in block 11.
+Redirecting jump 77 from 17 to 20.
+Forwarding edge 15->16 to 14 failed.
+deleting block 17
+Forwarding edge 18->19 to 8 failed.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 10->11 to 12 failed.
+Forwarding edge 15->16 to 14 failed.
+Forwarding edge 18->19 to 8 failed.
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 122944295 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:122944295 (estimated locally) (FALLTHRU)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 113 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_clreol.c":48:1 -1
+     (nil))
+(note 3 2 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 3 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 113 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_clreol.c":53:8 -1
+     (nil))
+(jump_insn 9 8 23 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 13)
+            (pc))) "../ncurses/./base/lib_clreol.c":53:8 -1
+     (int_list:REG_BR_PROB 1064400276 (nil))
+ -> 13)
+;;  succ:       5 [99.1% (guessed)]  count:121874680 (estimated locally)
+;;              4 [0.9% (guessed)]  count:1069615 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 34033869 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [0.9% (guessed)]  count:1069615 (estimated locally) (FALLTHRU)
+;;              6 [50.0% (guessed)]  count:30468670 (estimated locally)
+;;              8 [1.0% (guessed)]  count:1241270 (estimated locally)
+;;              18 [1.4% (guessed)]  count:1254314 (estimated locally)
+(code_label 23 9 10 4 5 (nil) [3 uses])
+(note 10 23 4 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 4 10 11 4 (set (reg:SI 112 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_clreol.c":49:9 -1
+     (nil))
+(jump_insn 11 4 12 4 (set (pc)
+        (label_ref:DI 108)) 807 {jump}
+     (nil)
+ -> 108)
+;;  succ:       20 [always]  count:34033869 (estimated locally)
+
+(barrier 12 11 13)
+;; basic block 5, loop depth 0, count 121874680 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [99.1% (guessed)]  count:121874680 (estimated locally)
+(code_label 13 12 14 5 2 (nil) [1 uses])
+(note 14 13 15 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 5 (set (reg/v:SI 97 [ y ])
+        (mem:SI (reg/v/f:DI 113 [ win ]) [3 win_24(D)->_cury+0 S4 A64])) "../ncurses/./base/lib_clreol.c":57:17 -1
+     (nil))
+(insn 16 15 17 5 (set (reg/v:SI 98 [ x ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 4 [0x4])) [3 win_24(D)->_curx+0 S4 A32])) "../ncurses/./base/lib_clreol.c":58:17 -1
+     (nil))
+(insn 17 16 18 5 (set (reg:HI 82 [ _1 ])
+        (mem:HI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 24 [0x18])) [1 win_24(D)->_flags+0 S2 A64])) "../ncurses/./base/lib_clreol.c":64:6 -1
+     (nil))
+(insn 18 17 19 5 (set (reg:SI 95 [ pretmp_21 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 8 [0x8])) [3 win_24(D)->_maxy+0 S4 A64])) "../ncurses/./base/lib_clreol.c":65:16 -1
+     (nil))
+(insn 19 18 20 5 (parallel [
+            (set (reg:HI 114)
+                (and:HI (reg:HI 82 [ _1 ])
+                    (const_int 64 [0x40])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":64:5 -1
+     (nil))
+(insn 20 19 21 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 114)
+            (const_int 0 [0]))) "../ncurses/./base/lib_clreol.c":64:5 -1
+     (nil))
+(jump_insn 21 20 22 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 100)
+            (pc))) "../ncurses/./base/lib_clreol.c":64:5 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 100)
+;;  succ:       6 [50.0% (guessed)]  count:60937340 (estimated locally) (FALLTHRU)
+;;              18 [50.0% (guessed)]  count:60937340 (estimated locally)
+
+;; basic block 6, loop depth 0, count 60937340 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [50.0% (guessed)]  count:60937340 (estimated locally) (FALLTHRU)
+(note 22 21 24 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 24 22 25 6 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 95 [ pretmp_21 ])
+            (reg/v:SI 97 [ y ]))) "../ncurses/./base/lib_clreol.c":65:6 -1
+     (nil))
+(jump_insn 25 24 26 6 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 23)
+            (pc))) "../ncurses/./base/lib_clreol.c":65:6 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 23)
+;;  succ:       7 [50.0% (guessed)]  count:30468670 (estimated locally) (FALLTHRU)
+;;              4 [50.0% (guessed)]  count:30468670 (estimated locally)
+
+;; basic block 7, loop depth 0, count 30468670 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [50.0% (guessed)]  count:30468670 (estimated locally) (FALLTHRU)
+(note 26 25 27 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 27 26 28 7 (parallel [
+            (set (reg:HI 115)
+                (and:HI (reg:HI 82 [ _1 ])
+                    (const_int -65 [0xffffffffffffffbf])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":66:18 -1
+     (nil))
+(insn 28 27 104 7 (set (mem:HI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 24 [0x18])) [1 win_24(D)->_flags+0 S2 A64])
+        (reg:HI 115)) "../ncurses/./base/lib_clreol.c":66:18 -1
+     (nil))
+;;  succ:       8 [always]  count:30468670 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 119352869 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [always]  count:30468670 (estimated locally) (FALLTHRU)
+;;              19 [always]  count:88884200 (estimated locally)
+(code_label 104 28 29 8 10 (nil) [1 uses])
+(note 29 104 30 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 30 29 31 8 (set (reg:SI 84 [ _6 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 12 [0xc])) [3 win_24(D)->_maxx+0 S4 A32])) "../ncurses/./base/lib_clreol.c":75:16 -1
+     (nil))
+(insn 31 30 32 8 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 84 [ _6 ])
+            (reg/v:SI 98 [ x ]))) "../ncurses/./base/lib_clreol.c":75:6 -1
+     (nil))
+(jump_insn 32 31 33 8 (set (pc)
+        (if_then_else (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 23)
+            (pc))) "../ncurses/./base/lib_clreol.c":75:6 -1
+     (int_list:REG_BR_PROB 11166916 (nil))
+ -> 23)
+;;  succ:       4 [1.0% (guessed)]  count:1241270 (estimated locally)
+;;              9 [99.0% (guessed)]  count:118111599 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       8 [99.0% (guessed)]  count:118111599 (estimated locally) (FALLTHRU)
+(note 33 32 34 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 34 33 35 9 (set (reg:SI 94 [ blank$attr ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 116 [0x74])) [3 win_24(D)->_bkgrnd.attr+0 S4 A32])) "../ncurses/./base/lib_clreol.c":78:8 -1
+     (nil))
+(insn 35 34 36 9 (set (reg:SI 102 [ blank$chars$0 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 120 [0x78])) [3 win_24(D)->_bkgrnd.chars[0]+0 S4 A64])) "../ncurses/./base/lib_clreol.c":78:8 -1
+     (nil))
+(insn 36 35 37 9 (set (reg:SI 103 [ blank$chars$1 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 124 [0x7c])) [3 win_24(D)->_bkgrnd.chars[1]+0 S4 A32])) "../ncurses/./base/lib_clreol.c":78:8 -1
+     (nil))
+(insn 37 36 38 9 (set (reg:SI 104 [ blank$chars$2 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 128 [0x80])) [3 win_24(D)->_bkgrnd.chars[2]+0 S4 A64])) "../ncurses/./base/lib_clreol.c":78:8 -1
+     (nil))
+(insn 38 37 39 9 (set (reg:SI 105 [ blank$chars$3 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 132 [0x84])) [3 win_24(D)->_bkgrnd.chars[3]+0 S4 A32])) "../ncurses/./base/lib_clreol.c":78:8 -1
+     (nil))
+(insn 39 38 40 9 (set (reg:SI 106 [ blank$chars$4 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 136 [0x88])) [3 win_24(D)->_bkgrnd.chars[4]+0 S4 A64])) "../ncurses/./base/lib_clreol.c":78:8 -1
+     (nil))
+(insn 40 39 41 9 (set (reg:SI 107 [ blank$ext_color ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 140 [0x8c])) [3 win_24(D)->_bkgrnd.ext_color+0 S4 A32])) "../ncurses/./base/lib_clreol.c":78:8 -1
+     (nil))
+(insn 41 40 42 9 (set (reg:SI 108 [ blank$rgb_color ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 144 [0x90])) [3 win_24(D)->_bkgrnd.rgb_color+0 S4 A64])) "../ncurses/./base/lib_clreol.c":78:8 -1
+     (nil))
+(insn 42 41 43 9 (set (reg:DI 116)
+        (sign_extend:DI (reg/v:SI 97 [ y ]))) "../ncurses/./base/lib_clreol.c":79:20 -1
+     (nil))
+(insn 43 42 44 9 (set (reg:DI 117)
+        (reg:DI 116)) "../ncurses/./base/lib_clreol.c":79:20 -1
+     (nil))
+(insn 44 43 45 9 (parallel [
+            (set (reg:DI 118)
+                (ashift:DI (reg:DI 117)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":79:20 -1
+     (nil))
+(insn 45 44 46 9 (parallel [
+            (set (reg:DI 119)
+                (plus:DI (reg:DI 118)
+                    (reg:DI 116)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":79:20 -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 116)
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 46 45 47 9 (parallel [
+            (set (reg:DI 120)
+                (ashift:DI (reg:DI 119)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":79:20 -1
+     (nil))
+(insn 47 46 48 9 (set (reg:DI 119)
+        (reg:DI 120)) "../ncurses/./base/lib_clreol.c":79:20 -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 116)
+            (const_int 24 [0x18]))
+        (nil)))
+(insn 48 47 49 9 (set (reg/f:DI 121)
+        (mem/f:DI (plus:DI (reg/v/f:DI 113 [ win ])
+                (const_int 56 [0x38])) [5 win_24(D)->_line+0 S8 A64])) "../ncurses/./base/lib_clreol.c":79:7 -1
+     (nil))
+(insn 49 48 50 9 (parallel [
+            (set (reg/v/f:DI 99 [ line ])
+                (plus:DI (reg:DI 119)
+                    (reg/f:DI 121)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":79:7 -1
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 113 [ win ])
+                    (const_int 56 [0x38])) [5 win_24(D)->_line+0 S8 A64])
+            (reg:DI 119))
+        (nil)))
+(insn 50 49 51 9 (set (reg:SI 88 [ _10 ])
+        (mem:SI (plus:DI (reg/v/f:DI 99 [ line ])
+                (const_int 8 [0x8])) [3 line_29->firstchar+0 S4 A64])) "../ncurses/./base/lib_clreol.c":80:2 -1
+     (nil))
+(insn 51 50 52 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 88 [ _10 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_clreol.c":80:2 -1
+     (nil))
+(insn 52 51 53 9 (set (reg:QI 123)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_clreol.c":80:2 -1
+     (nil))
+(insn 53 52 54 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 123)
+            (const_int 0 [0]))) "../ncurses/./base/lib_clreol.c":80:2 -1
+     (nil))
+(jump_insn 54 53 112 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 114)
+            (pc))) "../ncurses/./base/lib_clreol.c":80:2 806 {*jcc}
+     (int_list:REG_BR_PROB 359703516 (nil))
+ -> 114)
+;;  succ:       12 [33.5% (guessed)]  count:39567386 (estimated locally)
+;;              10 [66.5% (guessed)]  count:78544214 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 78544214 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       9 [66.5% (guessed)]  count:78544214 (estimated locally) (FALLTHRU)
+(note 112 54 55 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 55 112 56 10 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 88 [ _10 ])
+            (reg/v:SI 98 [ x ]))) "../ncurses/./base/lib_clreol.c":80:2 -1
+     (nil))
+(insn 56 55 57 10 (set (reg:QI 125)
+        (gt:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_clreol.c":80:2 -1
+     (nil))
+(insn 57 56 58 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 125)
+            (const_int 0 [0]))) "../ncurses/./base/lib_clreol.c":80:2 -1
+     (nil))
+(jump_insn 58 57 113 10 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 62)
+            (pc))) "../ncurses/./base/lib_clreol.c":80:2 -1
+     (int_list:REG_BR_PROB 532834292 (nil))
+ -> 62)
+;;  succ:       13 [49.6% (guessed)]  count:38976828 (estimated locally)
+;;              11 [50.4% (guessed)]  count:39567386 (estimated locally) (FALLTHRU)
+
+;; basic block 11, loop depth 0, count 39567386 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       10 [50.4% (guessed)]  count:39567386 (estimated locally) (FALLTHRU)
+(note 113 58 114 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       12 [always]  count:39567386 (estimated locally) (FALLTHRU)
+
+;; basic block 12, loop depth 0, count 79134772 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       11 [always]  count:39567386 (estimated locally) (FALLTHRU)
+;;              9 [33.5% (guessed)]  count:39567386 (estimated locally)
+(code_label 114 113 60 12 11 (nil) [1 uses])
+(note 60 114 61 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 61 60 62 12 (set (mem:SI (plus:DI (reg/v/f:DI 99 [ line ])
+                (const_int 8 [0x8])) [3 line_29->firstchar+0 S4 A64])
+        (reg/v:SI 98 [ x ])) "../ncurses/./base/lib_clreol.c":80:2 -1
+     (nil))
+;;  succ:       13 [always]  count:79134772 (estimated locally) (FALLTHRU)
+
+;; basic block 13, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       12 [always]  count:79134772 (estimated locally) (FALLTHRU)
+;;              10 [49.6% (guessed)]  count:38976828 (estimated locally)
+(code_label 62 61 63 13 6 (nil) [1 uses])
+(note 63 62 64 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 64 63 65 13 (set (mem:SI (plus:DI (reg/v/f:DI 99 [ line ])
+                (const_int 12 [0xc])) [3 line_29->lastchar+0 S4 A32])
+        (reg:SI 84 [ _6 ])) "../ncurses/./base/lib_clreol.c":80:2 -1
+     (nil))
+(insn 65 64 66 13 (set (reg/f:DI 89 [ _11 ])
+        (mem/f:DI (reg/v/f:DI 99 [ line ]) [10 line_29->text+0 S8 A64])) "../ncurses/./base/lib_clreol.c":82:14 -1
+     (nil))
+(insn 66 65 67 13 (set (reg:DI 126)
+        (sign_extend:DI (reg/v:SI 98 [ x ]))) "../ncurses/./base/lib_clreol.c":82:20 -1
+     (nil))
+(insn 67 66 68 13 (parallel [
+            (set (reg:DI 127)
+                (ashift:DI (reg:DI 126)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":82:20 -1
+     (nil))
+(insn 68 67 69 13 (parallel [
+            (set (reg/v/f:DI 101 [ ptr ])
+                (plus:DI (reg/f:DI 89 [ _11 ])
+                    (reg:DI 127)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":82:6 -1
+     (nil))
+(insn 69 68 70 13 (set (reg:DI 128)
+        (sign_extend:DI (reg:SI 84 [ _6 ]))) "../ncurses/./base/lib_clreol.c":83:24 -1
+     (nil))
+(insn 70 69 71 13 (parallel [
+            (set (reg:DI 129)
+                (ashift:DI (reg:DI 128)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":83:20 -1
+     (nil))
+(insn 71 70 72 13 (parallel [
+            (set (reg/v/f:DI 100 [ end ])
+                (plus:DI (reg/f:DI 89 [ _11 ])
+                    (reg:DI 129)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":83:6 -1
+     (nil))
+(insn 72 71 73 13 (set (reg:CC 17 flags)
+        (compare:CC (reg/v/f:DI 101 [ ptr ])
+            (reg/v/f:DI 100 [ end ]))) "../ncurses/./base/lib_clreol.c":85:13 -1
+     (nil))
+(jump_insn 73 72 92 13 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 79)
+            (pc))) "../ncurses/./base/lib_clreol.c":85:13 -1
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 79)
+;;  succ:       15 [89.0% (guessed)]  count:105119324 (estimated locally)
+;;              14 [11.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU)
+
+;; basic block 14, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       13 [11.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU)
+;;              16 [always]  count:105119324 (estimated locally)
+(code_label 92 73 74 14 9 (nil) [1 uses])
+(note 74 92 75 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 75 74 76 14 (set (reg:DI 5 di)
+        (reg/v/f:DI 113 [ win ])) "../ncurses/./base/lib_clreol.c":88:2 -1
+     (nil))
+(call_insn 76 75 5 14 (call (mem:QI (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f31df8c0700 _nc_synchook>) [0 _nc_synchook S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_clreol.c":88:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f31df8c0700 _nc_synchook>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 5 76 77 14 (set (reg:SI 112 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_clreol.c":89:7 -1
+     (nil))
+(jump_insn 77 5 78 14 (set (pc)
+        (label_ref:DI 108)) 807 {jump}
+     (nil)
+ -> 108)
+;;  succ:       20 [always]  count:118111600 (estimated locally)
+
+(barrier 78 77 79)
+;; basic block 15, loop depth 1, count 955630225 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       15 [89.0% (guessed)]  count:850510901 (estimated locally) (DFS_BACK)
+;;              13 [89.0% (guessed)]  count:105119324 (estimated locally)
+(code_label 79 78 80 15 8 (nil) [2 uses])
+(note 80 79 81 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 81 80 82 15 (parallel [
+            (set (reg/v/f:DI 101 [ ptr ])
+                (plus:DI (reg/v/f:DI 101 [ ptr ])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_clreol.c":86:10 -1
+     (nil))
+(insn 82 81 83 15 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -32 [0xffffffffffffffe0])) [3 MEM[(unsigned int *)ptr_36 + -32B]+0 S4 A32])
+        (reg:SI 94 [ blank$attr ])) "../ncurses/./base/lib_clreol.c":86:13 -1
+     (nil))
+(insn 83 82 84 15 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -28 [0xffffffffffffffe4])) [3 MEM[(int *)ptr_36 + -28B]+0 S4 A32])
+        (reg:SI 102 [ blank$chars$0 ])) "../ncurses/./base/lib_clreol.c":86:13 -1
+     (nil))
+(insn 84 83 85 15 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -24 [0xffffffffffffffe8])) [3 MEM[(int *)ptr_36 + -24B]+0 S4 A32])
+        (reg:SI 103 [ blank$chars$1 ])) "../ncurses/./base/lib_clreol.c":86:13 -1
+     (nil))
+(insn 85 84 86 15 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -20 [0xffffffffffffffec])) [3 MEM[(int *)ptr_36 + -20B]+0 S4 A32])
+        (reg:SI 104 [ blank$chars$2 ])) "../ncurses/./base/lib_clreol.c":86:13 -1
+     (nil))
+(insn 86 85 87 15 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -16 [0xfffffffffffffff0])) [3 MEM[(int *)ptr_36 + -16B]+0 S4 A32])
+        (reg:SI 105 [ blank$chars$3 ])) "../ncurses/./base/lib_clreol.c":86:13 -1
+     (nil))
+(insn 87 86 88 15 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -12 [0xfffffffffffffff4])) [3 MEM[(int *)ptr_36 + -12B]+0 S4 A32])
+        (reg:SI 106 [ blank$chars$4 ])) "../ncurses/./base/lib_clreol.c":86:13 -1
+     (nil))
+(insn 88 87 89 15 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -8 [0xfffffffffffffff8])) [3 MEM[(int *)ptr_36 + -8B]+0 S4 A32])
+        (reg:SI 107 [ blank$ext_color ])) "../ncurses/./base/lib_clreol.c":86:13 -1
+     (nil))
+(insn 89 88 90 15 (set (mem:SI (plus:DI (reg/v/f:DI 101 [ ptr ])
+                (const_int -4 [0xfffffffffffffffc])) [3 MEM[(int *)ptr_36 + -4B]+0 S4 A32])
+        (reg:SI 108 [ blank$rgb_color ])) "../ncurses/./base/lib_clreol.c":86:13 -1
+     (nil))
+(insn 90 89 91 15 (set (reg:CC 17 flags)
+        (compare:CC (reg/v/f:DI 100 [ end ])
+            (reg/v/f:DI 101 [ ptr ]))) "../ncurses/./base/lib_clreol.c":85:13 -1
+     (nil))
+(jump_insn 91 90 95 15 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 79)
+            (pc))) "../ncurses/./base/lib_clreol.c":85:13 -1
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 79)
+;;  succ:       15 [89.0% (guessed)]  count:850510901 (estimated locally) (DFS_BACK)
+;;              16 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+
+;; basic block 16, loop depth 0, count 105119324 (estimated locally), maybe hot
+;;  prev block 15, next block 18, flags: (NEW, REACHABLE, RTL)
+;;  pred:       15 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+(note 95 91 93 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 93 95 94 16 (set (pc)
+        (label_ref 92)) -1
+     (nil)
+ -> 92)
+;;  succ:       14 [always]  count:105119324 (estimated locally)
+
+(barrier 94 93 100)
+;; basic block 18, loop depth 0, count 90138514 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 60937340 (estimated locally), should be 90138514 (estimated locally)
+;;  prev block 16, next block 19, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [50.0% (guessed)]  count:60937340 (estimated locally)
+(code_label 100 94 101 18 4 (nil) [1 uses])
+(note 101 100 102 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 102 101 103 18 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 95 [ pretmp_21 ])
+            (reg/v:SI 97 [ y ]))) "../ncurses/./base/lib_clreol.c":74:6 -1
+     (nil))
+(jump_insn 103 102 107 18 (set (pc)
+        (if_then_else (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 23)
+            (pc))) "../ncurses/./base/lib_clreol.c":74:6 -1
+     (int_list:REG_BR_PROB 14941556 (nil))
+ -> 23)
+;;  succ:       4 [1.4% (guessed)]  count:1254314 (estimated locally)
+;;              19 [98.6% (guessed)]  count:88884200 (estimated locally) (FALLTHRU)
+
+;; basic block 19, loop depth 0, count 88884200 (estimated locally), maybe hot
+;;  prev block 18, next block 20, flags: (NEW, REACHABLE, RTL)
+;;  pred:       18 [98.6% (guessed)]  count:88884200 (estimated locally) (FALLTHRU)
+(note 107 103 105 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 105 107 106 19 (set (pc)
+        (label_ref 104)) -1
+     (nil)
+ -> 104)
+;;  succ:       8 [always]  count:88884200 (estimated locally)
+
+(barrier 106 105 108)
+;; basic block 20, loop depth 0, count 122944296 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 152145469 (estimated locally), should be 122944296 (estimated locally)
+;;  prev block 19, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       14 [always]  count:118111600 (estimated locally)
+;;              4 [always]  count:34033869 (estimated locally)
+(code_label 108 106 111 20 1 (nil) [2 uses])
+(note 111 108 109 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 109 111 110 20 (set (reg/i:SI 0 ax)
+        (reg:SI 112 [ <retval> ])) "../ncurses/./base/lib_clreol.c":92:1 -1
+     (nil))
+(insn 110 109 0 20 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_clreol.c":92:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:122944296 (estimated locally) (FALLTHRU)
+

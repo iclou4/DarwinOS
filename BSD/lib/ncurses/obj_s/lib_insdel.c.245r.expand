@@ -1,0 +1,491 @@
+
+;; Function winsdelln (winsdelln, funcdef_no=91, decl_uid=6272, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+int winsdelln (struct WINDOW * win, int n)
+{
+  int code;
+  int _1;
+  int _2;
+  int _3;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (win_6(D) != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 5>; [0.87%]
+;;    succ:       3
+;;                5
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  if (n_8(D) != 0)
+    goto <bb 4>; [33.00%]
+  else
+    goto <bb 5>; [67.00%]
+;;    succ:       4
+;;                5
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _1 = win_6(D)->_maxy;
+  _2 = win_6(D)->_cury;
+  _3 = -n_8(D);
+  _nc_scroll_window (win_6(D), _3, _2, _1, win_6(D)->_bkgrnd);
+  _nc_synchook (win_6(D));
+;;    succ:       5
+
+;;   basic block 5, loop depth 0
+;;    pred:       2
+;;                4
+;;                3
+  # code_4 = PHI <-1(2), 0(4), n_8(D)(3)>
+  return code_4;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 4 (code_4 - 4 )
+Partition 6 (win_6(D) - 6 )
+Partition 8 (n_8(D) - 8 )
+Partition 11 (_11(D) - 11 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (code_4 - 4 8 11 )
+Partition 1, base 1 (win_6(D) - 6 )
+
+
+Partition map 
+
+Partition 0 (code_4 - 4 )
+Partition 1 (win_6(D) - 6 )
+Partition 2 (n_8(D) - 8 )
+Partition 3 (_11(D) - 11 )
+
+
+Conflict graph:
+2: 3
+3: 2
+
+After sorting:
+Sorted Coalesce list:
+(13284, 0) code_4 <-> n_8(D)
+(10000, 0) code_4 <-> _11(D)
+
+Partition map 
+
+Partition 0 (code_4 - 4 )
+Partition 1 (win_6(D) - 6 )
+Partition 2 (n_8(D) - 8 )
+Partition 3 (_11(D) - 11 )
+
+Coalesce list: (4)code_4 & (8)n_8(D) [map: 0, 2] : Success -> 0
+Coalesce list: (4)code_4 & (11)_11(D) [map: 0, 3] : Fail due to conflict
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_2 - 2 )
+Partition 2 (_3 - 3 )
+Partition 3 (code_4 - 4 8 )
+Partition 4 (win_6(D) - 6 )
+Partition 5 (_11(D) - 11 )
+
+
+Replacing Expressions
+_1 replace with --> _1 = win_6(D)->_maxy;
+
+_2 replace with --> _2 = win_6(D)->_cury;
+
+_3 replace with --> _3 = -n_8(D);
+
+
+__attribute__((visibility ("default")))
+int winsdelln (struct WINDOW * win, int n)
+{
+  int code;
+  int _1;
+  int _2;
+  int _3;
+  int _11(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (win_6(D) != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 5>; [0.87%]
+;;    succ:       3
+;;                5
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  if (n_8(D) != 0)
+    goto <bb 4>; [33.00%]
+  else
+    goto <bb 5>; [67.00%]
+;;    succ:       4
+;;                5
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _1 = win_6(D)->_maxy;
+  _2 = win_6(D)->_cury;
+  _3 = -n_8(D);
+  _nc_scroll_window (win_6(D), _3, _2, _1, win_6(D)->_bkgrnd);
+  _nc_synchook (win_6(D));
+;;    succ:       5
+
+;;   basic block 5, loop depth 0
+;;    pred:       2
+;;                4
+;;                3
+  # code_4 = PHI <-1(2), 0(4), n_8(D)(3)>
+  return code_4;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB2->BB5 : PART.3 = -1
+Inserting a value copy on edge BB4->BB5 : PART.3 = 0
+
+;; Generating RTL for gimple basic block 2
+
+;; if (win_6(D) != 0B)
+
+(insn 9 8 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 86 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_insdel.c":55:8 -1
+     (nil))
+
+(jump_insn 10 9 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_insdel.c":55:8 -1
+     (int_list:REG_BR_PROB 9341556 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; if (n_8(D) != 0)
+
+(insn 12 11 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 87 [ n ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_insdel.c":56:5 -1
+     (nil))
+
+(jump_insn 13 12 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_insdel.c":56:5 -1
+     (int_list:REG_BR_PROB 719407028 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; _nc_scroll_window (win_6(D), _3, _2, _1, win_6(D)->_bkgrnd);
+
+(insn 15 14 16 (set (reg:SI 88)
+        (mem:SI (plus:DI (reg/v/f:DI 86 [ win ])
+                (const_int 8 [0x8])) [1 win_6(D)->_maxy+0 S4 A64])) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+
+(insn 16 15 17 (parallel [
+            (set (reg:SI 89)
+                (neg:SI (reg/v:SI 87 [ n ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+
+(insn 17 16 18 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (expr_list:REG_ARGS_SIZE (const_int 32 [0x20])
+        (nil)))
+
+(insn 18 17 19 (set (reg:DI 90)
+        (reg/f:DI 79 virtual-outgoing-args)) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+
+(insn 19 18 20 (set (reg:TI 91)
+        (mem:TI (plus:DI (reg/v/f:DI 86 [ win ])
+                (const_int 116 [0x74])) [8 win_6(D)->_bkgrnd+0 S16 A32])) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+
+(insn 20 19 21 (set (mem:TI (reg:DI 90) [0  S16 A64])
+        (reg:TI 91)) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+
+(insn 21 20 22 (set (reg:TI 92)
+        (mem:TI (plus:DI (reg/v/f:DI 86 [ win ])
+                (const_int 132 [0x84])) [8 win_6(D)->_bkgrnd+16 S16 A32])) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+
+(insn 22 21 23 (set (mem:TI (plus:DI (reg:DI 90)
+                (const_int 16 [0x10])) [0  S16 A64])
+        (reg:TI 92)) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+
+(insn 23 22 24 (set (reg:SI 2 cx)
+        (reg:SI 88)) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+
+(insn 24 23 25 (set (reg:SI 1 dx)
+        (mem:SI (reg/v/f:DI 86 [ win ]) [1 win_6(D)->_cury+0 S4 A64])) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+
+(insn 25 24 26 (set (reg:SI 4 si)
+        (reg:SI 89)) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+
+(insn 26 25 27 (set (reg:DI 5 di)
+        (reg/v/f:DI 86 [ win ])) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+
+(call_insn 27 26 0 (call (mem:QI (symbol_ref:DI ("_nc_scroll_window") [flags 0x41]  <function_decl 0x7f0003e90f00 _nc_scroll_window>) [0 _nc_scroll_window S1 A8])
+        (const_int 32 [0x20])) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_scroll_window") [flags 0x41]  <function_decl 0x7f0003e90f00 _nc_scroll_window>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (nil))))))
+
+;; _nc_synchook (win_6(D));
+
+(insn 28 27 29 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_insdel.c":59:6 -1
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (nil)))
+
+(insn 29 28 30 (set (reg:DI 5 di)
+        (reg/v/f:DI 86 [ win ])) "../ncurses/./base/lib_insdel.c":59:6 -1
+     (nil))
+
+(call_insn 30 29 0 (call (mem:QI (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f0003e90700 _nc_synchook>) [0 _nc_synchook S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_insdel.c":59:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f0003e90700 _nc_synchook>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; 
+
+(code_label 31 30 32 2 (nil) [0 uses])
+
+(note 32 31 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return code_4;
+
+(insn 33 32 34 (set (reg:SI 85 [ <retval> ])
+        (reg/v:SI 87 [ n ])) "../ncurses/./base/lib_insdel.c":63:5 -1
+     (nil))
+
+(jump_insn 34 33 35 (set (pc)
+        (label_ref 0)) "../ncurses/./base/lib_insdel.c":63:5 -1
+     (nil))
+
+(barrier 35 34 0)
+Edge 2->5 redirected to 8
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 34.
+Merging block 8 into block 7...
+Merged blocks 7 and 8.
+Merged 7 and 8 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 7 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 7 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 86 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_insdel.c":50:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 87 [ n ])
+        (reg:SI 4 si [ n ])) "../ncurses/./base/lib_insdel.c":50:1 -1
+     (nil))
+(note 4 3 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 4 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 86 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_insdel.c":55:8 -1
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 43)
+            (pc))) "../ncurses/./base/lib_insdel.c":55:8 806 {*jcc}
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 43)
+;;  succ:       4 [99.1% (guessed)]  count:1064400272 (estimated locally) (FALLTHRU)
+;;              6 [0.9% (guessed)]  count:9341552 (estimated locally)
+
+;; basic block 4, loop depth 0, count 1064400273 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [99.1% (guessed)]  count:1064400272 (estimated locally) (FALLTHRU)
+(note 11 10 12 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 87 [ n ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_insdel.c":56:5 -1
+     (nil))
+(jump_insn 13 12 14 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 31)
+            (pc))) "../ncurses/./base/lib_insdel.c":56:5 -1
+     (int_list:REG_BR_PROB 719407028 (nil))
+ -> 31)
+;;  succ:       5 [33.0% (guessed)]  count:351252088 (estimated locally) (FALLTHRU)
+;;              7 [67.0% (guessed)]  count:713148185 (estimated locally)
+
+;; basic block 5, loop depth 0, count 351252088 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [33.0% (guessed)]  count:351252088 (estimated locally) (FALLTHRU)
+(note 14 13 15 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 5 (set (reg:SI 88)
+        (mem:SI (plus:DI (reg/v/f:DI 86 [ win ])
+                (const_int 8 [0x8])) [1 win_6(D)->_maxy+0 S4 A64])) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+(insn 16 15 17 5 (parallel [
+            (set (reg:SI 89)
+                (neg:SI (reg/v:SI 87 [ n ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+(insn 17 16 18 5 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (expr_list:REG_ARGS_SIZE (const_int 32 [0x20])
+        (nil)))
+(insn 18 17 19 5 (set (reg:DI 90)
+        (reg/f:DI 79 virtual-outgoing-args)) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+(insn 19 18 20 5 (set (reg:TI 91)
+        (mem:TI (plus:DI (reg/v/f:DI 86 [ win ])
+                (const_int 116 [0x74])) [8 win_6(D)->_bkgrnd+0 S16 A32])) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+(insn 20 19 21 5 (set (mem:TI (reg:DI 90) [0  S16 A64])
+        (reg:TI 91)) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+(insn 21 20 22 5 (set (reg:TI 92)
+        (mem:TI (plus:DI (reg/v/f:DI 86 [ win ])
+                (const_int 132 [0x84])) [8 win_6(D)->_bkgrnd+16 S16 A32])) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+(insn 22 21 23 5 (set (mem:TI (plus:DI (reg:DI 90)
+                (const_int 16 [0x10])) [0  S16 A64])
+        (reg:TI 92)) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+(insn 23 22 24 5 (set (reg:SI 2 cx)
+        (reg:SI 88)) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+(insn 24 23 25 5 (set (reg:SI 1 dx)
+        (mem:SI (reg/v/f:DI 86 [ win ]) [1 win_6(D)->_cury+0 S4 A64])) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+(insn 25 24 26 5 (set (reg:SI 4 si)
+        (reg:SI 89)) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+(insn 26 25 27 5 (set (reg:DI 5 di)
+        (reg/v/f:DI 86 [ win ])) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (nil))
+(call_insn 27 26 28 5 (call (mem:QI (symbol_ref:DI ("_nc_scroll_window") [flags 0x41]  <function_decl 0x7f0003e90f00 _nc_scroll_window>) [0 _nc_scroll_window S1 A8])
+        (const_int 32 [0x20])) "../ncurses/./base/lib_insdel.c":57:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_scroll_window") [flags 0x41]  <function_decl 0x7f0003e90f00 _nc_scroll_window>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (nil))))))
+(insn 28 27 29 5 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_insdel.c":59:6 -1
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (nil)))
+(insn 29 28 30 5 (set (reg:DI 5 di)
+        (reg/v/f:DI 86 [ win ])) "../ncurses/./base/lib_insdel.c":59:6 -1
+     (nil))
+(call_insn 30 29 6 5 (call (mem:QI (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f0003e90700 _nc_synchook>) [0 _nc_synchook S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_insdel.c":59:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f0003e90700 _nc_synchook>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 6 30 40 5 (set (reg/v:SI 87 [ n ])
+        (const_int 0 [0])) "../ncurses/./base/lib_insdel.c":61:7 -1
+     (nil))
+(jump_insn 40 6 41 5 (set (pc)
+        (label_ref 31)) -1
+     (nil)
+ -> 31)
+;;  succ:       7 [always]  count:351252088 (estimated locally)
+
+(barrier 41 40 43)
+;; basic block 6, loop depth 0, count 9341552 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [0.9% (guessed)]  count:9341552 (estimated locally)
+(code_label 43 41 42 6 3 (nil) [1 uses])
+(note 42 43 5 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 5 42 31 6 (set (reg/v:SI 87 [ n ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_insdel.c":51:9 -1
+     (nil))
+;;  succ:       7 [always]  count:9341552 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 6, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [always]  count:9341552 (estimated locally) (FALLTHRU)
+;;              4 [67.0% (guessed)]  count:713148185 (estimated locally)
+;;              5 [always]  count:351252088 (estimated locally)
+(code_label 31 5 32 7 2 (nil) [2 uses])
+(note 32 31 33 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 33 32 37 7 (set (reg:SI 85 [ <retval> ])
+        (reg/v:SI 87 [ n ])) "../ncurses/./base/lib_insdel.c":63:5 -1
+     (nil))
+(insn 37 33 38 7 (set (reg/i:SI 0 ax)
+        (reg:SI 85 [ <retval> ])) "../ncurses/./base/lib_insdel.c":64:1 -1
+     (nil))
+(insn 38 37 0 7 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_insdel.c":64:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+

@@ -1,0 +1,583 @@
+
+;; Function slk_clear_sp (slk_clear_sp, funcdef_no=91, decl_uid=6659, cgraph_uid=92, symbol_order=91)
+
+verify found no changes in insn with uid = 29.
+verify found no changes in insn with uid = 33.
+
+
+slk_clear_sp
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp] 16 [argp] 19 [frame]
+;;  regular block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  eh block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 6 [bp] 7 [sp] 19 [frame]
+;;  regs ever live 	 0 [ax] 5 [di] 7 [sp] 17 [flags]
+;;  ref usage 	r0={4d,2u} r1={3d} r2={3d} r4={3d} r5={5d,3u} r6={1d,9u} r7={1d,11u} r8={2d} r9={2d} r10={2d} r11={2d} r12={2d} r13={2d} r14={2d} r15={2d} r16={1d,8u} r17={5d,3u} r18={2d} r19={1d,9u} r20={3d} r21={3d} r22={3d} r23={3d} r24={3d} r25={3d} r26={3d} r27={3d} r28={2d} r29={2d} r30={2d} r31={2d} r32={2d} r33={2d} r34={2d} r35={2d} r36={3d} r37={3d} r38={2d} r39={2d} r44={2d} r45={2d} r46={2d} r47={2d} r48={2d} r49={2d} r50={2d} r51={2d} r52={2d} r53={2d} r54={2d} r55={2d} r56={2d} r57={2d} r58={2d} r59={2d} r60={2d} r61={2d} r62={2d} r63={2d} r64={2d} r65={2d} r66={2d} r67={2d} r68={2d} r69={2d} r70={2d} r71={2d} r72={2d} r73={2d} r74={2d} r75={2d} r82={1d,3u} r83={1d,4u} r84={1d,5u} r85={1d,1u} r88={3d,1u} r89={1d,4u} r90={1d,1u} r91={1d,1u} r92={1d,1u} r93={1d,1u} 
+;;    total ref usage 238{171d,67u,0e} in 28{26 regular + 2 call} insns.
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 17 [flags] 89
+;; live  in  	 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 17 [flags] 89
+;; live  kill	
+(note 7 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 89 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/lib_slkclear.c":48:1 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 5 di [ sp ])
+        (nil)))
+(note 3 2 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 3 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 89 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkclear.c":53:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 45)
+            (pc))) "../ncurses/./base/lib_slkclear.c":53:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 9341556 (nil)))
+ -> 45)
+;;  succ:       3 [99.1% (guessed)]  count:1064400272 (estimated locally) (FALLTHRU)
+;;              6 [0.9% (guessed)]  count:9341552 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 89
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 89
+
+;; basic block 3, loop depth 0, count 1064400273 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [99.1% (guessed)]  count:1064400272 (estimated locally) (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 89
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 89
+;; lr  def 	 17 [flags] 82
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 89
+;; live  gen 	 17 [flags] 82
+;; live  kill	
+(note 11 10 12 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 3 (set (reg/f:DI 82 [ _1 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 89 [ sp ])
+                (const_int 800 [0x320])) [3 sp_9(D)->_slk+0 S8 A64])) "../ncurses/./base/lib_slkclear.c":53:35 74 {*movdi_internal}
+     (nil))
+(insn 13 12 14 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkclear.c":53:25 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 14 13 15 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 49)
+            (pc))) "../ncurses/./base/lib_slkclear.c":53:25 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 9341556 (nil)))
+ -> 49)
+;;  succ:       4 [99.1% (guessed)]  count:1055139992 (estimated locally) (FALLTHRU)
+;;              7 [0.9% (guessed)]  count:9260281 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 89
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 89
+
+;; basic block 4, loop depth 0, count 1055139992 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       3 [99.1% (guessed)]  count:1055139992 (estimated locally) (FALLTHRU)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 89
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 89
+;; lr  def 	 17 [flags] 83 84 85 90 91
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 89
+;; live  gen 	 17 [flags] 83 84 85 90 91
+;; live  kill	
+(note 15 14 16 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 4 (set (mem:QI (plus:DI (reg/f:DI 82 [ _1 ])
+                (const_int 1 [0x1])) [1 _1->hidden+0 S1 A8])
+        (const_int 1 [0x1])) "../ncurses/./base/lib_slkclear.c":54:24 77 {*movqi_internal}
+     (nil))
+(insn 17 16 18 4 (set (reg/f:DI 83 [ _2 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 89 [ sp ])
+                (const_int 152 [0x98])) [2 sp_9(D)->_stdscr+0 S8 A64])) "../ncurses/./base/lib_slkclear.c":57:33 74 {*movdi_internal}
+     (nil))
+(insn 18 17 19 4 (set (reg/f:DI 84 [ _3 ])
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ _1 ])
+                (const_int 8 [0x8])) [2 _1->win+0 S8 A64])) "../ncurses/./base/lib_slkclear.c":57:15 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 82 [ _1 ])
+        (nil)))
+(insn 19 18 20 4 (set (reg:TI 90 [ _2->_bkgrnd ])
+        (mem:TI (plus:DI (reg/f:DI 83 [ _2 ])
+                (const_int 116 [0x74])) [4 _2->_bkgrnd+0 S16 A32])) "../ncurses/./base/lib_slkclear.c":57:31 73 {*movti_internal}
+     (nil))
+(insn 20 19 21 4 (set (mem:TI (plus:DI (reg/f:DI 84 [ _3 ])
+                (const_int 116 [0x74])) [4 _3->_bkgrnd+0 S16 A32])
+        (reg:TI 90 [ _2->_bkgrnd ])) "../ncurses/./base/lib_slkclear.c":57:31 73 {*movti_internal}
+     (expr_list:REG_DEAD (reg:TI 90 [ _2->_bkgrnd ])
+        (nil)))
+(insn 21 20 22 4 (set (reg:TI 91 [ _2->_bkgrnd+16 ])
+        (mem:TI (plus:DI (reg/f:DI 83 [ _2 ])
+                (const_int 132 [0x84])) [4 _2->_bkgrnd+16 S16 A32])) "../ncurses/./base/lib_slkclear.c":57:31 73 {*movti_internal}
+     (nil))
+(insn 22 21 23 4 (set (mem:TI (plus:DI (reg/f:DI 84 [ _3 ])
+                (const_int 132 [0x84])) [4 _3->_bkgrnd+16 S16 A32])
+        (reg:TI 91 [ _2->_bkgrnd+16 ])) "../ncurses/./base/lib_slkclear.c":57:31 73 {*movti_internal}
+     (expr_list:REG_DEAD (reg:TI 91 [ _2->_bkgrnd+16 ])
+        (nil)))
+(insn 23 22 24 4 (set (reg:SI 85 [ _4 ])
+        (mem:SI (plus:DI (reg/f:DI 83 [ _2 ])
+                (const_int 28 [0x1c])) [5 _2->_attrs+0 S4 A32])) "../ncurses/./base/lib_slkclear.c":58:37 75 {*movsi_internal}
+     (nil))
+(insn 24 23 25 4 (set (mem:SI (plus:DI (reg/f:DI 84 [ _3 ])
+                (const_int 28 [0x1c])) [5 _3->_attrs+0 S4 A32])
+        (reg:SI 85 [ _4 ])) "../ncurses/./base/lib_slkclear.c":58:35 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 85 [ _4 ])
+        (nil)))
+(insn 25 24 26 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 83 [ _2 ])
+            (reg/f:DI 84 [ _3 ]))) "../ncurses/./base/lib_slkclear.c":59:5 12 {*cmpdi_1}
+     (expr_list:REG_DEAD (reg/f:DI 83 [ _2 ])
+        (nil)))
+(jump_insn 26 25 27 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 53)
+            (pc))) "../ncurses/./base/lib_slkclear.c":59:5 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 499612076 (nil)))
+ -> 53)
+;;  succ:       8 [46.5% (guessed)]  count:490956640 (estimated locally)
+;;              5 [53.5% (guessed)]  count:564183352 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 84 89
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 84 89
+
+;; basic block 5, loop depth 0, count 564183353 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [53.5% (guessed)]  count:564183352 (estimated locally) (FALLTHRU)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 84 89
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 84 89
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 92 93
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 84 89
+;; live  gen 	 0 [ax] 5 [di] 92 93
+;; live  kill	
+(note 27 26 28 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 5 (set (reg:DI 5 di)
+        (reg/f:DI 84 [ _3 ])) "../ncurses/./base/lib_slkclear.c":62:6 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 84 [ _3 ])
+        (nil)))
+(call_insn 29 28 30 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("werase") [flags 0x41]  <function_decl 0x7f64663fb700 werase>) [0 werase S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkclear.c":62:6 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (expr_list:REG_CALL_DECL (symbol_ref:DI ("werase") [flags 0x41]  <function_decl 0x7f64663fb700 werase>)
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 30 29 31 5 (set (reg/f:DI 92 [ sp_9(D)->_slk ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 89 [ sp ])
+                (const_int 800 [0x320])) [3 sp_9(D)->_slk+0 S8 A64])) "../ncurses/./base/lib_slkclear.c":63:11 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 89 [ sp ])
+        (nil)))
+(insn 31 30 32 5 (set (reg/f:DI 93 [ _5->win ])
+        (mem/f:DI (plus:DI (reg/f:DI 92 [ sp_9(D)->_slk ])
+                (const_int 8 [0x8])) [2 _5->win+0 S8 A64])) "../ncurses/./base/lib_slkclear.c":63:11 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 92 [ sp_9(D)->_slk ])
+        (nil)))
+(insn 32 31 33 5 (set (reg:DI 5 di)
+        (reg/f:DI 93 [ _5->win ])) "../ncurses/./base/lib_slkclear.c":63:11 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 93 [ _5->win ])
+        (nil)))
+(call_insn/j 33 32 45 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wrefresh") [flags 0x41]  <function_decl 0x7f64663fea00 wrefresh>) [0 wrefresh S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkclear.c":63:11 828 {*sibcall_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("wrefresh") [flags 0x41]  <function_decl 0x7f64663fea00 wrefresh>)
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       EXIT [always]  count:564183353 (estimated locally) (ABNORMAL,SIBCALL)
+;; lr  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+;; basic block 6, loop depth 0, count 9341552 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [0.9% (guessed)]  count:9341552 (estimated locally)
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 88
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 88
+;; live  kill	
+(code_label 45 33 44 6 3 (nil) [1 uses])
+(note 44 45 6 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 6 44 49 6 (set (reg/v:SI 88 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkclear.c":49:9 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:9341552 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88
+
+;; basic block 7, loop depth 0, count 9260281 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       3 [0.9% (guessed)]  count:9260281 (estimated locally)
+;; bb 7 artificial_defs: { }
+;; bb 7 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 88
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 88
+;; live  kill	
+(code_label 49 6 48 7 4 (nil) [1 uses])
+(note 48 49 4 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 4 48 53 7 (set (reg/v:SI 88 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkclear.c":49:9 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:9260281 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88
+
+;; basic block 8, loop depth 0, count 490956640 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [46.5% (guessed)]  count:490956640 (estimated locally)
+;; bb 8 artificial_defs: { }
+;; bb 8 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 88
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 88
+;; live  kill	
+(code_label 53 4 52 8 5 (nil) [1 uses])
+(note 52 53 5 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 5 52 40 8 (set (reg/v:SI 88 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkclear.c":60:9 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:490956640 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88
+
+;; basic block 9, loop depth 0, count 509558471 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       8 [always]  count:490956640 (estimated locally) (FALLTHRU)
+;;              6 [always]  count:9341552 (estimated locally) (FALLTHRU)
+;;              7 [always]  count:9260281 (estimated locally) (FALLTHRU)
+;; bb 9 artificial_defs: { }
+;; bb 9 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88
+;; lr  def 	 0 [ax]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 40 5 43 9 1 (nil) [0 uses])
+(note 43 40 41 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 41 43 42 9 (set (reg/i:SI 0 ax)
+        (reg/v:SI 88 [ <retval> ])) "../ncurses/./base/lib_slkclear.c":67:1 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 88 [ <retval> ])
+        (nil)))
+(insn 42 41 0 9 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_slkclear.c":67:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:509558471 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+
+;; Function slk_clear (slk_clear, funcdef_no=92, decl_uid=6068, cgraph_uid=93, symbol_order=92)
+
+verify found no changes in insn with uid = 29.
+verify found no changes in insn with uid = 33.
+
+
+slk_clear
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp] 16 [argp] 19 [frame]
+;;  regular block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  eh block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 6 [bp] 7 [sp] 19 [frame]
+;;  regs ever live 	 0 [ax] 5 [di] 7 [sp] 17 [flags]
+;;  ref usage 	r0={4d,2u} r1={3d} r2={3d} r4={3d} r5={5d,2u} r6={1d,9u} r7={1d,11u} r8={2d} r9={2d} r10={2d} r11={2d} r12={2d} r13={2d} r14={2d} r15={2d} r16={1d,8u} r17={5d,3u} r18={2d} r19={1d,9u} r20={3d} r21={3d} r22={3d} r23={3d} r24={3d} r25={3d} r26={3d} r27={3d} r28={2d} r29={2d} r30={2d} r31={2d} r32={2d} r33={2d} r34={2d} r35={2d} r36={3d} r37={3d} r38={2d} r39={2d} r44={2d} r45={2d} r46={2d} r47={2d} r48={2d} r49={2d} r50={2d} r51={2d} r52={2d} r53={2d} r54={2d} r55={2d} r56={2d} r57={2d} r58={2d} r59={2d} r60={2d} r61={2d} r62={2d} r63={2d} r64={2d} r65={2d} r66={2d} r67={2d} r68={2d} r69={2d} r70={2d} r71={2d} r72={2d} r73={2d} r74={2d} r75={2d} r82={1d,4u} r83={1d,3u} r84={1d,4u} r85={1d,5u} r86={1d,1u} r89={3d,1u} r90={1d,1u} r91={1d,1u} r92={1d,1u} r93={1d,1u} 
+;;    total ref usage 237{171d,66u,0e} in 28{26 regular + 2 call} insns.
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 17 [flags] 82
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 17 [flags] 82
+;; live  kill	
+(note 6 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 6 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 2 9 2 (set (reg/f:DI 82 [ SP.0_1 ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f6466540cf0 SP>) [29 SP+0 S8 A64])) "../ncurses/./base/lib_slkclear.c":73:12 74 {*movdi_internal}
+     (nil))
+(insn 9 8 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ SP.0_1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkclear.c":53:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 45)
+            (pc))) "../ncurses/./base/lib_slkclear.c":53:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 9341556 (nil)))
+ -> 45)
+;;  succ:       3 [99.1% (guessed)]  count:1064400272 (estimated locally) (FALLTHRU)
+;;              6 [0.9% (guessed)]  count:9341552 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82
+
+;; basic block 3, loop depth 0, count 1064400273 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [99.1% (guessed)]  count:1064400272 (estimated locally) (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82
+;; lr  def 	 17 [flags] 83
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82
+;; live  gen 	 17 [flags] 83
+;; live  kill	
+(note 11 10 12 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 3 (set (reg/f:DI 83 [ _5 ])
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ SP.0_1 ])
+                (const_int 800 [0x320])) [3 SP.0_1->_slk+0 S8 A64])) "../ncurses/./base/lib_slkclear.c":53:35 74 {*movdi_internal}
+     (nil))
+(insn 13 12 14 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 83 [ _5 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkclear.c":53:25 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 14 13 15 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 49)
+            (pc))) "../ncurses/./base/lib_slkclear.c":53:25 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 9341556 (nil)))
+ -> 49)
+;;  succ:       4 [99.1% (guessed)]  count:1055139992 (estimated locally) (FALLTHRU)
+;;              7 [0.9% (guessed)]  count:9260281 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 83
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 83
+
+;; basic block 4, loop depth 0, count 1055139992 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       3 [99.1% (guessed)]  count:1055139992 (estimated locally) (FALLTHRU)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 83
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 83
+;; lr  def 	 17 [flags] 84 85 86 90 91
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 83
+;; live  gen 	 17 [flags] 84 85 86 90 91
+;; live  kill	
+(note 15 14 16 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 4 (set (mem:QI (plus:DI (reg/f:DI 83 [ _5 ])
+                (const_int 1 [0x1])) [1 _5->hidden+0 S1 A8])
+        (const_int 1 [0x1])) "../ncurses/./base/lib_slkclear.c":54:24 77 {*movqi_internal}
+     (nil))
+(insn 17 16 18 4 (set (reg/f:DI 84 [ _6 ])
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ SP.0_1 ])
+                (const_int 152 [0x98])) [2 SP.0_1->_stdscr+0 S8 A64])) "../ncurses/./base/lib_slkclear.c":57:33 74 {*movdi_internal}
+     (nil))
+(insn 18 17 19 4 (set (reg/f:DI 85 [ _7 ])
+        (mem/f:DI (plus:DI (reg/f:DI 83 [ _5 ])
+                (const_int 8 [0x8])) [2 _5->win+0 S8 A64])) "../ncurses/./base/lib_slkclear.c":57:15 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 83 [ _5 ])
+        (nil)))
+(insn 19 18 20 4 (set (reg:TI 90 [ _6->_bkgrnd ])
+        (mem:TI (plus:DI (reg/f:DI 84 [ _6 ])
+                (const_int 116 [0x74])) [4 _6->_bkgrnd+0 S16 A32])) "../ncurses/./base/lib_slkclear.c":57:31 73 {*movti_internal}
+     (nil))
+(insn 20 19 21 4 (set (mem:TI (plus:DI (reg/f:DI 85 [ _7 ])
+                (const_int 116 [0x74])) [4 _7->_bkgrnd+0 S16 A32])
+        (reg:TI 90 [ _6->_bkgrnd ])) "../ncurses/./base/lib_slkclear.c":57:31 73 {*movti_internal}
+     (expr_list:REG_DEAD (reg:TI 90 [ _6->_bkgrnd ])
+        (nil)))
+(insn 21 20 22 4 (set (reg:TI 91 [ _6->_bkgrnd+16 ])
+        (mem:TI (plus:DI (reg/f:DI 84 [ _6 ])
+                (const_int 132 [0x84])) [4 _6->_bkgrnd+16 S16 A32])) "../ncurses/./base/lib_slkclear.c":57:31 73 {*movti_internal}
+     (nil))
+(insn 22 21 23 4 (set (mem:TI (plus:DI (reg/f:DI 85 [ _7 ])
+                (const_int 132 [0x84])) [4 _7->_bkgrnd+16 S16 A32])
+        (reg:TI 91 [ _6->_bkgrnd+16 ])) "../ncurses/./base/lib_slkclear.c":57:31 73 {*movti_internal}
+     (expr_list:REG_DEAD (reg:TI 91 [ _6->_bkgrnd+16 ])
+        (nil)))
+(insn 23 22 24 4 (set (reg:SI 86 [ _8 ])
+        (mem:SI (plus:DI (reg/f:DI 84 [ _6 ])
+                (const_int 28 [0x1c])) [5 _6->_attrs+0 S4 A32])) "../ncurses/./base/lib_slkclear.c":58:37 75 {*movsi_internal}
+     (nil))
+(insn 24 23 25 4 (set (mem:SI (plus:DI (reg/f:DI 85 [ _7 ])
+                (const_int 28 [0x1c])) [5 _7->_attrs+0 S4 A32])
+        (reg:SI 86 [ _8 ])) "../ncurses/./base/lib_slkclear.c":58:35 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 86 [ _8 ])
+        (nil)))
+(insn 25 24 26 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 84 [ _6 ])
+            (reg/f:DI 85 [ _7 ]))) "../ncurses/./base/lib_slkclear.c":59:5 12 {*cmpdi_1}
+     (expr_list:REG_DEAD (reg/f:DI 84 [ _6 ])
+        (nil)))
+(jump_insn 26 25 27 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 53)
+            (pc))) "../ncurses/./base/lib_slkclear.c":59:5 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 499612076 (nil)))
+ -> 53)
+;;  succ:       8 [46.5% (guessed)]  count:490956640 (estimated locally)
+;;              5 [53.5% (guessed)]  count:564183352 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 85
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 85
+
+;; basic block 5, loop depth 0, count 564183353 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [53.5% (guessed)]  count:564183352 (estimated locally) (FALLTHRU)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 85
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 85
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 92 93
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 85
+;; live  gen 	 0 [ax] 5 [di] 92 93
+;; live  kill	
+(note 27 26 28 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 5 (set (reg:DI 5 di)
+        (reg/f:DI 85 [ _7 ])) "../ncurses/./base/lib_slkclear.c":62:6 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 85 [ _7 ])
+        (nil)))
+(call_insn 29 28 30 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("werase") [flags 0x41]  <function_decl 0x7f64663fb700 werase>) [0 werase S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkclear.c":62:6 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (expr_list:REG_CALL_DECL (symbol_ref:DI ("werase") [flags 0x41]  <function_decl 0x7f64663fb700 werase>)
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 30 29 31 5 (set (reg/f:DI 92 [ SP.0_1->_slk ])
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ SP.0_1 ])
+                (const_int 800 [0x320])) [3 SP.0_1->_slk+0 S8 A64])) "../ncurses/./base/lib_slkclear.c":63:11 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 82 [ SP.0_1 ])
+        (nil)))
+(insn 31 30 32 5 (set (reg/f:DI 93 [ _9->win ])
+        (mem/f:DI (plus:DI (reg/f:DI 92 [ SP.0_1->_slk ])
+                (const_int 8 [0x8])) [2 _9->win+0 S8 A64])) "../ncurses/./base/lib_slkclear.c":63:11 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 92 [ SP.0_1->_slk ])
+        (nil)))
+(insn 32 31 33 5 (set (reg:DI 5 di)
+        (reg/f:DI 93 [ _9->win ])) "../ncurses/./base/lib_slkclear.c":63:11 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 93 [ _9->win ])
+        (nil)))
+(call_insn/j 33 32 45 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wrefresh") [flags 0x41]  <function_decl 0x7f64663fea00 wrefresh>) [0 wrefresh S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkclear.c":63:11 828 {*sibcall_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("wrefresh") [flags 0x41]  <function_decl 0x7f64663fea00 wrefresh>)
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       EXIT [always]  count:564183353 (estimated locally) (ABNORMAL,SIBCALL)
+;; lr  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+;; basic block 6, loop depth 0, count 9341552 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [0.9% (guessed)]  count:9341552 (estimated locally)
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 89
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 89
+;; live  kill	
+(code_label 45 33 44 6 13 (nil) [1 uses])
+(note 44 45 5 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 5 44 49 6 (set (reg/v:SI 89 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkclear.c":49:9 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:9341552 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 89
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 89
+
+;; basic block 7, loop depth 0, count 9260281 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       3 [0.9% (guessed)]  count:9260281 (estimated locally)
+;; bb 7 artificial_defs: { }
+;; bb 7 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 89
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 89
+;; live  kill	
+(code_label 49 5 48 7 14 (nil) [1 uses])
+(note 48 49 3 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 3 48 53 7 (set (reg/v:SI 89 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkclear.c":49:9 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:9260281 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 89
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 89
+
+;; basic block 8, loop depth 0, count 490956640 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [46.5% (guessed)]  count:490956640 (estimated locally)
+;; bb 8 artificial_defs: { }
+;; bb 8 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 89
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 89
+;; live  kill	
+(code_label 53 3 52 8 15 (nil) [1 uses])
+(note 52 53 4 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 4 52 40 8 (set (reg/v:SI 89 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkclear.c":60:9 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:490956640 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 89
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 89
+
+;; basic block 9, loop depth 0, count 509558471 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       8 [always]  count:490956640 (estimated locally) (FALLTHRU)
+;;              6 [always]  count:9341552 (estimated locally) (FALLTHRU)
+;;              7 [always]  count:9260281 (estimated locally) (FALLTHRU)
+;; bb 9 artificial_defs: { }
+;; bb 9 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 89
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 89
+;; lr  def 	 0 [ax]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 89
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 40 4 43 9 11 (nil) [0 uses])
+(note 43 40 41 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 41 43 42 9 (set (reg/i:SI 0 ax)
+        (reg/v:SI 89 [ <retval> ])) "../ncurses/./base/lib_slkclear.c":74:1 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 89 [ <retval> ])
+        (nil)))
+(insn 42 41 0 9 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_slkclear.c":74:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:509558471 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+

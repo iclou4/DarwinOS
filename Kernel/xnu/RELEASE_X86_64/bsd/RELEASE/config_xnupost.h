@@ -1,0 +1,1 @@
+#define NCONFIG_XNUPOST 0

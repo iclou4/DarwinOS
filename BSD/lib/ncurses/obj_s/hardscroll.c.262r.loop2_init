@@ -1,0 +1,3298 @@
+
+;; Function _nc_scroll_optimize_sp (_nc_scroll_optimize_sp, funcdef_no=91, decl_uid=9021, cgraph_uid=92, symbol_order=92)
+
+0 registers.
+
+34 basic blocks, 55 edges.
+;; basic block 0, loop depth 0, count 18401024 (estimated locally), maybe hot
+;;  prev block (nil), next block 2, flags: (RTL, MODIFIED)
+;;  pred:      
+;; bb 0 artificial_defs: { d-1(0){ }d-1(1){ }d-1(2){ }d-1(4){ }d-1(5){ }d-1(6){ }d-1(7){ }d-1(16){ }d-1(19){ }d-1(20){ }d-1(21){ }d-1(22){ }d-1(23){ }d-1(24){ }d-1(25){ }d-1(26){ }d-1(27){ }d-1(36){ }d-1(37){ }}
+;; bb 0 artificial_uses: { }
+;; lr  in  	
+;; lr  use 	
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;; live  in  	
+;; live  gen 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;; live  kill	
+
+;; lr  out 	 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+;;  succ:       2 [always]  count:18401024 (estimated locally) (FALLTHRU)
+
+;; basic block 2, loop depth 0, count 18401024 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:18401024 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 17 [flags] 82 139 140 141
+;; live  in  	 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 17 [flags] 82 139 140 141
+;; live  kill	
+
+(note 7 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 141 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./tty/hardscroll.c":188:1 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 5 di [ sp ])
+        (nil)))
+(note 3 2 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 3 10 2 (set (reg/f:DI 82 [ _1 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 1352 [0x548])) [1 sp_62(D)->_oldnum_list+0 S8 A64])) "../ncurses/./tty/hardscroll.c":199:10 74 {*movdi_internal}
+     (nil))
+(insn 10 9 11 2 (set (reg:SI 139 [ pretmp_157 ])
+        (mem:SI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 1360 [0x550])) [3 sp_62(D)->_oldnum_size+0 S4 A64])) "../ncurses/./tty/hardscroll.c":200:6 75 {*movsi_internal}
+     (nil))
+(insn 11 10 12 2 (set (reg:SI 140 [ pretmp_158 ])
+        (mem:SI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 116 [0x74])) [3 sp_62(D)->_lines+0 S4 A32])) "../ncurses/./tty/hardscroll.c":200:29 75 {*movsi_internal}
+     (nil))
+(insn 12 11 13 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":199:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 13 12 14 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 17)
+            (pc))) "../ncurses/./tty/hardscroll.c":199:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 187153204 (nil)))
+ -> 17)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 139 140 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 139 140 141
+
+;;  succ:       4 [17.4% (guessed)]  count:3207298 (estimated locally)
+;;              3 [82.6% (guessed)]  count:15193726 (estimated locally) (FALLTHRU)
+
+;; basic block 3, loop depth 0, count 15193726 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [82.6% (guessed)]  count:15193726 (estimated locally) (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 139 140 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 139 140
+;; lr  def 	 17 [flags]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 139 140 141
+;; live  gen 	 17 [flags]
+;; live  kill	
+
+(note 14 13 15 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 3 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 139 [ pretmp_157 ])
+            (reg:SI 140 [ pretmp_158 ]))) "../ncurses/./tty/hardscroll.c":200:2 11 {*cmpsi_1}
+     (nil))
+(jump_insn 16 15 17 3 (set (pc)
+        (if_then_else (ge (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 31)
+            (pc))) "../ncurses/./tty/hardscroll.c":200:2 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 536870916 (nil)))
+ -> 31)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 139 140 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 139 140 141
+
+;;  succ:       4 [50.0% (guessed)]  count:7596863 (estimated locally) (FALLTHRU)
+;;              6 [50.0% (guessed)]  count:7596863 (estimated locally)
+
+;; basic block 4, loop depth 0, count 10804161 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       3 [50.0% (guessed)]  count:7596863 (estimated locally) (FALLTHRU)
+;;              2 [17.4% (guessed)]  count:3207298 (estimated locally)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 139 140 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 139 140
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 109 110 142 143
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 139 140 141
+;; live  gen 	 0 [ax] 4 [si] 5 [di] 17 [flags] 109 110 142 143
+;; live  kill	 17 [flags]
+
+(code_label 17 16 18 4 2 (nil) [1 uses])
+(note 18 17 19 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 4 (parallel [
+            (set (reg/v:SI 109 [ need_lines ])
+                (smax:SI (reg:SI 139 [ pretmp_157 ])
+                    (reg:SI 140 [ pretmp_158 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":201:6 1133 {*smaxsi3_1}
+     (expr_list:REG_DEAD (reg:SI 140 [ pretmp_158 ])
+        (expr_list:REG_DEAD (reg:SI 139 [ pretmp_157 ])
+            (expr_list:REG_UNUSED (reg:CC 17 flags)
+                (nil)))))
+(insn 20 19 21 4 (set (reg:DI 142 [ need_lines ])
+        (sign_extend:DI (reg/v:SI 109 [ need_lines ]))) "../ncurses/./tty/hardscroll.c":204:21 147 {*extendsidi2_rex64}
+     (nil))
+(insn 21 20 22 4 (parallel [
+            (set (reg:DI 143)
+                (ashift:DI (reg:DI 142 [ need_lines ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":204:21 656 {*ashldi3_1}
+     (expr_list:REG_DEAD (reg:DI 142 [ need_lines ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 22 21 23 4 (set (reg:DI 4 si)
+        (reg:DI 143)) "../ncurses/./tty/hardscroll.c":204:21 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 143)
+        (nil)))
+(insn 23 22 24 4 (set (reg:DI 5 di)
+        (reg/f:DI 82 [ _1 ])) "../ncurses/./tty/hardscroll.c":204:21 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 82 [ _1 ])
+        (nil)))
+(call_insn 24 23 25 4 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_doalloc") [flags 0x41]  <function_decl 0x7f73457e0b00 _nc_doalloc>) [0 _nc_doalloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":204:21 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:DI 4 si)
+            (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_doalloc") [flags 0x41]  <function_decl 0x7f73457e0b00 _nc_doalloc>)
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 25 24 26 4 (set (reg/v/f:DI 110 [ new_oldnums ])
+        (reg:DI 0 ax)) "../ncurses/./tty/hardscroll.c":204:21 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 0 ax)
+        (nil)))
+(insn 26 25 27 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 110 [ new_oldnums ])
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":207:5 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 27 26 28 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 223)
+            (pc))) "../ncurses/./tty/hardscroll.c":207:5 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 194239900 (nil)))
+ -> 223)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 109 110 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 109 110 141
+
+;;  succ:       33 [18.1% (guessed)]  count:1954473 (estimated locally)
+;;              5 [81.9% (guessed)]  count:8849688 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 8849688 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [81.9% (guessed)]  count:8849688 (estimated locally) (FALLTHRU)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 109 110 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 109 110 141
+;; lr  def 	
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 109 110 141
+;; live  gen 	
+;; live  kill	
+
+(note 28 27 29 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 5 (set (mem/f:DI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 1352 [0x548])) [1 sp_62(D)->_oldnum_list+0 S8 A64])
+        (reg/v/f:DI 110 [ new_oldnums ])) "../ncurses/./tty/hardscroll.c":211:19 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 110 [ new_oldnums ])
+        (nil)))
+(insn 30 29 31 5 (set (mem:SI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 1360 [0x550])) [3 sp_62(D)->_oldnum_size+0 S4 A64])
+        (reg/v:SI 109 [ need_lines ])) "../ncurses/./tty/hardscroll.c":212:23 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 109 [ need_lines ])
+        (nil)))
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 141
+
+;;  succ:       6 [always]  count:8849688 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 16446551 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       3 [50.0% (guessed)]  count:7596863 (estimated locally)
+;;              5 [always]  count:8849688 (estimated locally) (FALLTHRU)
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 141
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 96
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 141
+;; live  gen 	 5 [di] 17 [flags] 96
+;; live  kill	
+
+(code_label 31 30 32 6 3 (nil) [1 uses])
+(note 32 31 33 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 33 32 34 6 (set (reg:DI 5 di)
+        (reg/v/f:DI 141 [ sp ])) "../ncurses/./tty/hardscroll.c":215:5 74 {*movdi_internal}
+     (nil))
+(call_insn 34 33 35 6 (call (mem:QI (symbol_ref:DI ("_nc_hash_map_sp") [flags 0x41]  <function_decl 0x7f7345828800 _nc_hash_map_sp>) [0 _nc_hash_map_sp S1 A8])
+        (const_int 0 [0])) "../ncurses/./tty/hardscroll.c":215:5 813 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_hash_map_sp") [flags 0x41]  <function_decl 0x7f7345828800 _nc_hash_map_sp>)
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 35 34 36 6 (set (reg:SI 96 [ _32 ])
+        (mem:SI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 116 [0x74])) [3 sp_62(D)->_lines+0 S4 A32])) "../ncurses/./tty/hardscroll.c":216:32 75 {*movsi_internal}
+     (nil))
+(insn 36 35 37 6 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 141 [ sp ])
+                    (const_int 1344 [0x540])) [3 sp_62(D)->hashtab_len+0 S4 A64])
+            (reg:SI 96 [ _32 ]))) "../ncurses/./tty/hardscroll.c":216:8 11 {*cmpsi_1}
+     (nil))
+(jump_insn 37 36 38 6 (set (pc)
+        (if_then_else (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 223)
+            (pc))) "../ncurses/./tty/hardscroll.c":216:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 365072228 (nil)))
+ -> 223)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 141
+
+;;  succ:       33 [34.0% (guessed)]  count:5591827 (estimated locally)
+;;              7 [66.0% (guessed)]  count:10854724 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 10854724 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       6 [66.0% (guessed)]  count:10854724 (estimated locally) (FALLTHRU)
+;; bb 7 artificial_defs: { }
+;; bb 7 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96
+;; lr  def 	 17 [flags] 122
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 141
+;; live  gen 	 17 [flags] 122
+;; live  kill	
+
+(note 38 37 6 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 6 38 41 7 (set (reg/v:SI 122 [ i ])
+        (const_int 0 [0])) "../ncurses/./tty/hardscroll.c":231:12 75 {*movsi_internal}
+     (nil))
+(insn 41 6 42 7 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 96 [ _32 ])
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":231:19 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 42 41 53 7 (set (pc)
+        (if_then_else (gt (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 120)
+            (pc))) "../ncurses/./tty/hardscroll.c":231:19 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCNO 17 flags)
+        (int_list:REG_BR_PROB 1014686028 (nil)))
+ -> 120)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 122 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 122 141
+
+;;  succ:       21 [94.5% (guessed)]  count:10257714 (estimated locally)
+;;              22 [5.5% (guessed)]  count:597010 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 2, count 977852860 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       10 [93.0% (guessed)]  count:488926426 (estimated locally)
+;;              9 [48.2% (guessed)]  count:488926436 (estimated locally)
+;; bb 8 artificial_defs: { }
+;; bb 8 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 116 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 116
+;; lr  def 	 17 [flags] 111 116
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 116 141
+;; live  gen 	 17 [flags] 111 116
+;; live  kill	 17 [flags]
+
+(code_label 53 42 46 8 7 (nil) [2 uses])
+(note 46 53 47 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 47 46 48 8 (parallel [
+            (set (reg/v:SI 111 [ i ])
+                (plus:SI (reg/v:SI 111 [ i ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":234:7 209 {*addsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 48 47 49 8 (parallel [
+            (set (reg:DI 116 [ ivtmp.40 ])
+                (plus:DI (reg:DI 116 [ ivtmp.40 ])
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":233:9 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 49 48 50 8 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 111 [ i ])
+            (reg:SI 96 [ _32 ]))) "../ncurses/./tty/hardscroll.c":233:9 11 {*cmpsi_1}
+     (nil))
+(jump_insn 50 49 126 8 (set (pc)
+        (if_then_else (ge (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 129)
+            (pc))) "../ncurses/./tty/hardscroll.c":233:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 64846852 (nil)))
+ -> 129)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 116 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 116 141
+
+;;  succ:       9 [94.0% (guessed)]  count:918797066 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              22 [6.0% (guessed)]  count:59055794 (estimated locally) (LOOP_EXIT)
+
+;; basic block 9, loop depth 2, count 1014685960 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       8 [94.0% (guessed)]  count:918797066 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              21 [always]  count:95888896 (estimated locally) (FALLTHRU)
+;; bb 9 artificial_defs: { }
+;; bb 9 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 116 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 116
+;; lr  def 	 17 [flags] 87 145
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 116 141
+;; live  gen 	 17 [flags] 87 145
+;; live  kill	
+
+(code_label 126 50 51 9 13 (nil) [0 uses])
+(note 51 126 52 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 52 51 54 9 (set (reg:SI 87 [ _14 ])
+        (mem:SI (reg:DI 116 [ ivtmp.40 ]) [3 MEM[(int *)_56]+0 S4 A32])) "../ncurses/./tty/hardscroll.c":233:13 75 {*movsi_internal}
+     (nil))
+(insn 54 52 55 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 87 [ _14 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./tty/hardscroll.c":233:9 11 {*cmpsi_1}
+     (nil))
+(insn 55 54 56 9 (set (reg:QI 145)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":233:9 802 {*setcc_qi}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (nil)))
+(insn 56 55 57 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 145)
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":233:45 5 {*cmpqi_ccno_1}
+     (expr_list:REG_DEAD (reg:QI 145)
+        (nil)))
+(jump_insn 57 56 230 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 53)
+            (pc))) "../ncurses/./tty/hardscroll.c":233:45 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 517382508 (nil)))
+ -> 53)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 87 96 111 116 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 87 96 111 116 141
+
+;;  succ:       8 [48.2% (guessed)]  count:488926436 (estimated locally)
+;;              10 [51.8% (guessed)]  count:525759524 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 2, count 525759524 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       9 [51.8% (guessed)]  count:525759524 (estimated locally) (FALLTHRU)
+;; bb 10 artificial_defs: { }
+;; bb 10 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 87 96 111 116 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 87 111
+;; lr  def 	 17 [flags] 147
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 87 96 111 116 141
+;; live  gen 	 17 [flags] 147
+;; live  kill	
+
+(note 230 57 58 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 58 230 59 10 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 87 [ _14 ])
+            (reg/v:SI 111 [ i ]))) "../ncurses/./tty/hardscroll.c":233:45 11 {*cmpsi_1}
+     (expr_list:REG_DEAD (reg:SI 87 [ _14 ])
+        (nil)))
+(insn 59 58 60 10 (set (reg:QI 147)
+        (le:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":233:45 802 {*setcc_qi}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (nil)))
+(insn 60 59 61 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 147)
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":233:45 5 {*cmpqi_ccno_1}
+     (expr_list:REG_DEAD (reg:QI 147)
+        (nil)))
+(jump_insn 61 60 62 10 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 53)
+            (pc))) "../ncurses/./tty/hardscroll.c":233:45 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 998518772 (nil)))
+ -> 53)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 116 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 116 141
+
+;;  succ:       8 [93.0% (guessed)]  count:488926426 (estimated locally)
+;;              11 [7.0% (guessed)]  count:36833098 (estimated locally) (FALLTHRU,LOOP_EXIT)
+
+;; basic block 11, loop depth 1, count 90615007 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 36833098 (estimated locally), should be 90615007 (estimated locally)
+;;  prev block 10, next block 12, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       10 [7.0% (guessed)]  count:36833098 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;; bb 11 artificial_defs: { }
+;; bb 11 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111
+;; lr  def 	 17 [flags]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 141
+;; live  gen 	 17 [flags]
+;; live  kill	
+
+(note 62 61 63 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 63 62 64 11 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 96 [ _32 ])
+            (reg/v:SI 111 [ i ]))) "../ncurses/./tty/hardscroll.c":235:5 11 {*cmpsi_1}
+     (nil))
+(jump_insn 64 63 65 11 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 129)
+            (pc))) "../ncurses/./tty/hardscroll.c":235:5 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 4 (nil)))
+ -> 129)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 141
+
+;;  succ:       22 [never (guessed)]  count:0 (estimated locally) (LOOP_EXIT)
+;;              12 [always (guessed)]  count:90615007 (estimated locally) (FALLTHRU)
+
+;; basic block 12, loop depth 1, count 90615007 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       11 [always (guessed)]  count:90615007 (estimated locally) (FALLTHRU)
+;; bb 12 artificial_defs: { }
+;; bb 12 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111
+;; lr  def 	 17 [flags] 112 121 122 138 148
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 141
+;; live  gen 	 17 [flags] 112 121 122 138 148
+;; live  kill	 17 [flags]
+
+(note 65 64 66 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 66 65 67 12 (set (reg:DI 148 [ i ])
+        (sign_extend:DI (reg/v:SI 111 [ i ]))) "../ncurses/./tty/hardscroll.c":238:10 147 {*extendsidi2_rex64}
+     (nil))
+(insn 67 66 68 12 (set (reg:SI 138 [ _151 ])
+        (mem:SI (plus:DI (mult:DI (reg:DI 148 [ i ])
+                    (const_int 4 [0x4]))
+                (reg/f:DI 86 [ _10 ])) [3 *_22+0 S4 A32])) "../ncurses/./tty/hardscroll.c":238:10 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:DI 148 [ i ])
+        (nil)))
+(insn 68 67 69 12 (parallel [
+            (set (reg/v:SI 112 [ shift ])
+                (minus:SI (reg:SI 138 [ _151 ])
+                    (reg/v:SI 111 [ i ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":238:8 282 {*subsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 69 68 86 12 (parallel [
+            (set (reg/v:SI 122 [ i ])
+                (plus:SI (reg/v:SI 111 [ i ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":241:3 209 {*addsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 86 69 70 12 (set (reg:DI 121 [ ivtmp.30 ])
+        (sign_extend:DI (reg/v:SI 122 [ i ]))) 147 {*extendsidi2_rex64}
+     (expr_list:REG_DEAD (reg/v:SI 122 [ i ])
+        (nil)))
+(insn 70 86 71 12 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 122 [ i ])
+            (reg:SI 96 [ _32 ]))) "../ncurses/./tty/hardscroll.c":244:9 11 {*cmpsi_1}
+     (nil))
+(jump_insn 71 70 101 12 (set (pc)
+        (if_then_else (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 87)
+            (pc))) "../ncurses/./tty/hardscroll.c":244:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 1034442876 (nil)))
+ -> 87)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 112 121 122 138 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 112 121 122 138 141
+
+;;  succ:       15 [96.3% (guessed)]  count:87298498 (estimated locally)
+;;              19 [3.7% (guessed)]  count:3316509 (estimated locally) (FALLTHRU)
+
+;; basic block 13, loop depth 2, count 765613913 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       17 [96.3% (guessed)]  count:765613913 (estimated locally)
+;; bb 13 artificial_defs: { }
+;; bb 13 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 112 121 122 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 121 122
+;; lr  def 	 17 [flags] 118 121
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 112 121 122 141
+;; live  gen 	 17 [flags] 118 121
+;; live  kill	 17 [flags]
+
+(code_label 101 71 75 13 12 (nil) [1 uses])
+(note 75 101 76 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 76 75 77 13 (parallel [
+            (set (reg:SI 118 [ _88 ])
+                (plus:SI (reg/v:SI 122 [ i ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) 209 {*addsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 77 76 78 13 (parallel [
+            (set (reg:DI 121 [ ivtmp.30 ])
+                (plus:DI (reg:DI 121 [ ivtmp.30 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":244:9 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 78 77 79 13 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 96 [ _32 ])
+            (subreg:SI (reg:DI 121 [ ivtmp.30 ]) 0))) "../ncurses/./tty/hardscroll.c":244:9 11 {*cmpsi_1}
+     (nil))
+(jump_insn 79 78 80 13 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 87)
+            (pc))) "../ncurses/./tty/hardscroll.c":244:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 1034442876 (nil)))
+ -> 87)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 112 118 121 122 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 112 118 121 122 141
+
+;;  succ:       15 [96.3% (guessed)]  count:737592443 (estimated locally) (DFS_BACK)
+;;              14 [3.7% (guessed)]  count:28021470 (estimated locally) (FALLTHRU,LOOP_EXIT)
+
+;; basic block 14, loop depth 1, count 28021470 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       13 [3.7% (guessed)]  count:28021470 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;; bb 14 artificial_defs: { }
+;; bb 14 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 118 122 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 112 118 122
+;; lr  def 	 17 [flags] 122 138
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 118 122 141
+;; live  gen 	 122 138
+;; live  kill	 17 [flags]
+
+(note 80 79 81 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 81 80 5 14 (parallel [
+            (set (reg:SI 138 [ _151 ])
+                (plus:SI (reg/v:SI 112 [ shift ])
+                    (reg/v:SI 122 [ i ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":246:6 209 {*addsi_1}
+     (expr_list:REG_DEAD (reg/v:SI 122 [ i ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 5 81 87 14 (set (reg/v:SI 122 [ i ])
+        (reg:SI 118 [ _88 ])) "../ncurses/./tty/hardscroll.c":246:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 118 [ _88 ])
+        (nil)))
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 138 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 138 141
+
+;;  succ:       19 [always]  count:28021470 (estimated locally) (FALLTHRU)
+
+;; basic block 15, loop depth 2, count 824890940 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       13 [96.3% (guessed)]  count:737592443 (estimated locally) (DFS_BACK)
+;;              12 [96.3% (guessed)]  count:87298498 (estimated locally)
+;; bb 15 artificial_defs: { }
+;; bb 15 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 112 121 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 121
+;; lr  def 	 17 [flags] 93 122
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 112 121 141
+;; live  gen 	 17 [flags] 93 122
+;; live  kill	
+
+(code_label 87 5 88 15 10 (nil) [2 uses])
+(note 88 87 90 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 90 88 91 15 (set (reg/v:SI 122 [ i ])
+        (subreg:SI (reg:DI 121 [ ivtmp.30 ]) 0)) 75 {*movsi_internal}
+     (nil))
+(insn 91 90 92 15 (set (reg:SI 93 [ _28 ])
+        (mem:SI (plus:DI (mult:DI (reg:DI 121 [ ivtmp.30 ])
+                    (const_int 4 [0x4]))
+                (reg/f:DI 86 [ _10 ])) [3 MEM[(int *)_10 + ivtmp.30_97 * 4]+0 S4 A32])) "../ncurses/./tty/hardscroll.c":243:12 75 {*movsi_internal}
+     (nil))
+(insn 92 91 93 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 93 [ _28 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./tty/hardscroll.c":243:9 11 {*cmpsi_1}
+     (nil))
+(jump_insn 93 92 94 15 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 99)
+            (pc))) "../ncurses/./tty/hardscroll.c":243:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 1034442876 (nil)))
+ -> 99)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 93 96 111 112 121 122 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 93 96 111 112 121 122 141
+
+;;  succ:       17 [96.3% (guessed)]  count:794699931 (estimated locally)
+;;              16 [3.7% (guessed)]  count:30191009 (estimated locally) (FALLTHRU,LOOP_EXIT)
+
+;; basic block 16, loop depth 1, count 30191009 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       15 [3.7% (guessed)]  count:30191009 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;; bb 16 artificial_defs: { }
+;; bb 16 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 112 122
+;; lr  def 	 17 [flags] 138 149
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 141
+;; live  gen 	 138 149
+;; live  kill	 17 [flags]
+
+(note 94 93 95 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 95 94 96 16 (parallel [
+            (set (reg:SI 149)
+                (plus:SI (reg/v:SI 122 [ i ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":246:10 209 {*addsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 96 95 99 16 (parallel [
+            (set (reg:SI 138 [ _151 ])
+                (plus:SI (reg:SI 149)
+                    (reg/v:SI 112 [ shift ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":246:6 209 {*addsi_1}
+     (expr_list:REG_DEAD (reg:SI 149)
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 138 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 138 141
+
+;;  succ:       19 [always]  count:30191009 (estimated locally) (FALLTHRU)
+
+;; basic block 17, loop depth 2, count 794699931 (estimated locally), maybe hot
+;;  prev block 16, next block 18, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       15 [96.3% (guessed)]  count:794699931 (estimated locally)
+;; bb 17 artificial_defs: { }
+;; bb 17 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 93 96 111 112 121 122 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 112 121
+;; lr  def 	 17 [flags] 150
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 93 96 111 112 121 122 141
+;; live  gen 	 17 [flags] 150
+;; live  kill	 17 [flags]
+
+(code_label 99 96 100 17 11 (nil) [1 uses])
+(note 100 99 102 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 102 100 103 17 (parallel [
+            (set (reg:SI 150)
+                (minus:SI (reg:SI 93 [ _28 ])
+                    (subreg:SI (reg:DI 121 [ ivtmp.30 ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":244:31 282 {*subsi_1}
+     (expr_list:REG_DEAD (reg:SI 93 [ _28 ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 103 102 104 17 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 150)
+            (reg/v:SI 112 [ shift ]))) "../ncurses/./tty/hardscroll.c":244:9 11 {*cmpsi_1}
+     (expr_list:REG_DEAD (reg:SI 150)
+        (nil)))
+(jump_insn 104 103 105 17 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 101)
+            (pc))) "../ncurses/./tty/hardscroll.c":244:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 1034442876 (nil)))
+ -> 101)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 112 121 122 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 112 121 122 141
+
+;;  succ:       13 [96.3% (guessed)]  count:765613913 (estimated locally)
+;;              18 [3.7% (guessed)]  count:29086018 (estimated locally) (FALLTHRU,LOOP_EXIT)
+
+;; basic block 18, loop depth 1, count 29086018 (estimated locally), maybe hot
+;;  prev block 17, next block 19, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       17 [3.7% (guessed)]  count:29086018 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;; bb 18 artificial_defs: { }
+;; bb 18 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 112 122
+;; lr  def 	 17 [flags] 138 151
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 141
+;; live  gen 	 138 151
+;; live  kill	 17 [flags]
+
+(note 105 104 106 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 106 105 107 18 (parallel [
+            (set (reg:SI 151)
+                (plus:SI (reg/v:SI 122 [ i ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":246:10 209 {*addsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 107 106 108 18 (parallel [
+            (set (reg:SI 138 [ _151 ])
+                (plus:SI (reg:SI 151)
+                    (reg/v:SI 112 [ shift ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":246:6 209 {*addsi_1}
+     (expr_list:REG_DEAD (reg:SI 151)
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 138 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 138 141
+
+;;  succ:       19 [always]  count:29086018 (estimated locally) (FALLTHRU)
+
+;; basic block 19, loop depth 1, count 90615007 (estimated locally), maybe hot
+;;  prev block 18, next block 20, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       14 [always]  count:28021470 (estimated locally) (FALLTHRU)
+;;              16 [always]  count:30191009 (estimated locally) (FALLTHRU)
+;;              18 [always]  count:29086018 (estimated locally) (FALLTHRU)
+;;              12 [3.7% (guessed)]  count:3316509 (estimated locally) (FALLTHRU)
+;; bb 19 artificial_defs: { }
+;; bb 19 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 138 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 138 141
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 96 152
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 138 141
+;; live  gen 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 17 [flags] 36 [r8] 96 152
+;; live  kill	 17 [flags]
+
+(code_label 108 107 109 19 9 (nil) [0 uses])
+(note 109 108 110 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 110 109 111 19 (parallel [
+            (set (reg:SI 152)
+                (plus:SI (reg:SI 96 [ _32 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":250:6 209 {*addsi_1}
+     (expr_list:REG_DEAD (reg:SI 96 [ _32 ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 111 110 112 19 (set (reg:SI 36 r8)
+        (reg:SI 152)) "../ncurses/./tty/hardscroll.c":250:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 152)
+        (nil)))
+(insn 112 111 113 19 (set (reg:SI 2 cx)
+        (reg:SI 138 [ _151 ])) "../ncurses/./tty/hardscroll.c":250:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 138 [ _151 ])
+        (nil)))
+(insn 113 112 114 19 (set (reg:SI 1 dx)
+        (reg/v:SI 111 [ i ])) "../ncurses/./tty/hardscroll.c":250:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 111 [ i ])
+        (nil)))
+(insn 114 113 115 19 (set (reg:SI 4 si)
+        (reg/v:SI 112 [ shift ])) "../ncurses/./tty/hardscroll.c":250:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 112 [ shift ])
+        (nil)))
+(insn 115 114 116 19 (set (reg:DI 5 di)
+        (reg/v/f:DI 141 [ sp ])) "../ncurses/./tty/hardscroll.c":250:6 74 {*movdi_internal}
+     (nil))
+(call_insn 116 115 117 19 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_scrolln_sp") [flags 0x41]  <function_decl 0x7f7345822000 _nc_scrolln_sp>) [0 _nc_scrolln_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":250:6 824 {*call_value}
+     (expr_list:REG_DEAD (reg:SI 36 r8)
+        (expr_list:REG_DEAD (reg:DI 5 di)
+            (expr_list:REG_DEAD (reg:SI 4 si)
+                (expr_list:REG_DEAD (reg:SI 2 cx)
+                    (expr_list:REG_DEAD (reg:SI 1 dx)
+                        (expr_list:REG_UNUSED (reg:SI 0 ax)
+                            (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_scrolln_sp") [flags 0x41]  <function_decl 0x7f7345822000 _nc_scrolln_sp>)
+                                (nil))))))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (expr_list:SI (use (reg:SI 36 r8))
+                        (nil)))))))
+(insn 117 116 118 19 (set (reg:SI 96 [ _32 ])
+        (mem:SI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 116 [0x74])) [3 sp_62(D)->_lines+0 S4 A32])) "../ncurses/./tty/hardscroll.c":231:21 75 {*movsi_internal}
+     (nil))
+(insn 118 117 119 19 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 96 [ _32 ])
+            (reg/v:SI 122 [ i ]))) "../ncurses/./tty/hardscroll.c":231:19 11 {*cmpsi_1}
+     (nil))
+(jump_insn 119 118 225 19 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 129)
+            (pc))) "../ncurses/./tty/hardscroll.c":231:19 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 59055804 (nil)))
+ -> 129)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 122 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 122 141
+
+;;  succ:       20 [94.5% (guessed)]  count:85631182 (estimated locally) (FALLTHRU)
+;;              22 [5.5% (guessed)]  count:4983825 (estimated locally) (LOOP_EXIT)
+
+;; basic block 20, loop depth 1, count 85631182 (estimated locally), maybe hot
+;;  prev block 19, next block 21, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       19 [94.5% (guessed)]  count:85631182 (estimated locally) (FALLTHRU)
+;; bb 20 artificial_defs: { }
+;; bb 20 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 122 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 122 141
+;; live  gen 	
+;; live  kill	
+
+(note 225 119 120 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 122 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 122 141
+
+;;  succ:       21 [always]  count:85631182 (estimated locally) (FALLTHRU,DFS_BACK)
+
+;; basic block 21, loop depth 1, count 95888896 (estimated locally), maybe hot
+;;  prev block 20, next block 22, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       7 [94.5% (guessed)]  count:10257714 (estimated locally)
+;;              20 [always]  count:85631182 (estimated locally) (FALLTHRU,DFS_BACK)
+;; bb 21 artificial_defs: { }
+;; bb 21 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 122 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 122 141
+;; lr  def 	 17 [flags] 86 111 116 153 154
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 122 141
+;; live  gen 	 86 111 116 153 154
+;; live  kill	 17 [flags]
+
+(code_label 120 225 121 21 5 (nil) [1 uses])
+(note 121 120 122 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 122 121 123 21 (set (reg/f:DI 86 [ _10 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 1352 [0x548])) [1 sp_62(D)->_oldnum_list+0 S8 A64])) "../ncurses/./tty/hardscroll.c":233:13 74 {*movdi_internal}
+     (nil))
+(insn 123 122 124 21 (set (reg:DI 153 [ i ])
+        (sign_extend:DI (reg/v:SI 122 [ i ]))) 147 {*extendsidi2_rex64}
+     (nil))
+(insn 124 123 125 21 (parallel [
+            (set (reg:DI 154)
+                (ashift:DI (reg:DI 153 [ i ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) 656 {*ashldi3_1}
+     (expr_list:REG_DEAD (reg:DI 153 [ i ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 125 124 4 21 (parallel [
+            (set (reg:DI 116 [ ivtmp.40 ])
+                (plus:DI (reg/f:DI 86 [ _10 ])
+                    (reg:DI 154)))
+            (clobber (reg:CC 17 flags))
+        ]) 210 {*adddi_1}
+     (expr_list:REG_DEAD (reg:DI 154)
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 4 125 129 21 (set (reg/v:SI 111 [ i ])
+        (reg/v:SI 122 [ i ])) "../ncurses/./tty/hardscroll.c":233:13 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 122 [ i ])
+        (nil)))
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 116 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 116 141
+
+;;  succ:       9 [always]  count:95888896 (estimated locally) (FALLTHRU)
+
+;; basic block 22, loop depth 0, count 10854724 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 64636629 (estimated locally), should be 10854724 (estimated locally)
+;;  prev block 21, next block 23, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       11 [never (guessed)]  count:0 (estimated locally) (LOOP_EXIT)
+;;              19 [5.5% (guessed)]  count:4983825 (estimated locally) (LOOP_EXIT)
+;;              8 [6.0% (guessed)]  count:59055794 (estimated locally) (LOOP_EXIT)
+;;              7 [5.5% (guessed)]  count:597010 (estimated locally) (FALLTHRU)
+;; bb 22 artificial_defs: { }
+;; bb 22 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96
+;; lr  def 	 17 [flags] 128
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 141
+;; live  gen 	 17 [flags] 128
+;; live  kill	 17 [flags]
+
+(code_label 129 4 130 22 6 (nil) [3 uses])
+(note 130 129 131 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 131 130 134 22 (parallel [
+            (set (reg/v:SI 128 [ i ])
+                (plus:SI (reg:SI 96 [ _32 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":262:12 209 {*addsi_1}
+     (expr_list:REG_DEAD (reg:SI 96 [ _32 ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 134 131 135 22 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 128 [ i ])
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":262:43 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 135 134 152 22 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 188)
+            (pc))) "../ncurses/./tty/hardscroll.c":262:43 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGOC 17 flags)
+        (int_list:REG_BR_PROB 1014686028 (nil)))
+ -> 188)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 128 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 128 141
+
+;;  succ:       29 [94.5% (guessed)]  count:10257714 (estimated locally)
+;;              33 [5.5% (guessed)]  count:597010 (estimated locally) (FALLTHRU)
+
+;; basic block 23, loop depth 2, count 977852923 (estimated locally), maybe hot
+;;  prev block 22, next block 24, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       24 [96.4% (guessed)]  count:977852925 (estimated locally)
+;; bb 23 artificial_defs: { }
+;; bb 23 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 127 128 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 127 128
+;; lr  def 	 17 [flags] 127
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 127 128 141
+;; live  gen 	 17 [flags] 127
+;; live  kill	 17 [flags]
+
+(code_label 152 135 139 23 15 (nil) [1 uses])
+(note 139 152 140 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 140 139 141 23 (parallel [
+            (set (reg:DI 127 [ ivtmp.25 ])
+                (plus:DI (reg:DI 127 [ ivtmp.25 ])
+                    (const_int -4 [0xfffffffffffffffc])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":264:9 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 141 140 142 23 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 128 [ i ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./tty/hardscroll.c":264:9 11 {*cmpsi_1}
+     (nil))
+(jump_insn 142 141 194 23 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 223)
+            (pc))) "../ncurses/./tty/hardscroll.c":264:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 64846852 (nil)))
+ -> 223)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 127 128 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 127 128 141
+
+;;  succ:       24 [94.0% (guessed)]  count:918797125 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              33 [6.0% (guessed)]  count:59055798 (estimated locally) (LOOP_EXIT)
+
+;; basic block 24, loop depth 2, count 1014686024 (estimated locally), maybe hot
+;;  prev block 23, next block 25, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       23 [94.0% (guessed)]  count:918797125 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              29 [always]  count:95888901 (estimated locally) (FALLTHRU)
+;; bb 24 artificial_defs: { }
+;; bb 24 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 127 128 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 127 128
+;; lr  def 	 17 [flags] 98 128 130 132 156 158
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 127 128 141
+;; live  gen 	 17 [flags] 98 128 130 132 156 158
+;; live  kill	 17 [flags]
+
+(code_label 194 142 143 24 20 (nil) [0 uses])
+(note 143 194 144 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 144 143 145 24 (set (reg:SI 98 [ _37 ])
+        (mem:SI (reg:DI 127 [ ivtmp.25 ]) [3 MEM[(int *)_98]+0 S4 A32])) "../ncurses/./tty/hardscroll.c":264:13 75 {*movsi_internal}
+     (nil))
+(insn 145 144 146 24 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 98 [ _37 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./tty/hardscroll.c":264:9 11 {*cmpsi_1}
+     (nil))
+(insn 146 145 147 24 (set (reg:QI 156)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":264:9 802 {*setcc_qi}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (nil)))
+(insn 147 146 148 24 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 98 [ _37 ])
+            (reg/v:SI 128 [ i ]))) "../ncurses/./tty/hardscroll.c":265:6 11 {*cmpsi_1}
+     (nil))
+(insn 148 147 149 24 (set (reg:QI 158)
+        (ge:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":265:6 802 {*setcc_qi}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (nil)))
+(insn 149 148 150 24 (parallel [
+            (set (reg:QI 132 [ _121 ])
+                (ior:QI (reg:QI 156)
+                    (reg:QI 158)))
+            (clobber (reg:CC 17 flags))
+        ]) 530 {*iorqi_1}
+     (expr_list:REG_DEAD (reg:QI 158)
+        (expr_list:REG_DEAD (reg:QI 156)
+            (expr_list:REG_UNUSED (reg:CC 17 flags)
+                (nil)))))
+(insn 150 149 151 24 (set (reg/v:SI 130 [ i ])
+        (reg/v:SI 128 [ i ])) 75 {*movsi_internal}
+     (nil))
+(insn 151 150 153 24 (parallel [
+            (set (reg/v:SI 128 [ i ])
+                (plus:SI (reg/v:SI 128 [ i ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":266:7 209 {*addsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 153 151 154 24 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 132 [ _121 ])
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":265:6 5 {*cmpqi_ccno_1}
+     (expr_list:REG_DEAD (reg:QI 132 [ _121 ])
+        (nil)))
+(jump_insn 154 153 168 24 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 152)
+            (pc))) "../ncurses/./tty/hardscroll.c":265:6 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 1034765004 (nil)))
+ -> 152)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 127 128 130 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 127 128 130 141
+
+;;  succ:       23 [96.4% (guessed)]  count:977852925 (estimated locally)
+;;              30 [3.6% (guessed)]  count:36833099 (estimated locally) (FALLTHRU,LOOP_EXIT)
+
+;; basic block 25, loop depth 2, count 765613960 (estimated locally), maybe hot
+;;  prev block 24, next block 26, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       27 [96.3% (guessed)]  count:765613960 (estimated locally)
+;; bb 25 artificial_defs: { }
+;; bb 25 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 130 131 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 131
+;; lr  def 	 17 [flags] 131
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 130 131 141
+;; live  gen 	 17 [flags] 131
+;; live  kill	 17 [flags]
+
+(code_label 168 154 158 25 19 (nil) [1 uses])
+(note 158 168 159 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(insn 159 158 160 25 (parallel [
+            (set (reg:DI 131 [ ivtmp.13 ])
+                (plus:DI (reg:DI 131 [ ivtmp.13 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":277:9 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 160 159 161 25 (set (reg:CCZ 17 flags)
+        (compare:CCZ (subreg:SI (reg:DI 131 [ ivtmp.13 ]) 0)
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./tty/hardscroll.c":277:9 11 {*cmpsi_1}
+     (nil))
+(jump_insn 161 160 209 25 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 212)
+            (pc))) "../ncurses/./tty/hardscroll.c":277:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 39298956 (nil)))
+ -> 212)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 130 131 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 130 131 141
+
+;;  succ:       26 [96.3% (guessed)]  count:737592488 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              32 [3.7% (guessed)]  count:28021472 (estimated locally) (LOOP_EXIT)
+
+;; basic block 26, loop depth 2, count 824890992 (estimated locally), maybe hot
+;;  prev block 25, next block 27, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       25 [96.3% (guessed)]  count:737592488 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              31 [always]  count:87298503 (estimated locally) (FALLTHRU)
+;; bb 26 artificial_defs: { }
+;; bb 26 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 130 131 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 131
+;; lr  def 	 17 [flags] 99 128
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 130 131 141
+;; live  gen 	 17 [flags] 99 128
+;; live  kill	
+
+(code_label 209 161 162 26 21 (nil) [0 uses])
+(note 162 209 163 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 163 162 164 26 (set (reg/v:SI 128 [ i ])
+        (subreg:SI (reg:DI 131 [ ivtmp.13 ]) 0)) 75 {*movsi_internal}
+     (nil))
+(insn 164 163 165 26 (set (reg:SI 99 [ _46 ])
+        (mem:SI (plus:DI (mult:DI (reg:DI 131 [ ivtmp.13 ])
+                    (const_int 4 [0x4]))
+                (reg/f:DI 97 [ _33 ])) [3 MEM[(int *)_33 + ivtmp.13_115 * 4]+0 S4 A32])) "../ncurses/./tty/hardscroll.c":276:12 75 {*movsi_internal}
+     (nil))
+(insn 165 164 166 26 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 99 [ _46 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./tty/hardscroll.c":276:9 11 {*cmpsi_1}
+     (nil))
+(jump_insn 166 165 167 26 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 172)
+            (pc))) "../ncurses/./tty/hardscroll.c":276:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 39298956 (nil)))
+ -> 172)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 99 113 128 130 131 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 99 113 128 130 131 141
+
+;;  succ:       27 [96.3% (guessed)]  count:794699981 (estimated locally) (FALLTHRU)
+;;              28 [3.7% (guessed)]  count:30191011 (estimated locally) (LOOP_EXIT)
+
+;; basic block 27, loop depth 2, count 794699980 (estimated locally), maybe hot
+;;  prev block 26, next block 28, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       26 [96.3% (guessed)]  count:794699981 (estimated locally) (FALLTHRU)
+;; bb 27 artificial_defs: { }
+;; bb 27 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 99 113 128 130 131 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 99 113 131
+;; lr  def 	 17 [flags] 159
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 99 113 128 130 131 141
+;; live  gen 	 17 [flags] 159
+;; live  kill	 17 [flags]
+
+(note 167 166 169 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(insn 169 167 170 27 (parallel [
+            (set (reg:SI 159)
+                (minus:SI (reg:SI 99 [ _46 ])
+                    (subreg:SI (reg:DI 131 [ ivtmp.13 ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":277:31 282 {*subsi_1}
+     (expr_list:REG_DEAD (reg:SI 99 [ _46 ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 170 169 171 27 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 159)
+            (reg/v:SI 113 [ shift ]))) "../ncurses/./tty/hardscroll.c":277:9 11 {*cmpsi_1}
+     (expr_list:REG_DEAD (reg:SI 159)
+        (nil)))
+(jump_insn 171 170 172 27 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 168)
+            (pc))) "../ncurses/./tty/hardscroll.c":277:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 1034442876 (nil)))
+ -> 168)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 128 130 131 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 128 130 131 141
+
+;;  succ:       25 [96.3% (guessed)]  count:765613960 (estimated locally)
+;;              28 [3.7% (guessed)]  count:29086020 (estimated locally) (FALLTHRU,LOOP_EXIT)
+
+;; basic block 28, loop depth 1, count 85631187 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 59277031 (estimated locally), should be 85631187 (estimated locally)
+;;  prev block 27, next block 29, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       27 [3.7% (guessed)]  count:29086020 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;;              26 [3.7% (guessed)]  count:30191011 (estimated locally) (LOOP_EXIT)
+;; bb 28 artificial_defs: { }
+;; bb 28 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 113 128 130 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 113 128 130 141
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 160 161 162 163
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 113 128 130 141
+;; live  gen 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 17 [flags] 36 [r8] 160 161 162 163
+;; live  kill	 17 [flags]
+
+(code_label 172 171 173 28 18 (nil) [1 uses])
+(note 173 172 174 28 [bb 28] NOTE_INSN_BASIC_BLOCK)
+(insn 174 173 175 28 (set (reg:SI 161 [ sp_62(D)->_lines ])
+        (mem:SI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 116 [0x74])) [3 sp_62(D)->_lines+0 S4 A32])) "../ncurses/./tty/hardscroll.c":284:6 75 {*movsi_internal}
+     (nil))
+(insn 175 174 176 28 (parallel [
+            (set (reg:SI 160)
+                (plus:SI (reg:SI 161 [ sp_62(D)->_lines ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":284:6 209 {*addsi_1}
+     (expr_list:REG_DEAD (reg:SI 161 [ sp_62(D)->_lines ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (expr_list:REG_EQUAL (plus:SI (mem:SI (plus:DI (reg/v/f:DI 141 [ sp ])
+                            (const_int 116 [0x74])) [3 sp_62(D)->_lines+0 S4 A32])
+                    (const_int -1 [0xffffffffffffffff]))
+                (nil)))))
+(insn 176 175 177 28 (parallel [
+            (set (reg:SI 162)
+                (plus:SI (reg/v:SI 128 [ i ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":280:12 209 {*addsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 177 176 178 28 (parallel [
+            (set (reg:SI 163 [ start ])
+                (plus:SI (reg:SI 162)
+                    (reg/v:SI 113 [ shift ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":280:8 209 {*addsi_1}
+     (expr_list:REG_DEAD (reg:SI 162)
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 178 177 179 28 (set (reg:SI 36 r8)
+        (reg:SI 160)) "../ncurses/./tty/hardscroll.c":284:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 160)
+        (nil)))
+(insn 179 178 180 28 (set (reg:SI 2 cx)
+        (reg/v:SI 130 [ i ])) "../ncurses/./tty/hardscroll.c":284:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 130 [ i ])
+        (nil)))
+(insn 180 179 181 28 (set (reg:SI 1 dx)
+        (reg:SI 163 [ start ])) "../ncurses/./tty/hardscroll.c":284:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 163 [ start ])
+        (nil)))
+(insn 181 180 182 28 (set (reg:SI 4 si)
+        (reg/v:SI 113 [ shift ])) "../ncurses/./tty/hardscroll.c":284:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 113 [ shift ])
+        (nil)))
+(insn 182 181 183 28 (set (reg:DI 5 di)
+        (reg/v/f:DI 141 [ sp ])) "../ncurses/./tty/hardscroll.c":284:6 74 {*movdi_internal}
+     (nil))
+(call_insn 183 182 186 28 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_scrolln_sp") [flags 0x41]  <function_decl 0x7f7345822000 _nc_scrolln_sp>) [0 _nc_scrolln_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":284:6 824 {*call_value}
+     (expr_list:REG_DEAD (reg:SI 36 r8)
+        (expr_list:REG_DEAD (reg:DI 5 di)
+            (expr_list:REG_DEAD (reg:SI 4 si)
+                (expr_list:REG_DEAD (reg:SI 2 cx)
+                    (expr_list:REG_DEAD (reg:SI 1 dx)
+                        (expr_list:REG_UNUSED (reg:SI 0 ax)
+                            (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_scrolln_sp") [flags 0x41]  <function_decl 0x7f7345822000 _nc_scrolln_sp>)
+                                (nil))))))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (expr_list:SI (use (reg:SI 36 r8))
+                        (nil)))))))
+(insn 186 183 187 28 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 128 [ i ])
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":262:43 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 187 186 188 28 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 223)
+            (pc))) "../ncurses/./tty/hardscroll.c":262:43 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGOC 17 flags)
+        (int_list:REG_BR_PROB 4 (nil)))
+ -> 223)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 128 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 128 141
+
+;;  succ:       29 [always (guessed)]  count:85631187 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              33 [never (guessed)]  count:0 (estimated locally) (LOOP_EXIT)
+
+;; basic block 29, loop depth 1, count 95888901 (estimated locally), maybe hot
+;;  prev block 28, next block 30, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       28 [always (guessed)]  count:85631187 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              22 [94.5% (guessed)]  count:10257714 (estimated locally)
+;; bb 29 artificial_defs: { }
+;; bb 29 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 128 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 128 141
+;; lr  def 	 17 [flags] 97 127 164 165
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 128 141
+;; live  gen 	 97 127 164 165
+;; live  kill	 17 [flags]
+
+(code_label 188 187 189 29 14 (nil) [1 uses])
+(note 189 188 190 29 [bb 29] NOTE_INSN_BASIC_BLOCK)
+(insn 190 189 191 29 (set (reg/f:DI 97 [ _33 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 1352 [0x548])) [1 sp_62(D)->_oldnum_list+0 S8 A64])) "../ncurses/./tty/hardscroll.c":264:13 74 {*movdi_internal}
+     (nil))
+(insn 191 190 192 29 (set (reg:DI 164 [ i ])
+        (sign_extend:DI (reg/v:SI 128 [ i ]))) 147 {*extendsidi2_rex64}
+     (nil))
+(insn 192 191 193 29 (parallel [
+            (set (reg:DI 165)
+                (ashift:DI (reg:DI 164 [ i ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) 656 {*ashldi3_1}
+     (expr_list:REG_DEAD (reg:DI 164 [ i ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 193 192 203 29 (parallel [
+            (set (reg:DI 127 [ ivtmp.25 ])
+                (plus:DI (reg/f:DI 97 [ _33 ])
+                    (reg:DI 165)))
+            (clobber (reg:CC 17 flags))
+        ]) 210 {*adddi_1}
+     (expr_list:REG_DEAD (reg:DI 165)
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 127 128 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 127 128 141
+
+;;  succ:       24 [always]  count:95888901 (estimated locally) (FALLTHRU)
+
+;; basic block 30, loop depth 1, count 90615013 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 36833099 (estimated locally), should be 90615013 (estimated locally)
+;;  prev block 29, next block 31, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       24 [3.6% (guessed)]  count:36833099 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;; bb 30 artificial_defs: { }
+;; bb 30 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 128 130 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 128 130
+;; lr  def 	 17 [flags] 113
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 128 130 141
+;; live  gen 	 17 [flags] 113
+;; live  kill	 17 [flags]
+
+(note 203 193 204 30 [bb 30] NOTE_INSN_BASIC_BLOCK)
+(insn 204 203 205 30 (parallel [
+            (set (reg/v:SI 113 [ shift ])
+                (minus:SI (reg:SI 98 [ _37 ])
+                    (reg/v:SI 130 [ i ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":271:8 282 {*subsi_1}
+     (expr_list:REG_DEAD (reg:SI 98 [ _37 ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 205 204 206 30 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 128 [ i ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./tty/hardscroll.c":277:9 11 {*cmpsi_1}
+     (nil))
+(jump_insn 206 205 207 30 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 212)
+            (pc))) "../ncurses/./tty/hardscroll.c":277:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 39298956 (nil)))
+ -> 212)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 128 130 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 128 130 141
+
+;;  succ:       31 [96.3% (guessed)]  count:87298503 (estimated locally) (FALLTHRU)
+;;              32 [3.7% (guessed)]  count:3316510 (estimated locally) (LOOP_EXIT)
+
+;; basic block 31, loop depth 1, count 87298503 (estimated locally), maybe hot
+;;  prev block 30, next block 32, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       30 [96.3% (guessed)]  count:87298503 (estimated locally) (FALLTHRU)
+;; bb 31 artificial_defs: { }
+;; bb 31 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 128 130 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 128
+;; lr  def 	 131
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 128 130 141
+;; live  gen 	 131
+;; live  kill	
+
+(note 207 206 208 31 [bb 31] NOTE_INSN_BASIC_BLOCK)
+(insn 208 207 212 31 (set (reg:DI 131 [ ivtmp.13 ])
+        (sign_extend:DI (reg/v:SI 128 [ i ]))) 147 {*extendsidi2_rex64}
+     (expr_list:REG_DEAD (reg/v:SI 128 [ i ])
+        (nil)))
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 130 131 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 130 131 141
+
+;;  succ:       26 [always]  count:87298503 (estimated locally) (FALLTHRU)
+
+;; basic block 32, loop depth 0, count 4983826 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 31337982 (estimated locally), should be 4983826 (estimated locally)
+;;  prev block 31, next block 33, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       30 [3.7% (guessed)]  count:3316510 (estimated locally) (LOOP_EXIT)
+;;              25 [3.7% (guessed)]  count:28021472 (estimated locally) (LOOP_EXIT)
+;; bb 32 artificial_defs: { }
+;; bb 32 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 113 130 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 113 130 141
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 166 167
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 113 130 141
+;; live  gen 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 36 [r8] 166 167
+;; live  kill	 17 [flags]
+
+(code_label 212 208 213 32 17 (nil) [2 uses])
+(note 213 212 214 32 [bb 32] NOTE_INSN_BASIC_BLOCK)
+(insn 214 213 215 32 (set (reg:SI 167 [ sp_62(D)->_lines ])
+        (mem:SI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 116 [0x74])) [3 sp_62(D)->_lines+0 S4 A32])) "../ncurses/./tty/hardscroll.c":284:6 75 {*movsi_internal}
+     (nil))
+(insn 215 214 216 32 (parallel [
+            (set (reg:SI 166)
+                (plus:SI (reg:SI 167 [ sp_62(D)->_lines ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":284:6 209 {*addsi_1}
+     (expr_list:REG_DEAD (reg:SI 167 [ sp_62(D)->_lines ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (expr_list:REG_EQUAL (plus:SI (mem:SI (plus:DI (reg/v/f:DI 141 [ sp ])
+                            (const_int 116 [0x74])) [3 sp_62(D)->_lines+0 S4 A32])
+                    (const_int -1 [0xffffffffffffffff]))
+                (nil)))))
+(insn 216 215 217 32 (set (reg:SI 36 r8)
+        (reg:SI 166)) "../ncurses/./tty/hardscroll.c":284:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 166)
+        (nil)))
+(insn 217 216 218 32 (set (reg:SI 2 cx)
+        (reg/v:SI 130 [ i ])) "../ncurses/./tty/hardscroll.c":284:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 130 [ i ])
+        (nil)))
+(insn 218 217 219 32 (set (reg:SI 1 dx)
+        (reg/v:SI 113 [ shift ])) "../ncurses/./tty/hardscroll.c":284:6 75 {*movsi_internal}
+     (nil))
+(insn 219 218 220 32 (set (reg:SI 4 si)
+        (reg/v:SI 113 [ shift ])) "../ncurses/./tty/hardscroll.c":284:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 113 [ shift ])
+        (nil)))
+(insn 220 219 221 32 (set (reg:DI 5 di)
+        (reg/v/f:DI 141 [ sp ])) "../ncurses/./tty/hardscroll.c":284:6 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 141 [ sp ])
+        (nil)))
+(call_insn/j 221 220 223 32 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_scrolln_sp") [flags 0x41]  <function_decl 0x7f7345822000 _nc_scrolln_sp>) [0 _nc_scrolln_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":284:6 828 {*sibcall_value}
+     (expr_list:REG_DEAD (reg:SI 36 r8)
+        (expr_list:REG_DEAD (reg:DI 5 di)
+            (expr_list:REG_DEAD (reg:SI 4 si)
+                (expr_list:REG_DEAD (reg:SI 2 cx)
+                    (expr_list:REG_DEAD (reg:SI 1 dx)
+                        (expr_list:REG_UNUSED (reg:SI 0 ax)
+                            (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_scrolln_sp") [flags 0x41]  <function_decl 0x7f7345822000 _nc_scrolln_sp>)
+                                (nil))))))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (expr_list:SI (use (reg:SI 36 r8))
+                        (nil)))))))
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+;;  succ:       EXIT [always (guessed)]  count:4983826 (estimated locally) (ABNORMAL,SIBCALL)
+
+;; basic block 33, loop depth 0, count 13417199 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 67199108 (estimated locally), should be 13417199 (estimated locally)
+;;  prev block 32, next block 1, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       28 [never (guessed)]  count:0 (estimated locally) (LOOP_EXIT)
+;;              4 [18.1% (guessed)]  count:1954473 (estimated locally)
+;;              6 [34.0% (guessed)]  count:5591827 (estimated locally)
+;;              22 [5.5% (guessed)]  count:597010 (estimated locally) (FALLTHRU)
+;;              23 [6.0% (guessed)]  count:59055798 (estimated locally) (LOOP_EXIT)
+;; bb 33 artificial_defs: { }
+;; bb 33 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	
+;; live  kill	
+
+(code_label 223 221 224 33 1 (nil) [4 uses])
+(note 224 223 0 33 [bb 33] NOTE_INSN_BASIC_BLOCK)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+;;  succ:       EXIT [always]  count:13417199 (estimated locally) (FALLTHRU)
+
+;; basic block 1, loop depth 0, count 18401025 (estimated locally), maybe hot
+;;  prev block 33, next block (nil), flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       32 [always (guessed)]  count:4983826 (estimated locally) (ABNORMAL,SIBCALL)
+;;              33 [always]  count:13417199 (estimated locally) (FALLTHRU)
+;; bb 1 artificial_defs: { }
+;; bb 1 artificial_uses: { u-1(6){ }u-1(7){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 19 [frame]
+;; lr  def 	
+;; live  in  	 6 [bp] 7 [sp] 19 [frame]
+;; live  gen 	
+;; live  kill	
+
+;; lr  out 	
+;; live  out 	
+
+;;  succ:      
+
+
+fix_loop_structure: fixing up loops for function
+changing bb of uid 252
+  unscanned insn
+verify found no changes in insn with uid = 135.
+Edge 22->29 redirected to 34
+Created preheader block for loop 4
+changing bb of uid 254
+  unscanned insn
+verify found no changes in insn with uid = 42.
+Edge 7->21 redirected to 35
+Created preheader block for loop 1
+changing bb of uid 256
+  unscanned insn
+verify found no changes in insn with uid = 71.
+Edge 12->15 redirected to 36
+Created preheader block for loop 3
+changing bb of uid 258
+  unscanned insn
+Redirecting fallthru edge 28->29 to 37
+changing bb of uid 259
+  unscanned insn
+Redirecting fallthru edge 25->26 to 38
+changing bb of uid 260
+  unscanned insn
+Redirecting fallthru edge 23->24 to 39
+changing bb of uid 261
+  unscanned insn
+verify found no changes in insn with uid = 79.
+Edge 13->15 redirected to 40
+changing bb of uid 263
+  unscanned insn
+Redirecting fallthru edge 8->9 to 41
+;; 7 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5 6 7 35 8 41 9 10 11 12 36 13 40 14 15 16 17 18 19 20 21 22 34 23 39 24 25 38 26 27 28 37 29 30 31 32 33
+;;
+;; Loop 4
+;;  header 29, latch 37
+;;  depth 1, outer 0
+;;  nodes: 29 37 28 27 26 38 31 30 24 39 23 25
+;;
+;; Loop 6
+;;  header 26, latch 38
+;;  depth 2, outer 4
+;;  nodes: 26 38 25 27
+;;
+;; Loop 5
+;;  header 24, latch 39
+;;  depth 2, outer 4
+;;  nodes: 24 39 23
+;;
+;; Loop 1
+;;  header 21, latch 20
+;;  depth 1, outer 0
+;;  nodes: 21 20 19 14 16 18 12 11 10 9 41 8 17 15 40 36 13
+;;
+;; Loop 3
+;;  header 15, latch 40
+;;  depth 2, outer 1
+;;  nodes: 15 40 13 17
+;;
+;; Loop 2
+;;  header 9, latch 41
+;;  depth 2, outer 1
+;;  nodes: 9 41 8 10
+;; 2 succs { 4 3 }
+;; 3 succs { 4 6 }
+;; 4 succs { 33 5 }
+;; 5 succs { 6 }
+;; 6 succs { 33 7 }
+;; 7 succs { 35 22 }
+;; 35 succs { 21 }
+;; 8 succs { 41 22 }
+;; 41 succs { 9 }
+;; 9 succs { 8 10 }
+;; 10 succs { 8 11 }
+;; 11 succs { 22 12 }
+;; 12 succs { 36 19 }
+;; 36 succs { 15 }
+;; 13 succs { 40 14 }
+;; 40 succs { 15 }
+;; 14 succs { 19 }
+;; 15 succs { 17 16 }
+;; 16 succs { 19 }
+;; 17 succs { 13 18 }
+;; 18 succs { 19 }
+;; 19 succs { 20 22 }
+;; 20 succs { 21 }
+;; 21 succs { 9 }
+;; 22 succs { 34 33 }
+;; 34 succs { 29 }
+;; 23 succs { 39 33 }
+;; 39 succs { 24 }
+;; 24 succs { 23 30 }
+;; 25 succs { 38 32 }
+;; 38 succs { 26 }
+;; 26 succs { 27 28 }
+;; 27 succs { 25 28 }
+;; 28 succs { 37 33 }
+;; 37 succs { 29 }
+;; 29 succs { 24 }
+;; 30 succs { 31 32 }
+;; 31 succs { 26 }
+;; 32 succs { 1 }
+;; 33 succs { 1 }
+
+
+_nc_scroll_optimize_sp
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp] 16 [argp] 19 [frame]
+;;  regular block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  eh block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 6 [bp] 7 [sp] 19 [frame]
+;;  regs ever live 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 17 [flags] 36 [r8]
+;;  ref usage 	r0={6d,1u} r1={9d,3u} r2={9d,3u} r4={10d,4u} r5={11d,6u} r6={1d,41u} r7={1d,46u} r8={5d} r9={5d} r10={5d} r11={5d} r12={5d} r13={5d} r14={5d} r15={5d} r16={1d,40u} r17={61d,26u} r18={5d} r19={1d,41u} r20={6d} r21={6d} r22={6d} r23={6d} r24={6d} r25={6d} r26={6d} r27={6d} r28={5d} r29={5d} r30={5d} r31={5d} r32={5d} r33={5d} r34={5d} r35={5d} r36={9d,3u} r37={6d} r38={5d} r39={5d} r44={5d} r45={5d} r46={5d} r47={5d} r48={5d} r49={5d} r50={5d} r51={5d} r52={5d} r53={5d} r54={5d} r55={5d} r56={5d} r57={5d} r58={5d} r59={5d} r60={5d} r61={5d} r62={5d} r63={5d} r64={5d} r65={5d} r66={5d} r67={5d} r68={5d} r69={5d} r70={5d} r71={5d} r72={5d} r73={5d} r74={5d} r75={5d} r82={1d,2u} r86={1d,3u} r87={1d,2u} r93={1d,2u} r96={2d,9u} r97={1d,2u} r98={1d,3u} r99={1d,2u} r109={1d,2u} r110={1d,2u} r111={2d,8u} r112={1d,5u} r113={1d,5u} r116={2d,2u} r118={1d,1u} r121={2d,5u} r122={4d,9u} r127={2d,2u} r128={3d,10u} r130={1d,3u} r131={2d,5u} r132={1d,1u} r138={4d,2u} r139={1d,2u} r140={1d,2u} r141={1d,16u,2e} r142={1d,1u} r143={1d,1u} r145={1d,1u} r147={1d,1u} r148={1d,1u} r149={1d,1u} r150={1d,1u} r151={1d,1u} r152={1d,1u} r153={1d,1u} r154={1d,1u} r156={1d,1u} r158={1d,1u} r159={1d,1u} r160={1d,1u} r161={1d,1u} r162={1d,1u} r163={1d,1u} r164={1d,1u} r165={1d,1u} r166={1d,1u} r167={1d,1u} 
+;;    total ref usage 835{490d,343u,2e} in 135{130 regular + 5 call} insns.
+;; basic block 2, loop depth 0, count 18401024 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:18401024 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 17 [flags] 82 139 140 141
+;; live  in  	 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 17 [flags] 82 139 140 141
+;; live  kill	
+(note 7 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 141 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./tty/hardscroll.c":188:1 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 5 di [ sp ])
+        (nil)))
+(note 3 2 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 3 10 2 (set (reg/f:DI 82 [ _1 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 1352 [0x548])) [1 sp_62(D)->_oldnum_list+0 S8 A64])) "../ncurses/./tty/hardscroll.c":199:10 74 {*movdi_internal}
+     (nil))
+(insn 10 9 11 2 (set (reg:SI 139 [ pretmp_157 ])
+        (mem:SI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 1360 [0x550])) [3 sp_62(D)->_oldnum_size+0 S4 A64])) "../ncurses/./tty/hardscroll.c":200:6 75 {*movsi_internal}
+     (nil))
+(insn 11 10 12 2 (set (reg:SI 140 [ pretmp_158 ])
+        (mem:SI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 116 [0x74])) [3 sp_62(D)->_lines+0 S4 A32])) "../ncurses/./tty/hardscroll.c":200:29 75 {*movsi_internal}
+     (nil))
+(insn 12 11 13 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":199:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 13 12 14 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 17)
+            (pc))) "../ncurses/./tty/hardscroll.c":199:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 187153204 (nil)))
+ -> 17)
+;;  succ:       4 [17.4% (guessed)]  count:3207298 (estimated locally)
+;;              3 [82.6% (guessed)]  count:15193726 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 139 140 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 139 140 141
+
+;; basic block 3, loop depth 0, count 15193726 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [82.6% (guessed)]  count:15193726 (estimated locally) (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 139 140 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 139 140
+;; lr  def 	 17 [flags]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 139 140 141
+;; live  gen 	 17 [flags]
+;; live  kill	
+(note 14 13 15 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 15 14 16 3 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 139 [ pretmp_157 ])
+            (reg:SI 140 [ pretmp_158 ]))) "../ncurses/./tty/hardscroll.c":200:2 11 {*cmpsi_1}
+     (nil))
+(jump_insn 16 15 17 3 (set (pc)
+        (if_then_else (ge (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 31)
+            (pc))) "../ncurses/./tty/hardscroll.c":200:2 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 536870916 (nil)))
+ -> 31)
+;;  succ:       4 [50.0% (guessed)]  count:7596863 (estimated locally) (FALLTHRU)
+;;              6 [50.0% (guessed)]  count:7596863 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 139 140 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 139 140 141
+
+;; basic block 4, loop depth 0, count 10804161 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       3 [50.0% (guessed)]  count:7596863 (estimated locally) (FALLTHRU)
+;;              2 [17.4% (guessed)]  count:3207298 (estimated locally)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 139 140 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 139 140
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 109 110 142 143
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 82 139 140 141
+;; live  gen 	 0 [ax] 4 [si] 5 [di] 17 [flags] 109 110 142 143
+;; live  kill	 17 [flags]
+(code_label 17 16 18 4 2 (nil) [1 uses])
+(note 18 17 19 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 4 (parallel [
+            (set (reg/v:SI 109 [ need_lines ])
+                (smax:SI (reg:SI 139 [ pretmp_157 ])
+                    (reg:SI 140 [ pretmp_158 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":201:6 1133 {*smaxsi3_1}
+     (expr_list:REG_DEAD (reg:SI 140 [ pretmp_158 ])
+        (expr_list:REG_DEAD (reg:SI 139 [ pretmp_157 ])
+            (expr_list:REG_UNUSED (reg:CC 17 flags)
+                (nil)))))
+(insn 20 19 21 4 (set (reg:DI 142 [ need_lines ])
+        (sign_extend:DI (reg/v:SI 109 [ need_lines ]))) "../ncurses/./tty/hardscroll.c":204:21 147 {*extendsidi2_rex64}
+     (nil))
+(insn 21 20 22 4 (parallel [
+            (set (reg:DI 143)
+                (ashift:DI (reg:DI 142 [ need_lines ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":204:21 656 {*ashldi3_1}
+     (expr_list:REG_DEAD (reg:DI 142 [ need_lines ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 22 21 23 4 (set (reg:DI 4 si)
+        (reg:DI 143)) "../ncurses/./tty/hardscroll.c":204:21 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 143)
+        (nil)))
+(insn 23 22 24 4 (set (reg:DI 5 di)
+        (reg/f:DI 82 [ _1 ])) "../ncurses/./tty/hardscroll.c":204:21 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 82 [ _1 ])
+        (nil)))
+(call_insn 24 23 25 4 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_doalloc") [flags 0x41]  <function_decl 0x7f73457e0b00 _nc_doalloc>) [0 _nc_doalloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":204:21 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:DI 4 si)
+            (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_doalloc") [flags 0x41]  <function_decl 0x7f73457e0b00 _nc_doalloc>)
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 25 24 26 4 (set (reg/v/f:DI 110 [ new_oldnums ])
+        (reg:DI 0 ax)) "../ncurses/./tty/hardscroll.c":204:21 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 0 ax)
+        (nil)))
+(insn 26 25 27 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 110 [ new_oldnums ])
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":207:5 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 27 26 28 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 223)
+            (pc))) "../ncurses/./tty/hardscroll.c":207:5 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 194239900 (nil)))
+ -> 223)
+;;  succ:       33 [18.1% (guessed)]  count:1954473 (estimated locally)
+;;              5 [81.9% (guessed)]  count:8849688 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 109 110 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 109 110 141
+
+;; basic block 5, loop depth 0, count 8849688 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [81.9% (guessed)]  count:8849688 (estimated locally) (FALLTHRU)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 109 110 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 109 110 141
+;; lr  def 	
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 109 110 141
+;; live  gen 	
+;; live  kill	
+(note 28 27 29 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 5 (set (mem/f:DI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 1352 [0x548])) [1 sp_62(D)->_oldnum_list+0 S8 A64])
+        (reg/v/f:DI 110 [ new_oldnums ])) "../ncurses/./tty/hardscroll.c":211:19 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 110 [ new_oldnums ])
+        (nil)))
+(insn 30 29 31 5 (set (mem:SI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 1360 [0x550])) [3 sp_62(D)->_oldnum_size+0 S4 A64])
+        (reg/v:SI 109 [ need_lines ])) "../ncurses/./tty/hardscroll.c":212:23 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 109 [ need_lines ])
+        (nil)))
+;;  succ:       6 [always]  count:8849688 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 141
+
+;; basic block 6, loop depth 0, count 16446551 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       3 [50.0% (guessed)]  count:7596863 (estimated locally)
+;;              5 [always]  count:8849688 (estimated locally) (FALLTHRU)
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 141
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 96
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 141
+;; live  gen 	 5 [di] 17 [flags] 96
+;; live  kill	
+(code_label 31 30 32 6 3 (nil) [1 uses])
+(note 32 31 33 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 33 32 34 6 (set (reg:DI 5 di)
+        (reg/v/f:DI 141 [ sp ])) "../ncurses/./tty/hardscroll.c":215:5 74 {*movdi_internal}
+     (nil))
+(call_insn 34 33 35 6 (call (mem:QI (symbol_ref:DI ("_nc_hash_map_sp") [flags 0x41]  <function_decl 0x7f7345828800 _nc_hash_map_sp>) [0 _nc_hash_map_sp S1 A8])
+        (const_int 0 [0])) "../ncurses/./tty/hardscroll.c":215:5 813 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_hash_map_sp") [flags 0x41]  <function_decl 0x7f7345828800 _nc_hash_map_sp>)
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 35 34 36 6 (set (reg:SI 96 [ _32 ])
+        (mem:SI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 116 [0x74])) [3 sp_62(D)->_lines+0 S4 A32])) "../ncurses/./tty/hardscroll.c":216:32 75 {*movsi_internal}
+     (nil))
+(insn 36 35 37 6 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 141 [ sp ])
+                    (const_int 1344 [0x540])) [3 sp_62(D)->hashtab_len+0 S4 A64])
+            (reg:SI 96 [ _32 ]))) "../ncurses/./tty/hardscroll.c":216:8 11 {*cmpsi_1}
+     (nil))
+(jump_insn 37 36 38 6 (set (pc)
+        (if_then_else (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 223)
+            (pc))) "../ncurses/./tty/hardscroll.c":216:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 365072228 (nil)))
+ -> 223)
+;;  succ:       33 [34.0% (guessed)]  count:5591827 (estimated locally)
+;;              7 [66.0% (guessed)]  count:10854724 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 141
+
+;; basic block 7, loop depth 0, count 10854724 (estimated locally), maybe hot
+;;  prev block 6, next block 35, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       6 [66.0% (guessed)]  count:10854724 (estimated locally) (FALLTHRU)
+;; bb 7 artificial_defs: { }
+;; bb 7 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96
+;; lr  def 	 17 [flags] 122
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 141
+;; live  gen 	 17 [flags] 122
+;; live  kill	
+(note 38 37 6 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 6 38 41 7 (set (reg/v:SI 122 [ i ])
+        (const_int 0 [0])) "../ncurses/./tty/hardscroll.c":231:12 75 {*movsi_internal}
+     (nil))
+(insn 41 6 42 7 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 96 [ _32 ])
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":231:19 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 42 41 255 7 (set (pc)
+        (if_then_else (gt (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 255)
+            (pc))) "../ncurses/./tty/hardscroll.c":231:19 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCNO 17 flags)
+        (int_list:REG_BR_PROB 1014686028 (nil)))
+ -> 255)
+;;  succ:       35 [94.5% (guessed)]  count:10257714 (estimated locally)
+;;              22 [5.5% (guessed)]  count:597010 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 122 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 122 141
+
+;; basic block 35, loop depth 0, count 10257714 (estimated locally), maybe hot
+;;  prev block 7, next block 8, flags: (NEW, RTL, MODIFIED)
+;;  pred:       7 [94.5% (guessed)]  count:10257714 (estimated locally)
+;; bb 35 artificial_defs: { }
+;; bb 35 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	
+;; lr  use 	
+;; lr  def 	
+;; live  in  	
+;; live  gen 	
+;; live  kill	
+(code_label 255 42 254 35 34 (nil) [1 uses])
+(note 254 255 53 35 [bb 35] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       21 [always]  count:10257714 (estimated locally) (FALLTHRU)
+;; lr  out 	
+;; live  out 	
+
+;; basic block 8, loop depth 2, count 977852860 (estimated locally), maybe hot
+;;  prev block 35, next block 41, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       10 [93.0% (guessed)]  count:488926426 (estimated locally)
+;;              9 [48.2% (guessed)]  count:488926436 (estimated locally)
+;; bb 8 artificial_defs: { }
+;; bb 8 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 116 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 116
+;; lr  def 	 17 [flags] 111 116
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 116 141
+;; live  gen 	 17 [flags] 111 116
+;; live  kill	 17 [flags]
+(code_label 53 254 46 8 7 (nil) [2 uses])
+(note 46 53 47 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 47 46 48 8 (parallel [
+            (set (reg/v:SI 111 [ i ])
+                (plus:SI (reg/v:SI 111 [ i ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":234:7 209 {*addsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 48 47 49 8 (parallel [
+            (set (reg:DI 116 [ ivtmp.40 ])
+                (plus:DI (reg:DI 116 [ ivtmp.40 ])
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":233:9 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 49 48 50 8 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 111 [ i ])
+            (reg:SI 96 [ _32 ]))) "../ncurses/./tty/hardscroll.c":233:9 11 {*cmpsi_1}
+     (nil))
+(jump_insn 50 49 263 8 (set (pc)
+        (if_then_else (ge (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 129)
+            (pc))) "../ncurses/./tty/hardscroll.c":233:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 64846852 (nil)))
+ -> 129)
+;;  succ:       41 [94.0% (guessed)]  count:918797066 (estimated locally) (FALLTHRU)
+;;              22 [6.0% (guessed)]  count:59055794 (estimated locally) (LOOP_EXIT)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 116 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 116 141
+
+;; basic block 41, loop depth 2, count 918797066 (estimated locally), maybe hot
+;;  prev block 8, next block 9, flags: (NEW, RTL, MODIFIED)
+;;  pred:       8 [94.0% (guessed)]  count:918797066 (estimated locally) (FALLTHRU)
+;; bb 41 artificial_defs: { }
+;; bb 41 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	
+;; lr  use 	
+;; lr  def 	
+;; live  in  	
+;; live  gen 	
+;; live  kill	
+(note 263 50 126 41 [bb 41] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       9 [always]  count:918797066 (estimated locally) (FALLTHRU,DFS_BACK)
+;; lr  out 	
+;; live  out 	
+
+;; basic block 9, loop depth 2, count 1014685960 (estimated locally), maybe hot
+;;  prev block 41, next block 10, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       41 [always]  count:918797066 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              21 [always]  count:95888896 (estimated locally) (FALLTHRU)
+;; bb 9 artificial_defs: { }
+;; bb 9 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 116 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 116
+;; lr  def 	 17 [flags] 87 145
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 116 141
+;; live  gen 	 17 [flags] 87 145
+;; live  kill	
+(code_label 126 263 51 9 13 (nil) [0 uses])
+(note 51 126 52 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 52 51 54 9 (set (reg:SI 87 [ _14 ])
+        (mem:SI (reg:DI 116 [ ivtmp.40 ]) [3 MEM[(int *)_56]+0 S4 A32])) "../ncurses/./tty/hardscroll.c":233:13 75 {*movsi_internal}
+     (nil))
+(insn 54 52 55 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 87 [ _14 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./tty/hardscroll.c":233:9 11 {*cmpsi_1}
+     (nil))
+(insn 55 54 56 9 (set (reg:QI 145)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":233:9 802 {*setcc_qi}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (nil)))
+(insn 56 55 57 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 145)
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":233:45 5 {*cmpqi_ccno_1}
+     (expr_list:REG_DEAD (reg:QI 145)
+        (nil)))
+(jump_insn 57 56 230 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 53)
+            (pc))) "../ncurses/./tty/hardscroll.c":233:45 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 517382508 (nil)))
+ -> 53)
+;;  succ:       8 [48.2% (guessed)]  count:488926436 (estimated locally)
+;;              10 [51.8% (guessed)]  count:525759524 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 87 96 111 116 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 87 96 111 116 141
+
+;; basic block 10, loop depth 2, count 525759524 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       9 [51.8% (guessed)]  count:525759524 (estimated locally) (FALLTHRU)
+;; bb 10 artificial_defs: { }
+;; bb 10 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 87 96 111 116 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 87 111
+;; lr  def 	 17 [flags] 147
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 87 96 111 116 141
+;; live  gen 	 17 [flags] 147
+;; live  kill	
+(note 230 57 58 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 58 230 59 10 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 87 [ _14 ])
+            (reg/v:SI 111 [ i ]))) "../ncurses/./tty/hardscroll.c":233:45 11 {*cmpsi_1}
+     (expr_list:REG_DEAD (reg:SI 87 [ _14 ])
+        (nil)))
+(insn 59 58 60 10 (set (reg:QI 147)
+        (le:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":233:45 802 {*setcc_qi}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (nil)))
+(insn 60 59 61 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 147)
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":233:45 5 {*cmpqi_ccno_1}
+     (expr_list:REG_DEAD (reg:QI 147)
+        (nil)))
+(jump_insn 61 60 62 10 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 53)
+            (pc))) "../ncurses/./tty/hardscroll.c":233:45 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 998518772 (nil)))
+ -> 53)
+;;  succ:       8 [93.0% (guessed)]  count:488926426 (estimated locally)
+;;              11 [7.0% (guessed)]  count:36833098 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 116 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 116 141
+
+;; basic block 11, loop depth 1, count 90615007 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 36833098 (estimated locally), should be 90615007 (estimated locally)
+;;  prev block 10, next block 12, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       10 [7.0% (guessed)]  count:36833098 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;; bb 11 artificial_defs: { }
+;; bb 11 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111
+;; lr  def 	 17 [flags]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 141
+;; live  gen 	 17 [flags]
+;; live  kill	
+(note 62 61 63 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 63 62 64 11 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 96 [ _32 ])
+            (reg/v:SI 111 [ i ]))) "../ncurses/./tty/hardscroll.c":235:5 11 {*cmpsi_1}
+     (nil))
+(jump_insn 64 63 65 11 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 129)
+            (pc))) "../ncurses/./tty/hardscroll.c":235:5 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 4 (nil)))
+ -> 129)
+;;  succ:       22 [never (guessed)]  count:0 (estimated locally) (LOOP_EXIT)
+;;              12 [always (guessed)]  count:90615007 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 141
+
+;; basic block 12, loop depth 1, count 90615007 (estimated locally), maybe hot
+;;  prev block 11, next block 36, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       11 [always (guessed)]  count:90615007 (estimated locally) (FALLTHRU)
+;; bb 12 artificial_defs: { }
+;; bb 12 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111
+;; lr  def 	 17 [flags] 112 121 122 138 148
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 141
+;; live  gen 	 17 [flags] 112 121 122 138 148
+;; live  kill	 17 [flags]
+(note 65 64 66 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 66 65 67 12 (set (reg:DI 148 [ i ])
+        (sign_extend:DI (reg/v:SI 111 [ i ]))) "../ncurses/./tty/hardscroll.c":238:10 147 {*extendsidi2_rex64}
+     (nil))
+(insn 67 66 68 12 (set (reg:SI 138 [ _151 ])
+        (mem:SI (plus:DI (mult:DI (reg:DI 148 [ i ])
+                    (const_int 4 [0x4]))
+                (reg/f:DI 86 [ _10 ])) [3 *_22+0 S4 A32])) "../ncurses/./tty/hardscroll.c":238:10 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:DI 148 [ i ])
+        (nil)))
+(insn 68 67 69 12 (parallel [
+            (set (reg/v:SI 112 [ shift ])
+                (minus:SI (reg:SI 138 [ _151 ])
+                    (reg/v:SI 111 [ i ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":238:8 282 {*subsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 69 68 86 12 (parallel [
+            (set (reg/v:SI 122 [ i ])
+                (plus:SI (reg/v:SI 111 [ i ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":241:3 209 {*addsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 86 69 70 12 (set (reg:DI 121 [ ivtmp.30 ])
+        (sign_extend:DI (reg/v:SI 122 [ i ]))) 147 {*extendsidi2_rex64}
+     (expr_list:REG_DEAD (reg/v:SI 122 [ i ])
+        (nil)))
+(insn 70 86 71 12 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 122 [ i ])
+            (reg:SI 96 [ _32 ]))) "../ncurses/./tty/hardscroll.c":244:9 11 {*cmpsi_1}
+     (nil))
+(jump_insn 71 70 257 12 (set (pc)
+        (if_then_else (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 257)
+            (pc))) "../ncurses/./tty/hardscroll.c":244:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 1034442876 (nil)))
+ -> 257)
+;;  succ:       36 [96.3% (guessed)]  count:87298498 (estimated locally)
+;;              19 [3.7% (guessed)]  count:3316509 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 112 121 122 138 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 112 121 122 138 141
+
+;; basic block 36, loop depth 1, count 87298498 (estimated locally), maybe hot
+;;  prev block 12, next block 13, flags: (NEW, RTL, MODIFIED)
+;;  pred:       12 [96.3% (guessed)]  count:87298498 (estimated locally)
+;; bb 36 artificial_defs: { }
+;; bb 36 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	
+;; lr  use 	
+;; lr  def 	
+;; live  in  	
+;; live  gen 	
+;; live  kill	
+(code_label 257 71 256 36 35 (nil) [1 uses])
+(note 256 257 101 36 [bb 36] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       15 [always]  count:87298498 (estimated locally) (FALLTHRU)
+;; lr  out 	
+;; live  out 	
+
+;; basic block 13, loop depth 2, count 765613913 (estimated locally), maybe hot
+;;  prev block 36, next block 40, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       17 [96.3% (guessed)]  count:765613913 (estimated locally)
+;; bb 13 artificial_defs: { }
+;; bb 13 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 112 121 122 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 121 122
+;; lr  def 	 17 [flags] 118 121
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 112 121 122 141
+;; live  gen 	 17 [flags] 118 121
+;; live  kill	 17 [flags]
+(code_label 101 256 75 13 12 (nil) [1 uses])
+(note 75 101 76 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 76 75 77 13 (parallel [
+            (set (reg:SI 118 [ _88 ])
+                (plus:SI (reg/v:SI 122 [ i ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) 209 {*addsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 77 76 78 13 (parallel [
+            (set (reg:DI 121 [ ivtmp.30 ])
+                (plus:DI (reg:DI 121 [ ivtmp.30 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":244:9 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 78 77 79 13 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 96 [ _32 ])
+            (subreg:SI (reg:DI 121 [ ivtmp.30 ]) 0))) "../ncurses/./tty/hardscroll.c":244:9 11 {*cmpsi_1}
+     (nil))
+(jump_insn 79 78 262 13 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 262)
+            (pc))) "../ncurses/./tty/hardscroll.c":244:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 1034442876 (nil)))
+ -> 262)
+;;  succ:       40 [96.3% (guessed)]  count:737592443 (estimated locally)
+;;              14 [3.7% (guessed)]  count:28021470 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 112 118 121 122 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 112 118 121 122 141
+
+;; basic block 40, loop depth 2, count 737592443 (estimated locally), maybe hot
+;;  prev block 13, next block 14, flags: (NEW, RTL, MODIFIED)
+;;  pred:       13 [96.3% (guessed)]  count:737592443 (estimated locally)
+;; bb 40 artificial_defs: { }
+;; bb 40 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	
+;; lr  use 	
+;; lr  def 	
+;; live  in  	
+;; live  gen 	
+;; live  kill	
+(code_label 262 79 261 40 36 (nil) [1 uses])
+(note 261 262 80 40 [bb 40] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       15 [always]  count:737592443 (estimated locally) (FALLTHRU,DFS_BACK)
+;; lr  out 	
+;; live  out 	
+
+;; basic block 14, loop depth 1, count 28021470 (estimated locally), maybe hot
+;;  prev block 40, next block 15, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       13 [3.7% (guessed)]  count:28021470 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;; bb 14 artificial_defs: { }
+;; bb 14 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 118 122 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 112 118 122
+;; lr  def 	 17 [flags] 122 138
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 118 122 141
+;; live  gen 	 122 138
+;; live  kill	 17 [flags]
+(note 80 261 81 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 81 80 5 14 (parallel [
+            (set (reg:SI 138 [ _151 ])
+                (plus:SI (reg/v:SI 112 [ shift ])
+                    (reg/v:SI 122 [ i ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":246:6 209 {*addsi_1}
+     (expr_list:REG_DEAD (reg/v:SI 122 [ i ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 5 81 87 14 (set (reg/v:SI 122 [ i ])
+        (reg:SI 118 [ _88 ])) "../ncurses/./tty/hardscroll.c":246:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 118 [ _88 ])
+        (nil)))
+;;  succ:       19 [always]  count:28021470 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 138 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 138 141
+
+;; basic block 15, loop depth 2, count 824890940 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       40 [always]  count:737592443 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              36 [always]  count:87298498 (estimated locally) (FALLTHRU)
+;; bb 15 artificial_defs: { }
+;; bb 15 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 112 121 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 121
+;; lr  def 	 17 [flags] 93 122
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 112 121 141
+;; live  gen 	 17 [flags] 93 122
+;; live  kill	
+(code_label 87 5 88 15 10 (nil) [0 uses])
+(note 88 87 90 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 90 88 91 15 (set (reg/v:SI 122 [ i ])
+        (subreg:SI (reg:DI 121 [ ivtmp.30 ]) 0)) 75 {*movsi_internal}
+     (nil))
+(insn 91 90 92 15 (set (reg:SI 93 [ _28 ])
+        (mem:SI (plus:DI (mult:DI (reg:DI 121 [ ivtmp.30 ])
+                    (const_int 4 [0x4]))
+                (reg/f:DI 86 [ _10 ])) [3 MEM[(int *)_10 + ivtmp.30_97 * 4]+0 S4 A32])) "../ncurses/./tty/hardscroll.c":243:12 75 {*movsi_internal}
+     (nil))
+(insn 92 91 93 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 93 [ _28 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./tty/hardscroll.c":243:9 11 {*cmpsi_1}
+     (nil))
+(jump_insn 93 92 94 15 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 99)
+            (pc))) "../ncurses/./tty/hardscroll.c":243:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 1034442876 (nil)))
+ -> 99)
+;;  succ:       17 [96.3% (guessed)]  count:794699931 (estimated locally)
+;;              16 [3.7% (guessed)]  count:30191009 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 93 96 111 112 121 122 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 93 96 111 112 121 122 141
+
+;; basic block 16, loop depth 1, count 30191009 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       15 [3.7% (guessed)]  count:30191009 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;; bb 16 artificial_defs: { }
+;; bb 16 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 112 122
+;; lr  def 	 17 [flags] 138 149
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 141
+;; live  gen 	 138 149
+;; live  kill	 17 [flags]
+(note 94 93 95 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 95 94 96 16 (parallel [
+            (set (reg:SI 149)
+                (plus:SI (reg/v:SI 122 [ i ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":246:10 209 {*addsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 96 95 99 16 (parallel [
+            (set (reg:SI 138 [ _151 ])
+                (plus:SI (reg:SI 149)
+                    (reg/v:SI 112 [ shift ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":246:6 209 {*addsi_1}
+     (expr_list:REG_DEAD (reg:SI 149)
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+;;  succ:       19 [always]  count:30191009 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 138 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 138 141
+
+;; basic block 17, loop depth 2, count 794699931 (estimated locally), maybe hot
+;;  prev block 16, next block 18, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       15 [96.3% (guessed)]  count:794699931 (estimated locally)
+;; bb 17 artificial_defs: { }
+;; bb 17 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 93 96 111 112 121 122 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 112 121
+;; lr  def 	 17 [flags] 150
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 93 96 111 112 121 122 141
+;; live  gen 	 17 [flags] 150
+;; live  kill	 17 [flags]
+(code_label 99 96 100 17 11 (nil) [1 uses])
+(note 100 99 102 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 102 100 103 17 (parallel [
+            (set (reg:SI 150)
+                (minus:SI (reg:SI 93 [ _28 ])
+                    (subreg:SI (reg:DI 121 [ ivtmp.30 ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":244:31 282 {*subsi_1}
+     (expr_list:REG_DEAD (reg:SI 93 [ _28 ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 103 102 104 17 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 150)
+            (reg/v:SI 112 [ shift ]))) "../ncurses/./tty/hardscroll.c":244:9 11 {*cmpsi_1}
+     (expr_list:REG_DEAD (reg:SI 150)
+        (nil)))
+(jump_insn 104 103 105 17 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 101)
+            (pc))) "../ncurses/./tty/hardscroll.c":244:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 1034442876 (nil)))
+ -> 101)
+;;  succ:       13 [96.3% (guessed)]  count:765613913 (estimated locally)
+;;              18 [3.7% (guessed)]  count:29086018 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 112 121 122 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 112 121 122 141
+
+;; basic block 18, loop depth 1, count 29086018 (estimated locally), maybe hot
+;;  prev block 17, next block 19, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       17 [3.7% (guessed)]  count:29086018 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;; bb 18 artificial_defs: { }
+;; bb 18 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 112 122
+;; lr  def 	 17 [flags] 138 151
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 141
+;; live  gen 	 138 151
+;; live  kill	 17 [flags]
+(note 105 104 106 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 106 105 107 18 (parallel [
+            (set (reg:SI 151)
+                (plus:SI (reg/v:SI 122 [ i ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":246:10 209 {*addsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 107 106 108 18 (parallel [
+            (set (reg:SI 138 [ _151 ])
+                (plus:SI (reg:SI 151)
+                    (reg/v:SI 112 [ shift ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":246:6 209 {*addsi_1}
+     (expr_list:REG_DEAD (reg:SI 151)
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+;;  succ:       19 [always]  count:29086018 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 138 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 138 141
+
+;; basic block 19, loop depth 1, count 90615007 (estimated locally), maybe hot
+;;  prev block 18, next block 20, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       14 [always]  count:28021470 (estimated locally) (FALLTHRU)
+;;              16 [always]  count:30191009 (estimated locally) (FALLTHRU)
+;;              18 [always]  count:29086018 (estimated locally) (FALLTHRU)
+;;              12 [3.7% (guessed)]  count:3316509 (estimated locally) (FALLTHRU)
+;; bb 19 artificial_defs: { }
+;; bb 19 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 138 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 138 141
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 96 152
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 111 112 122 138 141
+;; live  gen 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 17 [flags] 36 [r8] 96 152
+;; live  kill	 17 [flags]
+(code_label 108 107 109 19 9 (nil) [0 uses])
+(note 109 108 110 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 110 109 111 19 (parallel [
+            (set (reg:SI 152)
+                (plus:SI (reg:SI 96 [ _32 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":250:6 209 {*addsi_1}
+     (expr_list:REG_DEAD (reg:SI 96 [ _32 ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 111 110 112 19 (set (reg:SI 36 r8)
+        (reg:SI 152)) "../ncurses/./tty/hardscroll.c":250:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 152)
+        (nil)))
+(insn 112 111 113 19 (set (reg:SI 2 cx)
+        (reg:SI 138 [ _151 ])) "../ncurses/./tty/hardscroll.c":250:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 138 [ _151 ])
+        (nil)))
+(insn 113 112 114 19 (set (reg:SI 1 dx)
+        (reg/v:SI 111 [ i ])) "../ncurses/./tty/hardscroll.c":250:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 111 [ i ])
+        (nil)))
+(insn 114 113 115 19 (set (reg:SI 4 si)
+        (reg/v:SI 112 [ shift ])) "../ncurses/./tty/hardscroll.c":250:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 112 [ shift ])
+        (nil)))
+(insn 115 114 116 19 (set (reg:DI 5 di)
+        (reg/v/f:DI 141 [ sp ])) "../ncurses/./tty/hardscroll.c":250:6 74 {*movdi_internal}
+     (nil))
+(call_insn 116 115 117 19 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_scrolln_sp") [flags 0x41]  <function_decl 0x7f7345822000 _nc_scrolln_sp>) [0 _nc_scrolln_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":250:6 824 {*call_value}
+     (expr_list:REG_DEAD (reg:SI 36 r8)
+        (expr_list:REG_DEAD (reg:DI 5 di)
+            (expr_list:REG_DEAD (reg:SI 4 si)
+                (expr_list:REG_DEAD (reg:SI 2 cx)
+                    (expr_list:REG_DEAD (reg:SI 1 dx)
+                        (expr_list:REG_UNUSED (reg:SI 0 ax)
+                            (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_scrolln_sp") [flags 0x41]  <function_decl 0x7f7345822000 _nc_scrolln_sp>)
+                                (nil))))))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (expr_list:SI (use (reg:SI 36 r8))
+                        (nil)))))))
+(insn 117 116 118 19 (set (reg:SI 96 [ _32 ])
+        (mem:SI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 116 [0x74])) [3 sp_62(D)->_lines+0 S4 A32])) "../ncurses/./tty/hardscroll.c":231:21 75 {*movsi_internal}
+     (nil))
+(insn 118 117 119 19 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 96 [ _32 ])
+            (reg/v:SI 122 [ i ]))) "../ncurses/./tty/hardscroll.c":231:19 11 {*cmpsi_1}
+     (nil))
+(jump_insn 119 118 225 19 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 129)
+            (pc))) "../ncurses/./tty/hardscroll.c":231:19 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 59055804 (nil)))
+ -> 129)
+;;  succ:       20 [94.5% (guessed)]  count:85631182 (estimated locally) (FALLTHRU)
+;;              22 [5.5% (guessed)]  count:4983825 (estimated locally) (LOOP_EXIT)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 122 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 122 141
+
+;; basic block 20, loop depth 1, count 85631182 (estimated locally), maybe hot
+;;  prev block 19, next block 21, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       19 [94.5% (guessed)]  count:85631182 (estimated locally) (FALLTHRU)
+;; bb 20 artificial_defs: { }
+;; bb 20 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 122 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 122 141
+;; live  gen 	
+;; live  kill	
+(note 225 119 120 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       21 [always]  count:85631182 (estimated locally) (FALLTHRU,DFS_BACK)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 122 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 122 141
+
+;; basic block 21, loop depth 1, count 95888896 (estimated locally), maybe hot
+;;  prev block 20, next block 22, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       35 [always]  count:10257714 (estimated locally) (FALLTHRU)
+;;              20 [always]  count:85631182 (estimated locally) (FALLTHRU,DFS_BACK)
+;; bb 21 artificial_defs: { }
+;; bb 21 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 122 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 122 141
+;; lr  def 	 17 [flags] 86 111 116 153 154
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 122 141
+;; live  gen 	 86 111 116 153 154
+;; live  kill	 17 [flags]
+(code_label 120 225 121 21 5 (nil) [0 uses])
+(note 121 120 122 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 122 121 123 21 (set (reg/f:DI 86 [ _10 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 1352 [0x548])) [1 sp_62(D)->_oldnum_list+0 S8 A64])) "../ncurses/./tty/hardscroll.c":233:13 74 {*movdi_internal}
+     (nil))
+(insn 123 122 124 21 (set (reg:DI 153 [ i ])
+        (sign_extend:DI (reg/v:SI 122 [ i ]))) 147 {*extendsidi2_rex64}
+     (nil))
+(insn 124 123 125 21 (parallel [
+            (set (reg:DI 154)
+                (ashift:DI (reg:DI 153 [ i ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) 656 {*ashldi3_1}
+     (expr_list:REG_DEAD (reg:DI 153 [ i ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 125 124 4 21 (parallel [
+            (set (reg:DI 116 [ ivtmp.40 ])
+                (plus:DI (reg/f:DI 86 [ _10 ])
+                    (reg:DI 154)))
+            (clobber (reg:CC 17 flags))
+        ]) 210 {*adddi_1}
+     (expr_list:REG_DEAD (reg:DI 154)
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 4 125 129 21 (set (reg/v:SI 111 [ i ])
+        (reg/v:SI 122 [ i ])) "../ncurses/./tty/hardscroll.c":233:13 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 122 [ i ])
+        (nil)))
+;;  succ:       9 [always]  count:95888896 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 116 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 86 96 111 116 141
+
+;; basic block 22, loop depth 0, count 10854724 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 64636629 (estimated locally), should be 10854724 (estimated locally)
+;;  prev block 21, next block 34, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       11 [never (guessed)]  count:0 (estimated locally) (LOOP_EXIT)
+;;              19 [5.5% (guessed)]  count:4983825 (estimated locally) (LOOP_EXIT)
+;;              8 [6.0% (guessed)]  count:59055794 (estimated locally) (LOOP_EXIT)
+;;              7 [5.5% (guessed)]  count:597010 (estimated locally) (FALLTHRU)
+;; bb 22 artificial_defs: { }
+;; bb 22 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96
+;; lr  def 	 17 [flags] 128
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 96 141
+;; live  gen 	 17 [flags] 128
+;; live  kill	 17 [flags]
+(code_label 129 4 130 22 6 (nil) [3 uses])
+(note 130 129 131 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 131 130 134 22 (parallel [
+            (set (reg/v:SI 128 [ i ])
+                (plus:SI (reg:SI 96 [ _32 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":262:12 209 {*addsi_1}
+     (expr_list:REG_DEAD (reg:SI 96 [ _32 ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 134 131 135 22 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 128 [ i ])
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":262:43 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 135 134 253 22 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 253)
+            (pc))) "../ncurses/./tty/hardscroll.c":262:43 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGOC 17 flags)
+        (int_list:REG_BR_PROB 1014686028 (nil)))
+ -> 253)
+;;  succ:       34 [94.5% (guessed)]  count:10257714 (estimated locally)
+;;              33 [5.5% (guessed)]  count:597010 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 128 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 128 141
+
+;; basic block 34, loop depth 0, count 10257714 (estimated locally), maybe hot
+;;  prev block 22, next block 23, flags: (NEW, RTL, MODIFIED)
+;;  pred:       22 [94.5% (guessed)]  count:10257714 (estimated locally)
+;; bb 34 artificial_defs: { }
+;; bb 34 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	
+;; lr  use 	
+;; lr  def 	
+;; live  in  	
+;; live  gen 	
+;; live  kill	
+(code_label 253 135 252 34 33 (nil) [1 uses])
+(note 252 253 152 34 [bb 34] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       29 [always]  count:10257714 (estimated locally) (FALLTHRU)
+;; lr  out 	
+;; live  out 	
+
+;; basic block 23, loop depth 2, count 977852923 (estimated locally), maybe hot
+;;  prev block 34, next block 39, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       24 [96.4% (guessed)]  count:977852925 (estimated locally)
+;; bb 23 artificial_defs: { }
+;; bb 23 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 127 128 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 127 128
+;; lr  def 	 17 [flags] 127
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 127 128 141
+;; live  gen 	 17 [flags] 127
+;; live  kill	 17 [flags]
+(code_label 152 252 139 23 15 (nil) [1 uses])
+(note 139 152 140 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 140 139 141 23 (parallel [
+            (set (reg:DI 127 [ ivtmp.25 ])
+                (plus:DI (reg:DI 127 [ ivtmp.25 ])
+                    (const_int -4 [0xfffffffffffffffc])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":264:9 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 141 140 142 23 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 128 [ i ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./tty/hardscroll.c":264:9 11 {*cmpsi_1}
+     (nil))
+(jump_insn 142 141 260 23 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 223)
+            (pc))) "../ncurses/./tty/hardscroll.c":264:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 64846852 (nil)))
+ -> 223)
+;;  succ:       39 [94.0% (guessed)]  count:918797125 (estimated locally) (FALLTHRU)
+;;              33 [6.0% (guessed)]  count:59055798 (estimated locally) (LOOP_EXIT)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 127 128 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 127 128 141
+
+;; basic block 39, loop depth 2, count 918797125 (estimated locally), maybe hot
+;;  prev block 23, next block 24, flags: (NEW, RTL, MODIFIED)
+;;  pred:       23 [94.0% (guessed)]  count:918797125 (estimated locally) (FALLTHRU)
+;; bb 39 artificial_defs: { }
+;; bb 39 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	
+;; lr  use 	
+;; lr  def 	
+;; live  in  	
+;; live  gen 	
+;; live  kill	
+(note 260 142 194 39 [bb 39] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       24 [always]  count:918797125 (estimated locally) (FALLTHRU,DFS_BACK)
+;; lr  out 	
+;; live  out 	
+
+;; basic block 24, loop depth 2, count 1014686024 (estimated locally), maybe hot
+;;  prev block 39, next block 25, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       39 [always]  count:918797125 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              29 [always]  count:95888901 (estimated locally) (FALLTHRU)
+;; bb 24 artificial_defs: { }
+;; bb 24 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 127 128 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 127 128
+;; lr  def 	 17 [flags] 98 128 130 132 156 158
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 127 128 141
+;; live  gen 	 17 [flags] 98 128 130 132 156 158
+;; live  kill	 17 [flags]
+(code_label 194 260 143 24 20 (nil) [0 uses])
+(note 143 194 144 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 144 143 145 24 (set (reg:SI 98 [ _37 ])
+        (mem:SI (reg:DI 127 [ ivtmp.25 ]) [3 MEM[(int *)_98]+0 S4 A32])) "../ncurses/./tty/hardscroll.c":264:13 75 {*movsi_internal}
+     (nil))
+(insn 145 144 146 24 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 98 [ _37 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./tty/hardscroll.c":264:9 11 {*cmpsi_1}
+     (nil))
+(insn 146 145 147 24 (set (reg:QI 156)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":264:9 802 {*setcc_qi}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (nil)))
+(insn 147 146 148 24 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 98 [ _37 ])
+            (reg/v:SI 128 [ i ]))) "../ncurses/./tty/hardscroll.c":265:6 11 {*cmpsi_1}
+     (nil))
+(insn 148 147 149 24 (set (reg:QI 158)
+        (ge:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":265:6 802 {*setcc_qi}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (nil)))
+(insn 149 148 150 24 (parallel [
+            (set (reg:QI 132 [ _121 ])
+                (ior:QI (reg:QI 156)
+                    (reg:QI 158)))
+            (clobber (reg:CC 17 flags))
+        ]) 530 {*iorqi_1}
+     (expr_list:REG_DEAD (reg:QI 158)
+        (expr_list:REG_DEAD (reg:QI 156)
+            (expr_list:REG_UNUSED (reg:CC 17 flags)
+                (nil)))))
+(insn 150 149 151 24 (set (reg/v:SI 130 [ i ])
+        (reg/v:SI 128 [ i ])) 75 {*movsi_internal}
+     (nil))
+(insn 151 150 153 24 (parallel [
+            (set (reg/v:SI 128 [ i ])
+                (plus:SI (reg/v:SI 128 [ i ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":266:7 209 {*addsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 153 151 154 24 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 132 [ _121 ])
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":265:6 5 {*cmpqi_ccno_1}
+     (expr_list:REG_DEAD (reg:QI 132 [ _121 ])
+        (nil)))
+(jump_insn 154 153 168 24 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 152)
+            (pc))) "../ncurses/./tty/hardscroll.c":265:6 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 1034765004 (nil)))
+ -> 152)
+;;  succ:       23 [96.4% (guessed)]  count:977852925 (estimated locally)
+;;              30 [3.6% (guessed)]  count:36833099 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 127 128 130 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 127 128 130 141
+
+;; basic block 25, loop depth 2, count 765613960 (estimated locally), maybe hot
+;;  prev block 24, next block 38, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       27 [96.3% (guessed)]  count:765613960 (estimated locally)
+;; bb 25 artificial_defs: { }
+;; bb 25 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 130 131 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 131
+;; lr  def 	 17 [flags] 131
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 130 131 141
+;; live  gen 	 17 [flags] 131
+;; live  kill	 17 [flags]
+(code_label 168 154 158 25 19 (nil) [1 uses])
+(note 158 168 159 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(insn 159 158 160 25 (parallel [
+            (set (reg:DI 131 [ ivtmp.13 ])
+                (plus:DI (reg:DI 131 [ ivtmp.13 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":277:9 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 160 159 161 25 (set (reg:CCZ 17 flags)
+        (compare:CCZ (subreg:SI (reg:DI 131 [ ivtmp.13 ]) 0)
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./tty/hardscroll.c":277:9 11 {*cmpsi_1}
+     (nil))
+(jump_insn 161 160 259 25 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 212)
+            (pc))) "../ncurses/./tty/hardscroll.c":277:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 39298956 (nil)))
+ -> 212)
+;;  succ:       38 [96.3% (guessed)]  count:737592488 (estimated locally) (FALLTHRU)
+;;              32 [3.7% (guessed)]  count:28021472 (estimated locally) (LOOP_EXIT)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 130 131 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 130 131 141
+
+;; basic block 38, loop depth 2, count 737592488 (estimated locally), maybe hot
+;;  prev block 25, next block 26, flags: (NEW, RTL, MODIFIED)
+;;  pred:       25 [96.3% (guessed)]  count:737592488 (estimated locally) (FALLTHRU)
+;; bb 38 artificial_defs: { }
+;; bb 38 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	
+;; lr  use 	
+;; lr  def 	
+;; live  in  	
+;; live  gen 	
+;; live  kill	
+(note 259 161 209 38 [bb 38] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       26 [always]  count:737592488 (estimated locally) (FALLTHRU,DFS_BACK)
+;; lr  out 	
+;; live  out 	
+
+;; basic block 26, loop depth 2, count 824890992 (estimated locally), maybe hot
+;;  prev block 38, next block 27, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       38 [always]  count:737592488 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              31 [always]  count:87298503 (estimated locally) (FALLTHRU)
+;; bb 26 artificial_defs: { }
+;; bb 26 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 130 131 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 131
+;; lr  def 	 17 [flags] 99 128
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 130 131 141
+;; live  gen 	 17 [flags] 99 128
+;; live  kill	
+(code_label 209 259 162 26 21 (nil) [0 uses])
+(note 162 209 163 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 163 162 164 26 (set (reg/v:SI 128 [ i ])
+        (subreg:SI (reg:DI 131 [ ivtmp.13 ]) 0)) 75 {*movsi_internal}
+     (nil))
+(insn 164 163 165 26 (set (reg:SI 99 [ _46 ])
+        (mem:SI (plus:DI (mult:DI (reg:DI 131 [ ivtmp.13 ])
+                    (const_int 4 [0x4]))
+                (reg/f:DI 97 [ _33 ])) [3 MEM[(int *)_33 + ivtmp.13_115 * 4]+0 S4 A32])) "../ncurses/./tty/hardscroll.c":276:12 75 {*movsi_internal}
+     (nil))
+(insn 165 164 166 26 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 99 [ _46 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./tty/hardscroll.c":276:9 11 {*cmpsi_1}
+     (nil))
+(jump_insn 166 165 167 26 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 172)
+            (pc))) "../ncurses/./tty/hardscroll.c":276:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 39298956 (nil)))
+ -> 172)
+;;  succ:       27 [96.3% (guessed)]  count:794699981 (estimated locally) (FALLTHRU)
+;;              28 [3.7% (guessed)]  count:30191011 (estimated locally) (LOOP_EXIT)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 99 113 128 130 131 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 99 113 128 130 131 141
+
+;; basic block 27, loop depth 2, count 794699980 (estimated locally), maybe hot
+;;  prev block 26, next block 28, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       26 [96.3% (guessed)]  count:794699981 (estimated locally) (FALLTHRU)
+;; bb 27 artificial_defs: { }
+;; bb 27 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 99 113 128 130 131 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 99 113 131
+;; lr  def 	 17 [flags] 159
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 99 113 128 130 131 141
+;; live  gen 	 17 [flags] 159
+;; live  kill	 17 [flags]
+(note 167 166 169 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(insn 169 167 170 27 (parallel [
+            (set (reg:SI 159)
+                (minus:SI (reg:SI 99 [ _46 ])
+                    (subreg:SI (reg:DI 131 [ ivtmp.13 ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":277:31 282 {*subsi_1}
+     (expr_list:REG_DEAD (reg:SI 99 [ _46 ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 170 169 171 27 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 159)
+            (reg/v:SI 113 [ shift ]))) "../ncurses/./tty/hardscroll.c":277:9 11 {*cmpsi_1}
+     (expr_list:REG_DEAD (reg:SI 159)
+        (nil)))
+(jump_insn 171 170 172 27 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 168)
+            (pc))) "../ncurses/./tty/hardscroll.c":277:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 1034442876 (nil)))
+ -> 168)
+;;  succ:       25 [96.3% (guessed)]  count:765613960 (estimated locally)
+;;              28 [3.7% (guessed)]  count:29086020 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 128 130 131 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 128 130 131 141
+
+;; basic block 28, loop depth 1, count 85631187 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 59277031 (estimated locally), should be 85631187 (estimated locally)
+;;  prev block 27, next block 37, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       27 [3.7% (guessed)]  count:29086020 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;;              26 [3.7% (guessed)]  count:30191011 (estimated locally) (LOOP_EXIT)
+;; bb 28 artificial_defs: { }
+;; bb 28 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 113 128 130 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 113 128 130 141
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 160 161 162 163
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 113 128 130 141
+;; live  gen 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 17 [flags] 36 [r8] 160 161 162 163
+;; live  kill	 17 [flags]
+(code_label 172 171 173 28 18 (nil) [1 uses])
+(note 173 172 174 28 [bb 28] NOTE_INSN_BASIC_BLOCK)
+(insn 174 173 175 28 (set (reg:SI 161 [ sp_62(D)->_lines ])
+        (mem:SI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 116 [0x74])) [3 sp_62(D)->_lines+0 S4 A32])) "../ncurses/./tty/hardscroll.c":284:6 75 {*movsi_internal}
+     (nil))
+(insn 175 174 176 28 (parallel [
+            (set (reg:SI 160)
+                (plus:SI (reg:SI 161 [ sp_62(D)->_lines ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":284:6 209 {*addsi_1}
+     (expr_list:REG_DEAD (reg:SI 161 [ sp_62(D)->_lines ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (expr_list:REG_EQUAL (plus:SI (mem:SI (plus:DI (reg/v/f:DI 141 [ sp ])
+                            (const_int 116 [0x74])) [3 sp_62(D)->_lines+0 S4 A32])
+                    (const_int -1 [0xffffffffffffffff]))
+                (nil)))))
+(insn 176 175 177 28 (parallel [
+            (set (reg:SI 162)
+                (plus:SI (reg/v:SI 128 [ i ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":280:12 209 {*addsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 177 176 178 28 (parallel [
+            (set (reg:SI 163 [ start ])
+                (plus:SI (reg:SI 162)
+                    (reg/v:SI 113 [ shift ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":280:8 209 {*addsi_1}
+     (expr_list:REG_DEAD (reg:SI 162)
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 178 177 179 28 (set (reg:SI 36 r8)
+        (reg:SI 160)) "../ncurses/./tty/hardscroll.c":284:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 160)
+        (nil)))
+(insn 179 178 180 28 (set (reg:SI 2 cx)
+        (reg/v:SI 130 [ i ])) "../ncurses/./tty/hardscroll.c":284:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 130 [ i ])
+        (nil)))
+(insn 180 179 181 28 (set (reg:SI 1 dx)
+        (reg:SI 163 [ start ])) "../ncurses/./tty/hardscroll.c":284:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 163 [ start ])
+        (nil)))
+(insn 181 180 182 28 (set (reg:SI 4 si)
+        (reg/v:SI 113 [ shift ])) "../ncurses/./tty/hardscroll.c":284:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 113 [ shift ])
+        (nil)))
+(insn 182 181 183 28 (set (reg:DI 5 di)
+        (reg/v/f:DI 141 [ sp ])) "../ncurses/./tty/hardscroll.c":284:6 74 {*movdi_internal}
+     (nil))
+(call_insn 183 182 186 28 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_scrolln_sp") [flags 0x41]  <function_decl 0x7f7345822000 _nc_scrolln_sp>) [0 _nc_scrolln_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":284:6 824 {*call_value}
+     (expr_list:REG_DEAD (reg:SI 36 r8)
+        (expr_list:REG_DEAD (reg:DI 5 di)
+            (expr_list:REG_DEAD (reg:SI 4 si)
+                (expr_list:REG_DEAD (reg:SI 2 cx)
+                    (expr_list:REG_DEAD (reg:SI 1 dx)
+                        (expr_list:REG_UNUSED (reg:SI 0 ax)
+                            (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_scrolln_sp") [flags 0x41]  <function_decl 0x7f7345822000 _nc_scrolln_sp>)
+                                (nil))))))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (expr_list:SI (use (reg:SI 36 r8))
+                        (nil)))))))
+(insn 186 183 187 28 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 128 [ i ])
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":262:43 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 187 186 258 28 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 223)
+            (pc))) "../ncurses/./tty/hardscroll.c":262:43 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGOC 17 flags)
+        (int_list:REG_BR_PROB 4 (nil)))
+ -> 223)
+;;  succ:       37 [always (guessed)]  count:85631187 (estimated locally) (FALLTHRU)
+;;              33 [never (guessed)]  count:0 (estimated locally) (LOOP_EXIT)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 128 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 128 141
+
+;; basic block 37, loop depth 1, count 85631187 (estimated locally), maybe hot
+;;  prev block 28, next block 29, flags: (NEW, RTL, MODIFIED)
+;;  pred:       28 [always (guessed)]  count:85631187 (estimated locally) (FALLTHRU)
+;; bb 37 artificial_defs: { }
+;; bb 37 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	
+;; lr  use 	
+;; lr  def 	
+;; live  in  	
+;; live  gen 	
+;; live  kill	
+(note 258 187 188 37 [bb 37] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       29 [always]  count:85631187 (estimated locally) (FALLTHRU,DFS_BACK)
+;; lr  out 	
+;; live  out 	
+
+;; basic block 29, loop depth 1, count 95888901 (estimated locally), maybe hot
+;;  prev block 37, next block 30, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       37 [always]  count:85631187 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              34 [always]  count:10257714 (estimated locally) (FALLTHRU)
+;; bb 29 artificial_defs: { }
+;; bb 29 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 128 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 128 141
+;; lr  def 	 17 [flags] 97 127 164 165
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 128 141
+;; live  gen 	 97 127 164 165
+;; live  kill	 17 [flags]
+(code_label 188 258 189 29 14 (nil) [0 uses])
+(note 189 188 190 29 [bb 29] NOTE_INSN_BASIC_BLOCK)
+(insn 190 189 191 29 (set (reg/f:DI 97 [ _33 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 1352 [0x548])) [1 sp_62(D)->_oldnum_list+0 S8 A64])) "../ncurses/./tty/hardscroll.c":264:13 74 {*movdi_internal}
+     (nil))
+(insn 191 190 192 29 (set (reg:DI 164 [ i ])
+        (sign_extend:DI (reg/v:SI 128 [ i ]))) 147 {*extendsidi2_rex64}
+     (nil))
+(insn 192 191 193 29 (parallel [
+            (set (reg:DI 165)
+                (ashift:DI (reg:DI 164 [ i ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) 656 {*ashldi3_1}
+     (expr_list:REG_DEAD (reg:DI 164 [ i ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 193 192 203 29 (parallel [
+            (set (reg:DI 127 [ ivtmp.25 ])
+                (plus:DI (reg/f:DI 97 [ _33 ])
+                    (reg:DI 165)))
+            (clobber (reg:CC 17 flags))
+        ]) 210 {*adddi_1}
+     (expr_list:REG_DEAD (reg:DI 165)
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+;;  succ:       24 [always]  count:95888901 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 127 128 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 127 128 141
+
+;; basic block 30, loop depth 1, count 90615013 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 36833099 (estimated locally), should be 90615013 (estimated locally)
+;;  prev block 29, next block 31, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       24 [3.6% (guessed)]  count:36833099 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;; bb 30 artificial_defs: { }
+;; bb 30 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 128 130 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 98 128 130
+;; lr  def 	 17 [flags] 113
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 98 128 130 141
+;; live  gen 	 17 [flags] 113
+;; live  kill	 17 [flags]
+(note 203 193 204 30 [bb 30] NOTE_INSN_BASIC_BLOCK)
+(insn 204 203 205 30 (parallel [
+            (set (reg/v:SI 113 [ shift ])
+                (minus:SI (reg:SI 98 [ _37 ])
+                    (reg/v:SI 130 [ i ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":271:8 282 {*subsi_1}
+     (expr_list:REG_DEAD (reg:SI 98 [ _37 ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 205 204 206 30 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 128 [ i ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./tty/hardscroll.c":277:9 11 {*cmpsi_1}
+     (nil))
+(jump_insn 206 205 207 30 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 212)
+            (pc))) "../ncurses/./tty/hardscroll.c":277:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 39298956 (nil)))
+ -> 212)
+;;  succ:       31 [96.3% (guessed)]  count:87298503 (estimated locally) (FALLTHRU)
+;;              32 [3.7% (guessed)]  count:3316510 (estimated locally) (LOOP_EXIT)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 128 130 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 128 130 141
+
+;; basic block 31, loop depth 1, count 87298503 (estimated locally), maybe hot
+;;  prev block 30, next block 32, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       30 [96.3% (guessed)]  count:87298503 (estimated locally) (FALLTHRU)
+;; bb 31 artificial_defs: { }
+;; bb 31 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 128 130 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 128
+;; lr  def 	 131
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 128 130 141
+;; live  gen 	 131
+;; live  kill	
+(note 207 206 208 31 [bb 31] NOTE_INSN_BASIC_BLOCK)
+(insn 208 207 212 31 (set (reg:DI 131 [ ivtmp.13 ])
+        (sign_extend:DI (reg/v:SI 128 [ i ]))) 147 {*extendsidi2_rex64}
+     (expr_list:REG_DEAD (reg/v:SI 128 [ i ])
+        (nil)))
+;;  succ:       26 [always]  count:87298503 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 130 131 141
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 97 113 130 131 141
+
+;; basic block 32, loop depth 0, count 4983826 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 31337982 (estimated locally), should be 4983826 (estimated locally)
+;;  prev block 31, next block 33, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       30 [3.7% (guessed)]  count:3316510 (estimated locally) (LOOP_EXIT)
+;;              25 [3.7% (guessed)]  count:28021472 (estimated locally) (LOOP_EXIT)
+;; bb 32 artificial_defs: { }
+;; bb 32 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 113 130 141
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 113 130 141
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 166 167
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 113 130 141
+;; live  gen 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 36 [r8] 166 167
+;; live  kill	 17 [flags]
+(code_label 212 208 213 32 17 (nil) [2 uses])
+(note 213 212 214 32 [bb 32] NOTE_INSN_BASIC_BLOCK)
+(insn 214 213 215 32 (set (reg:SI 167 [ sp_62(D)->_lines ])
+        (mem:SI (plus:DI (reg/v/f:DI 141 [ sp ])
+                (const_int 116 [0x74])) [3 sp_62(D)->_lines+0 S4 A32])) "../ncurses/./tty/hardscroll.c":284:6 75 {*movsi_internal}
+     (nil))
+(insn 215 214 216 32 (parallel [
+            (set (reg:SI 166)
+                (plus:SI (reg:SI 167 [ sp_62(D)->_lines ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/hardscroll.c":284:6 209 {*addsi_1}
+     (expr_list:REG_DEAD (reg:SI 167 [ sp_62(D)->_lines ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (expr_list:REG_EQUAL (plus:SI (mem:SI (plus:DI (reg/v/f:DI 141 [ sp ])
+                            (const_int 116 [0x74])) [3 sp_62(D)->_lines+0 S4 A32])
+                    (const_int -1 [0xffffffffffffffff]))
+                (nil)))))
+(insn 216 215 217 32 (set (reg:SI 36 r8)
+        (reg:SI 166)) "../ncurses/./tty/hardscroll.c":284:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 166)
+        (nil)))
+(insn 217 216 218 32 (set (reg:SI 2 cx)
+        (reg/v:SI 130 [ i ])) "../ncurses/./tty/hardscroll.c":284:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 130 [ i ])
+        (nil)))
+(insn 218 217 219 32 (set (reg:SI 1 dx)
+        (reg/v:SI 113 [ shift ])) "../ncurses/./tty/hardscroll.c":284:6 75 {*movsi_internal}
+     (nil))
+(insn 219 218 220 32 (set (reg:SI 4 si)
+        (reg/v:SI 113 [ shift ])) "../ncurses/./tty/hardscroll.c":284:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 113 [ shift ])
+        (nil)))
+(insn 220 219 221 32 (set (reg:DI 5 di)
+        (reg/v/f:DI 141 [ sp ])) "../ncurses/./tty/hardscroll.c":284:6 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 141 [ sp ])
+        (nil)))
+(call_insn/j 221 220 223 32 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_scrolln_sp") [flags 0x41]  <function_decl 0x7f7345822000 _nc_scrolln_sp>) [0 _nc_scrolln_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tty/hardscroll.c":284:6 828 {*sibcall_value}
+     (expr_list:REG_DEAD (reg:SI 36 r8)
+        (expr_list:REG_DEAD (reg:DI 5 di)
+            (expr_list:REG_DEAD (reg:SI 4 si)
+                (expr_list:REG_DEAD (reg:SI 2 cx)
+                    (expr_list:REG_DEAD (reg:SI 1 dx)
+                        (expr_list:REG_UNUSED (reg:SI 0 ax)
+                            (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_scrolln_sp") [flags 0x41]  <function_decl 0x7f7345822000 _nc_scrolln_sp>)
+                                (nil))))))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (expr_list:SI (use (reg:SI 36 r8))
+                        (nil)))))))
+;;  succ:       EXIT [always (guessed)]  count:4983826 (estimated locally) (ABNORMAL,SIBCALL)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+;; basic block 33, loop depth 0, count 13417199 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 67199108 (estimated locally), should be 13417199 (estimated locally)
+;;  prev block 32, next block 1, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       28 [never (guessed)]  count:0 (estimated locally) (LOOP_EXIT)
+;;              4 [18.1% (guessed)]  count:1954473 (estimated locally)
+;;              6 [34.0% (guessed)]  count:5591827 (estimated locally)
+;;              22 [5.5% (guessed)]  count:597010 (estimated locally) (FALLTHRU)
+;;              23 [6.0% (guessed)]  count:59055798 (estimated locally) (LOOP_EXIT)
+;; bb 33 artificial_defs: { }
+;; bb 33 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	
+;; live  kill	
+(code_label 223 221 224 33 1 (nil) [4 uses])
+(note 224 223 0 33 [bb 33] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       EXIT [always]  count:13417199 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+
+;; Function _nc_scroll_optimize (_nc_scroll_optimize, funcdef_no=92, decl_uid=8824, cgraph_uid=93, symbol_order=93)
+
+0 registers.
+
+3 basic blocks, 2 edges.
+;; basic block 0, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block (nil), next block 2, flags: (RTL, MODIFIED)
+;;  pred:      
+;; bb 0 artificial_defs: { d-1(0){ }d-1(1){ }d-1(2){ }d-1(4){ }d-1(5){ }d-1(6){ }d-1(7){ }d-1(16){ }d-1(19){ }d-1(20){ }d-1(21){ }d-1(22){ }d-1(23){ }d-1(24){ }d-1(25){ }d-1(26){ }d-1(27){ }d-1(36){ }d-1(37){ }}
+;; bb 0 artificial_uses: { }
+;; lr  in  	
+;; lr  use 	
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;; live  in  	
+;; live  gen 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;; live  kill	
+
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+;;  succ:       2 [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 83
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 5 [di] 83
+;; live  kill	
+
+(note 3 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg/f:DI 83 [ SP ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f73457abcf0 SP>) [29 SP+0 S8 A64])) "../ncurses/./tty/hardscroll.c":301:5 74 {*movdi_internal}
+     (nil))
+(insn 6 5 7 2 (set (reg:DI 5 di)
+        (reg/f:DI 83 [ SP ])) "../ncurses/./tty/hardscroll.c":301:5 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 83 [ SP ])
+        (nil)))
+(call_insn/j 7 6 0 2 (call (mem:QI (symbol_ref:DI ("_nc_scroll_optimize_sp") [flags 0x3]  <function_decl 0x7f734582d200 _nc_scroll_optimize_sp>) [0 _nc_scroll_optimize_sp S1 A8])
+        (const_int 0 [0])) "../ncurses/./tty/hardscroll.c":301:5 817 {*sibcall}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_scroll_optimize_sp") [flags 0x3]  <function_decl 0x7f734582d200 _nc_scroll_optimize_sp>)
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+
+;; basic block 1, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 2, next block (nil), flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+;; bb 1 artificial_defs: { }
+;; bb 1 artificial_uses: { u-1(6){ }u-1(7){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 19 [frame]
+;; lr  def 	
+;; live  in  	 6 [bp] 7 [sp] 19 [frame]
+;; live  gen 	
+;; live  kill	
+
+;; lr  out 	
+;; live  out 	
+
+;;  succ:      
+
+
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2
+;; 2 succs { 1 }
+
+
+_nc_scroll_optimize
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp] 16 [argp] 19 [frame]
+;;  regular block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  eh block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 6 [bp] 7 [sp] 19 [frame]
+;;  regs ever live 	 5 [di] 7 [sp]
+;;  ref usage 	r0={2d} r1={2d} r2={2d} r4={2d} r5={3d,1u} r6={1d,2u} r7={1d,3u} r8={1d} r9={1d} r10={1d} r11={1d} r12={1d} r13={1d} r14={1d} r15={1d} r16={1d,1u} r17={1d} r18={1d} r19={1d,2u} r20={2d} r21={2d} r22={2d} r23={2d} r24={2d} r25={2d} r26={2d} r27={2d} r28={1d} r29={1d} r30={1d} r31={1d} r32={1d} r33={1d} r34={1d} r35={1d} r36={2d} r37={2d} r38={1d} r39={1d} r44={1d} r45={1d} r46={1d} r47={1d} r48={1d} r49={1d} r50={1d} r51={1d} r52={1d} r53={1d} r54={1d} r55={1d} r56={1d} r57={1d} r58={1d} r59={1d} r60={1d} r61={1d} r62={1d} r63={1d} r64={1d} r65={1d} r66={1d} r67={1d} r68={1d} r69={1d} r70={1d} r71={1d} r72={1d} r73={1d} r74={1d} r75={1d} r83={1d,1u} 
+;;    total ref usage 98{88d,10u,0e} in 3{2 regular + 1 call} insns.
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (REACHABLE, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 83
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 5 [di] 83
+;; live  kill	
+(note 3 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg/f:DI 83 [ SP ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f73457abcf0 SP>) [29 SP+0 S8 A64])) "../ncurses/./tty/hardscroll.c":301:5 74 {*movdi_internal}
+     (nil))
+(insn 6 5 7 2 (set (reg:DI 5 di)
+        (reg/f:DI 83 [ SP ])) "../ncurses/./tty/hardscroll.c":301:5 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 83 [ SP ])
+        (nil)))
+(call_insn/j 7 6 0 2 (call (mem:QI (symbol_ref:DI ("_nc_scroll_optimize_sp") [flags 0x3]  <function_decl 0x7f734582d200 _nc_scroll_optimize_sp>) [0 _nc_scroll_optimize_sp S1 A8])
+        (const_int 0 [0])) "../ncurses/./tty/hardscroll.c":301:5 817 {*sibcall}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_scroll_optimize_sp") [flags 0x3]  <function_decl 0x7f734582d200 _nc_scroll_optimize_sp>)
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+

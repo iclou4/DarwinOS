@@ -1,0 +1,311 @@
+device_tree.o: \
+  /home/antonov/projects/ravynos/Kernel/xnu/pexpert/gen/device_tree.c \
+  meta_features.h config_dtrace.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/pexpert/pexpert/protos.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/mach_types.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXTERNAL_HEADERS/stdint.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/machine/types.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/i386/types.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/i386/_types.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/cdefs.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_int8_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_int16_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_int32_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_int64_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_u_int8_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_u_int16_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_u_int32_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_u_int64_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_intptr_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_uintptr_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/host_info.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/message.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/port.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/boolean.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/machine/boolean.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/i386/boolean.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/machine/vm_types.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/i386/vm_types.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/i386/vm_param.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/kern_return.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/machine/kern_return.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/i386/kern_return.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/appleapiopts.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXTERNAL_HEADERS/Availability.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXTERNAL_HEADERS/AvailabilityVersions.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXTERNAL_HEADERS/AvailabilityInternal.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXTERNAL_HEADERS/AvailabilityInternalLegacy.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/libkern/os/base.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/libkern/os/overflow.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXTERNAL_HEADERS/stdbool.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/kern/debug.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/kern/kcdata.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/string.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/types.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/machine/_types.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_offsetof.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/machine/endian.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/i386/endian.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_endian.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/libkern/libkern/_OSByteOrder.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/libkern/libkern/i386/_OSByteOrder.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_u_char.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_u_short.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_u_int.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_caddr_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_dev_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_blkcnt_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_blksize_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_gid_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_in_addr_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_in_port_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_ino_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_ino64_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_key_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_mode_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_nlink_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_id_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_pid_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_off_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_uid_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_clock_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_size_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_ssize_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_time_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_useconds_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_suseconds_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_rsize_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_errno_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fd_def.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fd_setsize.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fd_set.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fd_clr.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fd_zero.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fd_isset.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fd_copy.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fsblkcnt_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fsfilcnt_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/san/san/memintrinsics.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/uuid/uuid.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_uuid_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXTERNAL_HEADERS/stdarg.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/vm_statistics.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/machine.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/time_value.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/host_notify.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/host_special_ports.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/memory_object_types.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/vm_prot.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/vm_sync.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/vm_types.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/exception_types.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/machine/exception.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/i386/exception.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/thread_status.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/machine/thread_status.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/i386/thread_status.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/machine/_structs.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/i386/_structs.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/i386/fp_reg.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/i386/thread_state.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/i386/eflags.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/i386/proc_reg.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/machine/thread_state.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/mach_voucher_types.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/std_types.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/processor_info.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/machine/processor_info.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/i386/processor_info.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/task_info.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/policy.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/task_inspect.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/task_policy.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/task_special_ports.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/thread_info.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/thread_policy.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/thread_special_ports.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/clock_types.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/vm_attributes.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/vm_inherit.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/vm_purgable.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/vm_behavior.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/vm_region.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/machine/vm_param.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/kmod.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/dyld_kernel.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fsid_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fsobj_id_t.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/vm_param.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/kern/assert.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/kern/macro_help.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/pexpert/pexpert/machine/protos.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/pexpert/pexpert/i386/protos.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/machine/io_map_entries.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/i386/io_map_entries.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/kern/cpu_number.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/machine/cpu_number.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/i386/cpu_number.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/kern/cpu_data.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/device/device_types.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/kern/kalloc.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/pexpert/pexpert/boot.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/pexpert/pexpert/machine/boot.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/pexpert/pexpert/i386/boot.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/pexpert/pexpert/device_tree.h \
+  /home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/kern/kern_types.h
+meta_features.h:
+config_dtrace.h:
+/home/antonov/projects/ravynos/Kernel/xnu/pexpert/pexpert/protos.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/mach_types.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXTERNAL_HEADERS/stdint.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/machine/types.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/i386/types.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/i386/_types.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/cdefs.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_int8_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_int16_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_int32_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_int64_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_u_int8_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_u_int16_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_u_int32_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_u_int64_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_intptr_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_uintptr_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/host_info.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/message.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/port.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/boolean.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/machine/boolean.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/i386/boolean.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/machine/vm_types.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/i386/vm_types.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/i386/vm_param.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/kern_return.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/machine/kern_return.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/i386/kern_return.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/appleapiopts.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXTERNAL_HEADERS/Availability.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXTERNAL_HEADERS/AvailabilityVersions.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXTERNAL_HEADERS/AvailabilityInternal.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXTERNAL_HEADERS/AvailabilityInternalLegacy.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/libkern/os/base.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/libkern/os/overflow.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXTERNAL_HEADERS/stdbool.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/kern/debug.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/kern/kcdata.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/string.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/types.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/machine/_types.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_offsetof.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/machine/endian.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/i386/endian.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_endian.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/libkern/libkern/_OSByteOrder.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/libkern/libkern/i386/_OSByteOrder.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_u_char.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_u_short.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_u_int.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_caddr_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_dev_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_blkcnt_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_blksize_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_gid_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_in_addr_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_in_port_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_ino_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_ino64_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_key_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_mode_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_nlink_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_id_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_pid_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_off_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_uid_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_clock_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_size_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_ssize_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_time_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_useconds_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_suseconds_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_rsize_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_errno_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fd_def.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fd_setsize.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fd_set.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fd_clr.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fd_zero.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fd_isset.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fd_copy.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fsblkcnt_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fsfilcnt_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/san/san/memintrinsics.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/uuid/uuid.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_uuid_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXTERNAL_HEADERS/stdarg.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/vm_statistics.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/machine.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/time_value.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/host_notify.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/host_special_ports.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/memory_object_types.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/vm_prot.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/vm_sync.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/vm_types.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/exception_types.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/machine/exception.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/i386/exception.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/thread_status.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/machine/thread_status.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/i386/thread_status.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/machine/_structs.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/i386/_structs.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/i386/fp_reg.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/i386/thread_state.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/i386/eflags.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/i386/proc_reg.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/machine/thread_state.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/mach_voucher_types.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/std_types.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/processor_info.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/machine/processor_info.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/i386/processor_info.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/task_info.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/policy.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/task_inspect.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/task_policy.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/task_special_ports.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/thread_info.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/thread_policy.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/thread_special_ports.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/clock_types.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/vm_attributes.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/vm_inherit.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/vm_purgable.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/vm_behavior.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/vm_region.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/machine/vm_param.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/kmod.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/dyld_kernel.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fsid_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/bsd/sys/_types/_fsobj_id_t.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/mach/vm_param.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/kern/assert.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/kern/macro_help.h:
+/home/antonov/projects/ravynos/Kernel/xnu/pexpert/pexpert/machine/protos.h:
+/home/antonov/projects/ravynos/Kernel/xnu/pexpert/pexpert/i386/protos.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/machine/io_map_entries.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/i386/io_map_entries.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/kern/cpu_number.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/machine/cpu_number.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/i386/cpu_number.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/kern/cpu_data.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/device/device_types.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/kern/kalloc.h:
+/home/antonov/projects/ravynos/Kernel/xnu/pexpert/pexpert/boot.h:
+/home/antonov/projects/ravynos/Kernel/xnu/pexpert/pexpert/machine/boot.h:
+/home/antonov/projects/ravynos/Kernel/xnu/pexpert/pexpert/i386/boot.h:
+/home/antonov/projects/ravynos/Kernel/xnu/pexpert/pexpert/device_tree.h:
+/home/antonov/projects/ravynos/Kernel/xnu/EXPORT_HDRS/osfmk/kern/kern_types.h:

@@ -1,0 +1,590 @@
+
+;; Function _nc_panelhook_sp (_nc_panelhook_sp, funcdef_no=91, decl_uid=8250, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+struct panelhook * _nc_panelhook_sp (struct SCREEN * sp)
+{
+  struct panelhook * iftmp.0_1;
+  struct panelhook * iftmp.0_5;
+  struct SCREEN * SP.2_6;
+  struct panelhook * iftmp.1_7;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (sp_3(D) != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 4>; [30.00%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  iftmp.0_5 = &sp_3(D)->_panelHook;
+  goto <bb 6>; [100.00%]
+;;    succ:       6
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+  SP.2_6 = SP;
+  if (SP.2_6 != 0B)
+    goto <bb 5>; [85.10%]
+  else
+    goto <bb 6>; [14.90%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  iftmp.1_7 = &SP.2_6->_panelHook;
+;;    succ:       6
+
+;;   basic block 6, loop depth 0
+;;    pred:       3
+;;                5
+;;                4
+  # iftmp.0_1 = PHI <iftmp.0_5(3), iftmp.1_7(5), SP.2_6(4)>
+  return iftmp.0_1;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (iftmp.0_1 - 1 )
+Partition 3 (sp_3(D) - 3 )
+Partition 5 (iftmp.0_5 - 5 )
+Partition 6 (SP.2_6 - 6 )
+Partition 7 (iftmp.1_7 - 7 )
+Partition 8 (_8(D) - 8 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (iftmp.0_1 - 1 5 6 7 8 )
+Partition 1, base 1 (sp_3(D) - 3 )
+
+
+Partition map 
+
+Partition 0 (iftmp.0_1 - 1 )
+Partition 1 (sp_3(D) - 3 )
+Partition 2 (iftmp.0_5 - 5 )
+Partition 3 (SP.2_6 - 6 )
+Partition 4 (iftmp.1_7 - 7 )
+Partition 5 (_8(D) - 8 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) iftmp.0_1 <-> _8(D)
+(7000, 0) iftmp.0_1 <-> iftmp.0_5
+(2553, 0) iftmp.0_1 <-> iftmp.1_7
+(894, 0) iftmp.0_1 <-> SP.2_6
+
+Partition map 
+
+Partition 0 (iftmp.0_1 - 1 )
+Partition 1 (sp_3(D) - 3 )
+Partition 2 (iftmp.0_5 - 5 )
+Partition 3 (SP.2_6 - 6 )
+Partition 4 (iftmp.1_7 - 7 )
+Partition 5 (_8(D) - 8 )
+
+Coalesce list: (1)iftmp.0_1 & (8)_8(D) [map: 0, 5] : Success -> 0
+Coalesce list: (1)iftmp.0_1 & (5)iftmp.0_5 [map: 0, 2] : Success -> 0
+Coalesce list: (1)iftmp.0_1 & (7)iftmp.1_7 [map: 0, 4] : Success -> 0
+Coalesce list: (1)iftmp.0_1 & (6)SP.2_6 [map: 0, 3] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (iftmp.0_1 - 1 5 6 7 8 )
+Partition 1 (sp_3(D) - 3 )
+
+__attribute__((visibility ("default")))
+struct panelhook * _nc_panelhook_sp (struct SCREEN * sp)
+{
+  struct panelhook * iftmp.0_1;
+  struct panelhook * iftmp.0_5;
+  struct SCREEN * SP.2_6;
+  struct panelhook * iftmp.1_7;
+  struct panelhook * _8(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (sp_3(D) != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 4>; [30.00%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  iftmp.0_5 = &sp_3(D)->_panelHook;
+  goto <bb 6>; [100.00%]
+;;    succ:       6
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+  SP.2_6 = SP;
+  if (SP.2_6 != 0B)
+    goto <bb 5>; [85.10%]
+  else
+    goto <bb 6>; [14.90%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  iftmp.1_7 = &SP.2_6->_panelHook;
+;;    succ:       6
+
+;;   basic block 6, loop depth 0
+;;    pred:       3
+;;                5
+;;                4
+  # iftmp.0_1 = PHI <iftmp.0_5(3), iftmp.1_7(5), SP.2_6(4)>
+  return iftmp.0_1;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; if (sp_3(D) != 0B)
+
+(insn 6 5 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 83 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/nc_panel.c":43:6 -1
+     (nil))
+
+(jump_insn 7 6 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/nc_panel.c":43:6 -1
+     (int_list:REG_BR_PROB 322122548 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; iftmp.0_5 = &sp_3(D)->_panelHook;
+
+(insn 9 8 0 (parallel [
+            (set (reg/f:DI 82 [ <retval> ])
+                (plus:DI (reg/v/f:DI 83 [ sp ])
+                    (const_int 1280 [0x500])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/nc_panel.c":43:6 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 4
+
+;; 
+
+(code_label 12 11 13 2 (nil) [0 uses])
+
+(note 13 12 0 NOTE_INSN_BASIC_BLOCK)
+
+;; SP.2_6 = SP;
+
+(insn 14 13 0 (set (reg/f:DI 82 [ <retval> ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7fa9ed0a2cf0 SP>) [1 SP+0 S8 A64])) "../ncurses/./base/nc_panel.c":44:9 -1
+     (nil))
+
+;; if (SP.2_6 != 0B)
+
+(insn 15 14 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/nc_panel.c":45:9 -1
+     (nil))
+
+(jump_insn 16 15 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/nc_panel.c":45:9 -1
+     (int_list:REG_BR_PROB 159987532 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; iftmp.1_7 = &SP.2_6->_panelHook;
+
+(insn 18 17 0 (parallel [
+            (set (reg/f:DI 82 [ <retval> ])
+                (plus:DI (reg/f:DI 82 [ <retval> ])
+                    (const_int 1280 [0x500])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/nc_panel.c":45:9 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 19 18 20 3 (nil) [0 uses])
+
+(note 20 19 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return iftmp.0_1;
+
+(jump_insn 21 20 22 (set (pc)
+        (label_ref 0)) "../ncurses/./base/nc_panel.c":43:6 -1
+     (nil))
+
+(barrier 22 21 0)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 10 from 7 to 8.
+Edge 5->7 redirected to 8
+Merging block 7 into block 6...
+Merged blocks 6 and 7.
+Merged 6 and 7 without moving.
+Removing jump 21.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 83 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/nc_panel.c":40:1 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 83 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/nc_panel.c":43:6 -1
+     (nil))
+(jump_insn 7 6 8 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 12)
+            (pc))) "../ncurses/./base/nc_panel.c":43:6 -1
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 12)
+;;  succ:       4 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+;;              5 [30.0% (guessed)]  count:322122544 (estimated locally)
+
+;; basic block 4, loop depth 0, count 751619281 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+(note 8 7 9 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 9 8 10 4 (parallel [
+            (set (reg/f:DI 82 [ <retval> ])
+                (plus:DI (reg/v/f:DI 83 [ sp ])
+                    (const_int 1280 [0x500])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/nc_panel.c":43:6 -1
+     (nil))
+(jump_insn 10 9 11 4 (set (pc)
+        (label_ref:DI 23)) 807 {jump}
+     (nil)
+ -> 23)
+;;  succ:       8 [always]  count:751619281 (estimated locally)
+
+(barrier 11 10 12)
+;; basic block 5, loop depth 0, count 322122544 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [30.0% (guessed)]  count:322122544 (estimated locally)
+(code_label 12 11 13 5 2 (nil) [1 uses])
+(note 13 12 14 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 14 13 15 5 (set (reg/f:DI 82 [ <retval> ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7fa9ed0a2cf0 SP>) [1 SP+0 S8 A64])) "../ncurses/./base/nc_panel.c":44:9 -1
+     (nil))
+(insn 15 14 16 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/nc_panel.c":45:9 -1
+     (nil))
+(jump_insn 16 15 17 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 23)
+            (pc))) "../ncurses/./base/nc_panel.c":45:9 806 {*jcc}
+     (int_list:REG_BR_PROB 159987532 (nil))
+ -> 23)
+;;  succ:       6 [85.1% (guessed)]  count:274126286 (estimated locally) (FALLTHRU)
+;;              8 [14.9% (guessed)]  count:47996258 (estimated locally)
+
+;; basic block 6, loop depth 0, count 274126286 (estimated locally), maybe hot
+;;  prev block 5, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [85.1% (guessed)]  count:274126286 (estimated locally) (FALLTHRU)
+(note 17 16 18 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 18 17 23 6 (parallel [
+            (set (reg/f:DI 82 [ <retval> ])
+                (plus:DI (reg/f:DI 82 [ <retval> ])
+                    (const_int 1280 [0x500])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/nc_panel.c":45:9 -1
+     (nil))
+;;  succ:       8 [always]  count:274126286 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 6, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       6 [always]  count:274126286 (estimated locally) (FALLTHRU)
+;;              4 [always]  count:751619281 (estimated locally)
+;;              5 [14.9% (guessed)]  count:47996258 (estimated locally)
+(code_label 23 18 26 8 1 (nil) [2 uses])
+(note 26 23 24 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 24 26 25 8 (set (reg/i:DI 0 ax)
+        (reg/f:DI 82 [ <retval> ])) "../ncurses/./base/nc_panel.c":46:1 -1
+     (nil))
+(insn 25 24 0 8 (use (reg/i:DI 0 ax)) "../ncurses/./base/nc_panel.c":46:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+
+;; Function _nc_panelhook (_nc_panelhook, funcdef_no=92, decl_uid=8248, cgraph_uid=93, symbol_order=92)
+
+__attribute__((visibility ("default")))
+struct panelhook * _nc_panelhook ()
+{
+  struct SCREEN * SP.4_1;
+  struct panelhook * iftmp.0_3;
+  struct panelhook * iftmp.0_5;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.4_1 = SP;
+  if (SP.4_1 != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 4>; [30.00%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  iftmp.0_3 = &SP.4_1->_panelHook;
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+;;                2
+  # iftmp.0_5 = PHI <iftmp.0_3(3), SP.4_1(2)>
+  return iftmp.0_5;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (SP.4_1 - 1 )
+Partition 3 (iftmp.0_3 - 3 )
+Partition 5 (iftmp.0_5 - 5 )
+Partition 7 (_7(D) - 7 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (SP.4_1 - 1 3 5 7 )
+
+
+Partition map 
+
+Partition 0 (SP.4_1 - 1 )
+Partition 1 (iftmp.0_3 - 3 )
+Partition 2 (iftmp.0_5 - 5 )
+Partition 3 (_7(D) - 7 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) iftmp.0_5 <-> _7(D)
+(7000, 0) iftmp.0_3 <-> iftmp.0_5
+(6000, 0) SP.4_1 <-> iftmp.0_5
+
+Partition map 
+
+Partition 0 (SP.4_1 - 1 )
+Partition 1 (iftmp.0_3 - 3 )
+Partition 2 (iftmp.0_5 - 5 )
+Partition 3 (_7(D) - 7 )
+
+Coalesce list: (5)iftmp.0_5 & (7)_7(D) [map: 2, 3] : Success -> 2
+Coalesce list: (3)iftmp.0_3 & (5)iftmp.0_5 [map: 1, 2] : Success -> 2
+Coalesce list: (1)SP.4_1 & (5)iftmp.0_5 [map: 0, 2] : Success -> 2
+After Coalescing:
+
+Partition map 
+
+Partition 0 (iftmp.0_5 - 1 3 5 7 )
+
+__attribute__((visibility ("default")))
+struct panelhook * _nc_panelhook ()
+{
+  struct SCREEN * SP.4_1;
+  struct panelhook * iftmp.0_3;
+  struct panelhook * iftmp.0_5;
+  struct panelhook * _7(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.4_1 = SP;
+  if (SP.4_1 != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 4>; [30.00%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  iftmp.0_3 = &SP.4_1->_panelHook;
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+;;                2
+  # iftmp.0_5 = PHI <iftmp.0_3(3), SP.4_1(2)>
+  return iftmp.0_5;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; SP.4_1 = SP;
+
+(insn 5 4 0 (set (reg/f:DI 82 [ <retval> ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7fa9ed0a2cf0 SP>) [1 SP+0 S8 A64])) "../ncurses/./base/nc_panel.c":52:12 -1
+     (nil))
+
+;; if (SP.4_1 != 0B)
+
+(insn 6 5 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/nc_panel.c":43:6 -1
+     (nil))
+
+(jump_insn 7 6 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/nc_panel.c":43:6 -1
+     (int_list:REG_BR_PROB 322122548 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; iftmp.0_3 = &SP.4_1->_panelHook;
+
+(insn 9 8 0 (parallel [
+            (set (reg/f:DI 82 [ <retval> ])
+                (plus:DI (reg/f:DI 82 [ <retval> ])
+                    (const_int 1280 [0x500])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/nc_panel.c":43:6 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 4
+
+;; 
+
+(code_label 10 9 11 8 (nil) [0 uses])
+
+(note 11 10 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return iftmp.0_5;
+
+(jump_insn 12 11 13 (set (pc)
+        (label_ref 0)) "../ncurses/./base/nc_panel.c":52:12 -1
+     (nil))
+
+(barrier 13 12 0)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 2->5 redirected to 6
+Merging block 5 into block 4...
+Merged blocks 4 and 5.
+Merged 4 and 5 without moving.
+Removing jump 12.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 3 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg/f:DI 82 [ <retval> ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7fa9ed0a2cf0 SP>) [1 SP+0 S8 A64])) "../ncurses/./base/nc_panel.c":52:12 -1
+     (nil))
+(insn 6 5 7 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/nc_panel.c":43:6 -1
+     (nil))
+(jump_insn 7 6 8 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 14)
+            (pc))) "../ncurses/./base/nc_panel.c":43:6 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 14)
+;;  succ:       4 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+;;              6 [30.0% (guessed)]  count:322122544 (estimated locally)
+
+;; basic block 4, loop depth 0, count 751619281 (estimated locally), maybe hot
+;;  prev block 2, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+(note 8 7 9 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 9 8 14 4 (parallel [
+            (set (reg/f:DI 82 [ <retval> ])
+                (plus:DI (reg/f:DI 82 [ <retval> ])
+                    (const_int 1280 [0x500])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/nc_panel.c":43:6 -1
+     (nil))
+;;  succ:       6 [always]  count:751619281 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 4, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       4 [always]  count:751619281 (estimated locally) (FALLTHRU)
+;;              2 [30.0% (guessed)]  count:322122544 (estimated locally)
+(code_label 14 9 17 6 7 (nil) [1 uses])
+(note 17 14 15 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 15 17 16 6 (set (reg/i:DI 0 ax)
+        (reg/f:DI 82 [ <retval> ])) "../ncurses/./base/nc_panel.c":53:1 -1
+     (nil))
+(insn 16 15 0 6 (use (reg/i:DI 0 ax)) "../ncurses/./base/nc_panel.c":53:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+

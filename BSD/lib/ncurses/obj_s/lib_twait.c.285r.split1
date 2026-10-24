@@ -1,0 +1,949 @@
+
+;; Function _nc_timed_wait (_nc_timed_wait, funcdef_no=92, decl_uid=8790, cgraph_uid=93, symbol_order=92)
+
+Splitting with gen_split_188 (i386.md:8869)
+scanning new insn with uid = 213.
+deleting insn with uid = 190.
+deleting insn with uid = 190.
+Splitting with gen_split_189 (i386.md:8869)
+scanning new insn with uid = 214.
+deleting insn with uid = 116.
+deleting insn with uid = 116.
+Splitting with gen_split_189 (i386.md:8869)
+scanning new insn with uid = 215.
+deleting insn with uid = 35.
+deleting insn with uid = 35.
+
+
+_nc_timed_wait
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp] 16 [argp] 19 [frame]
+;;  regular block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  eh block artificial uses 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 6 [bp] 7 [sp] 19 [frame]
+;;  regs ever live 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 17 [flags]
+;;  ref usage 	r0={6d,4u} r1={6d,2u} r2={5d,1u} r4={8d,4u} r5={8d,4u} r6={1d,22u} r7={1d,26u} r8={4d} r9={4d} r10={4d} r11={4d} r12={4d} r13={4d} r14={4d} r15={4d} r16={1d,21u} r17={32d,12u} r18={4d} r19={1d,35u,3e} r20={5d} r21={5d} r22={5d} r23={5d} r24={5d} r25={5d} r26={5d} r27={5d} r28={4d} r29={4d} r30={4d} r31={4d} r32={4d} r33={4d} r34={4d} r35={4d} r36={5d} r37={5d} r38={4d} r39={4d} r44={4d} r45={4d} r46={4d} r47={4d} r48={4d} r49={4d} r50={4d} r51={4d} r52={4d} r53={4d} r54={4d} r55={4d} r56={4d} r57={4d} r58={4d} r59={4d} r60={4d} r61={4d} r62={4d} r63={4d} r64={4d} r65={4d} r66={4d} r67={4d} r68={4d} r69={4d} r70={4d} r71={4d} r72={4d} r73={4d} r74={4d} r75={4d} r85={1d,2u} r87={2d,1u} r88={1d,1u} r89={1d,2u} r90={1d,2u} r93={1d,1u} r94={2d,2u} r95={3d,2u} r100={2d,3u} r106={2d,1u} r108={4d,5u} r109={1d,2u} r110={1d,4u} r111={2d,5u} r112={1d,2u} r116={1d,1u} r120={1d,1u} r123={1d,1u} r124={1d,1u} r125={1d,2u,1e} r126={1d,1u} r127={1d,1u} r128={1d,1u} r129={1d,1u} r130={1d,1u} r132={1d,1u} r139={1d,2u} r140={1d,2u} r141={1d,1u} r143={1d,1u} r147={1d,1u} r148={1d,1u} r149={1d,1u} r150={1d,1u} r151={1d,1u} r152={1d,1u} r153={1d,1u} 
+;;    total ref usage 565{370d,191u,4e} in 90{86 regular + 4 call} insns.
+(note 1 0 15 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (HOT_PARTITION, RTL)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 88 89 108 109 110 111 112 139 147 148 149 150 151
+;; live  in  	 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 0 [ax] 4 [si] 5 [di] 17 [flags] 88 89 108 109 110 111 112 139 147 148 149 150 151
+;; live  kill	 17 [flags]
+(note 15 1 203 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 203 15 2 2 (set (reg:DI 148)
+        (reg:DI 5 di [ sp ])) "../ncurses/./tty/lib_twait.c":176:1 -1
+     (expr_list:REG_DEAD (reg:DI 5 di [ sp ])
+        (nil)))
+(insn 2 203 204 2 (set (reg/v/f:DI 109 [ sp ])
+        (reg:DI 148)) "../ncurses/./tty/lib_twait.c":176:1 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 148)
+        (nil)))
+(insn 204 2 3 2 (set (reg:SI 149)
+        (reg:SI 4 si [ mode ])) "../ncurses/./tty/lib_twait.c":176:1 -1
+     (expr_list:REG_DEAD (reg:SI 4 si [ mode ])
+        (nil)))
+(insn 3 204 205 2 (set (reg/v:SI 110 [ mode ])
+        (reg:SI 149)) "../ncurses/./tty/lib_twait.c":176:1 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 149)
+        (nil)))
+(insn 205 3 4 2 (set (reg:SI 150)
+        (reg:SI 1 dx [ milliseconds ])) "../ncurses/./tty/lib_twait.c":176:1 -1
+     (expr_list:REG_DEAD (reg:SI 1 dx [ milliseconds ])
+        (nil)))
+(insn 4 205 206 2 (set (reg/v:SI 111 [ milliseconds ])
+        (reg:SI 150)) "../ncurses/./tty/lib_twait.c":176:1 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 150)
+        (nil)))
+(insn 206 4 5 2 (set (reg:DI 151)
+        (reg:DI 2 cx [ timeleft ])) "../ncurses/./tty/lib_twait.c":176:1 -1
+     (expr_list:REG_DEAD (reg:DI 2 cx [ timeleft ])
+        (nil)))
+(insn 5 206 6 2 (set (reg/v/f:DI 112 [ timeleft ])
+        (reg:DI 151)) "../ncurses/./tty/lib_twait.c":176:1 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 151)
+        (nil)))
+(note 6 5 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 6 17 2 (parallel [
+            (set (mem/v/f/c:DI (plus:DI (reg/f:DI 19 frame)
+                        (const_int -8 [0xfffffffffffffff8])) [40 D.9171+0 S8 A64])
+                (unspec:DI [
+                        (mem/v/f:DI (const_int 40 [0x28]) [1 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_SET))
+            (set (scratch:DI)
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":176:1 1159 {stack_protect_set_1_di}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 17 8 18 2 (parallel [
+            (set (reg/f:DI 139)
+                (plus:DI (reg/f:DI 19 frame)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":91:9 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 18 17 19 2 (set (reg:DI 4 si)
+        (reg/f:DI 139)) "../ncurses/./tty/lib_twait.c":91:9 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (plus:DI (reg/f:DI 19 frame)
+            (const_int -48 [0xffffffffffffffd0]))
+        (nil)))
+(insn 19 18 20 2 (set (reg:SI 5 di)
+        (const_int 0 [0])) "../ncurses/./tty/lib_twait.c":91:9 75 {*movsi_internal}
+     (nil))
+(call_insn 20 19 21 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("clock_gettime") [flags 0x41]  <function_decl 0x7fa3039fdc00 clock_gettime>) [0 clock_gettime S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":91:9 824 {*call_value}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_DEAD (reg:DI 4 si)
+            (expr_list:REG_UNUSED (reg:SI 0 ax)
+                (expr_list:REG_CALL_DECL (symbol_ref:DI ("clock_gettime") [flags 0x41]  <function_decl 0x7fa3039fdc00 clock_gettime>)
+                    (expr_list:REG_EH_REGION (const_int 0 [0])
+                        (nil))))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 21 20 22 2 (set (reg:DI 88 [ t0$tv_sec ])
+        (mem/c:DI (plus:DI (reg/f:DI 19 frame)
+                (const_int -48 [0xffffffffffffffd0])) [1 MEM[(struct timespec *)_89].tv_sec+0 S8 A128])) "../ncurses/./tty/lib_twait.c":92:6 74 {*movdi_internal}
+     (nil))
+(insn 22 21 24 2 (set (reg:DI 89 [ t0$tv_nsec ])
+        (mem/c:DI (plus:DI (reg/f:DI 19 frame)
+                (const_int -40 [0xffffffffffffffd8])) [1 MEM[(struct timespec *)_89].tv_nsec+0 S8 A64])) "../ncurses/./tty/lib_twait.c":92:6 74 {*movdi_internal}
+     (nil))
+(insn 24 22 202 2 (set (reg:V1TI 147)
+        (const_vector:V1TI [
+                (const_int 0 [0])
+            ])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 1442 {movv1ti_internal}
+     (nil))
+(insn 202 24 25 2 (set (mem/c:V1TI (plus:DI (reg/f:DI 19 frame)
+                (const_int -32 [0xffffffffffffffe0])) [0 MEM <char[1:16]> [(void *)&fd_list]+0 S16 A128])
+        (reg:V1TI 147)) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (expr_list:REG_DEAD (reg:V1TI 147)
+        (nil)))
+(note 25 202 26 2 NOTE_INSN_DELETED)
+(insn 26 25 27 2 (parallel [
+            (set (reg:CCZ 17 flags)
+                (compare:CCZ (and:SI (reg/v:SI 110 [ mode ])
+                        (const_int 1 [0x1]))
+                    (const_int 0 [0])))
+            (set (reg/v:SI 108 [ <retval> ])
+                (and:SI (reg/v:SI 110 [ mode ])
+                    (const_int 1 [0x1])))
+        ]) "../ncurses/./tty/lib_twait.c":250:8 499 {*andsi_2}
+     (nil))
+(jump_insn 27 26 28 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 142)
+            (pc))) "../ncurses/./tty/lib_twait.c":250:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 536870916 (nil)))
+ -> 142)
+;;  succ:       3 [50.0% (guessed)]  count:536870912 (estimated locally) (FALLTHRU)
+;;              4 [50.0% (guessed)]  count:536870912 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 108 109 110 111 112 139
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 108 109 110 111 112 139
+
+;; basic block 3, loop depth 0, count 536870913 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       2 [50.0% (guessed)]  count:536870912 (estimated locally) (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 108 109 110 111 112 139
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108 109
+;; lr  def 	 87 95 116
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 108 109 110 111 112 139
+;; live  gen 	 87 95 116
+;; live  kill	
+(note 28 27 29 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 30 3 (set (reg:SI 116 [ sp_34(D)->_ifd ])
+        (mem:SI (reg/v/f:DI 109 [ sp ]) [4 sp_34(D)->_ifd+0 S4 A64])) "../ncurses/./tty/lib_twait.c":251:16 75 {*movsi_internal}
+     (nil))
+(insn 30 29 31 3 (set (mem/c:SI (plus:DI (reg/f:DI 19 frame)
+                (const_int -32 [0xffffffffffffffe0])) [4 MEM[(struct pollfd *)&fd_list].fd+0 S4 A128])
+        (reg:SI 116 [ sp_34(D)->_ifd ])) "../ncurses/./tty/lib_twait.c":251:16 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 116 [ sp_34(D)->_ifd ])
+        (nil)))
+(insn 31 30 11 3 (set (mem/c:HI (plus:DI (reg/f:DI 19 frame)
+                (const_int -28 [0xffffffffffffffe4])) [12 MEM[(struct pollfd *)&fd_list].events+0 S2 A32])
+        (const_int 1 [0x1])) "../ncurses/./tty/lib_twait.c":252:20 76 {*movhi_internal}
+     (nil))
+(insn 11 31 12 3 (set (reg/v:SI 87 [ count ])
+        (reg/v:SI 108 [ <retval> ])) "../ncurses/./tty/lib_twait.c":253:7 75 {*movsi_internal}
+     (nil))
+(insn 12 11 209 3 (set (reg:DI 95 [ prephitmp_59 ])
+        (const_int 1 [0x1])) "../ncurses/./tty/lib_twait.c":252:20 74 {*movdi_internal}
+     (nil))
+(jump_insn 209 12 210 3 (set (pc)
+        (label_ref 32)) -1
+     (nil)
+ -> 32)
+;;  succ:       5 [always]  count:536870913 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 87 88 89 95 108 109 110 111 112 139
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 87 88 89 95 108 109 110 111 112 139
+
+(barrier 210 209 142)
+;; basic block 4, loop depth 0, count 536870913 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (HOT_PARTITION, RTL)
+;;  pred:       2 [50.0% (guessed)]  count:536870912 (estimated locally)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 108 109 110 111 112 139
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 87 95
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 108 109 110 111 112 139
+;; live  gen 	 87 95
+;; live  kill	
+(code_label 142 210 141 4 11 (nil) [1 uses])
+(note 141 142 9 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 9 141 10 4 (set (reg/v:SI 87 [ count ])
+        (const_int 0 [0])) "../ncurses/./tty/lib_twait.c":230:11 75 {*movsi_internal}
+     (nil))
+(insn 10 9 32 4 (set (reg:DI 95 [ prephitmp_59 ])
+        (const_int 0 [0])) 74 {*movdi_internal}
+     (nil))
+;;  succ:       5 [always]  count:536870913 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 87 88 89 95 108 109 110 111 112 139
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 87 88 89 95 108 109 110 111 112 139
+
+;; basic block 5, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       4 [always]  count:536870913 (estimated locally) (FALLTHRU)
+;;              3 [always]  count:536870913 (estimated locally)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 87 88 89 95 108 109 110 111 112 139
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 110
+;; lr  def 	 17 [flags] 140
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 87 88 89 95 108 109 110 111 112 139
+;; live  gen 	 17 [flags] 140
+;; live  kill	
+(code_label 32 10 33 5 2 (nil) [1 uses])
+(note 33 32 34 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(note 34 33 166 5 NOTE_INSN_DELETED)
+(insn 166 34 215 5 (set (reg/f:DI 140)
+        (plus:DI (reg/f:DI 19 frame)
+            (const_int -32 [0xffffffffffffffe0]))) 206 {*leadi}
+     (nil))
+(insn 215 166 36 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (and:SI (reg/v:SI 110 [ mode ])
+                (const_int 2 [0x2]))
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":255:8 -1
+     (nil))
+(jump_insn 36 215 37 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 51)
+            (pc))) "../ncurses/./tty/lib_twait.c":255:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 536870916 (nil)))
+ -> 51)
+;;  succ:       6 [50.0% (guessed)]  count:536870912 (estimated locally) (FALLTHRU)
+;;              8 [50.0% (guessed)]  count:536870912 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 87 88 89 95 108 109 110 111 112 139 140
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 87 88 89 95 108 109 110 111 112 139 140
+
+;; basic block 6, loop depth 0, count 536870913 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (HOT_PARTITION, RTL)
+;;  pred:       5 [50.0% (guessed)]  count:536870912 (estimated locally) (FALLTHRU)
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 87 88 89 95 108 109 110 111 112 139 140
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 109
+;; lr  def 	 17 [flags] 90
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 87 88 89 95 108 109 110 111 112 139 140
+;; live  gen 	 17 [flags] 90
+;; live  kill	
+(note 37 36 38 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 38 37 41 6 (set (reg/v:SI 90 [ fd ])
+        (mem:SI (plus:DI (reg/v/f:DI 109 [ sp ])
+                (const_int 1072 [0x430])) [4 sp_34(D)->_mouse_fd+0 S4 A64])) "../ncurses/./tty/lib_twait.c":256:9 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 109 [ sp ])
+        (nil)))
+(insn 41 38 42 6 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 90 [ fd ])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":256:2 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 42 41 43 6 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 51)
+            (pc))) "../ncurses/./tty/lib_twait.c":256:2 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGOC 17 flags)
+        (int_list:REG_BR_PROB 440234148 (nil)))
+ -> 51)
+;;  succ:       7 [59.0% (guessed)]  count:316753841 (estimated locally) (FALLTHRU)
+;;              8 [41.0% (guessed)]  count:220117072 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 87 88 89 90 95 108 110 111 112 139 140
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 87 88 89 90 95 108 110 111 112 139 140
+
+;; basic block 7, loop depth 0, count 316753840 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (HOT_PARTITION, RTL)
+;;  pred:       6 [59.0% (guessed)]  count:316753841 (estimated locally) (FALLTHRU)
+;; bb 7 artificial_defs: { }
+;; bb 7 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 87 88 89 90 95 108 110 111 112 139 140
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 87 90 95 140
+;; lr  def 	 17 [flags] 85 95 120
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 87 88 89 90 95 108 110 111 112 139 140
+;; live  gen 	 85 95 120
+;; live  kill	 17 [flags]
+(note 43 42 45 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(note 45 43 46 7 NOTE_INSN_DELETED)
+(insn 46 45 47 7 (set (reg/f:DI 85 [ _6 ])
+        (plus:DI (ashift:DI (reg:DI 95 [ prephitmp_59 ])
+                (const_int 3 [0x3]))
+            (reg/f:DI 140))) "../ncurses/./tty/lib_twait.c":257:5 206 {*leadi}
+     (expr_list:REG_DEAD (reg:DI 95 [ prephitmp_59 ])
+        (nil)))
+(insn 47 46 48 7 (set (mem:SI (reg/f:DI 85 [ _6 ]) [4 _6->fd+0 S4 A64])
+        (reg/v:SI 90 [ fd ])) "../ncurses/./tty/lib_twait.c":257:16 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 90 [ fd ])
+        (nil)))
+(insn 48 47 49 7 (set (mem:HI (plus:DI (reg/f:DI 85 [ _6 ])
+                (const_int 4 [0x4])) [12 _6->events+0 S2 A32])
+        (const_int 1 [0x1])) "../ncurses/./tty/lib_twait.c":258:20 76 {*movhi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 85 [ _6 ])
+        (nil)))
+(insn 49 48 50 7 (parallel [
+            (set (reg:SI 120 [ count ])
+                (plus:SI (reg/v:SI 87 [ count ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":259:7 209 {*addsi_1}
+     (expr_list:REG_DEAD (reg/v:SI 87 [ count ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 50 49 51 7 (set (reg:DI 95 [ prephitmp_59 ])
+        (sign_extend:DI (reg:SI 120 [ count ]))) "../ncurses/./tty/lib_twait.c":276:14 147 {*extendsidi2_rex64}
+     (expr_list:REG_DEAD (reg:SI 120 [ count ])
+        (nil)))
+;;  succ:       8 [always]  count:316753840 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 95 108 110 111 112 139 140
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 95 108 110 111 112 139 140
+
+;; basic block 8, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (HOT_PARTITION, RTL)
+;;  pred:       5 [50.0% (guessed)]  count:536870912 (estimated locally)
+;;              6 [41.0% (guessed)]  count:220117072 (estimated locally)
+;;              7 [always]  count:316753840 (estimated locally) (FALLTHRU)
+;; bb 8 artificial_defs: { }
+;; bb 8 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 95 108 110 111 112 139 140
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 95 111 139 140
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7] 93 106 152 153
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 95 108 110 111 112 139 140
+;; live  gen 	 0 [ax] 1 [dx] 4 [si] 5 [di] 17 [flags] 93 106 152 153
+;; live  kill	
+(code_label 51 50 52 8 3 (nil) [2 uses])
+(note 52 51 54 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 54 52 55 8 (set (reg:SI 1 dx)
+        (reg/v:SI 111 [ milliseconds ])) "/usr/include/x86_64-linux-gnu/bits/poll2.h":39:10 75 {*movsi_internal}
+     (nil))
+(insn 55 54 56 8 (set (reg:DI 4 si)
+        (reg:DI 95 [ prephitmp_59 ])) "/usr/include/x86_64-linux-gnu/bits/poll2.h":39:10 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 95 [ prephitmp_59 ])
+        (nil)))
+(insn 56 55 57 8 (set (reg:DI 5 di)
+        (reg/f:DI 140)) "/usr/include/x86_64-linux-gnu/bits/poll2.h":39:10 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 140)
+        (expr_list:REG_EQUAL (plus:DI (reg/f:DI 19 frame)
+                (const_int -32 [0xffffffffffffffe0]))
+            (nil))))
+(call_insn 57 56 207 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*poll") [flags 0x41]  <function_decl 0x7fa303cf0f00 __poll_alias>) [0 __poll_alias S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/poll2.h":39:10 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:DI 4 si)
+            (expr_list:REG_DEAD (reg:SI 1 dx)
+                (expr_list:REG_CALL_DECL (symbol_ref:DI ("*poll") [flags 0x41]  <function_decl 0x7fa303cf0f00 __poll_alias>)
+                    (nil)))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 207 57 58 8 (set (reg:SI 152)
+        (reg:SI 0 ax)) "/usr/include/x86_64-linux-gnu/bits/poll2.h":39:10 -1
+     (expr_list:REG_DEAD (reg:SI 0 ax)
+        (nil)))
+(insn 58 207 60 8 (set (reg:SI 93 [ iftmp.0_51 ])
+        (reg:SI 152)) "/usr/include/x86_64-linux-gnu/bits/poll2.h":39:10 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 152)
+        (nil)))
+(insn 60 58 61 8 (set (reg:DI 4 si)
+        (reg/f:DI 139)) "../ncurses/./tty/lib_twait.c":91:9 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 139)
+        (expr_list:REG_EQUAL (plus:DI (reg/f:DI 19 frame)
+                (const_int -48 [0xffffffffffffffd0]))
+            (nil))))
+(insn 61 60 62 8 (set (reg:SI 5 di)
+        (const_int 0 [0])) "../ncurses/./tty/lib_twait.c":91:9 75 {*movsi_internal}
+     (nil))
+(call_insn 62 61 208 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("clock_gettime") [flags 0x41]  <function_decl 0x7fa3039fdc00 clock_gettime>) [0 clock_gettime S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":91:9 824 {*call_value}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_DEAD (reg:DI 4 si)
+            (expr_list:REG_CALL_DECL (symbol_ref:DI ("clock_gettime") [flags 0x41]  <function_decl 0x7fa3039fdc00 clock_gettime>)
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (expr_list:SI (use (reg:SI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 208 62 63 8 (set (reg:SI 153)
+        (reg:SI 0 ax)) "../ncurses/./tty/lib_twait.c":91:9 -1
+     (expr_list:REG_DEAD (reg:SI 0 ax)
+        (nil)))
+(note 63 208 13 8 NOTE_INSN_DELETED)
+(insn 13 63 64 8 (set (reg/v:DI 106 [ res ])
+        (const_int 1 [0x1])) "../ncurses/./tty/lib_twait.c":93:6 74 {*movdi_internal}
+     (nil))
+(insn 64 13 65 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 153)
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./tty/lib_twait.c":91:8 11 {*cmpsi_1}
+     (expr_list:REG_DEAD (reg:SI 153)
+        (nil)))
+(jump_insn 65 64 66 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 85)
+            (pc))) "../ncurses/./tty/lib_twait.c":91:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 365072228 (nil)))
+ -> 85)
+;;  succ:       12 [34.0% (guessed)]  count:365072224 (estimated locally)
+;;              9 [66.0% (guessed)]  count:708669600 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 93 106 108 110 111 112
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 93 106 108 110 111 112
+
+;; basic block 9, loop depth 0, count 708669601 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (HOT_PARTITION, RTL)
+;;  pred:       8 [66.0% (guessed)]  count:708669600 (estimated locally) (FALLTHRU)
+;; bb 9 artificial_defs: { }
+;; bb 9 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 93 108 110 111 112
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 89
+;; lr  def 	 17 [flags] 94 100
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 93 108 110 111 112
+;; live  gen 	 17 [flags] 94 100
+;; live  kill	
+(note 66 65 67 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 67 66 68 9 (set (reg:DI 100 [ prephitmp_68 ])
+        (mem/c:DI (plus:DI (reg/f:DI 19 frame)
+                (const_int -40 [0xffffffffffffffd8])) [1 MEM[(struct timespec *)_89].tv_nsec+0 S8 A64])) "../ncurses/./tty/lib_twait.c":99:23 74 {*movdi_internal}
+     (nil))
+(insn 68 67 69 9 (set (reg:DI 94 [ pretmp_56 ])
+        (mem/c:DI (plus:DI (reg/f:DI 19 frame)
+                (const_int -48 [0xffffffffffffffd0])) [1 MEM[(struct timespec *)_89].tv_sec+0 S8 A128])) "../ncurses/./tty/lib_twait.c":101:8 74 {*movdi_internal}
+     (nil))
+(insn 69 68 70 9 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:DI 89 [ t0$tv_nsec ])
+            (reg:DI 100 [ prephitmp_68 ]))) "../ncurses/./tty/lib_twait.c":99:5 12 {*cmpdi_1}
+     (nil))
+(jump_insn 70 69 71 9 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 74)
+            (pc))) "../ncurses/./tty/lib_twait.c":99:5 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 536870916 (nil)))
+ -> 74)
+;;  succ:       10 [50.0% (guessed)]  count:354334801 (estimated locally) (FALLTHRU)
+;;              11 [50.0% (guessed)]  count:354334801 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 93 94 100 108 110 111 112
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 93 94 100 108 110 111 112
+
+;; basic block 10, loop depth 0, count 354334800 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (HOT_PARTITION, RTL)
+;;  pred:       9 [50.0% (guessed)]  count:354334801 (estimated locally) (FALLTHRU)
+;; bb 10 artificial_defs: { }
+;; bb 10 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 93 94 100 108 110 111 112
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 94 100
+;; lr  def 	 17 [flags] 94 100
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 93 94 100 108 110 111 112
+;; live  gen 	 94 100
+;; live  kill	 17 [flags]
+(note 71 70 72 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 72 71 73 10 (parallel [
+            (set (reg:DI 100 [ prephitmp_68 ])
+                (plus:DI (reg:DI 100 [ prephitmp_68 ])
+                    (const_int 1000000000 [0x3b9aca00])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":100:18 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 73 72 74 10 (parallel [
+            (set (reg:DI 94 [ pretmp_56 ])
+                (plus:DI (reg:DI 94 [ pretmp_56 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":101:15 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+;;  succ:       11 [always]  count:354334800 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 93 94 100 108 110 111 112
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 93 94 100 108 110 111 112
+
+;; basic block 11, loop depth 0, count 708669601 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (HOT_PARTITION, RTL)
+;;  pred:       9 [50.0% (guessed)]  count:354334801 (estimated locally)
+;;              10 [always]  count:354334800 (estimated locally) (FALLTHRU)
+;; bb 11 artificial_defs: { }
+;; bb 11 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 93 94 100 108 110 111 112
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 94 100
+;; lr  def 	 17 [flags] 106 123 124 125 126 127 128 129 130
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 88 89 93 94 100 108 110 111 112
+;; live  gen 	 106 123 124 125 126 127 128 129 130
+;; live  kill	 17 [flags]
+(code_label 74 73 75 11 5 (nil) [1 uses])
+(note 75 74 76 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 76 75 77 11 (parallel [
+            (set (reg:DI 123)
+                (minus:DI (reg:DI 94 [ pretmp_56 ])
+                    (reg:DI 88 [ t0$tv_sec ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":103:27 283 {*subdi_1}
+     (expr_list:REG_DEAD (reg:DI 94 [ pretmp_56 ])
+        (expr_list:REG_DEAD (reg:DI 88 [ t0$tv_sec ])
+            (expr_list:REG_UNUSED (reg:CC 17 flags)
+                (nil)))))
+(insn 77 76 78 11 (parallel [
+            (set (reg:DI 124)
+                (mult:DI (reg:DI 123)
+                    (const_int 1000 [0x3e8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":103:41 409 {*muldi3_1}
+     (expr_list:REG_DEAD (reg:DI 123)
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 78 77 79 11 (parallel [
+            (set (reg:DI 125)
+                (minus:DI (reg:DI 100 [ prephitmp_68 ])
+                    (reg:DI 89 [ t0$tv_nsec ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":104:24 283 {*subdi_1}
+     (expr_list:REG_DEAD (reg:DI 100 [ prephitmp_68 ])
+        (expr_list:REG_DEAD (reg:DI 89 [ t0$tv_nsec ])
+            (expr_list:REG_UNUSED (reg:CC 17 flags)
+                (nil)))))
+(insn 79 78 80 11 (set (reg:DI 128)
+        (const_int 4835703278458516699 [0x431bde82d7b634db])) "../ncurses/./tty/lib_twait.c":104:40 74 {*movdi_internal}
+     (nil))
+(insn 80 79 81 11 (parallel [
+            (set (reg:DI 127)
+                (truncate:DI (lshiftrt:TI (mult:TI (sign_extend:TI (reg:DI 125))
+                            (sign_extend:TI (reg:DI 128)))
+                        (const_int 64 [0x40]))))
+            (clobber (scratch:DI))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":104:40 431 {*smuldi3_highpart_1}
+     (expr_list:REG_DEAD (reg:DI 128)
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (expr_list:REG_EQUAL (truncate:DI (lshiftrt:TI (mult:TI (sign_extend:TI (reg:DI 125))
+                            (const_int 4835703278458516699 [0x431bde82d7b634db]))
+                        (const_int 64 [0x40])))
+                (nil)))))
+(insn 81 80 82 11 (parallel [
+            (set (reg:DI 129)
+                (ashiftrt:DI (reg:DI 127)
+                    (const_int 18 [0x12])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":104:40 704 {*ashrdi3_1}
+     (expr_list:REG_DEAD (reg:DI 127)
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 82 81 83 11 (parallel [
+            (set (reg:DI 130)
+                (ashiftrt:DI (reg:DI 125)
+                    (const_int 63 [0x3f])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":104:40 695 {ashrdi3_cvt}
+     (expr_list:REG_DEAD (reg:DI 125)
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 83 82 84 11 (parallel [
+            (set (reg:DI 126)
+                (minus:DI (reg:DI 129)
+                    (reg:DI 130)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":104:40 283 {*subdi_1}
+     (expr_list:REG_DEAD (reg:DI 130)
+        (expr_list:REG_DEAD (reg:DI 129)
+            (expr_list:REG_UNUSED (reg:CC 17 flags)
+                (nil)))))
+(insn 84 83 85 11 (parallel [
+            (set (reg/v:DI 106 [ res ])
+                (plus:DI (reg:DI 124)
+                    (reg:DI 126)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":103:6 210 {*adddi_1}
+     (expr_list:REG_DEAD (reg:DI 126)
+        (expr_list:REG_DEAD (reg:DI 124)
+            (expr_list:REG_UNUSED (reg:CC 17 flags)
+                (nil)))))
+;;  succ:       12 [always]  count:708669601 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 106 108 110 111 112
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 106 108 110 111 112
+
+;; basic block 12, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (HOT_PARTITION, RTL)
+;;  pred:       8 [34.0% (guessed)]  count:365072224 (estimated locally)
+;;              11 [always]  count:708669601 (estimated locally) (FALLTHRU)
+;; bb 12 artificial_defs: { }
+;; bb 12 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 106 108 110 111 112
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 106 111 112
+;; lr  def 	 17 [flags] 111 141
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 106 108 110 111 112
+;; live  gen 	 17 [flags] 111 141
+;; live  kill	 17 [flags]
+(code_label 85 84 86 12 4 (nil) [1 uses])
+(note 86 85 183 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 183 86 186 12 (parallel [
+            (set (reg:SI 141)
+                (minus:SI (reg/v:SI 111 [ milliseconds ])
+                    (subreg:SI (reg/v:DI 106 [ res ]) 0)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":439:15 282 {*subsi_1}
+     (expr_list:REG_DEAD (reg/v:DI 106 [ res ])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 186 183 187 12 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 111 [ milliseconds ])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":439:15 7 {*cmpsi_ccno_1}
+     (nil))
+(insn 187 186 95 12 (set (reg/v:SI 111 [ milliseconds ])
+        (if_then_else:SI (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (reg:SI 141)
+            (reg/v:SI 111 [ milliseconds ]))) "../ncurses/./tty/lib_twait.c":439:15 1100 {*movsicc_noc}
+     (expr_list:REG_DEAD (reg:SI 141)
+        (expr_list:REG_DEAD (reg:CCGOC 17 flags)
+            (nil))))
+(insn 95 187 96 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 112 [ timeleft ])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":474:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 96 95 97 12 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 99)
+            (pc))) "../ncurses/./tty/lib_twait.c":474:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 99)
+;;  succ:       13 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+;;              14 [30.0% (guessed)]  count:322122544 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 108 110 111 112
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 108 110 111 112
+
+;; basic block 13, loop depth 0, count 751619281 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (HOT_PARTITION, RTL)
+;;  pred:       12 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+;; bb 13 artificial_defs: { }
+;; bb 13 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 108 110 111 112
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 111 112
+;; lr  def 	
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 108 110 111 112
+;; live  gen 	
+;; live  kill	
+(note 97 96 98 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 98 97 99 13 (set (mem:SI (reg/v/f:DI 112 [ timeleft ]) [4 *timeleft_45(D)+0 S4 A32])
+        (reg/v:SI 111 [ milliseconds ])) "../ncurses/./tty/lib_twait.c":475:12 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 112 [ timeleft ])
+        (expr_list:REG_DEAD (reg/v:SI 111 [ milliseconds ])
+            (nil))))
+;;  succ:       14 [always]  count:751619281 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 108 110
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 108 110
+
+;; basic block 14, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (HOT_PARTITION, RTL)
+;;  pred:       12 [30.0% (guessed)]  count:322122544 (estimated locally)
+;;              13 [always]  count:751619281 (estimated locally) (FALLTHRU)
+;; bb 14 artificial_defs: { }
+;; bb 14 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 108 110
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93
+;; lr  def 	 17 [flags]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 93 108 110
+;; live  gen 	 17 [flags]
+;; live  kill	
+(code_label 99 98 100 14 7 (nil) [1 uses])
+(note 100 99 103 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 103 100 104 14 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 93 [ iftmp.0_51 ])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":487:5 7 {*cmpsi_ccno_1}
+     (expr_list:REG_DEAD (reg:SI 93 [ iftmp.0_51 ])
+        (nil)))
+(jump_insn 104 103 105 14 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 150)
+            (pc))) "../ncurses/./tty/lib_twait.c":487:5 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCNO 17 flags)
+        (int_list:REG_BR_PROB 756987988 (nil)))
+ -> 150)
+;;  succ:       15 [29.5% (guessed)]  count:316753840 (estimated locally) (FALLTHRU)
+;;              19 [70.5% (guessed)]  count:756987984 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108 110
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108 110
+
+;; basic block 15, loop depth 0, count 316753840 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (HOT_PARTITION, RTL)
+;;  pred:       14 [29.5% (guessed)]  count:316753840 (estimated locally) (FALLTHRU)
+;; bb 15 artificial_defs: { }
+;; bb 15 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108 110
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108
+;; lr  def 	 17 [flags]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108 110
+;; live  gen 	 17 [flags]
+;; live  kill	
+(note 105 104 106 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 106 105 107 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 108 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":491:6 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 107 106 108 15 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 112)
+            (pc))) "../ncurses/./tty/lib_twait.c":491:6 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 536870916 (nil)))
+ -> 112)
+;;  succ:       16 [50.0% (guessed)]  count:158376920 (estimated locally) (FALLTHRU)
+;;              17 [50.0% (guessed)]  count:158376920 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108 110
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108 110
+
+;; basic block 16, loop depth 0, count 158376920 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (HOT_PARTITION, RTL)
+;;  pred:       15 [50.0% (guessed)]  count:158376920 (estimated locally) (FALLTHRU)
+;; bb 16 artificial_defs: { }
+;; bb 16 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 110
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 17 [flags] 108 132
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 110
+;; live  gen 	 108 132
+;; live  kill	 17 [flags]
+(note 108 107 109 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 109 108 110 16 (set (reg:HI 132 [ MEM[(struct pollfd *)&fd_list].revents ])
+        (mem/c:HI (plus:DI (reg/f:DI 19 frame)
+                (const_int -26 [0xffffffffffffffe6])) [12 MEM[(struct pollfd *)&fd_list].revents+0 S2 A16])) "../ncurses/./tty/lib_twait.c":492:7 76 {*movhi_internal}
+     (nil))
+(note 110 109 111 16 NOTE_INSN_DELETED)
+(insn 111 110 112 16 (parallel [
+            (set (reg/v:SI 108 [ <retval> ])
+                (and:SI (subreg:SI (reg:HI 132 [ MEM[(struct pollfd *)&fd_list].revents ]) 0)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":492:7 490 {*andsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (expr_list:REG_DEAD (reg:HI 132 [ MEM[(struct pollfd *)&fd_list].revents ])
+            (nil))))
+;;  succ:       17 [always]  count:158376920 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108 110
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108 110
+
+;; basic block 17, loop depth 0, count 316753840 (estimated locally), maybe hot
+;;  prev block 16, next block 18, flags: (HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       15 [50.0% (guessed)]  count:158376920 (estimated locally)
+;;              16 [always]  count:158376920 (estimated locally) (FALLTHRU)
+;; bb 17 artificial_defs: { }
+;; bb 17 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108 110
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 110
+;; lr  def 	 17 [flags]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108 110
+;; live  gen 	 17 [flags]
+;; live  kill	
+(code_label 112 111 113 17 9 (nil) [1 uses])
+(note 113 112 114 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(note 114 113 115 17 NOTE_INSN_DELETED)
+(note 115 114 214 17 NOTE_INSN_DELETED)
+(insn 214 115 117 17 (set (reg:CCZ 17 flags)
+        (compare:CCZ (and:SI (reg/v:SI 110 [ mode ])
+                (const_int 2 [0x2]))
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":491:6 -1
+     (nil))
+(jump_insn 117 214 118 17 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 129)
+            (pc))) "../ncurses/./tty/lib_twait.c":491:6 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 536870916 (nil)))
+ -> 129)
+;;  succ:       18 [50.0% (guessed)]  count:158376920 (estimated locally) (FALLTHRU)
+;;              20 [50.0% (guessed)]  count:158376920 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108
+
+;; basic block 18, loop depth 0, count 158376920 (estimated locally), maybe hot
+;;  prev block 17, next block 19, flags: (HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       17 [50.0% (guessed)]  count:158376920 (estimated locally) (FALLTHRU)
+;; bb 18 artificial_defs: { }
+;; bb 18 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108
+;; lr  def 	 17 [flags] 108 143
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108
+;; live  gen 	 17 [flags] 108 143
+;; live  kill	 17 [flags]
+(note 118 117 119 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(note 119 118 120 18 NOTE_INSN_DELETED)
+(note 120 119 189 18 NOTE_INSN_DELETED)
+(insn 189 120 213 18 (parallel [
+            (set (reg:SI 143)
+                (ior:SI (reg/v:SI 108 [ <retval> ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tty/lib_twait.c":493:14 520 {*iorsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 213 189 191 18 (set (reg:CCZ 17 flags)
+        (compare:CCZ (and:QI (mem/c:QI (plus:DI (reg/f:DI 19 frame)
+                        (const_int -18 [0xffffffffffffffee])) [12 MEM[(struct pollfd *)&fd_list + 8B].revents+0 S1 A16])
+                (const_int 1 [0x1]))
+            (const_int 0 [0]))) "../ncurses/./tty/lib_twait.c":493:14 -1
+     (nil))
+(insn 191 213 211 18 (set (reg/v:SI 108 [ <retval> ])
+        (if_then_else:SI (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (reg:SI 143)
+            (reg/v:SI 108 [ <retval> ]))) "../ncurses/./tty/lib_twait.c":493:14 1100 {*movsicc_noc}
+     (expr_list:REG_DEAD (reg:SI 143)
+        (expr_list:REG_DEAD (reg:CCZ 17 flags)
+            (nil))))
+(jump_insn 211 191 212 18 (set (pc)
+        (label_ref 129)) -1
+     (nil)
+ -> 129)
+;;  succ:       20 [always]  count:158376920 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108
+
+(barrier 212 211 150)
+;; basic block 19, loop depth 0, count 756987984 (estimated locally), maybe hot
+;;  prev block 18, next block 20, flags: (HOT_PARTITION, RTL)
+;;  pred:       14 [70.5% (guessed)]  count:756987984 (estimated locally)
+;; bb 19 artificial_defs: { }
+;; bb 19 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 108
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	 108
+;; live  kill	
+(code_label 150 212 149 19 13 (nil) [1 uses])
+(note 149 150 14 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 14 149 129 19 (set (reg/v:SI 108 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./tty/lib_twait.c":508:13 75 {*movsi_internal}
+     (nil))
+;;  succ:       20 [always]  count:756987984 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108
+
+;; basic block 20, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 19, next block 21, flags: (HOT_PARTITION, RTL)
+;;  pred:       19 [always]  count:756987984 (estimated locally) (FALLTHRU)
+;;              17 [50.0% (guessed)]  count:158376920 (estimated locally)
+;;              18 [always]  count:158376920 (estimated locally)
+;; bb 20 artificial_defs: { }
+;; bb 20 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 17 [flags]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108
+;; live  gen 	 17 [flags]
+;; live  kill	
+(code_label 129 14 138 20 1 (nil) [2 uses])
+(note 138 129 131 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 131 138 132 20 (parallel [
+            (set (reg:CCZ 17 flags)
+                (unspec:CCZ [
+                        (mem/v/f/c:DI (plus:DI (reg/f:DI 19 frame)
+                                (const_int -8 [0xfffffffffffffff8])) [40 D.9171+0 S8 A64])
+                        (mem/v/f:DI (const_int 40 [0x28]) [1 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_TEST))
+            (clobber (scratch:DI))
+        ]) "../ncurses/./tty/lib_twait.c":523:1 1164 {stack_protect_test_1_di}
+     (nil))
+(jump_insn 132 131 151 20 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 135)
+            (pc))) "../ncurses/./tty/lib_twait.c":523:1 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 1073312332 (nil)))
+ -> 135)
+;;  succ:       22 [100.0% (guessed)]  count:1073312328 (estimated locally)
+;;              21 [0.0% (guessed)]  count:429496 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108
+;; live  out 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108
+
+;; basic block 21, loop depth 0, count 429496 (estimated locally)
+;;  prev block 20, next block 22, flags: (HOT_PARTITION, RTL)
+;;  pred:       20 [0.0% (guessed)]  count:429496 (estimated locally) (FALLTHRU)
+;; bb 21 artificial_defs: { }
+;; bb 21 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  gen 	
+;; live  kill	
+(note 151 132 133 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(call_insn 133 151 134 21 (call (mem:QI (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7fa303706b00 __stack_chk_fail>) [0 __stack_chk_fail S1 A8])
+        (const_int 0 [0])) "../ncurses/./tty/lib_twait.c":523:1 813 {*call}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7fa303706b00 __stack_chk_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (nil))
+;;  succ:      
+;; lr  out 	 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 7 [sp] 16 [argp] 19 [frame]
+
+(barrier 134 133 135)
+;; basic block 22, loop depth 0, count 1073312328 (estimated locally), maybe hot
+;;  prev block 21, next block 1, flags: (HOT_PARTITION, RTL)
+;;  pred:       20 [100.0% (guessed)]  count:1073312328 (estimated locally)
+;; bb 22 artificial_defs: { }
+;; bb 22 artificial_uses: { u-1(6){ }u-1(7){ }u-1(16){ }u-1(19){ }}
+;; lr  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108
+;; lr  use 	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108
+;; lr  def 	 0 [ax]
+;; live  in  	 6 [bp] 7 [sp] 16 [argp] 19 [frame] 108
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 135 134 152 22 10 (nil) [1 uses])
+(note 152 135 136 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 136 152 137 22 (set (reg/i:SI 0 ax)
+        (reg/v:SI 108 [ <retval> ])) "../ncurses/./tty/lib_twait.c":523:1 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 108 [ <retval> ])
+        (nil)))
+(insn 137 136 0 22 (use (reg/i:SI 0 ax)) "../ncurses/./tty/lib_twait.c":523:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073312328 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+;; live  out 	 0 [ax] 6 [bp] 7 [sp] 16 [argp] 19 [frame]
+

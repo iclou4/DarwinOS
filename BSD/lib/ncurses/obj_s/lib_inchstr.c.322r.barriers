@@ -1,0 +1,271 @@
+
+;; Function winchnstr (winchnstr, funcdef_no=91, decl_uid=6259, cgraph_uid=92, symbol_order=91)
+
+
+
+winchnstr
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 7 [sp]
+;;  regs ever live 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 17 [flags] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;;  ref usage 	r0={10d,14u} r1={6d,7u} r2={4d,3u} r4={2d,5u,1e} r5={4d,8u} r7={1d,10u} r17={12d,5u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={2d,1u} r37={2d,2u} r38={1d,2u} r39={1d,1u} 
+;;    total ref usage 112{53d,58u,1e} in 45{45 regular + 0 call} insns.
+(note 1 0 10 NOTE_INSN_DELETED)
+(note 10 1 101 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 101 10 5 2 NOTE_INSN_PROLOGUE_END)
+(note 5 101 12 2 NOTE_INSN_FUNCTION_BEG)
+(note 12 5 13 2 NOTE_INSN_DELETED)
+(note 13 12 2 2 NOTE_INSN_DELETED)
+(insn:TI 2 13 3 2 (set (reg/v/f:DI 36 r8 [orig:112 win ] [112])
+        (reg:DI 5 di [138])) "../ncurses/./base/lib_inchstr.c":49:1 74 {*movdi_internal}
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 39 r11 [orig:113 str ] [113])
+        (reg:DI 4 si [139])) "../ncurses/./base/lib_inchstr.c":49:1 74 {*movdi_internal}
+     (nil))
+(insn 4 3 14 2 (set (reg/v:SI 37 r9 [orig:114 n ] [114])
+        (reg:SI 1 dx [140])) "../ncurses/./base/lib_inchstr.c":49:1 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 1 dx [140])
+        (nil)))
+(insn 14 4 15 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 5 di [orig:112 win ] [112])
+            (const_int 0 [0]))) "../ncurses/./base/lib_inchstr.c":54:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn:TI 15 14 85 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 84)
+            (pc))) "../ncurses/./base/lib_inchstr.c":54:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 10737428 (nil)))
+ -> 84)
+(note 85 15 16 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(note 16 85 17 3 NOTE_INSN_DELETED)
+(note 17 16 18 3 NOTE_INSN_DELETED)
+(insn:TI 18 17 19 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 4 si [orig:113 str ] [113])
+            (const_int 0 [0]))) "../ncurses/./base/lib_inchstr.c":54:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 19 18 20 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 84)
+            (pc))) "../ncurses/./base/lib_inchstr.c":54:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 10845876 (nil)))
+ -> 84)
+(note 20 19 22 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(note 22 20 24 4 NOTE_INSN_DELETED)
+(note 24 22 26 4 NOTE_INSN_DELETED)
+(note 26 24 23 4 NOTE_INSN_DELETED)
+(insn:TI 23 26 110 4 (set (reg:DI 0 ax [orig:119 win_32(D)->_cury ] [119])
+        (sign_extend:DI (mem:SI (reg/f:DI 5 di [orig:112 win ] [112]) [1 win_32(D)->_cury+0 S4 A64]))) "../ncurses/./base/lib_inchstr.c":59:33 147 {*extendsidi2_rex64}
+     (nil))
+(insn 110 23 21 4 (set (reg:DI 1 dx)
+        (mem/f:DI (plus:DI (reg/f:DI 5 di [orig:112 win ] [112])
+                (const_int 56 [0x38])) [5 win_32(D)->_line+0 S8 A64])) "../ncurses/./base/lib_inchstr.c":59:16 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 5 di [orig:112 win ] [112])
+        (nil)))
+(insn:TI 21 110 7 4 (set (reg/v:SI 38 r10 [orig:102 col ] [102])
+        (mem:SI (plus:DI (reg/f:DI 5 di [orig:112 win ] [112])
+                (const_int 4 [0x4])) [1 win_32(D)->_curx+0 S4 A32])) "../ncurses/./base/lib_inchstr.c":58:6 75 {*movsi_internal}
+     (nil))
+(insn 7 21 27 4 (set (reg/f:DI 5 di [orig:109 prephitmp_56 ] [109])
+        (reg/f:DI 4 si [orig:113 str ] [113])) "../ncurses/./base/lib_inchstr.c":61:28 74 {*movdi_internal}
+     (nil))
+(insn:TI 27 7 111 4 (set (reg:DI 0 ax [125])
+        (plus:DI (ashift:DI (reg:DI 0 ax [orig:119 win_32(D)->_cury ] [119])
+                (const_int 1 [0x1]))
+            (reg:DI 0 ax [orig:119 win_32(D)->_cury ] [119]))) "../ncurses/./base/lib_inchstr.c":59:16 206 {*leadi}
+     (nil))
+(insn:TI 111 27 32 4 (set (reg/f:DI 0 ax [127])
+        (plus:DI (reg:DI 1 dx)
+            (mult:DI (reg:DI 0 ax [125])
+                (const_int 8 [0x8])))) "../ncurses/./base/lib_inchstr.c":59:16 206 {*leadi}
+     (expr_list:REG_DEAD (reg:DI 1 dx)
+        (nil)))
+(insn:TI 32 111 109 4 (set (reg/v/f:DI 1 dx [orig:103 text ] [103])
+        (mem/f:DI (reg/f:DI 0 ax [127]) [9 _7->text+0 S8 A64])) "../ncurses/./base/lib_inchstr.c":59:16 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 0 ax [127])
+        (nil)))
+(insn 109 32 33 4 (parallel [
+            (set (reg:DI 0 ax [orig:111 <retval> ] [111])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":50:9 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 33 109 34 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 37 r9 [orig:114 n ] [114])
+            (const_int 0 [0]))) "../ncurses/./base/lib_inchstr.c":61:28 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 34 33 58 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 70)
+            (pc))) "../ncurses/./base/lib_inchstr.c":61:28 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 59055804 (nil)))
+ -> 70)
+(note 58 34 60 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 60 58 61 5 (set (reg:DI 0 ax [orig:134 col ] [134])
+        (sign_extend:DI (reg/v:SI 38 r10 [orig:102 col ] [102]))) 147 {*extendsidi2_rex64}
+     (nil))
+(insn:TI 61 60 62 5 (parallel [
+            (set (reg:DI 0 ax [135])
+                (ashift:DI (reg:DI 0 ax [orig:134 col ] [134])
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) 656 {*ashldi3_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 62 61 108 5 (parallel [
+            (set (reg:DI 1 dx [orig:105 ivtmp.10 ] [105])
+                (plus:DI (reg/v/f:DI 1 dx [orig:103 text ] [103])
+                    (reg:DI 0 ax [135])))
+            (clobber (reg:CC 17 flags))
+        ]) 210 {*adddi_1}
+     (expr_list:REG_DEAD (reg:DI 0 ax [135])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 108 62 122 5 (parallel [
+            (set (reg:DI 0 ax [orig:111 <retval> ] [111])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":50:9 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(jump_insn 122 108 123 5 (set (pc)
+        (label_ref 63)) 807 {jump}
+     (nil)
+ -> 63)
+(barrier 123 122 66)
+(code_label 66 123 38 6 6 (nil) [1 uses])
+(note 38 66 40 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(note 40 38 41 6 NOTE_INSN_DELETED)
+(insn:TI 41 40 46 6 (set (reg:SI 2 cx [orig:128 MEM[(int *)_61 + 4B] ] [128])
+        (zero_extend:SI (mem:QI (plus:DI (reg:DI 1 dx [orig:105 ivtmp.10 ] [105])
+                    (const_int 4 [0x4])) [1 MEM[(int *)_61 + 4B]+0 S1 A32]))) "../ncurses/./base/lib_inchstr.c":62:48 143 {*zero_extendqisi2}
+     (nil))
+(insn 46 41 44 6 (parallel [
+            (set (reg/v:SI 0 ax [orig:111 <retval> ] [111])
+                (plus:SI (reg/v:SI 0 ax [orig:111 <retval> ] [111])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":61:57 209 {*addsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 44 46 48 6 (parallel [
+            (set (reg:SI 2 cx [131])
+                (ior:SI (reg:SI 2 cx [orig:128 MEM[(int *)_61 + 4B] ] [128])
+                    (mem:SI (reg:DI 1 dx [orig:105 ivtmp.10 ] [105]) [1 MEM[(unsigned int *)_61]+0 S4 A32])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":62:62 520 {*iorsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (expr_list:REG_EQUIV (mem:SI (reg:DI 4 si [orig:104 ivtmp.8 ] [104]) [1 MEM[(chtype *)_59]+0 S4 A32])
+            (nil))))
+(insn 48 44 45 6 (parallel [
+            (set (reg:DI 1 dx [orig:105 ivtmp.10 ] [105])
+                (plus:DI (reg:DI 1 dx [orig:105 ivtmp.10 ] [105])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":61:28 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 45 48 100 6 (set (mem:SI (reg:DI 4 si [orig:104 ivtmp.8 ] [104]) [1 MEM[(chtype *)_59]+0 S4 A32])
+        (reg:SI 2 cx [131])) "../ncurses/./base/lib_inchstr.c":62:13 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:DI 4 si [orig:104 ivtmp.8 ] [104])
+        (expr_list:REG_DEAD (reg:SI 2 cx [131])
+            (nil))))
+(insn 100 45 49 6 (set (reg:DI 4 si [orig:104 ivtmp.8 ] [104])
+        (plus:DI (reg/f:DI 5 di [orig:109 prephitmp_56 ] [109])
+            (const_int 4 [0x4]))) "../ncurses/./base/lib_inchstr.c":61:28 206 {*leadi}
+     (expr_list:REG_DEAD (reg/f:DI 5 di [orig:109 prephitmp_56 ] [109])
+        (nil)))
+(insn 49 100 50 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 37 r9 [orig:114 n ] [114])
+            (reg/v:SI 0 ax [orig:111 <retval> ] [111]))) "../ncurses/./base/lib_inchstr.c":61:28 11 {*cmpsi_1}
+     (nil))
+(jump_insn 50 49 63 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 124)
+            (pc))) "../ncurses/./base/lib_inchstr.c":61:28 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 59055804 (nil)))
+ -> 124)
+(code_label 63 50 64 7 5 (nil) [1 uses])
+(note 64 63 65 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 65 64 99 7 (set (reg/f:DI 5 di [orig:109 prephitmp_56 ] [109])
+        (reg:DI 4 si [orig:104 ivtmp.8 ] [104])) "../ncurses/./base/lib_inchstr.c":62:9 74 {*movdi_internal}
+     (nil))
+(insn 99 65 68 7 (set (reg:SI 2 cx [136])
+        (plus:SI (reg/v:SI 38 r10 [orig:102 col ] [102])
+            (reg/v:SI 0 ax [orig:111 <retval> ] [111]))) "../ncurses/./base/lib_inchstr.c":61:28 205 {*leasi}
+     (nil))
+(insn 68 99 69 7 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 36 r8 [orig:112 win ] [112])
+                    (const_int 12 [0xc])) [1 win_32(D)->_maxx+0 S4 A32])
+            (reg:SI 2 cx [136]))) "../ncurses/./base/lib_inchstr.c":61:28 11 {*cmpsi_1}
+     (expr_list:REG_DEAD (reg:SI 2 cx [136])
+        (nil)))
+(jump_insn 69 68 70 7 (set (pc)
+        (if_then_else (ge (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 66)
+            (pc))) "../ncurses/./base/lib_inchstr.c":61:28 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 1014686028 (nil)))
+ -> 66)
+(code_label 70 69 71 8 4 (nil) [1 uses])
+(note 71 70 72 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 72 71 105 8 (set (mem:SI (reg/f:DI 5 di [orig:109 prephitmp_56 ] [109]) [1 *prephitmp_56+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./base/lib_inchstr.c":65:9 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 5 di [orig:109 prephitmp_56 ] [109])
+        (nil)))
+(insn 105 72 96 8 (use (reg/i:SI 0 ax)) -1
+     (nil))
+(jump_insn:TI 96 105 97 8 (simple_return) 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 97 96 124)
+(code_label 124 97 51 9 10 (nil) [1 uses])
+(note 51 124 53 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(note 53 51 52 9 NOTE_INSN_DELETED)
+(insn:TI 52 53 54 9 (set (reg:DI 1 dx [orig:132 <retval> ] [132])
+        (sign_extend:DI (reg/v:SI 0 ax [orig:111 <retval> ] [111]))) "../ncurses/./base/lib_inchstr.c":65:5 147 {*extendsidi2_rex64}
+     (nil))
+(insn:TI 54 52 116 9 (set (reg/f:DI 5 di [orig:109 prephitmp_56 ] [109])
+        (plus:DI (ashift:DI (reg:DI 1 dx [orig:132 <retval> ] [132])
+                (const_int 2 [0x2]))
+            (reg/v/f:DI 39 r11 [orig:113 str ] [113]))) "../ncurses/./base/lib_inchstr.c":65:5 206 {*leadi}
+     (expr_list:REG_DEAD (reg/v/f:DI 39 r11 [orig:113 str ] [113])
+        (expr_list:REG_DEAD (reg:DI 1 dx [orig:132 <retval> ] [132])
+            (nil))))
+(insn:TI 116 54 117 9 (set (mem:SI (reg/f:DI 5 di [orig:109 prephitmp_56 ] [109]) [1 *prephitmp_56+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./base/lib_inchstr.c":65:9 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 5 di [orig:109 prephitmp_56 ] [109])
+        (nil)))
+(insn 117 116 118 9 (use (reg/i:SI 0 ax)) -1
+     (nil))
+(jump_insn:TI 118 117 121 9 (simple_return) 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 121 118 84)
+(code_label 84 121 83 10 7 (nil) [2 uses])
+(note 83 84 9 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 9 83 79 10 (set (reg/v:SI 0 ax [orig:111 <retval> ] [111])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_inchstr.c":55:4 75 {*movsi_internal}
+     (nil))
+(insn 79 9 125 10 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_inchstr.c":69:1 -1
+     (nil))
+(note 125 79 103 10 NOTE_INSN_EPILOGUE_BEG)
+(jump_insn:TI 103 125 104 10 (simple_return) "../ncurses/./base/lib_inchstr.c":69:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 104 103 98)
+(note 98 104 0 NOTE_INSN_DELETED)

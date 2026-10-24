@@ -1,0 +1,686 @@
+
+;; Function winchnstr (winchnstr, funcdef_no=91, decl_uid=6259, cgraph_uid=92, symbol_order=91)
+
+
+13 basic blocks, 17 edges.
+;; basic block 0, loop depth 0, count 117207684 (estimated locally), maybe hot
+;;  prev block (nil), next block 2, flags: (RTL, VISITED)
+;;  pred:      
+;;  succ:       2 [always]  count:117207684 (estimated locally) (FALLTHRU)
+
+;; basic block 2, loop depth 0, count 117207684 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:117207684 (estimated locally) (FALLTHRU)
+(note 10 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 10 3 2 (set (reg/v/f:DI 112 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_inchstr.c":49:1 74 {*movdi_internal}
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 113 [ str ])
+        (reg:DI 4 si [ str ])) "../ncurses/./base/lib_inchstr.c":49:1 74 {*movdi_internal}
+     (nil))
+(insn 4 3 5 2 (set (reg/v:SI 114 [ n ])
+        (reg:SI 1 dx [ n ])) "../ncurses/./base/lib_inchstr.c":49:1 75 {*movsi_internal}
+     (nil))
+(note 5 4 12 2 NOTE_INSN_FUNCTION_BEG)
+(insn 12 5 13 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 112 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_inchstr.c":54:9 8 {*cmpdi_ccno_1}
+     (nil))
+(insn 13 12 14 2 (set (reg:QI 116)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_inchstr.c":54:9 802 {*setcc_qi}
+     (nil))
+(insn 14 13 15 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 116)
+            (const_int 0 [0]))) "../ncurses/./base/lib_inchstr.c":54:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 15 14 85 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 84)
+            (pc))) "../ncurses/./base/lib_inchstr.c":54:8 806 {*jcc}
+     (int_list:REG_BR_PROB 10737428 (nil))
+ -> 84)
+;;  succ:       11 [1.0% (guessed)]  count:1172077 (estimated locally)
+;;              3 [99.0% (guessed)]  count:116035607 (estimated locally) (FALLTHRU)
+
+;; basic block 3, loop depth 0, count 116035607 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (NEW, REACHABLE, RTL)
+;;  pred:       2 [99.0% (guessed)]  count:116035607 (estimated locally) (FALLTHRU)
+(note 85 15 16 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 16 85 17 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 113 [ str ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_inchstr.c":54:17 8 {*cmpdi_ccno_1}
+     (nil))
+(insn 17 16 18 3 (set (reg:QI 118)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_inchstr.c":54:17 802 {*setcc_qi}
+     (nil))
+(insn 18 17 19 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 118)
+            (const_int 0 [0]))) "../ncurses/./base/lib_inchstr.c":54:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 19 18 20 3 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 84)
+            (pc))) "../ncurses/./base/lib_inchstr.c":54:8 806 {*jcc}
+     (int_list:REG_BR_PROB 10845876 (nil))
+ -> 84)
+;;  succ:       11 [1.0% (guessed)]  count:1172076 (estimated locally)
+;;              4 [99.0% (guessed)]  count:114863531 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 114863530 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       3 [99.0% (guessed)]  count:114863531 (estimated locally) (FALLTHRU)
+(note 20 19 21 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 21 20 22 4 (set (reg/v:SI 102 [ col ])
+        (mem:SI (plus:DI (reg/v/f:DI 112 [ win ])
+                (const_int 4 [0x4])) [1 win_32(D)->_curx+0 S4 A32])) "../ncurses/./base/lib_inchstr.c":58:6 75 {*movsi_internal}
+     (nil))
+(insn 22 21 23 4 (set (reg:SI 120)
+        (mem:SI (reg/v/f:DI 112 [ win ]) [1 win_32(D)->_cury+0 S4 A64])) "../ncurses/./base/lib_inchstr.c":59:33 75 {*movsi_internal}
+     (nil))
+(insn 23 22 24 4 (set (reg:DI 119)
+        (sign_extend:DI (reg:SI 120))) "../ncurses/./base/lib_inchstr.c":59:33 147 {*extendsidi2_rex64}
+     (nil))
+(insn 24 23 25 4 (set (reg/f:DI 121)
+        (mem/f:DI (plus:DI (reg/v/f:DI 112 [ win ])
+                (const_int 56 [0x38])) [5 win_32(D)->_line+0 S8 A64])) "../ncurses/./base/lib_inchstr.c":59:16 74 {*movdi_internal}
+     (nil))
+(insn 25 24 26 4 (set (reg:DI 123)
+        (reg:DI 119)) "../ncurses/./base/lib_inchstr.c":59:16 74 {*movdi_internal}
+     (nil))
+(insn 26 25 27 4 (parallel [
+            (set (reg:DI 124)
+                (ashift:DI (reg:DI 123)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":59:16 656 {*ashldi3_1}
+     (nil))
+(insn 27 26 28 4 (parallel [
+            (set (reg:DI 125)
+                (plus:DI (reg:DI 124)
+                    (reg:DI 119)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":59:16 210 {*adddi_1}
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 119)
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 28 27 29 4 (parallel [
+            (set (reg:DI 126)
+                (ashift:DI (reg:DI 125)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":59:16 656 {*ashldi3_1}
+     (nil))
+(insn 29 28 30 4 (set (reg:DI 125)
+        (reg:DI 126)) "../ncurses/./base/lib_inchstr.c":59:16 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 119)
+            (const_int 24 [0x18]))
+        (nil)))
+(insn 30 29 31 4 (set (reg:DI 122)
+        (reg:DI 125)) "../ncurses/./base/lib_inchstr.c":59:16 74 {*movdi_internal}
+     (nil))
+(insn 31 30 32 4 (parallel [
+            (set (reg/f:DI 127)
+                (plus:DI (reg/f:DI 121)
+                    (reg:DI 122)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":59:16 210 {*adddi_1}
+     (nil))
+(insn 32 31 33 4 (set (reg/v/f:DI 103 [ text ])
+        (mem/f:DI (reg/f:DI 127) [9 _7->text+0 S8 A64])) "../ncurses/./base/lib_inchstr.c":59:16 74 {*movdi_internal}
+     (nil))
+(insn 33 32 34 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 114 [ n ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_inchstr.c":61:28 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 34 33 37 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 57)
+            (pc))) "../ncurses/./base/lib_inchstr.c":61:28 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 57)
+;;  succ:       8 [94.5% (guessed)]  count:108546036 (estimated locally)
+;;              5 [5.5% (guessed)]  count:6317494 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 6317494 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [5.5% (guessed)]  count:6317494 (estimated locally) (FALLTHRU)
+(note 37 34 7 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 7 37 8 5 (set (reg/f:DI 109 [ prephitmp_56 ])
+        (reg/v/f:DI 113 [ str ])) "../ncurses/./base/lib_inchstr.c":61:28 74 {*movdi_internal}
+     (nil))
+(insn 8 7 66 5 (set (reg/v:SI 111 [ <retval> ])
+        (reg/v:SI 114 [ n ])) "../ncurses/./base/lib_inchstr.c":50:9 75 {*movsi_internal}
+     (nil))
+;;  succ:       10 [always]  count:6317494 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 1, count 958878294 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       9 [94.5% (guessed)]  count:958878294 (estimated locally)
+(code_label 66 8 38 6 6 (nil) [1 uses])
+(note 38 66 39 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 39 38 40 6 (set (reg/f:DI 110 [ _61 ])
+        (reg:DI 105 [ ivtmp.10 ])) 74 {*movdi_internal}
+     (nil))
+(insn 40 39 41 6 (set (reg:SI 129)
+        (mem:SI (plus:DI (reg/f:DI 110 [ _61 ])
+                (const_int 4 [0x4])) [1 MEM[(int *)_61 + 4B]+0 S4 A32])) "../ncurses/./base/lib_inchstr.c":62:48 75 {*movsi_internal}
+     (nil))
+(insn 41 40 44 6 (set (reg:SI 128)
+        (zero_extend:SI (subreg:QI (reg:SI 129) 0))) "../ncurses/./base/lib_inchstr.c":62:48 143 {*zero_extendqisi2}
+     (expr_list:REG_EQUAL (and:SI (mem:SI (plus:DI (reg/f:DI 110 [ _61 ])
+                    (const_int 4 [0x4])) [1 MEM[(int *)_61 + 4B]+0 S4 A32])
+            (const_int 255 [0xff]))
+        (nil)))
+(insn 44 41 45 6 (parallel [
+            (set (reg:SI 131)
+                (ior:SI (reg:SI 128)
+                    (mem:SI (reg/f:DI 110 [ _61 ]) [1 MEM[(unsigned int *)_61]+0 S4 A32])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":62:62 520 {*iorsi_1}
+     (nil))
+(insn 45 44 46 6 (set (mem:SI (reg/f:DI 109 [ prephitmp_56 ]) [1 MEM[(chtype *)_59]+0 S4 A32])
+        (reg:SI 131)) "../ncurses/./base/lib_inchstr.c":62:13 75 {*movsi_internal}
+     (nil))
+(insn 46 45 47 6 (parallel [
+            (set (reg/v:SI 111 [ <retval> ])
+                (plus:SI (reg/v:SI 111 [ <retval> ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":61:57 209 {*addsi_1}
+     (nil))
+(insn 47 46 48 6 (parallel [
+            (set (reg:DI 104 [ ivtmp.8 ])
+                (plus:DI (reg:DI 104 [ ivtmp.8 ])
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":61:28 210 {*adddi_1}
+     (nil))
+(insn 48 47 49 6 (parallel [
+            (set (reg:DI 105 [ ivtmp.10 ])
+                (plus:DI (reg:DI 105 [ ivtmp.10 ])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":61:28 210 {*adddi_1}
+     (nil))
+(insn 49 48 50 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 114 [ n ])
+            (reg/v:SI 111 [ <retval> ]))) "../ncurses/./base/lib_inchstr.c":61:28 11 {*cmpsi_1}
+     (nil))
+(jump_insn 50 49 51 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 63)
+            (pc))) "../ncurses/./base/lib_inchstr.c":61:28 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 63)
+;;  succ:       9 [94.5% (guessed)]  count:906139988 (estimated locally) (DFS_BACK)
+;;              7 [5.5% (guessed)]  count:52738306 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 52738306 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [5.5% (guessed)]  count:52738306 (estimated locally) (FALLTHRU)
+(note 51 50 52 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 52 51 53 7 (set (reg:DI 132)
+        (sign_extend:DI (reg/v:SI 111 [ <retval> ]))) "../ncurses/./base/lib_inchstr.c":65:5 147 {*extendsidi2_rex64}
+     (nil))
+(insn 53 52 54 7 (parallel [
+            (set (reg:DI 133)
+                (ashift:DI (reg:DI 132)
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":65:5 656 {*ashldi3_1}
+     (nil))
+(insn 54 53 57 7 (parallel [
+            (set (reg/f:DI 109 [ prephitmp_56 ])
+                (plus:DI (reg/v/f:DI 113 [ str ])
+                    (reg:DI 133)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":65:5 210 {*adddi_1}
+     (nil))
+;;  succ:       10 [always]  count:52738306 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 108546036 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [94.5% (guessed)]  count:108546036 (estimated locally)
+(code_label 57 54 58 8 3 (nil) [1 uses])
+(note 58 57 59 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 59 58 60 8 (set (reg:DI 104 [ ivtmp.8 ])
+        (reg/v/f:DI 113 [ str ])) 74 {*movdi_internal}
+     (nil))
+(insn 60 59 61 8 (set (reg:DI 134)
+        (sign_extend:DI (reg/v:SI 102 [ col ]))) 147 {*extendsidi2_rex64}
+     (nil))
+(insn 61 60 62 8 (parallel [
+            (set (reg:DI 135)
+                (ashift:DI (reg:DI 134)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) 656 {*ashldi3_1}
+     (nil))
+(insn 62 61 6 8 (parallel [
+            (set (reg:DI 105 [ ivtmp.10 ])
+                (plus:DI (reg/v/f:DI 103 [ text ])
+                    (reg:DI 135)))
+            (clobber (reg:CC 17 flags))
+        ]) 210 {*adddi_1}
+     (nil))
+(insn 6 62 63 8 (set (reg/v:SI 111 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_inchstr.c":50:9 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:108546036 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 1, count 1014686025 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [94.5% (guessed)]  count:906139988 (estimated locally) (DFS_BACK)
+;;              8 [always]  count:108546036 (estimated locally) (FALLTHRU)
+(code_label 63 6 64 9 5 (nil) [1 uses])
+(note 64 63 65 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 65 64 67 9 (set (reg/f:DI 109 [ prephitmp_56 ])
+        (reg:DI 104 [ ivtmp.8 ])) "../ncurses/./base/lib_inchstr.c":62:9 74 {*movdi_internal}
+     (nil))
+(insn 67 65 68 9 (parallel [
+            (set (reg:SI 136)
+                (plus:SI (reg/v:SI 102 [ col ])
+                    (reg/v:SI 111 [ <retval> ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":61:28 209 {*addsi_1}
+     (nil))
+(insn 68 67 69 9 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 112 [ win ])
+                    (const_int 12 [0xc])) [1 win_32(D)->_maxx+0 S4 A32])
+            (reg:SI 136))) "../ncurses/./base/lib_inchstr.c":61:28 11 {*cmpsi_1}
+     (nil))
+(jump_insn 69 68 70 9 (set (pc)
+        (if_then_else (ge (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 66)
+            (pc))) "../ncurses/./base/lib_inchstr.c":61:28 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 66)
+;;  succ:       6 [94.5% (guessed)]  count:958878294 (estimated locally)
+;;              10 [5.5% (guessed)]  count:55807731 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 114863531 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [always]  count:52738306 (estimated locally) (FALLTHRU)
+;;              9 [5.5% (guessed)]  count:55807731 (estimated locally) (FALLTHRU)
+;;              5 [always]  count:6317494 (estimated locally) (FALLTHRU)
+(code_label 70 69 71 10 4 (nil) [0 uses])
+(note 71 70 72 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 72 71 84 10 (set (mem:SI (reg/f:DI 109 [ prephitmp_56 ]) [1 *prephitmp_56+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./base/lib_inchstr.c":65:9 75 {*movsi_internal}
+     (nil))
+;;  succ:       12 [always]  count:114863531 (estimated locally) (FALLTHRU)
+
+;; basic block 11, loop depth 0, count 2344154 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       3 [1.0% (guessed)]  count:1172076 (estimated locally)
+;;              2 [1.0% (guessed)]  count:1172077 (estimated locally)
+(code_label 84 72 83 11 7 (nil) [2 uses])
+(note 83 84 9 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 9 83 77 11 (set (reg/v:SI 111 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_inchstr.c":55:4 75 {*movsi_internal}
+     (nil))
+;;  succ:       12 [always]  count:2344154 (estimated locally) (FALLTHRU)
+
+;; basic block 12, loop depth 0, count 117207685 (estimated locally), maybe hot
+;;  prev block 11, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       11 [always]  count:2344154 (estimated locally) (FALLTHRU)
+;;              10 [always]  count:114863531 (estimated locally) (FALLTHRU)
+(code_label 77 9 80 12 1 (nil) [0 uses])
+(note 80 77 78 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 78 80 79 12 (set (reg/i:SI 0 ax)
+        (reg/v:SI 111 [ <retval> ])) "../ncurses/./base/lib_inchstr.c":69:1 75 {*movsi_internal}
+     (nil))
+(insn 79 78 0 12 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_inchstr.c":69:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:117207685 (estimated locally) (FALLTHRU)
+
+;; basic block 1, loop depth 0, count 117207685 (estimated locally), maybe hot
+;;  prev block 12, next block (nil), flags: (REACHABLE, RTL, VISITED)
+;;  pred:       12 [always]  count:117207685 (estimated locally) (FALLTHRU)
+;;  succ:      
+
+
+
+
+try_optimize_cfg iteration 1
+
+;; basic block 2, loop depth 0, count 117207684 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (RTL)
+;;  pred:       ENTRY [always]  count:117207684 (estimated locally) (FALLTHRU)
+(note 10 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 10 3 2 (set (reg/v/f:DI 112 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_inchstr.c":49:1 74 {*movdi_internal}
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 113 [ str ])
+        (reg:DI 4 si [ str ])) "../ncurses/./base/lib_inchstr.c":49:1 74 {*movdi_internal}
+     (nil))
+(insn 4 3 5 2 (set (reg/v:SI 114 [ n ])
+        (reg:SI 1 dx [ n ])) "../ncurses/./base/lib_inchstr.c":49:1 75 {*movsi_internal}
+     (nil))
+(note 5 4 12 2 NOTE_INSN_FUNCTION_BEG)
+(insn 12 5 13 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 112 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_inchstr.c":54:9 8 {*cmpdi_ccno_1}
+     (nil))
+(insn 13 12 14 2 (set (reg:QI 116)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_inchstr.c":54:9 802 {*setcc_qi}
+     (nil))
+(insn 14 13 15 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 116)
+            (const_int 0 [0]))) "../ncurses/./base/lib_inchstr.c":54:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 15 14 85 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 84)
+            (pc))) "../ncurses/./base/lib_inchstr.c":54:8 806 {*jcc}
+     (int_list:REG_BR_PROB 10737428 (nil))
+ -> 84)
+;;  succ:       11 [1.0% (guessed)]  count:1172077 (estimated locally)
+;;              3 [99.0% (guessed)]  count:116035607 (estimated locally) (FALLTHRU)
+
+;; basic block 3, loop depth 0, count 116035607 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (RTL)
+;;  pred:       2 [99.0% (guessed)]  count:116035607 (estimated locally) (FALLTHRU)
+(note 85 15 16 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 16 85 17 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 113 [ str ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_inchstr.c":54:17 8 {*cmpdi_ccno_1}
+     (nil))
+(insn 17 16 18 3 (set (reg:QI 118)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_inchstr.c":54:17 802 {*setcc_qi}
+     (nil))
+(insn 18 17 19 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 118)
+            (const_int 0 [0]))) "../ncurses/./base/lib_inchstr.c":54:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 19 18 20 3 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 84)
+            (pc))) "../ncurses/./base/lib_inchstr.c":54:8 806 {*jcc}
+     (int_list:REG_BR_PROB 10845876 (nil))
+ -> 84)
+;;  succ:       11 [1.0% (guessed)]  count:1172076 (estimated locally)
+;;              4 [99.0% (guessed)]  count:114863531 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 114863530 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (RTL)
+;;  pred:       3 [99.0% (guessed)]  count:114863531 (estimated locally) (FALLTHRU)
+(note 20 19 21 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 21 20 22 4 (set (reg/v:SI 102 [ col ])
+        (mem:SI (plus:DI (reg/v/f:DI 112 [ win ])
+                (const_int 4 [0x4])) [1 win_32(D)->_curx+0 S4 A32])) "../ncurses/./base/lib_inchstr.c":58:6 75 {*movsi_internal}
+     (nil))
+(insn 22 21 23 4 (set (reg:SI 120)
+        (mem:SI (reg/v/f:DI 112 [ win ]) [1 win_32(D)->_cury+0 S4 A64])) "../ncurses/./base/lib_inchstr.c":59:33 75 {*movsi_internal}
+     (nil))
+(insn 23 22 24 4 (set (reg:DI 119)
+        (sign_extend:DI (reg:SI 120))) "../ncurses/./base/lib_inchstr.c":59:33 147 {*extendsidi2_rex64}
+     (nil))
+(insn 24 23 25 4 (set (reg/f:DI 121)
+        (mem/f:DI (plus:DI (reg/v/f:DI 112 [ win ])
+                (const_int 56 [0x38])) [5 win_32(D)->_line+0 S8 A64])) "../ncurses/./base/lib_inchstr.c":59:16 74 {*movdi_internal}
+     (nil))
+(insn 25 24 26 4 (set (reg:DI 123)
+        (reg:DI 119)) "../ncurses/./base/lib_inchstr.c":59:16 74 {*movdi_internal}
+     (nil))
+(insn 26 25 27 4 (parallel [
+            (set (reg:DI 124)
+                (ashift:DI (reg:DI 123)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":59:16 656 {*ashldi3_1}
+     (nil))
+(insn 27 26 28 4 (parallel [
+            (set (reg:DI 125)
+                (plus:DI (reg:DI 124)
+                    (reg:DI 119)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":59:16 210 {*adddi_1}
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 119)
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 28 27 29 4 (parallel [
+            (set (reg:DI 126)
+                (ashift:DI (reg:DI 125)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":59:16 656 {*ashldi3_1}
+     (nil))
+(insn 29 28 30 4 (set (reg:DI 125)
+        (reg:DI 126)) "../ncurses/./base/lib_inchstr.c":59:16 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 119)
+            (const_int 24 [0x18]))
+        (nil)))
+(insn 30 29 31 4 (set (reg:DI 122)
+        (reg:DI 125)) "../ncurses/./base/lib_inchstr.c":59:16 74 {*movdi_internal}
+     (nil))
+(insn 31 30 32 4 (parallel [
+            (set (reg/f:DI 127)
+                (plus:DI (reg/f:DI 121)
+                    (reg:DI 122)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":59:16 210 {*adddi_1}
+     (nil))
+(insn 32 31 33 4 (set (reg/v/f:DI 103 [ text ])
+        (mem/f:DI (reg/f:DI 127) [9 _7->text+0 S8 A64])) "../ncurses/./base/lib_inchstr.c":59:16 74 {*movdi_internal}
+     (nil))
+(insn 33 32 34 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 114 [ n ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_inchstr.c":61:28 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 34 33 37 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 57)
+            (pc))) "../ncurses/./base/lib_inchstr.c":61:28 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 57)
+;;  succ:       8 [94.5% (guessed)]  count:108546036 (estimated locally)
+;;              5 [5.5% (guessed)]  count:6317494 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 6317494 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (RTL)
+;;  pred:       4 [5.5% (guessed)]  count:6317494 (estimated locally) (FALLTHRU)
+(note 37 34 7 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 7 37 8 5 (set (reg/f:DI 109 [ prephitmp_56 ])
+        (reg/v/f:DI 113 [ str ])) "../ncurses/./base/lib_inchstr.c":61:28 74 {*movdi_internal}
+     (nil))
+(insn 8 7 66 5 (set (reg/v:SI 111 [ <retval> ])
+        (reg/v:SI 114 [ n ])) "../ncurses/./base/lib_inchstr.c":50:9 75 {*movsi_internal}
+     (nil))
+;;  succ:       10 [always]  count:6317494 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 1, count 958878294 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (RTL)
+;;  pred:       9 [94.5% (guessed)]  count:958878294 (estimated locally)
+(code_label 66 8 38 6 6 (nil) [1 uses])
+(note 38 66 39 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 39 38 40 6 (set (reg/f:DI 110 [ _61 ])
+        (reg:DI 105 [ ivtmp.10 ])) 74 {*movdi_internal}
+     (nil))
+(insn 40 39 41 6 (set (reg:SI 129)
+        (mem:SI (plus:DI (reg/f:DI 110 [ _61 ])
+                (const_int 4 [0x4])) [1 MEM[(int *)_61 + 4B]+0 S4 A32])) "../ncurses/./base/lib_inchstr.c":62:48 75 {*movsi_internal}
+     (nil))
+(insn 41 40 44 6 (set (reg:SI 128)
+        (zero_extend:SI (subreg:QI (reg:SI 129) 0))) "../ncurses/./base/lib_inchstr.c":62:48 143 {*zero_extendqisi2}
+     (expr_list:REG_EQUAL (and:SI (mem:SI (plus:DI (reg/f:DI 110 [ _61 ])
+                    (const_int 4 [0x4])) [1 MEM[(int *)_61 + 4B]+0 S4 A32])
+            (const_int 255 [0xff]))
+        (nil)))
+(insn 44 41 45 6 (parallel [
+            (set (reg:SI 131)
+                (ior:SI (reg:SI 128)
+                    (mem:SI (reg/f:DI 110 [ _61 ]) [1 MEM[(unsigned int *)_61]+0 S4 A32])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":62:62 520 {*iorsi_1}
+     (nil))
+(insn 45 44 46 6 (set (mem:SI (reg/f:DI 109 [ prephitmp_56 ]) [1 MEM[(chtype *)_59]+0 S4 A32])
+        (reg:SI 131)) "../ncurses/./base/lib_inchstr.c":62:13 75 {*movsi_internal}
+     (nil))
+(insn 46 45 47 6 (parallel [
+            (set (reg/v:SI 111 [ <retval> ])
+                (plus:SI (reg/v:SI 111 [ <retval> ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":61:57 209 {*addsi_1}
+     (nil))
+(insn 47 46 48 6 (parallel [
+            (set (reg:DI 104 [ ivtmp.8 ])
+                (plus:DI (reg:DI 104 [ ivtmp.8 ])
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":61:28 210 {*adddi_1}
+     (nil))
+(insn 48 47 49 6 (parallel [
+            (set (reg:DI 105 [ ivtmp.10 ])
+                (plus:DI (reg:DI 105 [ ivtmp.10 ])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":61:28 210 {*adddi_1}
+     (nil))
+(insn 49 48 50 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 114 [ n ])
+            (reg/v:SI 111 [ <retval> ]))) "../ncurses/./base/lib_inchstr.c":61:28 11 {*cmpsi_1}
+     (nil))
+(jump_insn 50 49 51 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 63)
+            (pc))) "../ncurses/./base/lib_inchstr.c":61:28 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 63)
+;;  succ:       9 [94.5% (guessed)]  count:906139988 (estimated locally) (DFS_BACK)
+;;              7 [5.5% (guessed)]  count:52738306 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 52738306 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (RTL)
+;;  pred:       6 [5.5% (guessed)]  count:52738306 (estimated locally) (FALLTHRU)
+(note 51 50 52 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 52 51 53 7 (set (reg:DI 132)
+        (sign_extend:DI (reg/v:SI 111 [ <retval> ]))) "../ncurses/./base/lib_inchstr.c":65:5 147 {*extendsidi2_rex64}
+     (nil))
+(insn 53 52 54 7 (parallel [
+            (set (reg:DI 133)
+                (ashift:DI (reg:DI 132)
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":65:5 656 {*ashldi3_1}
+     (nil))
+(insn 54 53 57 7 (parallel [
+            (set (reg/f:DI 109 [ prephitmp_56 ])
+                (plus:DI (reg/v/f:DI 113 [ str ])
+                    (reg:DI 133)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":65:5 210 {*adddi_1}
+     (nil))
+;;  succ:       10 [always]  count:52738306 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 108546036 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (RTL)
+;;  pred:       4 [94.5% (guessed)]  count:108546036 (estimated locally)
+(code_label 57 54 58 8 3 (nil) [1 uses])
+(note 58 57 59 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 59 58 60 8 (set (reg:DI 104 [ ivtmp.8 ])
+        (reg/v/f:DI 113 [ str ])) 74 {*movdi_internal}
+     (nil))
+(insn 60 59 61 8 (set (reg:DI 134)
+        (sign_extend:DI (reg/v:SI 102 [ col ]))) 147 {*extendsidi2_rex64}
+     (nil))
+(insn 61 60 62 8 (parallel [
+            (set (reg:DI 135)
+                (ashift:DI (reg:DI 134)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) 656 {*ashldi3_1}
+     (nil))
+(insn 62 61 6 8 (parallel [
+            (set (reg:DI 105 [ ivtmp.10 ])
+                (plus:DI (reg/v/f:DI 103 [ text ])
+                    (reg:DI 135)))
+            (clobber (reg:CC 17 flags))
+        ]) 210 {*adddi_1}
+     (nil))
+(insn 6 62 63 8 (set (reg/v:SI 111 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_inchstr.c":50:9 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:108546036 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 1, count 1014686025 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (RTL)
+;;  pred:       6 [94.5% (guessed)]  count:906139988 (estimated locally) (DFS_BACK)
+;;              8 [always]  count:108546036 (estimated locally) (FALLTHRU)
+(code_label 63 6 64 9 5 (nil) [1 uses])
+(note 64 63 65 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 65 64 67 9 (set (reg/f:DI 109 [ prephitmp_56 ])
+        (reg:DI 104 [ ivtmp.8 ])) "../ncurses/./base/lib_inchstr.c":62:9 74 {*movdi_internal}
+     (nil))
+(insn 67 65 68 9 (parallel [
+            (set (reg:SI 136)
+                (plus:SI (reg/v:SI 102 [ col ])
+                    (reg/v:SI 111 [ <retval> ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_inchstr.c":61:28 209 {*addsi_1}
+     (nil))
+(insn 68 67 69 9 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 112 [ win ])
+                    (const_int 12 [0xc])) [1 win_32(D)->_maxx+0 S4 A32])
+            (reg:SI 136))) "../ncurses/./base/lib_inchstr.c":61:28 11 {*cmpsi_1}
+     (nil))
+(jump_insn 69 68 70 9 (set (pc)
+        (if_then_else (ge (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 66)
+            (pc))) "../ncurses/./base/lib_inchstr.c":61:28 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 66)
+;;  succ:       6 [94.5% (guessed)]  count:958878294 (estimated locally)
+;;              10 [5.5% (guessed)]  count:55807731 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 114863531 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (RTL)
+;;  pred:       7 [always]  count:52738306 (estimated locally) (FALLTHRU)
+;;              9 [5.5% (guessed)]  count:55807731 (estimated locally) (FALLTHRU)
+;;              5 [always]  count:6317494 (estimated locally) (FALLTHRU)
+(code_label 70 69 71 10 4 (nil) [0 uses])
+(note 71 70 72 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 72 71 84 10 (set (mem:SI (reg/f:DI 109 [ prephitmp_56 ]) [1 *prephitmp_56+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./base/lib_inchstr.c":65:9 75 {*movsi_internal}
+     (nil))
+;;  succ:       12 [always]  count:114863531 (estimated locally) (FALLTHRU)
+
+;; basic block 11, loop depth 0, count 2344154 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (RTL)
+;;  pred:       3 [1.0% (guessed)]  count:1172076 (estimated locally)
+;;              2 [1.0% (guessed)]  count:1172077 (estimated locally)
+(code_label 84 72 83 11 7 (nil) [2 uses])
+(note 83 84 9 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 9 83 77 11 (set (reg/v:SI 111 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_inchstr.c":55:4 75 {*movsi_internal}
+     (nil))
+;;  succ:       12 [always]  count:2344154 (estimated locally) (FALLTHRU)
+
+;; basic block 12, loop depth 0, count 117207685 (estimated locally), maybe hot
+;;  prev block 11, next block 1, flags: (RTL)
+;;  pred:       11 [always]  count:2344154 (estimated locally) (FALLTHRU)
+;;              10 [always]  count:114863531 (estimated locally) (FALLTHRU)
+(code_label 77 9 80 12 1 (nil) [0 uses])
+(note 80 77 78 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 78 80 79 12 (set (reg/i:SI 0 ax)
+        (reg/v:SI 111 [ <retval> ])) "../ncurses/./base/lib_inchstr.c":69:1 75 {*movsi_internal}
+     (nil))
+(insn 79 78 0 12 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_inchstr.c":69:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:117207685 (estimated locally) (FALLTHRU)
+

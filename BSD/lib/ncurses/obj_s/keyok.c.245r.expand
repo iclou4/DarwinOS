@@ -1,0 +1,1986 @@
+
+;; Function keyok_sp (keyok_sp, funcdef_no=91, decl_uid=6775, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+int keyok_sp (struct SCREEN * sp, int c, _Bool flag)
+{
+  unsigned int ch;
+  char * s;
+  int count;
+  int code;
+  struct TERMINAL * _1;
+  struct TRIES * * _2;
+  int _3;
+  struct TRIES * * _4;
+  struct TRIES * _5;
+  struct TRIES * * _6;
+  int _7;
+  struct TRIES * * _8;
+  struct TRIES * _9;
+  _Bool _46;
+  _Bool _48;
+  _Bool _49;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (sp_19(D) != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 16>; [0.87%]
+;;    succ:       3
+;;                16
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = sp_19(D)->_term;
+  _46 = c_21(D) >= 0;
+  _49 = _1 != 0B;
+  _48 = _46 & _49;
+  if (_48 != 0)
+    goto <bb 4>; [97.74%]
+  else
+    goto <bb 16>; [2.26%]
+;;    succ:       4
+;;                16
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  count = 0;
+  ch_23 = (unsigned int) c_21(D);
+  if (flag_24(D) != 0)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 14>; [50.00%]
+;;    succ:       9
+;;                14
+
+;;   basic block 5, loop depth 1
+;;    pred:       9
+  _2 = &sp_19(D)->_key_ok;
+  _3 = _nc_remove_key (_2, ch_23);
+  if (_3 != 0)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+;;    succ:       6
+;;                7
+
+;;   basic block 6, loop depth 1
+;;    pred:       5
+  _4 = &sp_19(D)->_keytry;
+  code_38 = _nc_add_to_try (_4, s_34, ch_23);
+  free (s_34);
+  count = 0;
+  if (code_38 != 0)
+    goto <bb 15>; [5.50%]
+  else
+    goto <bb 8>; [94.50%]
+;;    succ:       15
+;;                8
+
+;;   basic block 7, loop depth 1
+;;    pred:       5
+  free (s_34);
+;;    succ:       8
+
+;;   basic block 8, loop depth 1
+;;    pred:       6
+;;                7
+  # code_42 = PHI <code_38(6), code_10(7)>
+;;    succ:       9
+
+;;   basic block 9, loop depth 1
+;;    pred:       8
+;;                4
+  # code_10 = PHI <code_42(8), -1(4)>
+  _5 = sp_19(D)->_key_ok;
+  s_34 = _nc_expand_try (_5, ch_23, &count, 0);
+  if (s_34 != 0B)
+    goto <bb 5>; [94.50%]
+  else
+    goto <bb 15>; [5.50%]
+;;    succ:       5
+;;                15
+
+;;   basic block 10, loop depth 1
+;;    pred:       14
+  _6 = &sp_19(D)->_keytry;
+  _7 = _nc_remove_key (_6, ch_23);
+  if (_7 != 0)
+    goto <bb 11>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+;;    succ:       11
+;;                12
+
+;;   basic block 11, loop depth 1
+;;    pred:       10
+  _8 = &sp_19(D)->_key_ok;
+  code_30 = _nc_add_to_try (_8, s_26, ch_23);
+  free (s_26);
+  count = 0;
+  if (code_30 != 0)
+    goto <bb 15>; [5.50%]
+  else
+    goto <bb 13>; [94.50%]
+;;    succ:       15
+;;                13
+
+;;   basic block 12, loop depth 1
+;;    pred:       10
+  free (s_26);
+;;    succ:       13
+
+;;   basic block 13, loop depth 1
+;;    pred:       11
+;;                12
+  # code_44 = PHI <code_30(11), code_11(12)>
+;;    succ:       14
+
+;;   basic block 14, loop depth 1
+;;    pred:       13
+;;                4
+  # code_11 = PHI <code_44(13), -1(4)>
+  _9 = sp_19(D)->_keytry;
+  s_26 = _nc_expand_try (_9, ch_23, &count, 0);
+  if (s_26 != 0B)
+    goto <bb 10>; [94.50%]
+  else
+    goto <bb 15>; [5.50%]
+;;    succ:       10
+;;                15
+
+;;   basic block 15, loop depth 0
+;;    pred:       9
+;;                11
+;;                14
+;;                6
+  # code_12 = PHI <code_10(9), code_30(11), code_11(14), code_38(6)>
+  count ={v} {CLOBBER};
+;;    succ:       16
+
+;;   basic block 16, loop depth 0
+;;    pred:       3
+;;                15
+;;                2
+  # code_13 = PHI <-1(3), code_12(15), -1(2)>
+  return code_13;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 4 (_4 - 4 )
+Partition 5 (_5 - 5 )
+Partition 6 (_6 - 6 )
+Partition 7 (_7 - 7 )
+Partition 8 (_8 - 8 )
+Partition 9 (_9 - 9 )
+Partition 10 (code_10 - 10 )
+Partition 11 (code_11 - 11 )
+Partition 12 (code_12 - 12 )
+Partition 13 (code_13 - 13 )
+Partition 19 (sp_19(D) - 19 )
+Partition 21 (c_21(D) - 21 )
+Partition 23 (ch_23 - 23 )
+Partition 24 (flag_24(D) - 24 )
+Partition 26 (s_26 - 26 )
+Partition 30 (code_30 - 30 )
+Partition 34 (s_34 - 34 )
+Partition 38 (code_38 - 38 )
+Partition 42 (code_42 - 42 )
+Partition 44 (code_44 - 44 )
+Partition 46 (_46 - 46 )
+Partition 48 (_48 - 48 )
+Partition 49 (_49 - 49 )
+Partition 50 (_50(D) - 50 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (code_10 - 10 11 12 13 30 38 42 44 50 )
+Partition 4, base 1 (sp_19(D) - 19 )
+Partition 5, base 2 (c_21(D) - 21 )
+Partition 6, base 3 (flag_24(D) - 24 )
+
+
+Partition map 
+
+Partition 0 (code_10 - 10 )
+Partition 1 (code_11 - 11 )
+Partition 2 (code_12 - 12 )
+Partition 3 (code_13 - 13 )
+Partition 4 (sp_19(D) - 19 )
+Partition 5 (c_21(D) - 21 )
+Partition 6 (flag_24(D) - 24 )
+Partition 7 (code_30 - 30 )
+Partition 8 (code_38 - 38 )
+Partition 9 (code_42 - 42 )
+Partition 10 (code_44 - 44 )
+Partition 11 (_50(D) - 50 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(13915, 0) code_10 <-> code_42
+(13915, 0) code_11 <-> code_44
+(8930, 0) code_38 <-> code_42
+(8930, 0) code_30 <-> code_44
+(1672, 0) code_13 <-> _50(D)
+(1620, 0) code_12 <-> code_13
+(1100, 0) code_10 <-> code_12
+(1100, 0) code_11 <-> code_12
+(520, 0) code_12 <-> code_30
+(520, 0) code_12 <-> code_38
+
+Partition map 
+
+Partition 0 (code_10 - 10 )
+Partition 1 (code_11 - 11 )
+Partition 2 (code_12 - 12 )
+Partition 3 (code_13 - 13 )
+Partition 4 (sp_19(D) - 19 )
+Partition 5 (c_21(D) - 21 )
+Partition 6 (flag_24(D) - 24 )
+Partition 7 (code_30 - 30 )
+Partition 8 (code_38 - 38 )
+Partition 9 (code_42 - 42 )
+Partition 10 (code_44 - 44 )
+Partition 11 (_50(D) - 50 )
+
+Coalesce list: (10)code_10 & (42)code_42 [map: 0, 9] : Success -> 0
+Coalesce list: (11)code_11 & (44)code_44 [map: 1, 10] : Success -> 1
+Coalesce list: (38)code_38 & (42)code_10 [map: 8, 0] : Success -> 0
+Coalesce list: (30)code_30 & (44)code_11 [map: 7, 1] : Success -> 1
+Coalesce list: (13)code_13 & (50)_50(D) [map: 3, 11] : Success -> 3
+Coalesce list: (12)code_12 & (13)code_13 [map: 2, 3] : Success -> 3
+Coalesce list: (10)code_10 & (12)code_13 [map: 0, 3] : Success -> 0
+Coalesce list: (11)code_11 & (12)code_10 [map: 1, 0] : Success -> 0
+Coalesce list: (12)code_10 & (30)code_10: Already Coalesced.
+Coalesce list: (12)code_10 & (38)code_10: Already Coalesced.
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_2 - 2 )
+Partition 2 (_3 - 3 )
+Partition 3 (_4 - 4 )
+Partition 4 (_5 - 5 )
+Partition 5 (_6 - 6 )
+Partition 6 (_7 - 7 )
+Partition 7 (_8 - 8 )
+Partition 8 (_9 - 9 )
+Partition 9 (code_10 - 10 11 12 13 30 38 42 44 50 )
+Partition 10 (sp_19(D) - 19 )
+Partition 11 (c_21(D) - 21 )
+Partition 12 (ch_23 - 23 )
+Partition 13 (flag_24(D) - 24 )
+Partition 14 (s_26 - 26 )
+Partition 15 (s_34 - 34 )
+Partition 16 (_46 - 46 )
+Partition 17 (_48 - 48 )
+Partition 18 (_49 - 49 )
+
+
+Replacing Expressions
+_1 replace with --> _1 = sp_19(D)->_term;
+
+_2 replace with --> _2 = &sp_19(D)->_key_ok;
+
+_4 replace with --> _4 = &sp_19(D)->_keytry;
+
+_5 replace with --> _5 = sp_19(D)->_key_ok;
+
+_6 replace with --> _6 = &sp_19(D)->_keytry;
+
+_8 replace with --> _8 = &sp_19(D)->_key_ok;
+
+_9 replace with --> _9 = sp_19(D)->_keytry;
+
+_46 replace with --> _46 = c_21(D) >= 0;
+
+_48 replace with --> _48 = _46 & _49;
+
+_49 replace with --> _49 = _1 != 0B;
+
+
+__attribute__((visibility ("default")))
+int keyok_sp (struct SCREEN * sp, int c, _Bool flag)
+{
+  unsigned int ch;
+  char * s;
+  int count;
+  int code;
+  struct TERMINAL * _1;
+  struct TRIES * * _2;
+  int _3;
+  struct TRIES * * _4;
+  struct TRIES * _5;
+  struct TRIES * * _6;
+  int _7;
+  struct TRIES * * _8;
+  struct TRIES * _9;
+  _Bool _46;
+  _Bool _48;
+  _Bool _49;
+  int _50(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (sp_19(D) != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 16>; [0.87%]
+;;    succ:       3
+;;                16
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = sp_19(D)->_term;
+  _46 = c_21(D) >= 0;
+  _49 = _1 != 0B;
+  _48 = _46 & _49;
+  if (_48 != 0)
+    goto <bb 4>; [97.74%]
+  else
+    goto <bb 16>; [2.26%]
+;;    succ:       4
+;;                16
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  count = 0;
+  ch_23 = (unsigned int) c_21(D);
+  if (flag_24(D) != 0)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 14>; [50.00%]
+;;    succ:       9
+;;                14
+
+;;   basic block 5, loop depth 1
+;;    pred:       9
+  _2 = &sp_19(D)->_key_ok;
+  _3 = _nc_remove_key (_2, ch_23);
+  if (_3 != 0)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+;;    succ:       6
+;;                7
+
+;;   basic block 6, loop depth 1
+;;    pred:       5
+  _4 = &sp_19(D)->_keytry;
+  code_38 = _nc_add_to_try (_4, s_34, ch_23);
+  free (s_34);
+  count = 0;
+  if (code_38 != 0)
+    goto <bb 15>; [5.50%]
+  else
+    goto <bb 8>; [94.50%]
+;;    succ:       15
+;;                8
+
+;;   basic block 7, loop depth 1
+;;    pred:       5
+  free (s_34);
+;;    succ:       8
+
+;;   basic block 8, loop depth 1
+;;    pred:       6
+;;                7
+  # code_42 = PHI <code_38(6), code_10(7)>
+;;    succ:       9
+
+;;   basic block 9, loop depth 1
+;;    pred:       8
+;;                4
+  # code_10 = PHI <code_42(8), -1(4)>
+  _5 = sp_19(D)->_key_ok;
+  s_34 = _nc_expand_try (_5, ch_23, &count, 0);
+  if (s_34 != 0B)
+    goto <bb 5>; [94.50%]
+  else
+    goto <bb 15>; [5.50%]
+;;    succ:       5
+;;                15
+
+;;   basic block 10, loop depth 1
+;;    pred:       14
+  _6 = &sp_19(D)->_keytry;
+  _7 = _nc_remove_key (_6, ch_23);
+  if (_7 != 0)
+    goto <bb 11>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+;;    succ:       11
+;;                12
+
+;;   basic block 11, loop depth 1
+;;    pred:       10
+  _8 = &sp_19(D)->_key_ok;
+  code_30 = _nc_add_to_try (_8, s_26, ch_23);
+  free (s_26);
+  count = 0;
+  if (code_30 != 0)
+    goto <bb 15>; [5.50%]
+  else
+    goto <bb 13>; [94.50%]
+;;    succ:       15
+;;                13
+
+;;   basic block 12, loop depth 1
+;;    pred:       10
+  free (s_26);
+;;    succ:       13
+
+;;   basic block 13, loop depth 1
+;;    pred:       11
+;;                12
+  # code_44 = PHI <code_30(11), code_11(12)>
+;;    succ:       14
+
+;;   basic block 14, loop depth 1
+;;    pred:       13
+;;                4
+  # code_11 = PHI <code_44(13), -1(4)>
+  _9 = sp_19(D)->_keytry;
+  s_26 = _nc_expand_try (_9, ch_23, &count, 0);
+  if (s_26 != 0B)
+    goto <bb 10>; [94.50%]
+  else
+    goto <bb 15>; [5.50%]
+;;    succ:       10
+;;                15
+
+;;   basic block 15, loop depth 0
+;;    pred:       9
+;;                11
+;;                14
+;;                6
+  # code_12 = PHI <code_10(9), code_30(11), code_11(14), code_38(6)>
+  count ={v} {CLOBBER};
+;;    succ:       16
+
+;;   basic block 16, loop depth 0
+;;    pred:       3
+;;                15
+;;                2
+  # code_13 = PHI <-1(3), code_12(15), -1(2)>
+  return code_13;
+;;    succ:       EXIT
+
+}
+
+
+Partition 0: size 4 align 4
+	count
+Inserting a value copy on edge BB4->BB9 : PART.9 = -1
+Inserting a value copy on edge BB4->BB14 : PART.9 = -1
+Inserting a value copy on edge BB3->BB16 : PART.9 = -1
+Inserting a value copy on edge BB2->BB16 : PART.9 = -1
+
+;; Generating RTL for gimple basic block 2
+
+;; if (sp_19(D) != 0B)
+
+(insn 15 14 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 98 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":54:8 -1
+     (nil))
+
+(jump_insn 16 15 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/keyok.c":54:8 -1
+     (int_list:REG_BR_PROB 9341556 (nil)))
+
+;; Generating RTL for gimple basic block 3
+Swap operands in stmt:
+_48 = _46 & _49;
+Cost left opnd=1, right opnd=2
+
+;; if (_48 != 0)
+
+(insn 18 17 19 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/v/f:DI 98 [ sp ])
+                    (const_int 48 [0x30])) [8 sp_19(D)->_term+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":54:9 -1
+     (nil))
+
+(insn 19 18 20 (set (reg:QI 104)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":54:9 -1
+     (nil))
+
+(insn 20 19 21 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 104)
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":59:5 -1
+     (nil))
+
+(jump_insn 21 20 24 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/keyok.c":59:5 -1
+     (int_list:REG_BR_PROB 12121580 (nil)))
+
+(insn 24 21 25 (set (reg:SI 106)
+        (not:SI (reg/v:SI 99 [ c ]))) "../ncurses/./base/keyok.c":59:5 -1
+     (nil))
+
+(insn 25 24 26 (parallel [
+            (set (reg:SI 107)
+                (lshiftrt:SI (reg:SI 106)
+                    (const_int 31 [0x1f])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/keyok.c":59:5 -1
+     (nil))
+
+(insn 26 25 27 (set (reg:QI 108)
+        (subreg:QI (reg:SI 107) 0)) "../ncurses/./base/keyok.c":59:5 -1
+     (nil))
+
+(insn 27 26 28 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 108)
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":59:5 -1
+     (nil))
+
+(jump_insn 28 27 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/keyok.c":59:5 -1
+     (int_list:REG_BR_PROB 12259988 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; count = 0;
+
+(insn 30 29 0 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -12 [0xfffffffffffffff4])) [2 count+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":60:10 -1
+     (nil))
+
+;; ch_23 = (unsigned int) c_21(D);
+
+(insn 31 30 0 (set (reg/v:SI 91 [ ch ])
+        (reg/v:SI 99 [ c ])) "../ncurses/./base/keyok.c":62:15 -1
+     (nil))
+
+;; if (flag_24(D) != 0)
+
+(insn 32 31 33 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:QI 100 [ flag ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":64:9 -1
+     (nil))
+
+(jump_insn 33 32 36 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/keyok.c":64:9 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+(note 36 33 34 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 34 36 35 18 (set (pc)
+        (label_ref 0)) -1
+     (nil))
+
+(barrier 35 34 0)
+
+;; Generating RTL for gimple basic block 5
+
+;; _3 = _nc_remove_key (_2, ch_23);
+
+(insn 38 37 39 (parallel [
+            (set (reg:DI 109)
+                (plus:DI (reg/v/f:DI 98 [ sp ])
+                    (const_int 168 [0xa8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/keyok.c":67:11 -1
+     (nil))
+
+(insn 39 38 40 (set (reg:SI 4 si)
+        (reg/v:SI 91 [ ch ])) "../ncurses/./base/keyok.c":67:11 -1
+     (nil))
+
+(insn 40 39 41 (set (reg:DI 5 di)
+        (reg:DI 109)) "../ncurses/./base/keyok.c":67:11 -1
+     (nil))
+
+(call_insn 41 40 42 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_remove_key") [flags 0x41]  <function_decl 0x7fc7dbb7af00 _nc_remove_key>) [0 _nc_remove_key S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":67:11 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_remove_key") [flags 0x41]  <function_decl 0x7fc7dbb7af00 _nc_remove_key>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+
+(insn 42 41 0 (set (reg:SI 84 [ _3 ])
+        (reg:SI 0 ax)) "../ncurses/./base/keyok.c":67:11 -1
+     (nil))
+
+;; if (_3 != 0)
+
+(insn 43 42 44 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 84 [ _3 ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":67:10 -1
+     (nil))
+
+(jump_insn 44 43 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/keyok.c":67:10 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; code_38 = _nc_add_to_try (_4, s_34, ch_23);
+
+(insn 46 45 47 (parallel [
+            (set (reg:DI 110)
+                (plus:DI (reg/v/f:DI 98 [ sp ])
+                    (const_int 160 [0xa0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/keyok.c":68:11 -1
+     (nil))
+
+(insn 47 46 48 (set (reg:SI 1 dx)
+        (reg/v:SI 91 [ ch ])) "../ncurses/./base/keyok.c":68:11 -1
+     (nil))
+
+(insn 48 47 49 (set (reg:DI 4 si)
+        (reg/v/f:DI 93 [ s ])) "../ncurses/./base/keyok.c":68:11 -1
+     (nil))
+
+(insn 49 48 50 (set (reg:DI 5 di)
+        (reg:DI 110)) "../ncurses/./base/keyok.c":68:11 -1
+     (nil))
+
+(call_insn 50 49 51 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_add_to_try") [flags 0x41]  <function_decl 0x7fc7dbb7ad00 _nc_add_to_try>) [0 _nc_add_to_try S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":68:11 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_add_to_try") [flags 0x41]  <function_decl 0x7fc7dbb7ad00 _nc_add_to_try>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+
+(insn 51 50 0 (set (reg/v:SI 97 [ <retval> ])
+        (reg:SI 0 ax)) "../ncurses/./base/keyok.c":68:11 -1
+     (nil))
+
+;; free (s_34);
+
+(insn 52 51 53 (set (reg:DI 5 di)
+        (reg/v/f:DI 93 [ s ])) "../ncurses/./base/keyok.c":69:4 -1
+     (nil))
+
+(call_insn 53 52 0 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":69:4 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; count = 0;
+
+(insn 54 53 0 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -12 [0xfffffffffffffff4])) [2 count+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":70:10 -1
+     (nil))
+
+;; if (code_38 != 0)
+
+(insn 55 54 56 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 97 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":71:7 -1
+     (nil))
+
+(jump_insn 56 55 59 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/keyok.c":71:7 -1
+     (int_list:REG_BR_PROB 59055804 (nil)))
+
+(note 59 56 57 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 57 59 58 19 (set (pc)
+        (label_ref 0)) -1
+     (nil))
+
+(barrier 58 57 0)
+
+;; Generating RTL for gimple basic block 7
+
+;; 
+
+(code_label 60 58 61 5 (nil) [0 uses])
+
+(note 61 60 0 NOTE_INSN_BASIC_BLOCK)
+
+;; free (s_34);
+
+(insn 62 61 63 (set (reg:DI 5 di)
+        (reg/v/f:DI 93 [ s ])) "../ncurses/./base/keyok.c":74:4 -1
+     (nil))
+
+(call_insn 63 62 0 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":74:4 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; Generating RTL for gimple basic block 8
+
+;; 
+
+(code_label 64 63 65 7 (nil) [0 uses])
+
+(note 65 64 0 NOTE_INSN_BASIC_BLOCK)
+
+;; Generating RTL for gimple basic block 9
+
+;; 
+
+(code_label 66 65 67 3 (nil) [0 uses])
+
+(note 67 66 0 NOTE_INSN_BASIC_BLOCK)
+
+;; s_34 = _nc_expand_try (_5, ch_23, &count, 0);
+
+(insn 68 67 69 (parallel [
+            (set (reg:DI 111)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -12 [0xfffffffffffffff4])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/keyok.c":65:15 -1
+     (nil))
+
+(insn 69 68 70 (set (reg:DI 112)
+        (mem/f:DI (plus:DI (reg/v/f:DI 98 [ sp ])
+                (const_int 168 [0xa8])) [1 sp_19(D)->_key_ok+0 S8 A64])) "../ncurses/./base/keyok.c":65:15 -1
+     (nil))
+
+(insn 70 69 71 (set (reg:DI 2 cx)
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":65:15 -1
+     (nil))
+
+(insn 71 70 72 (set (reg:DI 1 dx)
+        (reg:DI 111)) "../ncurses/./base/keyok.c":65:15 -1
+     (nil))
+
+(insn 72 71 73 (set (reg:SI 4 si)
+        (reg/v:SI 91 [ ch ])) "../ncurses/./base/keyok.c":65:15 -1
+     (nil))
+
+(insn 73 72 74 (set (reg:DI 5 di)
+        (reg:DI 112)) "../ncurses/./base/keyok.c":65:15 -1
+     (nil))
+
+(call_insn 74 73 75 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_expand_try") [flags 0x41]  <function_decl 0x7fc7dbb7ae00 _nc_expand_try>) [0 _nc_expand_try S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":65:15 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_expand_try") [flags 0x41]  <function_decl 0x7fc7dbb7ae00 _nc_expand_try>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+
+(insn 75 74 0 (set (reg/v/f:DI 93 [ s ])
+        (reg:DI 0 ax)) "../ncurses/./base/keyok.c":65:15 -1
+     (nil))
+
+;; if (s_34 != 0B)
+
+(insn 77 75 78 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 93 [ s ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":66:34 -1
+     (nil))
+
+(jump_insn 78 77 81 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 76)
+            (pc))) "../ncurses/./base/keyok.c":66:34 -1
+     (int_list:REG_BR_PROB 1014686028 (nil)))
+
+(note 81 78 79 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 79 81 80 20 (set (pc)
+        (label_ref 0)) -1
+     (nil))
+
+(barrier 80 79 0)
+
+;; Generating RTL for gimple basic block 10
+
+;; _7 = _nc_remove_key (_6, ch_23);
+
+(insn 83 82 84 (parallel [
+            (set (reg:DI 113)
+                (plus:DI (reg/v/f:DI 98 [ sp ])
+                    (const_int 160 [0xa0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/keyok.c":80:11 -1
+     (nil))
+
+(insn 84 83 85 (set (reg:SI 4 si)
+        (reg/v:SI 91 [ ch ])) "../ncurses/./base/keyok.c":80:11 -1
+     (nil))
+
+(insn 85 84 86 (set (reg:DI 5 di)
+        (reg:DI 113)) "../ncurses/./base/keyok.c":80:11 -1
+     (nil))
+
+(call_insn 86 85 87 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_remove_key") [flags 0x41]  <function_decl 0x7fc7dbb7af00 _nc_remove_key>) [0 _nc_remove_key S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":80:11 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_remove_key") [flags 0x41]  <function_decl 0x7fc7dbb7af00 _nc_remove_key>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+
+(insn 87 86 0 (set (reg:SI 88 [ _7 ])
+        (reg:SI 0 ax)) "../ncurses/./base/keyok.c":80:11 -1
+     (nil))
+
+;; if (_7 != 0)
+
+(insn 88 87 89 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 88 [ _7 ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":80:10 -1
+     (nil))
+
+(jump_insn 89 88 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/keyok.c":80:10 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 11
+
+;; code_30 = _nc_add_to_try (_8, s_26, ch_23);
+
+(insn 91 90 92 (parallel [
+            (set (reg:DI 114)
+                (plus:DI (reg/v/f:DI 98 [ sp ])
+                    (const_int 168 [0xa8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/keyok.c":81:11 -1
+     (nil))
+
+(insn 92 91 93 (set (reg:SI 1 dx)
+        (reg/v:SI 91 [ ch ])) "../ncurses/./base/keyok.c":81:11 -1
+     (nil))
+
+(insn 93 92 94 (set (reg:DI 4 si)
+        (reg/v/f:DI 92 [ s ])) "../ncurses/./base/keyok.c":81:11 -1
+     (nil))
+
+(insn 94 93 95 (set (reg:DI 5 di)
+        (reg:DI 114)) "../ncurses/./base/keyok.c":81:11 -1
+     (nil))
+
+(call_insn 95 94 96 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_add_to_try") [flags 0x41]  <function_decl 0x7fc7dbb7ad00 _nc_add_to_try>) [0 _nc_add_to_try S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":81:11 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_add_to_try") [flags 0x41]  <function_decl 0x7fc7dbb7ad00 _nc_add_to_try>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+
+(insn 96 95 0 (set (reg/v:SI 97 [ <retval> ])
+        (reg:SI 0 ax)) "../ncurses/./base/keyok.c":81:11 -1
+     (nil))
+
+;; free (s_26);
+
+(insn 97 96 98 (set (reg:DI 5 di)
+        (reg/v/f:DI 92 [ s ])) "../ncurses/./base/keyok.c":82:4 -1
+     (nil))
+
+(call_insn 98 97 0 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":82:4 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; count = 0;
+
+(insn 99 98 0 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -12 [0xfffffffffffffff4])) [2 count+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":83:10 -1
+     (nil))
+
+;; if (code_30 != 0)
+
+(insn 100 99 101 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 97 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":84:7 -1
+     (nil))
+
+(jump_insn 101 100 104 11 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/keyok.c":84:7 -1
+     (int_list:REG_BR_PROB 59055804 (nil)))
+
+(note 104 101 102 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 102 104 103 21 (set (pc)
+        (label_ref 0)) -1
+     (nil))
+
+(barrier 103 102 0)
+
+;; Generating RTL for gimple basic block 12
+
+;; 
+
+(code_label 105 103 106 9 (nil) [0 uses])
+
+(note 106 105 0 NOTE_INSN_BASIC_BLOCK)
+
+;; free (s_26);
+
+(insn 107 106 108 (set (reg:DI 5 di)
+        (reg/v/f:DI 92 [ s ])) "../ncurses/./base/keyok.c":87:4 -1
+     (nil))
+
+(call_insn 108 107 0 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":87:4 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; Generating RTL for gimple basic block 13
+
+;; 
+
+(code_label 109 108 110 10 (nil) [0 uses])
+
+(note 110 109 0 NOTE_INSN_BASIC_BLOCK)
+
+;; Generating RTL for gimple basic block 14
+
+;; 
+
+(code_label 111 110 112 4 (nil) [0 uses])
+
+(note 112 111 0 NOTE_INSN_BASIC_BLOCK)
+
+;; s_26 = _nc_expand_try (_9, ch_23, &count, 0);
+
+(insn 113 112 114 (parallel [
+            (set (reg:DI 115)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -12 [0xfffffffffffffff4])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/keyok.c":78:15 -1
+     (nil))
+
+(insn 114 113 115 (set (reg:DI 116)
+        (mem/f:DI (plus:DI (reg/v/f:DI 98 [ sp ])
+                (const_int 160 [0xa0])) [1 sp_19(D)->_keytry+0 S8 A64])) "../ncurses/./base/keyok.c":78:15 -1
+     (nil))
+
+(insn 115 114 116 (set (reg:DI 2 cx)
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":78:15 -1
+     (nil))
+
+(insn 116 115 117 (set (reg:DI 1 dx)
+        (reg:DI 115)) "../ncurses/./base/keyok.c":78:15 -1
+     (nil))
+
+(insn 117 116 118 (set (reg:SI 4 si)
+        (reg/v:SI 91 [ ch ])) "../ncurses/./base/keyok.c":78:15 -1
+     (nil))
+
+(insn 118 117 119 (set (reg:DI 5 di)
+        (reg:DI 116)) "../ncurses/./base/keyok.c":78:15 -1
+     (nil))
+
+(call_insn 119 118 120 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_expand_try") [flags 0x41]  <function_decl 0x7fc7dbb7ae00 _nc_expand_try>) [0 _nc_expand_try S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":78:15 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_expand_try") [flags 0x41]  <function_decl 0x7fc7dbb7ae00 _nc_expand_try>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+
+(insn 120 119 0 (set (reg/v/f:DI 92 [ s ])
+        (reg:DI 0 ax)) "../ncurses/./base/keyok.c":78:15 -1
+     (nil))
+
+;; if (s_26 != 0B)
+
+(insn 122 120 123 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 92 [ s ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":79:34 -1
+     (nil))
+
+(jump_insn 123 122 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 121)
+            (pc))) "../ncurses/./base/keyok.c":79:34 -1
+     (int_list:REG_BR_PROB 1014686028 (nil)))
+
+;; Generating RTL for gimple basic block 15
+
+;; 
+
+(code_label 124 123 125 6 (nil) [0 uses])
+
+(note 125 124 0 NOTE_INSN_BASIC_BLOCK)
+
+;; count ={v} {CLOBBER};
+
+(nil)
+
+;; Generating RTL for gimple basic block 16
+
+;; 
+
+(code_label 126 125 127 2 (nil) [0 uses])
+
+(note 127 126 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return code_13;
+
+(jump_insn 128 127 129 (set (pc)
+        (label_ref 0)) "../ncurses/./base/keyok.c":94:5 -1
+     (nil))
+
+(barrier 129 128 0)
+Edge 2->16 redirected to 23
+Edge 3->16 redirected to 24
+Edge 4->9 redirected to 25
+Predictions for insn 133 bb 22
+  first match heuristics: 99.96%  exec 179498460 (estimated locally) hit 358996919 (estimated locally) (200.0%)
+  combined heuristics: 99.96%  exec 179498460 (estimated locally) hit 358996919 (estimated locally) (200.0%)
+  noreturn call heuristics: 99.96%  exec 179498460 (estimated locally) hit 358996919 (estimated locally) (200.0%)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 9->22 redirected to 26
+Forwarding edge 9->10 to 12 failed.
+Forwarding edge 9->10 to 12 failed.
+Forwarding edge 14->15 to 26 failed.
+Redirecting jump 79 from 22 to 26.
+Edge 17->22 redirected to 26
+Forwarding edge 17->18 to 20 failed.
+Forwarding edge 17->18 to 20 failed.
+Forwarding edge 21->22 to 26 failed.
+Deleted label in block 22.
+Redirecting jump 140 from 25 to 26.
+Redirecting jump 144 from 25 to 26.
+Merging block 25 into block 24...
+Merged blocks 24 and 25.
+Merged 24 and 25 without moving.
+Removing jump 128.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 9->10 to 12 failed.
+Forwarding edge 14->15 to 26 failed.
+Forwarding edge 17->18 to 20 failed.
+Forwarding edge 21->22 to 26 failed.
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 13 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 179498457 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:179498457 (estimated locally) (FALLTHRU)
+(note 13 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 13 3 2 (set (reg/v/f:DI 98 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/keyok.c":51:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 99 [ c ])
+        (reg:SI 4 si [ c ])) "../ncurses/./base/keyok.c":51:1 -1
+     (nil))
+(insn 4 3 5 2 (set (reg:SI 101)
+        (reg:SI 1 dx [ flag ])) "../ncurses/./base/keyok.c":51:1 -1
+     (nil))
+(insn 5 4 6 2 (set (reg/v:QI 100 [ flag ])
+        (subreg:QI (reg:SI 101) 0)) "../ncurses/./base/keyok.c":51:1 -1
+     (nil))
+(note 6 5 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 6 8 2 (set (reg/f:DI 102)
+        (const_int 40 [0x28])) "../ncurses/./base/keyok.c":51:1 -1
+     (nil))
+(insn 8 7 15 2 (parallel [
+            (set (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                        (const_int -8 [0xfffffffffffffff8])) [39 D.9079+0 S8 A64])
+                (unspec:DI [
+                        (mem/v/f:DI (reg/f:DI 102) [6 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_SET))
+            (set (scratch:DI)
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/keyok.c":51:1 -1
+     (nil))
+(insn 15 8 16 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 98 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":54:8 -1
+     (nil))
+(jump_insn 16 15 17 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 143)
+            (pc))) "../ncurses/./base/keyok.c":54:8 806 {*jcc}
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 143)
+;;  succ:       4 [99.1% (guessed)]  count:177936821 (estimated locally) (FALLTHRU)
+;;              23 [0.9% (guessed)]  count:1561636 (estimated locally)
+
+;; basic block 4, loop depth 0, count 177936821 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [99.1% (guessed)]  count:177936821 (estimated locally) (FALLTHRU)
+(note 17 16 18 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 18 17 19 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/v/f:DI 98 [ sp ])
+                    (const_int 48 [0x30])) [8 sp_19(D)->_term+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":54:9 -1
+     (nil))
+(insn 19 18 20 4 (set (reg:QI 104)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":54:9 -1
+     (nil))
+(insn 20 19 21 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 104)
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":59:5 -1
+     (nil))
+(jump_insn 21 20 152 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 147)
+            (pc))) "../ncurses/./base/keyok.c":59:5 806 {*jcc}
+     (int_list:REG_BR_PROB 12121580 (nil))
+ -> 147)
+;;  succ:       24 [1.1% (guessed)]  count:2008746 (estimated locally)
+;;              5 [98.9% (guessed)]  count:175928075 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 175928075 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL)
+;;  pred:       4 [98.9% (guessed)]  count:175928075 (estimated locally) (FALLTHRU)
+(note 152 21 24 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 24 152 25 5 (set (reg:SI 106)
+        (not:SI (reg/v:SI 99 [ c ]))) "../ncurses/./base/keyok.c":59:5 -1
+     (nil))
+(insn 25 24 26 5 (parallel [
+            (set (reg:SI 107)
+                (lshiftrt:SI (reg:SI 106)
+                    (const_int 31 [0x1f])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/keyok.c":59:5 -1
+     (nil))
+(insn 26 25 27 5 (set (reg:QI 108)
+        (subreg:QI (reg:SI 107) 0)) "../ncurses/./base/keyok.c":59:5 -1
+     (nil))
+(insn 27 26 28 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 108)
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":59:5 -1
+     (nil))
+(jump_insn 28 27 29 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 147)
+            (pc))) "../ncurses/./base/keyok.c":59:5 806 {*jcc}
+     (int_list:REG_BR_PROB 12259988 (nil))
+ -> 147)
+;;  succ:       6 [98.9% (guessed)]  count:173919328 (estimated locally) (FALLTHRU)
+;;              24 [1.1% (guessed)]  count:2008747 (estimated locally)
+
+;; basic block 6, loop depth 0, count 173919328 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [98.9% (guessed)]  count:173919328 (estimated locally) (FALLTHRU)
+(note 29 28 30 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 30 29 31 6 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -12 [0xfffffffffffffff4])) [2 count+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":60:10 -1
+     (nil))
+(insn 31 30 32 6 (set (reg/v:SI 91 [ ch ])
+        (reg/v:SI 99 [ c ])) "../ncurses/./base/keyok.c":62:15 -1
+     (nil))
+(insn 32 31 33 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:QI 100 [ flag ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":64:9 -1
+     (nil))
+(jump_insn 33 32 36 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 151)
+            (pc))) "../ncurses/./base/keyok.c":64:9 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 151)
+;;  succ:       13 [50.0% (guessed)]  count:86959664 (estimated locally)
+;;              7 [50.0% (guessed)]  count:86959664 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 86959664 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       6 [50.0% (guessed)]  count:86959664 (estimated locally) (FALLTHRU)
+(note 36 33 10 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 10 36 34 7 (set (reg/v:SI 97 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/keyok.c":52:9 -1
+     (nil))
+(jump_insn 34 10 35 7 (set (pc)
+        (label_ref 111)) -1
+     (nil)
+ -> 111)
+;;  succ:       21 [always]  count:86959664 (estimated locally)
+
+(barrier 35 34 76)
+;; basic block 8, loop depth 1, count 1014686025 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       14 [94.5% (guessed)]  count:1014686024 (estimated locally)
+(code_label 76 35 37 8 8 (nil) [1 uses])
+(note 37 76 38 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 38 37 39 8 (parallel [
+            (set (reg:DI 109)
+                (plus:DI (reg/v/f:DI 98 [ sp ])
+                    (const_int 168 [0xa8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/keyok.c":67:11 -1
+     (nil))
+(insn 39 38 40 8 (set (reg:SI 4 si)
+        (reg/v:SI 91 [ ch ])) "../ncurses/./base/keyok.c":67:11 -1
+     (nil))
+(insn 40 39 41 8 (set (reg:DI 5 di)
+        (reg:DI 109)) "../ncurses/./base/keyok.c":67:11 -1
+     (nil))
+(call_insn 41 40 42 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_remove_key") [flags 0x41]  <function_decl 0x7fc7dbb7af00 _nc_remove_key>) [0 _nc_remove_key S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":67:11 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_remove_key") [flags 0x41]  <function_decl 0x7fc7dbb7af00 _nc_remove_key>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 42 41 43 8 (set (reg:SI 84 [ _3 ])
+        (reg:SI 0 ax)) "../ncurses/./base/keyok.c":67:11 -1
+     (nil))
+(insn 43 42 44 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 84 [ _3 ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":67:10 -1
+     (nil))
+(jump_insn 44 43 45 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 60)
+            (pc))) "../ncurses/./base/keyok.c":67:10 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 60)
+;;  succ:       9 [50.0% (guessed)]  count:507343013 (estimated locally) (FALLTHRU)
+;;              11 [50.0% (guessed)]  count:507343013 (estimated locally)
+
+;; basic block 9, loop depth 1, count 507343012 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       8 [50.0% (guessed)]  count:507343013 (estimated locally) (FALLTHRU)
+(note 45 44 46 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 46 45 47 9 (parallel [
+            (set (reg:DI 110)
+                (plus:DI (reg/v/f:DI 98 [ sp ])
+                    (const_int 160 [0xa0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/keyok.c":68:11 -1
+     (nil))
+(insn 47 46 48 9 (set (reg:SI 1 dx)
+        (reg/v:SI 91 [ ch ])) "../ncurses/./base/keyok.c":68:11 -1
+     (nil))
+(insn 48 47 49 9 (set (reg:DI 4 si)
+        (reg/v/f:DI 93 [ s ])) "../ncurses/./base/keyok.c":68:11 -1
+     (nil))
+(insn 49 48 50 9 (set (reg:DI 5 di)
+        (reg:DI 110)) "../ncurses/./base/keyok.c":68:11 -1
+     (nil))
+(call_insn 50 49 51 9 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_add_to_try") [flags 0x41]  <function_decl 0x7fc7dbb7ad00 _nc_add_to_try>) [0 _nc_add_to_try S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":68:11 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_add_to_try") [flags 0x41]  <function_decl 0x7fc7dbb7ad00 _nc_add_to_try>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 51 50 52 9 (set (reg/v:SI 97 [ <retval> ])
+        (reg:SI 0 ax)) "../ncurses/./base/keyok.c":68:11 -1
+     (nil))
+(insn 52 51 53 9 (set (reg:DI 5 di)
+        (reg/v/f:DI 93 [ s ])) "../ncurses/./base/keyok.c":69:4 -1
+     (nil))
+(call_insn 53 52 54 9 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":69:4 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 54 53 55 9 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -12 [0xfffffffffffffff4])) [2 count+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":70:10 -1
+     (nil))
+(insn 55 54 56 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 97 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":71:7 -1
+     (nil))
+(jump_insn 56 55 59 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 130)
+            (pc))) "../ncurses/./base/keyok.c":71:7 806 {*jcc}
+     (int_list:REG_BR_PROB 59055804 (nil))
+ -> 130)
+;;  succ:       26 [5.5% (guessed)]  count:27903866 (estimated locally)
+;;              10 [94.5% (guessed)]  count:479439146 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 1, count 479439146 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL)
+;;  pred:       9 [94.5% (guessed)]  count:479439146 (estimated locally) (FALLTHRU)
+(note 59 56 57 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 57 59 58 10 (set (pc)
+        (label_ref 64)) -1
+     (nil)
+ -> 64)
+;;  succ:       12 [always]  count:479439146 (estimated locally)
+
+(barrier 58 57 60)
+;; basic block 11, loop depth 1, count 507343012 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [50.0% (guessed)]  count:507343013 (estimated locally)
+(code_label 60 58 61 11 5 (nil) [1 uses])
+(note 61 60 62 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 62 61 63 11 (set (reg:DI 5 di)
+        (reg/v/f:DI 93 [ s ])) "../ncurses/./base/keyok.c":74:4 -1
+     (nil))
+(call_insn 63 62 64 11 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":74:4 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       12 [always]  count:507343012 (estimated locally) (FALLTHRU)
+
+;; basic block 12, loop depth 1, count 986782158 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       11 [always]  count:507343012 (estimated locally) (FALLTHRU)
+;;              10 [always]  count:479439146 (estimated locally)
+(code_label 64 63 65 12 7 (nil) [1 uses])
+(note 65 64 148 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 148 65 149 12 (set (pc)
+        (label_ref 66)) -1
+     (nil)
+ -> 66)
+;;  succ:       14 [always]  count:986782158 (estimated locally) (DFS_BACK)
+
+(barrier 149 148 151)
+;; basic block 13, loop depth 0, count 86959664 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       6 [50.0% (guessed)]  count:86959664 (estimated locally)
+(code_label 151 149 150 13 15 (nil) [1 uses])
+(note 150 151 9 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 9 150 66 13 (set (reg/v:SI 97 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/keyok.c":52:9 -1
+     (nil))
+;;  succ:       14 [always]  count:86959664 (estimated locally) (FALLTHRU)
+
+;; basic block 14, loop depth 1, count 1073741824 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       13 [always]  count:86959664 (estimated locally) (FALLTHRU)
+;;              12 [always]  count:986782158 (estimated locally) (DFS_BACK)
+(code_label 66 9 67 14 3 (nil) [1 uses])
+(note 67 66 68 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 68 67 69 14 (parallel [
+            (set (reg:DI 111)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -12 [0xfffffffffffffff4])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/keyok.c":65:15 -1
+     (nil))
+(insn 69 68 70 14 (set (reg:DI 112)
+        (mem/f:DI (plus:DI (reg/v/f:DI 98 [ sp ])
+                (const_int 168 [0xa8])) [1 sp_19(D)->_key_ok+0 S8 A64])) "../ncurses/./base/keyok.c":65:15 -1
+     (nil))
+(insn 70 69 71 14 (set (reg:DI 2 cx)
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":65:15 -1
+     (nil))
+(insn 71 70 72 14 (set (reg:DI 1 dx)
+        (reg:DI 111)) "../ncurses/./base/keyok.c":65:15 -1
+     (nil))
+(insn 72 71 73 14 (set (reg:SI 4 si)
+        (reg/v:SI 91 [ ch ])) "../ncurses/./base/keyok.c":65:15 -1
+     (nil))
+(insn 73 72 74 14 (set (reg:DI 5 di)
+        (reg:DI 112)) "../ncurses/./base/keyok.c":65:15 -1
+     (nil))
+(call_insn 74 73 75 14 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_expand_try") [flags 0x41]  <function_decl 0x7fc7dbb7ae00 _nc_expand_try>) [0 _nc_expand_try S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":65:15 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_expand_try") [flags 0x41]  <function_decl 0x7fc7dbb7ae00 _nc_expand_try>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+(insn 75 74 77 14 (set (reg/v/f:DI 93 [ s ])
+        (reg:DI 0 ax)) "../ncurses/./base/keyok.c":65:15 -1
+     (nil))
+(insn 77 75 78 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 93 [ s ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":66:34 -1
+     (nil))
+(jump_insn 78 77 81 14 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 76)
+            (pc))) "../ncurses/./base/keyok.c":66:34 -1
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 76)
+;;  succ:       8 [94.5% (guessed)]  count:1014686024 (estimated locally)
+;;              15 [5.5% (guessed)]  count:59055800 (estimated locally) (FALLTHRU)
+
+;; basic block 15, loop depth 0, count 59055800 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       14 [5.5% (guessed)]  count:59055800 (estimated locally) (FALLTHRU)
+(note 81 78 79 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 79 81 80 15 (set (pc)
+        (label_ref:DI 130)) 807 {jump}
+     (nil)
+ -> 130)
+;;  succ:       26 [always]  count:59055800 (estimated locally)
+
+(barrier 80 79 121)
+;; basic block 16, loop depth 1, count 1014686025 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       21 [94.5% (guessed)]  count:1014686024 (estimated locally)
+(code_label 121 80 82 16 11 (nil) [1 uses])
+(note 82 121 83 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 83 82 84 16 (parallel [
+            (set (reg:DI 113)
+                (plus:DI (reg/v/f:DI 98 [ sp ])
+                    (const_int 160 [0xa0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/keyok.c":80:11 -1
+     (nil))
+(insn 84 83 85 16 (set (reg:SI 4 si)
+        (reg/v:SI 91 [ ch ])) "../ncurses/./base/keyok.c":80:11 -1
+     (nil))
+(insn 85 84 86 16 (set (reg:DI 5 di)
+        (reg:DI 113)) "../ncurses/./base/keyok.c":80:11 -1
+     (nil))
+(call_insn 86 85 87 16 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_remove_key") [flags 0x41]  <function_decl 0x7fc7dbb7af00 _nc_remove_key>) [0 _nc_remove_key S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":80:11 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_remove_key") [flags 0x41]  <function_decl 0x7fc7dbb7af00 _nc_remove_key>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 87 86 88 16 (set (reg:SI 88 [ _7 ])
+        (reg:SI 0 ax)) "../ncurses/./base/keyok.c":80:11 -1
+     (nil))
+(insn 88 87 89 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 88 [ _7 ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":80:10 -1
+     (nil))
+(jump_insn 89 88 90 16 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 105)
+            (pc))) "../ncurses/./base/keyok.c":80:10 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 105)
+;;  succ:       17 [50.0% (guessed)]  count:507343013 (estimated locally) (FALLTHRU)
+;;              19 [50.0% (guessed)]  count:507343013 (estimated locally)
+
+;; basic block 17, loop depth 1, count 507343012 (estimated locally), maybe hot
+;;  prev block 16, next block 18, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       16 [50.0% (guessed)]  count:507343013 (estimated locally) (FALLTHRU)
+(note 90 89 91 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 91 90 92 17 (parallel [
+            (set (reg:DI 114)
+                (plus:DI (reg/v/f:DI 98 [ sp ])
+                    (const_int 168 [0xa8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/keyok.c":81:11 -1
+     (nil))
+(insn 92 91 93 17 (set (reg:SI 1 dx)
+        (reg/v:SI 91 [ ch ])) "../ncurses/./base/keyok.c":81:11 -1
+     (nil))
+(insn 93 92 94 17 (set (reg:DI 4 si)
+        (reg/v/f:DI 92 [ s ])) "../ncurses/./base/keyok.c":81:11 -1
+     (nil))
+(insn 94 93 95 17 (set (reg:DI 5 di)
+        (reg:DI 114)) "../ncurses/./base/keyok.c":81:11 -1
+     (nil))
+(call_insn 95 94 96 17 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_add_to_try") [flags 0x41]  <function_decl 0x7fc7dbb7ad00 _nc_add_to_try>) [0 _nc_add_to_try S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":81:11 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_add_to_try") [flags 0x41]  <function_decl 0x7fc7dbb7ad00 _nc_add_to_try>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 96 95 97 17 (set (reg/v:SI 97 [ <retval> ])
+        (reg:SI 0 ax)) "../ncurses/./base/keyok.c":81:11 -1
+     (nil))
+(insn 97 96 98 17 (set (reg:DI 5 di)
+        (reg/v/f:DI 92 [ s ])) "../ncurses/./base/keyok.c":82:4 -1
+     (nil))
+(call_insn 98 97 99 17 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":82:4 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 99 98 100 17 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -12 [0xfffffffffffffff4])) [2 count+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":83:10 -1
+     (nil))
+(insn 100 99 101 17 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 97 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":84:7 -1
+     (nil))
+(jump_insn 101 100 104 17 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 130)
+            (pc))) "../ncurses/./base/keyok.c":84:7 806 {*jcc}
+     (int_list:REG_BR_PROB 59055804 (nil))
+ -> 130)
+;;  succ:       26 [5.5% (guessed)]  count:27903866 (estimated locally)
+;;              18 [94.5% (guessed)]  count:479439146 (estimated locally) (FALLTHRU)
+
+;; basic block 18, loop depth 1, count 479439146 (estimated locally), maybe hot
+;;  prev block 17, next block 19, flags: (NEW, REACHABLE, RTL)
+;;  pred:       17 [94.5% (guessed)]  count:479439146 (estimated locally) (FALLTHRU)
+(note 104 101 102 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 102 104 103 18 (set (pc)
+        (label_ref 109)) -1
+     (nil)
+ -> 109)
+;;  succ:       20 [always]  count:479439146 (estimated locally)
+
+(barrier 103 102 105)
+;; basic block 19, loop depth 1, count 507343012 (estimated locally), maybe hot
+;;  prev block 18, next block 20, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       16 [50.0% (guessed)]  count:507343013 (estimated locally)
+(code_label 105 103 106 19 9 (nil) [1 uses])
+(note 106 105 107 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 107 106 108 19 (set (reg:DI 5 di)
+        (reg/v/f:DI 92 [ s ])) "../ncurses/./base/keyok.c":87:4 -1
+     (nil))
+(call_insn 108 107 109 19 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":87:4 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc7dbf7ed00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       20 [always]  count:507343012 (estimated locally) (FALLTHRU)
+
+;; basic block 20, loop depth 1, count 986782158 (estimated locally), maybe hot
+;;  prev block 19, next block 21, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       19 [always]  count:507343012 (estimated locally) (FALLTHRU)
+;;              18 [always]  count:479439146 (estimated locally)
+(code_label 109 108 110 20 10 (nil) [1 uses])
+(note 110 109 111 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       21 [always]  count:986782158 (estimated locally) (FALLTHRU,DFS_BACK)
+
+;; basic block 21, loop depth 1, count 1073741824 (estimated locally), maybe hot
+;;  prev block 20, next block 22, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       20 [always]  count:986782158 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              7 [always]  count:86959664 (estimated locally)
+(code_label 111 110 112 21 4 (nil) [1 uses])
+(note 112 111 113 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 113 112 114 21 (parallel [
+            (set (reg:DI 115)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -12 [0xfffffffffffffff4])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/keyok.c":78:15 -1
+     (nil))
+(insn 114 113 115 21 (set (reg:DI 116)
+        (mem/f:DI (plus:DI (reg/v/f:DI 98 [ sp ])
+                (const_int 160 [0xa0])) [1 sp_19(D)->_keytry+0 S8 A64])) "../ncurses/./base/keyok.c":78:15 -1
+     (nil))
+(insn 115 114 116 21 (set (reg:DI 2 cx)
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":78:15 -1
+     (nil))
+(insn 116 115 117 21 (set (reg:DI 1 dx)
+        (reg:DI 115)) "../ncurses/./base/keyok.c":78:15 -1
+     (nil))
+(insn 117 116 118 21 (set (reg:SI 4 si)
+        (reg/v:SI 91 [ ch ])) "../ncurses/./base/keyok.c":78:15 -1
+     (nil))
+(insn 118 117 119 21 (set (reg:DI 5 di)
+        (reg:DI 116)) "../ncurses/./base/keyok.c":78:15 -1
+     (nil))
+(call_insn 119 118 120 21 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_expand_try") [flags 0x41]  <function_decl 0x7fc7dbb7ae00 _nc_expand_try>) [0 _nc_expand_try S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":78:15 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_expand_try") [flags 0x41]  <function_decl 0x7fc7dbb7ae00 _nc_expand_try>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+(insn 120 119 122 21 (set (reg/v/f:DI 92 [ s ])
+        (reg:DI 0 ax)) "../ncurses/./base/keyok.c":78:15 -1
+     (nil))
+(insn 122 120 123 21 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 92 [ s ])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":79:34 -1
+     (nil))
+(jump_insn 123 122 125 21 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 121)
+            (pc))) "../ncurses/./base/keyok.c":79:34 -1
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 121)
+;;  succ:       16 [94.5% (guessed)]  count:1014686024 (estimated locally)
+;;              22 [5.5% (guessed)]  count:59055800 (estimated locally) (FALLTHRU)
+
+;; basic block 22, loop depth 0, count 59055799 (estimated locally), maybe hot
+;;  prev block 21, next block 23, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       21 [5.5% (guessed)]  count:59055800 (estimated locally) (FALLTHRU)
+(note 125 123 140 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 140 125 141 22 (set (pc)
+        (label_ref:DI 130)) 807 {jump}
+     (nil)
+ -> 130)
+;;  succ:       26 [always]  count:59055799 (estimated locally)
+
+(barrier 141 140 143)
+;; basic block 23, loop depth 0, count 1561636 (estimated locally), maybe hot
+;;  prev block 22, next block 24, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [0.9% (guessed)]  count:1561636 (estimated locally)
+(code_label 143 141 142 23 13 (nil) [1 uses])
+(note 142 143 12 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 12 142 144 23 (set (reg/v:SI 97 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/keyok.c":52:9 -1
+     (nil))
+(jump_insn 144 12 145 23 (set (pc)
+        (label_ref:DI 130)) 807 {jump}
+     (nil)
+ -> 130)
+;;  succ:       26 [always]  count:1561636 (estimated locally)
+
+(barrier 145 144 147)
+;; basic block 24, loop depth 0, count 4017492 (estimated locally), maybe hot
+;;  prev block 23, next block 26, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [1.1% (guessed)]  count:2008747 (estimated locally)
+;;              4 [1.1% (guessed)]  count:2008746 (estimated locally)
+(code_label 147 145 146 24 14 (nil) [2 uses])
+(note 146 147 11 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 11 146 130 24 (set (reg/v:SI 97 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/keyok.c":52:9 -1
+     (nil))
+;;  succ:       26 [always]  count:4017492 (estimated locally) (FALLTHRU)
+
+;; basic block 26, loop depth 0, count 179498460 (estimated locally), maybe hot
+;;  prev block 24, next block 27, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       24 [always]  count:4017492 (estimated locally) (FALLTHRU)
+;;              9 [5.5% (guessed)]  count:27903866 (estimated locally)
+;;              15 [always]  count:59055800 (estimated locally)
+;;              17 [5.5% (guessed)]  count:27903866 (estimated locally)
+;;              22 [always]  count:59055799 (estimated locally)
+;;              23 [always]  count:1561636 (estimated locally)
+(code_label 130 11 139 26 1 (nil) [5 uses])
+(note 139 130 131 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 131 139 132 26 (set (reg/f:DI 118)
+        (const_int 40 [0x28])) "../ncurses/./base/keyok.c":95:1 -1
+     (nil))
+(insn 132 131 133 26 (parallel [
+            (set (reg:CCZ 17 flags)
+                (unspec:CCZ [
+                        (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                                (const_int -8 [0xfffffffffffffff8])) [39 D.9079+0 S8 A64])
+                        (mem/v/f:DI (reg/f:DI 118) [6 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_TEST))
+            (clobber (scratch:DI))
+        ]) "../ncurses/./base/keyok.c":95:1 -1
+     (nil))
+(jump_insn 133 132 153 26 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 136)
+            (pc))) "../ncurses/./base/keyok.c":95:1 -1
+     (int_list:REG_BR_PROB 1073312332 (nil))
+ -> 136)
+;;  succ:       28 [100.0% (guessed)]  count:179426661 (estimated locally)
+;;              27 [0.0% (guessed)]  count:71799 (estimated locally) (FALLTHRU)
+
+;; basic block 27, loop depth 0, count 71799 (estimated locally)
+;;  prev block 26, next block 28, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       26 [0.0% (guessed)]  count:71799 (estimated locally) (FALLTHRU)
+(note 153 133 134 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(call_insn 134 153 135 27 (call (mem:QI (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7fc7dbbc2a00 __stack_chk_fail>) [0 __stack_chk_fail S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/keyok.c":95:1 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7fc7dbbc2a00 __stack_chk_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (nil))
+;;  succ:      
+
+(barrier 135 134 136)
+;; basic block 28, loop depth 0, count 179426661 (estimated locally), maybe hot
+;;  prev block 27, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       26 [100.0% (guessed)]  count:179426661 (estimated locally)
+(code_label 136 135 154 28 12 (nil) [1 uses])
+(note 154 136 137 28 [bb 28] NOTE_INSN_BASIC_BLOCK)
+(insn 137 154 138 28 (set (reg/i:SI 0 ax)
+        (reg/v:SI 97 [ <retval> ])) "../ncurses/./base/keyok.c":95:1 -1
+     (nil))
+(insn 138 137 0 28 (use (reg/i:SI 0 ax)) "../ncurses/./base/keyok.c":95:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:179426661 (estimated locally) (FALLTHRU)
+
+
+;; Function keyok (keyok, funcdef_no=92, decl_uid=6430, cgraph_uid=93, symbol_order=92)
+
+__attribute__((visibility ("default")))
+int keyok (int c, _Bool flag)
+{
+  int _1;
+  struct SCREEN * SP.0_2;
+  int _7;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _1 = (int) flag_3(D);
+  SP.0_2 = SP;
+  _7 = keyok_sp (SP.0_2, c_5(D), _1); [tail call]
+  return _7;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (SP.0_2 - 2 )
+Partition 3 (flag_3(D) - 3 )
+Partition 5 (c_5(D) - 5 )
+Partition 7 (_7 - 7 )
+Partition 8 (_8(D) - 8 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (flag_3(D) - 3 )
+Partition 1, base 1 (c_5(D) - 5 )
+Partition 2, base 2 (_7 - 7 8 )
+
+
+Partition map 
+
+Partition 0 (flag_3(D) - 3 )
+Partition 1 (c_5(D) - 5 )
+Partition 2 (_7 - 7 )
+Partition 3 (_8(D) - 8 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) _7 <-> _8(D)
+
+Partition map 
+
+Partition 0 (flag_3(D) - 3 )
+Partition 1 (c_5(D) - 5 )
+Partition 2 (_7 - 7 )
+Partition 3 (_8(D) - 8 )
+
+Coalesce list: (7)_7 & (8)_8(D) [map: 2, 3] : Success -> 2
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (SP.0_2 - 2 )
+Partition 2 (flag_3(D) - 3 )
+Partition 3 (c_5(D) - 5 )
+Partition 4 (_7 - 7 8 )
+
+
+Replacing Expressions
+_1 replace with --> _1 = (int) flag_3(D);
+
+SP.0_2 replace with --> SP.0_2 = SP;
+
+
+__attribute__((visibility ("default")))
+int keyok (int c, _Bool flag)
+{
+  int _1;
+  struct SCREEN * SP.0_2;
+  int _7;
+  int _8(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _1 = (int) flag_3(D);
+  SP.0_2 = SP;
+  _7 = keyok_sp (SP.0_2, c_5(D), _1); [tail call]
+  return _7;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; _7 = keyok_sp (SP.0_2, c_5(D), _1); [tail call]
+
+(insn 8 7 9 2 (set (reg:SI 88)
+        (zero_extend:SI (reg/v:QI 86 [ flag ]))) "../ncurses/./base/keyok.c":101:12 -1
+     (nil))
+
+(insn 9 8 10 2 (set (reg:DI 89)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7fc7dbb26cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/keyok.c":101:12 -1
+     (nil))
+
+(insn 10 9 11 2 (set (reg:SI 1 dx)
+        (reg:SI 88)) "../ncurses/./base/keyok.c":101:12 -1
+     (nil))
+
+(insn 11 10 12 2 (set (reg:SI 4 si)
+        (reg/v:SI 85 [ c ])) "../ncurses/./base/keyok.c":101:12 -1
+     (nil))
+
+(insn 12 11 13 2 (set (reg:DI 5 di)
+        (reg:DI 89)) "../ncurses/./base/keyok.c":101:12 -1
+     (nil))
+
+(call_insn/j 13 12 14 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("keyok_sp") [flags 0x3]  <function_decl 0x7fc7dba1a100 keyok_sp>) [0 keyok_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":101:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("keyok_sp") [flags 0x3]  <function_decl 0x7fc7dba1a100 keyok_sp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+
+(barrier 14 13 0)
+Basic block 4 is marked unlikely by forward prop
+deleting block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v:SI 85 [ c ])
+        (reg:SI 5 di [ c ])) "../ncurses/./base/keyok.c":100:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg:SI 87)
+        (reg:SI 4 si [ flag ])) "../ncurses/./base/keyok.c":100:1 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:QI 86 [ flag ])
+        (subreg:QI (reg:SI 87) 0)) "../ncurses/./base/keyok.c":100:1 -1
+     (nil))
+(note 5 4 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 5 9 2 (set (reg:SI 88)
+        (zero_extend:SI (reg/v:QI 86 [ flag ]))) "../ncurses/./base/keyok.c":101:12 -1
+     (nil))
+(insn 9 8 10 2 (set (reg:DI 89)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7fc7dbb26cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/keyok.c":101:12 -1
+     (nil))
+(insn 10 9 11 2 (set (reg:SI 1 dx)
+        (reg:SI 88)) "../ncurses/./base/keyok.c":101:12 -1
+     (nil))
+(insn 11 10 12 2 (set (reg:SI 4 si)
+        (reg/v:SI 85 [ c ])) "../ncurses/./base/keyok.c":101:12 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:DI 5 di)
+        (reg:DI 89)) "../ncurses/./base/keyok.c":101:12 -1
+     (nil))
+(call_insn/j 13 12 14 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("keyok_sp") [flags 0x3]  <function_decl 0x7fc7dba1a100 keyok_sp>) [0 keyok_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/keyok.c":101:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("keyok_sp") [flags 0x3]  <function_decl 0x7fc7dba1a100 keyok_sp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 14 13 0)

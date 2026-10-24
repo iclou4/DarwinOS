@@ -1,0 +1,808 @@
+
+;; Function _nc_str_init (_nc_str_init, funcdef_no=91, decl_uid=8694, cgraph_uid=92, symbol_order=91)
+
+
+
+_nc_str_init
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 7 [sp]
+;;  regs ever live 	 0 [ax] 1 [dx] 4 [si] 5 [di] 17 [flags]
+;;  ref usage 	r0={2d,2u,1e} r1={2d,3u} r2={1d} r4={1d,4u} r5={1d,6u} r7={1d,5u} r17={3d,2u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={1d} r37={1d} 
+;;    total ref usage 44{21d,22u,1e} in 13{13 regular + 0 call} insns.
+(note 1 0 6 NOTE_INSN_DELETED)
+(note 6 1 48 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 48 6 5 2 NOTE_INSN_PROLOGUE_END)
+(note 5 48 2 2 NOTE_INSN_FUNCTION_BEG)
+(insn:TI 2 5 8 2 (set (reg/v/f:DI 0 ax [orig:84 dst ] [84])
+        (reg:DI 5 di [89])) "../ncurses/./tinfo/strings.c":73:1 74 {*movdi_internal}
+     (nil))
+(insn 8 2 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 5 di [orig:84 dst ] [84])
+            (const_int 0 [0]))) "../ncurses/./tinfo/strings.c":74:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 9 8 14 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 25)
+            (pc))) "../ncurses/./tinfo/strings.c":74:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 25)
+(note 14 9 17 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 17 14 15 3 (parallel [
+            (set (reg:DI 1 dx [orig:82 _1 ] [82])
+                (plus:DI (reg/v:DI 1 dx [orig:86 len ] [86])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/strings.c":77:20 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (expr_list:REG_EQUIV (mem:DI (plus:DI (reg/v/f:DI 0 ax [orig:84 dst ] [84])
+                    (const_int 24 [0x18])) [1 dst_3(D)->s_init+0 S8 A64])
+            (nil))))
+(insn 15 17 16 3 (set (mem/f:DI (reg/f:DI 5 di [orig:84 dst ] [84]) [3 dst_3(D)->s_head+0 S8 A64])
+        (reg/v/f:DI 4 si [orig:85 src ] [85])) "../ncurses/./tinfo/strings.c":75:14 74 {*movdi_internal}
+     (nil))
+(insn:TI 16 15 18 3 (set (mem/f:DI (plus:DI (reg/f:DI 5 di [orig:84 dst ] [84])
+                (const_int 8 [0x8])) [3 dst_3(D)->s_tail+0 S8 A64])
+        (reg/v/f:DI 4 si [orig:85 src ] [85])) "../ncurses/./tinfo/strings.c":76:14 74 {*movdi_internal}
+     (nil))
+(insn:TI 18 16 19 3 (set (mem:DI (plus:DI (reg/f:DI 5 di [orig:84 dst ] [84])
+                (const_int 16 [0x10])) [1 dst_3(D)->s_size+0 S8 A64])
+        (reg:DI 1 dx [orig:82 _1 ] [82])) "../ncurses/./tinfo/strings.c":77:14 74 {*movdi_internal}
+     (nil))
+(insn:TI 19 18 21 3 (set (mem:DI (plus:DI (reg/f:DI 5 di [orig:84 dst ] [84])
+                (const_int 24 [0x18])) [1 dst_3(D)->s_init+0 S8 A64])
+        (reg:DI 1 dx [orig:82 _1 ] [82])) "../ncurses/./tinfo/strings.c":78:14 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 5 di [orig:84 dst ] [84])
+        (expr_list:REG_DEAD (reg:DI 1 dx [orig:82 _1 ] [82])
+            (nil))))
+(insn 21 19 22 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 4 si [orig:85 src ] [85])
+            (const_int 0 [0]))) "../ncurses/./tinfo/strings.c":79:5 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 22 21 23 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 25)
+            (pc))) "../ncurses/./tinfo/strings.c":79:5 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 25)
+(note 23 22 24 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 24 23 25 4 (set (mem:QI (reg/v/f:DI 4 si [orig:85 src ] [85]) [0 *src_5(D)+0 S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/strings.c":80:11 77 {*movqi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 4 si [orig:85 src ] [85])
+        (nil)))
+(code_label 25 24 26 5 3 (nil) [2 uses])
+(note 26 25 32 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 32 26 54 5 (use (reg/i:DI 0 ax)) "../ncurses/./tinfo/strings.c":83:1 -1
+     (nil))
+(note 54 32 50 5 NOTE_INSN_EPILOGUE_BEG)
+(jump_insn:TI 50 54 51 5 (simple_return) "../ncurses/./tinfo/strings.c":83:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 51 50 47)
+(note 47 51 0 NOTE_INSN_DELETED)
+
+;; Function _nc_str_null (_nc_str_null, funcdef_no=92, decl_uid=8697, cgraph_uid=93, symbol_order=92)
+
+
+
+_nc_str_null
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 7 [sp]
+;;  regs ever live 	 0 [ax] 4 [si] 5 [di] 17 [flags]
+;;  ref usage 	r0={2d,2u,1e} r1={1d} r2={1d} r4={2d,3u} r5={1d,6u} r7={1d,4u} r17={2d,1u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={1d} r37={1d} 
+;;    total ref usage 37{20d,16u,1e} in 10{10 regular + 0 call} insns.
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 33 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 33 5 4 2 NOTE_INSN_PROLOGUE_END)
+(note 4 33 2 2 NOTE_INSN_FUNCTION_BEG)
+(insn:TI 2 4 7 2 (set (reg/v/f:DI 0 ax [orig:84 dst ] [84])
+        (reg:DI 5 di [87])) "../ncurses/./tinfo/strings.c":90:1 74 {*movdi_internal}
+     (nil))
+(insn 7 2 8 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 5 di [orig:84 dst ] [84])
+            (const_int 0 [0]))) "../ncurses/./tinfo/strings.c":74:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 8 7 9 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 15)
+            (pc))) "../ncurses/./tinfo/strings.c":74:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 15)
+(note 9 8 12 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 12 9 10 3 (parallel [
+            (set (reg:DI 4 si [orig:82 _4 ] [82])
+                (plus:DI (reg/v:DI 4 si [orig:85 len ] [85])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/strings.c":77:20 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (expr_list:REG_EQUIV (mem:DI (plus:DI (reg/v/f:DI 0 ax [orig:84 dst ] [84])
+                    (const_int 24 [0x18])) [1 dst_2(D)->s_init+0 S8 A64])
+            (nil))))
+(insn 10 12 11 3 (set (mem/f:DI (reg/f:DI 5 di [orig:84 dst ] [84]) [3 dst_2(D)->s_head+0 S8 A64])
+        (const_int 0 [0])) "../ncurses/./tinfo/strings.c":75:14 74 {*movdi_internal}
+     (nil))
+(insn:TI 11 10 13 3 (set (mem/f:DI (plus:DI (reg/f:DI 5 di [orig:84 dst ] [84])
+                (const_int 8 [0x8])) [3 dst_2(D)->s_tail+0 S8 A64])
+        (const_int 0 [0])) "../ncurses/./tinfo/strings.c":76:14 74 {*movdi_internal}
+     (nil))
+(insn:TI 13 11 14 3 (set (mem:DI (plus:DI (reg/f:DI 5 di [orig:84 dst ] [84])
+                (const_int 16 [0x10])) [1 dst_2(D)->s_size+0 S8 A64])
+        (reg:DI 4 si [orig:82 _4 ] [82])) "../ncurses/./tinfo/strings.c":77:14 74 {*movdi_internal}
+     (nil))
+(insn:TI 14 13 15 3 (set (mem:DI (plus:DI (reg/f:DI 5 di [orig:84 dst ] [84])
+                (const_int 24 [0x18])) [1 dst_2(D)->s_init+0 S8 A64])
+        (reg:DI 4 si [orig:82 _4 ] [82])) "../ncurses/./tinfo/strings.c":78:14 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 5 di [orig:84 dst ] [84])
+        (expr_list:REG_DEAD (reg:DI 4 si [orig:82 _4 ] [82])
+            (nil))))
+(code_label 15 14 16 4 10 (nil) [1 uses])
+(note 16 15 22 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 22 16 37 4 (use (reg/i:DI 0 ax)) "../ncurses/./tinfo/strings.c":92:1 -1
+     (nil))
+(note 37 22 35 4 NOTE_INSN_EPILOGUE_BEG)
+(jump_insn:TI 35 37 36 4 (simple_return) "../ncurses/./tinfo/strings.c":92:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 36 35 32)
+(note 32 36 0 NOTE_INSN_DELETED)
+
+;; Function _nc_str_copy (_nc_str_copy, funcdef_no=93, decl_uid=8700, cgraph_uid=94, symbol_order=93)
+
+
+
+_nc_str_copy
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 7 [sp]
+;;  regs ever live 	 0 [ax] 4 [si] 5 [di] 20 [xmm0] 21 [xmm1]
+;;  ref usage 	r0={2d,2u,1e} r1={1d} r2={1d} r4={1d,2u} r5={1d,3u} r7={1d,2u} r20={2d,1u} r21={2d,1u} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={1d} r37={1d} 
+;;    total ref usage 31{19d,11u,1e} in 7{7 regular + 0 call} insns.
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 23 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 23 5 4 2 NOTE_INSN_PROLOGUE_END)
+(note 4 23 7 2 NOTE_INSN_FUNCTION_BEG)
+(note 7 4 10 2 NOTE_INSN_DELETED)
+(note 10 7 8 2 NOTE_INSN_DELETED)
+(insn:TI 8 10 2 2 (set (reg:V1TI 20 xmm0 [91])
+        (mem:V1TI (reg/v/f:DI 4 si [orig:84 src ] [84]) [2 *src_3(D)+0 S16 A64])) "../ncurses/./tinfo/strings.c":100:10 1442 {movv1ti_internal}
+     (nil))
+(insn 2 8 21 2 (set (reg/v/f:DI 0 ax [orig:83 dst ] [83])
+        (reg:DI 5 di [88])) "../ncurses/./tinfo/strings.c":99:1 74 {*movdi_internal}
+     (nil))
+(insn:TI 21 2 9 2 (set (mem:V1TI (reg/f:DI 5 di [orig:83 dst ] [83]) [2 *dst_2(D)+0 S16 A64])
+        (reg:V1TI 20 xmm0 [91])) "../ncurses/./tinfo/strings.c":100:10 1442 {movv1ti_internal}
+     (expr_list:REG_DEAD (reg:V1TI 20 xmm0 [91])
+        (nil)))
+(insn 9 21 22 2 (set (reg:V1TI 21 xmm1 [92])
+        (mem:V1TI (plus:DI (reg/v/f:DI 4 si [orig:84 src ] [84])
+                (const_int 16 [0x10])) [2 *src_3(D)+16 S16 A64])) "../ncurses/./tinfo/strings.c":100:10 1442 {movv1ti_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 4 si [orig:84 src ] [84])
+        (expr_list:REG_EQUIV (mem:V1TI (plus:DI (reg/v/f:DI 0 ax [orig:83 dst ] [83])
+                    (const_int 16 [0x10])) [2 *dst_2(D)+16 S16 A64])
+            (nil))))
+(insn:TI 22 9 16 2 (set (mem:V1TI (plus:DI (reg/f:DI 5 di [orig:83 dst ] [83])
+                (const_int 16 [0x10])) [2 *dst_2(D)+16 S16 A64])
+        (reg:V1TI 21 xmm1 [92])) "../ncurses/./tinfo/strings.c":100:10 1442 {movv1ti_internal}
+     (expr_list:REG_DEAD (reg:V1TI 21 xmm1 [92])
+        (expr_list:REG_DEAD (reg/f:DI 5 di [orig:83 dst ] [83])
+            (nil))))
+(insn 16 22 27 2 (use (reg/i:DI 0 ax)) "../ncurses/./tinfo/strings.c":102:1 -1
+     (nil))
+(note 27 16 25 2 NOTE_INSN_EPILOGUE_BEG)
+(jump_insn:TI 25 27 26 2 (simple_return) "../ncurses/./tinfo/strings.c":102:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 26 25 20)
+(note 20 26 0 NOTE_INSN_DELETED)
+
+;; Function _nc_safe_strcat (_nc_safe_strcat, funcdef_no=94, decl_uid=8703, cgraph_uid=95, symbol_order=94)
+
+
+
+_nc_safe_strcat
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9] 40 [r12] 41 [r13]
+;;  exit block uses 	 0 [ax] 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13]
+;;  regs ever live 	 0 [ax] 1 [dx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 17 [flags] 40 [r12] 41 [r13]
+;;  ref usage 	r0={9d,8u} r1={4d,1u} r2={3d} r3={4d,8u,1e} r4={4d,4u} r5={5d,4u} r6={4d,3u} r7={16d,27u} r8={2d} r9={2d} r10={2d} r11={2d} r12={2d} r13={2d} r14={2d} r15={2d} r17={11d,3u} r18={2d} r20={3d} r21={3d} r22={3d} r23={3d} r24={3d} r25={3d} r26={3d} r27={3d} r28={2d} r29={2d} r30={2d} r31={2d} r32={2d} r33={2d} r34={2d} r35={2d} r36={3d} r37={3d} r38={2d} r39={2d} r40={4d,6u} r41={5d,4u} r44={2d} r45={2d} r46={2d} r47={2d} r48={2d} r49={2d} r50={2d} r51={2d} r52={2d} r53={2d} r54={2d} r55={2d} r56={2d} r57={2d} r58={2d} r59={2d} r60={2d} r61={2d} r62={2d} r63={2d} r64={2d} r65={2d} r66={2d} r67={2d} r68={2d} r69={2d} r70={2d} r71={2d} r72={2d} r73={2d} r74={2d} r75={2d} 
+;;    total ref usage 270{201d,68u,1e} in 44{42 regular + 2 call} insns.
+(note 1 0 8 NOTE_INSN_DELETED)
+(note 8 1 4 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 4 8 73 2 NOTE_INSN_FUNCTION_BEG)
+(insn/f:TI 73 4 72 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 41 r13)) "../ncurses/./tinfo/strings.c":109:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 41 r13)
+        (nil)))
+(insn 72 73 91 2 (set (reg/f:DI 0 ax [94])
+        (plus:DI (reg/f:DI 4 si [orig:93 src ] [93])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./tinfo/strings.c":110:9 206 {*leadi}
+     (nil))
+(insn 91 72 74 2 (parallel [
+            (set (reg:DI 41 r13 [orig:91 <retval> ] [91])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/strings.c":122:12 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn/f:TI 74 91 75 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 40 r12)) "../ncurses/./tinfo/strings.c":109:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 40 r12)
+        (nil)))
+(insn/f:TI 75 74 76 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 6 bp)) "../ncurses/./tinfo/strings.c":109:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 6 bp)
+        (nil)))
+(insn/f:TI 76 75 77 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 3 bx)) "../ncurses/./tinfo/strings.c":109:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 3 bx)
+        (nil)))
+(insn/f:TI 77 76 78 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -8 [0xfffffffffffffff8])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) "../ncurses/./tinfo/strings.c":109:1 1142 {pro_epilogue_adjust_stack_add_di}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -8 [0xfffffffffffffff8])))
+            (nil))))
+(note 78 77 13 2 NOTE_INSN_PROLOGUE_END)
+(insn 13 78 14 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/f:DI 0 ax [94])
+            (const_int -3 [0xfffffffffffffffd]))) "../ncurses/./tinfo/strings.c":110:8 12 {*cmpdi_1}
+     (expr_list:REG_DEAD (reg/f:DI 0 ax [94])
+        (nil)))
+(jump_insn 14 13 15 2 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 49)
+            (pc))) "../ncurses/./tinfo/strings.c":110:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CC 17 flags)
+        (int_list:REG_BR_PROB 536870916 (nil)))
+ -> 49)
+(note 15 14 87 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 87 15 16 3 (set (reg/v/f:DI 3 bx [orig:92 dst ] [92])
+        (reg:DI 5 di [106])) 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 5 di [106])
+        (nil)))
+(insn 16 87 86 3 (set (reg:DI 5 di)
+        (reg/f:DI 4 si [orig:93 src ] [93])) "../ncurses/./tinfo/strings.c":111:15 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 4 si [orig:93 src ] [93])
+        (nil)))
+(insn 86 16 17 3 (set (reg/v/f:DI 6 bp [orig:93 src ] [93])
+        (reg:DI 4 si [107])) 74 {*movdi_internal}
+     (nil))
+(call_insn/i:TI 17 86 18 3 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strlen") [flags 0x41]  <function_decl 0x7f103da8a700 strlen>) [0 __builtin_strlen S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/strings.c":111:15 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("strlen") [flags 0x41]  <function_decl 0x7f103da8a700 strlen>)
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn:TI 18 17 21 3 (set (reg:DI 40 r12 [96])
+        (reg:DI 0 ax [108])) "../ncurses/./tinfo/strings.c":111:15 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 0 ax [108])
+        (nil)))
+(insn 21 18 22 3 (set (reg:DI 0 ax [orig:84 _3 ] [84])
+        (mem:DI (plus:DI (reg/v/f:DI 3 bx [orig:92 dst ] [92])
+                (const_int 16 [0x10])) [1 dst_15(D)->s_size+0 S8 A64])) "../ncurses/./tinfo/strings.c":113:15 74 {*movdi_internal}
+     (nil))
+(insn:TI 22 21 23 3 (set (reg:CC 17 flags)
+        (compare:CC (reg:DI 0 ax [orig:84 _3 ] [84])
+            (reg:DI 40 r12 [96]))) "../ncurses/./tinfo/strings.c":113:5 12 {*cmpdi_1}
+     (nil))
+(jump_insn 23 22 49 3 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 105)
+            (pc))) "../ncurses/./tinfo/strings.c":113:5 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CC 17 flags)
+        (int_list:REG_BR_PROB 365072228 (nil)))
+ -> 105)
+(code_label 49 23 52 4 15 (nil) [1 uses])
+(note 52 49 106 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(note 106 52 80 4 NOTE_INSN_EPILOGUE_BEG)
+(insn/f:TI 80 106 50 4 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) "../ncurses/./tinfo/strings.c":123:1 1142 {pro_epilogue_adjust_stack_add_di}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 8 [0x8])))
+            (nil))))
+(insn 50 80 51 4 (set (reg/i:QI 0 ax)
+        (reg:QI 41 r13 [orig:91 <retval> ] [91])) "../ncurses/./tinfo/strings.c":123:1 77 {*movqi_internal}
+     (expr_list:REG_DEAD (reg:QI 41 r13 [orig:91 <retval> ] [91])
+        (nil)))
+(insn 51 50 81 4 (use (reg/i:QI 0 ax)) "../ncurses/./tinfo/strings.c":123:1 -1
+     (nil))
+(insn/f:TI 81 51 82 4 (set (reg:DI 3 bx)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/strings.c":123:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f 82 81 83 4 (set (reg:DI 6 bp)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/strings.c":123:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f:TI 83 82 84 4 (set (reg:DI 40 r12)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/strings.c":123:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f 84 83 85 4 (set (reg:DI 41 r13)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/strings.c":123:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(jump_insn:TI 85 84 90 4 (simple_return) "../ncurses/./tinfo/strings.c":123:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 90 85 105)
+(code_label 105 90 24 5 24 (nil) [1 uses])
+(note 24 105 25 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 25 24 26 5 (set (reg/f:DI 5 di [orig:85 _4 ] [85])
+        (mem/f:DI (plus:DI (reg/v/f:DI 3 bx [orig:92 dst ] [92])
+                (const_int 8 [0x8])) [3 dst_15(D)->s_tail+0 S8 A64])) "../ncurses/./tinfo/strings.c":114:13 74 {*movdi_internal}
+     (nil))
+(insn:TI 26 25 27 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 5 di [orig:85 _4 ] [85])
+            (const_int 0 [0]))) "../ncurses/./tinfo/strings.c":114:9 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 27 26 28 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 41)
+            (pc))) "../ncurses/./tinfo/strings.c":114:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 499612076 (nil)))
+ -> 41)
+(note 28 27 71 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 71 28 34 6 (set (reg:DI 1 dx [98])
+        (plus:DI (reg:DI 40 r12 [96])
+            (const_int 1 [0x1]))) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":79:10 206 {*leadi}
+     (nil))
+(insn 34 71 36 6 (set (reg:DI 4 si)
+        (reg/v/f:DI 6 bp [orig:93 src ] [93])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":79:10 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 6 bp [orig:93 src ] [93])
+        (nil)))
+(call_insn:TI 36 34 39 6 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("memcpy") [flags 0x41]  <function_decl 0x7f103da85800 __builtin_memcpy>) [0 __builtin_memcpy S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":79:10 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:DI 4 si)
+            (expr_list:REG_DEAD (reg:DI 1 dx)
+                (expr_list:REG_UNUSED (reg:DI 0 ax)
+                    (expr_list:REG_CALL_DECL (symbol_ref:DI ("memcpy") [flags 0x41]  <function_decl 0x7f103da85800 __builtin_memcpy>)
+                        (expr_list:REG_EH_REGION (const_int 0 [0])
+                            (nil)))))))
+    (expr_list:DI (set (reg:DI 0 ax)
+            (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (nil))))))
+(insn 39 36 40 6 (parallel [
+            (set (mem/f:DI (plus:DI (reg/v/f:DI 3 bx [orig:92 dst ] [92])
+                        (const_int 8 [0x8])) [3 dst_15(D)->s_tail+0 S8 A64])
+                (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 3 bx [orig:92 dst ] [92])
+                            (const_int 8 [0x8])) [3 dst_15(D)->s_tail+0 S8 A64])
+                    (reg:DI 40 r12 [96])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/strings.c":116:15 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 40 39 41 6 (set (reg:DI 0 ax [orig:84 _3 ] [84])
+        (mem:DI (plus:DI (reg/v/f:DI 3 bx [orig:92 dst ] [92])
+                (const_int 16 [0x10])) [1 dst_15(D)->s_size+0 S8 A64])) "../ncurses/./tinfo/strings.c":118:18 74 {*movdi_internal}
+     (nil))
+(code_label 41 40 42 7 17 (nil) [1 uses])
+(note 42 41 43 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 43 42 5 7 (parallel [
+            (set (reg:DI 0 ax [104])
+                (minus:DI (reg:DI 0 ax [orig:84 _3 ] [84])
+                    (reg:DI 40 r12 [96])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/strings.c":118:18 283 {*subdi_1}
+     (expr_list:REG_DEAD (reg:DI 40 r12 [96])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (expr_list:REG_EQUIV (mem:DI (plus:DI (reg/v/f:DI 3 bx [orig:92 dst ] [92])
+                        (const_int 16 [0x10])) [1 dst_15(D)->s_size+0 S8 A64])
+                (nil)))))
+(insn 5 43 44 7 (set (reg:QI 41 r13 [orig:91 <retval> ] [91])
+        (const_int 1 [0x1])) "../ncurses/./tinfo/strings.c":119:13 77 {*movqi_internal}
+     (expr_list:REG_EQUAL (const_int 1 [0x1])
+        (nil)))
+(insn:TI 44 5 107 7 (set (mem:DI (plus:DI (reg/v/f:DI 3 bx [orig:92 dst ] [92])
+                (const_int 16 [0x10])) [1 dst_15(D)->s_size+0 S8 A64])
+        (reg:DI 0 ax [104])) "../ncurses/./tinfo/strings.c":118:18 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 3 bx [orig:92 dst ] [92])
+        (expr_list:REG_DEAD (reg:DI 0 ax [104])
+            (nil))))
+(note 107 44 96 7 NOTE_INSN_EPILOGUE_BEG)
+(insn/f 96 107 93 7 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) "../ncurses/./tinfo/strings.c":123:1 1142 {pro_epilogue_adjust_stack_add_di}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 8 [0x8])))
+            (nil))))
+(insn 93 96 94 7 (set (reg/i:QI 0 ax)
+        (reg:QI 41 r13 [orig:91 <retval> ] [91])) "../ncurses/./tinfo/strings.c":123:1 77 {*movqi_internal}
+     (expr_list:REG_DEAD (reg:QI 41 r13 [orig:91 <retval> ] [91])
+        (nil)))
+(insn 94 93 97 7 (use (reg/i:QI 0 ax)) "../ncurses/./tinfo/strings.c":123:1 -1
+     (nil))
+(insn/f:TI 97 94 98 7 (set (reg:DI 3 bx)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/strings.c":123:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f 98 97 99 7 (set (reg:DI 6 bp)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/strings.c":123:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f:TI 99 98 100 7 (set (reg:DI 40 r12)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/strings.c":123:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f 100 99 101 7 (set (reg:DI 41 r13)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/strings.c":123:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(jump_insn:TI 101 100 104 7 (simple_return) "../ncurses/./tinfo/strings.c":123:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 104 101 70)
+(note 70 104 0 NOTE_INSN_DELETED)
+
+;; Function _nc_safe_strcpy (_nc_safe_strcpy, funcdef_no=95, decl_uid=8706, cgraph_uid=96, symbol_order=95)
+
+
+
+_nc_safe_strcpy
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9] 40 [r12] 41 [r13]
+;;  exit block uses 	 0 [ax] 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13]
+;;  regs ever live 	 0 [ax] 1 [dx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 17 [flags] 40 [r12] 41 [r13]
+;;  ref usage 	r0={10d,11u} r1={4d,1u} r2={3d} r3={4d,8u,2e} r4={4d,4u} r5={5d,4u} r6={4d,3u} r7={16d,27u} r8={2d} r9={2d} r10={2d} r11={2d} r12={2d} r13={2d} r14={2d} r15={2d} r17={11d,3u} r18={2d} r20={3d} r21={3d} r22={3d} r23={3d} r24={3d} r25={3d} r26={3d} r27={3d} r28={2d} r29={2d} r30={2d} r31={2d} r32={2d} r33={2d} r34={2d} r35={2d} r36={3d} r37={3d} r38={2d} r39={2d} r40={4d,4u,1e} r41={5d,4u} r44={2d} r45={2d} r46={2d} r47={2d} r48={2d} r49={2d} r50={2d} r51={2d} r52={2d} r53={2d} r54={2d} r55={2d} r56={2d} r57={2d} r58={2d} r59={2d} r60={2d} r61={2d} r62={2d} r63={2d} r64={2d} r65={2d} r66={2d} r67={2d} r68={2d} r69={2d} r70={2d} r71={2d} r72={2d} r73={2d} r74={2d} r75={2d} 
+;;    total ref usage 274{202d,69u,3e} in 45{43 regular + 2 call} insns.
+(note 1 0 8 NOTE_INSN_DELETED)
+(note 8 1 4 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 4 8 84 2 NOTE_INSN_FUNCTION_BEG)
+(insn/f:TI 84 4 83 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 41 r13)) "../ncurses/./tinfo/strings.c":130:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 41 r13)
+        (nil)))
+(insn 83 84 104 2 (set (reg/f:DI 0 ax [95])
+        (plus:DI (reg/f:DI 4 si [orig:94 src ] [94])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./tinfo/strings.c":131:9 206 {*leadi}
+     (nil))
+(insn 104 83 85 2 (parallel [
+            (set (reg:DI 41 r13 [orig:92 <retval> ] [92])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/strings.c":143:12 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn/f:TI 85 104 86 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 40 r12)) "../ncurses/./tinfo/strings.c":130:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 40 r12)
+        (nil)))
+(insn/f:TI 86 85 87 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 6 bp)) "../ncurses/./tinfo/strings.c":130:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 6 bp)
+        (nil)))
+(insn/f:TI 87 86 88 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 3 bx)) "../ncurses/./tinfo/strings.c":130:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 3 bx)
+        (nil)))
+(insn/f:TI 88 87 89 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -8 [0xfffffffffffffff8])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) "../ncurses/./tinfo/strings.c":130:1 1142 {pro_epilogue_adjust_stack_add_di}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -8 [0xfffffffffffffff8])))
+            (nil))))
+(note 89 88 13 2 NOTE_INSN_PROLOGUE_END)
+(insn 13 89 14 2 (set (reg:CC 17 flags)
+        (compare:CC (reg/f:DI 0 ax [95])
+            (const_int -3 [0xfffffffffffffffd]))) "../ncurses/./tinfo/strings.c":131:8 12 {*cmpdi_1}
+     (expr_list:REG_DEAD (reg/f:DI 0 ax [95])
+        (nil)))
+(jump_insn 14 13 15 2 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 56)
+            (pc))) "../ncurses/./tinfo/strings.c":131:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CC 17 flags)
+        (int_list:REG_BR_PROB 536870916 (nil)))
+ -> 56)
+(note 15 14 98 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 98 15 16 3 (set (reg/v/f:DI 3 bx [orig:93 dst ] [93])
+        (reg:DI 5 di [114])) 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 5 di [114])
+        (nil)))
+(insn 16 98 97 3 (set (reg:DI 5 di)
+        (reg/f:DI 4 si [orig:94 src ] [94])) "../ncurses/./tinfo/strings.c":132:15 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 4 si [orig:94 src ] [94])
+        (nil)))
+(insn 97 16 17 3 (set (reg/v/f:DI 6 bp [orig:94 src ] [94])
+        (reg:DI 4 si [115])) 74 {*movdi_internal}
+     (nil))
+(call_insn/i:TI 17 97 18 3 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strlen") [flags 0x41]  <function_decl 0x7f103da8a700 strlen>) [0 __builtin_strlen S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/strings.c":132:15 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("strlen") [flags 0x41]  <function_decl 0x7f103da8a700 strlen>)
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn:TI 18 17 21 3 (set (reg:DI 40 r12 [97])
+        (reg:DI 0 ax [116])) "../ncurses/./tinfo/strings.c":132:15 74 {*movdi_internal}
+     (nil))
+(insn 21 18 22 3 (set (reg:CC 17 flags)
+        (compare:CC (mem:DI (plus:DI (reg/v/f:DI 3 bx [orig:93 dst ] [93])
+                    (const_int 16 [0x10])) [1 dst_15(D)->s_size+0 S8 A64])
+            (reg:DI 0 ax [97]))) "../ncurses/./tinfo/strings.c":134:5 12 {*cmpdi_1}
+     (nil))
+(jump_insn 22 21 56 3 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 118)
+            (pc))) "../ncurses/./tinfo/strings.c":134:5 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CC 17 flags)
+        (int_list:REG_BR_PROB 365072228 (nil)))
+ -> 118)
+(code_label 56 22 59 4 25 (nil) [1 uses])
+(note 59 56 119 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(note 119 59 91 4 NOTE_INSN_EPILOGUE_BEG)
+(insn/f:TI 91 119 57 4 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) "../ncurses/./tinfo/strings.c":144:1 1142 {pro_epilogue_adjust_stack_add_di}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 8 [0x8])))
+            (nil))))
+(insn 57 91 58 4 (set (reg/i:QI 0 ax)
+        (reg:QI 41 r13 [orig:92 <retval> ] [92])) "../ncurses/./tinfo/strings.c":144:1 77 {*movqi_internal}
+     (expr_list:REG_DEAD (reg:QI 41 r13 [orig:92 <retval> ] [92])
+        (nil)))
+(insn 58 57 92 4 (use (reg/i:QI 0 ax)) "../ncurses/./tinfo/strings.c":144:1 -1
+     (nil))
+(insn/f:TI 92 58 93 4 (set (reg:DI 3 bx)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/strings.c":144:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f 93 92 94 4 (set (reg:DI 6 bp)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/strings.c":144:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f:TI 94 93 95 4 (set (reg:DI 40 r12)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/strings.c":144:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f 95 94 96 4 (set (reg:DI 41 r13)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/strings.c":144:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(jump_insn:TI 96 95 101 4 (simple_return) "../ncurses/./tinfo/strings.c":144:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 101 96 118)
+(code_label 118 101 23 5 34 (nil) [1 uses])
+(note 23 118 24 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 24 23 25 5 (set (reg/f:DI 5 di [orig:85 _4 ] [85])
+        (mem/f:DI (reg/v/f:DI 3 bx [orig:93 dst ] [93]) [3 dst_15(D)->s_head+0 S8 A64])) "../ncurses/./tinfo/strings.c":135:13 74 {*movdi_internal}
+     (nil))
+(insn:TI 25 24 26 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 5 di [orig:85 _4 ] [85])
+            (const_int 0 [0]))) "../ncurses/./tinfo/strings.c":135:9 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 26 25 27 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 44)
+            (pc))) "../ncurses/./tinfo/strings.c":135:9 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 499612076 (nil)))
+ -> 44)
+(note 27 26 41 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(note 41 27 82 6 NOTE_INSN_DELETED)
+(insn:TI 82 41 33 6 (set (reg:DI 1 dx [99])
+        (plus:DI (reg:DI 0 ax [97])
+            (const_int 1 [0x1]))) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":79:10 206 {*leadi}
+     (expr_list:REG_DEAD (reg:DI 0 ax [97])
+        (nil)))
+(insn 33 82 35 6 (set (reg:DI 4 si)
+        (reg/v/f:DI 6 bp [orig:94 src ] [94])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":79:10 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 6 bp [orig:94 src ] [94])
+        (nil)))
+(call_insn:TI 35 33 102 6 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("memcpy") [flags 0x41]  <function_decl 0x7f103da85800 __builtin_memcpy>) [0 __builtin_memcpy S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":79:10 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:DI 4 si)
+            (expr_list:REG_DEAD (reg:DI 1 dx)
+                (expr_list:REG_UNUSED (reg:DI 0 ax)
+                    (expr_list:REG_CALL_DECL (symbol_ref:DI ("memcpy") [flags 0x41]  <function_decl 0x7f103da85800 __builtin_memcpy>)
+                        (expr_list:REG_EH_REGION (const_int 0 [0])
+                            (nil)))))))
+    (expr_list:DI (set (reg:DI 0 ax)
+            (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (nil))))))
+(insn 102 35 103 6 (set (reg:DI 0 ax [107])
+        (mem/f:DI (reg/v/f:DI 3 bx [orig:93 dst ] [93]) [3 dst_15(D)->s_head+0 S8 A64])) "../ncurses/./tinfo/strings.c":137:29 74 {*movdi_internal}
+     (nil))
+(insn:TI 103 102 43 6 (parallel [
+            (set (reg:DI 0 ax [107])
+                (plus:DI (reg:DI 0 ax [107])
+                    (reg:DI 40 r12 [97])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/strings.c":137:29 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 43 103 44 6 (set (mem/f:DI (plus:DI (reg/v/f:DI 3 bx [orig:93 dst ] [93])
+                (const_int 8 [0x8])) [3 dst_15(D)->s_tail+0 S8 A64])
+        (reg:DI 0 ax [107])) "../ncurses/./tinfo/strings.c":137:15 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 0 ax [107])
+        (nil)))
+(code_label 44 43 45 7 27 (nil) [1 uses])
+(note 45 44 49 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(note 49 45 80 7 NOTE_INSN_DELETED)
+(insn:TI 80 49 5 7 (set (reg:DI 0 ax [111])
+        (mem:DI (plus:DI (reg/v/f:DI 3 bx [orig:93 dst ] [93])
+                (const_int 24 [0x18])) [1 dst_15(D)->s_init+0 S8 A64])) "../ncurses/./tinfo/strings.c":139:32 74 {*movdi_internal}
+     (nil))
+(insn 5 80 50 7 (set (reg:QI 41 r13 [orig:92 <retval> ] [92])
+        (const_int 1 [0x1])) "../ncurses/./tinfo/strings.c":140:13 77 {*movqi_internal}
+     (expr_list:REG_EQUAL (const_int 1 [0x1])
+        (nil)))
+(insn:TI 50 5 51 7 (parallel [
+            (set (reg:DI 0 ax [111])
+                (minus:DI (reg:DI 0 ax [111])
+                    (reg:DI 40 r12 [97])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/strings.c":139:32 283 {*subdi_1}
+     (expr_list:REG_DEAD (reg:DI 40 r12 [97])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (expr_list:REG_EQUIV (mem:DI (plus:DI (reg/v/f:DI 3 bx [orig:93 dst ] [93])
+                        (const_int 16 [0x10])) [1 dst_15(D)->s_size+0 S8 A64])
+                (expr_list:REG_EQUAL (minus:DI (mem:DI (plus:DI (reg/v/f:DI 3 bx [orig:93 dst ] [93])
+                                (const_int 24 [0x18])) [1 dst_15(D)->s_init+0 S8 A64])
+                        (reg:DI 40 r12 [97]))
+                    (nil))))))
+(insn:TI 51 50 120 7 (set (mem:DI (plus:DI (reg/v/f:DI 3 bx [orig:93 dst ] [93])
+                (const_int 16 [0x10])) [1 dst_15(D)->s_size+0 S8 A64])
+        (reg:DI 0 ax [111])) "../ncurses/./tinfo/strings.c":139:18 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 3 bx [orig:93 dst ] [93])
+        (expr_list:REG_DEAD (reg:DI 0 ax [111])
+            (nil))))
+(note 120 51 109 7 NOTE_INSN_EPILOGUE_BEG)
+(insn/f 109 120 106 7 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) "../ncurses/./tinfo/strings.c":144:1 1142 {pro_epilogue_adjust_stack_add_di}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 8 [0x8])))
+            (nil))))
+(insn 106 109 107 7 (set (reg/i:QI 0 ax)
+        (reg:QI 41 r13 [orig:92 <retval> ] [92])) "../ncurses/./tinfo/strings.c":144:1 77 {*movqi_internal}
+     (expr_list:REG_DEAD (reg:QI 41 r13 [orig:92 <retval> ] [92])
+        (nil)))
+(insn 107 106 110 7 (use (reg/i:QI 0 ax)) "../ncurses/./tinfo/strings.c":144:1 -1
+     (nil))
+(insn/f:TI 110 107 111 7 (set (reg:DI 3 bx)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/strings.c":144:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f 111 110 112 7 (set (reg:DI 6 bp)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/strings.c":144:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f:TI 112 111 113 7 (set (reg:DI 40 r12)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/strings.c":144:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn/f 113 112 114 7 (set (reg:DI 41 r13)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/strings.c":144:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(jump_insn:TI 114 113 117 7 (simple_return) "../ncurses/./tinfo/strings.c":144:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 117 114 77)
+(note 77 117 0 NOTE_INSN_DELETED)

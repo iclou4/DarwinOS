@@ -1,0 +1,557 @@
+
+;; Function _nc_doalloc (_nc_doalloc, funcdef_no=91, decl_uid=8554, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+void * _nc_doalloc (void * oldp, size_t amount)
+{
+  void * newp;
+  int * _1;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (oldp_4(D) != 0B)
+    goto <bb 3>; [82.57%]
+  else
+    goto <bb 7>; [17.43%]
+;;    succ:       3
+;;                7
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  if (amount_6(D) == 0)
+    goto <bb 4>; [29.00%]
+  else
+    goto <bb 5>; [71.00%]
+;;    succ:       4
+;;                5
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  free (oldp_4(D));
+  goto <bb 8>; [100.00%]
+;;    succ:       8
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+  newp_10 = realloc (oldp_4(D), amount_6(D));
+  if (newp_10 == 0B)
+    goto <bb 6>; [0.04%]
+  else
+    goto <bb 8>; [99.96%]
+;;    succ:       6
+;;                8
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  free (oldp_4(D));
+  _1 = __errno_location ();
+  *_1 = 12;
+  goto <bb 8>; [100.00%]
+;;    succ:       8
+
+;;   basic block 7, loop depth 0
+;;    pred:       2
+  newp_8 = malloc (amount_6(D)); [tail call]
+;;    succ:       8
+
+;;   basic block 8, loop depth 0
+;;    pred:       5
+;;                7
+;;                4
+;;                6
+  # newp_2 = PHI <newp_10(5), newp_8(7), 0B(4), newp_10(6)>
+  return newp_2;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (newp_2 - 2 )
+Partition 4 (oldp_4(D) - 4 )
+Partition 6 (amount_6(D) - 6 )
+Partition 8 (newp_8 - 8 )
+Partition 10 (newp_10 - 10 )
+Partition 15 (_15(D) - 15 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (newp_2 - 2 8 10 15 )
+Partition 1, base 1 (oldp_4(D) - 4 )
+Partition 2, base 2 (amount_6(D) - 6 )
+
+
+Partition map 
+
+Partition 0 (newp_2 - 2 )
+Partition 1 (oldp_4(D) - 4 )
+Partition 2 (amount_6(D) - 6 )
+Partition 3 (newp_8 - 8 )
+Partition 4 (newp_10 - 10 )
+Partition 5 (_15(D) - 15 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(11721, 0) newp_2 <-> newp_10
+(10000, 0) newp_2 <-> _15(D)
+(1743, 0) newp_2 <-> newp_8
+
+Partition map 
+
+Partition 0 (newp_2 - 2 )
+Partition 1 (oldp_4(D) - 4 )
+Partition 2 (amount_6(D) - 6 )
+Partition 3 (newp_8 - 8 )
+Partition 4 (newp_10 - 10 )
+Partition 5 (_15(D) - 15 )
+
+Coalesce list: (2)newp_2 & (10)newp_10 [map: 0, 4] : Success -> 0
+Coalesce list: (2)newp_2 & (15)_15(D) [map: 0, 5] : Success -> 0
+Coalesce list: (2)newp_2 & (8)newp_8 [map: 0, 3] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (newp_2 - 2 8 10 15 )
+Partition 2 (oldp_4(D) - 4 )
+Partition 3 (amount_6(D) - 6 )
+
+__attribute__((visibility ("default")))
+void * _nc_doalloc (void * oldp, size_t amount)
+{
+  void * newp;
+  int * _1;
+  void * _15(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (oldp_4(D) != 0B)
+    goto <bb 3>; [82.57%]
+  else
+    goto <bb 7>; [17.43%]
+;;    succ:       3
+;;                7
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  if (amount_6(D) == 0)
+    goto <bb 4>; [29.00%]
+  else
+    goto <bb 5>; [71.00%]
+;;    succ:       4
+;;                5
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  free (oldp_4(D));
+  goto <bb 8>; [100.00%]
+;;    succ:       8
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+  newp_10 = realloc (oldp_4(D), amount_6(D));
+  if (newp_10 == 0B)
+    goto <bb 6>; [0.04%]
+  else
+    goto <bb 8>; [99.96%]
+;;    succ:       6
+;;                8
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  free (oldp_4(D));
+  _1 = __errno_location ();
+  *_1 = 12;
+  goto <bb 8>; [100.00%]
+;;    succ:       8
+
+;;   basic block 7, loop depth 0
+;;    pred:       2
+  newp_8 = malloc (amount_6(D)); [tail call]
+;;    succ:       8
+
+;;   basic block 8, loop depth 0
+;;    pred:       5
+;;                7
+;;                4
+;;                6
+  # newp_2 = PHI <newp_10(5), newp_8(7), 0B(4), newp_10(6)>
+  return newp_2;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB4->BB8 : PART.1 = 0B
+
+;; Generating RTL for gimple basic block 2
+
+;; if (oldp_4(D) != 0B)
+
+(insn 8 7 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 84 [ oldp ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/doalloc.c":50:8 -1
+     (nil))
+
+(jump_insn 9 8 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/doalloc.c":50:8 -1
+     (int_list:REG_BR_PROB 187153204 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; if (amount_6(D) == 0)
+
+(insn 11 10 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 85 [ amount ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/doalloc.c":51:5 -1
+     (nil))
+
+(jump_insn 12 11 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/doalloc.c":51:5 -1
+     (int_list:REG_BR_PROB 762356700 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; free (oldp_4(D));
+
+(insn 14 13 15 (set (reg:DI 5 di)
+        (reg/v/f:DI 84 [ oldp ])) "../ncurses/./tinfo/doalloc.c":52:6 -1
+     (nil))
+
+(call_insn 15 14 0 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f5f59025d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/doalloc.c":52:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f5f59025d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; 
+
+(code_label 18 17 19 3 (nil) [0 uses])
+
+(note 19 18 0 NOTE_INSN_BASIC_BLOCK)
+
+;; newp_10 = realloc (oldp_4(D), amount_6(D));
+
+(insn 20 19 21 (set (reg:DI 4 si)
+        (reg/v:DI 85 [ amount ])) "../ncurses/./tinfo/doalloc.c":54:21 -1
+     (nil))
+
+(insn 21 20 22 (set (reg:DI 5 di)
+        (reg/v/f:DI 84 [ oldp ])) "../ncurses/./tinfo/doalloc.c":54:21 -1
+     (nil))
+
+(call_insn 22 21 23 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("realloc") [flags 0x41]  <function_decl 0x7f5f5902f600 realloc>) [0 __builtin_realloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/doalloc.c":54:21 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("realloc") [flags 0x41]  <function_decl 0x7f5f5902f600 realloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 23 22 0 (set (reg/v/f:DI 83 [ <retval> ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/doalloc.c":54:21 -1
+     (nil))
+
+;; if (newp_10 == 0B)
+
+(insn 24 23 25 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 83 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/doalloc.c":54:12 -1
+     (nil))
+
+(jump_insn 25 24 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/doalloc.c":54:12 -1
+     (int_list:REG_BR_PROB 1073312332 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; free (oldp_4(D));
+
+(insn 27 26 28 (set (reg:DI 5 di)
+        (reg/v/f:DI 84 [ oldp ])) "../ncurses/./tinfo/doalloc.c":55:6 -1
+     (nil))
+
+(call_insn 28 27 0 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f5f59025d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/doalloc.c":55:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f5f59025d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; _1 = __errno_location ();
+
+(call_insn/u 29 28 30 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__errno_location") [flags 0x41]  <function_decl 0x7f5f58e21c00 __errno_location>) [0 __errno_location S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/doalloc.c":56:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__errno_location") [flags 0x41]  <function_decl 0x7f5f58e21c00 __errno_location>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (nil))
+
+(insn 30 29 0 (set (reg/f:DI 82 [ _1 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/doalloc.c":56:6 -1
+     (nil))
+
+;; *_1 = 12;
+
+(insn 31 30 0 (set (mem:SI (reg/f:DI 82 [ _1 ]) [1 *_1+0 S4 A32])
+        (const_int 12 [0xc])) "../ncurses/./tinfo/doalloc.c":56:12 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 7
+
+;; 
+
+(code_label 34 33 35 2 (nil) [0 uses])
+
+(note 35 34 0 NOTE_INSN_BASIC_BLOCK)
+
+;; newp_8 = malloc (amount_6(D)); [tail call]
+
+(insn 36 35 37 7 (set (reg:DI 5 di)
+        (reg/v:DI 85 [ amount ])) "../ncurses/./tinfo/doalloc.c":59:9 -1
+     (nil))
+
+(call_insn/j 37 36 38 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x7f5f5902c800 malloc>) [0 __builtin_malloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/doalloc.c":59:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x7f5f5902c800 malloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+(barrier 38 37 0)
+
+;; Generating RTL for gimple basic block 8
+
+;; 
+
+(code_label 40 38 41 4 (nil) [0 uses])
+
+(note 41 40 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return newp_2;
+
+(jump_insn 42 41 43 (set (pc)
+        (label_ref 0)) "../ncurses/./tinfo/doalloc.c":61:12 -1
+     (nil))
+
+(barrier 43 42 0)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 16 from 9 to 10.
+Edge 6->9 redirected to 10
+Redirecting jump 32 from 9 to 10.
+deleting block 9
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 84 [ oldp ])
+        (reg:DI 5 di [ oldp ])) "../ncurses/./tinfo/doalloc.c":47:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:DI 85 [ amount ])
+        (reg:DI 4 si [ amount ])) "../ncurses/./tinfo/doalloc.c":47:1 -1
+     (nil))
+(note 4 3 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 4 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 84 [ oldp ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/doalloc.c":50:8 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 34)
+            (pc))) "../ncurses/./tinfo/doalloc.c":50:8 -1
+     (int_list:REG_BR_PROB 187153204 (nil))
+ -> 34)
+;;  succ:       4 [82.6% (guessed)]  count:886588624 (estimated locally) (FALLTHRU)
+;;              8 [17.4% (guessed)]  count:187153200 (estimated locally)
+
+;; basic block 4, loop depth 0, count 886588625 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [82.6% (guessed)]  count:886588624 (estimated locally) (FALLTHRU)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 85 [ amount ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/doalloc.c":51:5 -1
+     (nil))
+(jump_insn 12 11 13 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 18)
+            (pc))) "../ncurses/./tinfo/doalloc.c":51:5 -1
+     (int_list:REG_BR_PROB 762356700 (nil))
+ -> 18)
+;;  succ:       5 [29.0% (guessed)]  count:257110700 (estimated locally) (FALLTHRU)
+;;              6 [71.0% (guessed)]  count:629477925 (estimated locally)
+
+;; basic block 5, loop depth 0, count 257110700 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [29.0% (guessed)]  count:257110700 (estimated locally) (FALLTHRU)
+(note 13 12 14 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 14 13 15 5 (set (reg:DI 5 di)
+        (reg/v/f:DI 84 [ oldp ])) "../ncurses/./tinfo/doalloc.c":52:6 -1
+     (nil))
+(call_insn 15 14 5 5 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f5f59025d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/doalloc.c":52:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f5f59025d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 5 15 16 5 (set (reg/v/f:DI 83 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./tinfo/doalloc.c":53:11 -1
+     (nil))
+(jump_insn 16 5 17 5 (set (pc)
+        (label_ref:DI 44)) 807 {jump}
+     (nil)
+ -> 44)
+;;  succ:       10 [always]  count:257110700 (estimated locally)
+
+(barrier 17 16 18)
+;; basic block 6, loop depth 0, count 629477925 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [71.0% (guessed)]  count:629477925 (estimated locally)
+(code_label 18 17 19 6 3 (nil) [1 uses])
+(note 19 18 20 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 21 6 (set (reg:DI 4 si)
+        (reg/v:DI 85 [ amount ])) "../ncurses/./tinfo/doalloc.c":54:21 -1
+     (nil))
+(insn 21 20 22 6 (set (reg:DI 5 di)
+        (reg/v/f:DI 84 [ oldp ])) "../ncurses/./tinfo/doalloc.c":54:21 -1
+     (nil))
+(call_insn 22 21 23 6 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("realloc") [flags 0x41]  <function_decl 0x7f5f5902f600 realloc>) [0 __builtin_realloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/doalloc.c":54:21 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("realloc") [flags 0x41]  <function_decl 0x7f5f5902f600 realloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 23 22 24 6 (set (reg/v/f:DI 83 [ <retval> ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/doalloc.c":54:21 -1
+     (nil))
+(insn 24 23 25 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 83 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/doalloc.c":54:12 -1
+     (nil))
+(jump_insn 25 24 26 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 44)
+            (pc))) "../ncurses/./tinfo/doalloc.c":54:12 806 {*jcc}
+     (int_list:REG_BR_PROB 1073312332 (nil))
+ -> 44)
+;;  succ:       7 [0.0% (guessed)]  count:251791 (estimated locally) (FALLTHRU)
+;;              10 [100.0% (guessed)]  count:629226134 (estimated locally)
+
+;; basic block 7, loop depth 0, count 251791 (estimated locally)
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       6 [0.0% (guessed)]  count:251791 (estimated locally) (FALLTHRU)
+(note 26 25 27 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 27 26 28 7 (set (reg:DI 5 di)
+        (reg/v/f:DI 84 [ oldp ])) "../ncurses/./tinfo/doalloc.c":55:6 -1
+     (nil))
+(call_insn 28 27 29 7 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f5f59025d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/doalloc.c":55:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f5f59025d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(call_insn/u 29 28 30 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__errno_location") [flags 0x41]  <function_decl 0x7f5f58e21c00 __errno_location>) [0 __errno_location S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/doalloc.c":56:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__errno_location") [flags 0x41]  <function_decl 0x7f5f58e21c00 __errno_location>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (nil))
+(insn 30 29 31 7 (set (reg/f:DI 82 [ _1 ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/doalloc.c":56:6 -1
+     (nil))
+(insn 31 30 32 7 (set (mem:SI (reg/f:DI 82 [ _1 ]) [1 *_1+0 S4 A32])
+        (const_int 12 [0xc])) "../ncurses/./tinfo/doalloc.c":56:12 -1
+     (nil))
+(jump_insn 32 31 33 7 (set (pc)
+        (label_ref:DI 44)) "../ncurses/./tinfo/doalloc.c":56:12 807 {jump}
+     (nil)
+ -> 44)
+;;  succ:       10 [always]  count:251791 (estimated locally)
+
+(barrier 33 32 34)
+;; basic block 8, loop depth 0, count 187153200 (estimated locally), maybe hot
+;;  prev block 7, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [17.4% (guessed)]  count:187153200 (estimated locally)
+(code_label 34 33 35 8 2 (nil) [1 uses])
+(note 35 34 36 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 36 35 37 8 (set (reg:DI 5 di)
+        (reg/v:DI 85 [ amount ])) "../ncurses/./tinfo/doalloc.c":59:9 -1
+     (nil))
+(call_insn/j 37 36 38 8 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x7f5f5902c800 malloc>) [0 __builtin_malloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/doalloc.c":59:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x7f5f5902c800 malloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       EXIT [always]  count:187153200 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 38 37 44)
+;; basic block 10, loop depth 0, count 886588624 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       7 [always]  count:251791 (estimated locally)
+;;              5 [always]  count:257110700 (estimated locally)
+;;              6 [100.0% (guessed)]  count:629226134 (estimated locally)
+(code_label 44 38 47 10 1 (nil) [3 uses])
+(note 47 44 45 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 45 47 46 10 (set (reg/i:DI 0 ax)
+        (reg/v/f:DI 83 [ <retval> ])) "../ncurses/./tinfo/doalloc.c":62:1 -1
+     (nil))
+(insn 46 45 0 10 (use (reg/i:DI 0 ax)) "../ncurses/./tinfo/doalloc.c":62:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:886588624 (estimated locally) (FALLTHRU)
+

@@ -1,0 +1,260 @@
+
+;; Function flash_sp (flash_sp, funcdef_no=91, decl_uid=6535, cgraph_uid=92, symbol_order=91)
+
+
+
+try_optimize_cfg iteration 1
+
+Redirecting fallthru edge 2->3 to 9
+deleting block 3
+
+
+try_optimize_cfg iteration 2
+
+
+
+try_optimize_cfg iteration 1
+
+fix_loop_structure: fixing up loops for function
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 5 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 96 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/lib_flash.c":62:1 74 {*movdi_internal}
+     (nil))
+(note 3 2 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 3 8 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 96 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_flash.c":70:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 8 7 12 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 12)
+            (pc))) "../ncurses/./base/lib_flash.c":70:8 806 {*jcc}
+     (int_list:REG_BR_PROB 1064400276 (nil))
+ -> 12)
+;;  succ:       4 [99.1% (guessed)]  count:1064400272 (estimated locally)
+;;              9 [0.9% (guessed)]  count:9341552 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 1064400273 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [99.1% (guessed)]  count:1064400272 (estimated locally)
+(code_label 12 8 13 4 2 (nil) [1 uses])
+(note 13 12 15 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 15 13 16 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/v/f:DI 96 [ sp ])
+                    (const_int 48 [0x30])) [1 sp_12(D)->_term+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_flash.c":70:9 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 16 15 17 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 54)
+            (pc))) "../ncurses/./base/lib_flash.c":70:9 806 {*jcc}
+     (int_list:REG_BR_PROB 18683108 (nil))
+ -> 54)
+;;  succ:       5 [98.3% (guessed)]  count:1045879712 (estimated locally) (FALLTHRU)
+;;              9 [1.7% (guessed)]  count:18520561 (estimated locally)
+
+;; basic block 5, loop depth 0, count 1045879712 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [98.3% (guessed)]  count:1045879712 (estimated locally) (FALLTHRU)
+(note 17 16 18 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(call_insn 18 17 19 5 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f891ca22600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_flash.c":72:6 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f891ca22600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 19 18 20 5 (set (reg/f:DI 83 [ _2 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_flash.c":72:6 74 {*movdi_internal}
+     (nil))
+(insn 20 19 21 5 (set (reg/f:DI 97)
+        (mem/f:DI (plus:DI (reg/f:DI 83 [ _2 ])
+                (const_int 720 [0x2d0])) [40 _2->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_flash.c":72:6 74 {*movdi_internal}
+     (nil))
+(insn 21 20 22 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 97)
+                    (const_int 360 [0x168])) [5 MEM[(char * *)_3 + 360B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_flash.c":72:5 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 22 21 23 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 35)
+            (pc))) "../ncurses/./base/lib_flash.c":72:5 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 35)
+;;  succ:       6 [70.0% (guessed)]  count:732115802 (estimated locally) (FALLTHRU)
+;;              7 [30.0% (guessed)]  count:313763910 (estimated locally)
+
+;; basic block 6, loop depth 0, count 732115802 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [70.0% (guessed)]  count:732115802 (estimated locally) (FALLTHRU)
+(note 23 22 24 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(call_insn 24 23 25 6 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f891ca22600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_flash.c":73:12 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f891ca22600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 25 24 26 6 (set (reg/f:DI 86 [ _5 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_flash.c":73:12 74 {*movdi_internal}
+     (nil))
+(insn 26 25 27 6 (set (reg/f:DI 98)
+        (mem/f:DI (plus:DI (reg/f:DI 86 [ _5 ])
+                (const_int 720 [0x2d0])) [40 _5->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_flash.c":73:12 74 {*movdi_internal}
+     (nil))
+(insn 27 26 28 6 (set (reg:DI 99)
+        (mem/f:DI (plus:DI (reg/f:DI 98)
+                (const_int 360 [0x168])) [5 MEM[(char * *)_6 + 360B]+0 S8 A64])) "../ncurses/./base/lib_flash.c":73:12 74 {*movdi_internal}
+     (nil))
+(insn 28 27 29 6 (set (reg:DI 1 dx)
+        (reg:DI 99)) "../ncurses/./base/lib_flash.c":73:12 74 {*movdi_internal}
+     (nil))
+(insn 29 28 30 6 (set (reg:DI 100)
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f891cb3ca20 *.LC0>)) "../ncurses/./base/lib_flash.c":73:12 74 {*movdi_internal}
+     (nil))
+(insn 30 29 31 6 (set (reg:DI 4 si)
+        (reg:DI 100)) "../ncurses/./base/lib_flash.c":73:12 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f891cb3ca20 *.LC0>)
+        (nil)))
+(insn 31 30 32 6 (set (reg:DI 5 di)
+        (reg/v/f:DI 96 [ sp ])) "../ncurses/./base/lib_flash.c":73:12 74 {*movdi_internal}
+     (nil))
+(call_insn/j 32 31 35 6 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_putp_flush_sp") [flags 0x41]  <function_decl 0x7f891cb25e00 _nc_putp_flush_sp>) [0 _nc_putp_flush_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_flash.c":73:12 828 {*sibcall_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_putp_flush_sp") [flags 0x41]  <function_decl 0x7f891cb25e00 _nc_putp_flush_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+;;  succ:       EXIT [always]  count:732115802 (estimated locally) (ABNORMAL,SIBCALL)
+
+;; basic block 7, loop depth 0, count 313763910 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [30.0% (guessed)]  count:313763910 (estimated locally)
+(code_label 35 32 36 7 5 (nil) [1 uses])
+(note 36 35 37 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(call_insn 37 36 38 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f891ca22600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_flash.c":74:13 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f891ca22600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 38 37 39 7 (set (reg/f:DI 89 [ _18 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_flash.c":74:13 74 {*movdi_internal}
+     (nil))
+(insn 39 38 40 7 (set (reg/f:DI 101)
+        (mem/f:DI (plus:DI (reg/f:DI 89 [ _18 ])
+                (const_int 720 [0x2d0])) [40 _18->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_flash.c":74:13 74 {*movdi_internal}
+     (nil))
+(insn 40 39 41 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/f:DI 101)
+                    (const_int 8 [0x8])) [5 MEM[(char * *)_19 + 8B]+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_flash.c":74:12 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 41 40 42 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 54)
+            (pc))) "../ncurses/./base/lib_flash.c":74:12 806 {*jcc}
+     (int_list:REG_BR_PROB 18683108 (nil))
+ -> 54)
+;;  succ:       8 [98.3% (guessed)]  count:308304419 (estimated locally) (FALLTHRU)
+;;              9 [1.7% (guessed)]  count:5459491 (estimated locally)
+
+;; basic block 8, loop depth 0, count 308304419 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [98.3% (guessed)]  count:308304419 (estimated locally) (FALLTHRU)
+(note 42 41 43 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(call_insn 43 42 44 8 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f891ca22600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_flash.c":75:12 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f891ca22600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 44 43 45 8 (set (reg/f:DI 92 [ _21 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_flash.c":75:12 74 {*movdi_internal}
+     (nil))
+(insn 45 44 46 8 (set (reg/f:DI 102)
+        (mem/f:DI (plus:DI (reg/f:DI 92 [ _21 ])
+                (const_int 720 [0x2d0])) [40 _21->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_flash.c":75:12 74 {*movdi_internal}
+     (nil))
+(insn 46 45 47 8 (set (reg:DI 103)
+        (mem/f:DI (plus:DI (reg/f:DI 102)
+                (const_int 8 [0x8])) [5 MEM[(char * *)_22 + 8B]+0 S8 A64])) "../ncurses/./base/lib_flash.c":75:12 74 {*movdi_internal}
+     (nil))
+(insn 47 46 48 8 (set (reg:DI 1 dx)
+        (reg:DI 103)) "../ncurses/./base/lib_flash.c":75:12 74 {*movdi_internal}
+     (nil))
+(insn 48 47 49 8 (set (reg:DI 104)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f891cb3cab0 *.LC1>)) "../ncurses/./base/lib_flash.c":75:12 74 {*movdi_internal}
+     (nil))
+(insn 49 48 50 8 (set (reg:DI 4 si)
+        (reg:DI 104)) "../ncurses/./base/lib_flash.c":75:12 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f891cb3cab0 *.LC1>)
+        (nil)))
+(insn 50 49 51 8 (set (reg:DI 5 di)
+        (reg/v/f:DI 96 [ sp ])) "../ncurses/./base/lib_flash.c":75:12 74 {*movdi_internal}
+     (nil))
+(call_insn/j 51 50 54 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_putp_flush_sp") [flags 0x41]  <function_decl 0x7f891cb25e00 _nc_putp_flush_sp>) [0 _nc_putp_flush_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_flash.c":75:12 828 {*sibcall_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_putp_flush_sp") [flags 0x41]  <function_decl 0x7f891cb25e00 _nc_putp_flush_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+;;  succ:       EXIT [always]  count:308304419 (estimated locally) (ABNORMAL,SIBCALL)
+
+;; basic block 9, loop depth 0, count 33321603 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [0.9% (guessed)]  count:9341552 (estimated locally) (FALLTHRU)
+;;              4 [1.7% (guessed)]  count:18520561 (estimated locally)
+;;              7 [1.7% (guessed)]  count:5459491 (estimated locally)
+(code_label 54 51 55 9 3 (nil) [2 uses])
+(note 55 54 4 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 4 55 59 9 (set (reg/v:SI 95 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_flash.c":63:9 75 {*movsi_internal}
+     (nil))
+(insn 59 4 60 9 (set (reg/i:SI 0 ax)
+        (reg/v:SI 95 [ <retval> ])) "../ncurses/./base/lib_flash.c":80:1 75 {*movsi_internal}
+     (nil))
+(insn 60 59 0 9 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_flash.c":80:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:33321603 (estimated locally) (FALLTHRU)
+
+
+;; Function flash (flash, funcdef_no=92, decl_uid=5615, cgraph_uid=93, symbol_order=92)
+
+
+
+try_optimize_cfg iteration 1
+
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 3 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg:DI 84)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f891caaecf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/lib_flash.c":86:12 74 {*movdi_internal}
+     (nil))
+(insn 6 5 7 2 (set (reg:DI 5 di)
+        (reg:DI 84)) "../ncurses/./base/lib_flash.c":86:12 74 {*movdi_internal}
+     (nil))
+(call_insn/j 7 6 0 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("flash_sp") [flags 0x3]  <function_decl 0x7f891c98a400 flash_sp>) [0 flash_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_flash.c":86:12 828 {*sibcall_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("flash_sp") [flags 0x3]  <function_decl 0x7f891c98a400 flash_sp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+

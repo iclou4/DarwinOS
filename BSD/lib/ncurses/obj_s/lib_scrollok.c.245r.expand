@@ -1,0 +1,244 @@
+
+;; Function scrollok (scrollok, funcdef_no=91, decl_uid=6039, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+int scrollok (struct WINDOW * win, _Bool flag)
+{
+  int _1;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (win_3(D) != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 4>; [0.87%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  win_3(D)->_scroll = flag_5(D);
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+;;                2
+  # _1 = PHI <0(3), -1(2)>
+  return _1;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 3 (win_3(D) - 3 )
+Partition 5 (flag_5(D) - 5 )
+Partition 7 (_7(D) - 7 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_1 - 1 7 )
+Partition 1, base 1 (win_3(D) - 3 )
+Partition 2, base 2 (flag_5(D) - 5 )
+
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (win_3(D) - 3 )
+Partition 2 (flag_5(D) - 5 )
+Partition 3 (_7(D) - 7 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) _1 <-> _7(D)
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (win_3(D) - 3 )
+Partition 2 (flag_5(D) - 5 )
+Partition 3 (_7(D) - 7 )
+
+Coalesce list: (1)_1 & (7)_7(D) [map: 0, 3] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 7 )
+Partition 1 (win_3(D) - 3 )
+Partition 2 (flag_5(D) - 5 )
+
+__attribute__((visibility ("default")))
+int scrollok (struct WINDOW * win, _Bool flag)
+{
+  int _1;
+  int _7(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (win_3(D) != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 4>; [0.87%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  win_3(D)->_scroll = flag_5(D);
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+;;                2
+  # _1 = PHI <0(3), -1(2)>
+  return _1;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB3->BB4 : PART.0 = 0
+Inserting a value copy on edge BB2->BB4 : PART.0 = -1
+
+;; Generating RTL for gimple basic block 2
+
+;; if (win_3(D) != 0B)
+
+(insn 10 9 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 83 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_scrollok.c":51:8 -1
+     (nil))
+
+(jump_insn 11 10 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_scrollok.c":51:8 -1
+     (int_list:REG_BR_PROB 9341556 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; win_3(D)->_scroll = flag_5(D);
+
+(insn 13 12 0 (set (mem:QI (plus:DI (reg/v/f:DI 83 [ win ])
+                (const_int 39 [0x27])) [1 win_3(D)->_scroll+0 S1 A8])
+        (reg/v:QI 84 [ flag ])) "../ncurses/./base/lib_scrollok.c":52:15 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 4
+
+;; 
+
+(code_label 14 13 15 2 (nil) [0 uses])
+
+(note 15 14 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return _1;
+
+(jump_insn 16 15 17 (set (pc)
+        (label_ref 0)) "../ncurses/./base/lib_scrollok.c":56:1 -1
+     (nil))
+
+(barrier 17 16 0)
+Edge 2->4 redirected to 7
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 22 from 6 to 7.
+Merging block 6 into block 5...
+Merged blocks 5 and 6.
+Merged 5 and 6 without moving.
+Removing jump 16.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 8 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 8 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg/v/f:DI 83 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_scrollok.c":48:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg:SI 85)
+        (reg:SI 4 si [ flag ])) "../ncurses/./base/lib_scrollok.c":48:1 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:QI 84 [ flag ])
+        (subreg:QI (reg:SI 85) 0)) "../ncurses/./base/lib_scrollok.c":48:1 -1
+     (nil))
+(note 5 4 10 2 NOTE_INSN_FUNCTION_BEG)
+(insn 10 5 11 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 83 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_scrollok.c":51:8 -1
+     (nil))
+(jump_insn 11 10 12 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 25)
+            (pc))) "../ncurses/./base/lib_scrollok.c":51:8 806 {*jcc}
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 25)
+;;  succ:       4 [99.1% (guessed)]  count:1064400272 (estimated locally) (FALLTHRU)
+;;              5 [0.9% (guessed)]  count:9341552 (estimated locally)
+
+;; basic block 4, loop depth 0, count 1064400273 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [99.1% (guessed)]  count:1064400272 (estimated locally) (FALLTHRU)
+(note 12 11 13 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 13 12 6 4 (set (mem:QI (plus:DI (reg/v/f:DI 83 [ win ])
+                (const_int 39 [0x27])) [1 win_3(D)->_scroll+0 S1 A8])
+        (reg/v:QI 84 [ flag ])) "../ncurses/./base/lib_scrollok.c":52:15 -1
+     (nil))
+(insn 6 13 22 4 (set (reg:SI 82 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_scrollok.c":53:2 -1
+     (nil))
+(jump_insn 22 6 23 4 (set (pc)
+        (label_ref:DI 18)) "../ncurses/./base/lib_scrollok.c":53:2 807 {jump}
+     (nil)
+ -> 18)
+;;  succ:       7 [always]  count:1064400273 (estimated locally)
+
+(barrier 23 22 25)
+;; basic block 5, loop depth 0, count 9341552 (estimated locally), maybe hot
+;;  prev block 4, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [0.9% (guessed)]  count:9341552 (estimated locally)
+(code_label 25 23 24 5 3 (nil) [1 uses])
+(note 24 25 7 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 7 24 18 5 (set (reg:SI 82 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_scrollok.c":55:2 -1
+     (nil))
+;;  succ:       7 [always]  count:9341552 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 5, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       5 [always]  count:9341552 (estimated locally) (FALLTHRU)
+;;              4 [always]  count:1064400273 (estimated locally)
+(code_label 18 7 21 7 1 (nil) [1 uses])
+(note 21 18 19 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 19 21 20 7 (set (reg/i:SI 0 ax)
+        (reg:SI 82 [ <retval> ])) "../ncurses/./base/lib_scrollok.c":56:1 -1
+     (nil))
+(insn 20 19 0 7 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_scrollok.c":56:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+

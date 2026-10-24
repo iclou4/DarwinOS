@@ -1,0 +1,62 @@
+
+;; Function wclear (wclear, funcdef_no=91, decl_uid=6221, cgraph_uid=92, symbol_order=91)
+
+(note 1 0 4 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 83 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_clear.c":48:1 74 {*movdi_internal}
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 83 [ win ])) "../ncurses/./base/lib_clear.c":53:17 74 {*movdi_internal}
+     (nil))
+(call_insn 7 6 8 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("werase") [flags 0x41]  <function_decl 0x7f5bcb5b2700 werase>) [0 werase S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_clear.c":53:17 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("werase") [flags 0x41]  <function_decl 0x7f5bcb5b2700 werase>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 8 7 9 2 (set (reg/v:SI 82 [ <retval> ])
+        (reg:SI 0 ax)) "../ncurses/./base/lib_clear.c":53:17 75 {*movsi_internal}
+     (nil))
+(insn 9 8 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 82 [ <retval> ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_clear.c":53:8 11 {*cmpsi_1}
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 17)
+            (pc))) "../ncurses/./base/lib_clear.c":53:8 806 {*jcc}
+     (int_list:REG_BR_PROB 365072228 (nil))
+ -> 17)
+;;  succ:       4 [66.0% (guessed)]  count:708669600 (estimated locally) (FALLTHRU)
+;;              6 [34.0% (guessed)]  count:365072224 (estimated locally)
+
+;; basic block 4, loop depth 0, count 708669601 (estimated locally), maybe hot
+;;  prev block 2, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [66.0% (guessed)]  count:708669600 (estimated locally) (FALLTHRU)
+(note 11 10 12 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 17 4 (set (mem:QI (plus:DI (reg/v/f:DI 83 [ win ])
+                (const_int 37 [0x25])) [1 win_3(D)->_clear+0 S1 A8])
+        (const_int 1 [0x1])) "../ncurses/./base/lib_clear.c":54:14 77 {*movqi_internal}
+     (nil))
+;;  succ:       6 [always]  count:708669601 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 4, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       4 [always]  count:708669601 (estimated locally) (FALLTHRU)
+;;              2 [34.0% (guessed)]  count:365072224 (estimated locally)
+(code_label 17 12 20 6 1 (nil) [1 uses])
+(note 20 17 18 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 18 20 19 6 (set (reg/i:SI 0 ax)
+        (reg/v:SI 82 [ <retval> ])) "../ncurses/./base/lib_clear.c":57:1 75 {*movsi_internal}
+     (nil))
+(insn 19 18 0 6 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_clear.c":57:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+

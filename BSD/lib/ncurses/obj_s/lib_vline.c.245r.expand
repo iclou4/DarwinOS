@@ -1,0 +1,3174 @@
+
+;; Function wvline (wvline, funcdef_no=91, decl_uid=6329, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+int wvline (struct WINDOW * win, chtype ch, int n)
+{
+  long unsigned int ivtmp.11;
+  struct cchar_t * _cp;
+  struct ldat * line;
+  int end;
+  int col;
+  int row;
+  struct cchar_t wch;
+  int code;
+  int _1;
+  int _2;
+  chtype * _3;
+  unsigned int _4;
+  int _5;
+  int _6;
+  chtype * _7;
+  unsigned int _8;
+  long unsigned int _9;
+  chtype * _10;
+  unsigned int _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  int _14;
+  int _15;
+  unsigned int _16;
+  unsigned int _18;
+  unsigned int _19;
+  struct cchar_t * pretmp_20;
+  unsigned int _21;
+  int ch.0_22;
+  int _23;
+  long unsigned int _24;
+  long unsigned int _25;
+  long unsigned int _26;
+  int _27;
+  int _28;
+  unsigned int _29;
+  unsigned int _31;
+  unsigned int _32;
+  unsigned int _34;
+  struct ldat * _35;
+  long unsigned int _39;
+  long unsigned int _40;
+  struct cchar_t * _41;
+  unsigned int _42;
+  int _43;
+  int _44;
+  int _45;
+  sizetype _46;
+  struct cchar_t * _47;
+  struct cchar_t * _48;
+  unsigned int _49;
+  unsigned int _50;
+  int _51;
+  long unsigned int _53;
+  sizetype _55;
+  struct cchar_t * _56;
+  unsigned int _57;
+  int _58;
+  int _59;
+  int _60;
+  struct cchar_t * _61;
+  struct cchar_t * _62;
+  unsigned int _63;
+  unsigned int _64;
+  struct cchar_t * _68;
+  int _69;
+  int _70;
+  unsigned int _72;
+  unsigned int _77;
+  long unsigned int _94;
+  int _112;
+  struct cchar_t * prephitmp_119;
+  struct cchar_t * prephitmp_120;
+  unsigned int _122;
+  unsigned int _131;
+  int _135;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (win_79(D) != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 24>; [0.87%]
+;;    succ:       3
+;;                24
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  row_81 = win_79(D)->_cury;
+  col_82 = win_79(D)->_curx;
+  _1 = row_81 + n_83(D);
+  end_84 = _1 + -1;
+  _2 = win_79(D)->_maxy;
+  _112 = MIN_EXPR <_2, end_84>;
+  if (ch_85(D) == 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+;;    succ:       4
+;;                5
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  __builtin_memset (&MEM <char> [(void *)&wch + 8B], 0, 24);
+  _3 = _nc_acs_map ();
+  _4 = MEM[(chtype *)_3 + 480B];
+  _5 = (int) _4;
+  _6 = _5 & 255;
+  wch.chars[0] = _6;
+  _7 = _nc_acs_map ();
+  _8 = MEM[(chtype *)_7 + 480B];
+  _10 = _nc_acs_map ();
+  _11 = MEM[(chtype *)_10 + 480B];
+  _12 = (long unsigned int) _11;
+  _13 = _12 >> 8;
+  _14 = (int) _13;
+  _15 = _14 & 255;
+  _16 = _8 & 4294901760;
+  _18 = (unsigned int) _15;
+  _19 = _18 << 8;
+  _21 = _16 | _19;
+  goto <bb 6>; [100.00%]
+;;    succ:       6
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+  __builtin_memset (&MEM <char> [(void *)&wch + 8B], 0, 24);
+  ch.0_22 = (int) ch_85(D);
+  _23 = ch.0_22 & 255;
+  wch.chars[0] = _23;
+  _25 = (long unsigned int) ch_85(D);
+  _26 = _25 >> 8;
+  _27 = (int) _26;
+  _28 = _27 & 255;
+  _29 = ch_85(D) & 4294901760;
+  _31 = (unsigned int) _28;
+  _32 = _31 << 8;
+  _34 = _29 | _32;
+;;    succ:       6
+
+;;   basic block 6, loop depth 0
+;;    pred:       4
+;;                5
+  # _131 = PHI <_21(4), _34(5)>
+  # _135 = PHI <_15(4), _28(5)>
+  wch.ext_color = _135;
+  wch.attr = _131;
+  wch = _nc_render (win_79(D), wch);
+  if (row_81 <= _112)
+    goto <bb 8>; [89.00%]
+  else
+    goto <bb 7>; [11.00%]
+;;    succ:       8
+;;                7
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+;;                23
+  _nc_synchook (win_79(D));
+  wch ={v} {CLOBBER};
+  goto <bb 24>; [100.00%]
+;;    succ:       24
+
+;;   basic block 8, loop depth 0
+;;    pred:       6
+  _39 = (long unsigned int) col_82;
+  _40 = _39 * 32;
+  _46 = _40 + 18446744073709551584;
+  _55 = _40 + 32;
+  _94 = (long unsigned int) _112;
+  ivtmp.11_88 = _94 * 24;
+  _122 = (unsigned int) _112;
+  _77 = (unsigned int) row_81;
+  _72 = _122 - _77;
+  _24 = (long unsigned int) _72;
+  _9 = _94 - _24;
+  _53 = _9 * 24;
+;;    succ:       9
+
+;;   basic block 9, loop depth 1
+;;    pred:       23
+;;                8
+  # ivtmp.11_87 = PHI <ivtmp.11_93(23), ivtmp.11_88(8)>
+  _35 = win_79(D)->_line;
+  line_98 = _35 + ivtmp.11_87;
+  pretmp_20 = line_98->text;
+  if (col_82 > 0)
+    goto <bb 10>; [59.00%]
+  else
+    goto <bb 13>; [41.00%]
+;;    succ:       10
+;;                13
+
+;;   basic block 10, loop depth 1
+;;    pred:       9
+  _41 = pretmp_20 + _40;
+  _42 = _41->attr;
+  _43 = (int) _42;
+  _44 = _43 & 254;
+  if (_44 != 0)
+    goto <bb 11>; [50.00%]
+  else
+    goto <bb 13>; [50.00%]
+;;    succ:       11
+;;                13
+
+;;   basic block 11, loop depth 1
+;;    pred:       10
+  _45 = _43 & 224;
+  if (_45 == 0)
+    goto <bb 12>; [33.00%]
+  else
+    goto <bb 13>; [67.00%]
+;;    succ:       12
+;;                13
+
+;;   basic block 12, loop depth 1
+;;    pred:       11
+  _cp_99 = pretmp_20 + _46;
+  __builtin_memset (_cp_99, 0, 32);
+  _cp_99->chars[0] = 32;
+  _47 = line_98->text;
+  _48 = _47 + _46;
+  _48->ext_color = 0;
+  _49 = _48->attr;
+  _50 = _49 & 4294902015;
+  _48->attr = _50;
+;;    succ:       13
+
+;;   basic block 13, loop depth 1
+;;    pred:       9
+;;                10
+;;                11
+;;                12
+  # prephitmp_120 = PHI <pretmp_20(9), pretmp_20(10), pretmp_20(11), _47(12)>
+  _51 = win_79(D)->_maxx;
+  if (_51 > col_82)
+    goto <bb 14>; [50.00%]
+  else
+    goto <bb 17>; [50.00%]
+;;    succ:       14
+;;                17
+
+;;   basic block 14, loop depth 1
+;;    pred:       13
+  _56 = prephitmp_120 + _55;
+  _57 = _56->attr;
+  _58 = (int) _57;
+  _59 = _58 & 254;
+  if (_59 != 0)
+    goto <bb 15>; [50.00%]
+  else
+    goto <bb 17>; [50.00%]
+;;    succ:       15
+;;                17
+
+;;   basic block 15, loop depth 1
+;;    pred:       14
+  _60 = _58 & 224;
+  if (_60 == 0)
+    goto <bb 16>; [33.00%]
+  else
+    goto <bb 17>; [67.00%]
+;;    succ:       16
+;;                17
+
+;;   basic block 16, loop depth 1
+;;    pred:       15
+  __builtin_memset (_56, 0, 32);
+  _56->chars[0] = 32;
+  _61 = line_98->text;
+  _62 = _61 + _55;
+  _62->ext_color = 0;
+  _63 = _62->attr;
+  _64 = _63 & 4294902015;
+  _62->attr = _64;
+;;    succ:       17
+
+;;   basic block 17, loop depth 1
+;;    pred:       13
+;;                14
+;;                15
+;;                16
+  # prephitmp_119 = PHI <prephitmp_120(13), prephitmp_120(14), prephitmp_120(15), _61(16)>
+  _68 = prephitmp_119 + _40;
+  *_68 = wch;
+  _69 = line_98->firstchar;
+  if (_69 == -1)
+    goto <bb 18>; [34.00%]
+  else
+    goto <bb 19>; [66.00%]
+;;    succ:       18
+;;                19
+
+;;   basic block 18, loop depth 1
+;;    pred:       17
+  line_98->lastchar = col_82;
+  line_98->firstchar = col_82;
+  goto <bb 23>; [100.00%]
+;;    succ:       23
+
+;;   basic block 19, loop depth 1
+;;    pred:       17
+  if (_69 > col_82)
+    goto <bb 20>; [50.00%]
+  else
+    goto <bb 21>; [50.00%]
+;;    succ:       20
+;;                21
+
+;;   basic block 20, loop depth 1
+;;    pred:       19
+  line_98->firstchar = col_82;
+  goto <bb 23>; [100.00%]
+;;    succ:       23
+
+;;   basic block 21, loop depth 1
+;;    pred:       19
+  _70 = line_98->lastchar;
+  if (_70 < col_82)
+    goto <bb 22>; [50.00%]
+  else
+    goto <bb 23>; [50.00%]
+;;    succ:       22
+;;                23
+
+;;   basic block 22, loop depth 1
+;;    pred:       21
+  line_98->lastchar = col_82;
+;;    succ:       23
+
+;;   basic block 23, loop depth 1
+;;    pred:       18
+;;                20
+;;                21
+;;                22
+  ivtmp.11_93 = ivtmp.11_87 + 18446744073709551592;
+  if (_53 != ivtmp.11_87)
+    goto <bb 9>; [89.00%]
+  else
+    goto <bb 7>; [11.00%]
+;;    succ:       9
+;;                7
+
+;;   basic block 24, loop depth 0
+;;    pred:       2
+;;                7
+  # code_71 = PHI <-1(2), 0(7)>
+  return code_71;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 4 (_4 - 4 )
+Partition 5 (_5 - 5 )
+Partition 6 (_6 - 6 )
+Partition 7 (_7 - 7 )
+Partition 8 (_8 - 8 )
+Partition 9 (_9 - 9 )
+Partition 10 (_10 - 10 )
+Partition 11 (_11 - 11 )
+Partition 12 (_12 - 12 )
+Partition 13 (_13 - 13 )
+Partition 14 (_14 - 14 )
+Partition 15 (_15 - 15 )
+Partition 16 (_16 - 16 )
+Partition 18 (_18 - 18 )
+Partition 19 (_19 - 19 )
+Partition 20 (pretmp_20 - 20 )
+Partition 21 (_21 - 21 )
+Partition 22 (ch.0_22 - 22 )
+Partition 23 (_23 - 23 )
+Partition 24 (_24 - 24 )
+Partition 25 (_25 - 25 )
+Partition 26 (_26 - 26 )
+Partition 27 (_27 - 27 )
+Partition 28 (_28 - 28 )
+Partition 29 (_29 - 29 )
+Partition 31 (_31 - 31 )
+Partition 32 (_32 - 32 )
+Partition 34 (_34 - 34 )
+Partition 35 (_35 - 35 )
+Partition 39 (_39 - 39 )
+Partition 40 (_40 - 40 )
+Partition 41 (_41 - 41 )
+Partition 42 (_42 - 42 )
+Partition 43 (_43 - 43 )
+Partition 44 (_44 - 44 )
+Partition 45 (_45 - 45 )
+Partition 46 (_46 - 46 )
+Partition 47 (_47 - 47 )
+Partition 48 (_48 - 48 )
+Partition 49 (_49 - 49 )
+Partition 50 (_50 - 50 )
+Partition 51 (_51 - 51 )
+Partition 53 (_53 - 53 )
+Partition 55 (_55 - 55 )
+Partition 56 (_56 - 56 )
+Partition 57 (_57 - 57 )
+Partition 58 (_58 - 58 )
+Partition 59 (_59 - 59 )
+Partition 60 (_60 - 60 )
+Partition 61 (_61 - 61 )
+Partition 62 (_62 - 62 )
+Partition 63 (_63 - 63 )
+Partition 64 (_64 - 64 )
+Partition 66 (_66(D) - 66 )
+Partition 68 (_68 - 68 )
+Partition 69 (_69 - 69 )
+Partition 70 (_70 - 70 )
+Partition 71 (code_71 - 71 )
+Partition 72 (_72 - 72 )
+Partition 77 (_77 - 77 )
+Partition 79 (win_79(D) - 79 )
+Partition 81 (row_81 - 81 )
+Partition 82 (col_82 - 82 )
+Partition 83 (n_83(D) - 83 )
+Partition 84 (end_84 - 84 )
+Partition 85 (ch_85(D) - 85 )
+Partition 87 (ivtmp.11_87 - 87 )
+Partition 88 (ivtmp.11_88 - 88 )
+Partition 93 (ivtmp.11_93 - 93 )
+Partition 94 (_94 - 94 )
+Partition 98 (line_98 - 98 )
+Partition 99 (_cp_99 - 99 )
+Partition 112 (_112 - 112 )
+Partition 119 (prephitmp_119 - 119 )
+Partition 120 (prephitmp_120 - 120 )
+Partition 122 (_122 - 122 )
+Partition 131 (_131 - 131 )
+Partition 135 (_135 - 135 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_15 - 15 28 135 )
+Partition 1, base 1 (pretmp_20 - 20 47 61 119 120 )
+Partition 2, base 2 (_21 - 21 34 131 )
+Partition 7, base 3 (_66(D) - 66 71 )
+Partition 9, base 4 (win_79(D) - 79 )
+Partition 10, base 5 (n_83(D) - 83 )
+Partition 11, base 6 (ch_85(D) - 85 )
+Partition 12, base 7 (ivtmp.11_87 - 87 88 93 )
+
+
+Partition map 
+
+Partition 0 (_15 - 15 )
+Partition 1 (pretmp_20 - 20 )
+Partition 2 (_21 - 21 )
+Partition 3 (_28 - 28 )
+Partition 4 (_34 - 34 )
+Partition 5 (_47 - 47 )
+Partition 6 (_61 - 61 )
+Partition 7 (_66(D) - 66 )
+Partition 8 (code_71 - 71 )
+Partition 9 (win_79(D) - 79 )
+Partition 10 (n_83(D) - 83 )
+Partition 11 (ch_85(D) - 85 )
+Partition 12 (ivtmp.11_87 - 87 )
+Partition 13 (ivtmp.11_88 - 88 )
+Partition 14 (ivtmp.11_93 - 93 )
+Partition 15 (prephitmp_119 - 119 )
+Partition 16 (prephitmp_120 - 120 )
+Partition 17 (_131 - 131 )
+Partition 18 (_135 - 135 )
+
+
+Conflict graph:
+12: 14
+14: 12
+
+After sorting:
+Sorted Coalesce list:
+(16332, 0) prephitmp_119 <-> prephitmp_120
+(16068, 0) pretmp_20 <-> prephitmp_120
+(15842, 0) ivtmp.11_87 <-> ivtmp.11_93
+(1110, 0) _66(D) <-> code_71
+(979, 0) ivtmp.11_87 <-> ivtmp.11_88
+(866, 0) _47 <-> prephitmp_120
+(734, 0) _61 <-> prephitmp_119
+(550, 0) _21 <-> _131
+(550, 0) _34 <-> _131
+(550, 0) _15 <-> _135
+(550, 0) _28 <-> _135
+
+Partition map 
+
+Partition 0 (_15 - 15 )
+Partition 1 (pretmp_20 - 20 )
+Partition 2 (_21 - 21 )
+Partition 3 (_28 - 28 )
+Partition 4 (_34 - 34 )
+Partition 5 (_47 - 47 )
+Partition 6 (_61 - 61 )
+Partition 7 (_66(D) - 66 )
+Partition 8 (code_71 - 71 )
+Partition 9 (win_79(D) - 79 )
+Partition 10 (n_83(D) - 83 )
+Partition 11 (ch_85(D) - 85 )
+Partition 12 (ivtmp.11_87 - 87 )
+Partition 13 (ivtmp.11_88 - 88 )
+Partition 14 (ivtmp.11_93 - 93 )
+Partition 15 (prephitmp_119 - 119 )
+Partition 16 (prephitmp_120 - 120 )
+Partition 17 (_131 - 131 )
+Partition 18 (_135 - 135 )
+
+Coalesce list: (119)prephitmp_119 & (120)prephitmp_120 [map: 15, 16] : Success -> 15
+Coalesce list: (20)pretmp_20 & (120)prephitmp_119 [map: 1, 15] : Success -> 15
+Coalesce list: (87)ivtmp.11_87 & (93)ivtmp.11_93 [map: 12, 14] : Fail due to conflict
+Coalesce list: (66)_66(D) & (71)code_71 [map: 7, 8] : Success -> 7
+Coalesce list: (87)ivtmp.11_87 & (88)ivtmp.11_88 [map: 12, 13] : Success -> 12
+Coalesce list: (47)_47 & (120)prephitmp_119 [map: 5, 15] : Success -> 15
+Coalesce list: (61)_61 & (119)prephitmp_119 [map: 6, 15] : Success -> 15
+Coalesce list: (21)_21 & (131)_131 [map: 2, 17] : Success -> 2
+Coalesce list: (34)_34 & (131)_21 [map: 4, 2] : Success -> 2
+Coalesce list: (15)_15 & (135)_135 [map: 0, 18] : Success -> 0
+Coalesce list: (28)_28 & (135)_15 [map: 3, 0] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_2 - 2 )
+Partition 2 (_3 - 3 )
+Partition 3 (_4 - 4 )
+Partition 4 (_5 - 5 )
+Partition 5 (_6 - 6 )
+Partition 6 (_7 - 7 )
+Partition 7 (_8 - 8 )
+Partition 8 (_9 - 9 )
+Partition 9 (_10 - 10 )
+Partition 10 (_11 - 11 )
+Partition 11 (_12 - 12 )
+Partition 12 (_13 - 13 )
+Partition 13 (_14 - 14 )
+Partition 14 (_15 - 15 28 135 )
+Partition 15 (_16 - 16 )
+Partition 16 (_18 - 18 )
+Partition 17 (_19 - 19 )
+Partition 18 (_21 - 21 34 131 )
+Partition 19 (ch.0_22 - 22 )
+Partition 20 (_23 - 23 )
+Partition 21 (_24 - 24 )
+Partition 22 (_25 - 25 )
+Partition 23 (_26 - 26 )
+Partition 24 (_27 - 27 )
+Partition 25 (_29 - 29 )
+Partition 26 (_31 - 31 )
+Partition 27 (_32 - 32 )
+Partition 28 (_35 - 35 )
+Partition 29 (_39 - 39 )
+Partition 30 (_40 - 40 )
+Partition 31 (_41 - 41 )
+Partition 32 (_42 - 42 )
+Partition 33 (_43 - 43 )
+Partition 34 (_44 - 44 )
+Partition 35 (_45 - 45 )
+Partition 36 (_46 - 46 )
+Partition 37 (_48 - 48 )
+Partition 38 (_49 - 49 )
+Partition 39 (_50 - 50 )
+Partition 40 (_51 - 51 )
+Partition 41 (_53 - 53 )
+Partition 42 (_55 - 55 )
+Partition 43 (_56 - 56 )
+Partition 44 (_57 - 57 )
+Partition 45 (_58 - 58 )
+Partition 46 (_59 - 59 )
+Partition 47 (_60 - 60 )
+Partition 48 (_62 - 62 )
+Partition 49 (_63 - 63 )
+Partition 50 (_64 - 64 )
+Partition 51 (_66(D) - 66 71 )
+Partition 52 (_68 - 68 )
+Partition 53 (_69 - 69 )
+Partition 54 (_70 - 70 )
+Partition 55 (_72 - 72 )
+Partition 56 (_77 - 77 )
+Partition 57 (win_79(D) - 79 )
+Partition 58 (row_81 - 81 )
+Partition 59 (col_82 - 82 )
+Partition 60 (n_83(D) - 83 )
+Partition 61 (end_84 - 84 )
+Partition 62 (ch_85(D) - 85 )
+Partition 63 (ivtmp.11_87 - 87 88 )
+Partition 64 (ivtmp.11_93 - 93 )
+Partition 65 (_94 - 94 )
+Partition 66 (line_98 - 98 )
+Partition 67 (_cp_99 - 99 )
+Partition 68 (_112 - 112 )
+Partition 69 (prephitmp_119 - 20 47 61 119 120 )
+Partition 70 (_122 - 122 )
+
+
+Replacing Expressions
+_1 replace with --> _1 = row_81 + n_83(D);
+
+_2 replace with --> _2 = win_79(D)->_maxy;
+
+_4 replace with --> _4 = MEM[(chtype *)_3 + 480B];
+
+_5 replace with --> _5 = (int) _4;
+
+_6 replace with --> _6 = _5 & 255;
+
+_9 replace with --> _9 = _94 - _24;
+
+_11 replace with --> _11 = MEM[(chtype *)_10 + 480B];
+
+_12 replace with --> _12 = (long unsigned int) _11;
+
+_13 replace with --> _13 = _12 >> 8;
+
+_14 replace with --> _14 = (int) _13;
+
+_16 replace with --> _16 = _8 & 4294901760;
+
+_18 replace with --> _18 = (unsigned int) _15;
+
+_19 replace with --> _19 = _18 << 8;
+
+ch.0_22 replace with --> ch.0_22 = (int) ch_85(D);
+
+_23 replace with --> _23 = ch.0_22 & 255;
+
+_24 replace with --> _24 = (long unsigned int) _72;
+
+_25 replace with --> _25 = (long unsigned int) ch_85(D);
+
+_26 replace with --> _26 = _25 >> 8;
+
+_27 replace with --> _27 = (int) _26;
+
+_29 replace with --> _29 = ch_85(D) & 4294901760;
+
+_31 replace with --> _31 = (unsigned int) _28;
+
+_32 replace with --> _32 = _31 << 8;
+
+_35 replace with --> _35 = win_79(D)->_line;
+
+_39 replace with --> _39 = (long unsigned int) col_82;
+
+_41 replace with --> _41 = pretmp_20 + _40;
+
+_42 replace with --> _42 = _41->attr;
+
+_44 replace with --> _44 = _43 & 254;
+
+_45 replace with --> _45 = _43 & 224;
+
+_49 replace with --> _49 = _48->attr;
+
+_50 replace with --> _50 = _49 & 4294902015;
+
+_51 replace with --> _51 = win_79(D)->_maxx;
+
+_57 replace with --> _57 = _56->attr;
+
+_59 replace with --> _59 = _58 & 254;
+
+_60 replace with --> _60 = _58 & 224;
+
+_63 replace with --> _63 = _62->attr;
+
+_64 replace with --> _64 = _63 & 4294902015;
+
+_68 replace with --> _68 = prephitmp_119 + _40;
+
+_70 replace with --> _70 = line_98->lastchar;
+
+_72 replace with --> _72 = _122 - _77;
+
+_77 replace with --> _77 = (unsigned int) row_81;
+
+end_84 replace with --> end_84 = _1 + -1;
+
+_122 replace with --> _122 = (unsigned int) _112;
+
+
+__attribute__((visibility ("default")))
+int wvline (struct WINDOW * win, chtype ch, int n)
+{
+  long unsigned int ivtmp.11;
+  struct cchar_t * _cp;
+  struct ldat * line;
+  int end;
+  int col;
+  int row;
+  struct cchar_t wch;
+  int code;
+  int _1;
+  int _2;
+  chtype * _3;
+  unsigned int _4;
+  int _5;
+  int _6;
+  chtype * _7;
+  unsigned int _8;
+  long unsigned int _9;
+  chtype * _10;
+  unsigned int _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  int _14;
+  int _15;
+  unsigned int _16;
+  unsigned int _18;
+  unsigned int _19;
+  struct cchar_t * pretmp_20;
+  unsigned int _21;
+  int ch.0_22;
+  int _23;
+  long unsigned int _24;
+  long unsigned int _25;
+  long unsigned int _26;
+  int _27;
+  int _28;
+  unsigned int _29;
+  unsigned int _31;
+  unsigned int _32;
+  unsigned int _34;
+  struct ldat * _35;
+  long unsigned int _39;
+  long unsigned int _40;
+  struct cchar_t * _41;
+  unsigned int _42;
+  int _43;
+  int _44;
+  int _45;
+  sizetype _46;
+  struct cchar_t * _47;
+  struct cchar_t * _48;
+  unsigned int _49;
+  unsigned int _50;
+  int _51;
+  long unsigned int _53;
+  sizetype _55;
+  struct cchar_t * _56;
+  unsigned int _57;
+  int _58;
+  int _59;
+  int _60;
+  struct cchar_t * _61;
+  struct cchar_t * _62;
+  unsigned int _63;
+  unsigned int _64;
+  int _66(D);
+  struct cchar_t * _68;
+  int _69;
+  int _70;
+  unsigned int _72;
+  unsigned int _77;
+  long unsigned int _94;
+  int _112;
+  struct cchar_t * prephitmp_119;
+  struct cchar_t * prephitmp_120;
+  unsigned int _122;
+  unsigned int _131;
+  int _135;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (win_79(D) != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 24>; [0.87%]
+;;    succ:       3
+;;                24
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  row_81 = win_79(D)->_cury;
+  col_82 = win_79(D)->_curx;
+  _1 = row_81 + n_83(D);
+  end_84 = _1 + -1;
+  _2 = win_79(D)->_maxy;
+  _112 = MIN_EXPR <_2, end_84>;
+  if (ch_85(D) == 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+;;    succ:       4
+;;                5
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  __builtin_memset (&MEM <char> [(void *)&wch + 8B], 0, 24);
+  _3 = _nc_acs_map ();
+  _4 = MEM[(chtype *)_3 + 480B];
+  _5 = (int) _4;
+  _6 = _5 & 255;
+  wch.chars[0] = _6;
+  _7 = _nc_acs_map ();
+  _8 = MEM[(chtype *)_7 + 480B];
+  _10 = _nc_acs_map ();
+  _11 = MEM[(chtype *)_10 + 480B];
+  _12 = (long unsigned int) _11;
+  _13 = _12 >> 8;
+  _14 = (int) _13;
+  _15 = _14 & 255;
+  _16 = _8 & 4294901760;
+  _18 = (unsigned int) _15;
+  _19 = _18 << 8;
+  _21 = _16 | _19;
+  goto <bb 6>; [100.00%]
+;;    succ:       6
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+  __builtin_memset (&MEM <char> [(void *)&wch + 8B], 0, 24);
+  ch.0_22 = (int) ch_85(D);
+  _23 = ch.0_22 & 255;
+  wch.chars[0] = _23;
+  _25 = (long unsigned int) ch_85(D);
+  _26 = _25 >> 8;
+  _27 = (int) _26;
+  _28 = _27 & 255;
+  _29 = ch_85(D) & 4294901760;
+  _31 = (unsigned int) _28;
+  _32 = _31 << 8;
+  _34 = _29 | _32;
+;;    succ:       6
+
+;;   basic block 6, loop depth 0
+;;    pred:       4
+;;                5
+  # _131 = PHI <_21(4), _34(5)>
+  # _135 = PHI <_15(4), _28(5)>
+  wch.ext_color = _135;
+  wch.attr = _131;
+  wch = _nc_render (win_79(D), wch);
+  if (row_81 <= _112)
+    goto <bb 8>; [89.00%]
+  else
+    goto <bb 7>; [11.00%]
+;;    succ:       8
+;;                7
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+;;                23
+  _nc_synchook (win_79(D));
+  wch ={v} {CLOBBER};
+  goto <bb 24>; [100.00%]
+;;    succ:       24
+
+;;   basic block 8, loop depth 0
+;;    pred:       6
+  _39 = (long unsigned int) col_82;
+  _40 = _39 * 32;
+  _46 = _40 + 18446744073709551584;
+  _55 = _40 + 32;
+  _94 = (long unsigned int) _112;
+  ivtmp.11_88 = _94 * 24;
+  _122 = (unsigned int) _112;
+  _77 = (unsigned int) row_81;
+  _72 = _122 - _77;
+  _24 = (long unsigned int) _72;
+  _9 = _94 - _24;
+  _53 = _9 * 24;
+;;    succ:       9
+
+;;   basic block 9, loop depth 1
+;;    pred:       23
+;;                8
+  # ivtmp.11_87 = PHI <ivtmp.11_93(23), ivtmp.11_88(8)>
+  _35 = win_79(D)->_line;
+  line_98 = _35 + ivtmp.11_87;
+  pretmp_20 = line_98->text;
+  if (col_82 > 0)
+    goto <bb 10>; [59.00%]
+  else
+    goto <bb 13>; [41.00%]
+;;    succ:       10
+;;                13
+
+;;   basic block 10, loop depth 1
+;;    pred:       9
+  _41 = pretmp_20 + _40;
+  _42 = _41->attr;
+  _43 = (int) _42;
+  _44 = _43 & 254;
+  if (_44 != 0)
+    goto <bb 11>; [50.00%]
+  else
+    goto <bb 13>; [50.00%]
+;;    succ:       11
+;;                13
+
+;;   basic block 11, loop depth 1
+;;    pred:       10
+  _45 = _43 & 224;
+  if (_45 == 0)
+    goto <bb 12>; [33.00%]
+  else
+    goto <bb 13>; [67.00%]
+;;    succ:       12
+;;                13
+
+;;   basic block 12, loop depth 1
+;;    pred:       11
+  _cp_99 = pretmp_20 + _46;
+  __builtin_memset (_cp_99, 0, 32);
+  _cp_99->chars[0] = 32;
+  _47 = line_98->text;
+  _48 = _47 + _46;
+  _48->ext_color = 0;
+  _49 = _48->attr;
+  _50 = _49 & 4294902015;
+  _48->attr = _50;
+;;    succ:       13
+
+;;   basic block 13, loop depth 1
+;;    pred:       9
+;;                10
+;;                11
+;;                12
+  # prephitmp_120 = PHI <pretmp_20(9), pretmp_20(10), pretmp_20(11), _47(12)>
+  _51 = win_79(D)->_maxx;
+  if (_51 > col_82)
+    goto <bb 14>; [50.00%]
+  else
+    goto <bb 17>; [50.00%]
+;;    succ:       14
+;;                17
+
+;;   basic block 14, loop depth 1
+;;    pred:       13
+  _56 = prephitmp_120 + _55;
+  _57 = _56->attr;
+  _58 = (int) _57;
+  _59 = _58 & 254;
+  if (_59 != 0)
+    goto <bb 15>; [50.00%]
+  else
+    goto <bb 17>; [50.00%]
+;;    succ:       15
+;;                17
+
+;;   basic block 15, loop depth 1
+;;    pred:       14
+  _60 = _58 & 224;
+  if (_60 == 0)
+    goto <bb 16>; [33.00%]
+  else
+    goto <bb 17>; [67.00%]
+;;    succ:       16
+;;                17
+
+;;   basic block 16, loop depth 1
+;;    pred:       15
+  __builtin_memset (_56, 0, 32);
+  _56->chars[0] = 32;
+  _61 = line_98->text;
+  _62 = _61 + _55;
+  _62->ext_color = 0;
+  _63 = _62->attr;
+  _64 = _63 & 4294902015;
+  _62->attr = _64;
+;;    succ:       17
+
+;;   basic block 17, loop depth 1
+;;    pred:       13
+;;                14
+;;                15
+;;                16
+  # prephitmp_119 = PHI <prephitmp_120(13), prephitmp_120(14), prephitmp_120(15), _61(16)>
+  _68 = prephitmp_119 + _40;
+  *_68 = wch;
+  _69 = line_98->firstchar;
+  if (_69 == -1)
+    goto <bb 18>; [34.00%]
+  else
+    goto <bb 19>; [66.00%]
+;;    succ:       18
+;;                19
+
+;;   basic block 18, loop depth 1
+;;    pred:       17
+  line_98->lastchar = col_82;
+  line_98->firstchar = col_82;
+  goto <bb 23>; [100.00%]
+;;    succ:       23
+
+;;   basic block 19, loop depth 1
+;;    pred:       17
+  if (_69 > col_82)
+    goto <bb 20>; [50.00%]
+  else
+    goto <bb 21>; [50.00%]
+;;    succ:       20
+;;                21
+
+;;   basic block 20, loop depth 1
+;;    pred:       19
+  line_98->firstchar = col_82;
+  goto <bb 23>; [100.00%]
+;;    succ:       23
+
+;;   basic block 21, loop depth 1
+;;    pred:       19
+  _70 = line_98->lastchar;
+  if (_70 < col_82)
+    goto <bb 22>; [50.00%]
+  else
+    goto <bb 23>; [50.00%]
+;;    succ:       22
+;;                23
+
+;;   basic block 22, loop depth 1
+;;    pred:       21
+  line_98->lastchar = col_82;
+;;    succ:       23
+
+;;   basic block 23, loop depth 1
+;;    pred:       18
+;;                20
+;;                21
+;;                22
+  ivtmp.11_93 = ivtmp.11_87 + 18446744073709551592;
+  if (_53 != ivtmp.11_87)
+    goto <bb 9>; [89.00%]
+  else
+    goto <bb 7>; [11.00%]
+;;    succ:       9
+;;                7
+
+;;   basic block 24, loop depth 0
+;;    pred:       2
+;;                7
+  # code_71 = PHI <-1(2), 0(7)>
+  return code_71;
+;;    succ:       EXIT
+
+}
+
+
+Partition 0: size 32 align 16
+	wch
+Inserting a partition copy on edge BB23->BB9 : PART.63 = PART.64
+Inserting a value copy on edge BB2->BB24 : PART.51 = -1
+Inserting a value copy on edge BB7->BB24 : PART.51 = 0
+
+;; Generating RTL for gimple basic block 2
+
+;; if (win_79(D) != 0B)
+
+(insn 13 12 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 150 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_vline.c":55:8 -1
+     (nil))
+
+(jump_insn 14 13 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_vline.c":55:8 -1
+     (int_list:REG_BR_PROB 9341556 (nil)))
+
+;; Generating RTL for gimple basic block 3
+Swap operands in stmt:
+_112 = MIN_EXPR <_2, end_84>;
+Cost left opnd=1, right opnd=2
+
+;; row_81 = win_79(D)->_cury;
+
+(insn 16 15 0 (set (reg/v:SI 138 [ row ])
+        (mem:SI (reg/v/f:DI 150 [ win ]) [3 win_79(D)->_cury+0 S4 A64])) "../ncurses/./base/lib_vline.c":57:6 -1
+     (nil))
+
+;; col_82 = win_79(D)->_curx;
+
+(insn 17 16 0 (set (reg/v:SI 139 [ col ])
+        (mem:SI (plus:DI (reg/v/f:DI 150 [ win ])
+                (const_int 4 [0x4])) [3 win_79(D)->_curx+0 S4 A32])) "../ncurses/./base/lib_vline.c":58:6 -1
+     (nil))
+
+;; _112 = MIN_EXPR <end_84, _2>;
+
+(insn 18 17 19 (parallel [
+            (set (reg:SI 154)
+                (plus:SI (reg/v:SI 138 [ row ])
+                    (reg/v:SI 152 [ n ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":59:16 -1
+     (nil))
+
+(insn 19 18 20 (parallel [
+            (set (reg:SI 155 [ end ])
+                (plus:SI (reg:SI 154)
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":59:6 -1
+     (nil))
+
+(insn 20 19 0 (parallel [
+            (set (reg:SI 146 [ _112 ])
+                (smin:SI (reg:SI 155 [ end ])
+                    (mem:SI (plus:DI (reg/v/f:DI 150 [ win ])
+                            (const_int 8 [0x8])) [3 win_79(D)->_maxy+0 S4 A64])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+;; if (ch_85(D) == 0)
+
+(insn 21 20 22 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 151 [ ch ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_vline.c":64:5 -1
+     (nil))
+
+(jump_insn 22 21 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_vline.c":64:5 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; __builtin_memset (&MEM <char> [(void *)&wch + 8B], 0, 24);
+
+(insn 24 23 25 (parallel [
+            (set (reg:DI 156)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+(insn 25 24 26 (parallel [
+            (set (reg:DI 157)
+                (plus:DI (reg:DI 156)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+(insn 26 25 27 (set (reg:DI 158 [ D.9121 ])
+        (reg:DI 157)) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+(insn 27 26 28 (set (mem/c:TI (reg:DI 158 [ D.9121 ]) [0 MEM <char[1:24]> [(void *)&wch + 8B]+0 S16 A64])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+(insn 28 27 0 (set (mem/c:DI (plus:DI (reg:DI 158 [ D.9121 ])
+                (const_int 16 [0x10])) [0 MEM <char[1:24]> [(void *)&wch + 8B]+16 S8 A64])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+;; _3 = _nc_acs_map ();
+
+(call_insn 29 28 30 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_acs_map") [flags 0x41]  <function_decl 0x7f1382fcd500 _nc_acs_map>) [0 _nc_acs_map S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_vline.c":65:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_acs_map") [flags 0x41]  <function_decl 0x7f1382fcd500 _nc_acs_map>)
+        (nil))
+    (nil))
+
+(insn 30 29 0 (set (reg/f:DI 84 [ _3 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+
+;; wch.chars[0] = _6;
+
+(insn 34 30 35 (set (reg:SI 162)
+        (mem:SI (plus:DI (reg/f:DI 84 [ _3 ])
+                (const_int 480 [0x1e0])) [3 MEM[(chtype *)_3 + 480B]+0 S4 A32])) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+
+(insn 35 34 36 (set (reg:SI 161)
+        (zero_extend:SI (subreg:QI (reg:SI 162) 0))) "../ncurses/./base/lib_vline.c":65:6 -1
+     (expr_list:REG_EQUAL (and:SI (mem:SI (plus:DI (reg/f:DI 84 [ _3 ])
+                    (const_int 480 [0x1e0])) [3 MEM[(chtype *)_3 + 480B]+0 S4 A32])
+            (const_int 255 [0xff]))
+        (nil)))
+
+(insn 36 35 0 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -44 [0xffffffffffffffd4])) [3 wch.chars[0]+0 S4 A32])
+        (reg:SI 161)) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+
+;; _7 = _nc_acs_map ();
+
+(call_insn 37 36 38 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_acs_map") [flags 0x41]  <function_decl 0x7f1382fcd500 _nc_acs_map>) [0 _nc_acs_map S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_vline.c":65:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_acs_map") [flags 0x41]  <function_decl 0x7f1382fcd500 _nc_acs_map>)
+        (nil))
+    (nil))
+
+(insn 38 37 0 (set (reg/f:DI 88 [ _7 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+
+;; _8 = MEM[(chtype *)_7 + 480B];
+
+(insn 39 38 0 (set (reg:SI 89 [ _8 ])
+        (mem:SI (plus:DI (reg/f:DI 88 [ _7 ])
+                (const_int 480 [0x1e0])) [3 MEM[(chtype *)_7 + 480B]+0 S4 A32])) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+
+;; _10 = _nc_acs_map ();
+
+(call_insn 40 39 41 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_acs_map") [flags 0x41]  <function_decl 0x7f1382fcd500 _nc_acs_map>) [0 _nc_acs_map S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_vline.c":65:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_acs_map") [flags 0x41]  <function_decl 0x7f1382fcd500 _nc_acs_map>)
+        (nil))
+    (nil))
+
+(insn 41 40 0 (set (reg/f:DI 91 [ _10 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+
+;; _15 = _14 & 255;
+
+(insn 42 41 43 (set (reg:DI 163)
+        (zero_extend:DI (mem:SI (plus:DI (reg/f:DI 91 [ _10 ])
+                    (const_int 480 [0x1e0])) [3 MEM[(chtype *)_10 + 480B]+0 S4 A32]))) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+
+(insn 43 42 44 (parallel [
+            (set (reg:DI 164)
+                (lshiftrt:DI (reg:DI 163)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+
+(insn 44 43 0 (set (reg:SI 96 [ _15 ])
+        (zero_extend:SI (subreg:QI (reg:DI 164) 0))) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+
+;; _21 = _16 | _19;
+
+(insn 45 44 46 (parallel [
+            (set (reg:SI 165)
+                (and:SI (reg:SI 89 [ _8 ])
+                    (const_int -65536 [0xffffffffffff0000])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+
+(insn 46 45 47 (parallel [
+            (set (reg:SI 166)
+                (ashift:SI (reg:SI 96 [ _15 ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+
+(insn 47 46 0 (parallel [
+            (set (reg:SI 100 [ _21 ])
+                (ior:SI (reg:SI 165)
+                    (reg:SI 166)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 5
+
+;; 
+
+(code_label 50 49 51 3 (nil) [0 uses])
+
+(note 51 50 0 NOTE_INSN_BASIC_BLOCK)
+
+;; __builtin_memset (&MEM <char> [(void *)&wch + 8B], 0, 24);
+
+(insn 52 51 53 (parallel [
+            (set (reg:DI 167)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+(insn 53 52 54 (parallel [
+            (set (reg:DI 168)
+                (plus:DI (reg:DI 167)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+(insn 54 53 55 (set (reg:DI 169 [ D.9122 ])
+        (reg:DI 168)) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+(insn 55 54 56 (set (mem/c:TI (reg:DI 169 [ D.9122 ]) [0 MEM <char[1:24]> [(void *)&wch + 8B]+0 S16 A64])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+(insn 56 55 0 (set (mem/c:DI (plus:DI (reg:DI 169 [ D.9122 ])
+                (const_int 16 [0x10])) [0 MEM <char[1:24]> [(void *)&wch + 8B]+16 S8 A64])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+;; wch.chars[0] = _23;
+
+(insn 57 56 58 (parallel [
+            (set (reg:SI 170)
+                (and:SI (reg/v:SI 151 [ ch ])
+                    (const_int 255 [0xff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":67:6 -1
+     (nil))
+
+(insn 58 57 0 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -44 [0xffffffffffffffd4])) [3 wch.chars[0]+0 S4 A32])
+        (reg:SI 170)) "../ncurses/./base/lib_vline.c":67:6 -1
+     (nil))
+
+;; _28 = _27 & 255;
+
+(insn 59 58 60 (set (reg:DI 171)
+        (zero_extend:DI (reg/v:SI 151 [ ch ]))) "../ncurses/./base/lib_vline.c":67:6 -1
+     (nil))
+
+(insn 60 59 61 (parallel [
+            (set (reg:DI 172)
+                (lshiftrt:DI (reg:DI 171)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":67:6 -1
+     (nil))
+
+(insn 61 60 0 (set (reg:SI 96 [ _15 ])
+        (zero_extend:SI (subreg:QI (reg:DI 172) 0))) "../ncurses/./base/lib_vline.c":67:6 -1
+     (nil))
+
+;; _34 = _29 | _32;
+
+(insn 62 61 63 (parallel [
+            (set (reg:SI 173)
+                (and:SI (reg/v:SI 151 [ ch ])
+                    (const_int -65536 [0xffffffffffff0000])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":67:6 -1
+     (nil))
+
+(insn 63 62 64 (parallel [
+            (set (reg:SI 174)
+                (ashift:SI (reg:SI 96 [ _15 ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":67:6 -1
+     (nil))
+
+(insn 64 63 0 (parallel [
+            (set (reg:SI 100 [ _21 ])
+                (ior:SI (reg:SI 173)
+                    (reg:SI 174)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":67:6 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 65 64 66 4 (nil) [0 uses])
+
+(note 66 65 0 NOTE_INSN_BASIC_BLOCK)
+
+;; wch.ext_color = _135;
+
+(insn 67 66 0 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [3 wch.ext_color+0 S4 A64])
+        (reg:SI 96 [ _15 ])) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+
+;; wch.attr = _131;
+
+(insn 68 67 0 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -48 [0xffffffffffffffd0])) [3 wch.attr+0 S4 A128])
+        (reg:SI 100 [ _21 ])) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+
+;; wch = _nc_render (win_79(D), wch);
+
+(insn 69 68 70 (parallel [
+            (set (reg:DI 175)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -80 [0xffffffffffffffb0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":68:8 -1
+     (nil))
+
+(insn 70 69 71 (set (mem:TI (pre_dec:DI (reg/f:DI 7 sp)) [0  S16 A8])
+        (mem/c:TI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -32 [0xffffffffffffffe0])) [2 wch+16 S16 A128])) "../ncurses/./base/lib_vline.c":68:8 -1
+     (expr_list:REG_ARGS_SIZE (const_int 16 [0x10])
+        (nil)))
+
+(insn 71 70 72 (set (mem:TI (pre_dec:DI (reg/f:DI 7 sp)) [0  S16 A8])
+        (mem/c:TI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -48 [0xffffffffffffffd0])) [2 wch+0 S16 A128])) "../ncurses/./base/lib_vline.c":68:8 -1
+     (expr_list:REG_ARGS_SIZE (const_int 32 [0x20])
+        (nil)))
+
+(insn 72 71 73 (set (reg:DI 4 si)
+        (reg/v/f:DI 150 [ win ])) "../ncurses/./base/lib_vline.c":68:8 -1
+     (nil))
+
+(insn 73 72 74 (set (reg:DI 5 di)
+        (reg:DI 175)) "../ncurses/./base/lib_vline.c":68:8 -1
+     (nil))
+
+(call_insn 74 73 75 (call (mem:QI (symbol_ref:DI ("_nc_render") [flags 0x41]  <function_decl 0x7f1382d92d00 _nc_render>) [0 _nc_render S1 A8])
+        (const_int 32 [0x20])) "../ncurses/./base/lib_vline.c":68:8 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_render") [flags 0x41]  <function_decl 0x7f1382d92d00 _nc_render>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 75 74 76 (set (reg:TI 176)
+        (mem:TI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -80 [0xffffffffffffffb0])) [2  S16 A32])) "../ncurses/./base/lib_vline.c":68:8 -1
+     (nil))
+
+(insn 76 75 77 (set (mem/c:TI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -48 [0xffffffffffffffd0])) [2 wch+0 S16 A128])
+        (reg:TI 176)) "../ncurses/./base/lib_vline.c":68:8 -1
+     (nil))
+
+(insn 77 76 78 (set (reg:TI 177)
+        (mem:TI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -64 [0xffffffffffffffc0])) [2  S16 A32])) "../ncurses/./base/lib_vline.c":68:8 -1
+     (nil))
+
+(insn 78 77 0 (set (mem/c:TI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -32 [0xffffffffffffffe0])) [2 wch+16 S16 A128])
+        (reg:TI 177)) "../ncurses/./base/lib_vline.c":68:8 -1
+     (nil))
+
+;; if (row_81 <= _112)
+
+(insn 79 78 80 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":70:13 -1
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (nil)))
+
+(insn 80 79 81 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 138 [ row ])
+            (reg:SI 146 [ _112 ]))) "../ncurses/./base/lib_vline.c":70:13 -1
+     (nil))
+
+(jump_insn 81 80 0 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_vline.c":70:13 -1
+     (int_list:REG_BR_PROB 955630228 (nil)))
+
+;; Generating RTL for gimple basic block 7
+
+;; _nc_synchook (win_79(D));
+
+(insn 83 82 84 (set (reg:DI 5 di)
+        (reg/v/f:DI 150 [ win ])) "../ncurses/./base/lib_vline.c":85:2 -1
+     (nil))
+
+(call_insn 84 83 0 (call (mem:QI (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f1382d92700 _nc_synchook>) [0 _nc_synchook S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_vline.c":85:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f1382d92700 _nc_synchook>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; wch ={v} {CLOBBER};
+
+(nil)
+
+;; Generating RTL for gimple basic block 8
+
+;; 
+
+(code_label 87 86 88 5 (nil) [0 uses])
+
+(note 88 87 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _40 = _39 * 32;
+
+(insn 89 88 90 (set (reg:DI 178)
+        (sign_extend:DI (reg/v:SI 139 [ col ]))) "../ncurses/./base/lib_vline.c":73:21 -1
+     (nil))
+
+(insn 90 89 0 (parallel [
+            (set (reg:DI 112 [ _40 ])
+                (ashift:DI (reg:DI 178)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":73:21 -1
+     (nil))
+
+;; _46 = _40 + 18446744073709551584;
+
+(insn 91 90 0 (parallel [
+            (set (reg:DI 118 [ _46 ])
+                (plus:DI (reg:DI 112 [ _40 ])
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":74:3 -1
+     (nil))
+
+;; _55 = _40 + 32;
+
+(insn 92 91 0 (parallel [
+            (set (reg:DI 124 [ _55 ])
+                (plus:DI (reg:DI 112 [ _40 ])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":76:30 -1
+     (nil))
+
+;; _94 = (long unsigned int) _112;
+
+(insn 93 92 0 (set (reg:DI 143 [ _94 ])
+        (sign_extend:DI (reg:SI 146 [ _112 ]))) -1
+     (nil))
+
+;; ivtmp.11_88 = _94 * 24;
+
+(insn 94 93 95 (set (reg:DI 179)
+        (reg:DI 143 [ _94 ])) -1
+     (nil))
+
+(insn 95 94 96 (parallel [
+            (set (reg:DI 180)
+                (ashift:DI (reg:DI 179)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+(insn 96 95 97 (parallel [
+            (set (reg:DI 181)
+                (plus:DI (reg:DI 180)
+                    (reg:DI 143 [ _94 ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 143 [ _94 ])
+            (const_int 3 [0x3]))
+        (nil)))
+
+(insn 97 96 98 (parallel [
+            (set (reg:DI 182)
+                (ashift:DI (reg:DI 181)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+(insn 98 97 99 (set (reg:DI 181)
+        (reg:DI 182)) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 143 [ _94 ])
+            (const_int 24 [0x18]))
+        (nil)))
+
+(insn 99 98 0 (set (reg:DI 141 [ ivtmp.11 ])
+        (reg:DI 181)) -1
+     (nil))
+
+;; _53 = _9 * 24;
+
+(insn 100 99 101 (parallel [
+            (set (reg:SI 183)
+                (minus:SI (reg:SI 146 [ _112 ])
+                    (reg/v:SI 138 [ row ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+(insn 101 100 102 (set (reg:DI 184)
+        (zero_extend:DI (reg:SI 183))) -1
+     (nil))
+
+(insn 102 101 103 (parallel [
+            (set (reg:DI 185)
+                (minus:DI (reg:DI 143 [ _94 ])
+                    (reg:DI 184)))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+(insn 103 102 104 (set (reg:DI 186)
+        (reg:DI 185)) -1
+     (nil))
+
+(insn 104 103 105 (parallel [
+            (set (reg:DI 187)
+                (ashift:DI (reg:DI 186)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+(insn 105 104 106 (parallel [
+            (set (reg:DI 188)
+                (plus:DI (reg:DI 187)
+                    (reg:DI 185)))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 185)
+            (const_int 3 [0x3]))
+        (nil)))
+
+(insn 106 105 107 (parallel [
+            (set (reg:DI 189)
+                (ashift:DI (reg:DI 188)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+(insn 107 106 108 (set (reg:DI 188)
+        (reg:DI 189)) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 185)
+            (const_int 24 [0x18]))
+        (nil)))
+
+(insn 108 107 0 (set (reg:DI 123 [ _53 ])
+        (reg:DI 188)) -1
+     (nil))
+
+;; Generating RTL for gimple basic block 9
+
+;; line_98 = _35 + ivtmp.11_87;
+
+(insn 110 109 111 (set (reg/f:DI 190)
+        (mem/f:DI (plus:DI (reg/v/f:DI 150 [ win ])
+                (const_int 56 [0x38])) [1 win_79(D)->_line+0 S8 A64])) "../ncurses/./base/lib_vline.c":71:19 -1
+     (nil))
+
+(insn 111 110 0 (parallel [
+            (set (reg/v/f:DI 144 [ line ])
+                (plus:DI (reg:DI 141 [ ivtmp.11 ])
+                    (reg/f:DI 190)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":71:19 -1
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 150 [ win ])
+                    (const_int 56 [0x38])) [1 win_79(D)->_line+0 S8 A64])
+            (reg:DI 141 [ ivtmp.11 ]))
+        (nil)))
+
+;; pretmp_20 = line_98->text;
+
+(insn 112 111 0 (set (reg/f:DI 147 [ prephitmp_119 ])
+        (mem/f:DI (reg/v/f:DI 144 [ line ]) [9 line_98->text+0 S8 A64])) "../ncurses/./base/lib_vline.c":73:21 -1
+     (nil))
+
+;; if (col_82 > 0)
+
+(insn 115 112 116 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:SI 139 [ col ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_vline.c":73:9 -1
+     (nil))
+
+(jump_insn 116 115 0 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_vline.c":73:9 -1
+     (int_list:REG_BR_PROB 440234148 (nil)))
+
+;; Generating RTL for gimple basic block 10
+
+;; _43 = (int) _42;
+
+(insn 118 117 0 (set (reg:SI 115 [ _43 ])
+        (mem:SI (plus:DI (reg/f:DI 147 [ prephitmp_119 ])
+                (reg:DI 112 [ _40 ])) [3 _41->attr+0 S4 A32])) "../ncurses/./base/lib_vline.c":73:21 -1
+     (nil))
+
+;; if (_44 != 0)
+
+(insn 119 118 120 (parallel [
+            (set (reg:SI 191)
+                (and:SI (reg:SI 115 [ _43 ])
+                    (const_int 254 [0xfe])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":73:21 -1
+     (nil))
+
+(insn 120 119 121 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 191)
+            (const_int 0 [0]))) "../ncurses/./base/lib_vline.c":73:18 -1
+     (nil))
+
+(jump_insn 121 120 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_vline.c":73:18 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 11
+
+;; if (_45 == 0)
+
+(insn 123 122 124 (parallel [
+            (set (reg:SI 192)
+                (and:SI (reg:SI 115 [ _43 ])
+                    (const_int 224 [0xe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":73:21 -1
+     (nil))
+
+(insn 124 123 125 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 192)
+            (const_int 0 [0]))) "../ncurses/./base/lib_vline.c":73:21 -1
+     (nil))
+
+(jump_insn 125 124 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_vline.c":73:21 -1
+     (int_list:REG_BR_PROB 719407028 (nil)))
+
+;; Generating RTL for gimple basic block 12
+
+;; _cp_99 = pretmp_20 + _46;
+
+(insn 127 126 0 (parallel [
+            (set (reg/v/f:DI 145 [ _cp ])
+                (plus:DI (reg/f:DI 147 [ prephitmp_119 ])
+                    (reg:DI 118 [ _46 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":74:3 -1
+     (nil))
+
+;; __builtin_memset (_cp_99, 0, 32);
+
+(insn 128 127 129 (set (mem:TI (reg/v/f:DI 145 [ _cp ]) [0 MEM <char[1:32]> [(void *)_cp_99]+0 S16 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+(insn 129 128 0 (set (mem:TI (plus:DI (reg/v/f:DI 145 [ _cp ])
+                (const_int 16 [0x10])) [0 MEM <char[1:32]> [(void *)_cp_99]+16 S16 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+;; _cp_99->chars[0] = 32;
+
+(insn 130 129 0 (set (mem:SI (plus:DI (reg/v/f:DI 145 [ _cp ])
+                (const_int 4 [0x4])) [3 _cp_99->chars[0]+0 S4 A32])
+        (const_int 32 [0x20])) "../ncurses/./base/lib_vline.c":74:3 -1
+     (nil))
+
+;; _47 = line_98->text;
+
+(insn 131 130 0 (set (reg/f:DI 147 [ prephitmp_119 ])
+        (mem/f:DI (reg/v/f:DI 144 [ line ]) [9 line_98->text+0 S8 A64])) "../ncurses/./base/lib_vline.c":74:3 -1
+     (nil))
+
+;; _48 = _47 + _46;
+
+(insn 132 131 0 (parallel [
+            (set (reg/f:DI 119 [ _48 ])
+                (plus:DI (reg/f:DI 147 [ prephitmp_119 ])
+                    (reg:DI 118 [ _46 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":74:3 -1
+     (nil))
+
+;; _48->ext_color = 0;
+
+(insn 133 132 0 (set (mem:SI (plus:DI (reg/f:DI 119 [ _48 ])
+                (const_int 24 [0x18])) [3 _48->ext_color+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./base/lib_vline.c":74:3 -1
+     (nil))
+
+;; _48->attr = _50;
+
+(insn 134 133 0 (parallel [
+            (set (mem:SI (reg/f:DI 119 [ _48 ]) [3 _48->attr+0 S4 A32])
+                (and:SI (mem:SI (reg/f:DI 119 [ _48 ]) [3 _48->attr+0 S4 A32])
+                    (const_int -65281 [0xffffffffffff00ff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":74:3 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 13
+
+;; 
+
+(code_label 135 134 136 6 (nil) [0 uses])
+
+(note 136 135 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (_51 > col_82)
+
+(insn 137 136 138 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 150 [ win ])
+                    (const_int 12 [0xc])) [3 win_79(D)->_maxx+0 S4 A32])
+            (reg/v:SI 139 [ col ]))) "../ncurses/./base/lib_vline.c":76:9 -1
+     (nil))
+
+(jump_insn 138 137 0 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_vline.c":76:9 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 14
+
+;; _56 = prephitmp_120 + _55;
+
+(insn 140 139 0 (parallel [
+            (set (reg/f:DI 125 [ _56 ])
+                (plus:DI (reg/f:DI 147 [ prephitmp_119 ])
+                    (reg:DI 124 [ _55 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":76:30 -1
+     (nil))
+
+;; _58 = (int) _57;
+
+(insn 141 140 0 (set (reg:SI 127 [ _58 ])
+        (mem:SI (reg/f:DI 125 [ _56 ]) [3 _56->attr+0 S4 A32])) "../ncurses/./base/lib_vline.c":76:30 -1
+     (nil))
+
+;; if (_59 != 0)
+
+(insn 142 141 143 (parallel [
+            (set (reg:SI 193)
+                (and:SI (reg:SI 127 [ _58 ])
+                    (const_int 254 [0xfe])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":76:30 -1
+     (nil))
+
+(insn 143 142 144 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 193)
+            (const_int 0 [0]))) "../ncurses/./base/lib_vline.c":76:27 -1
+     (nil))
+
+(jump_insn 144 143 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_vline.c":76:27 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 15
+
+;; if (_60 == 0)
+
+(insn 146 145 147 (parallel [
+            (set (reg:SI 194)
+                (and:SI (reg:SI 127 [ _58 ])
+                    (const_int 224 [0xe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":76:30 -1
+     (nil))
+
+(insn 147 146 148 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 194)
+            (const_int 0 [0]))) "../ncurses/./base/lib_vline.c":76:30 -1
+     (nil))
+
+(jump_insn 148 147 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_vline.c":76:30 -1
+     (int_list:REG_BR_PROB 719407028 (nil)))
+
+;; Generating RTL for gimple basic block 16
+
+;; __builtin_memset (_56, 0, 32);
+
+(insn 150 149 151 (set (mem:TI (reg/f:DI 125 [ _56 ]) [0 MEM <char[1:32]> [(void *)_56]+0 S16 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+(insn 151 150 0 (set (mem:TI (plus:DI (reg/f:DI 125 [ _56 ])
+                (const_int 16 [0x10])) [0 MEM <char[1:32]> [(void *)_56]+16 S16 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+
+;; _56->chars[0] = 32;
+
+(insn 152 151 0 (set (mem:SI (plus:DI (reg/f:DI 125 [ _56 ])
+                (const_int 4 [0x4])) [3 _56->chars[0]+0 S4 A32])
+        (const_int 32 [0x20])) "../ncurses/./base/lib_vline.c":77:3 -1
+     (nil))
+
+;; _61 = line_98->text;
+
+(insn 153 152 0 (set (reg/f:DI 147 [ prephitmp_119 ])
+        (mem/f:DI (reg/v/f:DI 144 [ line ]) [9 line_98->text+0 S8 A64])) "../ncurses/./base/lib_vline.c":77:3 -1
+     (nil))
+
+;; _62 = _61 + _55;
+
+(insn 154 153 0 (parallel [
+            (set (reg/f:DI 130 [ _62 ])
+                (plus:DI (reg/f:DI 147 [ prephitmp_119 ])
+                    (reg:DI 124 [ _55 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":77:3 -1
+     (nil))
+
+;; _62->ext_color = 0;
+
+(insn 155 154 0 (set (mem:SI (plus:DI (reg/f:DI 130 [ _62 ])
+                (const_int 24 [0x18])) [3 _62->ext_color+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./base/lib_vline.c":77:3 -1
+     (nil))
+
+;; _62->attr = _64;
+
+(insn 156 155 0 (parallel [
+            (set (mem:SI (reg/f:DI 130 [ _62 ]) [3 _62->attr+0 S4 A32])
+                (and:SI (mem:SI (reg/f:DI 130 [ _62 ]) [3 _62->attr+0 S4 A32])
+                    (const_int -65281 [0xffffffffffff00ff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":77:3 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 17
+
+;; 
+
+(code_label 157 156 158 7 (nil) [0 uses])
+
+(note 158 157 0 NOTE_INSN_BASIC_BLOCK)
+
+;; *_68 = wch;
+
+(insn 159 158 160 (set (reg:TI 195)
+        (mem/c:TI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -48 [0xffffffffffffffd0])) [2 wch+0 S16 A128])) "../ncurses/./base/lib_vline.c":80:22 -1
+     (nil))
+
+(insn 160 159 161 (set (mem:TI (plus:DI (reg/f:DI 147 [ prephitmp_119 ])
+                (reg:DI 112 [ _40 ])) [2 *_68+0 S16 A32])
+        (reg:TI 195)) "../ncurses/./base/lib_vline.c":80:22 -1
+     (nil))
+
+(insn 161 160 162 (set (reg:TI 196)
+        (mem/c:TI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -32 [0xffffffffffffffe0])) [2 wch+16 S16 A128])) "../ncurses/./base/lib_vline.c":80:22 -1
+     (nil))
+
+(insn 162 161 0 (set (mem:TI (plus:DI (plus:DI (reg/f:DI 147 [ prephitmp_119 ])
+                    (reg:DI 112 [ _40 ]))
+                (const_int 16 [0x10])) [2 *_68+16 S16 A32])
+        (reg:TI 196)) "../ncurses/./base/lib_vline.c":80:22 -1
+     (nil))
+
+;; _69 = line_98->firstchar;
+
+(insn 163 162 0 (set (reg:SI 134 [ _69 ])
+        (mem:SI (plus:DI (reg/v/f:DI 144 [ line ])
+                (const_int 8 [0x8])) [3 line_98->firstchar+0 S4 A64])) "../ncurses/./base/lib_vline.c":81:6 -1
+     (nil))
+
+;; if (_69 == -1)
+
+(insn 164 163 165 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 134 [ _69 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_vline.c":81:6 -1
+     (nil))
+
+(jump_insn 165 164 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_vline.c":81:6 -1
+     (int_list:REG_BR_PROB 708669604 (nil)))
+
+;; Generating RTL for gimple basic block 18
+
+;; line_98->lastchar = col_82;
+
+(insn 167 166 0 (set (mem:SI (plus:DI (reg/v/f:DI 144 [ line ])
+                (const_int 12 [0xc])) [3 line_98->lastchar+0 S4 A32])
+        (reg/v:SI 139 [ col ])) "../ncurses/./base/lib_vline.c":81:6 -1
+     (nil))
+
+;; line_98->firstchar = col_82;
+
+(insn 168 167 0 (set (mem:SI (plus:DI (reg/v/f:DI 144 [ line ])
+                (const_int 8 [0x8])) [3 line_98->firstchar+0 S4 A64])
+        (reg/v:SI 139 [ col ])) "../ncurses/./base/lib_vline.c":81:6 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 19
+
+;; 
+
+(code_label 171 170 172 8 (nil) [0 uses])
+
+(note 172 171 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (_69 > col_82)
+
+(insn 173 172 174 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 134 [ _69 ])
+            (reg/v:SI 139 [ col ]))) "../ncurses/./base/lib_vline.c":81:6 -1
+     (nil))
+
+(jump_insn 174 173 0 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_vline.c":81:6 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 20
+
+;; line_98->firstchar = col_82;
+
+(insn 176 175 0 (set (mem:SI (plus:DI (reg/v/f:DI 144 [ line ])
+                (const_int 8 [0x8])) [3 line_98->firstchar+0 S4 A64])
+        (reg/v:SI 139 [ col ])) "../ncurses/./base/lib_vline.c":81:6 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 21
+
+;; 
+
+(code_label 179 178 180 10 (nil) [0 uses])
+
+(note 180 179 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (_70 < col_82)
+
+(insn 181 180 182 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 144 [ line ])
+                    (const_int 12 [0xc])) [3 line_98->lastchar+0 S4 A32])
+            (reg/v:SI 139 [ col ]))) "../ncurses/./base/lib_vline.c":81:6 -1
+     (nil))
+
+(jump_insn 182 181 0 (set (pc)
+        (if_then_else (ge (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_vline.c":81:6 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 22
+
+;; line_98->lastchar = col_82;
+
+(insn 184 183 0 (set (mem:SI (plus:DI (reg/v/f:DI 144 [ line ])
+                (const_int 12 [0xc])) [3 line_98->lastchar+0 S4 A32])
+        (reg/v:SI 139 [ col ])) "../ncurses/./base/lib_vline.c":81:6 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 23
+
+;; 
+
+(code_label 185 184 186 9 (nil) [0 uses])
+
+(note 186 185 0 NOTE_INSN_BASIC_BLOCK)
+
+;; ivtmp.11_93 = ivtmp.11_87 + 18446744073709551592;
+
+(insn 187 186 0 (parallel [
+            (set (reg:DI 142 [ ivtmp.11 ])
+                (plus:DI (reg:DI 141 [ ivtmp.11 ])
+                    (const_int -24 [0xffffffffffffffe8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":70:13 -1
+     (nil))
+
+;; if (_53 != ivtmp.11_87)
+
+(insn 189 187 190 23 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 123 [ _53 ])
+            (reg:DI 141 [ ivtmp.11 ]))) "../ncurses/./base/lib_vline.c":70:13 -1
+     (nil))
+
+(jump_insn 190 189 194 23 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 188)
+            (pc))) "../ncurses/./base/lib_vline.c":70:13 -1
+     (int_list:REG_BR_PROB 955630228 (nil)))
+
+(note 194 190 192 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 192 194 193 26 (set (pc)
+        (label_ref 191)) -1
+     (nil))
+
+(barrier 193 192 0)
+
+;; Generating RTL for gimple basic block 24
+
+;; 
+
+(code_label 195 193 196 2 (nil) [0 uses])
+
+(note 196 195 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return code_71;
+
+(jump_insn 197 196 198 (set (pc)
+        (label_ref 0)) "../ncurses/./base/lib_vline.c":88:5 -1
+     (nil))
+
+(barrier 198 197 0)
+Edge 2->24 redirected to 28
+Edge 23->9 redirected to 29
+Predictions for insn 202 bb 27
+  first match heuristics: 99.96%  exec 119148189 (estimated locally) hit 238296377 (estimated locally) (200.0%)
+  combined heuristics: 99.96%  exec 119148189 (estimated locally) hit 238296377 (estimated locally) (200.0%)
+  noreturn call heuristics: 99.96%  exec 119148189 (estimated locally) hit 238296377 (estimated locally) (200.0%)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 85 from 28 to 29.
+Forwarding edge 25->26 to 8 failed.
+Merging block 28 into block 27...
+Merged blocks 27 and 28.
+Merged 27 and 28 without moving.
+Removing jump 197.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 25->26 to 8 failed.
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 11 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 119148187 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:119148187 (estimated locally) (FALLTHRU)
+(note 11 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 11 3 2 (set (reg/v/f:DI 150 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_vline.c":50:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 151 [ ch ])
+        (reg:SI 4 si [ ch ])) "../ncurses/./base/lib_vline.c":50:1 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:SI 152 [ n ])
+        (reg:SI 1 dx [ n ])) "../ncurses/./base/lib_vline.c":50:1 -1
+     (nil))
+(note 5 4 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 5 7 2 (set (reg/f:DI 153)
+        (const_int 40 [0x28])) "../ncurses/./base/lib_vline.c":50:1 -1
+     (nil))
+(insn 7 6 13 2 (parallel [
+            (set (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                        (const_int -8 [0xfffffffffffffff8])) [11 D.9120+0 S8 A64])
+                (unspec:DI [
+                        (mem/v/f:DI (reg/f:DI 153) [12 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_SET))
+            (set (scratch:DI)
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":50:1 -1
+     (nil))
+(insn 13 7 14 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 150 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_vline.c":55:8 -1
+     (nil))
+(jump_insn 14 13 15 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 210)
+            (pc))) "../ncurses/./base/lib_vline.c":55:8 806 {*jcc}
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 210)
+;;  succ:       4 [99.1% (guessed)]  count:118111598 (estimated locally) (FALLTHRU)
+;;              27 [0.9% (guessed)]  count:1036589 (estimated locally)
+
+;; basic block 4, loop depth 0, count 118111598 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [99.1% (guessed)]  count:118111598 (estimated locally) (FALLTHRU)
+(note 15 14 16 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 4 (set (reg/v:SI 138 [ row ])
+        (mem:SI (reg/v/f:DI 150 [ win ]) [3 win_79(D)->_cury+0 S4 A64])) "../ncurses/./base/lib_vline.c":57:6 -1
+     (nil))
+(insn 17 16 18 4 (set (reg/v:SI 139 [ col ])
+        (mem:SI (plus:DI (reg/v/f:DI 150 [ win ])
+                (const_int 4 [0x4])) [3 win_79(D)->_curx+0 S4 A32])) "../ncurses/./base/lib_vline.c":58:6 -1
+     (nil))
+(insn 18 17 19 4 (parallel [
+            (set (reg:SI 154)
+                (plus:SI (reg/v:SI 138 [ row ])
+                    (reg/v:SI 152 [ n ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":59:16 -1
+     (nil))
+(insn 19 18 20 4 (parallel [
+            (set (reg:SI 155 [ end ])
+                (plus:SI (reg:SI 154)
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":59:6 -1
+     (nil))
+(insn 20 19 21 4 (parallel [
+            (set (reg:SI 146 [ _112 ])
+                (smin:SI (reg:SI 155 [ end ])
+                    (mem:SI (plus:DI (reg/v/f:DI 150 [ win ])
+                            (const_int 8 [0x8])) [3 win_79(D)->_maxy+0 S4 A64])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 21 20 22 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 151 [ ch ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_vline.c":64:5 -1
+     (nil))
+(jump_insn 22 21 23 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 50)
+            (pc))) "../ncurses/./base/lib_vline.c":64:5 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 50)
+;;  succ:       5 [50.0% (guessed)]  count:59055799 (estimated locally) (FALLTHRU)
+;;              6 [50.0% (guessed)]  count:59055799 (estimated locally)
+
+;; basic block 5, loop depth 0, count 59055799 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [50.0% (guessed)]  count:59055799 (estimated locally) (FALLTHRU)
+(note 23 22 24 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 25 5 (parallel [
+            (set (reg:DI 156)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 25 24 26 5 (parallel [
+            (set (reg:DI 157)
+                (plus:DI (reg:DI 156)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 26 25 27 5 (set (reg:DI 158 [ D.9121 ])
+        (reg:DI 157)) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 27 26 28 5 (set (mem/c:TI (reg:DI 158 [ D.9121 ]) [0 MEM <char[1:24]> [(void *)&wch + 8B]+0 S16 A64])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 28 27 29 5 (set (mem/c:DI (plus:DI (reg:DI 158 [ D.9121 ])
+                (const_int 16 [0x10])) [0 MEM <char[1:24]> [(void *)&wch + 8B]+16 S8 A64])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(call_insn 29 28 30 5 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_acs_map") [flags 0x41]  <function_decl 0x7f1382fcd500 _nc_acs_map>) [0 _nc_acs_map S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_vline.c":65:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_acs_map") [flags 0x41]  <function_decl 0x7f1382fcd500 _nc_acs_map>)
+        (nil))
+    (nil))
+(insn 30 29 34 5 (set (reg/f:DI 84 [ _3 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+(insn 34 30 35 5 (set (reg:SI 162)
+        (mem:SI (plus:DI (reg/f:DI 84 [ _3 ])
+                (const_int 480 [0x1e0])) [3 MEM[(chtype *)_3 + 480B]+0 S4 A32])) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+(insn 35 34 36 5 (set (reg:SI 161)
+        (zero_extend:SI (subreg:QI (reg:SI 162) 0))) "../ncurses/./base/lib_vline.c":65:6 -1
+     (expr_list:REG_EQUAL (and:SI (mem:SI (plus:DI (reg/f:DI 84 [ _3 ])
+                    (const_int 480 [0x1e0])) [3 MEM[(chtype *)_3 + 480B]+0 S4 A32])
+            (const_int 255 [0xff]))
+        (nil)))
+(insn 36 35 37 5 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -44 [0xffffffffffffffd4])) [3 wch.chars[0]+0 S4 A32])
+        (reg:SI 161)) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+(call_insn 37 36 38 5 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_acs_map") [flags 0x41]  <function_decl 0x7f1382fcd500 _nc_acs_map>) [0 _nc_acs_map S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_vline.c":65:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_acs_map") [flags 0x41]  <function_decl 0x7f1382fcd500 _nc_acs_map>)
+        (nil))
+    (nil))
+(insn 38 37 39 5 (set (reg/f:DI 88 [ _7 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+(insn 39 38 40 5 (set (reg:SI 89 [ _8 ])
+        (mem:SI (plus:DI (reg/f:DI 88 [ _7 ])
+                (const_int 480 [0x1e0])) [3 MEM[(chtype *)_7 + 480B]+0 S4 A32])) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+(call_insn 40 39 41 5 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_acs_map") [flags 0x41]  <function_decl 0x7f1382fcd500 _nc_acs_map>) [0 _nc_acs_map S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_vline.c":65:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_acs_map") [flags 0x41]  <function_decl 0x7f1382fcd500 _nc_acs_map>)
+        (nil))
+    (nil))
+(insn 41 40 42 5 (set (reg/f:DI 91 [ _10 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+(insn 42 41 43 5 (set (reg:DI 163)
+        (zero_extend:DI (mem:SI (plus:DI (reg/f:DI 91 [ _10 ])
+                    (const_int 480 [0x1e0])) [3 MEM[(chtype *)_10 + 480B]+0 S4 A32]))) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+(insn 43 42 44 5 (parallel [
+            (set (reg:DI 164)
+                (lshiftrt:DI (reg:DI 163)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+(insn 44 43 45 5 (set (reg:SI 96 [ _15 ])
+        (zero_extend:SI (subreg:QI (reg:DI 164) 0))) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+(insn 45 44 46 5 (parallel [
+            (set (reg:SI 165)
+                (and:SI (reg:SI 89 [ _8 ])
+                    (const_int -65536 [0xffffffffffff0000])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+(insn 46 45 47 5 (parallel [
+            (set (reg:SI 166)
+                (ashift:SI (reg:SI 96 [ _15 ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+(insn 47 46 48 5 (parallel [
+            (set (reg:SI 100 [ _21 ])
+                (ior:SI (reg:SI 165)
+                    (reg:SI 166)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+(jump_insn 48 47 49 5 (set (pc)
+        (label_ref 65)) -1
+     (nil)
+ -> 65)
+;;  succ:       7 [always]  count:59055799 (estimated locally)
+
+(barrier 49 48 50)
+;; basic block 6, loop depth 0, count 59055799 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [50.0% (guessed)]  count:59055799 (estimated locally)
+(code_label 50 49 51 6 3 (nil) [1 uses])
+(note 51 50 52 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 52 51 53 6 (parallel [
+            (set (reg:DI 167)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 53 52 54 6 (parallel [
+            (set (reg:DI 168)
+                (plus:DI (reg:DI 167)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 54 53 55 6 (set (reg:DI 169 [ D.9122 ])
+        (reg:DI 168)) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 55 54 56 6 (set (mem/c:TI (reg:DI 169 [ D.9122 ]) [0 MEM <char[1:24]> [(void *)&wch + 8B]+0 S16 A64])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 56 55 57 6 (set (mem/c:DI (plus:DI (reg:DI 169 [ D.9122 ])
+                (const_int 16 [0x10])) [0 MEM <char[1:24]> [(void *)&wch + 8B]+16 S8 A64])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 57 56 58 6 (parallel [
+            (set (reg:SI 170)
+                (and:SI (reg/v:SI 151 [ ch ])
+                    (const_int 255 [0xff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":67:6 -1
+     (nil))
+(insn 58 57 59 6 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -44 [0xffffffffffffffd4])) [3 wch.chars[0]+0 S4 A32])
+        (reg:SI 170)) "../ncurses/./base/lib_vline.c":67:6 -1
+     (nil))
+(insn 59 58 60 6 (set (reg:DI 171)
+        (zero_extend:DI (reg/v:SI 151 [ ch ]))) "../ncurses/./base/lib_vline.c":67:6 -1
+     (nil))
+(insn 60 59 61 6 (parallel [
+            (set (reg:DI 172)
+                (lshiftrt:DI (reg:DI 171)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":67:6 -1
+     (nil))
+(insn 61 60 62 6 (set (reg:SI 96 [ _15 ])
+        (zero_extend:SI (subreg:QI (reg:DI 172) 0))) "../ncurses/./base/lib_vline.c":67:6 -1
+     (nil))
+(insn 62 61 63 6 (parallel [
+            (set (reg:SI 173)
+                (and:SI (reg/v:SI 151 [ ch ])
+                    (const_int -65536 [0xffffffffffff0000])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":67:6 -1
+     (nil))
+(insn 63 62 64 6 (parallel [
+            (set (reg:SI 174)
+                (ashift:SI (reg:SI 96 [ _15 ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":67:6 -1
+     (nil))
+(insn 64 63 65 6 (parallel [
+            (set (reg:SI 100 [ _21 ])
+                (ior:SI (reg:SI 173)
+                    (reg:SI 174)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":67:6 -1
+     (nil))
+;;  succ:       7 [always]  count:59055799 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 118111598 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [always]  count:59055799 (estimated locally)
+;;              6 [always]  count:59055799 (estimated locally) (FALLTHRU)
+(code_label 65 64 66 7 4 (nil) [1 uses])
+(note 66 65 67 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 67 66 68 7 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [3 wch.ext_color+0 S4 A64])
+        (reg:SI 96 [ _15 ])) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+(insn 68 67 69 7 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -48 [0xffffffffffffffd0])) [3 wch.attr+0 S4 A128])
+        (reg:SI 100 [ _21 ])) "../ncurses/./base/lib_vline.c":65:6 -1
+     (nil))
+(insn 69 68 70 7 (parallel [
+            (set (reg:DI 175)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -80 [0xffffffffffffffb0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":68:8 -1
+     (nil))
+(insn 70 69 71 7 (set (mem:TI (pre_dec:DI (reg/f:DI 7 sp)) [0  S16 A8])
+        (mem/c:TI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -32 [0xffffffffffffffe0])) [2 wch+16 S16 A128])) "../ncurses/./base/lib_vline.c":68:8 -1
+     (expr_list:REG_ARGS_SIZE (const_int 16 [0x10])
+        (nil)))
+(insn 71 70 72 7 (set (mem:TI (pre_dec:DI (reg/f:DI 7 sp)) [0  S16 A8])
+        (mem/c:TI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -48 [0xffffffffffffffd0])) [2 wch+0 S16 A128])) "../ncurses/./base/lib_vline.c":68:8 -1
+     (expr_list:REG_ARGS_SIZE (const_int 32 [0x20])
+        (nil)))
+(insn 72 71 73 7 (set (reg:DI 4 si)
+        (reg/v/f:DI 150 [ win ])) "../ncurses/./base/lib_vline.c":68:8 -1
+     (nil))
+(insn 73 72 74 7 (set (reg:DI 5 di)
+        (reg:DI 175)) "../ncurses/./base/lib_vline.c":68:8 -1
+     (nil))
+(call_insn 74 73 75 7 (call (mem:QI (symbol_ref:DI ("_nc_render") [flags 0x41]  <function_decl 0x7f1382d92d00 _nc_render>) [0 _nc_render S1 A8])
+        (const_int 32 [0x20])) "../ncurses/./base/lib_vline.c":68:8 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_render") [flags 0x41]  <function_decl 0x7f1382d92d00 _nc_render>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 75 74 76 7 (set (reg:TI 176)
+        (mem:TI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -80 [0xffffffffffffffb0])) [2  S16 A32])) "../ncurses/./base/lib_vline.c":68:8 -1
+     (nil))
+(insn 76 75 77 7 (set (mem/c:TI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -48 [0xffffffffffffffd0])) [2 wch+0 S16 A128])
+        (reg:TI 176)) "../ncurses/./base/lib_vline.c":68:8 -1
+     (nil))
+(insn 77 76 78 7 (set (reg:TI 177)
+        (mem:TI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -64 [0xffffffffffffffc0])) [2  S16 A32])) "../ncurses/./base/lib_vline.c":68:8 -1
+     (nil))
+(insn 78 77 79 7 (set (mem/c:TI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -32 [0xffffffffffffffe0])) [2 wch+16 S16 A128])
+        (reg:TI 177)) "../ncurses/./base/lib_vline.c":68:8 -1
+     (nil))
+(insn 79 78 80 7 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":70:13 -1
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (nil)))
+(insn 80 79 81 7 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 138 [ row ])
+            (reg:SI 146 [ _112 ]))) "../ncurses/./base/lib_vline.c":70:13 -1
+     (nil))
+(jump_insn 81 80 191 7 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 87)
+            (pc))) "../ncurses/./base/lib_vline.c":70:13 -1
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 87)
+;;  succ:       9 [89.0% (guessed)]  count:105119322 (estimated locally)
+;;              8 [11.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 118111601 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [11.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU)
+;;              26 [always]  count:105119325 (estimated locally)
+(code_label 191 81 82 8 12 (nil) [1 uses])
+(note 82 191 83 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 83 82 84 8 (set (reg:DI 5 di)
+        (reg/v/f:DI 150 [ win ])) "../ncurses/./base/lib_vline.c":85:2 -1
+     (nil))
+(call_insn 84 83 10 8 (call (mem:QI (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f1382d92700 _nc_synchook>) [0 _nc_synchook S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_vline.c":85:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f1382d92700 _nc_synchook>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 10 84 85 8 (set (reg/v:SI 149 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_vline.c":86:7 -1
+     (nil))
+(jump_insn 85 10 86 8 (set (pc)
+        (label_ref:DI 199)) 807 {jump}
+     (nil)
+ -> 199)
+;;  succ:       29 [always]  count:118111601 (estimated locally)
+
+(barrier 86 85 87)
+;; basic block 9, loop depth 0, count 105119322 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [89.0% (guessed)]  count:105119322 (estimated locally)
+(code_label 87 86 88 9 5 (nil) [1 uses])
+(note 88 87 89 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 89 88 90 9 (set (reg:DI 178)
+        (sign_extend:DI (reg/v:SI 139 [ col ]))) "../ncurses/./base/lib_vline.c":73:21 -1
+     (nil))
+(insn 90 89 91 9 (parallel [
+            (set (reg:DI 112 [ _40 ])
+                (ashift:DI (reg:DI 178)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":73:21 -1
+     (nil))
+(insn 91 90 92 9 (parallel [
+            (set (reg:DI 118 [ _46 ])
+                (plus:DI (reg:DI 112 [ _40 ])
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":74:3 -1
+     (nil))
+(insn 92 91 93 9 (parallel [
+            (set (reg:DI 124 [ _55 ])
+                (plus:DI (reg:DI 112 [ _40 ])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":76:30 -1
+     (nil))
+(insn 93 92 94 9 (set (reg:DI 143 [ _94 ])
+        (sign_extend:DI (reg:SI 146 [ _112 ]))) -1
+     (nil))
+(insn 94 93 95 9 (set (reg:DI 179)
+        (reg:DI 143 [ _94 ])) -1
+     (nil))
+(insn 95 94 96 9 (parallel [
+            (set (reg:DI 180)
+                (ashift:DI (reg:DI 179)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 96 95 97 9 (parallel [
+            (set (reg:DI 181)
+                (plus:DI (reg:DI 180)
+                    (reg:DI 143 [ _94 ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 143 [ _94 ])
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 97 96 98 9 (parallel [
+            (set (reg:DI 182)
+                (ashift:DI (reg:DI 181)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 98 97 99 9 (set (reg:DI 181)
+        (reg:DI 182)) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 143 [ _94 ])
+            (const_int 24 [0x18]))
+        (nil)))
+(insn 99 98 100 9 (set (reg:DI 141 [ ivtmp.11 ])
+        (reg:DI 181)) -1
+     (nil))
+(insn 100 99 101 9 (parallel [
+            (set (reg:SI 183)
+                (minus:SI (reg:SI 146 [ _112 ])
+                    (reg/v:SI 138 [ row ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 101 100 102 9 (set (reg:DI 184)
+        (zero_extend:DI (reg:SI 183))) -1
+     (nil))
+(insn 102 101 103 9 (parallel [
+            (set (reg:DI 185)
+                (minus:DI (reg:DI 143 [ _94 ])
+                    (reg:DI 184)))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 103 102 104 9 (set (reg:DI 186)
+        (reg:DI 185)) -1
+     (nil))
+(insn 104 103 105 9 (parallel [
+            (set (reg:DI 187)
+                (ashift:DI (reg:DI 186)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 105 104 106 9 (parallel [
+            (set (reg:DI 188)
+                (plus:DI (reg:DI 187)
+                    (reg:DI 185)))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 185)
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 106 105 107 9 (parallel [
+            (set (reg:DI 189)
+                (ashift:DI (reg:DI 188)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 107 106 108 9 (set (reg:DI 188)
+        (reg:DI 189)) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 185)
+            (const_int 24 [0x18]))
+        (nil)))
+(insn 108 107 211 9 (set (reg:DI 123 [ _53 ])
+        (reg:DI 188)) -1
+     (nil))
+(jump_insn 211 108 212 9 (set (pc)
+        (label_ref 188)) -1
+     (nil)
+ -> 188)
+;;  succ:       11 [always]  count:105119322 (estimated locally)
+
+(barrier 212 211 214)
+;; basic block 10, loop depth 1, count 850510904 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       25 [89.0% (guessed)]  count:850510904 (estimated locally)
+(code_label 214 212 213 10 15 (nil) [1 uses])
+(note 213 214 8 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 8 213 188 10 (set (reg:DI 141 [ ivtmp.11 ])
+        (reg:DI 142 [ ivtmp.11 ])) -1
+     (nil))
+;;  succ:       11 [always]  count:850510904 (estimated locally) (FALLTHRU,DFS_BACK)
+
+;; basic block 11, loop depth 1, count 955630225 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       10 [always]  count:850510904 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              9 [always]  count:105119322 (estimated locally)
+(code_label 188 8 109 11 11 (nil) [1 uses])
+(note 109 188 110 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 110 109 111 11 (set (reg/f:DI 190)
+        (mem/f:DI (plus:DI (reg/v/f:DI 150 [ win ])
+                (const_int 56 [0x38])) [1 win_79(D)->_line+0 S8 A64])) "../ncurses/./base/lib_vline.c":71:19 -1
+     (nil))
+(insn 111 110 112 11 (parallel [
+            (set (reg/v/f:DI 144 [ line ])
+                (plus:DI (reg:DI 141 [ ivtmp.11 ])
+                    (reg/f:DI 190)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":71:19 -1
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 150 [ win ])
+                    (const_int 56 [0x38])) [1 win_79(D)->_line+0 S8 A64])
+            (reg:DI 141 [ ivtmp.11 ]))
+        (nil)))
+(insn 112 111 115 11 (set (reg/f:DI 147 [ prephitmp_119 ])
+        (mem/f:DI (reg/v/f:DI 144 [ line ]) [9 line_98->text+0 S8 A64])) "../ncurses/./base/lib_vline.c":73:21 -1
+     (nil))
+(insn 115 112 116 11 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:SI 139 [ col ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_vline.c":73:9 -1
+     (nil))
+(jump_insn 116 115 117 11 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 135)
+            (pc))) "../ncurses/./base/lib_vline.c":73:9 -1
+     (int_list:REG_BR_PROB 440234148 (nil))
+ -> 135)
+;;  succ:       12 [59.0% (guessed)]  count:563821836 (estimated locally) (FALLTHRU)
+;;              15 [41.0% (guessed)]  count:391808389 (estimated locally)
+
+;; basic block 12, loop depth 1, count 563821837 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       11 [59.0% (guessed)]  count:563821836 (estimated locally) (FALLTHRU)
+(note 117 116 118 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 118 117 119 12 (set (reg:SI 115 [ _43 ])
+        (mem:SI (plus:DI (reg/f:DI 147 [ prephitmp_119 ])
+                (reg:DI 112 [ _40 ])) [3 _41->attr+0 S4 A32])) "../ncurses/./base/lib_vline.c":73:21 -1
+     (nil))
+(insn 119 118 120 12 (parallel [
+            (set (reg:SI 191)
+                (and:SI (reg:SI 115 [ _43 ])
+                    (const_int 254 [0xfe])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":73:21 -1
+     (nil))
+(insn 120 119 121 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 191)
+            (const_int 0 [0]))) "../ncurses/./base/lib_vline.c":73:18 -1
+     (nil))
+(jump_insn 121 120 122 12 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 135)
+            (pc))) "../ncurses/./base/lib_vline.c":73:18 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 135)
+;;  succ:       13 [50.0% (guessed)]  count:281910919 (estimated locally) (FALLTHRU)
+;;              15 [50.0% (guessed)]  count:281910919 (estimated locally)
+
+;; basic block 13, loop depth 1, count 281910918 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       12 [50.0% (guessed)]  count:281910919 (estimated locally) (FALLTHRU)
+(note 122 121 123 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 123 122 124 13 (parallel [
+            (set (reg:SI 192)
+                (and:SI (reg:SI 115 [ _43 ])
+                    (const_int 224 [0xe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":73:21 -1
+     (nil))
+(insn 124 123 125 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 192)
+            (const_int 0 [0]))) "../ncurses/./base/lib_vline.c":73:21 -1
+     (nil))
+(jump_insn 125 124 126 13 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 135)
+            (pc))) "../ncurses/./base/lib_vline.c":73:21 -1
+     (int_list:REG_BR_PROB 719407028 (nil))
+ -> 135)
+;;  succ:       14 [33.0% (guessed)]  count:93030602 (estimated locally) (FALLTHRU)
+;;              15 [67.0% (guessed)]  count:188880316 (estimated locally)
+
+;; basic block 14, loop depth 1, count 93030603 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       13 [33.0% (guessed)]  count:93030602 (estimated locally) (FALLTHRU)
+(note 126 125 127 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 127 126 128 14 (parallel [
+            (set (reg/v/f:DI 145 [ _cp ])
+                (plus:DI (reg/f:DI 147 [ prephitmp_119 ])
+                    (reg:DI 118 [ _46 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":74:3 -1
+     (nil))
+(insn 128 127 129 14 (set (mem:TI (reg/v/f:DI 145 [ _cp ]) [0 MEM <char[1:32]> [(void *)_cp_99]+0 S16 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 129 128 130 14 (set (mem:TI (plus:DI (reg/v/f:DI 145 [ _cp ])
+                (const_int 16 [0x10])) [0 MEM <char[1:32]> [(void *)_cp_99]+16 S16 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 130 129 131 14 (set (mem:SI (plus:DI (reg/v/f:DI 145 [ _cp ])
+                (const_int 4 [0x4])) [3 _cp_99->chars[0]+0 S4 A32])
+        (const_int 32 [0x20])) "../ncurses/./base/lib_vline.c":74:3 -1
+     (nil))
+(insn 131 130 132 14 (set (reg/f:DI 147 [ prephitmp_119 ])
+        (mem/f:DI (reg/v/f:DI 144 [ line ]) [9 line_98->text+0 S8 A64])) "../ncurses/./base/lib_vline.c":74:3 -1
+     (nil))
+(insn 132 131 133 14 (parallel [
+            (set (reg/f:DI 119 [ _48 ])
+                (plus:DI (reg/f:DI 147 [ prephitmp_119 ])
+                    (reg:DI 118 [ _46 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":74:3 -1
+     (nil))
+(insn 133 132 134 14 (set (mem:SI (plus:DI (reg/f:DI 119 [ _48 ])
+                (const_int 24 [0x18])) [3 _48->ext_color+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./base/lib_vline.c":74:3 -1
+     (nil))
+(insn 134 133 135 14 (parallel [
+            (set (mem:SI (reg/f:DI 119 [ _48 ]) [3 _48->attr+0 S4 A32])
+                (and:SI (mem:SI (reg/f:DI 119 [ _48 ]) [3 _48->attr+0 S4 A32])
+                    (const_int -65281 [0xffffffffffff00ff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":74:3 -1
+     (nil))
+;;  succ:       15 [always]  count:93030603 (estimated locally) (FALLTHRU)
+
+;; basic block 15, loop depth 1, count 955630227 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       11 [41.0% (guessed)]  count:391808389 (estimated locally)
+;;              12 [50.0% (guessed)]  count:281910919 (estimated locally)
+;;              13 [67.0% (guessed)]  count:188880316 (estimated locally)
+;;              14 [always]  count:93030603 (estimated locally) (FALLTHRU)
+(code_label 135 134 136 15 6 (nil) [3 uses])
+(note 136 135 137 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 137 136 138 15 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 150 [ win ])
+                    (const_int 12 [0xc])) [3 win_79(D)->_maxx+0 S4 A32])
+            (reg/v:SI 139 [ col ]))) "../ncurses/./base/lib_vline.c":76:9 -1
+     (nil))
+(jump_insn 138 137 139 15 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 157)
+            (pc))) "../ncurses/./base/lib_vline.c":76:9 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 157)
+;;  succ:       16 [50.0% (guessed)]  count:477815114 (estimated locally) (FALLTHRU)
+;;              19 [50.0% (guessed)]  count:477815114 (estimated locally)
+
+;; basic block 16, loop depth 1, count 477815113 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       15 [50.0% (guessed)]  count:477815114 (estimated locally) (FALLTHRU)
+(note 139 138 140 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 140 139 141 16 (parallel [
+            (set (reg/f:DI 125 [ _56 ])
+                (plus:DI (reg/f:DI 147 [ prephitmp_119 ])
+                    (reg:DI 124 [ _55 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":76:30 -1
+     (nil))
+(insn 141 140 142 16 (set (reg:SI 127 [ _58 ])
+        (mem:SI (reg/f:DI 125 [ _56 ]) [3 _56->attr+0 S4 A32])) "../ncurses/./base/lib_vline.c":76:30 -1
+     (nil))
+(insn 142 141 143 16 (parallel [
+            (set (reg:SI 193)
+                (and:SI (reg:SI 127 [ _58 ])
+                    (const_int 254 [0xfe])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":76:30 -1
+     (nil))
+(insn 143 142 144 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 193)
+            (const_int 0 [0]))) "../ncurses/./base/lib_vline.c":76:27 -1
+     (nil))
+(jump_insn 144 143 145 16 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 157)
+            (pc))) "../ncurses/./base/lib_vline.c":76:27 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 157)
+;;  succ:       17 [50.0% (guessed)]  count:238907557 (estimated locally) (FALLTHRU)
+;;              19 [50.0% (guessed)]  count:238907557 (estimated locally)
+
+;; basic block 17, loop depth 1, count 238907557 (estimated locally), maybe hot
+;;  prev block 16, next block 18, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       16 [50.0% (guessed)]  count:238907557 (estimated locally) (FALLTHRU)
+(note 145 144 146 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 146 145 147 17 (parallel [
+            (set (reg:SI 194)
+                (and:SI (reg:SI 127 [ _58 ])
+                    (const_int 224 [0xe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":76:30 -1
+     (nil))
+(insn 147 146 148 17 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 194)
+            (const_int 0 [0]))) "../ncurses/./base/lib_vline.c":76:30 -1
+     (nil))
+(jump_insn 148 147 149 17 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 157)
+            (pc))) "../ncurses/./base/lib_vline.c":76:30 -1
+     (int_list:REG_BR_PROB 719407028 (nil))
+ -> 157)
+;;  succ:       18 [33.0% (guessed)]  count:78839493 (estimated locally) (FALLTHRU)
+;;              19 [67.0% (guessed)]  count:160068064 (estimated locally)
+
+;; basic block 18, loop depth 1, count 78839493 (estimated locally), maybe hot
+;;  prev block 17, next block 19, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       17 [33.0% (guessed)]  count:78839493 (estimated locally) (FALLTHRU)
+(note 149 148 150 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 150 149 151 18 (set (mem:TI (reg/f:DI 125 [ _56 ]) [0 MEM <char[1:32]> [(void *)_56]+0 S16 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 151 150 152 18 (set (mem:TI (plus:DI (reg/f:DI 125 [ _56 ])
+                (const_int 16 [0x10])) [0 MEM <char[1:32]> [(void *)_56]+16 S16 A8])
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":59:10 -1
+     (nil))
+(insn 152 151 153 18 (set (mem:SI (plus:DI (reg/f:DI 125 [ _56 ])
+                (const_int 4 [0x4])) [3 _56->chars[0]+0 S4 A32])
+        (const_int 32 [0x20])) "../ncurses/./base/lib_vline.c":77:3 -1
+     (nil))
+(insn 153 152 154 18 (set (reg/f:DI 147 [ prephitmp_119 ])
+        (mem/f:DI (reg/v/f:DI 144 [ line ]) [9 line_98->text+0 S8 A64])) "../ncurses/./base/lib_vline.c":77:3 -1
+     (nil))
+(insn 154 153 155 18 (parallel [
+            (set (reg/f:DI 130 [ _62 ])
+                (plus:DI (reg/f:DI 147 [ prephitmp_119 ])
+                    (reg:DI 124 [ _55 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":77:3 -1
+     (nil))
+(insn 155 154 156 18 (set (mem:SI (plus:DI (reg/f:DI 130 [ _62 ])
+                (const_int 24 [0x18])) [3 _62->ext_color+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./base/lib_vline.c":77:3 -1
+     (nil))
+(insn 156 155 157 18 (parallel [
+            (set (mem:SI (reg/f:DI 130 [ _62 ]) [3 _62->attr+0 S4 A32])
+                (and:SI (mem:SI (reg/f:DI 130 [ _62 ]) [3 _62->attr+0 S4 A32])
+                    (const_int -65281 [0xffffffffffff00ff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":77:3 -1
+     (nil))
+;;  succ:       19 [always]  count:78839493 (estimated locally) (FALLTHRU)
+
+;; basic block 19, loop depth 1, count 955630227 (estimated locally), maybe hot
+;;  prev block 18, next block 20, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       15 [50.0% (guessed)]  count:477815114 (estimated locally)
+;;              16 [50.0% (guessed)]  count:238907557 (estimated locally)
+;;              17 [67.0% (guessed)]  count:160068064 (estimated locally)
+;;              18 [always]  count:78839493 (estimated locally) (FALLTHRU)
+(code_label 157 156 158 19 7 (nil) [3 uses])
+(note 158 157 159 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 159 158 160 19 (set (reg:TI 195)
+        (mem/c:TI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -48 [0xffffffffffffffd0])) [2 wch+0 S16 A128])) "../ncurses/./base/lib_vline.c":80:22 -1
+     (nil))
+(insn 160 159 161 19 (set (mem:TI (plus:DI (reg/f:DI 147 [ prephitmp_119 ])
+                (reg:DI 112 [ _40 ])) [2 *_68+0 S16 A32])
+        (reg:TI 195)) "../ncurses/./base/lib_vline.c":80:22 -1
+     (nil))
+(insn 161 160 162 19 (set (reg:TI 196)
+        (mem/c:TI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -32 [0xffffffffffffffe0])) [2 wch+16 S16 A128])) "../ncurses/./base/lib_vline.c":80:22 -1
+     (nil))
+(insn 162 161 163 19 (set (mem:TI (plus:DI (plus:DI (reg/f:DI 147 [ prephitmp_119 ])
+                    (reg:DI 112 [ _40 ]))
+                (const_int 16 [0x10])) [2 *_68+16 S16 A32])
+        (reg:TI 196)) "../ncurses/./base/lib_vline.c":80:22 -1
+     (nil))
+(insn 163 162 164 19 (set (reg:SI 134 [ _69 ])
+        (mem:SI (plus:DI (reg/v/f:DI 144 [ line ])
+                (const_int 8 [0x8])) [3 line_98->firstchar+0 S4 A64])) "../ncurses/./base/lib_vline.c":81:6 -1
+     (nil))
+(insn 164 163 165 19 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 134 [ _69 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_vline.c":81:6 -1
+     (nil))
+(jump_insn 165 164 166 19 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 171)
+            (pc))) "../ncurses/./base/lib_vline.c":81:6 -1
+     (int_list:REG_BR_PROB 708669604 (nil))
+ -> 171)
+;;  succ:       20 [34.0% (guessed)]  count:324914281 (estimated locally) (FALLTHRU)
+;;              21 [66.0% (guessed)]  count:630715946 (estimated locally)
+
+;; basic block 20, loop depth 1, count 324914281 (estimated locally), maybe hot
+;;  prev block 19, next block 21, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       19 [34.0% (guessed)]  count:324914281 (estimated locally) (FALLTHRU)
+(note 166 165 167 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 167 166 168 20 (set (mem:SI (plus:DI (reg/v/f:DI 144 [ line ])
+                (const_int 12 [0xc])) [3 line_98->lastchar+0 S4 A32])
+        (reg/v:SI 139 [ col ])) "../ncurses/./base/lib_vline.c":81:6 -1
+     (nil))
+(insn 168 167 169 20 (set (mem:SI (plus:DI (reg/v/f:DI 144 [ line ])
+                (const_int 8 [0x8])) [3 line_98->firstchar+0 S4 A64])
+        (reg/v:SI 139 [ col ])) "../ncurses/./base/lib_vline.c":81:6 -1
+     (nil))
+(jump_insn 169 168 170 20 (set (pc)
+        (label_ref 185)) -1
+     (nil)
+ -> 185)
+;;  succ:       25 [always]  count:324914281 (estimated locally)
+
+(barrier 170 169 171)
+;; basic block 21, loop depth 1, count 630715947 (estimated locally), maybe hot
+;;  prev block 20, next block 22, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       19 [66.0% (guessed)]  count:630715946 (estimated locally)
+(code_label 171 170 172 21 8 (nil) [1 uses])
+(note 172 171 173 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 173 172 174 21 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 134 [ _69 ])
+            (reg/v:SI 139 [ col ]))) "../ncurses/./base/lib_vline.c":81:6 -1
+     (nil))
+(jump_insn 174 173 175 21 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 179)
+            (pc))) "../ncurses/./base/lib_vline.c":81:6 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 179)
+;;  succ:       22 [50.0% (guessed)]  count:315357974 (estimated locally) (FALLTHRU)
+;;              23 [50.0% (guessed)]  count:315357974 (estimated locally)
+
+;; basic block 22, loop depth 1, count 315357973 (estimated locally), maybe hot
+;;  prev block 21, next block 23, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       21 [50.0% (guessed)]  count:315357974 (estimated locally) (FALLTHRU)
+(note 175 174 176 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 176 175 177 22 (set (mem:SI (plus:DI (reg/v/f:DI 144 [ line ])
+                (const_int 8 [0x8])) [3 line_98->firstchar+0 S4 A64])
+        (reg/v:SI 139 [ col ])) "../ncurses/./base/lib_vline.c":81:6 -1
+     (nil))
+(jump_insn 177 176 178 22 (set (pc)
+        (label_ref 185)) -1
+     (nil)
+ -> 185)
+;;  succ:       25 [always]  count:315357973 (estimated locally)
+
+(barrier 178 177 179)
+;; basic block 23, loop depth 1, count 315357973 (estimated locally), maybe hot
+;;  prev block 22, next block 24, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       21 [50.0% (guessed)]  count:315357974 (estimated locally)
+(code_label 179 178 180 23 10 (nil) [1 uses])
+(note 180 179 181 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 181 180 182 23 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 144 [ line ])
+                    (const_int 12 [0xc])) [3 line_98->lastchar+0 S4 A32])
+            (reg/v:SI 139 [ col ]))) "../ncurses/./base/lib_vline.c":81:6 -1
+     (nil))
+(jump_insn 182 181 183 23 (set (pc)
+        (if_then_else (ge (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 185)
+            (pc))) "../ncurses/./base/lib_vline.c":81:6 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 185)
+;;  succ:       24 [50.0% (guessed)]  count:157678987 (estimated locally) (FALLTHRU)
+;;              25 [50.0% (guessed)]  count:157678987 (estimated locally)
+
+;; basic block 24, loop depth 1, count 157678987 (estimated locally), maybe hot
+;;  prev block 23, next block 25, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       23 [50.0% (guessed)]  count:157678987 (estimated locally) (FALLTHRU)
+(note 183 182 184 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 184 183 185 24 (set (mem:SI (plus:DI (reg/v/f:DI 144 [ line ])
+                (const_int 12 [0xc])) [3 line_98->lastchar+0 S4 A32])
+        (reg/v:SI 139 [ col ])) "../ncurses/./base/lib_vline.c":81:6 -1
+     (nil))
+;;  succ:       25 [always]  count:157678987 (estimated locally) (FALLTHRU)
+
+;; basic block 25, loop depth 1, count 955630229 (estimated locally), maybe hot
+;;  prev block 24, next block 26, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       20 [always]  count:324914281 (estimated locally)
+;;              22 [always]  count:315357973 (estimated locally)
+;;              23 [50.0% (guessed)]  count:157678987 (estimated locally)
+;;              24 [always]  count:157678987 (estimated locally) (FALLTHRU)
+(code_label 185 184 186 25 9 (nil) [3 uses])
+(note 186 185 187 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(insn 187 186 189 25 (parallel [
+            (set (reg:DI 142 [ ivtmp.11 ])
+                (plus:DI (reg:DI 141 [ ivtmp.11 ])
+                    (const_int -24 [0xffffffffffffffe8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_vline.c":70:13 -1
+     (nil))
+(insn 189 187 190 25 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 123 [ _53 ])
+            (reg:DI 141 [ ivtmp.11 ]))) "../ncurses/./base/lib_vline.c":70:13 -1
+     (nil))
+(jump_insn 190 189 194 25 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 214)
+            (pc))) "../ncurses/./base/lib_vline.c":70:13 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 214)
+;;  succ:       10 [89.0% (guessed)]  count:850510904 (estimated locally)
+;;              26 [11.0% (guessed)]  count:105119325 (estimated locally) (FALLTHRU)
+
+;; basic block 26, loop depth 0, count 105119325 (estimated locally), maybe hot
+;;  prev block 25, next block 27, flags: (NEW, REACHABLE, RTL)
+;;  pred:       25 [11.0% (guessed)]  count:105119325 (estimated locally) (FALLTHRU)
+(note 194 190 192 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 192 194 193 26 (set (pc)
+        (label_ref 191)) -1
+     (nil)
+ -> 191)
+;;  succ:       8 [always]  count:105119325 (estimated locally)
+
+(barrier 193 192 210)
+;; basic block 27, loop depth 0, count 1036589 (estimated locally), maybe hot
+;;  prev block 26, next block 29, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [0.9% (guessed)]  count:1036589 (estimated locally)
+(code_label 210 193 209 27 14 (nil) [1 uses])
+(note 209 210 9 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(insn 9 209 199 27 (set (reg/v:SI 149 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_vline.c":51:9 -1
+     (nil))
+;;  succ:       29 [always]  count:1036589 (estimated locally) (FALLTHRU)
+
+;; basic block 29, loop depth 0, count 119148189 (estimated locally), maybe hot
+;;  prev block 27, next block 30, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       27 [always]  count:1036589 (estimated locally) (FALLTHRU)
+;;              8 [always]  count:118111601 (estimated locally)
+(code_label 199 9 208 29 1 (nil) [1 uses])
+(note 208 199 200 29 [bb 29] NOTE_INSN_BASIC_BLOCK)
+(insn 200 208 201 29 (set (reg/f:DI 198)
+        (const_int 40 [0x28])) "../ncurses/./base/lib_vline.c":89:1 -1
+     (nil))
+(insn 201 200 202 29 (parallel [
+            (set (reg:CCZ 17 flags)
+                (unspec:CCZ [
+                        (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                                (const_int -8 [0xfffffffffffffff8])) [11 D.9120+0 S8 A64])
+                        (mem/v/f:DI (reg/f:DI 198) [12 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_TEST))
+            (clobber (scratch:DI))
+        ]) "../ncurses/./base/lib_vline.c":89:1 -1
+     (nil))
+(jump_insn 202 201 215 29 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 205)
+            (pc))) "../ncurses/./base/lib_vline.c":89:1 -1
+     (int_list:REG_BR_PROB 1073312332 (nil))
+ -> 205)
+;;  succ:       31 [100.0% (guessed)]  count:119100530 (estimated locally)
+;;              30 [0.0% (guessed)]  count:47659 (estimated locally) (FALLTHRU)
+
+;; basic block 30, loop depth 0, count 47659 (estimated locally)
+;;  prev block 29, next block 31, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       29 [0.0% (guessed)]  count:47659 (estimated locally) (FALLTHRU)
+(note 215 202 203 30 [bb 30] NOTE_INSN_BASIC_BLOCK)
+(call_insn 203 215 204 30 (call (mem:QI (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7f13829a5f00 __stack_chk_fail>) [0 __stack_chk_fail S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_vline.c":89:1 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7f13829a5f00 __stack_chk_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (nil))
+;;  succ:      
+
+(barrier 204 203 205)
+;; basic block 31, loop depth 0, count 119100530 (estimated locally), maybe hot
+;;  prev block 30, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       29 [100.0% (guessed)]  count:119100530 (estimated locally)
+(code_label 205 204 216 31 13 (nil) [1 uses])
+(note 216 205 206 31 [bb 31] NOTE_INSN_BASIC_BLOCK)
+(insn 206 216 207 31 (set (reg/i:SI 0 ax)
+        (reg/v:SI 149 [ <retval> ])) "../ncurses/./base/lib_vline.c":89:1 -1
+     (nil))
+(insn 207 206 0 31 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_vline.c":89:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:119100530 (estimated locally) (FALLTHRU)
+

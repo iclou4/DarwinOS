@@ -1,0 +1,321 @@
+
+;; Function use_screen (use_screen, funcdef_no=91, decl_uid=6452, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+int use_screen (struct SCREEN * screen, int (*NCURSES_SCREEN_CB) (struct screen *, void *) func, void * data)
+{
+  int code;
+  struct SCREEN * save_SP;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _nc_mutex_lock (&_nc_globals.mutex_curses);
+  save_SP_3 = SP;
+  set_term (screen_4(D));
+  code_9 = func_6(D) (screen_4(D), data_7(D));
+  set_term (save_SP_3);
+  _nc_mutex_unlock (&_nc_globals.mutex_curses);
+  return code_9;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 3 (save_SP_3 - 3 )
+Partition 4 (screen_4(D) - 4 )
+Partition 6 (func_6(D) - 6 )
+Partition 7 (data_7(D) - 7 )
+Partition 9 (code_9 - 9 )
+Partition 12 (_12(D) - 12 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (screen_4(D) - 4 )
+Partition 1, base 1 (func_6(D) - 6 )
+Partition 2, base 2 (data_7(D) - 7 )
+Partition 3, base 3 (code_9 - 9 12 )
+
+
+Partition map 
+
+Partition 0 (screen_4(D) - 4 )
+Partition 1 (func_6(D) - 6 )
+Partition 2 (data_7(D) - 7 )
+Partition 3 (code_9 - 9 )
+Partition 4 (_12(D) - 12 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) code_9 <-> _12(D)
+
+Partition map 
+
+Partition 0 (screen_4(D) - 4 )
+Partition 1 (func_6(D) - 6 )
+Partition 2 (data_7(D) - 7 )
+Partition 3 (code_9 - 9 )
+Partition 4 (_12(D) - 12 )
+
+Coalesce list: (9)code_9 & (12)_12(D) [map: 3, 4] : Success -> 3
+After Coalescing:
+
+Partition map 
+
+Partition 0 (save_SP_3 - 3 )
+Partition 1 (screen_4(D) - 4 )
+Partition 2 (func_6(D) - 6 )
+Partition 3 (data_7(D) - 7 )
+Partition 4 (code_9 - 9 12 )
+
+__attribute__((visibility ("default")))
+int use_screen (struct SCREEN * screen, int (*NCURSES_SCREEN_CB) (struct screen *, void *) func, void * data)
+{
+  int code;
+  struct SCREEN * save_SP;
+  int _12(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _nc_mutex_lock (&_nc_globals.mutex_curses);
+  save_SP_3 = SP;
+  set_term (screen_4(D));
+  code_9 = func_6(D) (screen_4(D), data_7(D));
+  set_term (save_SP_3);
+  _nc_mutex_unlock (&_nc_globals.mutex_curses);
+  return code_9;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; _nc_mutex_lock (&_nc_globals.mutex_curses);
+
+(insn 8 7 9 (set (reg:DI 87)
+        (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f7449736ea0 _nc_globals>)
+                (const_int 504 [0x1f8])))) "../ncurses/./tinfo/use_screen.c":54:5 -1
+     (nil))
+
+(insn 9 8 10 (set (reg:DI 5 di)
+        (reg:DI 87)) "../ncurses/./tinfo/use_screen.c":54:5 -1
+     (expr_list:REG_EQUAL (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f7449736ea0 _nc_globals>)
+                (const_int 504 [0x1f8])))
+        (nil)))
+
+(call_insn 10 9 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_mutex_lock") [flags 0x41]  <function_decl 0x7f74497b5100 _nc_mutex_lock>) [0 _nc_mutex_lock S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/use_screen.c":54:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_mutex_lock") [flags 0x41]  <function_decl 0x7f74497b5100 _nc_mutex_lock>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; save_SP_3 = SP;
+
+(insn 11 10 0 (set (reg/v/f:DI 82 [ save_SP ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f74497a4cf0 SP>) [1 SP+0 S8 A64])) "../ncurses/./tinfo/use_screen.c":55:13 -1
+     (nil))
+
+;; set_term (screen_4(D));
+
+(insn 12 11 13 (set (reg:DI 5 di)
+        (reg/v/f:DI 84 [ screen ])) "../ncurses/./tinfo/use_screen.c":56:5 -1
+     (nil))
+
+(call_insn 13 12 0 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("set_term") [flags 0x41]  <function_decl 0x7f744964b700 set_term>) [0 set_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/use_screen.c":56:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("set_term") [flags 0x41]  <function_decl 0x7f744964b700 set_term>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; code_9 = func_6(D) (screen_4(D), data_7(D));
+
+(insn 14 13 15 (set (reg:DI 4 si)
+        (reg/v/f:DI 86 [ data ])) "../ncurses/./tinfo/use_screen.c":58:12 -1
+     (nil))
+
+(insn 15 14 16 (set (reg:DI 5 di)
+        (reg/v/f:DI 84 [ screen ])) "../ncurses/./tinfo/use_screen.c":58:12 -1
+     (nil))
+
+(call_insn 16 15 17 (set (reg:SI 0 ax)
+        (call (mem:QI (reg/v/f:DI 85 [ func ]) [0 *(int (*<Ta9e>) (struct screen *, void *)) func_6(D) S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/use_screen.c":58:12 -1
+     (expr_list:REG_CALL_DECL (nil)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 17 16 0 (set (reg/v:SI 83 [ <retval> ])
+        (reg:SI 0 ax)) "../ncurses/./tinfo/use_screen.c":58:12 -1
+     (nil))
+
+;; set_term (save_SP_3);
+
+(insn 18 17 19 (set (reg:DI 5 di)
+        (reg/v/f:DI 82 [ save_SP ])) "../ncurses/./tinfo/use_screen.c":60:5 -1
+     (nil))
+
+(call_insn 19 18 0 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("set_term") [flags 0x41]  <function_decl 0x7f744964b700 set_term>) [0 set_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/use_screen.c":60:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("set_term") [flags 0x41]  <function_decl 0x7f744964b700 set_term>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; _nc_mutex_unlock (&_nc_globals.mutex_curses);
+
+(insn 20 19 21 (set (reg:DI 88)
+        (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f7449736ea0 _nc_globals>)
+                (const_int 504 [0x1f8])))) "../ncurses/./tinfo/use_screen.c":61:5 -1
+     (nil))
+
+(insn 21 20 22 (set (reg:DI 5 di)
+        (reg:DI 88)) "../ncurses/./tinfo/use_screen.c":61:5 -1
+     (expr_list:REG_EQUAL (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f7449736ea0 _nc_globals>)
+                (const_int 504 [0x1f8])))
+        (nil)))
+
+(call_insn 22 21 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_mutex_unlock") [flags 0x41]  <function_decl 0x7f74497b5300 _nc_mutex_unlock>) [0 _nc_mutex_unlock S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/use_screen.c":61:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_mutex_unlock") [flags 0x41]  <function_decl 0x7f74497b5300 _nc_mutex_unlock>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; return code_9;
+
+(jump_insn 23 22 24 (set (pc)
+        (label_ref 0)) "../ncurses/./tinfo/use_screen.c":62:5 -1
+     (nil))
+
+(barrier 24 23 0)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 23.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 84 [ screen ])
+        (reg:DI 5 di [ screen ])) "../ncurses/./tinfo/use_screen.c":40:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 85 [ func ])
+        (reg:DI 4 si [ func ])) "../ncurses/./tinfo/use_screen.c":40:1 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v/f:DI 86 [ data ])
+        (reg:DI 1 dx [ data ])) "../ncurses/./tinfo/use_screen.c":40:1 -1
+     (nil))
+(note 5 4 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 5 9 2 (set (reg:DI 87)
+        (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f7449736ea0 _nc_globals>)
+                (const_int 504 [0x1f8])))) "../ncurses/./tinfo/use_screen.c":54:5 -1
+     (nil))
+(insn 9 8 10 2 (set (reg:DI 5 di)
+        (reg:DI 87)) "../ncurses/./tinfo/use_screen.c":54:5 -1
+     (expr_list:REG_EQUAL (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f7449736ea0 _nc_globals>)
+                (const_int 504 [0x1f8])))
+        (nil)))
+(call_insn 10 9 11 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_mutex_lock") [flags 0x41]  <function_decl 0x7f74497b5100 _nc_mutex_lock>) [0 _nc_mutex_lock S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/use_screen.c":54:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_mutex_lock") [flags 0x41]  <function_decl 0x7f74497b5100 _nc_mutex_lock>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 11 10 12 2 (set (reg/v/f:DI 82 [ save_SP ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f74497a4cf0 SP>) [1 SP+0 S8 A64])) "../ncurses/./tinfo/use_screen.c":55:13 -1
+     (nil))
+(insn 12 11 13 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 84 [ screen ])) "../ncurses/./tinfo/use_screen.c":56:5 -1
+     (nil))
+(call_insn 13 12 14 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("set_term") [flags 0x41]  <function_decl 0x7f744964b700 set_term>) [0 set_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/use_screen.c":56:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("set_term") [flags 0x41]  <function_decl 0x7f744964b700 set_term>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 14 13 15 2 (set (reg:DI 4 si)
+        (reg/v/f:DI 86 [ data ])) "../ncurses/./tinfo/use_screen.c":58:12 -1
+     (nil))
+(insn 15 14 16 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 84 [ screen ])) "../ncurses/./tinfo/use_screen.c":58:12 -1
+     (nil))
+(call_insn 16 15 17 2 (set (reg:SI 0 ax)
+        (call (mem:QI (reg/v/f:DI 85 [ func ]) [0 *(int (*<Ta9e>) (struct screen *, void *)) func_6(D) S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/use_screen.c":58:12 -1
+     (expr_list:REG_CALL_DECL (nil)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 17 16 18 2 (set (reg/v:SI 83 [ <retval> ])
+        (reg:SI 0 ax)) "../ncurses/./tinfo/use_screen.c":58:12 -1
+     (nil))
+(insn 18 17 19 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 82 [ save_SP ])) "../ncurses/./tinfo/use_screen.c":60:5 -1
+     (nil))
+(call_insn 19 18 20 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("set_term") [flags 0x41]  <function_decl 0x7f744964b700 set_term>) [0 set_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/use_screen.c":60:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("set_term") [flags 0x41]  <function_decl 0x7f744964b700 set_term>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 20 19 21 2 (set (reg:DI 88)
+        (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f7449736ea0 _nc_globals>)
+                (const_int 504 [0x1f8])))) "../ncurses/./tinfo/use_screen.c":61:5 -1
+     (nil))
+(insn 21 20 22 2 (set (reg:DI 5 di)
+        (reg:DI 88)) "../ncurses/./tinfo/use_screen.c":61:5 -1
+     (expr_list:REG_EQUAL (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f7449736ea0 _nc_globals>)
+                (const_int 504 [0x1f8])))
+        (nil)))
+(call_insn 22 21 26 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_mutex_unlock") [flags 0x41]  <function_decl 0x7f74497b5300 _nc_mutex_unlock>) [0 _nc_mutex_unlock S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/use_screen.c":61:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_mutex_unlock") [flags 0x41]  <function_decl 0x7f74497b5300 _nc_mutex_unlock>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 26 22 27 2 (set (reg/i:SI 0 ax)
+        (reg/v:SI 83 [ <retval> ])) "../ncurses/./tinfo/use_screen.c":63:1 -1
+     (nil))
+(insn 27 26 0 2 (use (reg/i:SI 0 ax)) "../ncurses/./tinfo/use_screen.c":63:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+

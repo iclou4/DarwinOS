@@ -1,0 +1,759 @@
+
+;; Function _nc_home_terminfo (_nc_home_terminfo, funcdef_no=91, decl_uid=9134, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+char * _nc_home_terminfo ()
+{
+  size_t want;
+  const char * home;
+  char * _1;
+  long unsigned int _2;
+  void * _3;
+  char * pretmp_13;
+  char * pretmp_15;
+  char * prephitmp_16;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _1 = _nc_globals.home_terminfo;
+  if (_1 == 0B)
+    goto <bb 3>; [17.43%]
+  else
+    goto <bb 8>; [82.57%]
+;;    succ:       3
+;;                8
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  home_7 = getenv ("HOME");
+  if (home_7 != 0B)
+    goto <bb 5>; [53.47%]
+  else
+    goto <bb 4>; [46.53%]
+;;    succ:       5
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  pretmp_13 = _nc_globals.home_terminfo;
+  goto <bb 8>; [100.00%]
+;;    succ:       8
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+  _2 = strlen (home_7);
+  want_8 = _2 + 13;
+  _3 = malloc (want_8);
+  _nc_globals.home_terminfo = _3;
+  if (_3 == 0B)
+    goto <bb 6>; [0.04%]
+  else
+    goto <bb 7>; [99.96%]
+;;    succ:       6
+;;                7
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  _nc_err_abort ("Out of memory");
+;;    succ:      
+
+;;   basic block 7, loop depth 0
+;;    pred:       5
+  __builtin___sprintf_chk (_3, 1, 18446744073709551615, "%s/.terminfo", home_7);
+  pretmp_15 = _nc_globals.home_terminfo;
+;;    succ:       8
+
+;;   basic block 8, loop depth 0
+;;    pred:       2
+;;                4
+;;                7
+  # prephitmp_16 = PHI <_1(2), pretmp_13(4), pretmp_15(7)>
+  return prephitmp_16;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 7 (home_7 - 7 )
+Partition 8 (want_8 - 8 )
+Partition 13 (pretmp_13 - 13 )
+Partition 15 (pretmp_15 - 15 )
+Partition 16 (prephitmp_16 - 16 )
+Partition 18 (_18(D) - 18 )
+
+
+Coalescible Partition map 
+
+Partition 1, base 0 (_1 - 1 13 15 16 18 )
+
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (pretmp_13 - 13 )
+Partition 2 (pretmp_15 - 15 )
+Partition 3 (prephitmp_16 - 16 )
+Partition 4 (_18(D) - 18 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(16514, 0) _1 <-> prephitmp_16
+(10000, 0) prephitmp_16 <-> _18(D)
+(932, 0) pretmp_15 <-> prephitmp_16
+(811, 0) pretmp_13 <-> prephitmp_16
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (pretmp_13 - 13 )
+Partition 2 (pretmp_15 - 15 )
+Partition 3 (prephitmp_16 - 16 )
+Partition 4 (_18(D) - 18 )
+
+Coalesce list: (1)_1 & (16)prephitmp_16 [map: 0, 3] : Success -> 0
+Coalesce list: (16)_1 & (18)_18(D) [map: 0, 4] : Success -> 0
+Coalesce list: (15)pretmp_15 & (16)_1 [map: 2, 0] : Success -> 0
+Coalesce list: (13)pretmp_13 & (16)_1 [map: 1, 0] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 13 15 16 18 )
+Partition 1 (_2 - 2 )
+Partition 2 (_3 - 3 )
+Partition 3 (home_7 - 7 )
+Partition 4 (want_8 - 8 )
+
+
+Replacing Expressions
+want_8 replace with --> want_8 = _2 + 13;
+
+
+__attribute__((visibility ("default")))
+char * _nc_home_terminfo ()
+{
+  size_t want;
+  const char * home;
+  char * _1;
+  long unsigned int _2;
+  void * _3;
+  char * pretmp_13;
+  char * pretmp_15;
+  char * prephitmp_16;
+  char * _18(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _1 = _nc_globals.home_terminfo;
+  if (_1 == 0B)
+    goto <bb 3>; [17.43%]
+  else
+    goto <bb 8>; [82.57%]
+;;    succ:       3
+;;                8
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  home_7 = getenv ("HOME");
+  if (home_7 != 0B)
+    goto <bb 5>; [53.47%]
+  else
+    goto <bb 4>; [46.53%]
+;;    succ:       5
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  pretmp_13 = _nc_globals.home_terminfo;
+  goto <bb 8>; [100.00%]
+;;    succ:       8
+
+;;   basic block 5, loop depth 0
+;;    pred:       3
+  _2 = strlen (home_7);
+  want_8 = _2 + 13;
+  _3 = malloc (want_8);
+  _nc_globals.home_terminfo = _3;
+  if (_3 == 0B)
+    goto <bb 6>; [0.04%]
+  else
+    goto <bb 7>; [99.96%]
+;;    succ:       6
+;;                7
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  _nc_err_abort ("Out of memory");
+;;    succ:      
+
+;;   basic block 7, loop depth 0
+;;    pred:       5
+  __builtin___sprintf_chk (_3, 1, 18446744073709551615, "%s/.terminfo", home_7);
+  pretmp_15 = _nc_globals.home_terminfo;
+;;    succ:       8
+
+;;   basic block 8, loop depth 0
+;;    pred:       2
+;;                4
+;;                7
+  # prephitmp_16 = PHI <_1(2), pretmp_13(4), pretmp_15(7)>
+  return prephitmp_16;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; _1 = _nc_globals.home_terminfo;
+
+(insn 5 4 6 (set (reg/f:DI 87)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f7ecf361ea0 _nc_globals>)) "../ncurses/./tinfo/home_terminfo.c":54:6 -1
+     (nil))
+
+(insn 6 5 0 (set (reg/f:DI 86 [ <retval> ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 87)
+                (const_int 488 [0x1e8])) [1 _nc_globals.home_terminfo+0 S8 A64])) "../ncurses/./tinfo/home_terminfo.c":54:6 -1
+     (nil))
+
+;; if (_1 == 0B)
+
+(insn 7 6 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/home_terminfo.c":54:5 -1
+     (nil))
+
+(jump_insn 8 7 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/home_terminfo.c":54:5 -1
+     (int_list:REG_BR_PROB 886588628 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; home_7 = getenv ("HOME");
+
+(insn 10 9 11 (set (reg:DI 88)
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f7ecf029630 *.LC0>)) "../ncurses/./tinfo/home_terminfo.c":57:18 -1
+     (nil))
+
+(insn 11 10 12 (set (reg:DI 5 di)
+        (reg:DI 88)) "../ncurses/./tinfo/home_terminfo.c":57:18 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f7ecf029630 *.LC0>)
+        (nil)))
+
+(call_insn 12 11 13 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("getenv") [flags 0x41]  <function_decl 0x7f7ecf90fa00 getenv>) [0 getenv S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/home_terminfo.c":57:18 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("getenv") [flags 0x41]  <function_decl 0x7f7ecf90fa00 getenv>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+(insn 13 12 0 (set (reg/v/f:DI 84 [ home ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/home_terminfo.c":57:18 -1
+     (nil))
+
+;; if (home_7 != 0B)
+
+(insn 14 13 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 84 [ home ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/home_terminfo.c":57:9 -1
+     (nil))
+
+(jump_insn 15 14 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/home_terminfo.c":57:9 -1
+     (int_list:REG_BR_PROB 574129756 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; pretmp_13 = _nc_globals.home_terminfo;
+
+(insn 17 16 18 (set (reg/f:DI 89)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f7ecf361ea0 _nc_globals>)) "../ncurses/./tinfo/home_terminfo.c":63:9 -1
+     (nil))
+
+(insn 18 17 0 (set (reg/f:DI 86 [ <retval> ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 89)
+                (const_int 488 [0x1e8])) [1 _nc_globals.home_terminfo+0 S8 A64])) "../ncurses/./tinfo/home_terminfo.c":63:9 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 5
+
+;; 
+
+(code_label 21 20 22 3 (nil) [0 uses])
+
+(note 22 21 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _2 = strlen (home_7);
+
+(insn 23 22 24 (set (reg:DI 5 di)
+        (reg/v/f:DI 84 [ home ])) "../ncurses/./tinfo/home_terminfo.c":58:18 -1
+     (nil))
+
+(call_insn/i 24 23 25 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strlen") [flags 0x41]  <function_decl 0x7f7ecf808700 strlen>) [0 __builtin_strlen S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/home_terminfo.c":58:18 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("strlen") [flags 0x41]  <function_decl 0x7f7ecf808700 strlen>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+(insn 25 24 26 (set (reg:DI 91)
+        (reg:DI 0 ax)) "../ncurses/./tinfo/home_terminfo.c":58:18 -1
+     (nil))
+
+(insn 26 25 27 (set (reg:DI 92)
+        (reg:DI 91)) "../ncurses/./tinfo/home_terminfo.c":58:18 -1
+     (nil))
+
+(insn 27 26 0 (set (reg:DI 82 [ _2 ])
+        (reg:DI 92)) "../ncurses/./tinfo/home_terminfo.c":58:18 -1
+     (nil))
+
+;; _3 = malloc (want_8);
+
+(insn 28 27 29 (parallel [
+            (set (reg:DI 93 [ want ])
+                (plus:DI (reg:DI 82 [ _2 ])
+                    (const_int 13 [0xd])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/home_terminfo.c":58:10 -1
+     (nil))
+
+(insn 29 28 30 (set (reg:DI 5 di)
+        (reg:DI 93 [ want ])) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (nil))
+
+(call_insn 30 29 31 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x7f7ecf82e800 malloc>) [0 __builtin_malloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x7f7ecf82e800 malloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+(insn 31 30 32 (set (reg/f:DI 94)
+        (reg:DI 0 ax)) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 94)
+        (nil)))
+
+(insn 32 31 0 (set (reg/f:DI 83 [ _3 ])
+        (reg/f:DI 94)) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (nil))
+
+;; _nc_globals.home_terminfo = _3;
+
+(insn 33 32 34 (set (reg/f:DI 95)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f7ecf361ea0 _nc_globals>)) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (nil))
+
+(insn 34 33 0 (set (mem/f/c:DI (plus:DI (reg/f:DI 95)
+                (const_int 488 [0x1e8])) [1 _nc_globals.home_terminfo+0 S8 A64])
+        (reg/f:DI 83 [ _3 ])) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (nil))
+
+;; if (_3 == 0B)
+
+(insn 35 34 36 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 83 [ _3 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (nil))
+
+(jump_insn 36 35 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (int_list:REG_BR_PROB 1073312332 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; _nc_err_abort ("Out of memory");
+
+(insn 38 37 39 (set (reg:DI 96)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f7ecf0296c0 *.LC1>)) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (nil))
+
+(insn 39 38 40 (set (reg:DI 5 di)
+        (reg:DI 96)) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f7ecf0296c0 *.LC1>)
+        (nil)))
+
+(insn 40 39 41 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (nil))
+
+(call_insn 41 40 42 (call (mem:QI (symbol_ref:DI ("_nc_err_abort") [flags 0x41]  <function_decl 0x7f7ecf45bc00 _nc_err_abort>) [0 _nc_err_abort S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_err_abort") [flags 0x41]  <function_decl 0x7f7ecf45bc00 _nc_err_abort>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (nil))))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (nil))))
+
+(barrier 42 41 0)
+
+;; Generating RTL for gimple basic block 7
+
+;; 
+
+(code_label 43 42 44 4 (nil) [0 uses])
+
+(note 44 43 0 NOTE_INSN_BASIC_BLOCK)
+
+;; __builtin___sprintf_chk (_3, 1, 18446744073709551615, "%s/.terminfo", home_7);
+
+(insn 45 44 46 (set (reg:DI 36 r8)
+        (reg/v/f:DI 84 [ home ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 -1
+     (nil))
+
+(insn 46 45 47 (set (reg:DI 97)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x7f7ecf029750 *.LC2>)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 -1
+     (nil))
+
+(insn 47 46 48 (set (reg:DI 2 cx)
+        (reg:DI 97)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x7f7ecf029750 *.LC2>)
+        (nil)))
+
+(insn 48 47 49 (set (reg:DI 1 dx)
+        (const_int -1 [0xffffffffffffffff])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 -1
+     (nil))
+
+(insn 49 48 50 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 -1
+     (nil))
+
+(insn 50 49 51 (set (reg:DI 5 di)
+        (reg/f:DI 83 [ _3 ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 -1
+     (nil))
+
+(insn 51 50 52 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 -1
+     (nil))
+
+(call_insn 52 51 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__sprintf_chk") [flags 0x41]  <function_decl 0x7f7ecf837300 __builtin___sprintf_chk>) [0 __builtin___sprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__sprintf_chk") [flags 0x41]  <function_decl 0x7f7ecf837300 __builtin___sprintf_chk>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (expr_list:DI (use (reg:DI 36 r8))
+                            (nil))))))))
+
+;; pretmp_15 = _nc_globals.home_terminfo;
+
+(insn 53 52 54 (set (reg/f:DI 98)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f7ecf361ea0 _nc_globals>)) "../ncurses/./tinfo/home_terminfo.c":63:9 -1
+     (nil))
+
+(insn 54 53 0 (set (reg/f:DI 86 [ <retval> ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 98)
+                (const_int 488 [0x1e8])) [1 _nc_globals.home_terminfo+0 S8 A64])) "../ncurses/./tinfo/home_terminfo.c":63:9 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 8
+
+;; 
+
+(code_label 55 54 56 2 (nil) [0 uses])
+
+(note 56 55 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return prephitmp_16;
+
+(jump_insn 57 56 58 (set (pc)
+        (label_ref 0)) "../ncurses/./tinfo/home_terminfo.c":66:12 -1
+     (nil))
+
+(barrier 58 57 0)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 2->9 redirected to 10
+Redirecting jump 19 from 9 to 10.
+Merging block 9 into block 8...
+Merged blocks 8 and 9.
+Merged 8 and 9 without moving.
+Removing jump 57.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 3 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 2 6 2 (set (reg/f:DI 87)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f7ecf361ea0 _nc_globals>)) "../ncurses/./tinfo/home_terminfo.c":54:6 -1
+     (nil))
+(insn 6 5 7 2 (set (reg/f:DI 86 [ <retval> ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 87)
+                (const_int 488 [0x1e8])) [1 _nc_globals.home_terminfo+0 S8 A64])) "../ncurses/./tinfo/home_terminfo.c":54:6 -1
+     (nil))
+(insn 7 6 8 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/home_terminfo.c":54:5 -1
+     (nil))
+(jump_insn 8 7 9 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 59)
+            (pc))) "../ncurses/./tinfo/home_terminfo.c":54:5 806 {*jcc}
+     (int_list:REG_BR_PROB 886588628 (nil))
+ -> 59)
+;;  succ:       4 [17.4% (guessed)]  count:187153200 (estimated locally) (FALLTHRU)
+;;              10 [82.6% (guessed)]  count:886588624 (estimated locally)
+
+;; basic block 4, loop depth 0, count 187153200 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [17.4% (guessed)]  count:187153200 (estimated locally) (FALLTHRU)
+(note 9 8 10 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 10 9 11 4 (set (reg:DI 88)
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f7ecf029630 *.LC0>)) "../ncurses/./tinfo/home_terminfo.c":57:18 -1
+     (nil))
+(insn 11 10 12 4 (set (reg:DI 5 di)
+        (reg:DI 88)) "../ncurses/./tinfo/home_terminfo.c":57:18 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f7ecf029630 *.LC0>)
+        (nil)))
+(call_insn 12 11 13 4 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("getenv") [flags 0x41]  <function_decl 0x7f7ecf90fa00 getenv>) [0 getenv S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/home_terminfo.c":57:18 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("getenv") [flags 0x41]  <function_decl 0x7f7ecf90fa00 getenv>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 13 12 14 4 (set (reg/v/f:DI 84 [ home ])
+        (reg:DI 0 ax)) "../ncurses/./tinfo/home_terminfo.c":57:18 -1
+     (nil))
+(insn 14 13 15 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 84 [ home ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/home_terminfo.c":57:9 -1
+     (nil))
+(jump_insn 15 14 16 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 21)
+            (pc))) "../ncurses/./tinfo/home_terminfo.c":57:9 -1
+     (int_list:REG_BR_PROB 574129756 (nil))
+ -> 21)
+;;  succ:       6 [53.5% (guessed)]  count:100070816 (estimated locally)
+;;              5 [46.5% (guessed)]  count:87082384 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 87082384 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [46.5% (guessed)]  count:87082384 (estimated locally) (FALLTHRU)
+(note 16 15 17 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 5 (set (reg/f:DI 89)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f7ecf361ea0 _nc_globals>)) "../ncurses/./tinfo/home_terminfo.c":63:9 -1
+     (nil))
+(insn 18 17 19 5 (set (reg/f:DI 86 [ <retval> ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 89)
+                (const_int 488 [0x1e8])) [1 _nc_globals.home_terminfo+0 S8 A64])) "../ncurses/./tinfo/home_terminfo.c":63:9 -1
+     (nil))
+(jump_insn 19 18 20 5 (set (pc)
+        (label_ref:DI 59)) "../ncurses/./tinfo/home_terminfo.c":63:9 807 {jump}
+     (nil)
+ -> 59)
+;;  succ:       10 [always]  count:87082384 (estimated locally)
+
+(barrier 20 19 21)
+;; basic block 6, loop depth 0, count 100070816 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [53.5% (guessed)]  count:100070816 (estimated locally)
+(code_label 21 20 22 6 3 (nil) [1 uses])
+(note 22 21 23 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 24 6 (set (reg:DI 5 di)
+        (reg/v/f:DI 84 [ home ])) "../ncurses/./tinfo/home_terminfo.c":58:18 -1
+     (nil))
+(call_insn/i 24 23 25 6 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strlen") [flags 0x41]  <function_decl 0x7f7ecf808700 strlen>) [0 __builtin_strlen S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/home_terminfo.c":58:18 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("strlen") [flags 0x41]  <function_decl 0x7f7ecf808700 strlen>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 25 24 26 6 (set (reg:DI 91)
+        (reg:DI 0 ax)) "../ncurses/./tinfo/home_terminfo.c":58:18 -1
+     (nil))
+(insn 26 25 27 6 (set (reg:DI 92)
+        (reg:DI 91)) "../ncurses/./tinfo/home_terminfo.c":58:18 -1
+     (nil))
+(insn 27 26 28 6 (set (reg:DI 82 [ _2 ])
+        (reg:DI 92)) "../ncurses/./tinfo/home_terminfo.c":58:18 -1
+     (nil))
+(insn 28 27 29 6 (parallel [
+            (set (reg:DI 93 [ want ])
+                (plus:DI (reg:DI 82 [ _2 ])
+                    (const_int 13 [0xd])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/home_terminfo.c":58:10 -1
+     (nil))
+(insn 29 28 30 6 (set (reg:DI 5 di)
+        (reg:DI 93 [ want ])) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (nil))
+(call_insn 30 29 31 6 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x7f7ecf82e800 malloc>) [0 __builtin_malloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("malloc") [flags 0x41]  <function_decl 0x7f7ecf82e800 malloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 31 30 32 6 (set (reg/f:DI 94)
+        (reg:DI 0 ax)) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 94)
+        (nil)))
+(insn 32 31 33 6 (set (reg/f:DI 83 [ _3 ])
+        (reg/f:DI 94)) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (nil))
+(insn 33 32 34 6 (set (reg/f:DI 95)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f7ecf361ea0 _nc_globals>)) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (nil))
+(insn 34 33 35 6 (set (mem/f/c:DI (plus:DI (reg/f:DI 95)
+                (const_int 488 [0x1e8])) [1 _nc_globals.home_terminfo+0 S8 A64])
+        (reg/f:DI 83 [ _3 ])) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (nil))
+(insn 35 34 36 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 83 [ _3 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (nil))
+(jump_insn 36 35 37 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 43)
+            (pc))) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (int_list:REG_BR_PROB 1073312332 (nil))
+ -> 43)
+;;  succ:       7 [0.0% (guessed)]  count:40028 (estimated locally) (FALLTHRU)
+;;              8 [100.0% (guessed)]  count:100030788 (estimated locally)
+
+;; basic block 7, loop depth 0, count 40028 (estimated locally)
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [0.0% (guessed)]  count:40028 (estimated locally) (FALLTHRU)
+(note 37 36 38 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 38 37 39 7 (set (reg:DI 96)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f7ecf0296c0 *.LC1>)) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (nil))
+(insn 39 38 40 7 (set (reg:DI 5 di)
+        (reg:DI 96)) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f7ecf0296c0 *.LC1>)
+        (nil)))
+(insn 40 39 41 7 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (nil))
+(call_insn 41 40 42 7 (call (mem:QI (symbol_ref:DI ("_nc_err_abort") [flags 0x41]  <function_decl 0x7f7ecf45bc00 _nc_err_abort>) [0 _nc_err_abort S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/home_terminfo.c":59:3 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_err_abort") [flags 0x41]  <function_decl 0x7f7ecf45bc00 _nc_err_abort>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (nil))))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (nil))))
+;;  succ:      
+
+(barrier 42 41 43)
+;; basic block 8, loop depth 0, count 100030788 (estimated locally), maybe hot
+;;  prev block 7, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [100.0% (guessed)]  count:100030788 (estimated locally)
+(code_label 43 42 44 8 4 (nil) [1 uses])
+(note 44 43 45 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 45 44 46 8 (set (reg:DI 36 r8)
+        (reg/v/f:DI 84 [ home ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 -1
+     (nil))
+(insn 46 45 47 8 (set (reg:DI 97)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x7f7ecf029750 *.LC2>)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 -1
+     (nil))
+(insn 47 46 48 8 (set (reg:DI 2 cx)
+        (reg:DI 97)) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 -1
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x7f7ecf029750 *.LC2>)
+        (nil)))
+(insn 48 47 49 8 (set (reg:DI 1 dx)
+        (const_int -1 [0xffffffffffffffff])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 -1
+     (nil))
+(insn 49 48 50 8 (set (reg:SI 4 si)
+        (const_int 1 [0x1])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 -1
+     (nil))
+(insn 50 49 51 8 (set (reg:DI 5 di)
+        (reg/f:DI 83 [ _3 ])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 -1
+     (nil))
+(insn 51 50 52 8 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 -1
+     (nil))
+(call_insn 52 51 53 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__sprintf_chk") [flags 0x41]  <function_decl 0x7f7ecf837300 __builtin___sprintf_chk>) [0 __builtin___sprintf_chk S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/stdio2.h":38:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__sprintf_chk") [flags 0x41]  <function_decl 0x7f7ecf837300 __builtin___sprintf_chk>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (expr_list:DI (use (reg:DI 36 r8))
+                            (nil))))))))
+(insn 53 52 54 8 (set (reg/f:DI 98)
+        (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7f7ecf361ea0 _nc_globals>)) "../ncurses/./tinfo/home_terminfo.c":63:9 -1
+     (nil))
+(insn 54 53 59 8 (set (reg/f:DI 86 [ <retval> ])
+        (mem/f/c:DI (plus:DI (reg/f:DI 98)
+                (const_int 488 [0x1e8])) [1 _nc_globals.home_terminfo+0 S8 A64])) "../ncurses/./tinfo/home_terminfo.c":63:9 -1
+     (nil))
+;;  succ:       10 [always]  count:100030788 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 1073701797 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       8 [always]  count:100030788 (estimated locally) (FALLTHRU)
+;;              2 [82.6% (guessed)]  count:886588624 (estimated locally)
+;;              5 [always]  count:87082384 (estimated locally)
+(code_label 59 54 62 10 1 (nil) [2 uses])
+(note 62 59 60 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 60 62 61 10 (set (reg/i:DI 0 ax)
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/./tinfo/home_terminfo.c":67:1 -1
+     (nil))
+(insn 61 60 0 10 (use (reg/i:DI 0 ax)) "../ncurses/./tinfo/home_terminfo.c":67:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073701797 (estimated locally) (FALLTHRU)
+

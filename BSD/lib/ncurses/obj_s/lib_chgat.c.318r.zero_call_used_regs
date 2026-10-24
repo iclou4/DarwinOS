@@ -1,0 +1,797 @@
+
+;; Function wchgat (wchgat, funcdef_no=91, decl_uid=6219, cgraph_uid=92, symbol_order=91)
+
+
+
+wchgat
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 3 [bx] 7 [sp]
+;;  regs ever live 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 17 [flags] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;;  ref usage 	r0={10d,17u,1e} r1={4d,15u} r2={8d,12u,1e} r3={3d,5u} r4={3d,9u} r5={3d,4u} r7={3d,21u} r17={29d,13u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={8d,10u} r37={3d,5u} r38={4d,5u} r39={3d,4u} 
+;;    total ref usage 211{89d,120u,2e} in 77{77 regular + 0 call} insns.
+(note 1 0 12 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 97845819 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:97845819 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8]
+;; lr  use 	 2 [cx] 4 [si] 5 [di] 7 [sp] 36 [r8]
+;; lr  def 	 0 [ax] 5 [di] 17 [flags] 37 [r9]
+;; live  in  	 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8]
+;; live  gen 	 0 [ax] 5 [di] 17 [flags] 37 [r9]
+;; live  kill	
+(note 12 1 8 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 8 12 2 2 NOTE_INSN_FUNCTION_BEG)
+(insn:TI 2 8 17 2 (set (reg/v/f:DI 0 ax [orig:119 win ] [119])
+        (reg:DI 5 di [155])) "../ncurses/./base/lib_chgat.c":54:1 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 5 di [155])
+        (nil)))
+(insn 17 2 3 2 (set (reg/v:SI 37 r9 [orig:112 color_pair ] [112])
+        (sign_extend:SI (reg:HI 2 cx [orig:123 pair_arg ] [123]))) "../ncurses/./base/lib_chgat.c":56:9 151 {extendhisi2}
+     (expr_list:REG_DEAD (reg:HI 2 cx [orig:123 pair_arg ] [123])
+        (nil)))
+(insn 3 17 14 2 (set (reg/v:SI 5 di [orig:120 n ] [120])
+        (reg:SI 4 si [156])) "../ncurses/./base/lib_chgat.c":54:1 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 4 si [156])
+        (nil)))
+(insn 14 3 15 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 36 r8 [orig:124 opts ] [124])
+            (const_int 0 [0]))) "../ncurses/./base/lib_chgat.c":64:5 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn:TI 15 14 21 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 23)
+            (pc))) "../ncurses/./base/lib_chgat.c":64:5 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 23)
+;;  succ:       4 [30.0% (guessed)]  count:29353745 (estimated locally) (CAN_FALLTHRU)
+;;              3 [70.0% (guessed)]  count:68492074 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 3 [bx] 5 [di] 7 [sp] 36 [r8] 37 [r9]
+;; live  out 	 0 [ax] 1 [dx] 3 [bx] 5 [di] 7 [sp] 36 [r8] 37 [r9]
+
+;; basic block 3, loop depth 0, count 68492073 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       2 [70.0% (guessed)]  count:68492074 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 3 [bx] 5 [di] 7 [sp] 36 [r8]
+;; lr  use 	 7 [sp] 36 [r8]
+;; lr  def 	 37 [r9]
+;; live  in  	 0 [ax] 1 [dx] 3 [bx] 5 [di] 7 [sp] 36 [r8]
+;; live  gen 	 37 [r9]
+;; live  kill	
+(note 21 15 22 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 22 21 23 3 (set (reg/v:SI 37 r9 [orig:112 color_pair ] [112])
+        (mem:SI (reg/v/f:DI 36 r8 [orig:124 opts ] [124]) [1 MEM[(const int *)opts_45(D)]+0 S4 A32])) "../ncurses/./base/lib_chgat.c":64:5 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 36 r8 [orig:124 opts ] [124])
+        (nil)))
+;;  succ:       4 [always]  count:68492073 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 3 [bx] 5 [di] 7 [sp] 37 [r9]
+;; live  out 	 0 [ax] 1 [dx] 3 [bx] 5 [di] 7 [sp] 37 [r9]
+
+;; basic block 4, loop depth 0, count 97845819 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       3 [always]  count:68492073 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              2 [30.0% (guessed)]  count:29353745 (estimated locally) (CAN_FALLTHRU)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 3 [bx] 5 [di] 7 [sp] 37 [r9]
+;; lr  use 	 0 [ax] 7 [sp]
+;; lr  def 	 17 [flags]
+;; live  in  	 0 [ax] 1 [dx] 3 [bx] 5 [di] 7 [sp] 37 [r9]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(code_label 23 22 24 4 3 (nil) [1 uses])
+(note 24 23 25 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(note 25 24 26 4 NOTE_INSN_DELETED)
+(note 26 25 27 4 NOTE_INSN_DELETED)
+(insn:TI 27 26 28 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 0 ax [orig:119 win ] [119])
+            (const_int 0 [0]))) "../ncurses/./base/lib_chgat.c":65:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 28 27 144 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 141)
+            (pc))) "../ncurses/./base/lib_chgat.c":65:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 10737428 (nil)))
+ -> 141)
+;;  succ:       19 [1.0% (guessed)]  count:978459 (estimated locally) (CAN_FALLTHRU)
+;;              5 [99.0% (guessed)]  count:96867360 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 3 [bx] 5 [di] 7 [sp] 37 [r9]
+;; live  out 	 0 [ax] 1 [dx] 3 [bx] 5 [di] 7 [sp] 37 [r9]
+
+;; basic block 5, loop depth 0, count 96867360 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       4 [99.0% (guessed)]  count:96867360 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 3 [bx] 5 [di] 7 [sp] 37 [r9]
+;; lr  use 	 7 [sp] 37 [r9]
+;; lr  def 	 17 [flags]
+;; live  in  	 0 [ax] 1 [dx] 3 [bx] 5 [di] 7 [sp] 37 [r9]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(note 144 28 31 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(note 31 144 32 5 NOTE_INSN_DELETED)
+(note 32 31 34 5 NOTE_INSN_DELETED)
+(insn:TI 34 32 35 5 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 37 r9 [orig:112 color_pair ] [112])
+            (const_int 0 [0]))) "../ncurses/./base/lib_chgat.c":65:8 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 35 34 36 5 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 141)
+            (pc))) "../ncurses/./base/lib_chgat.c":65:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGOC 17 flags)
+        (int_list:REG_BR_PROB 10845876 (nil)))
+ -> 141)
+;;  succ:       6 [99.0% (guessed)]  count:95888902 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              19 [1.0% (guessed)]  count:978458 (estimated locally) (CAN_FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 3 [bx] 5 [di] 7 [sp] 37 [r9]
+;; live  out 	 0 [ax] 1 [dx] 3 [bx] 5 [di] 7 [sp] 37 [r9]
+
+;; basic block 6, loop depth 0, count 95888902 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       5 [99.0% (guessed)]  count:95888902 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 3 [bx] 5 [di] 7 [sp] 37 [r9]
+;; lr  use 	 0 [ax] 1 [dx] 3 [bx] 7 [sp] 37 [r9]
+;; lr  def 	 1 [dx] 2 [cx] 3 [bx] 4 [si] 7 [sp] 17 [flags] 36 [r8] 38 [r10]
+;; live  in  	 0 [ax] 1 [dx] 3 [bx] 5 [di] 7 [sp] 37 [r9]
+;; live  gen 	 1 [dx] 2 [cx] 3 [bx] 4 [si] 7 [sp] 17 [flags] 36 [r8] 38 [r10]
+;; live  kill	 17 [flags]
+(note 36 35 37 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(note 37 36 40 6 NOTE_INSN_DELETED)
+(note 40 37 42 6 NOTE_INSN_DELETED)
+(note 42 40 48 6 NOTE_INSN_DELETED)
+(note 48 42 49 6 NOTE_INSN_DELETED)
+(note 49 48 50 6 NOTE_INSN_DELETED)
+(note 50 49 199 6 NOTE_INSN_DELETED)
+(insn/f:TI 199 50 200 6 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 3 bx)) "../ncurses/./base/lib_chgat.c":54:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 3 bx)
+        (nil)))
+(note 200 199 38 6 NOTE_INSN_PROLOGUE_END)
+(insn 38 200 188 6 (set (reg:DI 2 cx [orig:131 win_48(D)->_cury ] [131])
+        (sign_extend:DI (mem:SI (reg/v/f:DI 0 ax [orig:119 win ] [119]) [1 win_48(D)->_cury+0 S4 A64]))) "../ncurses/./base/lib_chgat.c":67:38 147 {*extendsidi2_rex64}
+     (nil))
+(insn 188 38 46 6 (set (reg:SI 36 r8 [orig:90 _9 ] [90])
+        (reg/v:SI 37 r9 [orig:112 color_pair ] [112])) "../ncurses/./base/lib_chgat.c":70:2 75 {*movsi_internal}
+     (nil))
+(insn:TI 46 188 64 6 (parallel [
+            (set (reg:SI 36 r8 [orig:90 _9 ] [90])
+                (ashift:SI (reg:SI 36 r8 [orig:90 _9 ] [90])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_chgat.c":70:2 655 {*ashlsi3_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 64 46 41 6 (set (reg:SI 3 bx [orig:117 _69 ] [117])
+        (mem:SI (plus:DI (reg/v/f:DI 0 ax [orig:119 win ] [119])
+                (const_int 12 [0xc])) [1 win_48(D)->_maxx+0 S4 A32])) "../ncurses/./base/lib_chgat.c":72:31 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 0 ax [orig:119 win ] [119])
+        (nil)))
+(insn:TI 41 64 44 6 (set (reg:DI 4 si [135])
+        (plus:DI (ashift:DI (reg:DI 2 cx [orig:131 win_48(D)->_cury ] [131])
+                (const_int 1 [0x1]))
+            (reg:DI 2 cx [orig:131 win_48(D)->_cury ] [131]))) "../ncurses/./base/lib_chgat.c":67:34 206 {*leadi}
+     (expr_list:REG_DEAD (reg:DI 2 cx [orig:131 win_48(D)->_cury ] [131])
+        (nil)))
+(insn 44 41 47 6 (set (reg/f:DI 2 cx [orig:137 win_48(D)->_line ] [137])
+        (mem/f:DI (plus:DI (reg/v/f:DI 0 ax [orig:119 win ] [119])
+                (const_int 56 [0x38])) [7 win_48(D)->_line+0 S8 A64])) "../ncurses/./base/lib_chgat.c":67:15 74 {*movdi_internal}
+     (expr_list:REG_EQUIV (mem/f:DI (plus:DI (reg/v/f:DI 0 ax [orig:119 win ] [119])
+                (const_int 56 [0x38])) [7 win_48(D)->_line+0 S8 A64])
+        (nil)))
+(insn 47 44 45 6 (set (reg:SI 38 r10 [orig:113 _39 ] [113])
+        (zero_extend:SI (reg:HI 36 r8 [orig:90 _9 ] [90]))) "../ncurses/./base/lib_chgat.c":70:2 144 {*zero_extendhisi2}
+     (nil))
+(insn:TI 45 47 190 6 (set (reg/v/f:DI 4 si [orig:114 line ] [114])
+        (plus:DI (ashift:DI (reg:DI 4 si [135])
+                (const_int 3 [0x3]))
+            (reg/f:DI 2 cx [orig:137 win_48(D)->_line ] [137]))) "../ncurses/./base/lib_chgat.c":67:15 206 {*leadi}
+     (expr_list:REG_DEAD (reg/f:DI 2 cx [orig:137 win_48(D)->_line ] [137])
+        (nil)))
+(insn 190 45 197 6 (set (reg:SI 2 cx [orig:95 _14 ] [95])
+        (reg/v:SI 1 dx [orig:121 attr ] [121])) "../ncurses/./base/lib_chgat.c":70:2 75 {*movsi_internal}
+     (nil))
+(insn:TI 197 190 155 6 (parallel [
+            (set (zero_extract:SI (reg:SI 2 cx [orig:95 _14 ] [95])
+                    (const_int 8 [0x8])
+                    (const_int 8 [0x8]))
+                (subreg:SI (xor:QI (subreg:QI (zero_extract:SI (reg:SI 2 cx [orig:95 _14 ] [95])
+                                (const_int 8 [0x8])
+                                (const_int 8 [0x8])) 0)
+                        (subreg:QI (zero_extract:SI (reg:SI 1 dx [orig:95 _14 ] [95])
+                                (const_int 8 [0x8])
+                                (const_int 8 [0x8])) 0)) 0))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_chgat.c":70:2 565 {*xorqi_extsi_2}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 155 197 156 6 (parallel [
+            (set (reg:SI 2 cx [151])
+                (ior:SI (reg:SI 2 cx [orig:95 _14 ] [95])
+                    (reg:SI 38 r10 [orig:113 _39 ] [113])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_chgat.c":70:2 520 {*iorsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 156 155 63 6 (parallel [
+            (set (reg:SI 38 r10 [150])
+                (ior:SI (reg:SI 38 r10 [orig:113 _39 ] [113])
+                    (reg/v:SI 1 dx [orig:121 attr ] [121])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_chgat.c":70:2 520 {*iorsi_1}
+     (expr_list:REG_DEAD (reg/v:SI 1 dx [orig:121 attr ] [121])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn 63 156 229 6 (set (reg/v:SI 1 dx [orig:116 i ] [116])
+        (mem:SI (plus:DI (reg/v/f:DI 0 ax [orig:119 win ] [119])
+                (const_int 4 [0x4])) [1 win_48(D)->_curx+0 S4 A32])) "../ncurses/./base/lib_chgat.c":72:9 75 {*movsi_internal}
+     (nil))
+(insn 229 63 158 6 (parallel [
+            (set (reg:CCZ 17 flags)
+                (compare:CCZ (and:SI (reg:SI 36 r8 [orig:90 _9 ] [90])
+                        (const_int 65280 [0xff00]))
+                    (const_int 0 [0])))
+            (set (reg:SI 36 r8 [orig:90 _9 ] [90])
+                (and:SI (reg:SI 36 r8 [orig:90 _9 ] [90])
+                    (const_int 65280 [0xff00])))
+        ]) "../ncurses/./base/lib_chgat.c":70:2 499 {*andsi_2}
+     (expr_list:REG_UNUSED (reg:SI 36 r8 [orig:90 _9 ] [90])
+        (nil)))
+(insn:TI 158 229 65 6 (set (reg/v:SI 38 r10 [orig:111 attr ] [111])
+        (if_then_else:SI (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (reg:SI 38 r10 [150])
+            (reg:SI 2 cx [151]))) "../ncurses/./base/lib_chgat.c":70:2 1100 {*movsicc_noc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (expr_list:REG_DEAD (reg:SI 2 cx [151])
+            (nil))))
+(insn:TI 65 158 66 6 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 1 dx [orig:116 i ] [116])
+            (reg:SI 3 bx [orig:117 _69 ] [117]))) "../ncurses/./base/lib_chgat.c":72:39 11 {*cmpsi_1}
+     (nil))
+(jump_insn 66 65 71 6 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 115)
+            (pc))) "../ncurses/./base/lib_chgat.c":72:39 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 59055804 (nil)))
+ -> 115)
+;;  succ:       7 [94.5% (guessed)]  count:90615012 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              16 [5.5% (guessed)]  count:5273890 (estimated locally) (CAN_FALLTHRU)
+;; lr  out 	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 37 [r9] 38 [r10]
+;; live  out 	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 37 [r9] 38 [r10]
+
+;; basic block 7, loop depth 0, count 90615012 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       6 [94.5% (guessed)]  count:90615012 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; bb 7 artificial_defs: { }
+;; bb 7 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 37 [r9] 38 [r10]
+;; lr  use 	 1 [dx] 7 [sp] 37 [r9] 38 [r10]
+;; lr  def 	 17 [flags] 36 [r8] 38 [r10] 39 [r11]
+;; live  in  	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 37 [r9] 38 [r10]
+;; live  gen 	 17 [flags] 36 [r8] 38 [r10] 39 [r11]
+;; live  kill	 17 [flags]
+(note 71 66 183 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 183 71 74 7 (set (reg:SI 39 r11 [161])
+        (const_int 255 [0xff])) "../ncurses/./base/lib_chgat.c":74:6 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (const_int 255 [0xff])
+        (nil)))
+(insn 74 183 184 7 (set (reg:DI 36 r8 [orig:142 i ] [142])
+        (sign_extend:DI (reg/v:SI 1 dx [orig:116 i ] [116]))) 147 {*extendsidi2_rex64}
+     (nil))
+(insn:TI 184 74 185 7 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 37 r9 [orig:112 color_pair ] [112])
+            (reg:SI 39 r11 [161]))) "../ncurses/./base/lib_chgat.c":74:6 11 {*cmpsi_1}
+     (nil))
+(insn:TI 185 184 75 7 (set (reg:SI 39 r11 [141])
+        (if_then_else:SI (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (reg/v:SI 37 r9 [orig:112 color_pair ] [112])
+            (reg:SI 39 r11 [161]))) "../ncurses/./base/lib_chgat.c":74:6 1100 {*movsicc_noc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (nil)))
+(insn 75 185 227 7 (parallel [
+            (set (reg:DI 36 r8 [orig:110 ivtmp.12 ] [110])
+                (ashift:DI (reg:DI 36 r8 [orig:142 i ] [142])
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) 656 {*ashldi3_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 227 75 73 7 (parallel [
+            (set (strict_low_part (reg:QI 38 r10 [154]))
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_chgat.c":73:6 92 {*movstrictqi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 73 227 236 7 (parallel [
+            (set (reg:SI 39 r11 [orig:106 _28 ] [106])
+                (ashift:SI (reg:SI 39 r11 [141])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_chgat.c":74:6 655 {*ashlsi3_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(jump_insn 236 73 237 7 (set (pc)
+        (label_ref 118)) 807 {jump}
+     (nil)
+ -> 118)
+;;  succ:       11 [always]  count:90615012 (estimated locally) (CAN_FALLTHRU)
+;; lr  out 	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  out 	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+
+(barrier 237 236 97)
+;; basic block 8, loop depth 0, count 645382927 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       14 [66.0% (guessed)]  count:645382926 (estimated locally) (CAN_FALLTHRU)
+;; bb 8 artificial_defs: { }
+;; bb 8 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; lr  use 	 0 [ax] 1 [dx] 7 [sp]
+;; lr  def 	 17 [flags]
+;; live  in  	 0 [ax] 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(code_label 97 237 98 8 9 (nil) [1 uses])
+(note 98 97 99 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 99 98 100 8 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 0 ax [orig:108 _31 ] [108])
+            (reg/v:SI 1 dx [orig:116 i ] [116]))) "../ncurses/./base/lib_chgat.c":75:6 11 {*cmpsi_1}
+     (expr_list:REG_DEAD (reg:SI 0 ax [orig:108 _31 ] [108])
+        (nil)))
+(jump_insn 100 99 101 8 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 105)
+            (pc))) "../ncurses/./base/lib_chgat.c":75:6 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 536870916 (nil)))
+ -> 105)
+;;  succ:       9 [50.0% (guessed)]  count:322691464 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              17 [50.0% (guessed)]  count:322691464 (estimated locally) (CAN_FALLTHRU)
+;; lr  out 	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  out 	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+
+;; basic block 9, loop depth 0, count 322691463 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       8 [50.0% (guessed)]  count:322691464 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; bb 9 artificial_defs: { }
+;; bb 9 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; lr  use 	 1 [dx] 4 [si] 7 [sp]
+;; lr  def 	
+;; live  in  	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  gen 	
+;; live  kill	
+(note 101 100 102 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 102 101 111 9 (set (mem:SI (plus:DI (reg/v/f:DI 4 si [orig:114 line ] [114])
+                (const_int 8 [0x8])) [1 line_49->firstchar+0 S4 A64])
+        (reg/v:SI 1 dx [orig:116 i ] [116])) "../ncurses/./base/lib_chgat.c":75:6 75 {*movsi_internal}
+     (nil))
+;;  succ:       10 [always]  count:322691463 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; lr  out 	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  out 	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+
+;; basic block 10, loop depth 0, count 645382927 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       17 [50.0% (guessed)]  count:161345732 (estimated locally) (CAN_FALLTHRU)
+;;              9 [always]  count:322691463 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              18 [always]  count:161345732 (estimated locally) (CAN_FALLTHRU)
+;; bb 10 artificial_defs: { }
+;; bb 10 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; lr  use 	 1 [dx] 3 [bx] 7 [sp] 36 [r8]
+;; lr  def 	 1 [dx] 17 [flags] 36 [r8]
+;; live  in  	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  gen 	 1 [dx] 17 [flags] 36 [r8]
+;; live  kill	 17 [flags]
+(code_label 111 102 112 10 10 (nil) [2 uses])
+(note 112 111 113 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 113 112 114 10 (parallel [
+            (set (reg/v:SI 1 dx [orig:116 i ] [116])
+                (plus:SI (reg/v:SI 1 dx [orig:116 i ] [116])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_chgat.c":72:67 209 {*addsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 114 113 116 10 (parallel [
+            (set (reg:DI 36 r8 [orig:110 ivtmp.12 ] [110])
+                (plus:DI (reg:DI 36 r8 [orig:110 ivtmp.12 ] [110])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_chgat.c":72:39 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 116 114 117 10 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 1 dx [orig:116 i ] [116])
+            (reg:SI 3 bx [orig:117 _69 ] [117]))) "../ncurses/./base/lib_chgat.c":72:39 11 {*cmpsi_1}
+     (nil))
+(jump_insn 117 116 118 10 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 115)
+            (pc))) "../ncurses/./base/lib_chgat.c":72:39 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 59055804 (nil)))
+ -> 115)
+;;  succ:       11 [94.5% (guessed)]  count:609886866 (estimated locally) (FALLTHRU,DFS_BACK,CAN_FALLTHRU)
+;;              16 [5.5% (guessed)]  count:35496061 (estimated locally) (CAN_FALLTHRU,LOOP_EXIT)
+;; lr  out 	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  out 	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+
+;; basic block 11, loop depth 0, count 1014686024 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       10 [94.5% (guessed)]  count:609886866 (estimated locally) (FALLTHRU,DFS_BACK,CAN_FALLTHRU)
+;;              15 [94.5% (guessed)]  count:314184148 (estimated locally) (DFS_BACK,CAN_FALLTHRU)
+;;              7 [always]  count:90615012 (estimated locally) (CAN_FALLTHRU)
+;; bb 11 artificial_defs: { }
+;; bb 11 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; lr  use 	 5 [di] 7 [sp]
+;; lr  def 	 17 [flags]
+;; live  in  	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(code_label 118 117 119 11 8 (nil) [2 uses])
+(note 119 118 121 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 121 119 122 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 5 di [orig:120 n ] [120])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_chgat.c":72:39 11 {*cmpsi_1}
+     (nil))
+(jump_insn 122 121 123 11 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 120)
+            (pc))) "../ncurses/./base/lib_chgat.c":72:39 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 365072228 (nil)))
+ -> 120)
+;;  succ:       14 [34.0% (guessed)]  count:344993252 (estimated locally) (CAN_FALLTHRU)
+;;              12 [66.0% (guessed)]  count:669692772 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; lr  out 	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  out 	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+
+;; basic block 12, loop depth 0, count 669692773 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       11 [66.0% (guessed)]  count:669692772 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; bb 12 artificial_defs: { }
+;; bb 12 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; lr  use 	 5 [di] 7 [sp]
+;; lr  def 	 0 [ax] 17 [flags]
+;; live  in  	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  gen 	 0 [ax] 17 [flags]
+;; live  kill	
+(note 123 122 194 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 194 123 127 12 (set (reg/v:SI 0 ax [orig:115 n ] [115])
+        (plus:SI (reg/v:SI 5 di [orig:120 n ] [120])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_chgat.c":72:56 205 {*leasi}
+     (nil))
+(insn 127 194 128 12 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:SI 5 di [orig:120 n ] [120])
+            (const_int 0 [0]))) "../ncurses/./base/lib_chgat.c":72:51 7 {*cmpsi_ccno_1}
+     (expr_list:REG_DEAD (reg/v:SI 5 di [orig:120 n ] [120])
+        (nil)))
+(jump_insn 128 127 142 12 (set (pc)
+        (if_then_else (le (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 115)
+            (pc))) "../ncurses/./base/lib_chgat.c":72:51 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCNO 17 flags)
+        (int_list:REG_BR_PROB 59055804 (nil)))
+ -> 115)
+;;  succ:       13 [94.5% (guessed)]  count:632859671 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              16 [5.5% (guessed)]  count:36833102 (estimated locally) (CAN_FALLTHRU,LOOP_EXIT)
+;; lr  out 	 0 [ax] 1 [dx] 3 [bx] 4 [si] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  out 	 0 [ax] 1 [dx] 3 [bx] 4 [si] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+
+;; basic block 13, loop depth 0, count 632859671 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (REACHABLE, HOT_PARTITION, RTL)
+;;  pred:       12 [94.5% (guessed)]  count:632859671 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; bb 13 artificial_defs: { }
+;; bb 13 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 3 [bx] 4 [si] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; lr  use 	 0 [ax] 7 [sp]
+;; lr  def 	 5 [di]
+;; live  in  	 0 [ax] 1 [dx] 3 [bx] 4 [si] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  gen 	 5 [di]
+;; live  kill	
+(note 142 128 9 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 9 142 120 13 (set (reg/v:SI 5 di [orig:120 n ] [120])
+        (reg/v:SI 0 ax [orig:115 n ] [115])) "../ncurses/./base/lib_chgat.c":72:56 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 0 ax [orig:115 n ] [115])
+        (nil)))
+;;  succ:       14 [always]  count:632859671 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; lr  out 	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  out 	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+
+;; basic block 14, loop depth 0, count 977852924 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       11 [34.0% (guessed)]  count:344993252 (estimated locally) (CAN_FALLTHRU)
+;;              13 [always]  count:632859671 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; bb 14 artificial_defs: { }
+;; bb 14 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; lr  use 	 4 [si] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; lr  def 	 0 [ax] 2 [cx] 17 [flags]
+;; live  in  	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  gen 	 0 [ax] 2 [cx] 17 [flags]
+;; live  kill	 17 [flags]
+(code_label 120 9 78 14 13 (nil) [1 uses])
+(note 78 120 79 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(note 79 78 81 14 NOTE_INSN_DELETED)
+(note 81 79 225 14 NOTE_INSN_DELETED)
+(insn:TI 225 81 226 14 (set (reg/f:DI 2 cx [orig:99 _21 ] [99])
+        (mem/f:DI (reg/v/f:DI 4 si [orig:114 line ] [114]) [3 line_49->text+0 S8 A64])) "../ncurses/./base/lib_chgat.c":73:6 74 {*movdi_internal}
+     (nil))
+(insn:TI 226 225 82 14 (parallel [
+            (set (reg/f:DI 2 cx [orig:99 _21 ] [99])
+                (plus:DI (reg/f:DI 2 cx [orig:99 _21 ] [99])
+                    (reg:DI 36 r8 [orig:110 ivtmp.12 ] [110])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_chgat.c":73:6 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 82 226 85 14 (set (reg:SI 0 ax [orig:144 _21->attr ] [144])
+        (zero_extend:SI (mem:QI (reg/f:DI 2 cx [orig:99 _21 ] [99]) [1 _21->attr+0 S1 A32]))) "../ncurses/./base/lib_chgat.c":73:6 143 {*zero_extendqisi2}
+     (nil))
+(insn 85 82 84 14 (set (mem:SI (plus:DI (reg/f:DI 2 cx [orig:99 _21 ] [99])
+                (const_int 24 [0x18])) [1 _21->ext_color+0 S4 A32])
+        (reg/v:SI 37 r9 [orig:112 color_pair ] [112])) "../ncurses/./base/lib_chgat.c":74:6 75 {*movsi_internal}
+     (nil))
+(insn:TI 84 85 195 14 (parallel [
+            (set (reg:SI 0 ax [orig:102 _24 ] [102])
+                (ior:SI (reg:SI 0 ax [orig:144 _21->attr ] [144])
+                    (reg:SI 38 r10 [154])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_chgat.c":73:6 520 {*iorsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 195 84 87 14 (parallel [
+            (set (zero_extract:SI (reg:SI 0 ax [147])
+                    (const_int 8 [0x8])
+                    (const_int 8 [0x8]))
+                (subreg:SI (xor:QI (subreg:QI (zero_extract:SI (reg:SI 0 ax [147])
+                                (const_int 8 [0x8])
+                                (const_int 8 [0x8])) 0)
+                        (subreg:QI (zero_extract:SI (reg:SI 0 ax [147])
+                                (const_int 8 [0x8])
+                                (const_int 8 [0x8])) 0)) 0))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_chgat.c":74:6 565 {*xorqi_extsi_2}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 87 195 88 14 (parallel [
+            (set (reg:SI 0 ax [148])
+                (ior:SI (reg:SI 0 ax [147])
+                    (reg:SI 39 r11 [orig:106 _28 ] [106])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_chgat.c":74:6 520 {*iorsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (expr_list:REG_EQUIV (mem:SI (reg/f:DI 2 cx [orig:99 _21 ] [99]) [1 _21->attr+0 S4 A32])
+            (nil))))
+(insn:TI 88 87 89 14 (set (mem:SI (reg/f:DI 2 cx [orig:99 _21 ] [99]) [1 _21->attr+0 S4 A32])
+        (reg:SI 0 ax [148])) "../ncurses/./base/lib_chgat.c":74:6 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 2 cx [orig:99 _21 ] [99])
+        (expr_list:REG_DEAD (reg:SI 0 ax [148])
+            (nil))))
+(insn 89 88 90 14 (set (reg:SI 0 ax [orig:108 _31 ] [108])
+        (mem:SI (plus:DI (reg/v/f:DI 4 si [orig:114 line ] [114])
+                (const_int 8 [0x8])) [1 line_49->firstchar+0 S4 A64])) "../ncurses/./base/lib_chgat.c":75:6 75 {*movsi_internal}
+     (nil))
+(insn:TI 90 89 91 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:108 _31 ] [108])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_chgat.c":75:6 11 {*cmpsi_1}
+     (nil))
+(jump_insn 91 90 92 14 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 97)
+            (pc))) "../ncurses/./base/lib_chgat.c":75:6 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 708669604 (nil)))
+ -> 97)
+;;  succ:       15 [34.0% (guessed)]  count:332469998 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              8 [66.0% (guessed)]  count:645382926 (estimated locally) (CAN_FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  out 	 0 [ax] 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+
+;; basic block 15, loop depth 0, count 332469998 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       14 [34.0% (guessed)]  count:332469998 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; bb 15 artificial_defs: { }
+;; bb 15 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; lr  use 	 1 [dx] 3 [bx] 4 [si] 7 [sp] 36 [r8]
+;; lr  def 	 1 [dx] 17 [flags] 36 [r8]
+;; live  in  	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  gen 	 1 [dx] 17 [flags] 36 [r8]
+;; live  kill	 17 [flags]
+(note 92 91 93 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 93 92 232 15 (set (mem:SI (plus:DI (reg/v/f:DI 4 si [orig:114 line ] [114])
+                (const_int 12 [0xc])) [1 line_49->lastchar+0 S4 A32])
+        (reg/v:SI 1 dx [orig:116 i ] [116])) "../ncurses/./base/lib_chgat.c":75:6 75 {*movsi_internal}
+     (nil))
+(insn 232 93 94 15 (parallel [
+            (set (reg:DI 36 r8 [orig:110 ivtmp.12 ] [110])
+                (plus:DI (reg:DI 36 r8 [orig:110 ivtmp.12 ] [110])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_chgat.c":72:39 210 {*adddi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 94 232 231 15 (set (mem:SI (plus:DI (reg/v/f:DI 4 si [orig:114 line ] [114])
+                (const_int 8 [0x8])) [1 line_49->firstchar+0 S4 A64])
+        (reg/v:SI 1 dx [orig:116 i ] [116])) "../ncurses/./base/lib_chgat.c":75:6 75 {*movsi_internal}
+     (nil))
+(insn 231 94 233 15 (parallel [
+            (set (reg/v:SI 1 dx [orig:116 i ] [116])
+                (plus:SI (reg/v:SI 1 dx [orig:116 i ] [116])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_chgat.c":72:67 209 {*addsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 233 231 234 15 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 1 dx [orig:116 i ] [116])
+            (reg:SI 3 bx [orig:117 _69 ] [117]))) "../ncurses/./base/lib_chgat.c":72:39 11 {*cmpsi_1}
+     (nil))
+(jump_insn 234 233 115 15 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 118)
+            (pc))) "../ncurses/./base/lib_chgat.c":72:39 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 1014686028 (nil)))
+ -> 118)
+;;  succ:       11 [94.5% (guessed)]  count:314184148 (estimated locally) (DFS_BACK,CAN_FALLTHRU)
+;;              16 [5.5% (guessed)]  count:18285850 (estimated locally) (FALLTHRU,CAN_FALLTHRU,LOOP_EXIT)
+;; lr  out 	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  out 	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+
+;; basic block 16, loop depth 0, count 95888903 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       6 [5.5% (guessed)]  count:5273890 (estimated locally) (CAN_FALLTHRU)
+;;              10 [5.5% (guessed)]  count:35496061 (estimated locally) (CAN_FALLTHRU,LOOP_EXIT)
+;;              12 [5.5% (guessed)]  count:36833102 (estimated locally) (CAN_FALLTHRU,LOOP_EXIT)
+;;              15 [5.5% (guessed)]  count:18285850 (estimated locally) (FALLTHRU,CAN_FALLTHRU,LOOP_EXIT)
+;; bb 16 artificial_defs: { }
+;; bb 16 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	 0 [ax] 3 [bx] 7 [sp] 17 [flags]
+;; live  in  	 7 [sp]
+;; live  gen 	 0 [ax] 3 [bx] 7 [sp]
+;; live  kill	 17 [flags]
+(code_label 115 234 67 16 12 (nil) [3 uses])
+(note 67 115 228 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 228 67 240 16 (parallel [
+            (set (reg:DI 0 ax [orig:118 <retval> ] [118])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_chgat.c":78:7 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(note 240 228 202 16 NOTE_INSN_EPILOGUE_BEG)
+(insn/f 202 240 138 16 (set (reg:DI 3 bx)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./base/lib_chgat.c":81:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(insn 138 202 203 16 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_chgat.c":81:1 -1
+     (nil))
+(jump_insn:TI 203 138 173 16 (simple_return) "../ncurses/./base/lib_chgat.c":81:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+;;  succ:       EXIT [always]  count:95888903 (estimated locally)
+;; lr  out 	 0 [ax] 3 [bx] 7 [sp]
+;; live  out 	 0 [ax] 3 [bx] 7 [sp]
+
+(barrier 173 203 105)
+;; basic block 17, loop depth 0, count 322691463 (estimated locally), maybe hot
+;;  prev block 16, next block 18, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       8 [50.0% (guessed)]  count:322691464 (estimated locally) (CAN_FALLTHRU)
+;; bb 17 artificial_defs: { }
+;; bb 17 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; lr  use 	 1 [dx] 4 [si] 7 [sp]
+;; lr  def 	 17 [flags]
+;; live  in  	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(code_label 105 173 106 17 11 (nil) [1 uses])
+(note 106 105 107 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 107 106 108 17 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 4 si [orig:114 line ] [114])
+                    (const_int 12 [0xc])) [1 line_49->lastchar+0 S4 A32])
+            (reg/v:SI 1 dx [orig:116 i ] [116]))) "../ncurses/./base/lib_chgat.c":75:6 11 {*cmpsi_1}
+     (nil))
+(jump_insn 108 107 109 17 (set (pc)
+        (if_then_else (ge (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 111)
+            (pc))) "../ncurses/./base/lib_chgat.c":75:6 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCGC 17 flags)
+        (int_list:REG_BR_PROB 536870916 (nil)))
+ -> 111)
+;;  succ:       18 [50.0% (guessed)]  count:161345732 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;;              10 [50.0% (guessed)]  count:161345732 (estimated locally) (CAN_FALLTHRU)
+;; lr  out 	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  out 	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+
+;; basic block 18, loop depth 0, count 161345732 (estimated locally), maybe hot
+;;  prev block 17, next block 19, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       17 [50.0% (guessed)]  count:161345732 (estimated locally) (FALLTHRU,CAN_FALLTHRU)
+;; bb 18 artificial_defs: { }
+;; bb 18 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; lr  use 	 1 [dx] 4 [si] 7 [sp]
+;; lr  def 	
+;; live  in  	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  gen 	
+;; live  kill	
+(note 109 108 110 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 110 109 238 18 (set (mem:SI (plus:DI (reg/v/f:DI 4 si [orig:114 line ] [114])
+                (const_int 12 [0xc])) [1 line_49->lastchar+0 S4 A32])
+        (reg/v:SI 1 dx [orig:116 i ] [116])) "../ncurses/./base/lib_chgat.c":75:6 75 {*movsi_internal}
+     (nil))
+(jump_insn 238 110 239 18 (set (pc)
+        (label_ref 111)) 807 {jump}
+     (nil)
+ -> 111)
+;;  succ:       10 [always]  count:161345732 (estimated locally) (CAN_FALLTHRU)
+;; lr  out 	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  out 	 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+
+(barrier 239 238 141)
+;; basic block 19, loop depth 0, count 1956917 (estimated locally), maybe hot
+;;  prev block 18, next block 1, flags: (REACHABLE, HOT_PARTITION, RTL)
+;;  pred:       5 [1.0% (guessed)]  count:978458 (estimated locally) (CAN_FALLTHRU)
+;;              4 [1.0% (guessed)]  count:978459 (estimated locally) (CAN_FALLTHRU)
+;; bb 19 artificial_defs: { }
+;; bb 19 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	 0 [ax]
+;; live  in  	 3 [bx] 7 [sp]
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 141 239 140 19 14 (nil) [2 uses])
+(note 140 141 10 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 10 140 207 19 (set (reg/v:SI 0 ax [orig:118 <retval> ] [118])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_chgat.c":55:9 75 {*movsi_internal}
+     (expr_list:REG_EQUAL (const_int -1 [0xffffffffffffffff])
+        (nil)))
+(insn 207 10 212 19 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_chgat.c":81:1 -1
+     (nil))
+(jump_insn:TI 212 207 211 19 (simple_return) "../ncurses/./base/lib_chgat.c":81:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+;;  succ:       EXIT [always]  count:1956917 (estimated locally)
+;; lr  out 	 0 [ax] 3 [bx] 7 [sp]
+;; live  out 	 0 [ax] 3 [bx] 7 [sp]
+
+(barrier 211 212 187)
+(note 187 211 0 NOTE_INSN_DELETED)

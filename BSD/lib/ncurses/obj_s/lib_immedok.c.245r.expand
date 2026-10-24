@@ -1,0 +1,192 @@
+
+;; Function immedok (immedok, funcdef_no=91, decl_uid=5648, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+void immedok (struct WINDOW * win, _Bool flag)
+{
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (win_2(D) != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 4>; [30.00%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  win_2(D)->_immed = flag_4(D);
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+;;                2
+  return;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 2 (win_2(D) - 2 )
+Partition 4 (flag_4(D) - 4 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (win_2(D) - 2 )
+Partition 1, base 1 (flag_4(D) - 4 )
+
+
+Partition map 
+
+Partition 0 (win_2(D) - 2 )
+Partition 1 (flag_4(D) - 4 )
+
+
+Conflict graph:
+
+After sorting:
+Coalesce List:
+
+Partition map 
+
+Partition 0 (win_2(D) - 2 )
+Partition 1 (flag_4(D) - 4 )
+
+After Coalescing:
+
+Partition map 
+
+Partition 0 (win_2(D) - 2 )
+Partition 1 (flag_4(D) - 4 )
+
+__attribute__((visibility ("default")))
+void immedok (struct WINDOW * win, _Bool flag)
+{
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (win_2(D) != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 4>; [30.00%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  win_2(D)->_immed = flag_4(D);
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+;;                2
+  return;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; if (win_2(D) != 0B)
+
+(insn 8 7 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 82 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_immedok.c":51:8 -1
+     (nil))
+
+(jump_insn 9 8 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_immedok.c":51:8 -1
+     (int_list:REG_BR_PROB 322122548 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; win_2(D)->_immed = flag_4(D);
+
+(insn 11 10 0 (set (mem:QI (plus:DI (reg/v/f:DI 82 [ win ])
+                (const_int 42 [0x2a])) [1 win_2(D)->_immed+0 S1 A16])
+        (reg/v:QI 83 [ flag ])) "../ncurses/./base/lib_immedok.c":52:14 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 4
+
+;; 
+
+(code_label 12 11 13 2 (nil) [0 uses])
+
+(note 13 12 0 NOTE_INSN_BASIC_BLOCK)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 2->5 redirected to 6
+Merging block 5 into block 4...
+Merged blocks 4 and 5.
+Merged 4 and 5 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 82 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./base/lib_immedok.c":48:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg:SI 84)
+        (reg:SI 4 si [ flag ])) "../ncurses/./base/lib_immedok.c":48:1 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:QI 83 [ flag ])
+        (subreg:QI (reg:SI 84) 0)) "../ncurses/./base/lib_immedok.c":48:1 -1
+     (nil))
+(note 5 4 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 5 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 82 [ win ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_immedok.c":51:8 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 14)
+            (pc))) "../ncurses/./base/lib_immedok.c":51:8 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 14)
+;;  succ:       4 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+;;              6 [30.0% (guessed)]  count:322122544 (estimated locally)
+
+;; basic block 4, loop depth 0, count 751619281 (estimated locally), maybe hot
+;;  prev block 2, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 14 4 (set (mem:QI (plus:DI (reg/v/f:DI 82 [ win ])
+                (const_int 42 [0x2a])) [1 win_2(D)->_immed+0 S1 A16])
+        (reg/v:QI 83 [ flag ])) "../ncurses/./base/lib_immedok.c":52:14 -1
+     (nil))
+;;  succ:       6 [always]  count:751619281 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 4, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       4 [always]  count:751619281 (estimated locally) (FALLTHRU)
+;;              2 [30.0% (guessed)]  count:322122544 (estimated locally)
+(code_label 14 11 15 6 1 (nil) [1 uses])
+(note 15 14 0 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+

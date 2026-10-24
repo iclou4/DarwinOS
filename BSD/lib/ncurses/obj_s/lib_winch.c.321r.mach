@@ -1,0 +1,114 @@
+
+;; Function winch (winch, funcdef_no=91, decl_uid=6255, cgraph_uid=92, symbol_order=91)
+
+
+
+winch
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 7 [sp]
+;;  regs ever live 	 0 [ax] 1 [dx] 5 [di] 17 [flags]
+;;  ref usage 	r0={7d,7u} r1={5d,5u,3e} r2={1d} r4={1d} r5={1d,4u} r7={1d,4u} r17={5d,1u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={1d} r37={1d} 
+;;    total ref usage 55{31d,21u,3e} in 14{14 regular + 0 call} insns.
+(note 1 0 5 NOTE_INSN_DELETED)
+(note 5 1 44 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 44 5 3 2 NOTE_INSN_PROLOGUE_END)
+(note 3 44 52 2 NOTE_INSN_FUNCTION_BEG)
+(insn:TI 52 3 7 2 (parallel [
+            (set (reg:DI 0 ax [orig:95 <retval> ] [95])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_winch.c":53:2 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 7 52 8 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 5 di [orig:96 win ] [96])
+            (const_int 0 [0]))) "../ncurses/./base/lib_winch.c":49:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 8 7 9 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 31)
+            (pc))) "../ncurses/./base/lib_winch.c":49:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 31)
+(note 9 8 10 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(note 10 9 12 3 NOTE_INSN_DELETED)
+(note 12 10 14 3 NOTE_INSN_DELETED)
+(note 14 12 20 3 NOTE_INSN_DELETED)
+(note 20 14 23 3 NOTE_INSN_DELETED)
+(note 23 20 11 3 NOTE_INSN_DELETED)
+(insn:TI 11 23 50 3 (set (reg:DI 0 ax [orig:97 win_15(D)->_cury ] [97])
+        (sign_extend:DI (mem:SI (reg/v/f:DI 5 di [orig:96 win ] [96]) [3 win_15(D)->_cury+0 S4 A64]))) "../ncurses/./base/lib_winch.c":50:2 147 {*extendsidi2_rex64}
+     (nil))
+(insn 50 11 15 3 (set (reg:DI 1 dx)
+        (mem/f:DI (plus:DI (reg/v/f:DI 5 di [orig:96 win ] [96])
+                (const_int 56 [0x38])) [1 win_15(D)->_line+0 S8 A64])) "../ncurses/./base/lib_winch.c":50:2 74 {*movdi_internal}
+     (nil))
+(insn:TI 15 50 51 3 (set (reg:DI 0 ax [103])
+        (plus:DI (ashift:DI (reg:DI 0 ax [orig:97 win_15(D)->_cury ] [97])
+                (const_int 1 [0x1]))
+            (reg:DI 0 ax [orig:97 win_15(D)->_cury ] [97]))) "../ncurses/./base/lib_winch.c":50:2 206 {*leadi}
+     (nil))
+(insn:TI 51 15 21 3 (set (reg/f:DI 0 ax [105])
+        (plus:DI (reg:DI 1 dx)
+            (mult:DI (reg:DI 0 ax [103])
+                (const_int 8 [0x8])))) "../ncurses/./base/lib_winch.c":50:2 206 {*leadi}
+     (expr_list:REG_DEAD (reg:DI 1 dx)
+        (nil)))
+(insn 21 51 22 3 (set (reg:DI 1 dx [orig:106 win_15(D)->_curx ] [106])
+        (sign_extend:DI (mem:SI (plus:DI (reg/v/f:DI 5 di [orig:96 win ] [96])
+                    (const_int 4 [0x4])) [3 win_15(D)->_curx+0 S4 A32]))) "../ncurses/./base/lib_winch.c":50:2 147 {*extendsidi2_rex64}
+     (expr_list:REG_DEAD (reg/v/f:DI 5 di [orig:96 win ] [96])
+        (nil)))
+(insn:TI 22 21 24 3 (parallel [
+            (set (reg:DI 1 dx [108])
+                (ashift:DI (reg:DI 1 dx [orig:106 win_15(D)->_curx ] [106])
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_winch.c":50:2 656 {*ashldi3_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 24 22 25 3 (parallel [
+            (set (reg/f:DI 1 dx [orig:91 _10 ] [91])
+                (plus:DI (reg:DI 1 dx [108])
+                    (mem/f:DI (reg/f:DI 0 ax [105]) [9 _5->text+0 S8 A64])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_winch.c":50:2 210 {*adddi_1}
+     (expr_list:REG_DEAD (reg/f:DI 0 ax [105])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (nil))))
+(insn:TI 25 24 26 3 (set (reg:SI 0 ax [orig:110 _10->chars[0] ] [110])
+        (mem:SI (plus:DI (reg/f:DI 1 dx [orig:91 _10 ] [91])
+                (const_int 4 [0x4])) [3 _10->chars[0]+0 S4 A32])) "../ncurses/./base/lib_winch.c":50:2 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (mem:SI (plus:DI (reg/f:DI 1 dx [orig:91 _10 ] [91])
+                (const_int 4 [0x4])) [3 _10->chars[0]+0 S4 A32])
+        (nil)))
+(insn 26 25 31 3 (parallel [
+            (set (reg:SI 0 ax [orig:95 <retval> ] [95])
+                (ior:SI (reg:SI 0 ax [orig:110 _10->chars[0] ] [110])
+                    (mem:SI (reg/f:DI 1 dx [orig:91 _10 ] [91]) [3 _10->attr+0 S4 A32])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_winch.c":50:2 520 {*iorsi_1}
+     (expr_list:REG_DEAD (reg/f:DI 1 dx [orig:91 _10 ] [91])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (expr_list:REG_EQUAL (ior:SI (mem:SI (plus:DI (reg/f:DI 1 dx [orig:91 _10 ] [91])
+                            (const_int 4 [0x4])) [3 _10->chars[0]+0 S4 A32])
+                    (mem:SI (reg/f:DI 1 dx [orig:91 _10 ] [91]) [3 _10->attr+0 S4 A32]))
+                (nil)))))
+(code_label 31 26 34 4 1 (nil) [1 uses])
+(note 34 31 33 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 33 34 53 4 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_winch.c":55:1 -1
+     (nil))
+(note 53 33 46 4 NOTE_INSN_EPILOGUE_BEG)
+(jump_insn:TI 46 53 47 4 (simple_return) "../ncurses/./base/lib_winch.c":55:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 47 46 43)
+(note 43 47 0 NOTE_INSN_DELETED)

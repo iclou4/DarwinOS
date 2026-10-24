@@ -1,0 +1,3258 @@
+
+;; Function _nc_boolnames (_nc_boolnames, funcdef_no=92, decl_uid=7488, cgraph_uid=93, symbol_order=105)
+
+__attribute__((visibility ("default")))
+const char * const * _nc_boolnames ()
+{
+  sizetype ivtmp.27;
+  const char * * _4;
+  void * _7;
+  sizetype _13;
+  const char * _16;
+  short int pretmp_29;
+  short int prephitmp_30;
+  const char * * prephitmp_31;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _4 = ptr_boolnames;
+  if (_4 == 0B)
+    goto <bb 3>; [17.43%]
+  else
+    goto <bb 6>; [82.57%]
+;;    succ:       3
+;;                6
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _7 = calloc (45, 8);
+  ptr_boolnames = _7;
+  if (_7 != 0B)
+    goto <bb 4>; [99.96%]
+  else
+    goto <bb 6>; [0.04%]
+;;    succ:       4
+;;                6
+
+;;   basic block 4, loop depth 1
+;;    pred:       5
+;;                3
+  # prephitmp_30 = PHI <pretmp_29(5), 0(3)>
+  # ivtmp.27_24 = PHI <ivtmp.27_19(5), 0(3)>
+  _13 = (sizetype) prephitmp_30;
+  _16 = &_nc_name_blob + _13;
+  MEM[(const char * *)_7 + ivtmp.27_24 * 4] = _16;
+  ivtmp.27_19 = ivtmp.27_24 + 2;
+  if (ivtmp.27_19 != 88)
+    goto <bb 5>; [87.64%]
+  else
+    goto <bb 6>; [12.36%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 1
+;;    pred:       4
+  pretmp_29 = MEM[(const short int *)&_nc_offset_boolnames + ivtmp.27_19 * 1];
+  goto <bb 4>; [100.00%]
+;;    succ:       4
+
+;;   basic block 6, loop depth 0
+;;    pred:       2
+;;                3
+;;                4
+  # prephitmp_31 = PHI <_4(2), _7(3), _7(4)>
+  return prephitmp_31;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 4 (_4 - 4 )
+Partition 7 (_7 - 7 )
+Partition 9 (_9(D) - 9 )
+Partition 13 (_13 - 13 )
+Partition 16 (_16 - 16 )
+Partition 19 (ivtmp.27_19 - 19 )
+Partition 24 (ivtmp.27_24 - 24 )
+Partition 29 (pretmp_29 - 29 )
+Partition 30 (prephitmp_30 - 30 )
+Partition 31 (prephitmp_31 - 31 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_4 - 4 7 9 31 )
+Partition 3, base 1 (ivtmp.27_19 - 19 24 )
+Partition 5, base 2 (pretmp_29 - 29 30 )
+
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_7 - 7 )
+Partition 2 (_9(D) - 9 )
+Partition 3 (ivtmp.27_19 - 19 )
+Partition 4 (ivtmp.27_24 - 24 )
+Partition 5 (pretmp_29 - 29 )
+Partition 6 (prephitmp_30 - 30 )
+Partition 7 (prephitmp_31 - 31 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10426, 0) _4 <-> prephitmp_31
+(7800, 0) pretmp_29 <-> prephitmp_30
+(7800, 0) ivtmp.27_19 <-> ivtmp.27_24
+(6313, 0) _9(D) <-> prephitmp_31
+(2202, 0) _7 <-> prephitmp_31
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_7 - 7 )
+Partition 2 (_9(D) - 9 )
+Partition 3 (ivtmp.27_19 - 19 )
+Partition 4 (ivtmp.27_24 - 24 )
+Partition 5 (pretmp_29 - 29 )
+Partition 6 (prephitmp_30 - 30 )
+Partition 7 (prephitmp_31 - 31 )
+
+Coalesce list: (4)_4 & (31)prephitmp_31 [map: 0, 7] : Success -> 0
+Coalesce list: (29)pretmp_29 & (30)prephitmp_30 [map: 5, 6] : Success -> 5
+Coalesce list: (19)ivtmp.27_19 & (24)ivtmp.27_24 [map: 3, 4] : Success -> 3
+Coalesce list: (9)_9(D) & (31)_4 [map: 2, 0] : Success -> 0
+Coalesce list: (7)_7 & (31)_4 [map: 1, 0] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_4 - 4 7 9 31 )
+Partition 1 (_13 - 13 )
+Partition 2 (_16 - 16 )
+Partition 3 (ivtmp.27_19 - 19 24 )
+Partition 4 (pretmp_29 - 29 30 )
+
+
+Replacing Expressions
+_13 replace with --> _13 = (sizetype) prephitmp_30;
+
+_16 replace with --> _16 = &_nc_name_blob + _13;
+
+
+__attribute__((visibility ("default")))
+const char * const * _nc_boolnames ()
+{
+  sizetype ivtmp.27;
+  const char * * _4;
+  void * _7;
+  const char * const * _9(D);
+  sizetype _13;
+  const char * _16;
+  short int pretmp_29;
+  short int prephitmp_30;
+  const char * * prephitmp_31;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _4 = ptr_boolnames;
+  if (_4 == 0B)
+    goto <bb 3>; [17.43%]
+  else
+    goto <bb 6>; [82.57%]
+;;    succ:       3
+;;                6
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _7 = calloc (45, 8);
+  ptr_boolnames = _7;
+  if (_7 != 0B)
+    goto <bb 4>; [99.96%]
+  else
+    goto <bb 6>; [0.04%]
+;;    succ:       4
+;;                6
+
+;;   basic block 4, loop depth 1
+;;    pred:       5
+;;                3
+  # prephitmp_30 = PHI <pretmp_29(5), 0(3)>
+  # ivtmp.27_24 = PHI <ivtmp.27_19(5), 0(3)>
+  _13 = (sizetype) prephitmp_30;
+  _16 = &_nc_name_blob + _13;
+  MEM[(const char * *)_7 + ivtmp.27_24 * 4] = _16;
+  ivtmp.27_19 = ivtmp.27_24 + 2;
+  if (ivtmp.27_19 != 88)
+    goto <bb 5>; [87.64%]
+  else
+    goto <bb 6>; [12.36%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 1
+;;    pred:       4
+  pretmp_29 = MEM[(const short int *)&_nc_offset_boolnames + ivtmp.27_19 * 1];
+  goto <bb 4>; [100.00%]
+;;    succ:       4
+
+;;   basic block 6, loop depth 0
+;;    pred:       2
+;;                3
+;;                4
+  # prephitmp_31 = PHI <_4(2), _7(3), _7(4)>
+  return prephitmp_31;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB3->BB4 : PART.3 = 0
+Inserting a value copy on edge BB3->BB4 : PART.4 = 0
+
+;; Generating RTL for gimple basic block 2
+
+;; _4 = ptr_boolnames;
+
+(insn 7 6 0 (set (reg/f:DI 86 [ <retval> ])
+        (mem/f/c:DI (symbol_ref:DI ("ptr_boolnames") [flags 0x2]  <var_decl 0x7fb8202b1240 ptr_boolnames>) [1 ptr_boolnames+0 S8 A64])) "../ncurses/names.c":298:6 -1
+     (nil))
+
+;; if (_4 == 0B)
+
+(insn 8 7 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":298:5 -1
+     (nil))
+
+(jump_insn 9 8 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/names.c":298:5 -1
+     (int_list:REG_BR_PROB 886588628 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _7 = calloc (45, 8);
+
+(insn 11 10 12 (set (reg:DI 4 si)
+        (const_int 8 [0x8])) "../ncurses/names.c":299:17 -1
+     (nil))
+
+(insn 12 11 13 (set (reg:DI 5 di)
+        (const_int 45 [0x2d])) "../ncurses/names.c":299:17 -1
+     (nil))
+
+(call_insn 13 12 14 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>) [0 __builtin_calloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 14 13 15 (set (reg/f:DI 87)
+        (reg:DI 0 ax)) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 87)
+        (nil)))
+
+(insn 15 14 0 (set (reg/f:DI 86 [ <retval> ])
+        (reg/f:DI 87)) "../ncurses/names.c":299:17 -1
+     (nil))
+
+;; ptr_boolnames = _7;
+
+(insn 16 15 0 (set (mem/f/c:DI (symbol_ref:DI ("ptr_boolnames") [flags 0x2]  <var_decl 0x7fb8202b1240 ptr_boolnames>) [1 ptr_boolnames+0 S8 A64])
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/names.c":299:15 -1
+     (nil))
+
+;; if (_7 != 0B)
+
+(insn 17 16 18 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":299:6 -1
+     (nil))
+
+(jump_insn 18 17 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/names.c":299:6 -1
+     (int_list:REG_BR_PROB 429500 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; MEM[(const char * *)_7 + ivtmp.27_24 * 4] = _16;
+
+(insn 20 19 21 (set (reg:DI 88)
+        (sign_extend:DI (reg:HI 85 [ pretmp_29 ]))) "../ncurses/names.c":302:65 -1
+     (nil))
+
+(insn 21 20 22 (set (reg:DI 89)
+        (symbol_ref:DI ("_nc_name_blob") [flags 0x2]  <var_decl 0x7fb8202231b0 _nc_name_blob>)) "../ncurses/names.c":302:56 -1
+     (nil))
+
+(insn 22 21 23 (parallel [
+            (set (reg:DI 90)
+                (plus:DI (reg:DI 88)
+                    (reg:DI 89)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":302:56 -1
+     (nil))
+
+(insn 23 22 0 (set (mem/f:DI (plus:DI (mult:DI (reg:DI 84 [ ivtmp.27 ])
+                    (const_int 4 [0x4]))
+                (reg/f:DI 86 [ <retval> ])) [2 MEM[(const char * *)_7 + ivtmp.27_24 * 4]+0 S8 A64])
+        (reg:DI 90)) "../ncurses/names.c":302:56 -1
+     (nil))
+
+;; ivtmp.27_19 = ivtmp.27_24 + 2;
+
+(insn 24 23 0 (parallel [
+            (set (reg:DI 84 [ ivtmp.27 ])
+                (plus:DI (reg:DI 84 [ ivtmp.27 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":301:18 -1
+     (nil))
+
+;; if (ivtmp.27_19 != 88)
+
+(insn 25 24 26 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 84 [ ivtmp.27 ])
+            (const_int 88 [0x58]))) "../ncurses/names.c":301:18 -1
+     (nil))
+
+(jump_insn 26 25 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/names.c":301:18 -1
+     (int_list:REG_BR_PROB 132709668 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; pretmp_29 = MEM[(const short int *)&_nc_offset_boolnames + ivtmp.27_19 * 1];
+
+(insn 28 27 29 (set (reg/f:DI 91)
+        (symbol_ref:DI ("_nc_offset_boolnames") [flags 0x2]  <var_decl 0x7fb8202b1120 _nc_offset_boolnames>)) "../ncurses/names.c":302:65 -1
+     (nil))
+
+(insn 29 28 0 (set (reg:HI 85 [ pretmp_29 ])
+        (mem/u:HI (plus:DI (reg/f:DI 91)
+                (reg:DI 84 [ ivtmp.27 ])) [3 MEM[(const short int *)&_nc_offset_boolnames + ivtmp.27_19 * 1]+0 S2 A16])) "../ncurses/names.c":302:65 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 33 32 34 2 (nil) [0 uses])
+
+(note 34 33 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return prephitmp_31;
+
+(jump_insn 35 34 36 (set (pc)
+        (label_ref 0)) "../ncurses/names.c":320:1 -1
+     (nil))
+
+(barrier 36 35 0)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 2->8 redirected to 9
+Edge 4->8 redirected to 9
+Edge 6->8 redirected to 9
+deleting block 8
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 5 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 2 8 2 (set (reg/f:DI 86 [ <retval> ])
+        (mem/f/c:DI (symbol_ref:DI ("ptr_boolnames") [flags 0x2]  <var_decl 0x7fb8202b1240 ptr_boolnames>) [1 ptr_boolnames+0 S8 A64])) "../ncurses/names.c":298:6 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":298:5 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 37)
+            (pc))) "../ncurses/names.c":298:5 806 {*jcc}
+     (int_list:REG_BR_PROB 886588628 (nil))
+ -> 37)
+;;  succ:       4 [17.4% (guessed)]  count:187153200 (estimated locally) (FALLTHRU)
+;;              9 [82.6% (guessed)]  count:886588624 (estimated locally)
+
+;; basic block 4, loop depth 0, count 187153200 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [17.4% (guessed)]  count:187153200 (estimated locally) (FALLTHRU)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (set (reg:DI 4 si)
+        (const_int 8 [0x8])) "../ncurses/names.c":299:17 -1
+     (nil))
+(insn 12 11 13 4 (set (reg:DI 5 di)
+        (const_int 45 [0x2d])) "../ncurses/names.c":299:17 -1
+     (nil))
+(call_insn 13 12 14 4 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>) [0 __builtin_calloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 14 13 15 4 (set (reg/f:DI 87)
+        (reg:DI 0 ax)) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 87)
+        (nil)))
+(insn 15 14 16 4 (set (reg/f:DI 86 [ <retval> ])
+        (reg/f:DI 87)) "../ncurses/names.c":299:17 -1
+     (nil))
+(insn 16 15 17 4 (set (mem/f/c:DI (symbol_ref:DI ("ptr_boolnames") [flags 0x2]  <var_decl 0x7fb8202b1240 ptr_boolnames>) [1 ptr_boolnames+0 S8 A64])
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/names.c":299:15 -1
+     (nil))
+(insn 17 16 18 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":299:6 -1
+     (nil))
+(jump_insn 18 17 41 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 37)
+            (pc))) "../ncurses/names.c":299:6 806 {*jcc}
+     (int_list:REG_BR_PROB 429500 (nil))
+ -> 37)
+;;  succ:       5 [100.0% (guessed)]  count:187078339 (estimated locally) (FALLTHRU)
+;;              9 [0.0% (guessed)]  count:74861 (estimated locally)
+
+;; basic block 5, loop depth 0, count 187078339 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [100.0% (guessed)]  count:187078339 (estimated locally) (FALLTHRU)
+(note 41 18 3 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 3 41 4 5 (set (reg:DI 84 [ ivtmp.27 ])
+        (const_int 0 [0])) -1
+     (nil))
+(insn 4 3 30 5 (set (reg:HI 85 [ pretmp_29 ])
+        (const_int 0 [0])) -1
+     (nil))
+;;  succ:       6 [always]  count:187078339 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 1, count 1513633842 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [always]  count:1326555501 (estimated locally) (DFS_BACK)
+;;              5 [always]  count:187078339 (estimated locally) (FALLTHRU)
+(code_label 30 4 19 6 3 (nil) [1 uses])
+(note 19 30 20 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 21 6 (set (reg:DI 88)
+        (sign_extend:DI (reg:HI 85 [ pretmp_29 ]))) "../ncurses/names.c":302:65 -1
+     (nil))
+(insn 21 20 22 6 (set (reg:DI 89)
+        (symbol_ref:DI ("_nc_name_blob") [flags 0x2]  <var_decl 0x7fb8202231b0 _nc_name_blob>)) "../ncurses/names.c":302:56 -1
+     (nil))
+(insn 22 21 23 6 (parallel [
+            (set (reg:DI 90)
+                (plus:DI (reg:DI 88)
+                    (reg:DI 89)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":302:56 -1
+     (nil))
+(insn 23 22 24 6 (set (mem/f:DI (plus:DI (mult:DI (reg:DI 84 [ ivtmp.27 ])
+                    (const_int 4 [0x4]))
+                (reg/f:DI 86 [ <retval> ])) [2 MEM[(const char * *)_7 + ivtmp.27_24 * 4]+0 S8 A64])
+        (reg:DI 90)) "../ncurses/names.c":302:56 -1
+     (nil))
+(insn 24 23 25 6 (parallel [
+            (set (reg:DI 84 [ ivtmp.27 ])
+                (plus:DI (reg:DI 84 [ ivtmp.27 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":301:18 -1
+     (nil))
+(insn 25 24 26 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 84 [ ivtmp.27 ])
+            (const_int 88 [0x58]))) "../ncurses/names.c":301:18 -1
+     (nil))
+(jump_insn 26 25 27 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 37)
+            (pc))) "../ncurses/names.c":301:18 806 {*jcc}
+     (int_list:REG_BR_PROB 132709668 (nil))
+ -> 37)
+;;  succ:       7 [87.6% (guessed)]  count:1326555501 (estimated locally) (FALLTHRU)
+;;              9 [12.4% (guessed)]  count:187078341 (estimated locally)
+
+;; basic block 7, loop depth 1, count 1326555501 (estimated locally), maybe hot
+;;  prev block 6, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [87.6% (guessed)]  count:1326555501 (estimated locally) (FALLTHRU)
+(note 27 26 28 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 7 (set (reg/f:DI 91)
+        (symbol_ref:DI ("_nc_offset_boolnames") [flags 0x2]  <var_decl 0x7fb8202b1120 _nc_offset_boolnames>)) "../ncurses/names.c":302:65 -1
+     (nil))
+(insn 29 28 31 7 (set (reg:HI 85 [ pretmp_29 ])
+        (mem/u:HI (plus:DI (reg/f:DI 91)
+                (reg:DI 84 [ ivtmp.27 ])) [3 MEM[(const short int *)&_nc_offset_boolnames + ivtmp.27_19 * 1]+0 S2 A16])) "../ncurses/names.c":302:65 -1
+     (nil))
+(jump_insn 31 29 32 7 (set (pc)
+        (label_ref 30)) "../ncurses/names.c":302:65 -1
+     (nil)
+ -> 30)
+;;  succ:       6 [always]  count:1326555501 (estimated locally) (DFS_BACK)
+
+(barrier 32 31 37)
+;; basic block 9, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 7, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       6 [12.4% (guessed)]  count:187078341 (estimated locally)
+;;              2 [82.6% (guessed)]  count:886588624 (estimated locally)
+;;              4 [0.0% (guessed)]  count:74861 (estimated locally)
+(code_label 37 32 40 9 1 (nil) [3 uses])
+(note 40 37 38 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 38 40 39 9 (set (reg/i:DI 0 ax)
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/names.c":320:1 -1
+     (nil))
+(insn 39 38 0 9 (use (reg/i:DI 0 ax)) "../ncurses/names.c":320:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+
+;; Function _nc_boolfnames (_nc_boolfnames, funcdef_no=93, decl_uid=7492, cgraph_uid=94, symbol_order=106)
+
+__attribute__((visibility ("default")))
+const char * const * _nc_boolfnames ()
+{
+  sizetype ivtmp.51;
+  const char * * _4;
+  void * _7;
+  sizetype _13;
+  const char * _16;
+  short int pretmp_29;
+  short int prephitmp_30;
+  const char * * prephitmp_31;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _4 = ptr_boolfnames;
+  if (_4 == 0B)
+    goto <bb 3>; [17.43%]
+  else
+    goto <bb 6>; [82.57%]
+;;    succ:       3
+;;                6
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _7 = calloc (45, 8);
+  ptr_boolfnames = _7;
+  if (_7 != 0B)
+    goto <bb 4>; [99.96%]
+  else
+    goto <bb 6>; [0.04%]
+;;    succ:       4
+;;                6
+
+;;   basic block 4, loop depth 1
+;;    pred:       5
+;;                3
+  # prephitmp_30 = PHI <pretmp_29(5), 3(3)>
+  # ivtmp.51_24 = PHI <ivtmp.51_19(5), 0(3)>
+  _13 = (sizetype) prephitmp_30;
+  _16 = &_nc_name_blob + _13;
+  MEM[(const char * *)_7 + ivtmp.51_24 * 4] = _16;
+  ivtmp.51_19 = ivtmp.51_24 + 2;
+  if (ivtmp.51_19 != 88)
+    goto <bb 5>; [87.64%]
+  else
+    goto <bb 6>; [12.36%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 1
+;;    pred:       4
+  pretmp_29 = MEM[(const short int *)&_nc_offset_boolfnames + ivtmp.51_19 * 1];
+  goto <bb 4>; [100.00%]
+;;    succ:       4
+
+;;   basic block 6, loop depth 0
+;;    pred:       2
+;;                3
+;;                4
+  # prephitmp_31 = PHI <_4(2), _7(3), _7(4)>
+  return prephitmp_31;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 4 (_4 - 4 )
+Partition 7 (_7 - 7 )
+Partition 9 (_9(D) - 9 )
+Partition 13 (_13 - 13 )
+Partition 16 (_16 - 16 )
+Partition 19 (ivtmp.51_19 - 19 )
+Partition 24 (ivtmp.51_24 - 24 )
+Partition 29 (pretmp_29 - 29 )
+Partition 30 (prephitmp_30 - 30 )
+Partition 31 (prephitmp_31 - 31 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_4 - 4 7 9 31 )
+Partition 3, base 1 (ivtmp.51_19 - 19 24 )
+Partition 5, base 2 (pretmp_29 - 29 30 )
+
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_7 - 7 )
+Partition 2 (_9(D) - 9 )
+Partition 3 (ivtmp.51_19 - 19 )
+Partition 4 (ivtmp.51_24 - 24 )
+Partition 5 (pretmp_29 - 29 )
+Partition 6 (prephitmp_30 - 30 )
+Partition 7 (prephitmp_31 - 31 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10426, 0) _4 <-> prephitmp_31
+(7800, 0) pretmp_29 <-> prephitmp_30
+(7800, 0) ivtmp.51_19 <-> ivtmp.51_24
+(6313, 0) _9(D) <-> prephitmp_31
+(2202, 0) _7 <-> prephitmp_31
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_7 - 7 )
+Partition 2 (_9(D) - 9 )
+Partition 3 (ivtmp.51_19 - 19 )
+Partition 4 (ivtmp.51_24 - 24 )
+Partition 5 (pretmp_29 - 29 )
+Partition 6 (prephitmp_30 - 30 )
+Partition 7 (prephitmp_31 - 31 )
+
+Coalesce list: (4)_4 & (31)prephitmp_31 [map: 0, 7] : Success -> 0
+Coalesce list: (29)pretmp_29 & (30)prephitmp_30 [map: 5, 6] : Success -> 5
+Coalesce list: (19)ivtmp.51_19 & (24)ivtmp.51_24 [map: 3, 4] : Success -> 3
+Coalesce list: (9)_9(D) & (31)_4 [map: 2, 0] : Success -> 0
+Coalesce list: (7)_7 & (31)_4 [map: 1, 0] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_4 - 4 7 9 31 )
+Partition 1 (_13 - 13 )
+Partition 2 (_16 - 16 )
+Partition 3 (ivtmp.51_19 - 19 24 )
+Partition 4 (pretmp_29 - 29 30 )
+
+
+Replacing Expressions
+_13 replace with --> _13 = (sizetype) prephitmp_30;
+
+_16 replace with --> _16 = &_nc_name_blob + _13;
+
+
+__attribute__((visibility ("default")))
+const char * const * _nc_boolfnames ()
+{
+  sizetype ivtmp.51;
+  const char * * _4;
+  void * _7;
+  const char * const * _9(D);
+  sizetype _13;
+  const char * _16;
+  short int pretmp_29;
+  short int prephitmp_30;
+  const char * * prephitmp_31;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _4 = ptr_boolfnames;
+  if (_4 == 0B)
+    goto <bb 3>; [17.43%]
+  else
+    goto <bb 6>; [82.57%]
+;;    succ:       3
+;;                6
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _7 = calloc (45, 8);
+  ptr_boolfnames = _7;
+  if (_7 != 0B)
+    goto <bb 4>; [99.96%]
+  else
+    goto <bb 6>; [0.04%]
+;;    succ:       4
+;;                6
+
+;;   basic block 4, loop depth 1
+;;    pred:       5
+;;                3
+  # prephitmp_30 = PHI <pretmp_29(5), 3(3)>
+  # ivtmp.51_24 = PHI <ivtmp.51_19(5), 0(3)>
+  _13 = (sizetype) prephitmp_30;
+  _16 = &_nc_name_blob + _13;
+  MEM[(const char * *)_7 + ivtmp.51_24 * 4] = _16;
+  ivtmp.51_19 = ivtmp.51_24 + 2;
+  if (ivtmp.51_19 != 88)
+    goto <bb 5>; [87.64%]
+  else
+    goto <bb 6>; [12.36%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 1
+;;    pred:       4
+  pretmp_29 = MEM[(const short int *)&_nc_offset_boolfnames + ivtmp.51_19 * 1];
+  goto <bb 4>; [100.00%]
+;;    succ:       4
+
+;;   basic block 6, loop depth 0
+;;    pred:       2
+;;                3
+;;                4
+  # prephitmp_31 = PHI <_4(2), _7(3), _7(4)>
+  return prephitmp_31;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB3->BB4 : PART.3 = 0
+Inserting a value copy on edge BB3->BB4 : PART.4 = 3
+
+;; Generating RTL for gimple basic block 2
+
+;; _4 = ptr_boolfnames;
+
+(insn 7 6 0 (set (reg/f:DI 86 [ <retval> ])
+        (mem/f/c:DI (symbol_ref:DI ("ptr_boolfnames") [flags 0x2]  <var_decl 0x7fb8202b1090 ptr_boolfnames>) [1 ptr_boolfnames+0 S8 A64])) "../ncurses/names.c":298:6 -1
+     (nil))
+
+;; if (_4 == 0B)
+
+(insn 8 7 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":298:5 -1
+     (nil))
+
+(jump_insn 9 8 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/names.c":298:5 -1
+     (int_list:REG_BR_PROB 886588628 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _7 = calloc (45, 8);
+
+(insn 11 10 12 (set (reg:DI 4 si)
+        (const_int 8 [0x8])) "../ncurses/names.c":299:17 -1
+     (nil))
+
+(insn 12 11 13 (set (reg:DI 5 di)
+        (const_int 45 [0x2d])) "../ncurses/names.c":299:17 -1
+     (nil))
+
+(call_insn 13 12 14 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>) [0 __builtin_calloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 14 13 15 (set (reg/f:DI 87)
+        (reg:DI 0 ax)) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 87)
+        (nil)))
+
+(insn 15 14 0 (set (reg/f:DI 86 [ <retval> ])
+        (reg/f:DI 87)) "../ncurses/names.c":299:17 -1
+     (nil))
+
+;; ptr_boolfnames = _7;
+
+(insn 16 15 0 (set (mem/f/c:DI (symbol_ref:DI ("ptr_boolfnames") [flags 0x2]  <var_decl 0x7fb8202b1090 ptr_boolfnames>) [1 ptr_boolfnames+0 S8 A64])
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/names.c":299:15 -1
+     (nil))
+
+;; if (_7 != 0B)
+
+(insn 17 16 18 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":299:6 -1
+     (nil))
+
+(jump_insn 18 17 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/names.c":299:6 -1
+     (int_list:REG_BR_PROB 429500 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; MEM[(const char * *)_7 + ivtmp.51_24 * 4] = _16;
+
+(insn 20 19 21 (set (reg:DI 88)
+        (sign_extend:DI (reg:HI 85 [ pretmp_29 ]))) "../ncurses/names.c":302:65 -1
+     (nil))
+
+(insn 21 20 22 (set (reg:DI 89)
+        (symbol_ref:DI ("_nc_name_blob") [flags 0x2]  <var_decl 0x7fb8202231b0 _nc_name_blob>)) "../ncurses/names.c":302:56 -1
+     (nil))
+
+(insn 22 21 23 (parallel [
+            (set (reg:DI 90)
+                (plus:DI (reg:DI 88)
+                    (reg:DI 89)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":302:56 -1
+     (nil))
+
+(insn 23 22 0 (set (mem/f:DI (plus:DI (mult:DI (reg:DI 84 [ ivtmp.51 ])
+                    (const_int 4 [0x4]))
+                (reg/f:DI 86 [ <retval> ])) [2 MEM[(const char * *)_7 + ivtmp.51_24 * 4]+0 S8 A64])
+        (reg:DI 90)) "../ncurses/names.c":302:56 -1
+     (nil))
+
+;; ivtmp.51_19 = ivtmp.51_24 + 2;
+
+(insn 24 23 0 (parallel [
+            (set (reg:DI 84 [ ivtmp.51 ])
+                (plus:DI (reg:DI 84 [ ivtmp.51 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":301:18 -1
+     (nil))
+
+;; if (ivtmp.51_19 != 88)
+
+(insn 25 24 26 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 84 [ ivtmp.51 ])
+            (const_int 88 [0x58]))) "../ncurses/names.c":301:18 -1
+     (nil))
+
+(jump_insn 26 25 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/names.c":301:18 -1
+     (int_list:REG_BR_PROB 132709668 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; pretmp_29 = MEM[(const short int *)&_nc_offset_boolfnames + ivtmp.51_19 * 1];
+
+(insn 28 27 29 (set (reg/f:DI 91)
+        (symbol_ref:DI ("_nc_offset_boolfnames") [flags 0x2]  <var_decl 0x7fb820223240 _nc_offset_boolfnames>)) "../ncurses/names.c":302:65 -1
+     (nil))
+
+(insn 29 28 0 (set (reg:HI 85 [ pretmp_29 ])
+        (mem/u:HI (plus:DI (reg/f:DI 91)
+                (reg:DI 84 [ ivtmp.51 ])) [3 MEM[(const short int *)&_nc_offset_boolfnames + ivtmp.51_19 * 1]+0 S2 A16])) "../ncurses/names.c":302:65 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 33 32 34 18 (nil) [0 uses])
+
+(note 34 33 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return prephitmp_31;
+
+(jump_insn 35 34 36 (set (pc)
+        (label_ref 0)) "../ncurses/names.c":321:1 -1
+     (nil))
+
+(barrier 36 35 0)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 2->8 redirected to 9
+Edge 4->8 redirected to 9
+Edge 6->8 redirected to 9
+deleting block 8
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 5 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 2 8 2 (set (reg/f:DI 86 [ <retval> ])
+        (mem/f/c:DI (symbol_ref:DI ("ptr_boolfnames") [flags 0x2]  <var_decl 0x7fb8202b1090 ptr_boolfnames>) [1 ptr_boolfnames+0 S8 A64])) "../ncurses/names.c":298:6 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":298:5 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 37)
+            (pc))) "../ncurses/names.c":298:5 806 {*jcc}
+     (int_list:REG_BR_PROB 886588628 (nil))
+ -> 37)
+;;  succ:       4 [17.4% (guessed)]  count:187153200 (estimated locally) (FALLTHRU)
+;;              9 [82.6% (guessed)]  count:886588624 (estimated locally)
+
+;; basic block 4, loop depth 0, count 187153200 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [17.4% (guessed)]  count:187153200 (estimated locally) (FALLTHRU)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (set (reg:DI 4 si)
+        (const_int 8 [0x8])) "../ncurses/names.c":299:17 -1
+     (nil))
+(insn 12 11 13 4 (set (reg:DI 5 di)
+        (const_int 45 [0x2d])) "../ncurses/names.c":299:17 -1
+     (nil))
+(call_insn 13 12 14 4 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>) [0 __builtin_calloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 14 13 15 4 (set (reg/f:DI 87)
+        (reg:DI 0 ax)) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 87)
+        (nil)))
+(insn 15 14 16 4 (set (reg/f:DI 86 [ <retval> ])
+        (reg/f:DI 87)) "../ncurses/names.c":299:17 -1
+     (nil))
+(insn 16 15 17 4 (set (mem/f/c:DI (symbol_ref:DI ("ptr_boolfnames") [flags 0x2]  <var_decl 0x7fb8202b1090 ptr_boolfnames>) [1 ptr_boolfnames+0 S8 A64])
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/names.c":299:15 -1
+     (nil))
+(insn 17 16 18 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":299:6 -1
+     (nil))
+(jump_insn 18 17 41 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 37)
+            (pc))) "../ncurses/names.c":299:6 806 {*jcc}
+     (int_list:REG_BR_PROB 429500 (nil))
+ -> 37)
+;;  succ:       5 [100.0% (guessed)]  count:187078339 (estimated locally) (FALLTHRU)
+;;              9 [0.0% (guessed)]  count:74861 (estimated locally)
+
+;; basic block 5, loop depth 0, count 187078339 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [100.0% (guessed)]  count:187078339 (estimated locally) (FALLTHRU)
+(note 41 18 3 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 3 41 4 5 (set (reg:DI 84 [ ivtmp.51 ])
+        (const_int 0 [0])) -1
+     (nil))
+(insn 4 3 30 5 (set (reg:HI 85 [ pretmp_29 ])
+        (const_int 3 [0x3])) -1
+     (nil))
+;;  succ:       6 [always]  count:187078339 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 1, count 1513633842 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [always]  count:1326555501 (estimated locally) (DFS_BACK)
+;;              5 [always]  count:187078339 (estimated locally) (FALLTHRU)
+(code_label 30 4 19 6 19 (nil) [1 uses])
+(note 19 30 20 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 21 6 (set (reg:DI 88)
+        (sign_extend:DI (reg:HI 85 [ pretmp_29 ]))) "../ncurses/names.c":302:65 -1
+     (nil))
+(insn 21 20 22 6 (set (reg:DI 89)
+        (symbol_ref:DI ("_nc_name_blob") [flags 0x2]  <var_decl 0x7fb8202231b0 _nc_name_blob>)) "../ncurses/names.c":302:56 -1
+     (nil))
+(insn 22 21 23 6 (parallel [
+            (set (reg:DI 90)
+                (plus:DI (reg:DI 88)
+                    (reg:DI 89)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":302:56 -1
+     (nil))
+(insn 23 22 24 6 (set (mem/f:DI (plus:DI (mult:DI (reg:DI 84 [ ivtmp.51 ])
+                    (const_int 4 [0x4]))
+                (reg/f:DI 86 [ <retval> ])) [2 MEM[(const char * *)_7 + ivtmp.51_24 * 4]+0 S8 A64])
+        (reg:DI 90)) "../ncurses/names.c":302:56 -1
+     (nil))
+(insn 24 23 25 6 (parallel [
+            (set (reg:DI 84 [ ivtmp.51 ])
+                (plus:DI (reg:DI 84 [ ivtmp.51 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":301:18 -1
+     (nil))
+(insn 25 24 26 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 84 [ ivtmp.51 ])
+            (const_int 88 [0x58]))) "../ncurses/names.c":301:18 -1
+     (nil))
+(jump_insn 26 25 27 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 37)
+            (pc))) "../ncurses/names.c":301:18 806 {*jcc}
+     (int_list:REG_BR_PROB 132709668 (nil))
+ -> 37)
+;;  succ:       7 [87.6% (guessed)]  count:1326555501 (estimated locally) (FALLTHRU)
+;;              9 [12.4% (guessed)]  count:187078341 (estimated locally)
+
+;; basic block 7, loop depth 1, count 1326555501 (estimated locally), maybe hot
+;;  prev block 6, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [87.6% (guessed)]  count:1326555501 (estimated locally) (FALLTHRU)
+(note 27 26 28 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 7 (set (reg/f:DI 91)
+        (symbol_ref:DI ("_nc_offset_boolfnames") [flags 0x2]  <var_decl 0x7fb820223240 _nc_offset_boolfnames>)) "../ncurses/names.c":302:65 -1
+     (nil))
+(insn 29 28 31 7 (set (reg:HI 85 [ pretmp_29 ])
+        (mem/u:HI (plus:DI (reg/f:DI 91)
+                (reg:DI 84 [ ivtmp.51 ])) [3 MEM[(const short int *)&_nc_offset_boolfnames + ivtmp.51_19 * 1]+0 S2 A16])) "../ncurses/names.c":302:65 -1
+     (nil))
+(jump_insn 31 29 32 7 (set (pc)
+        (label_ref 30)) "../ncurses/names.c":302:65 -1
+     (nil)
+ -> 30)
+;;  succ:       6 [always]  count:1326555501 (estimated locally) (DFS_BACK)
+
+(barrier 32 31 37)
+;; basic block 9, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 7, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       6 [12.4% (guessed)]  count:187078341 (estimated locally)
+;;              2 [82.6% (guessed)]  count:886588624 (estimated locally)
+;;              4 [0.0% (guessed)]  count:74861 (estimated locally)
+(code_label 37 32 40 9 17 (nil) [3 uses])
+(note 40 37 38 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 38 40 39 9 (set (reg/i:DI 0 ax)
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/names.c":321:1 -1
+     (nil))
+(insn 39 38 0 9 (use (reg/i:DI 0 ax)) "../ncurses/names.c":321:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+
+;; Function _nc_numnames (_nc_numnames, funcdef_no=94, decl_uid=7494, cgraph_uid=95, symbol_order=107)
+
+__attribute__((visibility ("default")))
+const char * const * _nc_numnames ()
+{
+  sizetype ivtmp.74;
+  const char * * _4;
+  void * _7;
+  sizetype _13;
+  const char * _16;
+  short int pretmp_29;
+  short int prephitmp_30;
+  const char * * prephitmp_31;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _4 = ptr_numnames;
+  if (_4 == 0B)
+    goto <bb 3>; [17.43%]
+  else
+    goto <bb 6>; [82.57%]
+;;    succ:       3
+;;                6
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _7 = calloc (40, 8);
+  ptr_numnames = _7;
+  if (_7 != 0B)
+    goto <bb 4>; [99.96%]
+  else
+    goto <bb 6>; [0.04%]
+;;    succ:       4
+;;                6
+
+;;   basic block 4, loop depth 1
+;;    pred:       5
+;;                3
+  # prephitmp_30 = PHI <pretmp_29(5), 751(3)>
+  # ivtmp.74_24 = PHI <ivtmp.74_19(5), 0(3)>
+  _13 = (sizetype) prephitmp_30;
+  _16 = &_nc_name_blob + _13;
+  MEM[(const char * *)_7 + ivtmp.74_24 * 4] = _16;
+  ivtmp.74_19 = ivtmp.74_24 + 2;
+  if (ivtmp.74_19 != 78)
+    goto <bb 5>; [87.64%]
+  else
+    goto <bb 6>; [12.36%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 1
+;;    pred:       4
+  pretmp_29 = MEM[(const short int *)&_nc_offset_numnames + ivtmp.74_19 * 1];
+  goto <bb 4>; [100.00%]
+;;    succ:       4
+
+;;   basic block 6, loop depth 0
+;;    pred:       2
+;;                3
+;;                4
+  # prephitmp_31 = PHI <_4(2), _7(3), _7(4)>
+  return prephitmp_31;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 4 (_4 - 4 )
+Partition 7 (_7 - 7 )
+Partition 9 (_9(D) - 9 )
+Partition 13 (_13 - 13 )
+Partition 16 (_16 - 16 )
+Partition 19 (ivtmp.74_19 - 19 )
+Partition 24 (ivtmp.74_24 - 24 )
+Partition 29 (pretmp_29 - 29 )
+Partition 30 (prephitmp_30 - 30 )
+Partition 31 (prephitmp_31 - 31 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_4 - 4 7 9 31 )
+Partition 3, base 1 (ivtmp.74_19 - 19 24 )
+Partition 5, base 2 (pretmp_29 - 29 30 )
+
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_7 - 7 )
+Partition 2 (_9(D) - 9 )
+Partition 3 (ivtmp.74_19 - 19 )
+Partition 4 (ivtmp.74_24 - 24 )
+Partition 5 (pretmp_29 - 29 )
+Partition 6 (prephitmp_30 - 30 )
+Partition 7 (prephitmp_31 - 31 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10426, 0) _4 <-> prephitmp_31
+(7800, 0) pretmp_29 <-> prephitmp_30
+(7800, 0) ivtmp.74_19 <-> ivtmp.74_24
+(6313, 0) _9(D) <-> prephitmp_31
+(2202, 0) _7 <-> prephitmp_31
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_7 - 7 )
+Partition 2 (_9(D) - 9 )
+Partition 3 (ivtmp.74_19 - 19 )
+Partition 4 (ivtmp.74_24 - 24 )
+Partition 5 (pretmp_29 - 29 )
+Partition 6 (prephitmp_30 - 30 )
+Partition 7 (prephitmp_31 - 31 )
+
+Coalesce list: (4)_4 & (31)prephitmp_31 [map: 0, 7] : Success -> 0
+Coalesce list: (29)pretmp_29 & (30)prephitmp_30 [map: 5, 6] : Success -> 5
+Coalesce list: (19)ivtmp.74_19 & (24)ivtmp.74_24 [map: 3, 4] : Success -> 3
+Coalesce list: (9)_9(D) & (31)_4 [map: 2, 0] : Success -> 0
+Coalesce list: (7)_7 & (31)_4 [map: 1, 0] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_4 - 4 7 9 31 )
+Partition 1 (_13 - 13 )
+Partition 2 (_16 - 16 )
+Partition 3 (ivtmp.74_19 - 19 24 )
+Partition 4 (pretmp_29 - 29 30 )
+
+
+Replacing Expressions
+_13 replace with --> _13 = (sizetype) prephitmp_30;
+
+_16 replace with --> _16 = &_nc_name_blob + _13;
+
+
+__attribute__((visibility ("default")))
+const char * const * _nc_numnames ()
+{
+  sizetype ivtmp.74;
+  const char * * _4;
+  void * _7;
+  const char * const * _9(D);
+  sizetype _13;
+  const char * _16;
+  short int pretmp_29;
+  short int prephitmp_30;
+  const char * * prephitmp_31;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _4 = ptr_numnames;
+  if (_4 == 0B)
+    goto <bb 3>; [17.43%]
+  else
+    goto <bb 6>; [82.57%]
+;;    succ:       3
+;;                6
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _7 = calloc (40, 8);
+  ptr_numnames = _7;
+  if (_7 != 0B)
+    goto <bb 4>; [99.96%]
+  else
+    goto <bb 6>; [0.04%]
+;;    succ:       4
+;;                6
+
+;;   basic block 4, loop depth 1
+;;    pred:       5
+;;                3
+  # prephitmp_30 = PHI <pretmp_29(5), 751(3)>
+  # ivtmp.74_24 = PHI <ivtmp.74_19(5), 0(3)>
+  _13 = (sizetype) prephitmp_30;
+  _16 = &_nc_name_blob + _13;
+  MEM[(const char * *)_7 + ivtmp.74_24 * 4] = _16;
+  ivtmp.74_19 = ivtmp.74_24 + 2;
+  if (ivtmp.74_19 != 78)
+    goto <bb 5>; [87.64%]
+  else
+    goto <bb 6>; [12.36%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 1
+;;    pred:       4
+  pretmp_29 = MEM[(const short int *)&_nc_offset_numnames + ivtmp.74_19 * 1];
+  goto <bb 4>; [100.00%]
+;;    succ:       4
+
+;;   basic block 6, loop depth 0
+;;    pred:       2
+;;                3
+;;                4
+  # prephitmp_31 = PHI <_4(2), _7(3), _7(4)>
+  return prephitmp_31;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB3->BB4 : PART.3 = 0
+Inserting a value copy on edge BB3->BB4 : PART.4 = 751
+
+;; Generating RTL for gimple basic block 2
+
+;; _4 = ptr_numnames;
+
+(insn 7 6 0 (set (reg/f:DI 86 [ <retval> ])
+        (mem/f/c:DI (symbol_ref:DI ("ptr_numnames") [flags 0x2]  <var_decl 0x7fb8202b15a0 ptr_numnames>) [1 ptr_numnames+0 S8 A64])) "../ncurses/names.c":298:6 -1
+     (nil))
+
+;; if (_4 == 0B)
+
+(insn 8 7 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":298:5 -1
+     (nil))
+
+(jump_insn 9 8 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/names.c":298:5 -1
+     (int_list:REG_BR_PROB 886588628 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _7 = calloc (40, 8);
+
+(insn 11 10 12 (set (reg:DI 4 si)
+        (const_int 8 [0x8])) "../ncurses/names.c":299:17 -1
+     (nil))
+
+(insn 12 11 13 (set (reg:DI 5 di)
+        (const_int 40 [0x28])) "../ncurses/names.c":299:17 -1
+     (nil))
+
+(call_insn 13 12 14 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>) [0 __builtin_calloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 14 13 15 (set (reg/f:DI 87)
+        (reg:DI 0 ax)) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 87)
+        (nil)))
+
+(insn 15 14 0 (set (reg/f:DI 86 [ <retval> ])
+        (reg/f:DI 87)) "../ncurses/names.c":299:17 -1
+     (nil))
+
+;; ptr_numnames = _7;
+
+(insn 16 15 0 (set (mem/f/c:DI (symbol_ref:DI ("ptr_numnames") [flags 0x2]  <var_decl 0x7fb8202b15a0 ptr_numnames>) [1 ptr_numnames+0 S8 A64])
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/names.c":299:15 -1
+     (nil))
+
+;; if (_7 != 0B)
+
+(insn 17 16 18 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":299:6 -1
+     (nil))
+
+(jump_insn 18 17 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/names.c":299:6 -1
+     (int_list:REG_BR_PROB 429500 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; MEM[(const char * *)_7 + ivtmp.74_24 * 4] = _16;
+
+(insn 20 19 21 (set (reg:DI 88)
+        (sign_extend:DI (reg:HI 85 [ pretmp_29 ]))) "../ncurses/names.c":302:65 -1
+     (nil))
+
+(insn 21 20 22 (set (reg:DI 89)
+        (symbol_ref:DI ("_nc_name_blob") [flags 0x2]  <var_decl 0x7fb8202231b0 _nc_name_blob>)) "../ncurses/names.c":302:56 -1
+     (nil))
+
+(insn 22 21 23 (parallel [
+            (set (reg:DI 90)
+                (plus:DI (reg:DI 88)
+                    (reg:DI 89)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":302:56 -1
+     (nil))
+
+(insn 23 22 0 (set (mem/f:DI (plus:DI (mult:DI (reg:DI 84 [ ivtmp.74 ])
+                    (const_int 4 [0x4]))
+                (reg/f:DI 86 [ <retval> ])) [2 MEM[(const char * *)_7 + ivtmp.74_24 * 4]+0 S8 A64])
+        (reg:DI 90)) "../ncurses/names.c":302:56 -1
+     (nil))
+
+;; ivtmp.74_19 = ivtmp.74_24 + 2;
+
+(insn 24 23 0 (parallel [
+            (set (reg:DI 84 [ ivtmp.74 ])
+                (plus:DI (reg:DI 84 [ ivtmp.74 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":301:18 -1
+     (nil))
+
+;; if (ivtmp.74_19 != 78)
+
+(insn 25 24 26 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 84 [ ivtmp.74 ])
+            (const_int 78 [0x4e]))) "../ncurses/names.c":301:18 -1
+     (nil))
+
+(jump_insn 26 25 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/names.c":301:18 -1
+     (int_list:REG_BR_PROB 132709668 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; pretmp_29 = MEM[(const short int *)&_nc_offset_numnames + ivtmp.74_19 * 1];
+
+(insn 28 27 29 (set (reg/f:DI 91)
+        (symbol_ref:DI ("_nc_offset_numnames") [flags 0x2]  <var_decl 0x7fb8202b1480 _nc_offset_numnames>)) "../ncurses/names.c":302:65 -1
+     (nil))
+
+(insn 29 28 0 (set (reg:HI 85 [ pretmp_29 ])
+        (mem/u:HI (plus:DI (reg/f:DI 91)
+                (reg:DI 84 [ ivtmp.74 ])) [3 MEM[(const short int *)&_nc_offset_numnames + ivtmp.74_19 * 1]+0 S2 A16])) "../ncurses/names.c":302:65 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 33 32 34 33 (nil) [0 uses])
+
+(note 34 33 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return prephitmp_31;
+
+(jump_insn 35 34 36 (set (pc)
+        (label_ref 0)) "../ncurses/names.c":322:1 -1
+     (nil))
+
+(barrier 36 35 0)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 2->8 redirected to 9
+Edge 4->8 redirected to 9
+Edge 6->8 redirected to 9
+deleting block 8
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 5 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 2 8 2 (set (reg/f:DI 86 [ <retval> ])
+        (mem/f/c:DI (symbol_ref:DI ("ptr_numnames") [flags 0x2]  <var_decl 0x7fb8202b15a0 ptr_numnames>) [1 ptr_numnames+0 S8 A64])) "../ncurses/names.c":298:6 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":298:5 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 37)
+            (pc))) "../ncurses/names.c":298:5 806 {*jcc}
+     (int_list:REG_BR_PROB 886588628 (nil))
+ -> 37)
+;;  succ:       4 [17.4% (guessed)]  count:187153200 (estimated locally) (FALLTHRU)
+;;              9 [82.6% (guessed)]  count:886588624 (estimated locally)
+
+;; basic block 4, loop depth 0, count 187153200 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [17.4% (guessed)]  count:187153200 (estimated locally) (FALLTHRU)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (set (reg:DI 4 si)
+        (const_int 8 [0x8])) "../ncurses/names.c":299:17 -1
+     (nil))
+(insn 12 11 13 4 (set (reg:DI 5 di)
+        (const_int 40 [0x28])) "../ncurses/names.c":299:17 -1
+     (nil))
+(call_insn 13 12 14 4 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>) [0 __builtin_calloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 14 13 15 4 (set (reg/f:DI 87)
+        (reg:DI 0 ax)) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 87)
+        (nil)))
+(insn 15 14 16 4 (set (reg/f:DI 86 [ <retval> ])
+        (reg/f:DI 87)) "../ncurses/names.c":299:17 -1
+     (nil))
+(insn 16 15 17 4 (set (mem/f/c:DI (symbol_ref:DI ("ptr_numnames") [flags 0x2]  <var_decl 0x7fb8202b15a0 ptr_numnames>) [1 ptr_numnames+0 S8 A64])
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/names.c":299:15 -1
+     (nil))
+(insn 17 16 18 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":299:6 -1
+     (nil))
+(jump_insn 18 17 41 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 37)
+            (pc))) "../ncurses/names.c":299:6 806 {*jcc}
+     (int_list:REG_BR_PROB 429500 (nil))
+ -> 37)
+;;  succ:       5 [100.0% (guessed)]  count:187078339 (estimated locally) (FALLTHRU)
+;;              9 [0.0% (guessed)]  count:74861 (estimated locally)
+
+;; basic block 5, loop depth 0, count 187078339 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [100.0% (guessed)]  count:187078339 (estimated locally) (FALLTHRU)
+(note 41 18 3 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 3 41 4 5 (set (reg:DI 84 [ ivtmp.74 ])
+        (const_int 0 [0])) -1
+     (nil))
+(insn 4 3 30 5 (set (reg:HI 85 [ pretmp_29 ])
+        (const_int 751 [0x2ef])) -1
+     (nil))
+;;  succ:       6 [always]  count:187078339 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 1, count 1513633842 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [always]  count:1326555501 (estimated locally) (DFS_BACK)
+;;              5 [always]  count:187078339 (estimated locally) (FALLTHRU)
+(code_label 30 4 19 6 34 (nil) [1 uses])
+(note 19 30 20 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 21 6 (set (reg:DI 88)
+        (sign_extend:DI (reg:HI 85 [ pretmp_29 ]))) "../ncurses/names.c":302:65 -1
+     (nil))
+(insn 21 20 22 6 (set (reg:DI 89)
+        (symbol_ref:DI ("_nc_name_blob") [flags 0x2]  <var_decl 0x7fb8202231b0 _nc_name_blob>)) "../ncurses/names.c":302:56 -1
+     (nil))
+(insn 22 21 23 6 (parallel [
+            (set (reg:DI 90)
+                (plus:DI (reg:DI 88)
+                    (reg:DI 89)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":302:56 -1
+     (nil))
+(insn 23 22 24 6 (set (mem/f:DI (plus:DI (mult:DI (reg:DI 84 [ ivtmp.74 ])
+                    (const_int 4 [0x4]))
+                (reg/f:DI 86 [ <retval> ])) [2 MEM[(const char * *)_7 + ivtmp.74_24 * 4]+0 S8 A64])
+        (reg:DI 90)) "../ncurses/names.c":302:56 -1
+     (nil))
+(insn 24 23 25 6 (parallel [
+            (set (reg:DI 84 [ ivtmp.74 ])
+                (plus:DI (reg:DI 84 [ ivtmp.74 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":301:18 -1
+     (nil))
+(insn 25 24 26 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 84 [ ivtmp.74 ])
+            (const_int 78 [0x4e]))) "../ncurses/names.c":301:18 -1
+     (nil))
+(jump_insn 26 25 27 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 37)
+            (pc))) "../ncurses/names.c":301:18 806 {*jcc}
+     (int_list:REG_BR_PROB 132709668 (nil))
+ -> 37)
+;;  succ:       7 [87.6% (guessed)]  count:1326555501 (estimated locally) (FALLTHRU)
+;;              9 [12.4% (guessed)]  count:187078341 (estimated locally)
+
+;; basic block 7, loop depth 1, count 1326555501 (estimated locally), maybe hot
+;;  prev block 6, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [87.6% (guessed)]  count:1326555501 (estimated locally) (FALLTHRU)
+(note 27 26 28 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 7 (set (reg/f:DI 91)
+        (symbol_ref:DI ("_nc_offset_numnames") [flags 0x2]  <var_decl 0x7fb8202b1480 _nc_offset_numnames>)) "../ncurses/names.c":302:65 -1
+     (nil))
+(insn 29 28 31 7 (set (reg:HI 85 [ pretmp_29 ])
+        (mem/u:HI (plus:DI (reg/f:DI 91)
+                (reg:DI 84 [ ivtmp.74 ])) [3 MEM[(const short int *)&_nc_offset_numnames + ivtmp.74_19 * 1]+0 S2 A16])) "../ncurses/names.c":302:65 -1
+     (nil))
+(jump_insn 31 29 32 7 (set (pc)
+        (label_ref 30)) "../ncurses/names.c":302:65 -1
+     (nil)
+ -> 30)
+;;  succ:       6 [always]  count:1326555501 (estimated locally) (DFS_BACK)
+
+(barrier 32 31 37)
+;; basic block 9, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 7, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       6 [12.4% (guessed)]  count:187078341 (estimated locally)
+;;              2 [82.6% (guessed)]  count:886588624 (estimated locally)
+;;              4 [0.0% (guessed)]  count:74861 (estimated locally)
+(code_label 37 32 40 9 32 (nil) [3 uses])
+(note 40 37 38 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 38 40 39 9 (set (reg/i:DI 0 ax)
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/names.c":322:1 -1
+     (nil))
+(insn 39 38 0 9 (use (reg/i:DI 0 ax)) "../ncurses/names.c":322:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+
+;; Function _nc_numfnames (_nc_numfnames, funcdef_no=95, decl_uid=7498, cgraph_uid=96, symbol_order=108)
+
+__attribute__((visibility ("default")))
+const char * const * _nc_numfnames ()
+{
+  sizetype ivtmp.97;
+  const char * * _4;
+  void * _7;
+  sizetype _13;
+  const char * _16;
+  short int pretmp_29;
+  short int prephitmp_30;
+  const char * * prephitmp_31;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _4 = ptr_numfnames;
+  if (_4 == 0B)
+    goto <bb 3>; [17.43%]
+  else
+    goto <bb 6>; [82.57%]
+;;    succ:       3
+;;                6
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _7 = calloc (40, 8);
+  ptr_numfnames = _7;
+  if (_7 != 0B)
+    goto <bb 4>; [99.96%]
+  else
+    goto <bb 6>; [0.04%]
+;;    succ:       4
+;;                6
+
+;;   basic block 4, loop depth 1
+;;    pred:       5
+;;                3
+  # prephitmp_30 = PHI <pretmp_29(5), 756(3)>
+  # ivtmp.97_24 = PHI <ivtmp.97_19(5), 0(3)>
+  _13 = (sizetype) prephitmp_30;
+  _16 = &_nc_name_blob + _13;
+  MEM[(const char * *)_7 + ivtmp.97_24 * 4] = _16;
+  ivtmp.97_19 = ivtmp.97_24 + 2;
+  if (ivtmp.97_19 != 78)
+    goto <bb 5>; [87.64%]
+  else
+    goto <bb 6>; [12.36%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 1
+;;    pred:       4
+  pretmp_29 = MEM[(const short int *)&_nc_offset_numfnames + ivtmp.97_19 * 1];
+  goto <bb 4>; [100.00%]
+;;    succ:       4
+
+;;   basic block 6, loop depth 0
+;;    pred:       2
+;;                3
+;;                4
+  # prephitmp_31 = PHI <_4(2), _7(3), _7(4)>
+  return prephitmp_31;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 4 (_4 - 4 )
+Partition 7 (_7 - 7 )
+Partition 9 (_9(D) - 9 )
+Partition 13 (_13 - 13 )
+Partition 16 (_16 - 16 )
+Partition 19 (ivtmp.97_19 - 19 )
+Partition 24 (ivtmp.97_24 - 24 )
+Partition 29 (pretmp_29 - 29 )
+Partition 30 (prephitmp_30 - 30 )
+Partition 31 (prephitmp_31 - 31 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_4 - 4 7 9 31 )
+Partition 3, base 1 (ivtmp.97_19 - 19 24 )
+Partition 5, base 2 (pretmp_29 - 29 30 )
+
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_7 - 7 )
+Partition 2 (_9(D) - 9 )
+Partition 3 (ivtmp.97_19 - 19 )
+Partition 4 (ivtmp.97_24 - 24 )
+Partition 5 (pretmp_29 - 29 )
+Partition 6 (prephitmp_30 - 30 )
+Partition 7 (prephitmp_31 - 31 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10426, 0) _4 <-> prephitmp_31
+(7800, 0) pretmp_29 <-> prephitmp_30
+(7800, 0) ivtmp.97_19 <-> ivtmp.97_24
+(6313, 0) _9(D) <-> prephitmp_31
+(2202, 0) _7 <-> prephitmp_31
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_7 - 7 )
+Partition 2 (_9(D) - 9 )
+Partition 3 (ivtmp.97_19 - 19 )
+Partition 4 (ivtmp.97_24 - 24 )
+Partition 5 (pretmp_29 - 29 )
+Partition 6 (prephitmp_30 - 30 )
+Partition 7 (prephitmp_31 - 31 )
+
+Coalesce list: (4)_4 & (31)prephitmp_31 [map: 0, 7] : Success -> 0
+Coalesce list: (29)pretmp_29 & (30)prephitmp_30 [map: 5, 6] : Success -> 5
+Coalesce list: (19)ivtmp.97_19 & (24)ivtmp.97_24 [map: 3, 4] : Success -> 3
+Coalesce list: (9)_9(D) & (31)_4 [map: 2, 0] : Success -> 0
+Coalesce list: (7)_7 & (31)_4 [map: 1, 0] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_4 - 4 7 9 31 )
+Partition 1 (_13 - 13 )
+Partition 2 (_16 - 16 )
+Partition 3 (ivtmp.97_19 - 19 24 )
+Partition 4 (pretmp_29 - 29 30 )
+
+
+Replacing Expressions
+_13 replace with --> _13 = (sizetype) prephitmp_30;
+
+_16 replace with --> _16 = &_nc_name_blob + _13;
+
+
+__attribute__((visibility ("default")))
+const char * const * _nc_numfnames ()
+{
+  sizetype ivtmp.97;
+  const char * * _4;
+  void * _7;
+  const char * const * _9(D);
+  sizetype _13;
+  const char * _16;
+  short int pretmp_29;
+  short int prephitmp_30;
+  const char * * prephitmp_31;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _4 = ptr_numfnames;
+  if (_4 == 0B)
+    goto <bb 3>; [17.43%]
+  else
+    goto <bb 6>; [82.57%]
+;;    succ:       3
+;;                6
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _7 = calloc (40, 8);
+  ptr_numfnames = _7;
+  if (_7 != 0B)
+    goto <bb 4>; [99.96%]
+  else
+    goto <bb 6>; [0.04%]
+;;    succ:       4
+;;                6
+
+;;   basic block 4, loop depth 1
+;;    pred:       5
+;;                3
+  # prephitmp_30 = PHI <pretmp_29(5), 756(3)>
+  # ivtmp.97_24 = PHI <ivtmp.97_19(5), 0(3)>
+  _13 = (sizetype) prephitmp_30;
+  _16 = &_nc_name_blob + _13;
+  MEM[(const char * *)_7 + ivtmp.97_24 * 4] = _16;
+  ivtmp.97_19 = ivtmp.97_24 + 2;
+  if (ivtmp.97_19 != 78)
+    goto <bb 5>; [87.64%]
+  else
+    goto <bb 6>; [12.36%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 1
+;;    pred:       4
+  pretmp_29 = MEM[(const short int *)&_nc_offset_numfnames + ivtmp.97_19 * 1];
+  goto <bb 4>; [100.00%]
+;;    succ:       4
+
+;;   basic block 6, loop depth 0
+;;    pred:       2
+;;                3
+;;                4
+  # prephitmp_31 = PHI <_4(2), _7(3), _7(4)>
+  return prephitmp_31;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB3->BB4 : PART.3 = 0
+Inserting a value copy on edge BB3->BB4 : PART.4 = 756
+
+;; Generating RTL for gimple basic block 2
+
+;; _4 = ptr_numfnames;
+
+(insn 7 6 0 (set (reg/f:DI 86 [ <retval> ])
+        (mem/f/c:DI (symbol_ref:DI ("ptr_numfnames") [flags 0x2]  <var_decl 0x7fb8202b13f0 ptr_numfnames>) [1 ptr_numfnames+0 S8 A64])) "../ncurses/names.c":298:6 -1
+     (nil))
+
+;; if (_4 == 0B)
+
+(insn 8 7 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":298:5 -1
+     (nil))
+
+(jump_insn 9 8 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/names.c":298:5 -1
+     (int_list:REG_BR_PROB 886588628 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _7 = calloc (40, 8);
+
+(insn 11 10 12 (set (reg:DI 4 si)
+        (const_int 8 [0x8])) "../ncurses/names.c":299:17 -1
+     (nil))
+
+(insn 12 11 13 (set (reg:DI 5 di)
+        (const_int 40 [0x28])) "../ncurses/names.c":299:17 -1
+     (nil))
+
+(call_insn 13 12 14 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>) [0 __builtin_calloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 14 13 15 (set (reg/f:DI 87)
+        (reg:DI 0 ax)) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 87)
+        (nil)))
+
+(insn 15 14 0 (set (reg/f:DI 86 [ <retval> ])
+        (reg/f:DI 87)) "../ncurses/names.c":299:17 -1
+     (nil))
+
+;; ptr_numfnames = _7;
+
+(insn 16 15 0 (set (mem/f/c:DI (symbol_ref:DI ("ptr_numfnames") [flags 0x2]  <var_decl 0x7fb8202b13f0 ptr_numfnames>) [1 ptr_numfnames+0 S8 A64])
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/names.c":299:15 -1
+     (nil))
+
+;; if (_7 != 0B)
+
+(insn 17 16 18 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":299:6 -1
+     (nil))
+
+(jump_insn 18 17 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/names.c":299:6 -1
+     (int_list:REG_BR_PROB 429500 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; MEM[(const char * *)_7 + ivtmp.97_24 * 4] = _16;
+
+(insn 20 19 21 (set (reg:DI 88)
+        (sign_extend:DI (reg:HI 85 [ pretmp_29 ]))) "../ncurses/names.c":302:65 -1
+     (nil))
+
+(insn 21 20 22 (set (reg:DI 89)
+        (symbol_ref:DI ("_nc_name_blob") [flags 0x2]  <var_decl 0x7fb8202231b0 _nc_name_blob>)) "../ncurses/names.c":302:56 -1
+     (nil))
+
+(insn 22 21 23 (parallel [
+            (set (reg:DI 90)
+                (plus:DI (reg:DI 88)
+                    (reg:DI 89)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":302:56 -1
+     (nil))
+
+(insn 23 22 0 (set (mem/f:DI (plus:DI (mult:DI (reg:DI 84 [ ivtmp.97 ])
+                    (const_int 4 [0x4]))
+                (reg/f:DI 86 [ <retval> ])) [2 MEM[(const char * *)_7 + ivtmp.97_24 * 4]+0 S8 A64])
+        (reg:DI 90)) "../ncurses/names.c":302:56 -1
+     (nil))
+
+;; ivtmp.97_19 = ivtmp.97_24 + 2;
+
+(insn 24 23 0 (parallel [
+            (set (reg:DI 84 [ ivtmp.97 ])
+                (plus:DI (reg:DI 84 [ ivtmp.97 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":301:18 -1
+     (nil))
+
+;; if (ivtmp.97_19 != 78)
+
+(insn 25 24 26 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 84 [ ivtmp.97 ])
+            (const_int 78 [0x4e]))) "../ncurses/names.c":301:18 -1
+     (nil))
+
+(jump_insn 26 25 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/names.c":301:18 -1
+     (int_list:REG_BR_PROB 132709668 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; pretmp_29 = MEM[(const short int *)&_nc_offset_numfnames + ivtmp.97_19 * 1];
+
+(insn 28 27 29 (set (reg/f:DI 91)
+        (symbol_ref:DI ("_nc_offset_numfnames") [flags 0x2]  <var_decl 0x7fb8202b12d0 _nc_offset_numfnames>)) "../ncurses/names.c":302:65 -1
+     (nil))
+
+(insn 29 28 0 (set (reg:HI 85 [ pretmp_29 ])
+        (mem/u:HI (plus:DI (reg/f:DI 91)
+                (reg:DI 84 [ ivtmp.97 ])) [3 MEM[(const short int *)&_nc_offset_numfnames + ivtmp.97_19 * 1]+0 S2 A16])) "../ncurses/names.c":302:65 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 33 32 34 48 (nil) [0 uses])
+
+(note 34 33 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return prephitmp_31;
+
+(jump_insn 35 34 36 (set (pc)
+        (label_ref 0)) "../ncurses/names.c":323:1 -1
+     (nil))
+
+(barrier 36 35 0)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 2->8 redirected to 9
+Edge 4->8 redirected to 9
+Edge 6->8 redirected to 9
+deleting block 8
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 5 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 2 8 2 (set (reg/f:DI 86 [ <retval> ])
+        (mem/f/c:DI (symbol_ref:DI ("ptr_numfnames") [flags 0x2]  <var_decl 0x7fb8202b13f0 ptr_numfnames>) [1 ptr_numfnames+0 S8 A64])) "../ncurses/names.c":298:6 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":298:5 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 37)
+            (pc))) "../ncurses/names.c":298:5 806 {*jcc}
+     (int_list:REG_BR_PROB 886588628 (nil))
+ -> 37)
+;;  succ:       4 [17.4% (guessed)]  count:187153200 (estimated locally) (FALLTHRU)
+;;              9 [82.6% (guessed)]  count:886588624 (estimated locally)
+
+;; basic block 4, loop depth 0, count 187153200 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [17.4% (guessed)]  count:187153200 (estimated locally) (FALLTHRU)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (set (reg:DI 4 si)
+        (const_int 8 [0x8])) "../ncurses/names.c":299:17 -1
+     (nil))
+(insn 12 11 13 4 (set (reg:DI 5 di)
+        (const_int 40 [0x28])) "../ncurses/names.c":299:17 -1
+     (nil))
+(call_insn 13 12 14 4 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>) [0 __builtin_calloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 14 13 15 4 (set (reg/f:DI 87)
+        (reg:DI 0 ax)) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 87)
+        (nil)))
+(insn 15 14 16 4 (set (reg/f:DI 86 [ <retval> ])
+        (reg/f:DI 87)) "../ncurses/names.c":299:17 -1
+     (nil))
+(insn 16 15 17 4 (set (mem/f/c:DI (symbol_ref:DI ("ptr_numfnames") [flags 0x2]  <var_decl 0x7fb8202b13f0 ptr_numfnames>) [1 ptr_numfnames+0 S8 A64])
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/names.c":299:15 -1
+     (nil))
+(insn 17 16 18 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":299:6 -1
+     (nil))
+(jump_insn 18 17 41 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 37)
+            (pc))) "../ncurses/names.c":299:6 806 {*jcc}
+     (int_list:REG_BR_PROB 429500 (nil))
+ -> 37)
+;;  succ:       5 [100.0% (guessed)]  count:187078339 (estimated locally) (FALLTHRU)
+;;              9 [0.0% (guessed)]  count:74861 (estimated locally)
+
+;; basic block 5, loop depth 0, count 187078339 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [100.0% (guessed)]  count:187078339 (estimated locally) (FALLTHRU)
+(note 41 18 3 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 3 41 4 5 (set (reg:DI 84 [ ivtmp.97 ])
+        (const_int 0 [0])) -1
+     (nil))
+(insn 4 3 30 5 (set (reg:HI 85 [ pretmp_29 ])
+        (const_int 756 [0x2f4])) -1
+     (nil))
+;;  succ:       6 [always]  count:187078339 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 1, count 1513633842 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [always]  count:1326555501 (estimated locally) (DFS_BACK)
+;;              5 [always]  count:187078339 (estimated locally) (FALLTHRU)
+(code_label 30 4 19 6 49 (nil) [1 uses])
+(note 19 30 20 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 21 6 (set (reg:DI 88)
+        (sign_extend:DI (reg:HI 85 [ pretmp_29 ]))) "../ncurses/names.c":302:65 -1
+     (nil))
+(insn 21 20 22 6 (set (reg:DI 89)
+        (symbol_ref:DI ("_nc_name_blob") [flags 0x2]  <var_decl 0x7fb8202231b0 _nc_name_blob>)) "../ncurses/names.c":302:56 -1
+     (nil))
+(insn 22 21 23 6 (parallel [
+            (set (reg:DI 90)
+                (plus:DI (reg:DI 88)
+                    (reg:DI 89)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":302:56 -1
+     (nil))
+(insn 23 22 24 6 (set (mem/f:DI (plus:DI (mult:DI (reg:DI 84 [ ivtmp.97 ])
+                    (const_int 4 [0x4]))
+                (reg/f:DI 86 [ <retval> ])) [2 MEM[(const char * *)_7 + ivtmp.97_24 * 4]+0 S8 A64])
+        (reg:DI 90)) "../ncurses/names.c":302:56 -1
+     (nil))
+(insn 24 23 25 6 (parallel [
+            (set (reg:DI 84 [ ivtmp.97 ])
+                (plus:DI (reg:DI 84 [ ivtmp.97 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":301:18 -1
+     (nil))
+(insn 25 24 26 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 84 [ ivtmp.97 ])
+            (const_int 78 [0x4e]))) "../ncurses/names.c":301:18 -1
+     (nil))
+(jump_insn 26 25 27 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 37)
+            (pc))) "../ncurses/names.c":301:18 806 {*jcc}
+     (int_list:REG_BR_PROB 132709668 (nil))
+ -> 37)
+;;  succ:       7 [87.6% (guessed)]  count:1326555501 (estimated locally) (FALLTHRU)
+;;              9 [12.4% (guessed)]  count:187078341 (estimated locally)
+
+;; basic block 7, loop depth 1, count 1326555501 (estimated locally), maybe hot
+;;  prev block 6, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [87.6% (guessed)]  count:1326555501 (estimated locally) (FALLTHRU)
+(note 27 26 28 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 7 (set (reg/f:DI 91)
+        (symbol_ref:DI ("_nc_offset_numfnames") [flags 0x2]  <var_decl 0x7fb8202b12d0 _nc_offset_numfnames>)) "../ncurses/names.c":302:65 -1
+     (nil))
+(insn 29 28 31 7 (set (reg:HI 85 [ pretmp_29 ])
+        (mem/u:HI (plus:DI (reg/f:DI 91)
+                (reg:DI 84 [ ivtmp.97 ])) [3 MEM[(const short int *)&_nc_offset_numfnames + ivtmp.97_19 * 1]+0 S2 A16])) "../ncurses/names.c":302:65 -1
+     (nil))
+(jump_insn 31 29 32 7 (set (pc)
+        (label_ref 30)) "../ncurses/names.c":302:65 -1
+     (nil)
+ -> 30)
+;;  succ:       6 [always]  count:1326555501 (estimated locally) (DFS_BACK)
+
+(barrier 32 31 37)
+;; basic block 9, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 7, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       6 [12.4% (guessed)]  count:187078341 (estimated locally)
+;;              2 [82.6% (guessed)]  count:886588624 (estimated locally)
+;;              4 [0.0% (guessed)]  count:74861 (estimated locally)
+(code_label 37 32 40 9 47 (nil) [3 uses])
+(note 40 37 38 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 38 40 39 9 (set (reg/i:DI 0 ax)
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/names.c":323:1 -1
+     (nil))
+(insn 39 38 0 9 (use (reg/i:DI 0 ax)) "../ncurses/names.c":323:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+
+;; Function _nc_strnames (_nc_strnames, funcdef_no=96, decl_uid=7500, cgraph_uid=97, symbol_order=109)
+
+__attribute__((visibility ("default")))
+const char * const * _nc_strnames ()
+{
+  sizetype ivtmp.120;
+  const char * * _4;
+  void * _7;
+  sizetype _13;
+  const char * _16;
+  short int pretmp_29;
+  short int prephitmp_30;
+  const char * * prephitmp_31;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _4 = ptr_strnames;
+  if (_4 == 0B)
+    goto <bb 3>; [17.43%]
+  else
+    goto <bb 6>; [82.57%]
+;;    succ:       3
+;;                6
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _7 = calloc (415, 8);
+  ptr_strnames = _7;
+  if (_7 != 0B)
+    goto <bb 4>; [99.96%]
+  else
+    goto <bb 6>; [0.04%]
+;;    succ:       4
+;;                6
+
+;;   basic block 4, loop depth 1
+;;    pred:       5
+;;                3
+  # prephitmp_30 = PHI <pretmp_29(5), 1397(3)>
+  # ivtmp.120_24 = PHI <ivtmp.120_19(5), 0(3)>
+  _13 = (sizetype) prephitmp_30;
+  _16 = &_nc_name_blob + _13;
+  MEM[(const char * *)_7 + ivtmp.120_24 * 4] = _16;
+  ivtmp.120_19 = ivtmp.120_24 + 2;
+  if (ivtmp.120_19 != 828)
+    goto <bb 5>; [87.64%]
+  else
+    goto <bb 6>; [12.36%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 1
+;;    pred:       4
+  pretmp_29 = MEM[(const short int *)&_nc_offset_strnames + ivtmp.120_19 * 1];
+  goto <bb 4>; [100.00%]
+;;    succ:       4
+
+;;   basic block 6, loop depth 0
+;;    pred:       2
+;;                3
+;;                4
+  # prephitmp_31 = PHI <_4(2), _7(3), _7(4)>
+  return prephitmp_31;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 4 (_4 - 4 )
+Partition 7 (_7 - 7 )
+Partition 9 (_9(D) - 9 )
+Partition 13 (_13 - 13 )
+Partition 16 (_16 - 16 )
+Partition 19 (ivtmp.120_19 - 19 )
+Partition 24 (ivtmp.120_24 - 24 )
+Partition 29 (pretmp_29 - 29 )
+Partition 30 (prephitmp_30 - 30 )
+Partition 31 (prephitmp_31 - 31 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_4 - 4 7 9 31 )
+Partition 3, base 1 (ivtmp.120_19 - 19 24 )
+Partition 5, base 2 (pretmp_29 - 29 30 )
+
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_7 - 7 )
+Partition 2 (_9(D) - 9 )
+Partition 3 (ivtmp.120_19 - 19 )
+Partition 4 (ivtmp.120_24 - 24 )
+Partition 5 (pretmp_29 - 29 )
+Partition 6 (prephitmp_30 - 30 )
+Partition 7 (prephitmp_31 - 31 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10426, 0) _4 <-> prephitmp_31
+(7800, 0) pretmp_29 <-> prephitmp_30
+(7800, 0) ivtmp.120_19 <-> ivtmp.120_24
+(6313, 0) _9(D) <-> prephitmp_31
+(2202, 0) _7 <-> prephitmp_31
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_7 - 7 )
+Partition 2 (_9(D) - 9 )
+Partition 3 (ivtmp.120_19 - 19 )
+Partition 4 (ivtmp.120_24 - 24 )
+Partition 5 (pretmp_29 - 29 )
+Partition 6 (prephitmp_30 - 30 )
+Partition 7 (prephitmp_31 - 31 )
+
+Coalesce list: (4)_4 & (31)prephitmp_31 [map: 0, 7] : Success -> 0
+Coalesce list: (29)pretmp_29 & (30)prephitmp_30 [map: 5, 6] : Success -> 5
+Coalesce list: (19)ivtmp.120_19 & (24)ivtmp.120_24 [map: 3, 4] : Success -> 3
+Coalesce list: (9)_9(D) & (31)_4 [map: 2, 0] : Success -> 0
+Coalesce list: (7)_7 & (31)_4 [map: 1, 0] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_4 - 4 7 9 31 )
+Partition 1 (_13 - 13 )
+Partition 2 (_16 - 16 )
+Partition 3 (ivtmp.120_19 - 19 24 )
+Partition 4 (pretmp_29 - 29 30 )
+
+
+Replacing Expressions
+_13 replace with --> _13 = (sizetype) prephitmp_30;
+
+_16 replace with --> _16 = &_nc_name_blob + _13;
+
+
+__attribute__((visibility ("default")))
+const char * const * _nc_strnames ()
+{
+  sizetype ivtmp.120;
+  const char * * _4;
+  void * _7;
+  const char * const * _9(D);
+  sizetype _13;
+  const char * _16;
+  short int pretmp_29;
+  short int prephitmp_30;
+  const char * * prephitmp_31;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _4 = ptr_strnames;
+  if (_4 == 0B)
+    goto <bb 3>; [17.43%]
+  else
+    goto <bb 6>; [82.57%]
+;;    succ:       3
+;;                6
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _7 = calloc (415, 8);
+  ptr_strnames = _7;
+  if (_7 != 0B)
+    goto <bb 4>; [99.96%]
+  else
+    goto <bb 6>; [0.04%]
+;;    succ:       4
+;;                6
+
+;;   basic block 4, loop depth 1
+;;    pred:       5
+;;                3
+  # prephitmp_30 = PHI <pretmp_29(5), 1397(3)>
+  # ivtmp.120_24 = PHI <ivtmp.120_19(5), 0(3)>
+  _13 = (sizetype) prephitmp_30;
+  _16 = &_nc_name_blob + _13;
+  MEM[(const char * *)_7 + ivtmp.120_24 * 4] = _16;
+  ivtmp.120_19 = ivtmp.120_24 + 2;
+  if (ivtmp.120_19 != 828)
+    goto <bb 5>; [87.64%]
+  else
+    goto <bb 6>; [12.36%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 1
+;;    pred:       4
+  pretmp_29 = MEM[(const short int *)&_nc_offset_strnames + ivtmp.120_19 * 1];
+  goto <bb 4>; [100.00%]
+;;    succ:       4
+
+;;   basic block 6, loop depth 0
+;;    pred:       2
+;;                3
+;;                4
+  # prephitmp_31 = PHI <_4(2), _7(3), _7(4)>
+  return prephitmp_31;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB3->BB4 : PART.3 = 0
+Inserting a value copy on edge BB3->BB4 : PART.4 = 1397
+
+;; Generating RTL for gimple basic block 2
+
+;; _4 = ptr_strnames;
+
+(insn 7 6 0 (set (reg/f:DI 86 [ <retval> ])
+        (mem/f/c:DI (symbol_ref:DI ("ptr_strnames") [flags 0x2]  <var_decl 0x7fb8202b1900 ptr_strnames>) [1 ptr_strnames+0 S8 A64])) "../ncurses/names.c":298:6 -1
+     (nil))
+
+;; if (_4 == 0B)
+
+(insn 8 7 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":298:5 -1
+     (nil))
+
+(jump_insn 9 8 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/names.c":298:5 -1
+     (int_list:REG_BR_PROB 886588628 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _7 = calloc (415, 8);
+
+(insn 11 10 12 (set (reg:DI 4 si)
+        (const_int 8 [0x8])) "../ncurses/names.c":299:17 -1
+     (nil))
+
+(insn 12 11 13 (set (reg:DI 5 di)
+        (const_int 415 [0x19f])) "../ncurses/names.c":299:17 -1
+     (nil))
+
+(call_insn 13 12 14 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>) [0 __builtin_calloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 14 13 15 (set (reg/f:DI 87)
+        (reg:DI 0 ax)) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 87)
+        (nil)))
+
+(insn 15 14 0 (set (reg/f:DI 86 [ <retval> ])
+        (reg/f:DI 87)) "../ncurses/names.c":299:17 -1
+     (nil))
+
+;; ptr_strnames = _7;
+
+(insn 16 15 0 (set (mem/f/c:DI (symbol_ref:DI ("ptr_strnames") [flags 0x2]  <var_decl 0x7fb8202b1900 ptr_strnames>) [1 ptr_strnames+0 S8 A64])
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/names.c":299:15 -1
+     (nil))
+
+;; if (_7 != 0B)
+
+(insn 17 16 18 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":299:6 -1
+     (nil))
+
+(jump_insn 18 17 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/names.c":299:6 -1
+     (int_list:REG_BR_PROB 429500 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; MEM[(const char * *)_7 + ivtmp.120_24 * 4] = _16;
+
+(insn 20 19 21 (set (reg:DI 88)
+        (sign_extend:DI (reg:HI 85 [ pretmp_29 ]))) "../ncurses/names.c":302:65 -1
+     (nil))
+
+(insn 21 20 22 (set (reg:DI 89)
+        (symbol_ref:DI ("_nc_name_blob") [flags 0x2]  <var_decl 0x7fb8202231b0 _nc_name_blob>)) "../ncurses/names.c":302:56 -1
+     (nil))
+
+(insn 22 21 23 (parallel [
+            (set (reg:DI 90)
+                (plus:DI (reg:DI 88)
+                    (reg:DI 89)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":302:56 -1
+     (nil))
+
+(insn 23 22 0 (set (mem/f:DI (plus:DI (mult:DI (reg:DI 84 [ ivtmp.120 ])
+                    (const_int 4 [0x4]))
+                (reg/f:DI 86 [ <retval> ])) [2 MEM[(const char * *)_7 + ivtmp.120_24 * 4]+0 S8 A64])
+        (reg:DI 90)) "../ncurses/names.c":302:56 -1
+     (nil))
+
+;; ivtmp.120_19 = ivtmp.120_24 + 2;
+
+(insn 24 23 0 (parallel [
+            (set (reg:DI 84 [ ivtmp.120 ])
+                (plus:DI (reg:DI 84 [ ivtmp.120 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":301:18 -1
+     (nil))
+
+;; if (ivtmp.120_19 != 828)
+
+(insn 25 24 26 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 84 [ ivtmp.120 ])
+            (const_int 828 [0x33c]))) "../ncurses/names.c":301:18 -1
+     (nil))
+
+(jump_insn 26 25 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/names.c":301:18 -1
+     (int_list:REG_BR_PROB 132709668 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; pretmp_29 = MEM[(const short int *)&_nc_offset_strnames + ivtmp.120_19 * 1];
+
+(insn 28 27 29 (set (reg/f:DI 91)
+        (symbol_ref:DI ("_nc_offset_strnames") [flags 0x2]  <var_decl 0x7fb8202b17e0 _nc_offset_strnames>)) "../ncurses/names.c":302:65 -1
+     (nil))
+
+(insn 29 28 0 (set (reg:HI 85 [ pretmp_29 ])
+        (mem/u:HI (plus:DI (reg/f:DI 91)
+                (reg:DI 84 [ ivtmp.120 ])) [3 MEM[(const short int *)&_nc_offset_strnames + ivtmp.120_19 * 1]+0 S2 A16])) "../ncurses/names.c":302:65 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 33 32 34 63 (nil) [0 uses])
+
+(note 34 33 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return prephitmp_31;
+
+(jump_insn 35 34 36 (set (pc)
+        (label_ref 0)) "../ncurses/names.c":324:1 -1
+     (nil))
+
+(barrier 36 35 0)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 2->8 redirected to 9
+Edge 4->8 redirected to 9
+Edge 6->8 redirected to 9
+deleting block 8
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 5 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 2 8 2 (set (reg/f:DI 86 [ <retval> ])
+        (mem/f/c:DI (symbol_ref:DI ("ptr_strnames") [flags 0x2]  <var_decl 0x7fb8202b1900 ptr_strnames>) [1 ptr_strnames+0 S8 A64])) "../ncurses/names.c":298:6 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":298:5 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 37)
+            (pc))) "../ncurses/names.c":298:5 806 {*jcc}
+     (int_list:REG_BR_PROB 886588628 (nil))
+ -> 37)
+;;  succ:       4 [17.4% (guessed)]  count:187153200 (estimated locally) (FALLTHRU)
+;;              9 [82.6% (guessed)]  count:886588624 (estimated locally)
+
+;; basic block 4, loop depth 0, count 187153200 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [17.4% (guessed)]  count:187153200 (estimated locally) (FALLTHRU)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (set (reg:DI 4 si)
+        (const_int 8 [0x8])) "../ncurses/names.c":299:17 -1
+     (nil))
+(insn 12 11 13 4 (set (reg:DI 5 di)
+        (const_int 415 [0x19f])) "../ncurses/names.c":299:17 -1
+     (nil))
+(call_insn 13 12 14 4 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>) [0 __builtin_calloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 14 13 15 4 (set (reg/f:DI 87)
+        (reg:DI 0 ax)) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 87)
+        (nil)))
+(insn 15 14 16 4 (set (reg/f:DI 86 [ <retval> ])
+        (reg/f:DI 87)) "../ncurses/names.c":299:17 -1
+     (nil))
+(insn 16 15 17 4 (set (mem/f/c:DI (symbol_ref:DI ("ptr_strnames") [flags 0x2]  <var_decl 0x7fb8202b1900 ptr_strnames>) [1 ptr_strnames+0 S8 A64])
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/names.c":299:15 -1
+     (nil))
+(insn 17 16 18 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":299:6 -1
+     (nil))
+(jump_insn 18 17 41 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 37)
+            (pc))) "../ncurses/names.c":299:6 806 {*jcc}
+     (int_list:REG_BR_PROB 429500 (nil))
+ -> 37)
+;;  succ:       5 [100.0% (guessed)]  count:187078339 (estimated locally) (FALLTHRU)
+;;              9 [0.0% (guessed)]  count:74861 (estimated locally)
+
+;; basic block 5, loop depth 0, count 187078339 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [100.0% (guessed)]  count:187078339 (estimated locally) (FALLTHRU)
+(note 41 18 3 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 3 41 4 5 (set (reg:DI 84 [ ivtmp.120 ])
+        (const_int 0 [0])) -1
+     (nil))
+(insn 4 3 30 5 (set (reg:HI 85 [ pretmp_29 ])
+        (const_int 1397 [0x575])) -1
+     (nil))
+;;  succ:       6 [always]  count:187078339 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 1, count 1513633842 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [always]  count:1326555501 (estimated locally) (DFS_BACK)
+;;              5 [always]  count:187078339 (estimated locally) (FALLTHRU)
+(code_label 30 4 19 6 64 (nil) [1 uses])
+(note 19 30 20 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 21 6 (set (reg:DI 88)
+        (sign_extend:DI (reg:HI 85 [ pretmp_29 ]))) "../ncurses/names.c":302:65 -1
+     (nil))
+(insn 21 20 22 6 (set (reg:DI 89)
+        (symbol_ref:DI ("_nc_name_blob") [flags 0x2]  <var_decl 0x7fb8202231b0 _nc_name_blob>)) "../ncurses/names.c":302:56 -1
+     (nil))
+(insn 22 21 23 6 (parallel [
+            (set (reg:DI 90)
+                (plus:DI (reg:DI 88)
+                    (reg:DI 89)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":302:56 -1
+     (nil))
+(insn 23 22 24 6 (set (mem/f:DI (plus:DI (mult:DI (reg:DI 84 [ ivtmp.120 ])
+                    (const_int 4 [0x4]))
+                (reg/f:DI 86 [ <retval> ])) [2 MEM[(const char * *)_7 + ivtmp.120_24 * 4]+0 S8 A64])
+        (reg:DI 90)) "../ncurses/names.c":302:56 -1
+     (nil))
+(insn 24 23 25 6 (parallel [
+            (set (reg:DI 84 [ ivtmp.120 ])
+                (plus:DI (reg:DI 84 [ ivtmp.120 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":301:18 -1
+     (nil))
+(insn 25 24 26 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 84 [ ivtmp.120 ])
+            (const_int 828 [0x33c]))) "../ncurses/names.c":301:18 -1
+     (nil))
+(jump_insn 26 25 27 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 37)
+            (pc))) "../ncurses/names.c":301:18 806 {*jcc}
+     (int_list:REG_BR_PROB 132709668 (nil))
+ -> 37)
+;;  succ:       7 [87.6% (guessed)]  count:1326555501 (estimated locally) (FALLTHRU)
+;;              9 [12.4% (guessed)]  count:187078341 (estimated locally)
+
+;; basic block 7, loop depth 1, count 1326555501 (estimated locally), maybe hot
+;;  prev block 6, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [87.6% (guessed)]  count:1326555501 (estimated locally) (FALLTHRU)
+(note 27 26 28 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 7 (set (reg/f:DI 91)
+        (symbol_ref:DI ("_nc_offset_strnames") [flags 0x2]  <var_decl 0x7fb8202b17e0 _nc_offset_strnames>)) "../ncurses/names.c":302:65 -1
+     (nil))
+(insn 29 28 31 7 (set (reg:HI 85 [ pretmp_29 ])
+        (mem/u:HI (plus:DI (reg/f:DI 91)
+                (reg:DI 84 [ ivtmp.120 ])) [3 MEM[(const short int *)&_nc_offset_strnames + ivtmp.120_19 * 1]+0 S2 A16])) "../ncurses/names.c":302:65 -1
+     (nil))
+(jump_insn 31 29 32 7 (set (pc)
+        (label_ref 30)) "../ncurses/names.c":302:65 -1
+     (nil)
+ -> 30)
+;;  succ:       6 [always]  count:1326555501 (estimated locally) (DFS_BACK)
+
+(barrier 32 31 37)
+;; basic block 9, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 7, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       6 [12.4% (guessed)]  count:187078341 (estimated locally)
+;;              2 [82.6% (guessed)]  count:886588624 (estimated locally)
+;;              4 [0.0% (guessed)]  count:74861 (estimated locally)
+(code_label 37 32 40 9 62 (nil) [3 uses])
+(note 40 37 38 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 38 40 39 9 (set (reg/i:DI 0 ax)
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/names.c":324:1 -1
+     (nil))
+(insn 39 38 0 9 (use (reg/i:DI 0 ax)) "../ncurses/names.c":324:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+
+;; Function _nc_strfnames (_nc_strfnames, funcdef_no=97, decl_uid=7504, cgraph_uid=98, symbol_order=110)
+
+__attribute__((visibility ("default")))
+const char * const * _nc_strfnames ()
+{
+  sizetype ivtmp.143;
+  const char * * _4;
+  void * _7;
+  sizetype _13;
+  const char * _16;
+  short int pretmp_29;
+  short int prephitmp_30;
+  const char * * prephitmp_31;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _4 = ptr_strfnames;
+  if (_4 == 0B)
+    goto <bb 3>; [17.43%]
+  else
+    goto <bb 6>; [82.57%]
+;;    succ:       3
+;;                6
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _7 = calloc (415, 8);
+  ptr_strfnames = _7;
+  if (_7 != 0B)
+    goto <bb 4>; [99.96%]
+  else
+    goto <bb 6>; [0.04%]
+;;    succ:       4
+;;                6
+
+;;   basic block 4, loop depth 1
+;;    pred:       5
+;;                3
+  # prephitmp_30 = PHI <pretmp_29(5), 1401(3)>
+  # ivtmp.143_24 = PHI <ivtmp.143_19(5), 0(3)>
+  _13 = (sizetype) prephitmp_30;
+  _16 = &_nc_name_blob + _13;
+  MEM[(const char * *)_7 + ivtmp.143_24 * 4] = _16;
+  ivtmp.143_19 = ivtmp.143_24 + 2;
+  if (ivtmp.143_19 != 828)
+    goto <bb 5>; [87.64%]
+  else
+    goto <bb 6>; [12.36%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 1
+;;    pred:       4
+  pretmp_29 = MEM[(const short int *)&_nc_offset_strfnames + ivtmp.143_19 * 1];
+  goto <bb 4>; [100.00%]
+;;    succ:       4
+
+;;   basic block 6, loop depth 0
+;;    pred:       2
+;;                3
+;;                4
+  # prephitmp_31 = PHI <_4(2), _7(3), _7(4)>
+  return prephitmp_31;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 4 (_4 - 4 )
+Partition 7 (_7 - 7 )
+Partition 9 (_9(D) - 9 )
+Partition 13 (_13 - 13 )
+Partition 16 (_16 - 16 )
+Partition 19 (ivtmp.143_19 - 19 )
+Partition 24 (ivtmp.143_24 - 24 )
+Partition 29 (pretmp_29 - 29 )
+Partition 30 (prephitmp_30 - 30 )
+Partition 31 (prephitmp_31 - 31 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_4 - 4 7 9 31 )
+Partition 3, base 1 (ivtmp.143_19 - 19 24 )
+Partition 5, base 2 (pretmp_29 - 29 30 )
+
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_7 - 7 )
+Partition 2 (_9(D) - 9 )
+Partition 3 (ivtmp.143_19 - 19 )
+Partition 4 (ivtmp.143_24 - 24 )
+Partition 5 (pretmp_29 - 29 )
+Partition 6 (prephitmp_30 - 30 )
+Partition 7 (prephitmp_31 - 31 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10426, 0) _4 <-> prephitmp_31
+(7800, 0) pretmp_29 <-> prephitmp_30
+(7800, 0) ivtmp.143_19 <-> ivtmp.143_24
+(6313, 0) _9(D) <-> prephitmp_31
+(2202, 0) _7 <-> prephitmp_31
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_7 - 7 )
+Partition 2 (_9(D) - 9 )
+Partition 3 (ivtmp.143_19 - 19 )
+Partition 4 (ivtmp.143_24 - 24 )
+Partition 5 (pretmp_29 - 29 )
+Partition 6 (prephitmp_30 - 30 )
+Partition 7 (prephitmp_31 - 31 )
+
+Coalesce list: (4)_4 & (31)prephitmp_31 [map: 0, 7] : Success -> 0
+Coalesce list: (29)pretmp_29 & (30)prephitmp_30 [map: 5, 6] : Success -> 5
+Coalesce list: (19)ivtmp.143_19 & (24)ivtmp.143_24 [map: 3, 4] : Success -> 3
+Coalesce list: (9)_9(D) & (31)_4 [map: 2, 0] : Success -> 0
+Coalesce list: (7)_7 & (31)_4 [map: 1, 0] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_4 - 4 7 9 31 )
+Partition 1 (_13 - 13 )
+Partition 2 (_16 - 16 )
+Partition 3 (ivtmp.143_19 - 19 24 )
+Partition 4 (pretmp_29 - 29 30 )
+
+
+Replacing Expressions
+_13 replace with --> _13 = (sizetype) prephitmp_30;
+
+_16 replace with --> _16 = &_nc_name_blob + _13;
+
+
+__attribute__((visibility ("default")))
+const char * const * _nc_strfnames ()
+{
+  sizetype ivtmp.143;
+  const char * * _4;
+  void * _7;
+  const char * const * _9(D);
+  sizetype _13;
+  const char * _16;
+  short int pretmp_29;
+  short int prephitmp_30;
+  const char * * prephitmp_31;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _4 = ptr_strfnames;
+  if (_4 == 0B)
+    goto <bb 3>; [17.43%]
+  else
+    goto <bb 6>; [82.57%]
+;;    succ:       3
+;;                6
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _7 = calloc (415, 8);
+  ptr_strfnames = _7;
+  if (_7 != 0B)
+    goto <bb 4>; [99.96%]
+  else
+    goto <bb 6>; [0.04%]
+;;    succ:       4
+;;                6
+
+;;   basic block 4, loop depth 1
+;;    pred:       5
+;;                3
+  # prephitmp_30 = PHI <pretmp_29(5), 1401(3)>
+  # ivtmp.143_24 = PHI <ivtmp.143_19(5), 0(3)>
+  _13 = (sizetype) prephitmp_30;
+  _16 = &_nc_name_blob + _13;
+  MEM[(const char * *)_7 + ivtmp.143_24 * 4] = _16;
+  ivtmp.143_19 = ivtmp.143_24 + 2;
+  if (ivtmp.143_19 != 828)
+    goto <bb 5>; [87.64%]
+  else
+    goto <bb 6>; [12.36%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 1
+;;    pred:       4
+  pretmp_29 = MEM[(const short int *)&_nc_offset_strfnames + ivtmp.143_19 * 1];
+  goto <bb 4>; [100.00%]
+;;    succ:       4
+
+;;   basic block 6, loop depth 0
+;;    pred:       2
+;;                3
+;;                4
+  # prephitmp_31 = PHI <_4(2), _7(3), _7(4)>
+  return prephitmp_31;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB3->BB4 : PART.3 = 0
+Inserting a value copy on edge BB3->BB4 : PART.4 = 1401
+
+;; Generating RTL for gimple basic block 2
+
+;; _4 = ptr_strfnames;
+
+(insn 7 6 0 (set (reg/f:DI 86 [ <retval> ])
+        (mem/f/c:DI (symbol_ref:DI ("ptr_strfnames") [flags 0x2]  <var_decl 0x7fb8202b1750 ptr_strfnames>) [1 ptr_strfnames+0 S8 A64])) "../ncurses/names.c":298:6 -1
+     (nil))
+
+;; if (_4 == 0B)
+
+(insn 8 7 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":298:5 -1
+     (nil))
+
+(jump_insn 9 8 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/names.c":298:5 -1
+     (int_list:REG_BR_PROB 886588628 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _7 = calloc (415, 8);
+
+(insn 11 10 12 (set (reg:DI 4 si)
+        (const_int 8 [0x8])) "../ncurses/names.c":299:17 -1
+     (nil))
+
+(insn 12 11 13 (set (reg:DI 5 di)
+        (const_int 415 [0x19f])) "../ncurses/names.c":299:17 -1
+     (nil))
+
+(call_insn 13 12 14 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>) [0 __builtin_calloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 14 13 15 (set (reg/f:DI 87)
+        (reg:DI 0 ax)) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 87)
+        (nil)))
+
+(insn 15 14 0 (set (reg/f:DI 86 [ <retval> ])
+        (reg/f:DI 87)) "../ncurses/names.c":299:17 -1
+     (nil))
+
+;; ptr_strfnames = _7;
+
+(insn 16 15 0 (set (mem/f/c:DI (symbol_ref:DI ("ptr_strfnames") [flags 0x2]  <var_decl 0x7fb8202b1750 ptr_strfnames>) [1 ptr_strfnames+0 S8 A64])
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/names.c":299:15 -1
+     (nil))
+
+;; if (_7 != 0B)
+
+(insn 17 16 18 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":299:6 -1
+     (nil))
+
+(jump_insn 18 17 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/names.c":299:6 -1
+     (int_list:REG_BR_PROB 429500 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; MEM[(const char * *)_7 + ivtmp.143_24 * 4] = _16;
+
+(insn 20 19 21 (set (reg:DI 88)
+        (sign_extend:DI (reg:HI 85 [ pretmp_29 ]))) "../ncurses/names.c":302:65 -1
+     (nil))
+
+(insn 21 20 22 (set (reg:DI 89)
+        (symbol_ref:DI ("_nc_name_blob") [flags 0x2]  <var_decl 0x7fb8202231b0 _nc_name_blob>)) "../ncurses/names.c":302:56 -1
+     (nil))
+
+(insn 22 21 23 (parallel [
+            (set (reg:DI 90)
+                (plus:DI (reg:DI 88)
+                    (reg:DI 89)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":302:56 -1
+     (nil))
+
+(insn 23 22 0 (set (mem/f:DI (plus:DI (mult:DI (reg:DI 84 [ ivtmp.143 ])
+                    (const_int 4 [0x4]))
+                (reg/f:DI 86 [ <retval> ])) [2 MEM[(const char * *)_7 + ivtmp.143_24 * 4]+0 S8 A64])
+        (reg:DI 90)) "../ncurses/names.c":302:56 -1
+     (nil))
+
+;; ivtmp.143_19 = ivtmp.143_24 + 2;
+
+(insn 24 23 0 (parallel [
+            (set (reg:DI 84 [ ivtmp.143 ])
+                (plus:DI (reg:DI 84 [ ivtmp.143 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":301:18 -1
+     (nil))
+
+;; if (ivtmp.143_19 != 828)
+
+(insn 25 24 26 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 84 [ ivtmp.143 ])
+            (const_int 828 [0x33c]))) "../ncurses/names.c":301:18 -1
+     (nil))
+
+(jump_insn 26 25 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/names.c":301:18 -1
+     (int_list:REG_BR_PROB 132709668 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; pretmp_29 = MEM[(const short int *)&_nc_offset_strfnames + ivtmp.143_19 * 1];
+
+(insn 28 27 29 (set (reg/f:DI 91)
+        (symbol_ref:DI ("_nc_offset_strfnames") [flags 0x2]  <var_decl 0x7fb8202b1630 _nc_offset_strfnames>)) "../ncurses/names.c":302:65 -1
+     (nil))
+
+(insn 29 28 0 (set (reg:HI 85 [ pretmp_29 ])
+        (mem/u:HI (plus:DI (reg/f:DI 91)
+                (reg:DI 84 [ ivtmp.143 ])) [3 MEM[(const short int *)&_nc_offset_strfnames + ivtmp.143_19 * 1]+0 S2 A16])) "../ncurses/names.c":302:65 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 33 32 34 78 (nil) [0 uses])
+
+(note 34 33 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return prephitmp_31;
+
+(jump_insn 35 34 36 (set (pc)
+        (label_ref 0)) "../ncurses/names.c":325:1 -1
+     (nil))
+
+(barrier 36 35 0)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 2->8 redirected to 9
+Edge 4->8 redirected to 9
+Edge 6->8 redirected to 9
+deleting block 8
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 5 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 2 8 2 (set (reg/f:DI 86 [ <retval> ])
+        (mem/f/c:DI (symbol_ref:DI ("ptr_strfnames") [flags 0x2]  <var_decl 0x7fb8202b1750 ptr_strfnames>) [1 ptr_strfnames+0 S8 A64])) "../ncurses/names.c":298:6 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":298:5 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 37)
+            (pc))) "../ncurses/names.c":298:5 806 {*jcc}
+     (int_list:REG_BR_PROB 886588628 (nil))
+ -> 37)
+;;  succ:       4 [17.4% (guessed)]  count:187153200 (estimated locally) (FALLTHRU)
+;;              9 [82.6% (guessed)]  count:886588624 (estimated locally)
+
+;; basic block 4, loop depth 0, count 187153200 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [17.4% (guessed)]  count:187153200 (estimated locally) (FALLTHRU)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (set (reg:DI 4 si)
+        (const_int 8 [0x8])) "../ncurses/names.c":299:17 -1
+     (nil))
+(insn 12 11 13 4 (set (reg:DI 5 di)
+        (const_int 415 [0x19f])) "../ncurses/names.c":299:17 -1
+     (nil))
+(call_insn 13 12 14 4 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>) [0 __builtin_calloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7fb820674600 calloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 14 13 15 4 (set (reg/f:DI 87)
+        (reg:DI 0 ax)) "../ncurses/names.c":299:17 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 87)
+        (nil)))
+(insn 15 14 16 4 (set (reg/f:DI 86 [ <retval> ])
+        (reg/f:DI 87)) "../ncurses/names.c":299:17 -1
+     (nil))
+(insn 16 15 17 4 (set (mem/f/c:DI (symbol_ref:DI ("ptr_strfnames") [flags 0x2]  <var_decl 0x7fb8202b1750 ptr_strfnames>) [1 ptr_strfnames+0 S8 A64])
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/names.c":299:15 -1
+     (nil))
+(insn 17 16 18 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 86 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/names.c":299:6 -1
+     (nil))
+(jump_insn 18 17 41 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 37)
+            (pc))) "../ncurses/names.c":299:6 806 {*jcc}
+     (int_list:REG_BR_PROB 429500 (nil))
+ -> 37)
+;;  succ:       5 [100.0% (guessed)]  count:187078339 (estimated locally) (FALLTHRU)
+;;              9 [0.0% (guessed)]  count:74861 (estimated locally)
+
+;; basic block 5, loop depth 0, count 187078339 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [100.0% (guessed)]  count:187078339 (estimated locally) (FALLTHRU)
+(note 41 18 3 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 3 41 4 5 (set (reg:DI 84 [ ivtmp.143 ])
+        (const_int 0 [0])) -1
+     (nil))
+(insn 4 3 30 5 (set (reg:HI 85 [ pretmp_29 ])
+        (const_int 1401 [0x579])) -1
+     (nil))
+;;  succ:       6 [always]  count:187078339 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 1, count 1513633842 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [always]  count:1326555501 (estimated locally) (DFS_BACK)
+;;              5 [always]  count:187078339 (estimated locally) (FALLTHRU)
+(code_label 30 4 19 6 79 (nil) [1 uses])
+(note 19 30 20 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 21 6 (set (reg:DI 88)
+        (sign_extend:DI (reg:HI 85 [ pretmp_29 ]))) "../ncurses/names.c":302:65 -1
+     (nil))
+(insn 21 20 22 6 (set (reg:DI 89)
+        (symbol_ref:DI ("_nc_name_blob") [flags 0x2]  <var_decl 0x7fb8202231b0 _nc_name_blob>)) "../ncurses/names.c":302:56 -1
+     (nil))
+(insn 22 21 23 6 (parallel [
+            (set (reg:DI 90)
+                (plus:DI (reg:DI 88)
+                    (reg:DI 89)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":302:56 -1
+     (nil))
+(insn 23 22 24 6 (set (mem/f:DI (plus:DI (mult:DI (reg:DI 84 [ ivtmp.143 ])
+                    (const_int 4 [0x4]))
+                (reg/f:DI 86 [ <retval> ])) [2 MEM[(const char * *)_7 + ivtmp.143_24 * 4]+0 S8 A64])
+        (reg:DI 90)) "../ncurses/names.c":302:56 -1
+     (nil))
+(insn 24 23 25 6 (parallel [
+            (set (reg:DI 84 [ ivtmp.143 ])
+                (plus:DI (reg:DI 84 [ ivtmp.143 ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/names.c":301:18 -1
+     (nil))
+(insn 25 24 26 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 84 [ ivtmp.143 ])
+            (const_int 828 [0x33c]))) "../ncurses/names.c":301:18 -1
+     (nil))
+(jump_insn 26 25 27 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 37)
+            (pc))) "../ncurses/names.c":301:18 806 {*jcc}
+     (int_list:REG_BR_PROB 132709668 (nil))
+ -> 37)
+;;  succ:       7 [87.6% (guessed)]  count:1326555501 (estimated locally) (FALLTHRU)
+;;              9 [12.4% (guessed)]  count:187078341 (estimated locally)
+
+;; basic block 7, loop depth 1, count 1326555501 (estimated locally), maybe hot
+;;  prev block 6, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [87.6% (guessed)]  count:1326555501 (estimated locally) (FALLTHRU)
+(note 27 26 28 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 7 (set (reg/f:DI 91)
+        (symbol_ref:DI ("_nc_offset_strfnames") [flags 0x2]  <var_decl 0x7fb8202b1630 _nc_offset_strfnames>)) "../ncurses/names.c":302:65 -1
+     (nil))
+(insn 29 28 31 7 (set (reg:HI 85 [ pretmp_29 ])
+        (mem/u:HI (plus:DI (reg/f:DI 91)
+                (reg:DI 84 [ ivtmp.143 ])) [3 MEM[(const short int *)&_nc_offset_strfnames + ivtmp.143_19 * 1]+0 S2 A16])) "../ncurses/names.c":302:65 -1
+     (nil))
+(jump_insn 31 29 32 7 (set (pc)
+        (label_ref 30)) "../ncurses/names.c":302:65 -1
+     (nil)
+ -> 30)
+;;  succ:       6 [always]  count:1326555501 (estimated locally) (DFS_BACK)
+
+(barrier 32 31 37)
+;; basic block 9, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 7, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       6 [12.4% (guessed)]  count:187078341 (estimated locally)
+;;              2 [82.6% (guessed)]  count:886588624 (estimated locally)
+;;              4 [0.0% (guessed)]  count:74861 (estimated locally)
+(code_label 37 32 40 9 77 (nil) [3 uses])
+(note 40 37 38 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 38 40 39 9 (set (reg/i:DI 0 ax)
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/names.c":325:1 -1
+     (nil))
+(insn 39 38 0 9 (use (reg/i:DI 0 ax)) "../ncurses/names.c":325:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+

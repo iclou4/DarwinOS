@@ -1,0 +1,724 @@
+
+;; Function longname_sp (longname_sp, funcdef_no=91, decl_uid=6573, cgraph_uid=92, symbol_order=91)
+
+
+10 basic blocks, 13 edges.
+;; basic block 0, loop depth 0, count 164090757 (estimated locally), maybe hot
+;;  prev block (nil), next block 2, flags: (RTL, VISITED)
+;;  pred:      
+;;  succ:       2 [always]  count:164090757 (estimated locally) (FALLTHRU)
+
+;; basic block 2, loop depth 0, count 164090757 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:164090757 (estimated locally) (FALLTHRU)
+(note 5 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 87 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./tinfo/lib_longname.c":51:1 74 {*movdi_internal}
+     (nil))
+(note 3 2 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 3 8 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 87 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_longname.c":57:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 8 7 9 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 46)
+            (pc))) "../ncurses/./tinfo/lib_longname.c":57:8 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 46)
+;;  succ:       3 [70.0% (guessed)]  count:114863530 (estimated locally) (FALLTHRU)
+;;              9 [30.0% (guessed)]  count:49227227 (estimated locally)
+
+;; basic block 3, loop depth 0, count 114863530 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [70.0% (guessed)]  count:114863530 (estimated locally) (FALLTHRU)
+(note 9 8 10 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 10 9 11 3 (parallel [
+            (set (reg/f:DI 86 [ <retval> ])
+                (plus:DI (reg/v/f:DI 87 [ sp ])
+                    (const_int 1560 [0x618])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/lib_longname.c":60:13 210 {*adddi_1}
+     (nil))
+(insn 11 10 12 3 (set (reg:DI 5 di)
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/./tinfo/lib_longname.c":60:33 74 {*movdi_internal}
+     (nil))
+(call_insn/i 12 11 13 3 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strlen") [flags 0x41]  <function_decl 0x7f2e83f7b700 strlen>) [0 __builtin_strlen S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_longname.c":60:33 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("strlen") [flags 0x41]  <function_decl 0x7f2e83f7b700 strlen>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 13 12 14 3 (set (reg:DI 89)
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_longname.c":60:33 74 {*movdi_internal}
+     (nil))
+(insn 14 13 15 3 (set (reg:DI 90)
+        (reg:DI 89)) "../ncurses/./tinfo/lib_longname.c":60:33 74 {*movdi_internal}
+     (nil))
+(insn 15 14 16 3 (set (reg:DI 83 [ _3 ])
+        (reg:DI 90)) "../ncurses/./tinfo/lib_longname.c":60:33 74 {*movdi_internal}
+     (nil))
+(insn 16 15 17 3 (parallel [
+            (set (reg/v/f:DI 85 [ ptr ])
+                (plus:DI (reg/f:DI 86 [ <retval> ])
+                    (reg:DI 83 [ _3 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/lib_longname.c":60:11 210 {*adddi_1}
+     (nil))
+(insn 17 16 18 3 (set (reg:CC 17 flags)
+        (compare:CC (reg/f:DI 86 [ <retval> ])
+            (reg/v/f:DI 85 [ ptr ]))) "../ncurses/./tinfo/lib_longname.c":61:11 12 {*cmpdi_1}
+     (nil))
+(jump_insn 18 17 19 3 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 38)
+            (pc))) "../ncurses/./tinfo/lib_longname.c":61:11 806 {*jcc}
+     (int_list:REG_BR_PROB 59055804 (nil))
+ -> 38)
+;;  succ:       4 [94.5% (guessed)]  count:108546036 (estimated locally) (FALLTHRU)
+;;              10 [5.5% (guessed)]  count:6317494 (estimated locally)
+
+;; basic block 4, loop depth 0, count 108546036 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       3 [94.5% (guessed)]  count:108546036 (estimated locally) (FALLTHRU)
+(note 19 18 20 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 31 4 (parallel [
+            (set (reg/f:DI 82 [ _2 ])
+                (plus:DI (reg/v/f:DI 87 [ sp ])
+                    (const_int 1560 [0x618])))
+            (clobber (reg:CC 17 flags))
+        ]) 210 {*adddi_1}
+     (nil))
+;;  succ:       5 [always]  count:108546036 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 1, count 1014686026 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [94.5% (guessed)]  count:906139989 (estimated locally) (DFS_BACK)
+;;              4 [always]  count:108546036 (estimated locally) (FALLTHRU)
+(code_label 31 20 21 5 4 (nil) [1 uses])
+(note 21 31 22 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 23 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (reg/v/f:DI 85 [ ptr ]) [0 MEM[(char *)ptr_13]+0 S1 A8])
+            (const_int 124 [0x7c]))) "../ncurses/./tinfo/lib_longname.c":63:9 9 {*cmpqi_1}
+     (nil))
+(jump_insn 23 22 24 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 28)
+            (pc))) "../ncurses/./tinfo/lib_longname.c":63:9 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 28)
+;;  succ:       6 [5.5% (guessed)]  count:55807731 (estimated locally) (FALLTHRU)
+;;              7 [94.5% (guessed)]  count:958878295 (estimated locally)
+
+;; basic block 6, loop depth 0, count 55807731 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [5.5% (guessed)]  count:55807731 (estimated locally) (FALLTHRU)
+(note 24 23 25 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 25 24 28 6 (parallel [
+            (set (reg/f:DI 86 [ <retval> ])
+                (plus:DI (reg/v/f:DI 85 [ ptr ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/lib_longname.c":64:3 210 {*adddi_1}
+     (nil))
+;;  succ:       10 [always]  count:55807731 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 1, count 958878295 (estimated locally), maybe hot
+;;  prev block 6, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [94.5% (guessed)]  count:958878295 (estimated locally)
+(code_label 28 25 29 7 3 (nil) [1 uses])
+(note 29 28 30 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 30 29 32 7 (parallel [
+            (set (reg/v/f:DI 85 [ ptr ])
+                (plus:DI (reg/v/f:DI 85 [ ptr ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/lib_longname.c":62:10 210 {*adddi_1}
+     (nil))
+(insn 32 30 33 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _2 ])
+            (reg/v/f:DI 85 [ ptr ]))) "../ncurses/./tinfo/lib_longname.c":61:11 12 {*cmpdi_1}
+     (nil))
+(jump_insn 33 32 46 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 31)
+            (pc))) "../ncurses/./tinfo/lib_longname.c":61:11 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 31)
+;;  succ:       5 [94.5% (guessed)]  count:906139989 (estimated locally) (DFS_BACK)
+;;              10 [5.5% (guessed)]  count:52738306 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 49227227 (estimated locally), maybe hot
+;;  prev block 7, next block 10, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [30.0% (guessed)]  count:49227227 (estimated locally)
+(code_label 46 33 45 9 5 (nil) [1 uses])
+(note 45 46 4 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 4 45 38 9 (set (reg/f:DI 86 [ <retval> ])
+        (symbol_ref:DI ("empty.0") [flags 0x2]  <var_decl 0x7f2e83b421b0 empty>)) "../ncurses/./tinfo/lib_longname.c":67:12 74 {*movdi_internal}
+     (nil))
+;;  succ:       10 [always]  count:49227227 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 164090758 (estimated locally), maybe hot
+;;  prev block 9, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       9 [always]  count:49227227 (estimated locally) (FALLTHRU)
+;;              3 [5.5% (guessed)]  count:6317494 (estimated locally)
+;;              6 [always]  count:55807731 (estimated locally) (FALLTHRU)
+;;              7 [5.5% (guessed)]  count:52738306 (estimated locally) (FALLTHRU)
+(code_label 38 4 41 10 1 (nil) [1 uses])
+(note 41 38 39 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 39 41 40 10 (set (reg/i:DI 0 ax)
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/./tinfo/lib_longname.c":68:1 74 {*movdi_internal}
+     (nil))
+(insn 40 39 0 10 (use (reg/i:DI 0 ax)) "../ncurses/./tinfo/lib_longname.c":68:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:164090758 (estimated locally) (FALLTHRU)
+
+;; basic block 1, loop depth 0, count 164090758 (estimated locally), maybe hot
+;;  prev block 10, next block (nil), flags: (REACHABLE, RTL, VISITED)
+;;  pred:       10 [always]  count:164090758 (estimated locally) (FALLTHRU)
+;;  succ:      
+
+
+
+
+try_optimize_cfg iteration 1
+
+;; basic block 2, loop depth 0, count 164090757 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (RTL)
+;;  pred:       ENTRY [always]  count:164090757 (estimated locally) (FALLTHRU)
+(note 5 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 87 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./tinfo/lib_longname.c":51:1 74 {*movdi_internal}
+     (nil))
+(note 3 2 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 3 8 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 87 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_longname.c":57:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 8 7 9 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 46)
+            (pc))) "../ncurses/./tinfo/lib_longname.c":57:8 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 46)
+;;  succ:       3 [70.0% (guessed)]  count:114863530 (estimated locally) (FALLTHRU)
+;;              8 [30.0% (guessed)]  count:49227227 (estimated locally)
+
+;; basic block 3, loop depth 0, count 114863530 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (RTL)
+;;  pred:       2 [70.0% (guessed)]  count:114863530 (estimated locally) (FALLTHRU)
+(note 9 8 10 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 10 9 11 3 (parallel [
+            (set (reg/f:DI 86 [ <retval> ])
+                (plus:DI (reg/v/f:DI 87 [ sp ])
+                    (const_int 1560 [0x618])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/lib_longname.c":60:13 210 {*adddi_1}
+     (nil))
+(insn 11 10 12 3 (set (reg:DI 5 di)
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/./tinfo/lib_longname.c":60:33 74 {*movdi_internal}
+     (nil))
+(call_insn/i 12 11 13 3 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strlen") [flags 0x41]  <function_decl 0x7f2e83f7b700 strlen>) [0 __builtin_strlen S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_longname.c":60:33 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("strlen") [flags 0x41]  <function_decl 0x7f2e83f7b700 strlen>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 13 12 14 3 (set (reg:DI 89)
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_longname.c":60:33 74 {*movdi_internal}
+     (nil))
+(insn 14 13 15 3 (set (reg:DI 90)
+        (reg:DI 89)) "../ncurses/./tinfo/lib_longname.c":60:33 74 {*movdi_internal}
+     (nil))
+(insn 15 14 16 3 (set (reg:DI 83 [ _3 ])
+        (reg:DI 90)) "../ncurses/./tinfo/lib_longname.c":60:33 74 {*movdi_internal}
+     (nil))
+(insn 16 15 17 3 (parallel [
+            (set (reg/v/f:DI 85 [ ptr ])
+                (plus:DI (reg/f:DI 86 [ <retval> ])
+                    (reg:DI 83 [ _3 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/lib_longname.c":60:11 210 {*adddi_1}
+     (nil))
+(insn 17 16 18 3 (set (reg:CC 17 flags)
+        (compare:CC (reg/f:DI 86 [ <retval> ])
+            (reg/v/f:DI 85 [ ptr ]))) "../ncurses/./tinfo/lib_longname.c":61:11 12 {*cmpdi_1}
+     (nil))
+(jump_insn 18 17 19 3 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 38)
+            (pc))) "../ncurses/./tinfo/lib_longname.c":61:11 806 {*jcc}
+     (int_list:REG_BR_PROB 59055804 (nil))
+ -> 38)
+;;  succ:       4 [94.5% (guessed)]  count:108546036 (estimated locally) (FALLTHRU)
+;;              9 [5.5% (guessed)]  count:6317494 (estimated locally)
+
+;; basic block 4, loop depth 0, count 108546036 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (RTL)
+;;  pred:       3 [94.5% (guessed)]  count:108546036 (estimated locally) (FALLTHRU)
+(note 19 18 20 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 31 4 (parallel [
+            (set (reg/f:DI 82 [ _2 ])
+                (plus:DI (reg/v/f:DI 87 [ sp ])
+                    (const_int 1560 [0x618])))
+            (clobber (reg:CC 17 flags))
+        ]) 210 {*adddi_1}
+     (nil))
+;;  succ:       5 [always]  count:108546036 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 1, count 1014686026 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (RTL)
+;;  pred:       7 [94.5% (guessed)]  count:906139989 (estimated locally) (DFS_BACK)
+;;              4 [always]  count:108546036 (estimated locally) (FALLTHRU)
+(code_label 31 20 21 5 4 (nil) [1 uses])
+(note 21 31 22 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 23 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (reg/v/f:DI 85 [ ptr ]) [0 MEM[(char *)ptr_13]+0 S1 A8])
+            (const_int 124 [0x7c]))) "../ncurses/./tinfo/lib_longname.c":63:9 9 {*cmpqi_1}
+     (nil))
+(jump_insn 23 22 24 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 28)
+            (pc))) "../ncurses/./tinfo/lib_longname.c":63:9 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 28)
+;;  succ:       6 [5.5% (guessed)]  count:55807731 (estimated locally) (FALLTHRU)
+;;              7 [94.5% (guessed)]  count:958878295 (estimated locally)
+
+;; basic block 6, loop depth 0, count 55807731 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (RTL)
+;;  pred:       5 [5.5% (guessed)]  count:55807731 (estimated locally) (FALLTHRU)
+(note 24 23 25 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 25 24 28 6 (parallel [
+            (set (reg/f:DI 86 [ <retval> ])
+                (plus:DI (reg/v/f:DI 85 [ ptr ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/lib_longname.c":64:3 210 {*adddi_1}
+     (nil))
+;;  succ:       9 [always]  count:55807731 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 1, count 958878295 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (RTL)
+;;  pred:       5 [94.5% (guessed)]  count:958878295 (estimated locally)
+(code_label 28 25 29 7 3 (nil) [1 uses])
+(note 29 28 30 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 30 29 32 7 (parallel [
+            (set (reg/v/f:DI 85 [ ptr ])
+                (plus:DI (reg/v/f:DI 85 [ ptr ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/lib_longname.c":62:10 210 {*adddi_1}
+     (nil))
+(insn 32 30 33 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _2 ])
+            (reg/v/f:DI 85 [ ptr ]))) "../ncurses/./tinfo/lib_longname.c":61:11 12 {*cmpdi_1}
+     (nil))
+(jump_insn 33 32 46 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 31)
+            (pc))) "../ncurses/./tinfo/lib_longname.c":61:11 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 31)
+;;  succ:       5 [94.5% (guessed)]  count:906139989 (estimated locally) (DFS_BACK)
+;;              9 [5.5% (guessed)]  count:52738306 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 49227227 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (RTL)
+;;  pred:       2 [30.0% (guessed)]  count:49227227 (estimated locally)
+(code_label 46 33 45 8 5 (nil) [1 uses])
+(note 45 46 4 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 4 45 38 8 (set (reg/f:DI 86 [ <retval> ])
+        (symbol_ref:DI ("empty.0") [flags 0x2]  <var_decl 0x7f2e83b421b0 empty>)) "../ncurses/./tinfo/lib_longname.c":67:12 74 {*movdi_internal}
+     (nil))
+;;  succ:       9 [always]  count:49227227 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 164090758 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (RTL)
+;;  pred:       8 [always]  count:49227227 (estimated locally) (FALLTHRU)
+;;              3 [5.5% (guessed)]  count:6317494 (estimated locally)
+;;              6 [always]  count:55807731 (estimated locally) (FALLTHRU)
+;;              7 [5.5% (guessed)]  count:52738306 (estimated locally) (FALLTHRU)
+(code_label 38 4 41 9 1 (nil) [1 uses])
+(note 41 38 39 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 39 41 40 9 (set (reg/i:DI 0 ax)
+        (reg/f:DI 86 [ <retval> ])) "../ncurses/./tinfo/lib_longname.c":68:1 74 {*movdi_internal}
+     (nil))
+(insn 40 39 0 9 (use (reg/i:DI 0 ax)) "../ncurses/./tinfo/lib_longname.c":68:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:164090758 (estimated locally) (FALLTHRU)
+
+
+;; Function longname (longname, funcdef_no=92, decl_uid=5704, cgraph_uid=93, symbol_order=92)
+
+
+10 basic blocks, 13 edges.
+;; basic block 0, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block (nil), next block 2, flags: (RTL, VISITED)
+;;  pred:      
+;;  succ:       2 [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 4 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 4 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 2 7 2 (set (reg/f:DI 82 [ SP.0_1 ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f2e83b42cf0 SP>) [2 SP+0 S8 A64])) "../ncurses/./tinfo/lib_longname.c":74:12 74 {*movdi_internal}
+     (nil))
+(insn 7 6 8 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ SP.0_1 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_longname.c":57:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 8 7 9 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 46)
+            (pc))) "../ncurses/./tinfo/lib_longname.c":57:8 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 46)
+;;  succ:       3 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+;;              9 [30.0% (guessed)]  count:322122544 (estimated locally)
+
+;; basic block 3, loop depth 0, count 751619277 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+(note 9 8 10 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 10 9 11 3 (parallel [
+            (set (reg/f:DI 87 [ <retval> ])
+                (plus:DI (reg/f:DI 82 [ SP.0_1 ])
+                    (const_int 1560 [0x618])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/lib_longname.c":60:13 210 {*adddi_1}
+     (nil))
+(insn 11 10 12 3 (set (reg:DI 5 di)
+        (reg/f:DI 87 [ <retval> ])) "../ncurses/./tinfo/lib_longname.c":60:33 74 {*movdi_internal}
+     (nil))
+(call_insn/i 12 11 13 3 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strlen") [flags 0x41]  <function_decl 0x7f2e83f7b700 strlen>) [0 __builtin_strlen S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_longname.c":60:33 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("strlen") [flags 0x41]  <function_decl 0x7f2e83f7b700 strlen>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 13 12 14 3 (set (reg:DI 89)
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_longname.c":60:33 74 {*movdi_internal}
+     (nil))
+(insn 14 13 15 3 (set (reg:DI 90)
+        (reg:DI 89)) "../ncurses/./tinfo/lib_longname.c":60:33 74 {*movdi_internal}
+     (nil))
+(insn 15 14 16 3 (set (reg:DI 83 [ _5 ])
+        (reg:DI 90)) "../ncurses/./tinfo/lib_longname.c":60:33 74 {*movdi_internal}
+     (nil))
+(insn 16 15 17 3 (parallel [
+            (set (reg/v/f:DI 86 [ ptr ])
+                (plus:DI (reg/f:DI 87 [ <retval> ])
+                    (reg:DI 83 [ _5 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/lib_longname.c":60:11 210 {*adddi_1}
+     (nil))
+(insn 17 16 18 3 (set (reg:CC 17 flags)
+        (compare:CC (reg/f:DI 87 [ <retval> ])
+            (reg/v/f:DI 86 [ ptr ]))) "../ncurses/./tinfo/lib_longname.c":61:11 12 {*cmpdi_1}
+     (nil))
+(jump_insn 18 17 19 3 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 38)
+            (pc))) "../ncurses/./tinfo/lib_longname.c":61:11 806 {*jcc}
+     (int_list:REG_BR_PROB 59055804 (nil))
+ -> 38)
+;;  succ:       4 [94.5% (guessed)]  count:710280217 (estimated locally) (FALLTHRU)
+;;              10 [5.5% (guessed)]  count:41339060 (estimated locally)
+
+;; basic block 4, loop depth 0, count 710280217 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       3 [94.5% (guessed)]  count:710280217 (estimated locally) (FALLTHRU)
+(note 19 18 20 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 31 4 (parallel [
+            (set (reg/f:DI 85 [ _9 ])
+                (plus:DI (reg/f:DI 82 [ SP.0_1 ])
+                    (const_int 1560 [0x618])))
+            (clobber (reg:CC 17 flags))
+        ]) 210 {*adddi_1}
+     (nil))
+;;  succ:       5 [always]  count:710280217 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 1, count 6639684308 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [94.5% (guessed)]  count:5929404084 (estimated locally) (DFS_BACK)
+;;              4 [always]  count:710280217 (estimated locally) (FALLTHRU)
+(code_label 31 20 21 5 13 (nil) [1 uses])
+(note 21 31 22 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 23 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (reg/v/f:DI 86 [ ptr ]) [0 MEM[(char *)ptr_14]+0 S1 A8])
+            (const_int 124 [0x7c]))) "../ncurses/./tinfo/lib_longname.c":63:9 9 {*cmpqi_1}
+     (nil))
+(jump_insn 23 22 24 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 28)
+            (pc))) "../ncurses/./tinfo/lib_longname.c":63:9 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 28)
+;;  succ:       6 [5.5% (guessed)]  count:365182635 (estimated locally) (FALLTHRU)
+;;              7 [94.5% (guessed)]  count:6274501673 (estimated locally)
+
+;; basic block 6, loop depth 0, count 365182634 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [5.5% (guessed)]  count:365182635 (estimated locally) (FALLTHRU)
+(note 24 23 25 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 25 24 28 6 (parallel [
+            (set (reg/f:DI 87 [ <retval> ])
+                (plus:DI (reg/v/f:DI 86 [ ptr ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/lib_longname.c":64:3 210 {*adddi_1}
+     (nil))
+;;  succ:       10 [always]  count:365182634 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 1, count 6274501674 (estimated locally), maybe hot
+;;  prev block 6, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [94.5% (guessed)]  count:6274501673 (estimated locally)
+(code_label 28 25 29 7 12 (nil) [1 uses])
+(note 29 28 30 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 30 29 32 7 (parallel [
+            (set (reg/v/f:DI 86 [ ptr ])
+                (plus:DI (reg/v/f:DI 86 [ ptr ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/lib_longname.c":62:10 210 {*adddi_1}
+     (nil))
+(insn 32 30 33 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 85 [ _9 ])
+            (reg/v/f:DI 86 [ ptr ]))) "../ncurses/./tinfo/lib_longname.c":61:11 12 {*cmpdi_1}
+     (nil))
+(jump_insn 33 32 46 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 31)
+            (pc))) "../ncurses/./tinfo/lib_longname.c":61:11 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 31)
+;;  succ:       5 [94.5% (guessed)]  count:5929404084 (estimated locally) (DFS_BACK)
+;;              10 [5.5% (guessed)]  count:345097590 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 322122544 (estimated locally), maybe hot
+;;  prev block 7, next block 10, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [30.0% (guessed)]  count:322122544 (estimated locally)
+(code_label 46 33 45 9 14 (nil) [1 uses])
+(note 45 46 3 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 3 45 38 9 (set (reg/f:DI 87 [ <retval> ])
+        (symbol_ref:DI ("empty.0") [flags 0x2]  <var_decl 0x7f2e83b421b0 empty>)) "../ncurses/./tinfo/lib_longname.c":67:12 74 {*movdi_internal}
+     (nil))
+;;  succ:       10 [always]  count:322122544 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 0, count 1073741831 (estimated locally), maybe hot
+;;  prev block 9, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       9 [always]  count:322122544 (estimated locally) (FALLTHRU)
+;;              3 [5.5% (guessed)]  count:41339060 (estimated locally)
+;;              6 [always]  count:365182634 (estimated locally) (FALLTHRU)
+;;              7 [5.5% (guessed)]  count:345097590 (estimated locally) (FALLTHRU)
+(code_label 38 3 41 10 10 (nil) [1 uses])
+(note 41 38 39 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 39 41 40 10 (set (reg/i:DI 0 ax)
+        (reg/f:DI 87 [ <retval> ])) "../ncurses/./tinfo/lib_longname.c":75:1 74 {*movdi_internal}
+     (nil))
+(insn 40 39 0 10 (use (reg/i:DI 0 ax)) "../ncurses/./tinfo/lib_longname.c":75:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741831 (estimated locally) (FALLTHRU)
+
+;; basic block 1, loop depth 0, count 1073741831 (estimated locally), maybe hot
+;;  prev block 10, next block (nil), flags: (REACHABLE, RTL, VISITED)
+;;  pred:       10 [always]  count:1073741831 (estimated locally) (FALLTHRU)
+;;  succ:      
+
+
+
+
+try_optimize_cfg iteration 1
+
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (RTL)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 4 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 4 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 2 7 2 (set (reg/f:DI 82 [ SP.0_1 ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f2e83b42cf0 SP>) [2 SP+0 S8 A64])) "../ncurses/./tinfo/lib_longname.c":74:12 74 {*movdi_internal}
+     (nil))
+(insn 7 6 8 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ SP.0_1 ])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_longname.c":57:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 8 7 9 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 46)
+            (pc))) "../ncurses/./tinfo/lib_longname.c":57:8 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 46)
+;;  succ:       3 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+;;              8 [30.0% (guessed)]  count:322122544 (estimated locally)
+
+;; basic block 3, loop depth 0, count 751619277 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (RTL)
+;;  pred:       2 [70.0% (guessed)]  count:751619280 (estimated locally) (FALLTHRU)
+(note 9 8 10 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 10 9 11 3 (parallel [
+            (set (reg/f:DI 87 [ <retval> ])
+                (plus:DI (reg/f:DI 82 [ SP.0_1 ])
+                    (const_int 1560 [0x618])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/lib_longname.c":60:13 210 {*adddi_1}
+     (nil))
+(insn 11 10 12 3 (set (reg:DI 5 di)
+        (reg/f:DI 87 [ <retval> ])) "../ncurses/./tinfo/lib_longname.c":60:33 74 {*movdi_internal}
+     (nil))
+(call_insn/i 12 11 13 3 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("strlen") [flags 0x41]  <function_decl 0x7f2e83f7b700 strlen>) [0 __builtin_strlen S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_longname.c":60:33 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("strlen") [flags 0x41]  <function_decl 0x7f2e83f7b700 strlen>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 13 12 14 3 (set (reg:DI 89)
+        (reg:DI 0 ax)) "../ncurses/./tinfo/lib_longname.c":60:33 74 {*movdi_internal}
+     (nil))
+(insn 14 13 15 3 (set (reg:DI 90)
+        (reg:DI 89)) "../ncurses/./tinfo/lib_longname.c":60:33 74 {*movdi_internal}
+     (nil))
+(insn 15 14 16 3 (set (reg:DI 83 [ _5 ])
+        (reg:DI 90)) "../ncurses/./tinfo/lib_longname.c":60:33 74 {*movdi_internal}
+     (nil))
+(insn 16 15 17 3 (parallel [
+            (set (reg/v/f:DI 86 [ ptr ])
+                (plus:DI (reg/f:DI 87 [ <retval> ])
+                    (reg:DI 83 [ _5 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/lib_longname.c":60:11 210 {*adddi_1}
+     (nil))
+(insn 17 16 18 3 (set (reg:CC 17 flags)
+        (compare:CC (reg/f:DI 87 [ <retval> ])
+            (reg/v/f:DI 86 [ ptr ]))) "../ncurses/./tinfo/lib_longname.c":61:11 12 {*cmpdi_1}
+     (nil))
+(jump_insn 18 17 19 3 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 38)
+            (pc))) "../ncurses/./tinfo/lib_longname.c":61:11 806 {*jcc}
+     (int_list:REG_BR_PROB 59055804 (nil))
+ -> 38)
+;;  succ:       4 [94.5% (guessed)]  count:710280217 (estimated locally) (FALLTHRU)
+;;              9 [5.5% (guessed)]  count:41339060 (estimated locally)
+
+;; basic block 4, loop depth 0, count 710280217 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (RTL)
+;;  pred:       3 [94.5% (guessed)]  count:710280217 (estimated locally) (FALLTHRU)
+(note 19 18 20 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 31 4 (parallel [
+            (set (reg/f:DI 85 [ _9 ])
+                (plus:DI (reg/f:DI 82 [ SP.0_1 ])
+                    (const_int 1560 [0x618])))
+            (clobber (reg:CC 17 flags))
+        ]) 210 {*adddi_1}
+     (nil))
+;;  succ:       5 [always]  count:710280217 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 1, count 6639684308 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (RTL)
+;;  pred:       7 [94.5% (guessed)]  count:5929404084 (estimated locally) (DFS_BACK)
+;;              4 [always]  count:710280217 (estimated locally) (FALLTHRU)
+(code_label 31 20 21 5 13 (nil) [1 uses])
+(note 21 31 22 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 23 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (reg/v/f:DI 86 [ ptr ]) [0 MEM[(char *)ptr_14]+0 S1 A8])
+            (const_int 124 [0x7c]))) "../ncurses/./tinfo/lib_longname.c":63:9 9 {*cmpqi_1}
+     (nil))
+(jump_insn 23 22 24 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 28)
+            (pc))) "../ncurses/./tinfo/lib_longname.c":63:9 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 28)
+;;  succ:       6 [5.5% (guessed)]  count:365182635 (estimated locally) (FALLTHRU)
+;;              7 [94.5% (guessed)]  count:6274501673 (estimated locally)
+
+;; basic block 6, loop depth 0, count 365182634 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (RTL)
+;;  pred:       5 [5.5% (guessed)]  count:365182635 (estimated locally) (FALLTHRU)
+(note 24 23 25 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 25 24 28 6 (parallel [
+            (set (reg/f:DI 87 [ <retval> ])
+                (plus:DI (reg/v/f:DI 86 [ ptr ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/lib_longname.c":64:3 210 {*adddi_1}
+     (nil))
+;;  succ:       9 [always]  count:365182634 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 1, count 6274501674 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (RTL)
+;;  pred:       5 [94.5% (guessed)]  count:6274501673 (estimated locally)
+(code_label 28 25 29 7 12 (nil) [1 uses])
+(note 29 28 30 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 30 29 32 7 (parallel [
+            (set (reg/v/f:DI 86 [ ptr ])
+                (plus:DI (reg/v/f:DI 86 [ ptr ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/lib_longname.c":62:10 210 {*adddi_1}
+     (nil))
+(insn 32 30 33 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 85 [ _9 ])
+            (reg/v/f:DI 86 [ ptr ]))) "../ncurses/./tinfo/lib_longname.c":61:11 12 {*cmpdi_1}
+     (nil))
+(jump_insn 33 32 46 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 31)
+            (pc))) "../ncurses/./tinfo/lib_longname.c":61:11 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 31)
+;;  succ:       5 [94.5% (guessed)]  count:5929404084 (estimated locally) (DFS_BACK)
+;;              9 [5.5% (guessed)]  count:345097590 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 322122544 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (RTL)
+;;  pred:       2 [30.0% (guessed)]  count:322122544 (estimated locally)
+(code_label 46 33 45 8 14 (nil) [1 uses])
+(note 45 46 3 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 3 45 38 8 (set (reg/f:DI 87 [ <retval> ])
+        (symbol_ref:DI ("empty.0") [flags 0x2]  <var_decl 0x7f2e83b421b0 empty>)) "../ncurses/./tinfo/lib_longname.c":67:12 74 {*movdi_internal}
+     (nil))
+;;  succ:       9 [always]  count:322122544 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 1073741831 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (RTL)
+;;  pred:       8 [always]  count:322122544 (estimated locally) (FALLTHRU)
+;;              3 [5.5% (guessed)]  count:41339060 (estimated locally)
+;;              6 [always]  count:365182634 (estimated locally) (FALLTHRU)
+;;              7 [5.5% (guessed)]  count:345097590 (estimated locally) (FALLTHRU)
+(code_label 38 3 41 9 10 (nil) [1 uses])
+(note 41 38 39 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 39 41 40 9 (set (reg/i:DI 0 ax)
+        (reg/f:DI 87 [ <retval> ])) "../ncurses/./tinfo/lib_longname.c":75:1 74 {*movdi_internal}
+     (nil))
+(insn 40 39 0 9 (use (reg/i:DI 0 ax)) "../ncurses/./tinfo/lib_longname.c":75:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741831 (estimated locally) (FALLTHRU)
+

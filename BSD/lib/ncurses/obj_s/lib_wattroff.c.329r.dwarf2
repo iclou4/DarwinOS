@@ -1,0 +1,224 @@
+
+;; Function wattr_off (wattr_off, funcdef_no=93, decl_uid=6192, cgraph_uid=94, symbol_order=93)
+
+Creating trace 0 : start at note 1
+Creating trace 1 : start at note 69
+Creating trace 2 : start at code_label 18
+Creating trace 3 : start at code_label 42
+Creating trace 4 : start at note 87
+Creating trace 5 : start at code_label 84
+Creating trace 6 : start at note 88
+Creating trace 7 : start at code_label 49
+Processing trace 0 : start at note 1
+   saw edge from trace 0 to 1 (via fallthru 0)
+	push trace 1 to worklist
+Processing trace 1 : start at note 69
+   saw edge from trace 1 to 7 (via jump_insn 11)
+	push trace 7 to worklist
+   saw edge from trace 1 to 2 (via jump_insn 15)
+	push trace 2 to worklist
+   saw edge from trace 1 to 2 (via fallthru 0)
+Processing trace 2 : start at code_label 18
+   saw edge from trace 2 to 5 (via jump_insn 25)
+	push trace 5 to worklist
+   saw edge from trace 2 to 3 (via fallthru 0)
+	push trace 3 to worklist
+Processing trace 3 : start at code_label 42
+   saw edge from trace 3 to 4 (via fallthru 0)
+	push trace 4 to worklist
+Processing trace 4 : start at note 87
+Processing trace 5 : start at code_label 84
+   saw edge from trace 5 to 6 (via fallthru 0)
+	push trace 6 to worklist
+Processing trace 6 : start at note 88
+Processing trace 7 : start at code_label 49
+   saw edge from trace 7 to 3 (via jump_insn 85)
+
+
+wattr_off
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 7 [sp]
+;;  regs ever live 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 17 [flags] 36 [r8]
+;;  ref usage 	r0={9d,14u} r1={2d,2u} r2={2d,1u} r4={1d,1u} r5={1d,5u,2e} r7={1d,9u} r17={7d,3u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={4d,2u} r37={1d} 
+;;    total ref usage 75{36d,37u,2e} in 27{27 regular + 0 call} insns.
+(note 1 0 89 NOTE_INSN_DELETED)
+(insn 89 1 8 2 (unspec_volatile [
+            (const_int 0 [0])
+        ] UNSPECV_NOP_ENDBR) 1242 {nop_endbr}
+     (nil))
+(note 8 89 69 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 69 8 5 2 NOTE_INSN_PROLOGUE_END)
+(note 5 69 3 2 NOTE_INSN_FUNCTION_BEG)
+(insn:TI 3 5 10 2 (set (reg/v:SI 0 ax [orig:94 at ] [94])
+        (reg:SI 4 si [107])) "../ncurses/./base/lib_wattroff.c":50:1 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 4 si [107])
+        (nil)))
+(insn 10 3 11 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 5 di [orig:93 win ] [93])
+            (const_int 0 [0]))) "../ncurses/./base/lib_wattroff.c":52:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 11 10 12 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 49)
+            (pc))) "../ncurses/./base/lib_wattroff.c":52:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 9341556 (nil)))
+ -> 49)
+(note 12 11 13 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(note 13 12 68 3 NOTE_INSN_DELETED)
+(insn:TI 68 13 15 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (and:QI (subreg:QI (zero_extract:SI (reg/v:SI 0 ax [orig:94 at ] [94])
+                        (const_int 8 [0x8])
+                        (const_int 8 [0x8])) 0)
+                (const_int -1 [0xffffffffffffffff]))
+            (const_int 0 [0]))) "../ncurses/./base/lib_wattroff.c":57:2 477 {*testqi_extsi_1}
+     (nil))
+(jump_insn 15 68 16 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 18)
+            (pc))) "../ncurses/./base/lib_wattroff.c":57:2 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 536870916 (nil)))
+ -> 18)
+(note 16 15 17 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 17 16 18 4 (set (mem:SI (plus:DI (reg/v/f:DI 5 di [orig:93 win ] [93])
+                (const_int 148 [0x94])) [1 win_17(D)->_color+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./base/lib_wattroff.c":57:2 75 {*movsi_internal}
+     (nil))
+(code_label 18 17 19 5 3 (nil) [1 uses])
+(note 19 18 20 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(note 20 19 21 5 NOTE_INSN_DELETED)
+(note 21 20 22 5 NOTE_INSN_DELETED)
+(insn:TI 22 21 23 5 (set (reg:SI 2 cx [orig:92 <retval> ] [92])
+        (zero_extract:SI (reg/v:SI 0 ax [orig:94 at ] [94])
+            (const_int 8 [0x8])
+            (const_int 8 [0x8]))) "../ncurses/./base/lib_wattroff.c":61:2 100 {*extzvsi}
+     (nil))
+(insn 23 22 65 5 (set (reg:SI 1 dx [orig:91 pretmp_24 ] [91])
+        (mem:SI (plus:DI (reg/v/f:DI 5 di [orig:93 win ] [93])
+                (const_int 28 [0x1c])) [1 win_17(D)->_attrs+0 S4 A32])) "../ncurses/./base/lib_wattroff.c":61:2 75 {*movsi_internal}
+     (nil))
+(insn:TI 65 23 67 5 (set (reg:SI 36 r8 [orig:92 <retval> ] [92])
+        (reg:SI 2 cx [orig:92 <retval> ] [92])) "../ncurses/./base/lib_wattroff.c":61:2 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 2 cx [orig:92 <retval> ] [92])
+        (nil)))
+(insn 67 65 25 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (and:QI (subreg:QI (zero_extract:SI (reg/v:SI 0 ax [orig:94 at ] [94])
+                        (const_int 8 [0x8])
+                        (const_int 8 [0x8])) 0)
+                (const_int -1 [0xffffffffffffffff]))
+            (const_int 0 [0]))) "../ncurses/./base/lib_wattroff.c":61:2 477 {*testqi_extsi_1}
+     (nil))
+(jump_insn 25 67 34 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 84)
+            (pc))) "../ncurses/./base/lib_wattroff.c":61:2 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 536870916 (nil)))
+ -> 84)
+(note 34 25 35 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 35 34 36 6 (set (reg:SI 0 ax [102])
+        (not:SI (reg/v:SI 0 ax [orig:94 at ] [94]))) "../ncurses/./base/lib_wattroff.c":61:2 632 {*one_cmplsi2_1}
+     (nil))
+(insn:TI 36 35 37 6 (parallel [
+            (set (reg:SI 0 ax [103])
+                (and:SI (reg:SI 0 ax [102])
+                    (reg:SI 1 dx [orig:91 pretmp_24 ] [91])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_wattroff.c":61:2 490 {*andsi_1}
+     (expr_list:REG_DEAD (reg:SI 1 dx [orig:91 pretmp_24 ] [91])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (expr_list:REG_EQUIV (mem:SI (plus:DI (reg/v/f:DI 5 di [orig:93 win ] [93])
+                        (const_int 28 [0x1c])) [1 win_17(D)->_attrs+0 S4 A32])
+                (nil)))))
+(insn:TI 37 36 42 6 (set (mem:SI (plus:DI (reg/v/f:DI 5 di [orig:93 win ] [93])
+                (const_int 28 [0x1c])) [1 win_17(D)->_attrs+0 S4 A32])
+        (reg:SI 0 ax [103])) "../ncurses/./base/lib_wattroff.c":61:2 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 5 di [orig:93 win ] [93])
+        (expr_list:REG_DEAD (reg:SI 0 ax [103])
+            (nil))))
+(code_label 42 37 45 7 1 (nil) [1 uses])
+(note 45 42 43 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 43 45 44 7 (set (reg/i:SI 0 ax)
+        (reg:SI 36 r8 [orig:92 <retval> ] [92])) "../ncurses/./base/lib_wattroff.c":65:1 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 36 r8 [orig:92 <retval> ] [92])
+        (nil)))
+(insn 44 43 87 7 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_wattroff.c":65:1 -1
+     (nil))
+(note 87 44 71 7 NOTE_INSN_EPILOGUE_BEG)
+(jump_insn:TI 71 87 72 7 (simple_return) "../ncurses/./base/lib_wattroff.c":65:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 72 71 84)
+(code_label 84 72 26 8 10 (nil) [1 uses])
+(note 26 84 66 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 66 26 75 8 (parallel [
+            (set (zero_extract:SI (reg:SI 0 ax [99])
+                    (const_int 8 [0x8])
+                    (const_int 8 [0x8]))
+                (subreg:SI (ior:QI (subreg:QI (zero_extract:SI (reg/v:SI 0 ax [orig:94 at ] [94])
+                                (const_int 8 [0x8])
+                                (const_int 8 [0x8])) 0)
+                        (const_int -1 [0xffffffffffffffff])) 0))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_wattroff.c":61:2 558 {*iorqi_extsi_1}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn 75 66 28 8 (parallel [
+            (set (reg:DI 36 r8 [orig:92 <retval> ] [92])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_wattroff.c":62:2 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 28 75 29 8 (set (reg:SI 0 ax [100])
+        (not:SI (reg:SI 0 ax [99]))) "../ncurses/./base/lib_wattroff.c":61:2 632 {*one_cmplsi2_1}
+     (nil))
+(insn:TI 29 28 30 8 (parallel [
+            (set (reg:SI 0 ax [101])
+                (and:SI (reg:SI 0 ax [100])
+                    (reg:SI 1 dx [orig:91 pretmp_24 ] [91])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_wattroff.c":61:2 490 {*andsi_1}
+     (expr_list:REG_DEAD (reg:SI 1 dx [orig:91 pretmp_24 ] [91])
+        (expr_list:REG_UNUSED (reg:CC 17 flags)
+            (expr_list:REG_EQUIV (mem:SI (plus:DI (reg/v/f:DI 5 di [orig:93 win ] [93])
+                        (const_int 28 [0x1c])) [1 win_17(D)->_attrs+0 S4 A32])
+                (nil)))))
+(insn:TI 30 29 77 8 (set (mem:SI (plus:DI (reg/v/f:DI 5 di [orig:93 win ] [93])
+                (const_int 28 [0x1c])) [1 win_17(D)->_attrs+0 S4 A32])
+        (reg:SI 0 ax [101])) "../ncurses/./base/lib_wattroff.c":61:2 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 5 di [orig:93 win ] [93])
+        (expr_list:REG_DEAD (reg:SI 0 ax [101])
+            (nil))))
+(insn 77 30 78 8 (set (reg/i:SI 0 ax)
+        (reg:SI 36 r8 [orig:92 <retval> ] [92])) "../ncurses/./base/lib_wattroff.c":65:1 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 36 r8 [orig:92 <retval> ] [92])
+        (nil)))
+(insn 78 77 88 8 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_wattroff.c":65:1 -1
+     (nil))
+(note 88 78 80 8 NOTE_INSN_EPILOGUE_BEG)
+(jump_insn:TI 80 88 83 8 (simple_return) "../ncurses/./base/lib_wattroff.c":65:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 83 80 49)
+(code_label 49 83 48 9 5 (nil) [1 uses])
+(note 48 49 6 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 6 48 85 9 (set (reg:SI 36 r8 [orig:92 <retval> ] [92])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_wattroff.c":64:2 75 {*movsi_internal}
+     (nil))
+(jump_insn 85 6 86 9 (set (pc)
+        (label_ref 42)) 807 {jump}
+     (nil)
+ -> 42)
+(barrier 86 85 64)
+(note 64 86 0 NOTE_INSN_DELETED)

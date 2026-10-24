@@ -1,0 +1,3172 @@
+
+;; Function wsyncup.part.0 (wsyncup.part.0, funcdef_no=98, decl_uid=9197, cgraph_uid=108, symbol_order=108)
+
+Splitting with gen_split_86 (i386.md:5551)
+scanning new insn with uid = 145.
+deleting insn with uid = 16.
+deleting insn with uid = 16.
+
+
+wsyncup.part.0
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 7 [sp]
+;;  regs ever live 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 17 [flags] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;;  ref usage 	r0={6d,9u} r1={3d,3u} r2={3d,3u} r4={6d,9u} r5={4d,6u} r7={1d,17u} r17={15d,9u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={3d,5u,1e} r37={3d,3u} r38={2d,3u} r39={2d,4u,1e} 
+;;    total ref usage 129{56d,71u,2e} in 47{47 regular + 0 call} insns.
+(note 1 0 6 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 14598061 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:14598061 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(7){ }}
+;; lr  in  	 5 [di] 7 [sp]
+;; lr  use 	 5 [di] 7 [sp]
+;; lr  def 	 17 [flags] 36 [r8] 39 [r11]
+;; live  in  	 5 [di] 7 [sp]
+;; live  gen 	 17 [flags] 36 [r8] 39 [r11]
+;; live  kill	
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 36 r8 [orig:112 win ] [112])
+        (reg:DI 5 di [131])) "../ncurses/./base/lib_window.c":95:1 74 {*movdi_internal}
+     (nil))
+(note 3 2 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 3 9 2 (set (reg/f:DI 39 r11 [orig:102 _34 ] [102])
+        (mem/f:DI (plus:DI (reg/v/f:DI 36 r8 [orig:112 win ] [112])
+                (const_int 80 [0x50])) [6 win_23(D)->_parent+0 S8 A64])) "../ncurses/./base/lib_window.c":103:19 74 {*movdi_internal}
+     (nil))
+(insn 9 8 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 39 r11 [orig:102 _34 ] [102])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":103:17 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 10 9 133 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 83)
+            (pc))) "../ncurses/./base/lib_window.c":103:17 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 83)
+;;  succ:       15 [89.0% (guessed)]  count:12992274 (estimated locally)
+;;              3 [11.0% (guessed)]  count:1605787 (estimated locally) (FALLTHRU)
+;; lr  out 	 7 [sp] 36 [r8] 39 [r11]
+;; live  out 	 7 [sp] 36 [r8] 39 [r11]
+
+;; basic block 3, loop depth 0, count 1605787 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       2 [11.0% (guessed)]  count:1605787 (estimated locally) (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	
+;; live  in  	 7 [sp]
+;; live  gen 	
+;; live  kill	
+(note 133 10 134 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 134 133 135 3 (set (pc)
+        (label_ref 97)) 807 {jump}
+     (nil)
+ -> 97)
+;;  succ:       17 [always]  count:1605787 (estimated locally)
+;; lr  out 	 7 [sp]
+;; live  out 	 7 [sp]
+
+(barrier 135 134 86)
+;; basic block 4, loop depth 0, count 105119322 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       15 [89.0% (guessed)]  count:105119322 (estimated locally)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp] 36 [r8] 37 [r9] 39 [r11]
+;; lr  use 	 7 [sp] 36 [r8] 37 [r9]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 17 [flags] 37 [r9]
+;; live  in  	 7 [sp] 36 [r8] 37 [r9] 39 [r11]
+;; live  gen 	 0 [ax] 1 [dx] 2 [cx] 37 [r9]
+;; live  kill	 17 [flags]
+(code_label 86 135 14 4 11 (nil) [1 uses])
+(note 14 86 15 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(note 15 14 140 4 NOTE_INSN_DELETED)
+(insn 140 15 145 4 (set (reg:DI 0 ax [133])
+        (mem/f:DI (plus:DI (reg/v/f:DI 36 r8 [orig:112 win ] [112])
+                (const_int 56 [0x38])) [5 wp_43->_line+0 S8 A64])) 74 {*movdi_internal}
+     (nil))
+(insn 145 140 17 4 (set (reg:DI 1 dx [orig:111 ivtmp.21 ] [111])
+        (plus:DI (reg:DI 0 ax [133])
+            (const_int 8 [0x8]))) 206 {*leadi}
+     (nil))
+(insn 17 145 4 4 (parallel [
+            (set (reg:SI 37 r9 [orig:108 _40 ] [108])
+                (plus:SI (reg:SI 37 r9 [orig:110 _42 ] [110])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) 209 {*addsi_1}
+     (nil))
+(insn 4 17 75 4 (set (reg/v:SI 2 cx [orig:98 y ] [98])
+        (const_int 0 [0])) "../ncurses/./base/lib_window.c":110:13 75 {*movsi_internal}
+     (expr_list:REG_EQUAL (const_int 0 [0])
+        (nil)))
+;;  succ:       5 [always]  count:105119322 (estimated locally) (FALLTHRU)
+;; lr  out 	 1 [dx] 2 [cx] 7 [sp] 36 [r8] 37 [r9] 39 [r11]
+;; live  out 	 1 [dx] 2 [cx] 7 [sp] 36 [r8] 37 [r9] 39 [r11]
+
+;; basic block 5, loop depth 0, count 955630224 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       12 [89.0% (guessed)]  count:850510902 (estimated locally) (DFS_BACK)
+;;              4 [always]  count:105119322 (estimated locally) (FALLTHRU)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 2 [cx] 7 [sp] 36 [r8] 37 [r9] 39 [r11]
+;; lr  use 	 1 [dx] 7 [sp]
+;; lr  def 	 0 [ax] 17 [flags]
+;; live  in  	 1 [dx] 2 [cx] 7 [sp] 36 [r8] 37 [r9] 39 [r11]
+;; live  gen 	 0 [ax] 17 [flags]
+;; live  kill	
+(code_label 75 4 18 5 10 (nil) [1 uses])
+(note 18 75 20 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 20 18 23 5 (set (reg/v:SI 0 ax [orig:84 left ] [84])
+        (mem:SI (reg:DI 1 dx [orig:111 ivtmp.21 ] [111]) [3 MEM[(int *)_1]+0 S4 A64])) "../ncurses/./base/lib_window.c":111:7 75 {*movsi_internal}
+     (nil))
+(insn 23 20 24 5 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 0 ax [orig:84 left ] [84])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":112:6 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 24 23 29 5 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 71)
+            (pc))) "../ncurses/./base/lib_window.c":112:6 806 {*jcc}
+     (int_list:REG_BR_PROB 440234148 (nil))
+ -> 71)
+;;  succ:       6 [59.0% (guessed)]  count:563821836 (estimated locally) (FALLTHRU)
+;;              12 [41.0% (guessed)]  count:391808388 (estimated locally)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 7 [sp] 36 [r8] 37 [r9] 39 [r11]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 7 [sp] 36 [r8] 37 [r9] 39 [r11]
+
+;; basic block 6, loop depth 0, count 563821836 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       5 [59.0% (guessed)]  count:563821836 (estimated locally) (FALLTHRU)
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 2 [cx] 7 [sp] 36 [r8] 37 [r9] 39 [r11]
+;; lr  use 	 0 [ax] 1 [dx] 2 [cx] 7 [sp] 36 [r8] 39 [r11]
+;; lr  def 	 0 [ax] 4 [si] 5 [di] 17 [flags] 38 [r10]
+;; live  in  	 0 [ax] 1 [dx] 2 [cx] 7 [sp] 36 [r8] 37 [r9] 39 [r11]
+;; live  gen 	 0 [ax] 4 [si] 5 [di] 17 [flags] 38 [r10]
+;; live  kill	 17 [flags]
+(note 29 24 30 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(note 30 29 141 6 NOTE_INSN_DELETED)
+(insn 141 30 31 6 (set (reg:SI 4 si [114])
+        (reg/v:SI 2 cx [orig:98 y ] [98])) "../ncurses/./base/lib_window.c":113:49 75 {*movsi_internal}
+     (nil))
+(insn 31 141 32 6 (parallel [
+            (set (reg:SI 4 si [114])
+                (plus:SI (reg:SI 4 si [114])
+                    (mem:SI (plus:DI (reg/v/f:DI 36 r8 [orig:112 win ] [112])
+                            (const_int 76 [0x4c])) [3 wp_43->_pary+0 S4 A32])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_window.c":113:49 209 {*addsi_1}
+     (nil))
+(insn 32 31 34 6 (set (reg:DI 4 si [116])
+        (sign_extend:DI (reg:SI 4 si [114]))) "../ncurses/./base/lib_window.c":113:49 147 {*extendsidi2_rex64}
+     (nil))
+(note 34 32 35 6 NOTE_INSN_DELETED)
+(insn 35 34 36 6 (set (reg:DI 5 di [119])
+        (plus:DI (ashift:DI (reg:DI 4 si [116])
+                (const_int 1 [0x1]))
+            (reg:DI 4 si [116]))) "../ncurses/./base/lib_window.c":113:38 206 {*leadi}
+     (nil))
+(note 36 35 38 6 NOTE_INSN_DELETED)
+(insn 38 36 39 6 (set (reg/f:DI 4 si [orig:121 _45->_line ] [121])
+        (mem/f:DI (plus:DI (reg/f:DI 39 r11 [orig:102 _34 ] [102])
+                (const_int 56 [0x38])) [5 _45->_line+0 S8 A64])) "../ncurses/./base/lib_window.c":113:20 74 {*movdi_internal}
+     (expr_list:REG_EQUIV (mem/f:DI (plus:DI (reg/f:DI 39 r11 [orig:102 _34 ] [102])
+                (const_int 56 [0x38])) [5 _45->_line+0 S8 A64])
+        (nil)))
+(insn 39 38 40 6 (set (reg/v/f:DI 4 si [orig:91 line ] [91])
+        (plus:DI (ashift:DI (reg:DI 5 di [119])
+                (const_int 3 [0x3]))
+            (reg/f:DI 4 si [orig:121 _45->_line ] [121]))) "../ncurses/./base/lib_window.c":113:20 206 {*leadi}
+     (nil))
+(insn 40 39 41 6 (set (reg:SI 5 di [orig:93 _16 ] [93])
+        (mem:SI (plus:DI (reg/v/f:DI 36 r8 [orig:112 win ] [112])
+                (const_int 72 [0x48])) [3 wp_43->_parx+0 S4 A64])) "../ncurses/./base/lib_window.c":115:45 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (mem:SI (plus:DI (reg/v/f:DI 36 r8 [orig:112 win ] [112])
+                (const_int 72 [0x48])) [3 wp_43->_parx+0 S4 A64])
+        (nil)))
+(note 41 40 143 6 NOTE_INSN_DELETED)
+(insn 143 41 42 6 (set (reg/v:SI 38 r10 [orig:94 right ] [94])
+        (reg:SI 5 di [orig:93 _16 ] [93])) "../ncurses/./base/lib_window.c":115:11 75 {*movsi_internal}
+     (nil))
+(insn 42 143 43 6 (parallel [
+            (set (reg/v:SI 38 r10 [orig:94 right ] [94])
+                (plus:SI (reg/v:SI 38 r10 [orig:94 right ] [94])
+                    (mem:SI (plus:DI (reg:DI 1 dx [orig:111 ivtmp.21 ] [111])
+                            (const_int 4 [0x4])) [3 MEM[(int *)_1 + 4B]+0 S4 A32])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_window.c":115:11 209 {*addsi_1}
+     (nil))
+(insn 43 42 44 6 (parallel [
+            (set (reg/v:SI 0 ax [orig:95 left ] [95])
+                (plus:SI (reg/v:SI 0 ax [orig:84 left ] [84])
+                    (reg:SI 5 di [orig:93 _16 ] [93])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_window.c":116:12 209 {*addsi_1}
+     (nil))
+(insn 44 43 45 6 (set (reg:SI 5 di [orig:96 _19 ] [96])
+        (mem:SI (plus:DI (reg/v/f:DI 4 si [orig:91 line ] [91])
+                (const_int 8 [0x8])) [3 line_14->firstchar+0 S4 A64])) "../ncurses/./base/lib_window.c":118:7 75 {*movsi_internal}
+     (nil))
+(note 45 44 46 6 NOTE_INSN_DELETED)
+(note 46 45 47 6 NOTE_INSN_DELETED)
+(insn 47 46 48 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 5 di [orig:96 _19 ] [96])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_window.c":118:7 11 {*cmpsi_1}
+     (nil))
+(jump_insn 48 47 100 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 104)
+            (pc))) "../ncurses/./base/lib_window.c":118:7 806 {*jcc}
+     (int_list:REG_BR_PROB 359703516 (nil))
+ -> 104)
+;;  succ:       8 [33.5% (guessed)]  count:188880316 (estimated locally)
+;;              7 [66.5% (guessed)]  count:374941520 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+
+;; basic block 7, loop depth 0, count 374941520 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       6 [66.5% (guessed)]  count:374941520 (estimated locally) (FALLTHRU)
+;; bb 7 artificial_defs: { }
+;; bb 7 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; lr  use 	 0 [ax] 5 [di] 7 [sp]
+;; lr  def 	 17 [flags]
+;; live  in  	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(note 100 48 49 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(note 49 100 50 7 NOTE_INSN_DELETED)
+(note 50 49 51 7 NOTE_INSN_DELETED)
+(insn 51 50 52 7 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 0 ax [orig:95 left ] [95])
+            (reg:SI 5 di [orig:96 _19 ] [96]))) "../ncurses/./base/lib_window.c":118:7 11 {*cmpsi_1}
+     (nil))
+(jump_insn 52 51 104 7 (set (pc)
+        (if_then_else (ge (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 56)
+            (pc))) "../ncurses/./base/lib_window.c":118:7 806 {*jcc}
+     (int_list:REG_BR_PROB 532834292 (nil))
+ -> 56)
+;;  succ:       9 [49.6% (guessed)]  count:186061205 (estimated locally)
+;;              8 [50.4% (guessed)]  count:188880315 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+
+;; basic block 8, loop depth 0, count 377760631 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       7 [50.4% (guessed)]  count:188880315 (estimated locally) (FALLTHRU)
+;;              6 [33.5% (guessed)]  count:188880316 (estimated locally)
+;; bb 8 artificial_defs: { }
+;; bb 8 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 2 [cx] 4 [si] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; lr  use 	 0 [ax] 4 [si] 7 [sp]
+;; lr  def 	
+;; live  in  	 0 [ax] 1 [dx] 2 [cx] 4 [si] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  gen 	
+;; live  kill	
+(code_label 104 52 54 8 13 (nil) [1 uses])
+(note 54 104 55 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 55 54 56 8 (set (mem:SI (plus:DI (reg/v/f:DI 4 si [orig:91 line ] [91])
+                (const_int 8 [0x8])) [3 line_14->firstchar+0 S4 A64])
+        (reg/v:SI 0 ax [orig:95 left ] [95])) "../ncurses/./base/lib_window.c":118:7 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:377760631 (estimated locally) (FALLTHRU)
+;; lr  out 	 1 [dx] 2 [cx] 4 [si] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  out 	 1 [dx] 2 [cx] 4 [si] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+
+;; basic block 9, loop depth 0, count 563821836 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       8 [always]  count:377760631 (estimated locally) (FALLTHRU)
+;;              7 [49.6% (guessed)]  count:186061205 (estimated locally)
+;; bb 9 artificial_defs: { }
+;; bb 9 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 2 [cx] 4 [si] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; lr  use 	 4 [si] 7 [sp]
+;; lr  def 	 0 [ax] 17 [flags]
+;; live  in  	 1 [dx] 2 [cx] 4 [si] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  gen 	 0 [ax] 17 [flags]
+;; live  kill	
+(code_label 56 55 57 9 6 (nil) [1 uses])
+(note 57 56 58 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 58 57 60 9 (set (reg:SI 0 ax [orig:97 _20 ] [97])
+        (mem:SI (plus:DI (reg/v/f:DI 4 si [orig:91 line ] [91])
+                (const_int 12 [0xc])) [3 line_14->lastchar+0 S4 A32])) "../ncurses/./base/lib_window.c":118:7 75 {*movsi_internal}
+     (nil))
+(note 60 58 61 9 NOTE_INSN_DELETED)
+(note 61 60 62 9 NOTE_INSN_DELETED)
+(insn 62 61 63 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:97 _20 ] [97])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_window.c":118:7 11 {*cmpsi_1}
+     (nil))
+(jump_insn 63 62 102 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 105)
+            (pc))) "../ncurses/./base/lib_window.c":118:7 806 {*jcc}
+     (int_list:REG_BR_PROB 359703516 (nil))
+ -> 105)
+;;  succ:       11 [33.5% (guessed)]  count:188880316 (estimated locally)
+;;              10 [66.5% (guessed)]  count:374941520 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+
+;; basic block 10, loop depth 0, count 374941520 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       9 [66.5% (guessed)]  count:374941520 (estimated locally) (FALLTHRU)
+;; bb 10 artificial_defs: { }
+;; bb 10 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 2 [cx] 4 [si] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; lr  use 	 0 [ax] 7 [sp] 38 [r10]
+;; lr  def 	 17 [flags]
+;; live  in  	 0 [ax] 1 [dx] 2 [cx] 4 [si] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(note 102 63 64 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(note 64 102 65 10 NOTE_INSN_DELETED)
+(note 65 64 66 10 NOTE_INSN_DELETED)
+(insn 66 65 67 10 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 38 r10 [orig:94 right ] [94])
+            (reg:SI 0 ax [orig:97 _20 ] [97]))) "../ncurses/./base/lib_window.c":118:7 11 {*cmpsi_1}
+     (nil))
+(jump_insn 67 66 105 10 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 71)
+            (pc))) "../ncurses/./base/lib_window.c":118:7 806 {*jcc}
+     (int_list:REG_BR_PROB 532834292 (nil))
+ -> 71)
+;;  succ:       12 [49.6% (guessed)]  count:186061205 (estimated locally)
+;;              11 [50.4% (guessed)]  count:188880315 (estimated locally) (FALLTHRU)
+;; lr  out 	 1 [dx] 2 [cx] 4 [si] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  out 	 1 [dx] 2 [cx] 4 [si] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+
+;; basic block 11, loop depth 0, count 377760631 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       10 [50.4% (guessed)]  count:188880315 (estimated locally) (FALLTHRU)
+;;              9 [33.5% (guessed)]  count:188880316 (estimated locally)
+;; bb 11 artificial_defs: { }
+;; bb 11 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 2 [cx] 4 [si] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; lr  use 	 4 [si] 7 [sp] 38 [r10]
+;; lr  def 	
+;; live  in  	 1 [dx] 2 [cx] 4 [si] 7 [sp] 36 [r8] 37 [r9] 38 [r10] 39 [r11]
+;; live  gen 	
+;; live  kill	
+(code_label 105 67 69 11 14 (nil) [1 uses])
+(note 69 105 70 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 70 69 71 11 (set (mem:SI (plus:DI (reg/v/f:DI 4 si [orig:91 line ] [91])
+                (const_int 12 [0xc])) [3 line_14->lastchar+0 S4 A32])
+        (reg/v:SI 38 r10 [orig:94 right ] [94])) "../ncurses/./base/lib_window.c":118:7 75 {*movsi_internal}
+     (nil))
+;;  succ:       12 [always]  count:377760631 (estimated locally) (FALLTHRU)
+;; lr  out 	 1 [dx] 2 [cx] 7 [sp] 36 [r8] 37 [r9] 39 [r11]
+;; live  out 	 1 [dx] 2 [cx] 7 [sp] 36 [r8] 37 [r9] 39 [r11]
+
+;; basic block 12, loop depth 0, count 955630226 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       5 [41.0% (guessed)]  count:391808388 (estimated locally)
+;;              11 [always]  count:377760631 (estimated locally) (FALLTHRU)
+;;              10 [49.6% (guessed)]  count:186061205 (estimated locally)
+;; bb 12 artificial_defs: { }
+;; bb 12 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 2 [cx] 7 [sp] 36 [r8] 37 [r9] 39 [r11]
+;; lr  use 	 1 [dx] 2 [cx] 7 [sp] 37 [r9]
+;; lr  def 	 1 [dx] 2 [cx] 17 [flags]
+;; live  in  	 1 [dx] 2 [cx] 7 [sp] 36 [r8] 37 [r9] 39 [r11]
+;; live  gen 	 1 [dx] 2 [cx] 17 [flags]
+;; live  kill	 17 [flags]
+(code_label 71 70 72 12 5 (nil) [2 uses])
+(note 72 71 73 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 73 72 74 12 (parallel [
+            (set (reg/v:SI 2 cx [orig:98 y ] [98])
+                (plus:SI (reg/v:SI 2 cx [orig:98 y ] [98])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_window.c":110:35 209 {*addsi_1}
+     (nil))
+(insn 74 73 76 12 (parallel [
+            (set (reg:DI 1 dx [orig:111 ivtmp.21 ] [111])
+                (plus:DI (reg:DI 1 dx [orig:111 ivtmp.21 ] [111])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_window.c":110:20 210 {*adddi_1}
+     (nil))
+(insn 76 74 77 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 2 cx [orig:98 y ] [98])
+            (reg:SI 37 r9 [orig:108 _40 ] [108]))) "../ncurses/./base/lib_window.c":110:20 11 {*cmpsi_1}
+     (nil))
+(jump_insn 77 76 91 12 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 75)
+            (pc))) "../ncurses/./base/lib_window.c":110:20 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 75)
+;;  succ:       5 [89.0% (guessed)]  count:850510902 (estimated locally) (DFS_BACK)
+;;              13 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;; lr  out 	 1 [dx] 2 [cx] 7 [sp] 36 [r8] 37 [r9] 39 [r11]
+;; live  out 	 1 [dx] 2 [cx] 7 [sp] 36 [r8] 37 [r9] 39 [r11]
+
+;; basic block 13, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       12 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;;              16 [always]  count:12992276 (estimated locally)
+;; bb 13 artificial_defs: { }
+;; bb 13 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp] 39 [r11]
+;; lr  use 	 7 [sp] 39 [r11]
+;; lr  def 	 0 [ax] 17 [flags] 36 [r8]
+;; live  in  	 7 [sp] 39 [r11]
+;; live  gen 	 0 [ax] 17 [flags] 36 [r8]
+;; live  kill	
+(code_label 91 77 78 13 12 (nil) [1 uses])
+(note 78 91 79 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 79 78 80 13 (set (reg/f:DI 0 ax [orig:85 _8 ] [85])
+        (mem/f:DI (plus:DI (reg/f:DI 39 r11 [orig:102 _34 ] [102])
+                (const_int 80 [0x50])) [6 _45->_parent+0 S8 A64])) "../ncurses/./base/lib_window.c":103:19 74 {*movdi_internal}
+     (nil))
+(insn 80 79 81 13 (set (reg/v/f:DI 36 r8 [orig:112 win ] [112])
+        (reg/f:DI 39 r11 [orig:102 _34 ] [102])) 74 {*movdi_internal}
+     (nil))
+(insn 81 80 82 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 0 ax [orig:85 _8 ] [85])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":103:17 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 82 81 99 13 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 97)
+            (pc))) "../ncurses/./base/lib_window.c":103:17 806 {*jcc}
+     (int_list:REG_BR_PROB 118111604 (nil))
+ -> 97)
+;;  succ:       14 [89.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+;;              17 [11.0% (guessed)]  count:12992276 (estimated locally) (LOOP_EXIT)
+;; lr  out 	 0 [ax] 7 [sp] 36 [r8]
+;; live  out 	 0 [ax] 7 [sp] 36 [r8]
+
+;; basic block 14, loop depth 0, count 105119324 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       13 [89.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+;; bb 14 artificial_defs: { }
+;; bb 14 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 7 [sp] 36 [r8]
+;; lr  use 	 0 [ax] 7 [sp]
+;; lr  def 	 39 [r11]
+;; live  in  	 0 [ax] 7 [sp] 36 [r8]
+;; live  gen 	 39 [r11]
+;; live  kill	
+(note 99 82 5 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 5 99 83 14 (set (reg/f:DI 39 r11 [orig:102 _34 ] [102])
+        (reg/f:DI 0 ax [orig:85 _8 ] [85])) 74 {*movdi_internal}
+     (nil))
+;;  succ:       15 [always]  count:105119324 (estimated locally) (FALLTHRU,DFS_BACK)
+;; lr  out 	 7 [sp] 36 [r8] 39 [r11]
+;; live  out 	 7 [sp] 36 [r8] 39 [r11]
+
+;; basic block 15, loop depth 0, count 118111598 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       14 [always]  count:105119324 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              2 [89.0% (guessed)]  count:12992274 (estimated locally)
+;; bb 15 artificial_defs: { }
+;; bb 15 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp] 36 [r8] 39 [r11]
+;; lr  use 	 7 [sp] 36 [r8]
+;; lr  def 	 17 [flags] 37 [r9]
+;; live  in  	 7 [sp] 36 [r8] 39 [r11]
+;; live  gen 	 17 [flags] 37 [r9]
+;; live  kill	
+(code_label 83 5 84 15 2 (nil) [1 uses])
+(note 84 83 85 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 85 84 89 15 (set (reg:SI 37 r9 [orig:110 _42 ] [110])
+        (mem:SI (plus:DI (reg/v/f:DI 36 r8 [orig:112 win ] [112])
+                (const_int 8 [0x8])) [3 wp_43->_maxy+0 S4 A64])) "../ncurses/./base/lib_window.c":110:25 75 {*movsi_internal}
+     (nil))
+(insn 89 85 90 15 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:SI 37 r9 [orig:110 _42 ] [110])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":110:20 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 90 89 136 15 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 86)
+            (pc))) "../ncurses/./base/lib_window.c":110:20 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 86)
+;;  succ:       4 [89.0% (guessed)]  count:105119322 (estimated locally)
+;;              16 [11.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU)
+;; lr  out 	 7 [sp] 36 [r8] 37 [r9] 39 [r11]
+;; live  out 	 7 [sp] 36 [r8] 37 [r9] 39 [r11]
+
+;; basic block 16, loop depth 0, count 12992276 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       15 [11.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU)
+;; bb 16 artificial_defs: { }
+;; bb 16 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp] 39 [r11]
+;; lr  use 	 7 [sp]
+;; lr  def 	
+;; live  in  	 7 [sp] 39 [r11]
+;; live  gen 	
+;; live  kill	
+(note 136 90 137 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 137 136 138 16 (set (pc)
+        (label_ref 91)) 807 {jump}
+     (nil)
+ -> 91)
+;;  succ:       13 [always]  count:12992276 (estimated locally)
+;; lr  out 	 7 [sp] 39 [r11]
+;; live  out 	 7 [sp] 39 [r11]
+
+(barrier 138 137 97)
+;; basic block 17, loop depth 0, count 14598063 (estimated locally), maybe hot
+;;  prev block 16, next block 1, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       13 [11.0% (guessed)]  count:12992276 (estimated locally) (LOOP_EXIT)
+;;              3 [always]  count:1605787 (estimated locally)
+;; bb 17 artificial_defs: { }
+;; bb 17 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	
+;; live  in  	 7 [sp]
+;; live  gen 	
+;; live  kill	
+(code_label 97 138 98 17 1 (nil) [2 uses])
+(note 98 97 139 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       EXIT [always]  count:14598063 (estimated locally) (FALLTHRU)
+;; lr  out 	 7 [sp]
+;; live  out 	 7 [sp]
+
+(note 139 98 0 NOTE_INSN_DELETED)
+
+;; Function _nc_synchook (_nc_synchook, funcdef_no=91, decl_uid=8834, cgraph_uid=92, symbol_order=91)
+
+
+
+_nc_synchook
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 7 [sp]
+;;  regs ever live 	 0 [ax] 5 [di] 6 [bp] 7 [sp] 17 [flags]
+;;  ref usage 	r0={3d} r1={3d} r2={3d} r4={3d} r5={5d,3u} r6={1d,5u} r7={1d,9u} r8={2d} r9={2d} r10={2d} r11={2d} r12={2d} r13={2d} r14={2d} r15={2d} r17={5d,3u} r18={2d} r20={2d} r21={2d} r22={2d} r23={2d} r24={2d} r25={2d} r26={2d} r27={2d} r28={1d} r29={1d} r30={1d} r31={1d} r32={1d} r33={1d} r34={1d} r35={1d} r36={3d} r37={3d} r38={2d} r39={2d} r44={1d} r45={1d} r46={1d} r47={1d} r48={1d} r49={1d} r50={1d} r51={1d} r52={2d} r53={2d} r54={2d} r55={2d} r56={2d} r57={2d} r58={2d} r59={2d} r60={2d} r61={2d} r62={2d} r63={2d} r64={2d} r65={2d} r66={2d} r67={2d} r68={2d} r69={2d} r70={2d} r71={2d} r72={2d} r73={2d} r74={2d} r75={2d} 
+;;    total ref usage 152{132d,20u,0e} in 12{10 regular + 2 call} insns.
+(note 1 0 4 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(7){ }}
+;; lr  in  	 5 [di] 7 [sp]
+;; lr  use 	 5 [di] 7 [sp]
+;; lr  def 	 6 [bp] 17 [flags]
+;; live  in  	 5 [di] 7 [sp]
+;; live  gen 	 6 [bp] 17 [flags]
+;; live  kill	
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 6 bp [orig:85 win ] [85])
+        (reg:DI 5 di [86])) "../ncurses/./base/lib_window.c":48:1 74 {*movdi_internal}
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/v/f:DI 6 bp [orig:85 win ] [85])
+                    (const_int 42 [0x2a])) [1 win_6(D)->_immed+0 S1 A16])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":49:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 7 6 8 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 24)
+            (pc))) "../ncurses/./base/lib_window.c":49:8 806 {*jcc}
+     (int_list:REG_BR_PROB 719407028 (nil))
+ -> 24)
+;;  succ:       3 [33.0% (guessed)]  count:354334800 (estimated locally) (FALLTHRU)
+;;              6 [67.0% (guessed)]  count:719407024 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp]
+;; live  out 	 6 [bp] 7 [sp]
+
+;; basic block 3, loop depth 0, count 354334800 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       2 [33.0% (guessed)]  count:354334800 (estimated locally) (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(7){ }}
+;; lr  in  	 6 [bp] 7 [sp]
+;; lr  use 	 6 [bp] 7 [sp]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;; live  in  	 6 [bp] 7 [sp]
+;; live  gen 	 0 [ax] 5 [di]
+;; live  kill	
+(note 8 7 9 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 9 8 10 3 (set (reg:DI 5 di)
+        (reg/v/f:DI 6 bp [orig:85 win ] [85])) "../ncurses/./base/lib_window.c":50:2 74 {*movdi_internal}
+     (nil))
+(call_insn 10 9 35 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wrefresh") [flags 0x41]  <function_decl 0x7ffbf3056a00 wrefresh>) [0 wrefresh S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":50:2 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wrefresh") [flags 0x41]  <function_decl 0x7ffbf3056a00 wrefresh>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(jump_insn 35 10 36 3 (set (pc)
+        (label_ref 24)) 807 {jump}
+     (nil)
+ -> 24)
+;;  succ:       6 [always]  count:354334800 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp]
+;; live  out 	 6 [bp] 7 [sp]
+
+(barrier 36 35 26)
+;; basic block 4, loop depth 0, count 248034361 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       6 [23.1% (guessed)]  count:248034360 (estimated locally)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(7){ }}
+;; lr  in  	 6 [bp] 7 [sp]
+;; lr  use 	 6 [bp] 7 [sp]
+;; lr  def 	 17 [flags]
+;; live  in  	 6 [bp] 7 [sp]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(code_label 26 36 13 4 31 (nil) [1 uses])
+(note 13 26 14 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 14 13 15 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/v/f:DI 6 bp [orig:85 win ] [85])
+                    (const_int 80 [0x50])) [6 win_6(D)->_parent+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":102:13 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 15 14 16 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 32)
+            (pc))) "../ncurses/./base/lib_window.c":102:13 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 32)
+;;  succ:       5 [70.0% (guessed)]  count:173624053 (estimated locally) (FALLTHRU)
+;;              7 [30.0% (guessed)]  count:74410308 (estimated locally)
+;; lr  out 	 6 [bp] 7 [sp]
+;; live  out 	 6 [bp] 7 [sp]
+
+;; basic block 5, loop depth 0, count 173624054 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       4 [70.0% (guessed)]  count:173624053 (estimated locally) (FALLTHRU)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(7){ }}
+;; lr  in  	 6 [bp] 7 [sp]
+;; lr  use 	 6 [bp] 7 [sp]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;; live  in  	 6 [bp] 7 [sp]
+;; live  gen 	 5 [di]
+;; live  kill	
+(note 16 15 17 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 18 5 (set (reg:DI 5 di)
+        (reg/v/f:DI 6 bp [orig:85 win ] [85])) 74 {*movdi_internal}
+     (nil))
+(call_insn/j 18 17 19 5 (call (mem:QI (symbol_ref:DI ("wsyncup.part.0") [flags 0x3]  <function_decl 0x7ffbf2e0dd00 wsyncup.part.0>) [0 wsyncup.part.0 S1 A8])
+        (const_int 0 [0])) 817 {*sibcall}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wsyncup.part.0") [flags 0x3]  <function_decl 0x7ffbf2e0dd00 wsyncup.part.0>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       EXIT [always]  count:173624054 (estimated locally) (ABNORMAL,SIBCALL)
+;; lr  out 	 7 [sp]
+;; live  out 	 7 [sp]
+
+(barrier 19 18 24)
+;; basic block 6, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       2 [67.0% (guessed)]  count:719407024 (estimated locally)
+;;              3 [always]  count:354334800 (estimated locally)
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(7){ }}
+;; lr  in  	 6 [bp] 7 [sp]
+;; lr  use 	 6 [bp] 7 [sp]
+;; lr  def 	 17 [flags]
+;; live  in  	 6 [bp] 7 [sp]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(code_label 24 19 25 6 29 (nil) [2 uses])
+(note 25 24 27 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 27 25 28 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/v/f:DI 6 bp [orig:85 win ] [85])
+                    (const_int 43 [0x2b])) [1 win_6(D)->_sync+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":51:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 28 27 32 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 26)
+            (pc))) "../ncurses/./base/lib_window.c":51:8 806 {*jcc}
+     (int_list:REG_BR_PROB 248034364 (nil))
+ -> 26)
+;;  succ:       4 [23.1% (guessed)]  count:248034360 (estimated locally)
+;;              7 [76.9% (guessed)]  count:825707464 (estimated locally) (FALLTHRU)
+;; lr  out 	 6 [bp] 7 [sp]
+;; live  out 	 6 [bp] 7 [sp]
+
+;; basic block 7, loop depth 0, count 900117770 (estimated locally), maybe hot
+;;  prev block 6, next block 1, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       6 [76.9% (guessed)]  count:825707464 (estimated locally) (FALLTHRU)
+;;              4 [30.0% (guessed)]  count:74410308 (estimated locally)
+;; bb 7 artificial_defs: { }
+;; bb 7 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	
+;; live  in  	 7 [sp]
+;; live  gen 	
+;; live  kill	
+(code_label 32 28 33 7 28 (nil) [1 uses])
+(note 33 32 37 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       EXIT [always]  count:900117770 (estimated locally) (FALLTHRU)
+;; lr  out 	 7 [sp]
+;; live  out 	 7 [sp]
+
+(note 37 33 0 NOTE_INSN_DELETED)
+
+;; Function mvderwin (mvderwin, funcdef_no=92, decl_uid=5751, cgraph_uid=93, symbol_order=92)
+
+Splitting with gen_split_85 (i386.md:5551)
+scanning new insn with uid = 141.
+deleting insn with uid = 37.
+deleting insn with uid = 37.
+Splitting with gen_split_85 (i386.md:5551)
+scanning new insn with uid = 142.
+deleting insn with uid = 38.
+deleting insn with uid = 38.
+
+
+mvderwin
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 7 [sp]
+;;  regs ever live 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 17 [flags] 36 [r8] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;;  ref usage 	r0={18d,13u,1e} r1={6d,5u} r2={5d,3u} r3={1d,4u} r4={4d,3u} r5={4d,3u} r6={1d,8u,1e} r7={1d,18u} r8={1d} r9={1d} r10={1d} r11={1d} r12={1d} r13={1d} r14={1d} r15={1d} r17={14d,7u} r18={1d} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={3d,1u,1e} r37={2d} r38={1d} r39={1d} r40={2d,6u} r41={2d,4u} r42={1d,4u,2e} r43={1d,2u} r52={1d} r53={1d} r54={1d} r55={1d} r56={1d} r57={1d} r58={1d} r59={1d} r60={1d} r61={1d} r62={1d} r63={1d} r64={1d} r65={1d} r66={1d} r67={1d} r68={1d} r69={1d} r70={1d} r71={1d} r72={1d} r73={1d} r74={1d} r75={1d} 
+;;    total ref usage 194{108d,81u,5e} in 60{59 regular + 1 call} insns.
+(note 1 0 13 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 130337231 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:130337231 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 4 [si] 5 [di] 7 [sp]
+;; lr  use 	 1 [dx] 4 [si] 5 [di] 7 [sp]
+;; lr  def 	 3 [bx] 6 [bp] 17 [flags] 40 [r12]
+;; live  in  	 1 [dx] 4 [si] 5 [di] 7 [sp]
+;; live  gen 	 3 [bx] 6 [bp] 17 [flags] 40 [r12]
+;; live  kill	
+(note 13 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 13 3 2 (set (reg/v/f:DI 6 bp [orig:109 win ] [109])
+        (reg:DI 5 di [139])) "../ncurses/./base/lib_window.c":58:1 74 {*movdi_internal}
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 40 r12 [orig:110 y ] [110])
+        (reg:SI 4 si [140])) "../ncurses/./base/lib_window.c":58:1 75 {*movsi_internal}
+     (nil))
+(insn 4 3 5 2 (set (reg/v:SI 3 bx [orig:111 x ] [111])
+        (reg:SI 1 dx [141])) "../ncurses/./base/lib_window.c":58:1 75 {*movsi_internal}
+     (nil))
+(note 5 4 15 2 NOTE_INSN_FUNCTION_BEG)
+(insn 15 5 16 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 6 bp [orig:109 win ] [109])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":64:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 16 15 17 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 100)
+            (pc))) "../ncurses/./base/lib_window.c":64:8 806 {*jcc}
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 100)
+;;  succ:       3 [99.1% (guessed)]  count:129203297 (estimated locally) (FALLTHRU)
+;;              12 [0.9% (guessed)]  count:1133934 (estimated locally)
+;; lr  out 	 3 [bx] 6 [bp] 7 [sp] 40 [r12]
+;; live  out 	 3 [bx] 6 [bp] 7 [sp] 40 [r12]
+
+;; basic block 3, loop depth 0, count 129203297 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       2 [99.1% (guessed)]  count:129203297 (estimated locally) (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 6 [bp] 7 [sp] 40 [r12]
+;; lr  use 	 6 [bp] 7 [sp]
+;; lr  def 	 17 [flags] 42 [r14]
+;; live  in  	 3 [bx] 6 [bp] 7 [sp] 40 [r12]
+;; live  gen 	 17 [flags] 42 [r14]
+;; live  kill	
+(note 17 16 18 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 18 17 19 3 (set (reg/v/f:DI 42 r14 [orig:96 orig ] [96])
+        (mem/f:DI (plus:DI (reg/v/f:DI 6 bp [orig:109 win ] [109])
+                (const_int 80 [0x50])) [6 win_27(D)->_parent+0 S8 A64])) "../ncurses/./base/lib_window.c":65:11 74 {*movdi_internal}
+     (nil))
+(insn 19 18 20 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 42 r14 [orig:96 orig ] [96])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":65:2 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 20 19 21 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 104)
+            (pc))) "../ncurses/./base/lib_window.c":65:2 806 {*jcc}
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 104)
+;;  succ:       4 [99.1% (guessed)]  count:128079229 (estimated locally) (FALLTHRU)
+;;              13 [0.9% (guessed)]  count:1124068 (estimated locally)
+;; lr  out 	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 42 [r14]
+;; live  out 	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 42 [r14]
+
+;; basic block 4, loop depth 0, count 128079229 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       3 [99.1% (guessed)]  count:128079229 (estimated locally) (FALLTHRU)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 42 [r14]
+;; lr  use 	 3 [bx] 7 [sp] 40 [r12]
+;; lr  def 	 0 [ax] 17 [flags]
+;; live  in  	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 42 [r14]
+;; live  gen 	 0 [ax] 17 [flags]
+;; live  kill	 0 [ax]
+(note 21 20 22 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(note 22 21 136 4 NOTE_INSN_DELETED)
+(insn 136 22 25 4 (set (reg:SI 0 ax [142])
+        (reg/v:SI 3 bx [orig:111 x ] [111])) "../ncurses/./base/lib_window.c":66:2 75 {*movsi_internal}
+     (nil))
+(insn 25 136 26 4 (parallel [
+            (set (reg:CCGOC 17 flags)
+                (compare:CCGOC (ior:SI (reg:SI 0 ax [142])
+                        (reg/v:SI 40 r12 [orig:110 y ] [110]))
+                    (const_int 0 [0])))
+            (clobber (reg:SI 0 ax [142]))
+        ]) "../ncurses/./base/lib_window.c":66:2 552 {*iorsi_3}
+     (nil))
+(jump_insn 26 25 27 4 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 108)
+            (pc))) "../ncurses/./base/lib_window.c":66:2 806 {*jcc}
+     (int_list:REG_BR_PROB 21474844 (nil))
+ -> 108)
+;;  succ:       5 [98.0% (guessed)]  count:125517644 (estimated locally) (FALLTHRU)
+;;              14 [2.0% (guessed)]  count:2561585 (estimated locally)
+;; lr  out 	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 42 [r14]
+;; live  out 	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 42 [r14]
+
+;; basic block 5, loop depth 0, count 125517644 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       4 [98.0% (guessed)]  count:125517644 (estimated locally) (FALLTHRU)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 42 [r14]
+;; lr  use 	 3 [bx] 6 [bp] 7 [sp] 42 [r14]
+;; lr  def 	 0 [ax] 1 [dx] 17 [flags]
+;; live  in  	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 42 [r14]
+;; live  gen 	 0 [ax] 1 [dx] 17 [flags]
+;; live  kill	 17 [flags]
+(note 27 26 28 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 29 5 (set (reg:SI 0 ax [orig:114 win_27(D)->_maxx ] [114])
+        (mem:SI (plus:DI (reg/v/f:DI 6 bp [orig:109 win ] [109])
+                (const_int 12 [0xc])) [3 win_27(D)->_maxx+0 S4 A32])) "../ncurses/./base/lib_window.c":67:10 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (mem:SI (plus:DI (reg/v/f:DI 6 bp [orig:109 win ] [109])
+                (const_int 12 [0xc])) [3 win_27(D)->_maxx+0 S4 A32])
+        (nil)))
+(note 29 28 30 5 NOTE_INSN_DELETED)
+(insn 30 29 31 5 (set (reg:SI 1 dx [115])
+        (plus:SI (plus:SI (reg/v:SI 3 bx [orig:111 x ] [111])
+                (reg:SI 0 ax [orig:114 win_27(D)->_maxx ] [114]))
+            (const_int 1 [0x1]))) "../ncurses/./base/lib_window.c":67:8 205 {*leasi}
+     (nil))
+(note 31 30 137 5 NOTE_INSN_DELETED)
+(insn 137 31 32 5 (set (reg:SI 0 ax [145])
+        (mem:SI (plus:DI (reg/v/f:DI 42 r14 [orig:96 orig ] [96])
+                (const_int 12 [0xc])) [3 orig_29->_maxx+0 S4 A32])) "../ncurses/./base/lib_window.c":67:26 75 {*movsi_internal}
+     (nil))
+(insn 32 137 33 5 (parallel [
+            (set (reg:SI 0 ax [116])
+                (plus:SI (reg:SI 0 ax [145])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_window.c":67:26 209 {*addsi_1}
+     (expr_list:REG_EQUAL (plus:SI (mem:SI (plus:DI (reg/v/f:DI 42 r14 [orig:96 orig ] [96])
+                    (const_int 12 [0xc])) [3 orig_29->_maxx+0 S4 A32])
+            (const_int 1 [0x1]))
+        (nil)))
+(insn 33 32 34 5 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 1 dx [115])
+            (reg:SI 0 ax [116]))) "../ncurses/./base/lib_window.c":67:2 11 {*cmpsi_1}
+     (nil))
+(jump_insn 34 33 35 5 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 112)
+            (pc))) "../ncurses/./base/lib_window.c":67:2 806 {*jcc}
+     (int_list:REG_BR_PROB 21474844 (nil))
+ -> 112)
+;;  succ:       6 [98.0% (guessed)]  count:123007291 (estimated locally) (FALLTHRU)
+;;              15 [2.0% (guessed)]  count:2510353 (estimated locally)
+;; lr  out 	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 42 [r14]
+;; live  out 	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 42 [r14]
+
+;; basic block 6, loop depth 0, count 123007290 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       5 [98.0% (guessed)]  count:123007291 (estimated locally) (FALLTHRU)
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 42 [r14]
+;; lr  use 	 6 [bp] 7 [sp] 40 [r12] 42 [r14]
+;; lr  def 	 0 [ax] 1 [dx] 17 [flags] 41 [r13] 43 [r15]
+;; live  in  	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 42 [r14]
+;; live  gen 	 0 [ax] 1 [dx] 17 [flags] 41 [r13] 43 [r15]
+;; live  kill	 17 [flags]
+(note 35 34 36 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 36 35 141 6 (set (reg:SI 41 r13 [orig:85 _7 ] [85])
+        (mem:SI (plus:DI (reg/v/f:DI 6 bp [orig:109 win ] [109])
+                (const_int 8 [0x8])) [3 win_27(D)->_maxy+0 S4 A64])) "../ncurses/./base/lib_window.c":68:10 75 {*movsi_internal}
+     (nil))
+(insn 141 36 142 6 (set (reg:SI 43 r15 [orig:99 iftmp.2_34 ] [99])
+        (plus:SI (reg:SI 41 r13 [orig:85 _7 ] [85])
+            (const_int 1 [0x1]))) "../ncurses/./base/lib_window.c":68:10 205 {*leasi}
+     (nil))
+(insn 142 141 39 6 (set (reg:SI 1 dx [118])
+        (plus:SI (reg/v:SI 40 r12 [orig:110 y ] [110])
+            (reg:SI 43 r15 [orig:99 iftmp.2_34 ] [99]))) "../ncurses/./base/lib_window.c":68:8 205 {*leasi}
+     (nil))
+(note 39 142 138 6 NOTE_INSN_DELETED)
+(insn 138 39 40 6 (set (reg:SI 0 ax [146])
+        (mem:SI (plus:DI (reg/v/f:DI 42 r14 [orig:96 orig ] [96])
+                (const_int 8 [0x8])) [3 orig_29->_maxy+0 S4 A64])) "../ncurses/./base/lib_window.c":68:26 75 {*movsi_internal}
+     (nil))
+(insn 40 138 41 6 (parallel [
+            (set (reg:SI 0 ax [119])
+                (plus:SI (reg:SI 0 ax [146])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_window.c":68:26 209 {*addsi_1}
+     (expr_list:REG_EQUAL (plus:SI (mem:SI (plus:DI (reg/v/f:DI 42 r14 [orig:96 orig ] [96])
+                    (const_int 8 [0x8])) [3 orig_29->_maxy+0 S4 A64])
+            (const_int 1 [0x1]))
+        (nil)))
+(insn 41 40 42 6 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 1 dx [118])
+            (reg:SI 0 ax [119]))) "../ncurses/./base/lib_window.c":68:2 11 {*cmpsi_1}
+     (nil))
+(jump_insn 42 41 43 6 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 116)
+            (pc))) "../ncurses/./base/lib_window.c":68:2 806 {*jcc}
+     (int_list:REG_BR_PROB 42734932 (nil))
+ -> 116)
+;;  succ:       7 [96.0% (guessed)]  count:118111599 (estimated locally) (FALLTHRU)
+;;              16 [4.0% (guessed)]  count:4895691 (estimated locally)
+;; lr  out 	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  out 	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+
+;; basic block 7, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       6 [96.0% (guessed)]  count:118111599 (estimated locally) (FALLTHRU)
+;; bb 7 artificial_defs: { }
+;; bb 7 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; lr  use 	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 43 [r15]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;; live  in  	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  gen 	 5 [di] 17 [flags]
+;; live  kill	
+(note 43 42 44 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 44 43 45 7 (set (reg:DI 5 di)
+        (reg/v/f:DI 6 bp [orig:109 win ] [109])) 74 {*movdi_internal}
+     (nil))
+(call_insn 45 44 46 7 (call (mem:QI (symbol_ref:DI ("wsyncup.part.0") [flags 0x3]  <function_decl 0x7ffbf2e0dd00 wsyncup.part.0>) [0 wsyncup.part.0 S1 A8])
+        (const_int 0 [0])) 813 {*call}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wsyncup.part.0") [flags 0x3]  <function_decl 0x7ffbf2e0dd00 wsyncup.part.0>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 46 45 47 7 (set (mem:SI (plus:DI (reg/v/f:DI 6 bp [orig:109 win ] [109])
+                (const_int 72 [0x48])) [3 win_27(D)->_parx+0 S4 A64])
+        (reg/v:SI 3 bx [orig:111 x ] [111])) "../ncurses/./base/lib_window.c":72:13 75 {*movsi_internal}
+     (nil))
+(insn 47 46 50 7 (set (mem:SI (plus:DI (reg/v/f:DI 6 bp [orig:109 win ] [109])
+                (const_int 76 [0x4c])) [3 win_27(D)->_pary+0 S4 A32])
+        (reg/v:SI 40 r12 [orig:110 y ] [110])) "../ncurses/./base/lib_window.c":73:13 75 {*movsi_internal}
+     (nil))
+(insn 50 47 51 7 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 43 r15 [orig:99 iftmp.2_34 ] [99])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":74:16 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 51 50 87 7 (set (pc)
+        (if_then_else (gt (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 55)
+            (pc))) "../ncurses/./base/lib_window.c":74:16 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 55)
+;;  succ:       9 [89.0% (guessed)]  count:105119324 (estimated locally)
+;;              8 [11.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU)
+;; lr  out 	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14]
+;; live  out 	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14]
+
+;; basic block 8, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       7 [11.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU)
+;;              11 [always]  count:105119324 (estimated locally) (LOOP_EXIT)
+;; bb 8 artificial_defs: { }
+;; bb 8 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	 0 [ax]
+;; live  in  	 7 [sp]
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 87 51 52 8 38 (nil) [1 uses])
+(note 52 87 8 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 8 52 122 8 (set (reg/v:SI 0 ax [orig:108 <retval> ] [108])
+        (const_int 0 [0])) "../ncurses/./base/lib_window.c":76:5 75 {*movsi_internal}
+     (expr_list:REG_EQUAL (const_int 0 [0])
+        (nil)))
+(jump_insn 122 8 123 8 (set (pc)
+        (label_ref 95)) 807 {jump}
+     (nil)
+ -> 95)
+;;  succ:       17 [always]  count:118111600 (estimated locally)
+;; lr  out 	 0 [ax] 7 [sp]
+;; live  out 	 0 [ax] 7 [sp]
+
+(barrier 123 122 55)
+;; basic block 9, loop depth 0, count 105119324 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       7 [89.0% (guessed)]  count:105119324 (estimated locally)
+;; bb 9 artificial_defs: { }
+;; bb 9 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14]
+;; lr  use 	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 17 [flags] 36 [r8] 40 [r12] 41 [r13]
+;; live  in  	 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13] 42 [r14]
+;; live  gen 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 36 [r8] 40 [r12] 41 [r13]
+;; live  kill	 17 [flags]
+(code_label 55 123 56 9 36 (nil) [1 uses])
+(note 56 55 57 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 57 56 58 9 (set (reg:DI 1 dx [orig:121 x ] [121])
+        (sign_extend:DI (reg/v:SI 3 bx [orig:111 x ] [111]))) "../ncurses/./base/lib_window.c":75:50 147 {*extendsidi2_rex64}
+     (nil))
+(insn 58 57 59 9 (parallel [
+            (set (reg:DI 1 dx [orig:91 _16 ] [91])
+                (ashift:DI (reg:DI 1 dx [orig:121 x ] [121])
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_window.c":75:50 656 {*ashldi3_1}
+     (nil))
+(insn 59 58 60 9 (set (reg/f:DI 36 r8 [orig:92 _17 ] [92])
+        (mem/f:DI (plus:DI (reg/v/f:DI 6 bp [orig:109 win ] [109])
+                (const_int 56 [0x38])) [5 win_27(D)->_line+0 S8 A64])) "../ncurses/./base/lib_window.c":75:9 74 {*movdi_internal}
+     (nil))
+(insn 60 59 61 9 (set (reg:DI 41 r13 [orig:122 _7 ] [122])
+        (zero_extend:DI (reg:SI 41 r13 [orig:85 _7 ] [85]))) 138 {*zero_extendsidi2}
+     (nil))
+(note 61 60 63 9 NOTE_INSN_DELETED)
+(note 63 61 64 9 NOTE_INSN_DELETED)
+(insn 64 63 65 9 (set (reg:DI 4 si [126])
+        (plus:DI (plus:DI (ashift:DI (reg:DI 41 r13 [orig:122 _7 ] [122])
+                    (const_int 1 [0x1]))
+                (reg:DI 41 r13 [orig:122 _7 ] [122]))
+            (const_int 3 [0x3]))) 206 {*leadi}
+     (nil))
+(insn 65 64 68 9 (parallel [
+            (set (reg:DI 4 si [127])
+                (ashift:DI (reg:DI 4 si [126])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) 656 {*ashldi3_1}
+     (nil))
+(insn 68 65 70 9 (set (reg:DI 40 r12 [orig:128 y ] [128])
+        (sign_extend:DI (reg/v:SI 40 r12 [orig:110 y ] [110]))) 147 {*extendsidi2_rex64}
+     (nil))
+(note 70 68 71 9 NOTE_INSN_DELETED)
+(insn 71 70 72 9 (set (reg:DI 2 cx [131])
+        (plus:DI (ashift:DI (reg:DI 40 r12 [orig:128 y ] [128])
+                (const_int 1 [0x1]))
+            (reg:DI 40 r12 [orig:128 y ] [128]))) 206 {*leadi}
+     (nil))
+(note 72 71 74 9 NOTE_INSN_DELETED)
+(insn 74 72 75 9 (set (reg/f:DI 0 ax [orig:133 orig_29->_line ] [133])
+        (mem/f:DI (plus:DI (reg/v/f:DI 42 r14 [orig:96 orig ] [96])
+                (const_int 56 [0x38])) [5 orig_29->_line+0 S8 A64])) 74 {*movdi_internal}
+     (nil))
+(insn 75 74 6 9 (set (reg/f:DI 5 di [orig:104 _46 ] [104])
+        (plus:DI (ashift:DI (reg:DI 2 cx [131])
+                (const_int 3 [0x3]))
+            (reg/f:DI 0 ax [orig:133 orig_29->_line ] [133]))) 206 {*leadi}
+     (nil))
+(insn 6 75 84 9 (set (reg:DI 0 ax [orig:107 ivtmp.41 ] [107])
+        (const_int 0 [0])) "../ncurses/./base/lib_window.c":75:9 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (const_int 0 [0])
+        (nil)))
+;;  succ:       10 [always]  count:105119324 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 4 [si] 5 [di] 7 [sp] 36 [r8]
+;; live  out 	 0 [ax] 1 [dx] 4 [si] 5 [di] 7 [sp] 36 [r8]
+
+;; basic block 10, loop depth 0, count 955630224 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       10 [89.0% (guessed)]  count:850510900 (estimated locally) (DFS_BACK)
+;;              9 [always]  count:105119324 (estimated locally) (FALLTHRU)
+;; bb 10 artificial_defs: { }
+;; bb 10 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 4 [si] 5 [di] 7 [sp] 36 [r8]
+;; lr  use 	 0 [ax] 1 [dx] 4 [si] 5 [di] 7 [sp] 36 [r8]
+;; lr  def 	 0 [ax] 2 [cx] 17 [flags]
+;; live  in  	 0 [ax] 1 [dx] 4 [si] 5 [di] 7 [sp] 36 [r8]
+;; live  gen 	 0 [ax] 2 [cx] 17 [flags]
+;; live  kill	 17 [flags]
+(code_label 84 6 76 10 37 (nil) [1 uses])
+(note 76 84 80 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(note 80 76 139 10 NOTE_INSN_DELETED)
+(insn 139 80 81 10 (set (reg:DI 2 cx [136])
+        (reg:DI 1 dx [orig:91 _16 ] [91])) "../ncurses/./base/lib_window.c":75:27 74 {*movdi_internal}
+     (nil))
+(insn 81 139 82 10 (parallel [
+            (set (reg:DI 2 cx [136])
+                (plus:DI (reg:DI 2 cx [136])
+                    (mem/f:DI (plus:DI (reg/f:DI 5 di [orig:104 _46 ] [104])
+                            (reg:DI 0 ax [orig:107 ivtmp.41 ] [107])) [10 MEM[(struct cchar_t * *)_46 + ivtmp.41_51 * 1]+0 S8 A64])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_window.c":75:27 210 {*adddi_1}
+     (expr_list:REG_EQUIV (mem/f:DI (plus:DI (reg/f:DI 36 r8 [orig:92 _17 ] [92])
+                (reg:DI 0 ax [orig:107 ivtmp.41 ] [107])) [10 MEM[(struct cchar_t * *)_17 + ivtmp.41_51 * 1]+0 S8 A64])
+        (nil)))
+(insn 82 81 83 10 (set (mem/f:DI (plus:DI (reg/f:DI 36 r8 [orig:92 _17 ] [92])
+                (reg:DI 0 ax [orig:107 ivtmp.41 ] [107])) [10 MEM[(struct cchar_t * *)_17 + ivtmp.41_51 * 1]+0 S8 A64])
+        (reg:DI 2 cx [136])) "../ncurses/./base/lib_window.c":75:25 74 {*movdi_internal}
+     (nil))
+(insn 83 82 85 10 (parallel [
+            (set (reg:DI 0 ax [orig:107 ivtmp.41 ] [107])
+                (plus:DI (reg:DI 0 ax [orig:107 ivtmp.41 ] [107])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_window.c":74:16 210 {*adddi_1}
+     (nil))
+(insn 85 83 86 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 4 si [127])
+            (reg:DI 0 ax [orig:107 ivtmp.41 ] [107]))) "../ncurses/./base/lib_window.c":74:16 12 {*cmpdi_1}
+     (nil))
+(jump_insn 86 85 124 10 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 84)
+            (pc))) "../ncurses/./base/lib_window.c":74:16 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 84)
+;;  succ:       10 [89.0% (guessed)]  count:850510900 (estimated locally) (DFS_BACK)
+;;              11 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 4 [si] 5 [di] 7 [sp] 36 [r8]
+;; live  out 	 0 [ax] 1 [dx] 4 [si] 5 [di] 7 [sp] 36 [r8]
+
+;; basic block 11, loop depth 0, count 105119324 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       10 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+;; bb 11 artificial_defs: { }
+;; bb 11 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	
+;; live  in  	 7 [sp]
+;; live  gen 	
+;; live  kill	
+(note 124 86 125 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 125 124 126 11 (set (pc)
+        (label_ref 87)) 807 {jump}
+     (nil)
+ -> 87)
+;;  succ:       8 [always]  count:105119324 (estimated locally) (LOOP_EXIT)
+;; lr  out 	 7 [sp]
+;; live  out 	 7 [sp]
+
+(barrier 126 125 100)
+;; basic block 12, loop depth 0, count 1133934 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       2 [0.9% (guessed)]  count:1133934 (estimated locally)
+;; bb 12 artificial_defs: { }
+;; bb 12 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	 0 [ax]
+;; live  in  	 7 [sp]
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 100 126 99 12 39 (nil) [1 uses])
+(note 99 100 9 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 9 99 127 12 (set (reg/v:SI 0 ax [orig:108 <retval> ] [108])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_window.c":60:9 75 {*movsi_internal}
+     (expr_list:REG_EQUAL (const_int -1 [0xffffffffffffffff])
+        (nil)))
+(jump_insn 127 9 128 12 (set (pc)
+        (label_ref 95)) 807 {jump}
+     (nil)
+ -> 95)
+;;  succ:       17 [always]  count:1133934 (estimated locally)
+;; lr  out 	 0 [ax] 7 [sp]
+;; live  out 	 0 [ax] 7 [sp]
+
+(barrier 128 127 104)
+;; basic block 13, loop depth 0, count 1124068 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       3 [0.9% (guessed)]  count:1124068 (estimated locally)
+;; bb 13 artificial_defs: { }
+;; bb 13 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	 0 [ax]
+;; live  in  	 7 [sp]
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 104 128 103 13 40 (nil) [1 uses])
+(note 103 104 7 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 7 103 129 13 (set (reg/v:SI 0 ax [orig:108 <retval> ] [108])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_window.c":60:9 75 {*movsi_internal}
+     (nil))
+(jump_insn 129 7 130 13 (set (pc)
+        (label_ref 95)) 807 {jump}
+     (nil)
+ -> 95)
+;;  succ:       17 [always]  count:1124068 (estimated locally)
+;; lr  out 	 0 [ax] 7 [sp]
+;; live  out 	 0 [ax] 7 [sp]
+
+(barrier 130 129 108)
+;; basic block 14, loop depth 0, count 2561585 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       4 [2.0% (guessed)]  count:2561585 (estimated locally)
+;; bb 14 artificial_defs: { }
+;; bb 14 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	 0 [ax]
+;; live  in  	 7 [sp]
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 108 130 107 14 41 (nil) [1 uses])
+(note 107 108 12 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 12 107 131 14 (set (reg/v:SI 0 ax [orig:108 <retval> ] [108])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_window.c":60:9 75 {*movsi_internal}
+     (nil))
+(jump_insn 131 12 132 14 (set (pc)
+        (label_ref 95)) 807 {jump}
+     (nil)
+ -> 95)
+;;  succ:       17 [always]  count:2561585 (estimated locally)
+;; lr  out 	 0 [ax] 7 [sp]
+;; live  out 	 0 [ax] 7 [sp]
+
+(barrier 132 131 112)
+;; basic block 15, loop depth 0, count 2510353 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       5 [2.0% (guessed)]  count:2510353 (estimated locally)
+;; bb 15 artificial_defs: { }
+;; bb 15 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	 0 [ax]
+;; live  in  	 7 [sp]
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 112 132 111 15 42 (nil) [1 uses])
+(note 111 112 11 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 11 111 133 15 (set (reg/v:SI 0 ax [orig:108 <retval> ] [108])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_window.c":60:9 75 {*movsi_internal}
+     (nil))
+(jump_insn 133 11 134 15 (set (pc)
+        (label_ref 95)) 807 {jump}
+     (nil)
+ -> 95)
+;;  succ:       17 [always]  count:2510353 (estimated locally)
+;; lr  out 	 0 [ax] 7 [sp]
+;; live  out 	 0 [ax] 7 [sp]
+
+(barrier 134 133 116)
+;; basic block 16, loop depth 0, count 4895691 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       6 [4.0% (guessed)]  count:4895691 (estimated locally)
+;; bb 16 artificial_defs: { }
+;; bb 16 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	 0 [ax]
+;; live  in  	 7 [sp]
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 116 134 115 16 43 (nil) [1 uses])
+(note 115 116 10 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 10 115 95 16 (set (reg/v:SI 0 ax [orig:108 <retval> ] [108])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_window.c":60:9 75 {*movsi_internal}
+     (nil))
+;;  succ:       17 [always]  count:4895691 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 7 [sp]
+;; live  out 	 0 [ax] 7 [sp]
+
+;; basic block 17, loop depth 0, count 130337231 (estimated locally), maybe hot
+;;  prev block 16, next block 1, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       16 [always]  count:4895691 (estimated locally) (FALLTHRU)
+;;              14 [always]  count:2561585 (estimated locally)
+;;              8 [always]  count:118111600 (estimated locally)
+;;              12 [always]  count:1133934 (estimated locally)
+;;              13 [always]  count:1124068 (estimated locally)
+;;              15 [always]  count:2510353 (estimated locally)
+;; bb 17 artificial_defs: { }
+;; bb 17 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 7 [sp]
+;; lr  use 	 0 [ax] 7 [sp]
+;; lr  def 	
+;; live  in  	 0 [ax] 7 [sp]
+;; live  gen 	
+;; live  kill	
+(code_label 95 10 98 17 34 (nil) [5 uses])
+(note 98 95 97 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 97 98 135 17 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_window.c":79:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:130337231 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 7 [sp]
+;; live  out 	 0 [ax] 7 [sp]
+
+(note 135 97 0 NOTE_INSN_DELETED)
+
+;; Function syncok (syncok, funcdef_no=93, decl_uid=6107, cgraph_uid=94, symbol_order=93)
+
+
+
+syncok
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 7 [sp]
+;;  regs ever live 	 0 [ax] 4 [si] 5 [di] 17 [flags]
+;;  ref usage 	r0={3d,2u} r1={1d} r2={1d} r4={1d,1u} r5={1d,2u} r7={1d,5u} r17={1d,1u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={1d} r37={1d} 
+;;    total ref usage 30{19d,11u,0e} in 7{7 regular + 0 call} insns.
+(note 1 0 8 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(7){ }}
+;; lr  in  	 4 [si] 5 [di] 7 [sp]
+;; lr  use 	 5 [di] 7 [sp]
+;; lr  def 	 17 [flags]
+;; live  in  	 4 [si] 5 [di] 7 [sp]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(note 8 1 5 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 5 8 10 2 NOTE_INSN_FUNCTION_BEG)
+(insn 10 5 11 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 5 di [orig:83 win ] [83])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":87:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 11 10 12 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 25)
+            (pc))) "../ncurses/./base/lib_window.c":87:8 806 {*jcc}
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 25)
+;;  succ:       3 [99.1% (guessed)]  count:1064400272 (estimated locally) (FALLTHRU)
+;;              4 [0.9% (guessed)]  count:9341552 (estimated locally)
+;; lr  out 	 4 [si] 5 [di] 7 [sp]
+;; live  out 	 4 [si] 5 [di] 7 [sp]
+
+;; basic block 3, loop depth 0, count 1064400273 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       2 [99.1% (guessed)]  count:1064400272 (estimated locally) (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(7){ }}
+;; lr  in  	 4 [si] 5 [di] 7 [sp]
+;; lr  use 	 4 [si] 5 [di] 7 [sp]
+;; lr  def 	 0 [ax]
+;; live  in  	 4 [si] 5 [di] 7 [sp]
+;; live  gen 	 0 [ax]
+;; live  kill	
+(note 12 11 13 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 13 12 6 3 (set (mem:QI (plus:DI (reg/v/f:DI 5 di [orig:83 win ] [83])
+                (const_int 43 [0x2b])) [1 win_3(D)->_sync+0 S1 A8])
+        (reg:QI 4 si [orig:85 bf ] [85])) "../ncurses/./base/lib_window.c":88:13 77 {*movqi_internal}
+     (nil))
+(insn 6 13 28 3 (set (reg:SI 0 ax [orig:82 <retval> ] [82])
+        (const_int 0 [0])) "../ncurses/./base/lib_window.c":89:2 75 {*movsi_internal}
+     (expr_list:REG_EQUAL (const_int 0 [0])
+        (nil)))
+(jump_insn 28 6 29 3 (set (pc)
+        (label_ref 18)) "../ncurses/./base/lib_window.c":89:2 807 {jump}
+     (nil)
+ -> 18)
+;;  succ:       5 [always]  count:1064400273 (estimated locally)
+;; lr  out 	 0 [ax] 7 [sp]
+;; live  out 	 0 [ax] 7 [sp]
+
+(barrier 29 28 25)
+;; basic block 4, loop depth 0, count 9341552 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       2 [0.9% (guessed)]  count:9341552 (estimated locally)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	 0 [ax]
+;; live  in  	 7 [sp]
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 25 29 24 4 51 (nil) [1 uses])
+(note 24 25 7 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 7 24 18 4 (set (reg:SI 0 ax [orig:82 <retval> ] [82])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_window.c":91:2 75 {*movsi_internal}
+     (expr_list:REG_EQUAL (const_int -1 [0xffffffffffffffff])
+        (nil)))
+;;  succ:       5 [always]  count:9341552 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 7 [sp]
+;; live  out 	 0 [ax] 7 [sp]
+
+;; basic block 5, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 4, next block 1, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       4 [always]  count:9341552 (estimated locally) (FALLTHRU)
+;;              3 [always]  count:1064400273 (estimated locally)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 7 [sp]
+;; lr  use 	 0 [ax] 7 [sp]
+;; lr  def 	
+;; live  in  	 0 [ax] 7 [sp]
+;; live  gen 	
+;; live  kill	
+(code_label 18 7 21 5 49 (nil) [1 uses])
+(note 21 18 20 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 20 21 30 5 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_window.c":92:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 7 [sp]
+;; live  out 	 0 [ax] 7 [sp]
+
+(note 30 20 0 NOTE_INSN_DELETED)
+
+;; Function wsyncup (wsyncup, funcdef_no=94, decl_uid=6317, cgraph_uid=95, symbol_order=94)
+
+
+
+wsyncup
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 7 [sp]
+;;  regs ever live 	 5 [di] 7 [sp] 17 [flags]
+;;  ref usage 	r0={2d} r1={2d} r2={2d} r4={2d} r5={2d,3u} r7={1d,6u} r8={1d} r9={1d} r10={1d} r11={1d} r12={1d} r13={1d} r14={1d} r15={1d} r17={3d,2u} r18={1d} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={2d} r37={2d} r38={1d} r39={1d} r52={1d} r53={1d} r54={1d} r55={1d} r56={1d} r57={1d} r58={1d} r59={1d} r60={1d} r61={1d} r62={1d} r63={1d} r64={1d} r65={1d} r66={1d} r67={1d} r68={1d} r69={1d} r70={1d} r71={1d} r72={1d} r73={1d} r74={1d} r75={1d} 
+;;    total ref usage 72{61d,11u,0e} in 5{4 regular + 1 call} insns.
+(note 1 0 4 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 29791960 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:29791960 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(7){ }}
+;; lr  in  	 5 [di] 7 [sp]
+;; lr  use 	 5 [di] 7 [sp]
+;; lr  def 	 17 [flags]
+;; live  in  	 5 [di] 7 [sp]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(note 4 1 3 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 3 4 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 5 di [orig:83 win ] [83])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":102:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 7 6 8 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 17)
+            (pc))) "../ncurses/./base/lib_window.c":102:8 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 17)
+;;  succ:       3 [70.0% (guessed)]  count:20854372 (estimated locally) (FALLTHRU)
+;;              5 [30.0% (guessed)]  count:8937588 (estimated locally)
+;; lr  out 	 5 [di] 7 [sp]
+;; live  out 	 5 [di] 7 [sp]
+
+;; basic block 3, loop depth 0, count 20854372 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       2 [70.0% (guessed)]  count:20854372 (estimated locally) (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(7){ }}
+;; lr  in  	 5 [di] 7 [sp]
+;; lr  use 	 5 [di] 7 [sp]
+;; lr  def 	 17 [flags]
+;; live  in  	 5 [di] 7 [sp]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(note 8 7 9 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 9 8 10 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (plus:DI (reg/v/f:DI 5 di [orig:83 win ] [83])
+                    (const_int 80 [0x50])) [6 win_2(D)->_parent+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":102:13 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 10 9 11 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 17)
+            (pc))) "../ncurses/./base/lib_window.c":102:13 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 17)
+;;  succ:       4 [70.0% (guessed)]  count:14598060 (estimated locally) (FALLTHRU)
+;;              5 [30.0% (guessed)]  count:6256312 (estimated locally)
+;; lr  out 	 5 [di] 7 [sp]
+;; live  out 	 5 [di] 7 [sp]
+
+;; basic block 4, loop depth 0, count 14598060 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       3 [70.0% (guessed)]  count:14598060 (estimated locally) (FALLTHRU)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(7){ }}
+;; lr  in  	 5 [di] 7 [sp]
+;; lr  use 	 5 [di] 7 [sp]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;; live  in  	 5 [di] 7 [sp]
+;; live  gen 	
+;; live  kill	
+(note 11 10 13 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(call_insn/j 13 11 14 4 (call (mem:QI (symbol_ref:DI ("wsyncup.part.0") [flags 0x3]  <function_decl 0x7ffbf2e0dd00 wsyncup.part.0>) [0 wsyncup.part.0 S1 A8])
+        (const_int 0 [0])) 817 {*sibcall}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wsyncup.part.0") [flags 0x3]  <function_decl 0x7ffbf2e0dd00 wsyncup.part.0>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       EXIT [always]  count:14598060 (estimated locally) (ABNORMAL,SIBCALL)
+;; lr  out 	 7 [sp]
+;; live  out 	 7 [sp]
+
+(barrier 14 13 17)
+;; basic block 5, loop depth 0, count 15193902 (estimated locally), maybe hot
+;;  prev block 4, next block 1, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       3 [30.0% (guessed)]  count:6256312 (estimated locally)
+;;              2 [30.0% (guessed)]  count:8937588 (estimated locally)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	
+;; live  in  	 7 [sp]
+;; live  gen 	
+;; live  kill	
+(code_label 17 14 18 5 52 (nil) [2 uses])
+(note 18 17 26 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       EXIT [always]  count:15193902 (estimated locally) (FALLTHRU)
+;; lr  out 	 7 [sp]
+;; live  out 	 7 [sp]
+
+(note 26 18 0 NOTE_INSN_DELETED)
+
+;; Function wsyncdown (wsyncdown, funcdef_no=95, decl_uid=6315, cgraph_uid=96, symbol_order=95)
+
+
+
+wsyncdown
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 7 [sp]
+;;  regs ever live 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 17 [flags] 36 [r8] 37 [r9]
+;;  ref usage 	r0={10d,15u} r1={5d,6u,1e} r2={6d,6u} r3={1d,8u,1e} r4={4d,5u} r5={5d,6u} r6={1d,3u} r7={1d,15u} r8={1d} r9={1d} r10={1d} r11={1d} r12={1d} r13={1d} r14={1d} r15={1d} r17={17d,11u} r18={1d} r20={2d} r21={2d} r22={2d} r23={2d} r24={2d} r25={2d} r26={2d} r27={2d} r28={1d} r29={1d} r30={1d} r31={1d} r32={1d} r33={1d} r34={1d} r35={1d} r36={3d,2u,1e} r37={4d,2u} r38={1d} r39={1d} r44={1d} r45={1d} r46={1d} r47={1d} r48={1d} r49={1d} r50={1d} r51={1d} r52={1d} r53={1d} r54={1d} r55={1d} r56={1d} r57={1d} r58={1d} r59={1d} r60={1d} r61={1d} r62={1d} r63={1d} r64={1d} r65={1d} r66={1d} r67={1d} r68={1d} r69={1d} r70={1d} r71={1d} r72={1d} r73={1d} r74={1d} r75={1d} r88={1e} 
+;;    total ref usage 207{124d,79u,4e} in 48{47 regular + 1 call} insns.
+(note 1 0 5 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 315561725 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:315561725 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(7){ }}
+;; lr  in  	 5 [di] 7 [sp]
+;; lr  use 	 5 [di] 7 [sp]
+;; lr  def 	 3 [bx] 17 [flags]
+;; live  in  	 5 [di] 7 [sp]
+;; live  gen 	 3 [bx] 17 [flags]
+;; live  kill	
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 3 bx [orig:111 win ] [111])
+        (reg:DI 5 di [136])) "../ncurses/./base/lib_window.c":130:1 74 {*movdi_internal}
+     (nil))
+(note 3 2 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 3 8 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 3 bx [orig:111 win ] [111])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":133:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 8 7 9 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 93)
+            (pc))) "../ncurses/./base/lib_window.c":133:8 806 {*jcc}
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 93)
+;;  succ:       3 [70.0% (guessed)]  count:220893208 (estimated locally) (FALLTHRU)
+;;              14 [30.0% (guessed)]  count:94668517 (estimated locally)
+;; lr  out 	 3 [bx] 7 [sp]
+;; live  out 	 3 [bx] 7 [sp]
+
+;; basic block 3, loop depth 0, count 220893208 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       2 [70.0% (guessed)]  count:220893208 (estimated locally) (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 7 [sp]
+;; lr  use 	 3 [bx] 7 [sp]
+;; lr  def 	 6 [bp] 17 [flags]
+;; live  in  	 3 [bx] 7 [sp]
+;; live  gen 	 6 [bp] 17 [flags]
+;; live  kill	
+(note 9 8 10 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 10 9 11 3 (set (reg/f:DI 6 bp [orig:82 _1 ] [82])
+        (mem/f:DI (plus:DI (reg/v/f:DI 3 bx [orig:111 win ] [111])
+                (const_int 80 [0x50])) [6 win_24(D)->_parent+0 S8 A64])) "../ncurses/./base/lib_window.c":133:27 74 {*movdi_internal}
+     (nil))
+(insn 11 10 12 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 6 bp [orig:82 _1 ] [82])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":133:21 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 12 11 13 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 93)
+            (pc))) "../ncurses/./base/lib_window.c":133:21 806 {*jcc}
+     (int_list:REG_BR_PROB 499612076 (nil))
+ -> 93)
+;;  succ:       4 [53.5% (guessed)]  count:118111598 (estimated locally) (FALLTHRU)
+;;              14 [46.5% (guessed)]  count:102781610 (estimated locally)
+;; lr  out 	 3 [bx] 6 [bp] 7 [sp]
+;; live  out 	 3 [bx] 6 [bp] 7 [sp]
+
+;; basic block 4, loop depth 0, count 118111598 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       3 [53.5% (guessed)]  count:118111598 (estimated locally) (FALLTHRU)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 6 [bp] 7 [sp]
+;; lr  use 	 3 [bx] 6 [bp] 7 [sp]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;; live  in  	 3 [bx] 6 [bp] 7 [sp]
+;; live  gen 	 0 [ax] 5 [di] 17 [flags]
+;; live  kill	
+(note 13 12 14 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 14 13 15 4 (set (reg:DI 5 di)
+        (reg/f:DI 6 bp [orig:82 _1 ] [82])) "../ncurses/./base/lib_window.c":139:2 74 {*movdi_internal}
+     (nil))
+(call_insn 15 14 16 4 (call (mem:QI (symbol_ref:DI ("wsyncdown") [flags 0x3]  <function_decl 0x7ffbf305d000 wsyncdown>) [0 wsyncdown S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/lib_window.c":139:2 813 {*call}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wsyncdown") [flags 0x3]  <function_decl 0x7ffbf305d000 wsyncdown>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 16 15 19 4 (set (reg:SI 0 ax [orig:105 _40 ] [105])
+        (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:111 win ] [111])
+                (const_int 8 [0x8])) [3 win_24(D)->_maxy+0 S4 A64])) "../ncurses/./base/lib_window.c":146:22 75 {*movsi_internal}
+     (nil))
+(insn 19 16 20 4 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:SI 0 ax [orig:105 _40 ] [105])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":146:16 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 20 19 21 4 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 93)
+            (pc))) "../ncurses/./base/lib_window.c":146:16 806 {*jcc}
+     (int_list:REG_BR_PROB 118111604 (nil))
+ -> 93)
+;;  succ:       5 [89.0% (guessed)]  count:105119322 (estimated locally) (FALLTHRU)
+;;              14 [11.0% (guessed)]  count:12992276 (estimated locally)
+;; lr  out 	 0 [ax] 3 [bx] 6 [bp] 7 [sp]
+;; live  out 	 0 [ax] 3 [bx] 6 [bp] 7 [sp]
+
+;; basic block 5, loop depth 0, count 105119322 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       4 [89.0% (guessed)]  count:105119322 (estimated locally) (FALLTHRU)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 3 [bx] 6 [bp] 7 [sp]
+;; lr  use 	 0 [ax] 3 [bx] 6 [bp] 7 [sp]
+;; lr  def 	 0 [ax] 1 [dx] 17 [flags] 36 [r8] 37 [r9]
+;; live  in  	 0 [ax] 3 [bx] 6 [bp] 7 [sp]
+;; live  gen 	 0 [ax] 1 [dx] 36 [r8] 37 [r9]
+;; live  kill	 17 [flags]
+(note 21 20 22 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 23 5 (set (reg:DI 0 ax [orig:112 _40 ] [112])
+        (sign_extend:DI (reg:SI 0 ax [orig:105 _40 ] [105]))) 147 {*extendsidi2_rex64}
+     (nil))
+(note 23 22 25 5 NOTE_INSN_DELETED)
+(note 25 23 26 5 NOTE_INSN_DELETED)
+(insn 26 25 27 5 (set (reg:DI 37 r9 [116])
+        (plus:DI (plus:DI (ashift:DI (reg:DI 0 ax [orig:112 _40 ] [112])
+                    (const_int 1 [0x1]))
+                (reg:DI 0 ax [orig:112 _40 ] [112]))
+            (const_int 3 [0x3]))) 206 {*leadi}
+     (nil))
+(insn 27 26 30 5 (parallel [
+            (set (reg:DI 37 r9 [117])
+                (ashift:DI (reg:DI 37 r9 [116])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) 656 {*ashldi3_1}
+     (nil))
+(note 30 27 31 5 NOTE_INSN_DELETED)
+(insn 31 30 33 5 (set (reg:DI 0 ax [orig:118 win_24(D)->_pary ] [118])
+        (sign_extend:DI (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:111 win ] [111])
+                    (const_int 76 [0x4c])) [3 win_24(D)->_pary+0 S4 A32]))) 147 {*extendsidi2_rex64}
+     (nil))
+(note 33 31 34 5 NOTE_INSN_DELETED)
+(insn 34 33 35 5 (set (reg:DI 1 dx [122])
+        (plus:DI (ashift:DI (reg:DI 0 ax [orig:118 win_24(D)->_pary ] [118])
+                (const_int 1 [0x1]))
+            (reg:DI 0 ax [orig:118 win_24(D)->_pary ] [118]))) 206 {*leadi}
+     (nil))
+(note 35 34 37 5 NOTE_INSN_DELETED)
+(insn 37 35 38 5 (set (reg/f:DI 0 ax [orig:124 _1->_line ] [124])
+        (mem/f:DI (plus:DI (reg/f:DI 6 bp [orig:82 _1 ] [82])
+                (const_int 56 [0x38])) [5 _1->_line+0 S8 A64])) 74 {*movdi_internal}
+     (nil))
+(insn 38 37 4 5 (set (reg/f:DI 36 r8 [orig:100 _35 ] [100])
+        (plus:DI (ashift:DI (reg:DI 1 dx [122])
+                (const_int 3 [0x3]))
+            (reg/f:DI 0 ax [orig:124 _1->_line ] [124]))) 206 {*leadi}
+     (nil))
+(insn 4 38 88 5 (set (reg:DI 1 dx [orig:95 ivtmp.58 ] [95])
+        (const_int 0 [0])) "../ncurses/./base/lib_window.c":147:23 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (const_int 0 [0])
+        (nil)))
+;;  succ:       6 [always]  count:105119322 (estimated locally) (FALLTHRU)
+;; lr  out 	 1 [dx] 3 [bx] 7 [sp] 36 [r8] 37 [r9]
+;; live  out 	 1 [dx] 3 [bx] 7 [sp] 36 [r8] 37 [r9]
+
+;; basic block 6, loop depth 0, count 955630225 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       13 [89.0% (guessed)]  count:850510902 (estimated locally) (DFS_BACK)
+;;              5 [always]  count:105119322 (estimated locally) (FALLTHRU)
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 3 [bx] 7 [sp] 36 [r8] 37 [r9]
+;; lr  use 	 1 [dx] 7 [sp] 36 [r8]
+;; lr  def 	 0 [ax] 17 [flags]
+;; live  in  	 1 [dx] 3 [bx] 7 [sp] 36 [r8] 37 [r9]
+;; live  gen 	 0 [ax] 17 [flags]
+;; live  kill	
+(code_label 88 4 39 6 65 (nil) [1 uses])
+(note 39 88 40 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 40 39 43 6 (set (reg:SI 0 ax [orig:85 _8 ] [85])
+        (mem:SI (plus:DI (plus:DI (reg/f:DI 36 r8 [orig:100 _35 ] [100])
+                    (reg:DI 1 dx [orig:95 ivtmp.58 ] [95]))
+                (const_int 8 [0x8])) [3 MEM[(int *)_35 + 8B + ivtmp.58_23 * 1]+0 S4 A64])) "../ncurses/./base/lib_window.c":147:35 75 {*movsi_internal}
+     (nil))
+(insn 43 40 44 6 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:SI 0 ax [orig:85 _8 ] [85])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":147:9 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 44 43 49 6 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 85)
+            (pc))) "../ncurses/./base/lib_window.c":147:9 806 {*jcc}
+     (int_list:REG_BR_PROB 440234148 (nil))
+ -> 85)
+;;  succ:       7 [59.0% (guessed)]  count:563821836 (estimated locally) (FALLTHRU)
+;;              13 [41.0% (guessed)]  count:391808389 (estimated locally)
+;; lr  out 	 0 [ax] 1 [dx] 3 [bx] 7 [sp] 36 [r8] 37 [r9]
+;; live  out 	 0 [ax] 1 [dx] 3 [bx] 7 [sp] 36 [r8] 37 [r9]
+
+;; basic block 7, loop depth 0, count 563821837 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       6 [59.0% (guessed)]  count:563821836 (estimated locally) (FALLTHRU)
+;; bb 7 artificial_defs: { }
+;; bb 7 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 3 [bx] 7 [sp] 36 [r8] 37 [r9]
+;; lr  use 	 0 [ax] 1 [dx] 3 [bx] 7 [sp] 36 [r8]
+;; lr  def 	 0 [ax] 2 [cx] 4 [si] 5 [di] 17 [flags]
+;; live  in  	 0 [ax] 1 [dx] 3 [bx] 7 [sp] 36 [r8] 37 [r9]
+;; live  gen 	 0 [ax] 2 [cx] 4 [si] 5 [di] 17 [flags]
+;; live  kill	 17 [flags]
+(note 49 44 50 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(note 50 49 136 7 NOTE_INSN_DELETED)
+(insn 136 50 51 7 (set (reg/v/f:DI 4 si [orig:97 line ] [97])
+        (reg:DI 1 dx [orig:95 ivtmp.58 ] [95])) "../ncurses/./base/lib_window.c":148:16 74 {*movdi_internal}
+     (nil))
+(insn 51 136 52 7 (parallel [
+            (set (reg/v/f:DI 4 si [orig:97 line ] [97])
+                (plus:DI (reg/v/f:DI 4 si [orig:97 line ] [97])
+                    (mem/f:DI (plus:DI (reg/v/f:DI 3 bx [orig:111 win ] [111])
+                            (const_int 56 [0x38])) [5 win_24(D)->_line+0 S8 A64])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_window.c":148:16 210 {*adddi_1}
+     (nil))
+(note 52 51 53 7 NOTE_INSN_DELETED)
+(insn 53 52 129 7 (parallel [
+            (set (reg:SI 0 ax [orig:87 _12 ] [87])
+                (minus:SI (reg:SI 0 ax [orig:85 _8 ] [85])
+                    (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:111 win ] [111])
+                            (const_int 72 [0x48])) [3 win_24(D)->_parx+0 S4 A64])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_window.c":150:7 282 {*subsi_1}
+     (nil))
+(insn 129 53 134 7 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:SI 0 ax [orig:87 _12 ] [87])
+            (const_int 0 [0]))) 7 {*cmpsi_ccno_1}
+     (nil))
+(insn 134 129 130 7 (set (reg:SI 2 cx [137])
+        (const_int 0 [0])) 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (const_int 0 [0])
+        (nil)))
+(insn 130 134 55 7 (set (reg:SI 0 ax [orig:87 _12 ] [87])
+        (if_then_else:SI (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (reg:SI 0 ax [orig:87 _12 ] [87])
+            (reg:SI 2 cx [137]))) 1100 {*movsicc_noc}
+     (nil))
+(note 55 130 138 7 NOTE_INSN_DELETED)
+(insn 138 55 56 7 (set (reg:SI 2 cx [orig:126 right ] [126])
+        (mem:SI (plus:DI (plus:DI (reg/f:DI 36 r8 [orig:100 _35 ] [100])
+                    (reg:DI 1 dx [orig:95 ivtmp.58 ] [95]))
+                (const_int 12 [0xc])) [3 MEM[(int *)_35 + 12B + ivtmp.58_23 * 1]+0 S4 A32])) "../ncurses/./base/lib_window.c":151:7 75 {*movsi_internal}
+     (nil))
+(insn 56 138 131 7 (parallel [
+            (set (reg:SI 2 cx [orig:126 right ] [126])
+                (minus:SI (reg:SI 2 cx [orig:126 right ] [126])
+                    (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:111 win ] [111])
+                            (const_int 72 [0x48])) [3 win_24(D)->_parx+0 S4 A64])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_window.c":151:7 282 {*subsi_1}
+     (expr_list:REG_EQUAL (minus:SI (mem:SI (plus:DI (plus:DI (reg/f:DI 36 r8 [orig:100 _35 ] [100])
+                        (reg:DI 1 dx [orig:95 ivtmp.58 ] [95]))
+                    (const_int 12 [0xc])) [3 MEM[(int *)_35 + 12B + ivtmp.58_23 * 1]+0 S4 A32])
+            (reg:SI 88 [ _13 ]))
+        (nil)))
+(insn 131 56 132 7 (set (reg:SI 5 di [138])
+        (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:111 win ] [111])
+                (const_int 12 [0xc])) [3 win_24(D)->_maxx+0 S4 A32])) 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:111 win ] [111])
+                (const_int 12 [0xc])) [3 win_24(D)->_maxx+0 S4 A32])
+        (nil)))
+(insn 132 131 133 7 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 2 cx [orig:126 right ] [126])
+            (reg:SI 5 di [138]))) 11 {*cmpsi_1}
+     (nil))
+(insn 133 132 58 7 (set (reg:SI 2 cx [orig:96 _26 ] [96])
+        (if_then_else:SI (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (reg:SI 2 cx [orig:126 right ] [126])
+            (reg:SI 5 di [138]))) 1100 {*movsicc_noc}
+     (nil))
+(insn 58 133 59 7 (set (reg:SI 5 di [orig:91 _16 ] [91])
+        (mem:SI (plus:DI (reg/v/f:DI 4 si [orig:97 line ] [97])
+                (const_int 8 [0x8])) [3 line_28->firstchar+0 S4 A64])) "../ncurses/./base/lib_window.c":157:3 75 {*movsi_internal}
+     (nil))
+(note 59 58 60 7 NOTE_INSN_DELETED)
+(note 60 59 61 7 NOTE_INSN_DELETED)
+(insn 61 60 62 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 5 di [orig:91 _16 ] [91])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_window.c":157:3 11 {*cmpsi_1}
+     (nil))
+(jump_insn 62 61 95 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 99)
+            (pc))) "../ncurses/./base/lib_window.c":157:3 806 {*jcc}
+     (int_list:REG_BR_PROB 359703516 (nil))
+ -> 99)
+;;  succ:       9 [33.5% (guessed)]  count:188880316 (estimated locally)
+;;              8 [66.5% (guessed)]  count:374941521 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9]
+
+;; basic block 8, loop depth 0, count 374941521 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       7 [66.5% (guessed)]  count:374941521 (estimated locally) (FALLTHRU)
+;; bb 8 artificial_defs: { }
+;; bb 8 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9]
+;; lr  use 	 0 [ax] 5 [di] 7 [sp]
+;; lr  def 	 17 [flags]
+;; live  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 7 [sp] 36 [r8] 37 [r9]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(note 95 62 63 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(note 63 95 64 8 NOTE_INSN_DELETED)
+(note 64 63 65 8 NOTE_INSN_DELETED)
+(insn 65 64 66 8 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 0 ax [orig:87 _12 ] [87])
+            (reg:SI 5 di [orig:91 _16 ] [91]))) "../ncurses/./base/lib_window.c":157:3 11 {*cmpsi_1}
+     (nil))
+(jump_insn 66 65 99 8 (set (pc)
+        (if_then_else (ge (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 70)
+            (pc))) "../ncurses/./base/lib_window.c":157:3 806 {*jcc}
+     (int_list:REG_BR_PROB 532834292 (nil))
+ -> 70)
+;;  succ:       10 [49.6% (guessed)]  count:186061206 (estimated locally)
+;;              9 [50.4% (guessed)]  count:188880315 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 7 [sp] 36 [r8] 37 [r9]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 7 [sp] 36 [r8] 37 [r9]
+
+;; basic block 9, loop depth 0, count 377760631 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       8 [50.4% (guessed)]  count:188880315 (estimated locally) (FALLTHRU)
+;;              7 [33.5% (guessed)]  count:188880316 (estimated locally)
+;; bb 9 artificial_defs: { }
+;; bb 9 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 7 [sp] 36 [r8] 37 [r9]
+;; lr  use 	 0 [ax] 4 [si] 7 [sp]
+;; lr  def 	
+;; live  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 7 [sp] 36 [r8] 37 [r9]
+;; live  gen 	
+;; live  kill	
+(code_label 99 66 68 9 66 (nil) [1 uses])
+(note 68 99 69 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 69 68 70 9 (set (mem:SI (plus:DI (reg/v/f:DI 4 si [orig:97 line ] [97])
+                (const_int 8 [0x8])) [3 line_28->firstchar+0 S4 A64])
+        (reg:SI 0 ax [orig:87 _12 ] [87])) "../ncurses/./base/lib_window.c":157:3 75 {*movsi_internal}
+     (nil))
+;;  succ:       10 [always]  count:377760631 (estimated locally) (FALLTHRU)
+;; lr  out 	 1 [dx] 2 [cx] 3 [bx] 4 [si] 7 [sp] 36 [r8] 37 [r9]
+;; live  out 	 1 [dx] 2 [cx] 3 [bx] 4 [si] 7 [sp] 36 [r8] 37 [r9]
+
+;; basic block 10, loop depth 0, count 563821837 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       9 [always]  count:377760631 (estimated locally) (FALLTHRU)
+;;              8 [49.6% (guessed)]  count:186061206 (estimated locally)
+;; bb 10 artificial_defs: { }
+;; bb 10 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 2 [cx] 3 [bx] 4 [si] 7 [sp] 36 [r8] 37 [r9]
+;; lr  use 	 2 [cx] 4 [si] 7 [sp]
+;; lr  def 	 0 [ax] 17 [flags]
+;; live  in  	 1 [dx] 2 [cx] 3 [bx] 4 [si] 7 [sp] 36 [r8] 37 [r9]
+;; live  gen 	 0 [ax] 17 [flags]
+;; live  kill	
+(code_label 70 69 71 10 61 (nil) [1 uses])
+(note 71 70 72 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 72 71 74 10 (set (reg:SI 0 ax [orig:92 _17 ] [92])
+        (mem:SI (plus:DI (reg/v/f:DI 4 si [orig:97 line ] [97])
+                (const_int 12 [0xc])) [3 line_28->lastchar+0 S4 A32])) "../ncurses/./base/lib_window.c":157:3 75 {*movsi_internal}
+     (nil))
+(note 74 72 75 10 NOTE_INSN_DELETED)
+(note 75 74 76 10 NOTE_INSN_DELETED)
+(insn 76 75 77 10 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 0 ax [orig:92 _17 ] [92])
+            (reg:SI 2 cx [orig:96 _26 ] [96]))) "../ncurses/./base/lib_window.c":157:3 11 {*cmpsi_1}
+     (nil))
+(jump_insn 77 76 97 10 (set (pc)
+        (if_then_else (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 100)
+            (pc))) "../ncurses/./base/lib_window.c":157:3 806 {*jcc}
+     (int_list:REG_BR_PROB 359703516 (nil))
+ -> 100)
+;;  succ:       12 [33.5% (guessed)]  count:188880316 (estimated locally)
+;;              11 [66.5% (guessed)]  count:374941521 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 7 [sp] 36 [r8] 37 [r9]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 7 [sp] 36 [r8] 37 [r9]
+
+;; basic block 11, loop depth 0, count 374941521 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       10 [66.5% (guessed)]  count:374941521 (estimated locally) (FALLTHRU)
+;; bb 11 artificial_defs: { }
+;; bb 11 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 7 [sp] 36 [r8] 37 [r9]
+;; lr  use 	 0 [ax] 7 [sp]
+;; lr  def 	 17 [flags]
+;; live  in  	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 7 [sp] 36 [r8] 37 [r9]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(note 97 77 78 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(note 78 97 79 11 NOTE_INSN_DELETED)
+(note 79 78 80 11 NOTE_INSN_DELETED)
+(insn 80 79 81 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 0 ax [orig:92 _17 ] [92])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_window.c":157:3 11 {*cmpsi_1}
+     (nil))
+(jump_insn 81 80 100 11 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 85)
+            (pc))) "../ncurses/./base/lib_window.c":157:3 806 {*jcc}
+     (int_list:REG_BR_PROB 532834292 (nil))
+ -> 85)
+;;  succ:       13 [49.6% (guessed)]  count:186061206 (estimated locally)
+;;              12 [50.4% (guessed)]  count:188880315 (estimated locally) (FALLTHRU)
+;; lr  out 	 1 [dx] 2 [cx] 3 [bx] 4 [si] 7 [sp] 36 [r8] 37 [r9]
+;; live  out 	 1 [dx] 2 [cx] 3 [bx] 4 [si] 7 [sp] 36 [r8] 37 [r9]
+
+;; basic block 12, loop depth 0, count 377760631 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       11 [50.4% (guessed)]  count:188880315 (estimated locally) (FALLTHRU)
+;;              10 [33.5% (guessed)]  count:188880316 (estimated locally)
+;; bb 12 artificial_defs: { }
+;; bb 12 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 2 [cx] 3 [bx] 4 [si] 7 [sp] 36 [r8] 37 [r9]
+;; lr  use 	 2 [cx] 4 [si] 7 [sp]
+;; lr  def 	
+;; live  in  	 1 [dx] 2 [cx] 3 [bx] 4 [si] 7 [sp] 36 [r8] 37 [r9]
+;; live  gen 	
+;; live  kill	
+(code_label 100 81 83 12 67 (nil) [1 uses])
+(note 83 100 84 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 84 83 85 12 (set (mem:SI (plus:DI (reg/v/f:DI 4 si [orig:97 line ] [97])
+                (const_int 12 [0xc])) [3 line_28->lastchar+0 S4 A32])
+        (reg:SI 2 cx [orig:96 _26 ] [96])) "../ncurses/./base/lib_window.c":157:3 75 {*movsi_internal}
+     (nil))
+;;  succ:       13 [always]  count:377760631 (estimated locally) (FALLTHRU)
+;; lr  out 	 1 [dx] 3 [bx] 7 [sp] 36 [r8] 37 [r9]
+;; live  out 	 1 [dx] 3 [bx] 7 [sp] 36 [r8] 37 [r9]
+
+;; basic block 13, loop depth 0, count 955630226 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       6 [41.0% (guessed)]  count:391808389 (estimated locally)
+;;              12 [always]  count:377760631 (estimated locally) (FALLTHRU)
+;;              11 [49.6% (guessed)]  count:186061206 (estimated locally)
+;; bb 13 artificial_defs: { }
+;; bb 13 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 3 [bx] 7 [sp] 36 [r8] 37 [r9]
+;; lr  use 	 1 [dx] 7 [sp] 37 [r9]
+;; lr  def 	 1 [dx] 17 [flags]
+;; live  in  	 1 [dx] 3 [bx] 7 [sp] 36 [r8] 37 [r9]
+;; live  gen 	 1 [dx] 17 [flags]
+;; live  kill	 17 [flags]
+(code_label 85 84 86 13 60 (nil) [2 uses])
+(note 86 85 87 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 87 86 89 13 (parallel [
+            (set (reg:DI 1 dx [orig:95 ivtmp.58 ] [95])
+                (plus:DI (reg:DI 1 dx [orig:95 ivtmp.58 ] [95])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_window.c":146:16 210 {*adddi_1}
+     (nil))
+(insn 89 87 90 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:DI 1 dx [orig:95 ivtmp.58 ] [95])
+            (reg:DI 37 r9 [117]))) "../ncurses/./base/lib_window.c":146:16 12 {*cmpdi_1}
+     (nil))
+(jump_insn 90 89 93 13 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 88)
+            (pc))) "../ncurses/./base/lib_window.c":146:16 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 88)
+;;  succ:       6 [89.0% (guessed)]  count:850510902 (estimated locally) (DFS_BACK)
+;;              14 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;; lr  out 	 1 [dx] 3 [bx] 7 [sp] 36 [r8] 37 [r9]
+;; live  out 	 1 [dx] 3 [bx] 7 [sp] 36 [r8] 37 [r9]
+
+;; basic block 14, loop depth 0, count 315561727 (estimated locally), maybe hot
+;;  prev block 13, next block 1, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       13 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;;              2 [30.0% (guessed)]  count:94668517 (estimated locally)
+;;              3 [46.5% (guessed)]  count:102781610 (estimated locally)
+;;              4 [11.0% (guessed)]  count:12992276 (estimated locally)
+;; bb 14 artificial_defs: { }
+;; bb 14 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	
+;; live  in  	 7 [sp]
+;; live  gen 	
+;; live  kill	
+(code_label 93 90 94 14 57 (nil) [3 uses])
+(note 94 93 135 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       EXIT [always]  count:315561727 (estimated locally) (FALLTHRU)
+;; lr  out 	 7 [sp]
+;; live  out 	 7 [sp]
+
+(note 135 94 0 NOTE_INSN_DELETED)
+
+;; Function wcursyncup (wcursyncup, funcdef_no=96, decl_uid=6231, cgraph_uid=97, symbol_order=96)
+
+
+
+wcursyncup
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 7 [sp]
+;;  regs ever live 	 0 [ax] 1 [dx] 3 [bx] 4 [si] 5 [di] 7 [sp] 17 [flags]
+;;  ref usage 	r0={2d} r1={4d,2u} r2={2d} r3={2d,8u,2e} r4={4d,2u} r5={3d,3u} r7={1d,7u} r8={1d} r9={1d} r10={1d} r11={1d} r12={1d} r13={1d} r14={1d} r15={1d} r17={6d,3u} r18={1d} r20={2d} r21={2d} r22={2d} r23={2d} r24={2d} r25={2d} r26={2d} r27={2d} r28={1d} r29={1d} r30={1d} r31={1d} r32={1d} r33={1d} r34={1d} r35={1d} r36={2d} r37={2d} r38={1d} r39={1d} r44={1d} r45={1d} r46={1d} r47={1d} r48={1d} r49={1d} r50={1d} r51={1d} r52={1d} r53={1d} r54={1d} r55={1d} r56={1d} r57={1d} r58={1d} r59={1d} r60={1d} r61={1d} r62={1d} r63={1d} r64={1d} r65={1d} r66={1d} r67={1d} r68={1d} r69={1d} r70={1d} r71={1d} r72={1d} r73={1d} r74={1d} r75={1d} 
+;;    total ref usage 122{95d,25u,2e} in 15{14 regular + 1 call} insns.
+(note 1 0 4 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 114863530 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:114863530 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(7){ }}
+;; lr  in  	 5 [di] 7 [sp]
+;; lr  use 	 5 [di] 7 [sp]
+;; lr  def 	 3 [bx] 17 [flags]
+;; live  in  	 5 [di] 7 [sp]
+;; live  gen 	 3 [bx] 17 [flags]
+;; live  kill	
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v/f:DI 3 bx [orig:89 win ] [89])
+        (reg:DI 5 di [96])) "../ncurses/./base/lib_window.c":167:1 74 {*movdi_internal}
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 3 bx [orig:89 win ] [89])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":171:23 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 7 6 53 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 26)
+            (pc))) "../ncurses/./base/lib_window.c":171:23 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 26)
+;;  succ:       5 [94.5% (guessed)]  count:108546036 (estimated locally)
+;;              3 [5.5% (guessed)]  count:6317494 (estimated locally) (FALLTHRU)
+;; lr  out 	 3 [bx] 7 [sp]
+;; live  out 	 3 [bx] 7 [sp]
+
+;; basic block 3, loop depth 0, count 6317494 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       2 [5.5% (guessed)]  count:6317494 (estimated locally) (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	
+;; live  in  	 7 [sp]
+;; live  gen 	
+;; live  kill	
+(note 53 7 54 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 54 53 55 3 (set (pc)
+        (label_ref 35)) 807 {jump}
+     (nil)
+ -> 35)
+;;  succ:       6 [always]  count:6317494 (estimated locally)
+;; lr  out 	 7 [sp]
+;; live  out 	 7 [sp]
+
+(barrier 55 54 29)
+;; basic block 4, loop depth 0, count 958878296 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       5 [94.5% (guessed)]  count:958878295 (estimated locally)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 5 [di] 7 [sp]
+;; lr  use 	 3 [bx] 5 [di] 7 [sp]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;; live  in  	 3 [bx] 5 [di] 7 [sp]
+;; live  gen 	 0 [ax] 1 [dx] 3 [bx] 4 [si] 17 [flags]
+;; live  kill	 17 [flags]
+(code_label 29 55 11 4 88 (nil) [1 uses])
+(note 11 29 12 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(note 12 11 13 4 NOTE_INSN_DELETED)
+(insn 13 12 14 4 (set (reg:SI 1 dx [orig:92 wp_16->_curx ] [92])
+        (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:89 win ] [89])
+                (const_int 4 [0x4])) [3 wp_16->_curx+0 S4 A32])) "../ncurses/./base/lib_window.c":172:2 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:89 win ] [89])
+                (const_int 4 [0x4])) [3 wp_16->_curx+0 S4 A32])
+        (nil)))
+(insn 14 13 15 4 (parallel [
+            (set (reg:SI 1 dx [90])
+                (plus:SI (reg:SI 1 dx [orig:92 wp_16->_curx ] [92])
+                    (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:89 win ] [89])
+                            (const_int 72 [0x48])) [3 wp_16->_parx+0 S4 A64])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_window.c":172:2 209 {*addsi_1}
+     (nil))
+(note 15 14 16 4 NOTE_INSN_DELETED)
+(insn 16 15 17 4 (set (reg:SI 4 si [orig:95 wp_16->_cury ] [95])
+        (mem:SI (reg/v/f:DI 3 bx [orig:89 win ] [89]) [3 wp_16->_cury+0 S4 A64])) "../ncurses/./base/lib_window.c":172:2 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (mem:SI (reg/v/f:DI 3 bx [orig:89 win ] [89]) [3 wp_16->_cury+0 S4 A64])
+        (nil)))
+(insn 17 16 21 4 (parallel [
+            (set (reg:SI 4 si [93])
+                (plus:SI (reg:SI 4 si [orig:95 wp_16->_cury ] [95])
+                    (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:89 win ] [89])
+                            (const_int 76 [0x4c])) [3 wp_16->_pary+0 S4 A32])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_window.c":172:2 209 {*addsi_1}
+     (nil))
+(call_insn 21 17 22 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wmove") [flags 0x41]  <function_decl 0x7ffbf3056600 wmove>) [0 wmove S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":172:2 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wmove") [flags 0x41]  <function_decl 0x7ffbf3056600 wmove>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 22 21 24 4 (set (reg/v/f:DI 3 bx [orig:89 win ] [89])
+        (mem/f:DI (plus:DI (reg/v/f:DI 3 bx [orig:89 win ] [89])
+                (const_int 80 [0x50])) [6 wp_16->_parent+0 S8 A64])) "../ncurses/./base/lib_window.c":171:42 74 {*movdi_internal}
+     (nil))
+(insn 24 22 25 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 3 bx [orig:89 win ] [89])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":171:23 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 25 24 26 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 35)
+            (pc))) "../ncurses/./base/lib_window.c":171:23 806 {*jcc}
+     (int_list:REG_BR_PROB 59055804 (nil))
+ -> 35)
+;;  succ:       5 [94.5% (guessed)]  count:906139990 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              6 [5.5% (guessed)]  count:52738306 (estimated locally) (LOOP_EXIT)
+;; lr  out 	 3 [bx] 7 [sp]
+;; live  out 	 3 [bx] 7 [sp]
+
+;; basic block 5, loop depth 0, count 1014686026 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       4 [94.5% (guessed)]  count:906139990 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              2 [94.5% (guessed)]  count:108546036 (estimated locally)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 7 [sp]
+;; lr  use 	 3 [bx] 7 [sp]
+;; lr  def 	 5 [di] 17 [flags]
+;; live  in  	 3 [bx] 7 [sp]
+;; live  gen 	 5 [di] 17 [flags]
+;; live  kill	
+(code_label 26 25 27 5 86 (nil) [1 uses])
+(note 27 26 28 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 28 27 30 5 (set (reg/f:DI 5 di [orig:88 _7 ] [88])
+        (mem/f:DI (plus:DI (reg/v/f:DI 3 bx [orig:89 win ] [89])
+                (const_int 80 [0x50])) [6 wp_16->_parent+0 S8 A64])) "../ncurses/./base/lib_window.c":171:28 74 {*movdi_internal}
+     (nil))
+(insn 30 28 31 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 5 di [orig:88 _7 ] [88])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":171:23 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 31 30 35 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 29)
+            (pc))) "../ncurses/./base/lib_window.c":171:23 806 {*jcc}
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 29)
+;;  succ:       4 [94.5% (guessed)]  count:958878295 (estimated locally)
+;;              6 [5.5% (guessed)]  count:55807731 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;; lr  out 	 3 [bx] 5 [di] 7 [sp]
+;; live  out 	 3 [bx] 5 [di] 7 [sp]
+
+;; basic block 6, loop depth 0, count 114863531 (estimated locally), maybe hot
+;;  prev block 5, next block 1, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       5 [5.5% (guessed)]  count:55807731 (estimated locally) (FALLTHRU,LOOP_EXIT)
+;;              4 [5.5% (guessed)]  count:52738306 (estimated locally) (LOOP_EXIT)
+;;              3 [always]  count:6317494 (estimated locally)
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	
+;; live  in  	 7 [sp]
+;; live  gen 	
+;; live  kill	
+(code_label 35 31 36 6 85 (nil) [2 uses])
+(note 36 35 56 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       EXIT [always]  count:114863531 (estimated locally) (FALLTHRU)
+;; lr  out 	 7 [sp]
+;; live  out 	 7 [sp]
+
+(note 56 36 0 NOTE_INSN_DELETED)
+
+;; Function dupwin (dupwin, funcdef_no=97, decl_uid=5601, cgraph_uid=98, symbol_order=97)
+
+Splitting with gen_split_298 (i386.md:11231)
+scanning new insn with uid = 216.
+deleting insn with uid = 139.
+deleting insn with uid = 139.
+Splitting with gen_split_86 (i386.md:5551)
+scanning new insn with uid = 217.
+deleting insn with uid = 154.
+deleting insn with uid = 154.
+Splitting with gen_split_481 (i386.md:19507)
+scanning new insn with uid = 218.
+deleting insn with uid = 78.
+deleting insn with uid = 78.
+Splitting with gen_split_85 (i386.md:5551)
+scanning new insn with uid = 219.
+deleting insn with uid = 38.
+deleting insn with uid = 38.
+Splitting with gen_split_85 (i386.md:5551)
+scanning new insn with uid = 220.
+deleting insn with uid = 40.
+deleting insn with uid = 40.
+Splitting with gen_split_85 (i386.md:5551)
+scanning new insn with uid = 221.
+deleting insn with uid = 23.
+deleting insn with uid = 23.
+Splitting with gen_split_85 (i386.md:5551)
+scanning new insn with uid = 222.
+deleting insn with uid = 25.
+deleting insn with uid = 25.
+
+
+dupwin
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 7 [sp]
+;;  regs ever live 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 17 [flags] 20 [xmm0] 21 [xmm1] 22 [xmm2] 36 [r8] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;;  ref usage 	r0={38d,38u,1e} r1={13d,7u} r2={10d,3u} r3={1d,38u,22e} r4={11d,4u} r5={13d,7u} r6={3d,6u,1e} r7={1d,20u} r8={6d} r9={6d} r10={6d} r11={6d} r12={6d} r13={6d} r14={6d} r15={6d} r17={16d,6u} r18={6d} r20={8d,1u} r21={8d,1u} r22={8d,1u} r23={7d} r24={7d} r25={7d} r26={7d} r27={7d} r28={6d} r29={6d} r30={6d} r31={6d} r32={6d} r33={6d} r34={6d} r35={6d} r36={8d,1u} r37={7d} r38={6d} r39={6d} r40={3d,32u} r41={2d,2u} r42={1d,2u} r43={2d,4u} r44={6d} r45={6d} r46={6d} r47={6d} r48={6d} r49={6d} r50={6d} r51={6d} r52={6d} r53={6d} r54={6d} r55={6d} r56={6d} r57={6d} r58={6d} r59={6d} r60={6d} r61={6d} r62={6d} r63={6d} r64={6d} r65={6d} r66={6d} r67={6d} r68={6d} r69={6d} r70={6d} r71={6d} r72={6d} r73={6d} r74={6d} r75={6d} 
+;;    total ref usage 691{494d,173u,24e} in 117{111 regular + 6 call} insns.
+(note 1 0 6 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 228694573 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:228694573 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(7){ }}
+;; lr  in  	 5 [di] 7 [sp]
+;; lr  use 	 5 [di] 7 [sp]
+;; lr  def 	 3 [bx] 17 [flags] 40 [r12]
+;; live  in  	 5 [di] 7 [sp]
+;; live  gen 	 3 [bx] 17 [flags] 40 [r12]
+;; live  kill	
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 3 bx [orig:139 win ] [139])
+        (reg:DI 5 di [180])) "../ncurses/./base/lib_window.c":180:1 74 {*movdi_internal}
+     (nil))
+(note 3 2 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 3 8 2 (set (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+        (const_int 0 [0])) "../ncurses/./base/lib_window.c":181:13 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (const_int 0 [0])
+        (nil)))
+(insn 8 5 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 3 bx [orig:139 win ] [139])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":185:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 172)
+            (pc))) "../ncurses/./base/lib_window.c":185:8 806 {*jcc}
+     (int_list:REG_BR_PROB 281535108 (nil))
+ -> 172)
+;;  succ:       3 [73.8% (guessed)]  count:168730856 (estimated locally) (FALLTHRU)
+;;              14 [26.2% (guessed)]  count:59963717 (estimated locally)
+;; lr  out 	 3 [bx] 7 [sp] 40 [r12]
+;; live  out 	 3 [bx] 7 [sp] 40 [r12]
+
+;; basic block 3, loop depth 0, count 168730857 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       2 [73.8% (guessed)]  count:168730856 (estimated locally) (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 7 [sp]
+;; lr  use 	 3 [bx] 7 [sp]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 42 [r14] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;; live  in  	 3 [bx] 7 [sp]
+;; live  gen 	 0 [ax] 5 [di] 6 [bp] 17 [flags] 42 [r14]
+;; live  kill	
+(note 10 9 11 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 3 (set (reg:DI 5 di)
+        (reg/v/f:DI 3 bx [orig:139 win ] [139])) "../ncurses/./base/lib_window.c":187:15 74 {*movdi_internal}
+     (nil))
+(call_insn 12 11 13 3 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_screen_of") [flags 0x41]  <function_decl 0x7ffbf31f3100 _nc_screen_of>) [0 _nc_screen_of S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":187:15 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_screen_of") [flags 0x41]  <function_decl 0x7ffbf31f3100 _nc_screen_of>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 13 12 14 3 (set (reg/v/f:DI 6 bp [orig:133 sp ] [133])
+        (reg:DI 0 ax [181])) "../ncurses/./base/lib_window.c":187:15 74 {*movdi_internal}
+     (nil))
+(insn 14 13 15 3 (set (reg/f:DI 42 r14 [179])
+        (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7ffbf312aea0 _nc_globals>)
+                (const_int 504 [0x1f8])))) "../ncurses/./base/lib_window.c":189:2 74 {*movdi_internal}
+     (expr_list:REG_EQUIV (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7ffbf312aea0 _nc_globals>)
+                (const_int 504 [0x1f8])))
+        (nil)))
+(insn 15 14 16 3 (set (reg:DI 5 di)
+        (reg/f:DI 42 r14 [179])) "../ncurses/./base/lib_window.c":189:2 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7ffbf312aea0 _nc_globals>)
+                (const_int 504 [0x1f8])))
+        (nil)))
+(call_insn 16 15 17 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_mutex_lock") [flags 0x41]  <function_decl 0x7ffbf31a9100 _nc_mutex_lock>) [0 _nc_mutex_lock S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":189:2 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_mutex_lock") [flags 0x41]  <function_decl 0x7ffbf31a9100 _nc_mutex_lock>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(note 17 16 18 3 NOTE_INSN_DELETED)
+(note 18 17 205 3 NOTE_INSN_DELETED)
+(insn 205 18 20 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (and:QI (mem:QI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                        (const_int 24 [0x18])) [4 win_63(D)->_flags+0 S1 A64])
+                (const_int 16 [0x10]))
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":190:5 472 {*testqi_1_maybe_si}
+     (nil))
+(jump_insn 20 205 21 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 33)
+            (pc))) "../ncurses/./base/lib_window.c":190:5 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 33)
+;;  succ:       4 [50.0% (guessed)]  count:84365429 (estimated locally) (FALLTHRU)
+;;              5 [50.0% (guessed)]  count:84365429 (estimated locally)
+;; lr  out 	 3 [bx] 6 [bp] 7 [sp] 42 [r14]
+;; live  out 	 3 [bx] 6 [bp] 7 [sp] 42 [r14]
+
+;; basic block 4, loop depth 0, count 84365428 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       3 [50.0% (guessed)]  count:84365429 (estimated locally) (FALLTHRU)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 6 [bp] 7 [sp] 42 [r14]
+;; lr  use 	 3 [bx] 6 [bp] 7 [sp]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;; live  in  	 3 [bx] 6 [bp] 7 [sp] 42 [r14]
+;; live  gen 	 0 [ax] 1 [dx] 4 [si] 5 [di] 40 [r12]
+;; live  kill	 17 [flags]
+(note 21 20 22 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(note 22 21 207 4 NOTE_INSN_DELETED)
+(insn 207 22 221 4 (set (reg:SI 0 ax [185])
+        (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 12 [0xc])) [3 win_63(D)->_maxx+0 S4 A32])) "../ncurses/./base/lib_window.c":191:13 75 {*movsi_internal}
+     (nil))
+(insn 221 207 24 4 (set (reg:SI 1 dx [143])
+        (plus:SI (reg:SI 0 ax [185])
+            (const_int 1 [0x1]))) "../ncurses/./base/lib_window.c":191:13 205 {*leasi}
+     (nil))
+(note 24 221 208 4 NOTE_INSN_DELETED)
+(insn 208 24 222 4 (set (reg:SI 0 ax [186])
+        (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 8 [0x8])) [3 win_63(D)->_maxy+0 S4 A64])) "../ncurses/./base/lib_window.c":191:13 75 {*movsi_internal}
+     (nil))
+(insn 222 208 28 4 (set (reg:SI 4 si [145])
+        (plus:SI (reg:SI 0 ax [186])
+            (const_int 1 [0x1]))) "../ncurses/./base/lib_window.c":191:13 205 {*leasi}
+     (nil))
+(insn 28 222 29 4 (set (reg:DI 5 di)
+        (reg/v/f:DI 6 bp [orig:133 sp ] [133])) "../ncurses/./base/lib_window.c":191:13 74 {*movdi_internal}
+     (nil))
+(call_insn 29 28 30 4 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("newpad_sp") [flags 0x41]  <function_decl 0x7ffbf3079400 newpad_sp>) [0 newpad_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":191:13 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("newpad_sp") [flags 0x41]  <function_decl 0x7ffbf3079400 newpad_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 30 29 197 4 (set (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+        (reg:DI 0 ax [182])) "../ncurses/./base/lib_window.c":191:13 74 {*movdi_internal}
+     (nil))
+(jump_insn 197 30 198 4 (set (pc)
+        (label_ref 48)) 807 {jump}
+     (nil)
+ -> 48)
+;;  succ:       6 [always]  count:84365428 (estimated locally)
+;; lr  out 	 3 [bx] 7 [sp] 40 [r12] 42 [r14]
+;; live  out 	 3 [bx] 7 [sp] 40 [r12] 42 [r14]
+
+(barrier 198 197 33)
+;; basic block 5, loop depth 0, count 84365428 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       3 [50.0% (guessed)]  count:84365429 (estimated locally)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 6 [bp] 7 [sp] 42 [r14]
+;; lr  use 	 3 [bx] 6 [bp] 7 [sp]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 40 [r12] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;; live  in  	 3 [bx] 6 [bp] 7 [sp] 42 [r14]
+;; live  gen 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 36 [r8] 40 [r12]
+;; live  kill	 17 [flags]
+(code_label 33 198 34 5 100 (nil) [1 uses])
+(note 34 33 35 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(note 35 34 36 5 NOTE_INSN_DELETED)
+(insn 36 35 37 5 (set (reg:SI 2 cx [orig:148 win_63(D)->_begy ] [148])
+        (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 16 [0x10])) [3 win_63(D)->_begy+0 S4 A64])) "../ncurses/./base/lib_window.c":195:13 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 16 [0x10])) [3 win_63(D)->_begy+0 S4 A64])
+        (nil)))
+(note 37 36 209 5 NOTE_INSN_DELETED)
+(insn 209 37 219 5 (set (reg:SI 0 ax [187])
+        (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 12 [0xc])) [3 win_63(D)->_maxx+0 S4 A32])) "../ncurses/./base/lib_window.c":195:13 75 {*movsi_internal}
+     (nil))
+(insn 219 209 39 5 (set (reg:SI 1 dx [149])
+        (plus:SI (reg:SI 0 ax [187])
+            (const_int 1 [0x1]))) "../ncurses/./base/lib_window.c":195:13 205 {*leasi}
+     (nil))
+(note 39 219 210 5 NOTE_INSN_DELETED)
+(insn 210 39 220 5 (set (reg:SI 0 ax [188])
+        (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 8 [0x8])) [3 win_63(D)->_maxy+0 S4 A64])) "../ncurses/./base/lib_window.c":195:13 75 {*movsi_internal}
+     (nil))
+(insn 220 210 41 5 (set (reg:SI 4 si [151])
+        (plus:SI (reg:SI 0 ax [188])
+            (const_int 1 [0x1]))) "../ncurses/./base/lib_window.c":195:13 205 {*leasi}
+     (nil))
+(insn 41 220 45 5 (set (reg:SI 36 r8)
+        (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 20 [0x14])) [3 win_63(D)->_begx+0 S4 A32])) "../ncurses/./base/lib_window.c":195:13 75 {*movsi_internal}
+     (nil))
+(insn 45 41 46 5 (set (reg:DI 5 di)
+        (reg/v/f:DI 6 bp [orig:133 sp ] [133])) "../ncurses/./base/lib_window.c":195:13 74 {*movdi_internal}
+     (nil))
+(call_insn 46 45 47 5 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("newwin_sp") [flags 0x41]  <function_decl 0x7ffbf3079600 newwin_sp>) [0 newwin_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":195:13 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("newwin_sp") [flags 0x41]  <function_decl 0x7ffbf3079600 newwin_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (expr_list:SI (use (reg:SI 36 r8))
+                        (nil)))))))
+(insn 47 46 48 5 (set (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+        (reg:DI 0 ax [183])) "../ncurses/./base/lib_window.c":195:13 74 {*movdi_internal}
+     (nil))
+;;  succ:       6 [always]  count:84365428 (estimated locally) (FALLTHRU)
+;; lr  out 	 3 [bx] 7 [sp] 40 [r12] 42 [r14]
+;; live  out 	 3 [bx] 7 [sp] 40 [r12] 42 [r14]
+
+;; basic block 6, loop depth 0, count 168730857 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       5 [always]  count:84365428 (estimated locally) (FALLTHRU)
+;;              4 [always]  count:84365428 (estimated locally)
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 7 [sp] 40 [r12] 42 [r14]
+;; lr  use 	 7 [sp] 40 [r12]
+;; lr  def 	 17 [flags]
+;; live  in  	 3 [bx] 7 [sp] 40 [r12] 42 [r14]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(code_label 48 47 49 6 101 (nil) [1 uses])
+(note 49 48 50 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 50 49 51 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":202:5 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 51 50 127 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 58)
+            (pc))) "../ncurses/./base/lib_window.c":202:5 806 {*jcc}
+     (int_list:REG_BR_PROB 751619284 (nil))
+ -> 58)
+;;  succ:       8 [70.0% (guessed)]  count:118111600 (estimated locally)
+;;              7 [30.0% (guessed)]  count:50619257 (estimated locally) (FALLTHRU)
+;; lr  out 	 3 [bx] 7 [sp] 40 [r12] 42 [r14]
+;; live  out 	 3 [bx] 7 [sp] 40 [r12] 42 [r14]
+
+;; basic block 7, loop depth 0, count 168730857 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       6 [30.0% (guessed)]  count:50619257 (estimated locally) (FALLTHRU)
+;;              10 [11.0% (guessed)]  count:12992276 (estimated locally)
+;;              13 [always]  count:105119324 (estimated locally) (LOOP_EXIT)
+;; bb 7 artificial_defs: { }
+;; bb 7 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp] 40 [r12] 42 [r14]
+;; lr  use 	 7 [sp] 42 [r14]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;; live  in  	 7 [sp] 40 [r12] 42 [r14]
+;; live  gen 	 0 [ax] 5 [di]
+;; live  kill	
+(code_label 127 51 52 7 104 (nil) [2 uses])
+(note 52 127 54 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 54 52 55 7 (set (reg:DI 5 di)
+        (reg/f:DI 42 r14 [179])) "../ncurses/./base/lib_window.c":251:2 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7ffbf312aea0 _nc_globals>)
+                (const_int 504 [0x1f8])))
+        (nil)))
+(call_insn 55 54 199 7 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_mutex_unlock") [flags 0x41]  <function_decl 0x7ffbf31a9300 _nc_mutex_unlock>) [0 _nc_mutex_unlock S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":251:2 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_mutex_unlock") [flags 0x41]  <function_decl 0x7ffbf31a9300 _nc_mutex_unlock>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(jump_insn 199 55 200 7 (set (pc)
+        (label_ref 172)) 807 {jump}
+     (nil)
+ -> 172)
+;;  succ:       14 [always]  count:168730857 (estimated locally)
+;; lr  out 	 7 [sp] 40 [r12]
+;; live  out 	 7 [sp] 40 [r12]
+
+(barrier 200 199 58)
+;; basic block 8, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       6 [70.0% (guessed)]  count:118111600 (estimated locally)
+;; bb 8 artificial_defs: { }
+;; bb 8 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 7 [sp] 40 [r12] 42 [r14]
+;; lr  use 	 3 [bx] 7 [sp] 40 [r12]
+;; lr  def 	 0 [ax] 1 [dx] 17 [flags] 20 [xmm0] 21 [xmm1]
+;; live  in  	 3 [bx] 7 [sp] 40 [r12] 42 [r14]
+;; live  gen 	 0 [ax] 1 [dx] 17 [flags] 20 [xmm0] 21 [xmm1]
+;; live  kill	 17 [flags]
+(code_label 58 200 59 8 102 (nil) [1 uses])
+(note 59 58 60 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 60 59 61 8 (set (reg:SI 0 ax [orig:93 _12 ] [93])
+        (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 4 [0x4])) [3 win_63(D)->_curx+0 S4 A32])) "../ncurses/./base/lib_window.c":206:23 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 4 [0x4])) [3 win_63(D)->_curx+0 S4 A32])
+        (nil)))
+(insn 61 60 62 8 (set (mem:SI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 4 [0x4])) [3 nwin_54->_curx+0 S4 A32])
+        (reg:SI 0 ax [orig:93 _12 ] [93])) "../ncurses/./base/lib_window.c":206:18 75 {*movsi_internal}
+     (nil))
+(insn 62 61 63 8 (set (reg:SI 0 ax [orig:94 _13 ] [94])
+        (mem:SI (reg/v/f:DI 3 bx [orig:139 win ] [139]) [3 win_63(D)->_cury+0 S4 A64])) "../ncurses/./base/lib_window.c":207:23 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (mem:SI (reg/v/f:DI 3 bx [orig:139 win ] [139]) [3 win_63(D)->_cury+0 S4 A64])
+        (nil)))
+(insn 63 62 64 8 (set (mem:SI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138]) [3 nwin_54->_cury+0 S4 A64])
+        (reg:SI 0 ax [orig:94 _13 ] [94])) "../ncurses/./base/lib_window.c":207:18 75 {*movsi_internal}
+     (nil))
+(insn 64 63 65 8 (set (reg:SI 1 dx [orig:95 _14 ] [95])
+        (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 8 [0x8])) [3 win_63(D)->_maxy+0 S4 A64])) "../ncurses/./base/lib_window.c":208:23 75 {*movsi_internal}
+     (nil))
+(insn 65 64 66 8 (set (mem:SI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 8 [0x8])) [3 nwin_54->_maxy+0 S4 A64])
+        (reg:SI 1 dx [orig:95 _14 ] [95])) "../ncurses/./base/lib_window.c":208:18 75 {*movsi_internal}
+     (nil))
+(insn 66 65 67 8 (set (reg:SI 0 ax [orig:96 _15 ] [96])
+        (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 12 [0xc])) [3 win_63(D)->_maxx+0 S4 A32])) "../ncurses/./base/lib_window.c":209:23 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 12 [0xc])) [3 win_63(D)->_maxx+0 S4 A32])
+        (nil)))
+(insn 67 66 68 8 (set (mem:SI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 12 [0xc])) [3 nwin_54->_maxx+0 S4 A32])
+        (reg:SI 0 ax [orig:96 _15 ] [96])) "../ncurses/./base/lib_window.c":209:18 75 {*movsi_internal}
+     (nil))
+(insn 68 67 69 8 (set (reg:SI 0 ax [orig:97 _16 ] [97])
+        (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 16 [0x10])) [3 win_63(D)->_begy+0 S4 A64])) "../ncurses/./base/lib_window.c":210:23 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 16 [0x10])) [3 win_63(D)->_begy+0 S4 A64])
+        (nil)))
+(insn 69 68 70 8 (set (mem:SI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 16 [0x10])) [3 nwin_54->_begy+0 S4 A64])
+        (reg:SI 0 ax [orig:97 _16 ] [97])) "../ncurses/./base/lib_window.c":210:18 75 {*movsi_internal}
+     (nil))
+(insn 70 69 71 8 (set (reg:SI 0 ax [orig:98 _17 ] [98])
+        (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 20 [0x14])) [3 win_63(D)->_begx+0 S4 A32])) "../ncurses/./base/lib_window.c":211:23 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 20 [0x14])) [3 win_63(D)->_begx+0 S4 A32])
+        (nil)))
+(insn 71 70 72 8 (set (mem:SI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 20 [0x14])) [3 nwin_54->_begx+0 S4 A32])
+        (reg:SI 0 ax [orig:98 _17 ] [98])) "../ncurses/./base/lib_window.c":211:18 75 {*movsi_internal}
+     (nil))
+(insn 72 71 73 8 (set (reg:SI 0 ax [orig:99 _18 ] [99])
+        (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 112 [0x70])) [3 win_63(D)->_yoffset+0 S4 A64])) "../ncurses/./base/lib_window.c":212:26 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 112 [0x70])) [3 win_63(D)->_yoffset+0 S4 A64])
+        (nil)))
+(insn 73 72 77 8 (set (mem:SI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 112 [0x70])) [3 nwin_54->_yoffset+0 S4 A64])
+        (reg:SI 0 ax [orig:99 _18 ] [99])) "../ncurses/./base/lib_window.c":212:21 75 {*movsi_internal}
+     (nil))
+(note 77 73 211 8 NOTE_INSN_DELETED)
+(insn 211 77 218 8 (set (reg:HI 0 ax [156])
+        (mem:HI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 24 [0x18])) [4 win_63(D)->_flags+0 S2 A64])) "../ncurses/./base/lib_window.c":214:19 76 {*movhi_internal}
+     (nil))
+(insn 218 211 79 8 (parallel [
+            (set (reg:SI 0 ax [156])
+                (and:SI (reg:SI 0 ax [156])
+                    (const_int -2 [0xfffffffffffffffe])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_window.c":214:19 490 {*andsi_1}
+     (nil))
+(insn 79 218 80 8 (set (mem:HI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 24 [0x18])) [4 nwin_54->_flags+0 S2 A64])
+        (reg:HI 0 ax [156])) "../ncurses/./base/lib_window.c":214:19 76 {*movhi_internal}
+     (nil))
+(insn 80 79 81 8 (set (reg:SI 0 ax [orig:102 _21 ] [102])
+        (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 28 [0x1c])) [3 win_63(D)->_attrs+0 S4 A32])) "../ncurses/./base/lib_window.c":219:27 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 28 [0x1c])) [3 win_63(D)->_attrs+0 S4 A32])
+        (nil)))
+(insn 81 80 82 8 (set (mem:SI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 28 [0x1c])) [3 nwin_54->_attrs+0 S4 A32])
+        (reg:SI 0 ax [orig:102 _21 ] [102])) "../ncurses/./base/lib_window.c":219:25 75 {*movsi_internal}
+     (nil))
+(note 82 81 83 8 NOTE_INSN_DELETED)
+(insn 83 82 213 8 (set (reg:V1TI 20 xmm0 [190])
+        (mem:V1TI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 116 [0x74])) [8 win_63(D)->_bkgrnd+0 S16 A32])) "../ncurses/./base/lib_window.c":220:21 1442 {movv1ti_internal}
+     (nil))
+(insn 213 83 84 8 (set (mem:V1TI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 116 [0x74])) [8 nwin_54->_bkgrnd+0 S16 A32])
+        (reg:V1TI 20 xmm0 [190])) "../ncurses/./base/lib_window.c":220:21 1442 {movv1ti_internal}
+     (nil))
+(note 84 213 85 8 NOTE_INSN_DELETED)
+(insn 85 84 214 8 (set (reg:V1TI 21 xmm1 [191])
+        (mem:V1TI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 132 [0x84])) [8 win_63(D)->_bkgrnd+16 S16 A32])) "../ncurses/./base/lib_window.c":220:21 1442 {movv1ti_internal}
+     (nil))
+(insn 214 85 86 8 (set (mem:V1TI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 132 [0x84])) [8 nwin_54->_bkgrnd+16 S16 A32])
+        (reg:V1TI 21 xmm1 [191])) "../ncurses/./base/lib_window.c":220:21 1442 {movv1ti_internal}
+     (nil))
+(insn 86 214 87 8 (set (reg:QI 0 ax [orig:103 _22 ] [103])
+        (mem:QI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 36 [0x24])) [1 win_63(D)->_notimeout+0 S1 A32])) "../ncurses/./base/lib_window.c":222:28 77 {*movqi_internal}
+     (expr_list:REG_EQUIV (mem:QI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 36 [0x24])) [1 win_63(D)->_notimeout+0 S1 A32])
+        (nil)))
+(insn 87 86 88 8 (set (mem:QI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 36 [0x24])) [1 nwin_54->_notimeout+0 S1 A32])
+        (reg:QI 0 ax [orig:103 _22 ] [103])) "../ncurses/./base/lib_window.c":222:23 77 {*movqi_internal}
+     (nil))
+(insn 88 87 89 8 (set (reg:QI 0 ax [orig:104 _23 ] [104])
+        (mem:QI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 37 [0x25])) [1 win_63(D)->_clear+0 S1 A8])) "../ncurses/./base/lib_window.c":223:24 77 {*movqi_internal}
+     (expr_list:REG_EQUIV (mem:QI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 37 [0x25])) [1 win_63(D)->_clear+0 S1 A8])
+        (nil)))
+(insn 89 88 90 8 (set (mem:QI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 37 [0x25])) [1 nwin_54->_clear+0 S1 A8])
+        (reg:QI 0 ax [orig:104 _23 ] [104])) "../ncurses/./base/lib_window.c":223:19 77 {*movqi_internal}
+     (nil))
+(insn 90 89 91 8 (set (reg:QI 0 ax [orig:105 _24 ] [105])
+        (mem:QI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 38 [0x26])) [1 win_63(D)->_leaveok+0 S1 A16])) "../ncurses/./base/lib_window.c":224:26 77 {*movqi_internal}
+     (expr_list:REG_EQUIV (mem:QI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 38 [0x26])) [1 win_63(D)->_leaveok+0 S1 A16])
+        (nil)))
+(insn 91 90 92 8 (set (mem:QI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 38 [0x26])) [1 nwin_54->_leaveok+0 S1 A16])
+        (reg:QI 0 ax [orig:105 _24 ] [105])) "../ncurses/./base/lib_window.c":224:21 77 {*movqi_internal}
+     (nil))
+(insn 92 91 93 8 (set (reg:QI 0 ax [orig:106 _25 ] [106])
+        (mem:QI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 39 [0x27])) [1 win_63(D)->_scroll+0 S1 A8])) "../ncurses/./base/lib_window.c":225:25 77 {*movqi_internal}
+     (expr_list:REG_EQUIV (mem:QI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 39 [0x27])) [1 win_63(D)->_scroll+0 S1 A8])
+        (nil)))
+(insn 93 92 94 8 (set (mem:QI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 39 [0x27])) [1 nwin_54->_scroll+0 S1 A8])
+        (reg:QI 0 ax [orig:106 _25 ] [106])) "../ncurses/./base/lib_window.c":225:20 77 {*movqi_internal}
+     (nil))
+(insn 94 93 95 8 (set (reg:QI 0 ax [orig:107 _26 ] [107])
+        (mem:QI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 40 [0x28])) [1 win_63(D)->_idlok+0 S1 A64])) "../ncurses/./base/lib_window.c":226:24 77 {*movqi_internal}
+     (expr_list:REG_EQUIV (mem:QI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 40 [0x28])) [1 win_63(D)->_idlok+0 S1 A64])
+        (nil)))
+(insn 95 94 96 8 (set (mem:QI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 40 [0x28])) [1 nwin_54->_idlok+0 S1 A64])
+        (reg:QI 0 ax [orig:107 _26 ] [107])) "../ncurses/./base/lib_window.c":226:19 77 {*movqi_internal}
+     (nil))
+(insn 96 95 97 8 (set (reg:QI 0 ax [orig:108 _27 ] [108])
+        (mem:QI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 41 [0x29])) [1 win_63(D)->_idcok+0 S1 A8])) "../ncurses/./base/lib_window.c":227:24 77 {*movqi_internal}
+     (expr_list:REG_EQUIV (mem:QI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 41 [0x29])) [1 win_63(D)->_idcok+0 S1 A8])
+        (nil)))
+(insn 97 96 98 8 (set (mem:QI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 41 [0x29])) [1 nwin_54->_idcok+0 S1 A8])
+        (reg:QI 0 ax [orig:108 _27 ] [108])) "../ncurses/./base/lib_window.c":227:19 77 {*movqi_internal}
+     (nil))
+(insn 98 97 99 8 (set (reg:QI 0 ax [orig:109 _28 ] [109])
+        (mem:QI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 42 [0x2a])) [1 win_63(D)->_immed+0 S1 A16])) "../ncurses/./base/lib_window.c":228:24 77 {*movqi_internal}
+     (expr_list:REG_EQUIV (mem:QI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 42 [0x2a])) [1 win_63(D)->_immed+0 S1 A16])
+        (nil)))
+(insn 99 98 100 8 (set (mem:QI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 42 [0x2a])) [1 nwin_54->_immed+0 S1 A16])
+        (reg:QI 0 ax [orig:109 _28 ] [109])) "../ncurses/./base/lib_window.c":228:19 77 {*movqi_internal}
+     (nil))
+(insn 100 99 101 8 (set (reg:QI 0 ax [orig:110 _29 ] [110])
+        (mem:QI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 43 [0x2b])) [1 win_63(D)->_sync+0 S1 A8])) "../ncurses/./base/lib_window.c":229:23 77 {*movqi_internal}
+     (expr_list:REG_EQUIV (mem:QI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 43 [0x2b])) [1 win_63(D)->_sync+0 S1 A8])
+        (nil)))
+(insn 101 100 102 8 (set (mem:QI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 43 [0x2b])) [1 nwin_54->_sync+0 S1 A8])
+        (reg:QI 0 ax [orig:110 _29 ] [110])) "../ncurses/./base/lib_window.c":229:18 77 {*movqi_internal}
+     (nil))
+(insn 102 101 103 8 (set (reg:QI 0 ax [orig:111 _30 ] [111])
+        (mem:QI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 44 [0x2c])) [1 win_63(D)->_use_keypad+0 S1 A32])) "../ncurses/./base/lib_window.c":230:29 77 {*movqi_internal}
+     (expr_list:REG_EQUIV (mem:QI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 44 [0x2c])) [1 win_63(D)->_use_keypad+0 S1 A32])
+        (nil)))
+(insn 103 102 104 8 (set (mem:QI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 44 [0x2c])) [1 nwin_54->_use_keypad+0 S1 A32])
+        (reg:QI 0 ax [orig:111 _30 ] [111])) "../ncurses/./base/lib_window.c":230:24 77 {*movqi_internal}
+     (nil))
+(insn 104 103 105 8 (set (reg:SI 0 ax [orig:112 _31 ] [112])
+        (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 48 [0x30])) [3 win_63(D)->_delay+0 S4 A64])) "../ncurses/./base/lib_window.c":231:24 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 48 [0x30])) [3 win_63(D)->_delay+0 S4 A64])
+        (nil)))
+(insn 105 104 106 8 (set (mem:SI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 48 [0x30])) [3 nwin_54->_delay+0 S4 A64])
+        (reg:SI 0 ax [orig:112 _31 ] [112])) "../ncurses/./base/lib_window.c":231:19 75 {*movsi_internal}
+     (nil))
+(insn 106 105 107 8 (set (mem:DI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 72 [0x48])) [3 MEM <unsigned long> [(int *)nwin_54 + 72B]+0 S8 A64])
+        (const_int 0 [0])) "../ncurses/./base/lib_window.c":233:18 74 {*movdi_internal}
+     (nil))
+(insn 107 106 108 8 (set (mem/f:DI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 80 [0x50])) [6 nwin_54->_parent+0 S8 A64])
+        (const_int 0 [0])) "../ncurses/./base/lib_window.c":235:20 74 {*movdi_internal}
+     (nil))
+(insn 108 107 109 8 (set (reg:SI 0 ax [orig:113 _32 ] [113])
+        (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 64 [0x40])) [3 win_63(D)->_regtop+0 S4 A64])) "../ncurses/./base/lib_window.c":238:25 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 64 [0x40])) [3 win_63(D)->_regtop+0 S4 A64])
+        (nil)))
+(insn 109 108 110 8 (set (mem:SI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 64 [0x40])) [3 nwin_54->_regtop+0 S4 A64])
+        (reg:SI 0 ax [orig:113 _32 ] [113])) "../ncurses/./base/lib_window.c":238:20 75 {*movsi_internal}
+     (nil))
+(insn 110 109 111 8 (set (reg:SI 0 ax [orig:114 _33 ] [114])
+        (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 68 [0x44])) [3 win_63(D)->_regbottom+0 S4 A32])) "../ncurses/./base/lib_window.c":239:28 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 68 [0x44])) [3 win_63(D)->_regbottom+0 S4 A32])
+        (nil)))
+(insn 111 110 112 8 (set (mem:SI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 68 [0x44])) [3 nwin_54->_regbottom+0 S4 A32])
+        (reg:SI 0 ax [orig:114 _33 ] [114])) "../ncurses/./base/lib_window.c":239:23 75 {*movsi_internal}
+     (nil))
+(note 112 111 113 8 NOTE_INSN_DELETED)
+(note 113 112 204 8 NOTE_INSN_DELETED)
+(insn 204 113 115 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (and:QI (mem:QI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                        (const_int 24 [0x18])) [4 win_63(D)->_flags+0 S1 A64])
+                (const_int 16 [0x10]))
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":241:9 472 {*testqi_1_maybe_si}
+     (nil))
+(jump_insn 115 204 116 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 121)
+            (pc))) "../ncurses/./base/lib_window.c":241:9 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 121)
+;;  succ:       9 [50.0% (guessed)]  count:59055800 (estimated locally) (FALLTHRU)
+;;              10 [50.0% (guessed)]  count:59055800 (estimated locally)
+;; lr  out 	 1 [dx] 3 [bx] 7 [sp] 40 [r12] 42 [r14]
+;; live  out 	 1 [dx] 3 [bx] 7 [sp] 40 [r12] 42 [r14]
+
+;; basic block 9, loop depth 0, count 59055800 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       8 [50.0% (guessed)]  count:59055800 (estimated locally) (FALLTHRU)
+;; bb 9 artificial_defs: { }
+;; bb 9 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 3 [bx] 7 [sp] 40 [r12] 42 [r14]
+;; lr  use 	 3 [bx] 7 [sp] 40 [r12]
+;; lr  def 	 0 [ax] 22 [xmm2]
+;; live  in  	 1 [dx] 3 [bx] 7 [sp] 40 [r12] 42 [r14]
+;; live  gen 	 0 [ax] 22 [xmm2]
+;; live  kill	
+(note 116 115 117 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(note 117 116 118 9 NOTE_INSN_DELETED)
+(insn 118 117 215 9 (set (reg:V1TI 22 xmm2 [192])
+        (mem:V1TI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 88 [0x58])) [7 win_63(D)->_pad+0 S16 A64])) "../ncurses/./base/lib_window.c":242:14 1442 {movv1ti_internal}
+     (nil))
+(insn 215 118 119 9 (set (mem:V1TI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 88 [0x58])) [7 nwin_54->_pad+0 S16 A64])
+        (reg:V1TI 22 xmm2 [192])) "../ncurses/./base/lib_window.c":242:14 1442 {movv1ti_internal}
+     (nil))
+(insn 119 215 120 9 (set (reg:DI 0 ax [orig:163 win_63(D)->_pad+16 ] [163])
+        (mem:DI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 104 [0x68])) [7 win_63(D)->_pad+16 S8 A64])) "../ncurses/./base/lib_window.c":242:14 74 {*movdi_internal}
+     (expr_list:REG_EQUIV (mem:DI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 104 [0x68])) [7 win_63(D)->_pad+16 S8 A64])
+        (nil)))
+(insn 120 119 121 9 (set (mem:DI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 104 [0x68])) [7 nwin_54->_pad+16 S8 A64])
+        (reg:DI 0 ax [orig:163 win_63(D)->_pad+16 ] [163])) "../ncurses/./base/lib_window.c":242:14 74 {*movdi_internal}
+     (nil))
+;;  succ:       10 [always]  count:59055800 (estimated locally) (FALLTHRU)
+;; lr  out 	 1 [dx] 3 [bx] 7 [sp] 40 [r12] 42 [r14]
+;; live  out 	 1 [dx] 3 [bx] 7 [sp] 40 [r12] 42 [r14]
+
+;; basic block 10, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       8 [50.0% (guessed)]  count:59055800 (estimated locally)
+;;              9 [always]  count:59055800 (estimated locally) (FALLTHRU)
+;; bb 10 artificial_defs: { }
+;; bb 10 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 3 [bx] 7 [sp] 40 [r12] 42 [r14]
+;; lr  use 	 1 [dx] 3 [bx] 7 [sp]
+;; lr  def 	 0 [ax] 17 [flags] 41 [r13]
+;; live  in  	 1 [dx] 3 [bx] 7 [sp] 40 [r12] 42 [r14]
+;; live  gen 	 0 [ax] 17 [flags] 41 [r13]
+;; live  kill	 17 [flags]
+(code_label 121 120 122 10 103 (nil) [1 uses])
+(note 122 121 123 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 123 122 124 10 (set (reg:SI 0 ax [orig:165 win_63(D)->_maxx ] [165])
+        (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 12 [0xc])) [3 win_63(D)->_maxx+0 S4 A32])) "../ncurses/./base/lib_window.c":244:40 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 12 [0xc])) [3 win_63(D)->_maxx+0 S4 A32])
+        (nil)))
+(note 124 123 125 10 NOTE_INSN_DELETED)
+(insn 125 124 126 10 (set (reg:DI 41 r13 [166])
+        (zero_extend:DI (plus:SI (reg:SI 0 ax [orig:165 win_63(D)->_maxx ] [165])
+                (const_int 1 [0x1])))) "../ncurses/./base/lib_window.c":244:17 206 {*leadi}
+     (nil))
+(insn 126 125 130 10 (parallel [
+            (set (reg/v:DI 41 r13 [orig:134 linesize ] [134])
+                (ashift:DI (reg:DI 41 r13 [166])
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_window.c":244:15 656 {*ashldi3_1}
+     (nil))
+(insn 130 126 131 10 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:SI 1 dx [orig:95 _14 ] [95])
+            (const_int 0 [0]))) "../ncurses/./base/lib_window.c":245:20 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 131 130 132 10 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 127)
+            (pc))) "../ncurses/./base/lib_window.c":245:20 806 {*jcc}
+     (int_list:REG_BR_PROB 118111604 (nil))
+ -> 127)
+;;  succ:       11 [89.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+;;              7 [11.0% (guessed)]  count:12992276 (estimated locally)
+;; lr  out 	 3 [bx] 7 [sp] 40 [r12] 41 [r13] 42 [r14]
+;; live  out 	 3 [bx] 7 [sp] 40 [r12] 41 [r13] 42 [r14]
+
+;; basic block 11, loop depth 0, count 105119324 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       10 [89.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+;; bb 11 artificial_defs: { }
+;; bb 11 artificial_uses: { u-1(7){ }}
+;; lr  in  	 3 [bx] 7 [sp] 40 [r12] 41 [r13] 42 [r14]
+;; lr  use 	 3 [bx] 7 [sp] 40 [r12]
+;; lr  def 	 1 [dx] 2 [cx] 43 [r15]
+;; live  in  	 3 [bx] 7 [sp] 40 [r12] 41 [r13] 42 [r14]
+;; live  gen 	 1 [dx] 2 [cx] 43 [r15]
+;; live  kill	
+(note 132 131 133 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 133 132 134 11 (set (reg/f:DI 2 cx [orig:124 _47 ] [124])
+        (mem/f:DI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 56 [0x38])) [5 win_63(D)->_line+0 S8 A64])) "../ncurses/./base/lib_window.c":246:34 74 {*movdi_internal}
+     (nil))
+(insn 134 133 4 11 (set (reg/f:DI 1 dx [orig:126 _49 ] [126])
+        (mem/f:DI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 56 [0x38])) [5 nwin_54->_line+0 S8 A64])) "../ncurses/./base/lib_window.c":246:14 74 {*movdi_internal}
+     (nil))
+(insn 4 134 162 11 (set (reg:DI 43 r15 [orig:131 ivtmp.70 ] [131])
+        (const_int 0 [0])) "../ncurses/./base/lib_window.c":246:14 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (const_int 0 [0])
+        (nil)))
+;;  succ:       12 [always]  count:105119324 (estimated locally) (FALLTHRU)
+;; lr  out 	 1 [dx] 2 [cx] 3 [bx] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  out 	 1 [dx] 2 [cx] 3 [bx] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+
+;; basic block 12, loop depth 0, count 955630226 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       12 [89.0% (guessed)]  count:850510902 (estimated locally) (DFS_BACK)
+;;              11 [always]  count:105119324 (estimated locally) (FALLTHRU)
+;; bb 12 artificial_defs: { }
+;; bb 12 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 2 [cx] 3 [bx] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; lr  use 	 1 [dx] 2 [cx] 3 [bx] 7 [sp] 40 [r12] 41 [r13] 43 [r15]
+;; lr  def 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 43 [r15] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;; live  in  	 1 [dx] 2 [cx] 3 [bx] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  gen 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 17 [flags] 43 [r15]
+;; live  kill	 17 [flags]
+(code_label 162 4 135 12 105 (nil) [1 uses])
+(note 135 162 137 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(note 137 135 138 12 NOTE_INSN_DELETED)
+(insn 138 137 216 12 (set (reg:DI 0 ax [169])
+        (plus:DI (ashift:DI (reg:DI 43 r15 [orig:131 ivtmp.70 ] [131])
+                (const_int 1 [0x1]))
+            (reg:DI 43 r15 [orig:131 ivtmp.70 ] [131]))) 206 {*leadi}
+     (nil))
+(insn 216 138 142 12 (set (reg:DI 6 bp [170])
+        (mult:DI (reg:DI 0 ax [169])
+            (const_int 8 [0x8]))) 206 {*leadi}
+     (nil))
+(insn 142 216 143 12 (set (reg/f:DI 5 di [orig:171 _45->text ] [171])
+        (mem/f:DI (plus:DI (mult:DI (reg:DI 0 ax [169])
+                    (const_int 8 [0x8]))
+                (reg/f:DI 1 dx [orig:126 _49 ] [126])) [10 _45->text+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":29:10 74 {*movdi_internal}
+     (nil))
+(insn 143 142 147 12 (set (reg/f:DI 4 si [orig:172 _42->text ] [172])
+        (mem/f:DI (plus:DI (mult:DI (reg:DI 0 ax [169])
+                    (const_int 8 [0x8]))
+                (reg/f:DI 2 cx [orig:124 _47 ] [124])) [10 _42->text+0 S8 A64])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":29:10 74 {*movdi_internal}
+     (nil))
+(insn 147 143 150 12 (set (reg:DI 1 dx)
+        (reg/v:DI 41 r13 [orig:134 linesize ] [134])) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":29:10 74 {*movdi_internal}
+     (nil))
+(call_insn 150 147 153 12 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("memcpy") [flags 0x41]  <function_decl 0x7ffbf35cc800 __builtin_memcpy>) [0 __builtin_memcpy S1 A8])
+            (const_int 0 [0]))) "/usr/include/x86_64-linux-gnu/bits/string_fortified.h":29:10 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("memcpy") [flags 0x41]  <function_decl 0x7ffbf35cc800 __builtin_memcpy>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (set (reg:DI 0 ax)
+            (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (nil))))))
+(insn 153 150 217 12 (set (reg/f:DI 2 cx [orig:124 _47 ] [124])
+        (mem/f:DI (plus:DI (reg/v/f:DI 3 bx [orig:139 win ] [139])
+                (const_int 56 [0x38])) [5 win_63(D)->_line+0 S8 A64])) "../ncurses/./base/lib_window.c":247:33 74 {*movdi_internal}
+     (nil))
+(insn 217 153 155 12 (set (reg/f:DI 0 ax [orig:125 _48 ] [125])
+        (plus:DI (reg/f:DI 2 cx [orig:124 _47 ] [124])
+            (reg:DI 6 bp [170]))) "../ncurses/./base/lib_window.c":247:40 206 {*leadi}
+     (nil))
+(insn 155 217 156 12 (set (reg/f:DI 1 dx [orig:126 _49 ] [126])
+        (mem/f:DI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                (const_int 56 [0x38])) [5 nwin_54->_line+0 S8 A64])) "../ncurses/./base/lib_window.c":247:7 74 {*movdi_internal}
+     (nil))
+(insn 156 155 157 12 (parallel [
+            (set (reg/f:DI 6 bp [orig:127 _50 ] [127])
+                (plus:DI (reg:DI 6 bp [170])
+                    (reg/f:DI 1 dx [orig:126 _49 ] [126])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_window.c":247:14 210 {*adddi_1}
+     (nil))
+(insn 157 156 158 12 (set (reg:SI 4 si [orig:128 _51 ] [128])
+        (mem:SI (plus:DI (reg/f:DI 0 ax [orig:125 _48 ] [125])
+                (const_int 8 [0x8])) [3 _48->firstchar+0 S4 A64])) "../ncurses/./base/lib_window.c":247:43 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (mem:SI (plus:DI (reg/f:DI 0 ax [orig:125 _48 ] [125])
+                (const_int 8 [0x8])) [3 _48->firstchar+0 S4 A64])
+        (nil)))
+(insn 158 157 159 12 (set (mem:SI (plus:DI (reg/f:DI 6 bp [orig:127 _50 ] [127])
+                (const_int 8 [0x8])) [3 _50->firstchar+0 S4 A64])
+        (reg:SI 4 si [orig:128 _51 ] [128])) "../ncurses/./base/lib_window.c":247:28 75 {*movsi_internal}
+     (nil))
+(insn 159 158 160 12 (set (reg:SI 0 ax [orig:129 _52 ] [129])
+        (mem:SI (plus:DI (reg/f:DI 0 ax [orig:125 _48 ] [125])
+                (const_int 12 [0xc])) [3 _48->lastchar+0 S4 A32])) "../ncurses/./base/lib_window.c":248:42 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (mem:SI (plus:DI (reg/f:DI 6 bp [orig:127 _50 ] [127])
+                (const_int 12 [0xc])) [3 _50->lastchar+0 S4 A32])
+        (nil)))
+(insn 160 159 161 12 (set (mem:SI (plus:DI (reg/f:DI 6 bp [orig:127 _50 ] [127])
+                (const_int 12 [0xc])) [3 _50->lastchar+0 S4 A32])
+        (reg:SI 0 ax [orig:129 _52 ] [129])) "../ncurses/./base/lib_window.c":248:27 75 {*movsi_internal}
+     (nil))
+(insn 161 160 163 12 (parallel [
+            (set (reg:DI 43 r15 [orig:131 ivtmp.70 ] [131])
+                (plus:DI (reg:DI 43 r15 [orig:131 ivtmp.70 ] [131])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_window.c":245:20 210 {*adddi_1}
+     (nil))
+(insn 163 161 164 12 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])
+                    (const_int 8 [0x8])) [3 nwin_54->_maxy+0 S4 A64])
+            (reg:SI 43 r15 [orig:131 ivtmp.70 ] [131]))) "../ncurses/./base/lib_window.c":245:20 11 {*cmpsi_1}
+     (nil))
+(jump_insn 164 163 201 12 (set (pc)
+        (if_then_else (ge (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 162)
+            (pc))) "../ncurses/./base/lib_window.c":245:20 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 162)
+;;  succ:       12 [89.0% (guessed)]  count:850510902 (estimated locally) (DFS_BACK)
+;;              13 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+;; lr  out 	 1 [dx] 2 [cx] 3 [bx] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+;; live  out 	 1 [dx] 2 [cx] 3 [bx] 7 [sp] 40 [r12] 41 [r13] 42 [r14] 43 [r15]
+
+;; basic block 13, loop depth 0, count 105119324 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       12 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+;; bb 13 artificial_defs: { }
+;; bb 13 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp] 40 [r12] 42 [r14]
+;; lr  use 	 7 [sp]
+;; lr  def 	
+;; live  in  	 7 [sp] 40 [r12] 42 [r14]
+;; live  gen 	
+;; live  kill	
+(note 201 164 202 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 202 201 203 13 (set (pc)
+        (label_ref 127)) 807 {jump}
+     (nil)
+ -> 127)
+;;  succ:       7 [always]  count:105119324 (estimated locally) (LOOP_EXIT)
+;; lr  out 	 7 [sp] 40 [r12] 42 [r14]
+;; live  out 	 7 [sp] 40 [r12] 42 [r14]
+
+(barrier 203 202 172)
+;; basic block 14, loop depth 0, count 228694573 (estimated locally), maybe hot
+;;  prev block 13, next block 1, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       2 [26.2% (guessed)]  count:59963717 (estimated locally)
+;;              7 [always]  count:168730857 (estimated locally)
+;; bb 14 artificial_defs: { }
+;; bb 14 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp] 40 [r12]
+;; lr  use 	 7 [sp] 40 [r12]
+;; lr  def 	 0 [ax]
+;; live  in  	 7 [sp] 40 [r12]
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 172 203 175 14 98 (nil) [2 uses])
+(note 175 172 173 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 173 175 174 14 (set (reg/i:DI 0 ax)
+        (reg/v/f:DI 40 r12 [orig:138 <retval> ] [138])) "../ncurses/./base/lib_window.c":254:1 74 {*movdi_internal}
+     (nil))
+(insn 174 173 206 14 (use (reg/i:DI 0 ax)) "../ncurses/./base/lib_window.c":254:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:228694573 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 7 [sp]
+;; live  out 	 0 [ax] 7 [sp]
+
+(note 206 174 0 NOTE_INSN_DELETED)

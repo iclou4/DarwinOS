@@ -1,0 +1,5185 @@
+
+;; Function _nc_insert_wch (_nc_insert_wch, funcdef_no=91, decl_uid=8862, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+int _nc_insert_wch (struct WINDOW * win, const struct cchar_t * wch)
+{
+  unsigned long ivtmp.15;
+  const struct cchar_t * temp2;
+  struct cchar_t * temp1;
+  struct cchar_t * end;
+  struct ldat * line;
+  int cell;
+  int code;
+  int cells;
+  int _1;
+  int _2;
+  unsigned int _3;
+  int _4;
+  int _5;
+  struct ldat * _6;
+  int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  struct cchar_t * _10;
+  _Bool _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  sizetype _18;
+  int _19;
+  unsigned long _21;
+  unsigned int _23;
+  unsigned int _24;
+  int _25;
+  unsigned int _27;
+  int _28;
+  int _29;
+  unsigned long _33;
+  unsigned long _34;
+  unsigned long _36;
+  unsigned long _37;
+  unsigned long _61;
+  _Bool _63;
+  _Bool _64;
+  unsigned long _65;
+  struct cchar_t * _74;
+  void * _75;
+  unsigned int _77;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _1 = wch_40(D)->chars[0];
+  cells_42 = wcwidth (_1);
+  if (cells_42 < 0)
+    goto <bb 3>; [25.50%]
+  else
+    goto <bb 4>; [74.50%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _2 = wch_40(D)->chars[0];
+  _3 = (unsigned int) _2;
+  code_57 = winsch (win_43(D), _3); [tail call]
+  goto <bb 16>; [100.00%]
+;;    succ:       16
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+  if (cells_42 == 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+;;    succ:       6
+
+;;   basic block 6, loop depth 0
+;;    pred:       4
+;;                5
+  # cells_30 = PHI <cells_42(4), 1(5)>
+  _4 = win_43(D)->_curx;
+  _5 = win_43(D)->_maxx;
+  if (_4 <= _5)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 16>; [50.00%]
+;;    succ:       7
+;;                16
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+  _6 = win_43(D)->_line;
+  _7 = win_43(D)->_cury;
+  _8 = (long unsigned int) _7;
+  _9 = _8 * 24;
+  line_44 = _6 + _9;
+  _10 = line_44->text;
+  _12 = (long unsigned int) _4;
+  _13 = _12 * 32;
+  end_45 = _10 + _13;
+  _14 = (long unsigned int) _5;
+  _15 = _14 * 32;
+  temp1_46 = _10 + _15;
+  _16 = (long unsigned int) cells_30;
+  _17 = _16 * 32;
+  _18 = -_17;
+  temp2_47 = temp1_46 + _18;
+  _19 = line_44->firstchar;
+  _11 = _4 < _19;
+  _64 = _19 == -1;
+  _63 = _11 | _64;
+  if (_63 != 0)
+    goto <bb 8>; [67.00%]
+  else
+    goto <bb 9>; [33.00%]
+;;    succ:       8
+;;                9
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+  line_44->firstchar = _4;
+;;    succ:       9
+
+;;   basic block 9, loop depth 0
+;;    pred:       7
+;;                8
+  line_44->lastchar = _5;
+  if (end_45 < temp1_46)
+    goto <bb 10>; [89.00%]
+  else
+    goto <bb 12>; [11.00%]
+;;    succ:       10
+;;                12
+
+;;   basic block 10, loop depth 1
+;;    pred:       10
+;;                9
+  # temp1_73 = PHI <temp1_54(10), temp1_46(9)>
+  # temp2_58 = PHI <temp2_53(10), temp2_47(9)>
+  temp2_53 = temp2_58 + 18446744073709551584;
+  temp1_54 = temp1_73 + 18446744073709551584;
+  MEM[(struct cchar_t *)temp1_54 + 32B] = MEM[(const struct cchar_t *)temp2_53 + 32B];
+  if (end_45 < temp1_54)
+    goto <bb 10>; [89.00%]
+  else
+    goto <bb 11>; [11.00%]
+;;    succ:       10
+;;                11
+
+;;   basic block 11, loop depth 0
+;;    pred:       10
+  _65 = (unsigned long) temp1_46;
+  _61 = (unsigned long) end_45;
+  _21 = _65 + 18446744073709551615;
+  _37 = _21 - _61;
+  _36 = _37 >> 5;
+  _34 = _36 + 1;
+  _33 = _34 * 18446744073709551584;
+  temp1_67 = temp1_46 + _33;
+;;    succ:       12
+
+;;   basic block 12, loop depth 0
+;;    pred:       11
+;;                9
+  # temp1_60 = PHI <temp1_67(11), temp1_46(9)>
+  *temp1_60 = _nc_render (win_43(D), *wch_40(D));
+  if (cells_30 != 1)
+    goto <bb 13>; [89.00%]
+  else
+    goto <bb 15>; [11.00%]
+;;    succ:       13
+;;                15
+
+;;   basic block 13, loop depth 0
+;;    pred:       12
+  _74 = temp1_60 + 32;
+  ivtmp.15_32 = (unsigned long) _74;
+;;    succ:       14
+
+;;   basic block 14, loop depth 1
+;;    pred:       14
+;;                13
+  # cell_62 = PHI <_25(14), 1(13)>
+  # ivtmp.15_66 = PHI <ivtmp.15_69(14), ivtmp.15_32(13)>
+  _75 = (void *) ivtmp.15_66;
+  _23 = MEM[(unsigned int *)_75];
+  _24 = _23 & 4294967040;
+  _25 = cell_62 + 1;
+  _77 = (unsigned int) _25;
+  _27 = _24 | _77;
+  MEM[(unsigned int *)_75] = _27;
+  ivtmp.15_69 = ivtmp.15_66 + 32;
+  if (_25 != cells_30)
+    goto <bb 14>; [89.00%]
+  else
+    goto <bb 15>; [11.00%]
+;;    succ:       14
+;;                15
+
+;;   basic block 15, loop depth 0
+;;    pred:       12
+;;                14
+  _28 = win_43(D)->_curx;
+  _29 = _28 + cells_30;
+  win_43(D)->_curx = _29;
+;;    succ:       16
+
+;;   basic block 16, loop depth 0
+;;    pred:       3
+;;                6
+;;                15
+  # code_31 = PHI <code_57(3), 0(6), 0(15)>
+  return code_31;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 4 (_4 - 4 )
+Partition 5 (_5 - 5 )
+Partition 6 (_6 - 6 )
+Partition 7 (_7 - 7 )
+Partition 8 (_8 - 8 )
+Partition 9 (_9 - 9 )
+Partition 10 (_10 - 10 )
+Partition 11 (_11 - 11 )
+Partition 12 (_12 - 12 )
+Partition 13 (_13 - 13 )
+Partition 14 (_14 - 14 )
+Partition 15 (_15 - 15 )
+Partition 16 (_16 - 16 )
+Partition 17 (_17 - 17 )
+Partition 18 (_18 - 18 )
+Partition 19 (_19 - 19 )
+Partition 20 (_20(D) - 20 )
+Partition 21 (_21 - 21 )
+Partition 23 (_23 - 23 )
+Partition 24 (_24 - 24 )
+Partition 25 (_25 - 25 )
+Partition 27 (_27 - 27 )
+Partition 28 (_28 - 28 )
+Partition 29 (_29 - 29 )
+Partition 30 (cells_30 - 30 )
+Partition 31 (code_31 - 31 )
+Partition 32 (ivtmp.15_32 - 32 )
+Partition 33 (_33 - 33 )
+Partition 34 (_34 - 34 )
+Partition 36 (_36 - 36 )
+Partition 37 (_37 - 37 )
+Partition 40 (wch_40(D) - 40 )
+Partition 42 (cells_42 - 42 )
+Partition 43 (win_43(D) - 43 )
+Partition 44 (line_44 - 44 )
+Partition 45 (end_45 - 45 )
+Partition 46 (temp1_46 - 46 )
+Partition 47 (temp2_47 - 47 )
+Partition 53 (temp2_53 - 53 )
+Partition 54 (temp1_54 - 54 )
+Partition 57 (code_57 - 57 )
+Partition 58 (temp2_58 - 58 )
+Partition 60 (temp1_60 - 60 )
+Partition 61 (_61 - 61 )
+Partition 62 (cell_62 - 62 )
+Partition 63 (_63 - 63 )
+Partition 64 (_64 - 64 )
+Partition 65 (_65 - 65 )
+Partition 66 (ivtmp.15_66 - 66 )
+Partition 67 (temp1_67 - 67 )
+Partition 69 (ivtmp.15_69 - 69 )
+Partition 73 (temp1_73 - 73 )
+Partition 74 (_74 - 74 )
+Partition 75 (_75 - 75 )
+Partition 77 (_77 - 77 )
+
+
+Coalescible Partition map 
+
+Partition 1, base 1 (_25 - 25 62 )
+Partition 2, base 2 (cells_30 - 30 42 )
+Partition 3, base 0 (_20(D) - 20 31 57 )
+Partition 4, base 3 (ivtmp.15_32 - 32 66 69 )
+Partition 5, base 4 (wch_40(D) - 40 )
+Partition 7, base 5 (win_43(D) - 43 )
+Partition 8, base 6 (temp1_46 - 46 54 60 67 73 )
+Partition 9, base 7 (temp2_47 - 47 53 58 )
+
+
+Partition map 
+
+Partition 0 (_20(D) - 20 )
+Partition 1 (_25 - 25 )
+Partition 2 (cells_30 - 30 )
+Partition 3 (code_31 - 31 )
+Partition 4 (ivtmp.15_32 - 32 )
+Partition 5 (wch_40(D) - 40 )
+Partition 6 (cells_42 - 42 )
+Partition 7 (win_43(D) - 43 )
+Partition 8 (temp1_46 - 46 )
+Partition 9 (temp2_47 - 47 )
+Partition 10 (temp2_53 - 53 )
+Partition 11 (temp1_54 - 54 )
+Partition 12 (code_57 - 57 )
+Partition 13 (temp2_58 - 58 )
+Partition 14 (temp1_60 - 60 )
+Partition 15 (cell_62 - 62 )
+Partition 16 (ivtmp.15_66 - 66 )
+Partition 17 (temp1_67 - 67 )
+Partition 18 (ivtmp.15_69 - 69 )
+Partition 19 (temp1_73 - 73 )
+
+
+Conflict graph:
+8: 11, 19
+11: 8
+19: 8
+
+After sorting:
+Sorted Coalesce list:
+(15842, 0) temp2_53 <-> temp2_58
+(15842, 0) _25 <-> cell_62
+(15842, 0) ivtmp.15_66 <-> ivtmp.15_69
+(15842, 1) temp1_54 <-> temp1_73
+(2953, 0) _20(D) <-> code_31
+(2200, 0) cells_30 <-> cells_42
+(1958, 0) temp2_47 <-> temp2_58
+(1958, 3) temp1_46 <-> temp1_73
+(979, 0) temp1_60 <-> temp1_67
+(979, 0) ivtmp.15_32 <-> ivtmp.15_66
+(753, 0) code_31 <-> code_57
+(242, 0) temp1_46 <-> temp1_60
+
+Partition map 
+
+Partition 0 (_20(D) - 20 )
+Partition 1 (_25 - 25 )
+Partition 2 (cells_30 - 30 )
+Partition 3 (code_31 - 31 )
+Partition 4 (ivtmp.15_32 - 32 )
+Partition 5 (wch_40(D) - 40 )
+Partition 6 (cells_42 - 42 )
+Partition 7 (win_43(D) - 43 )
+Partition 8 (temp1_46 - 46 )
+Partition 9 (temp2_47 - 47 )
+Partition 10 (temp2_53 - 53 )
+Partition 11 (temp1_54 - 54 )
+Partition 12 (code_57 - 57 )
+Partition 13 (temp2_58 - 58 )
+Partition 14 (temp1_60 - 60 )
+Partition 15 (cell_62 - 62 )
+Partition 16 (ivtmp.15_66 - 66 )
+Partition 17 (temp1_67 - 67 )
+Partition 18 (ivtmp.15_69 - 69 )
+Partition 19 (temp1_73 - 73 )
+
+Coalesce list: (53)temp2_53 & (58)temp2_58 [map: 10, 13] : Success -> 10
+Coalesce list: (25)_25 & (62)cell_62 [map: 1, 15] : Success -> 1
+Coalesce list: (66)ivtmp.15_66 & (69)ivtmp.15_69 [map: 16, 18] : Success -> 16
+Coalesce list: (54)temp1_54 & (73)temp1_73 [map: 11, 19] : Success -> 11
+Coalesce list: (20)_20(D) & (31)code_31 [map: 0, 3] : Success -> 0
+Coalesce list: (30)cells_30 & (42)cells_42 [map: 2, 6] : Success -> 2
+Coalesce list: (47)temp2_47 & (58)temp2_53 [map: 9, 10] : Success -> 10
+Coalesce list: (46)temp1_46 & (73)temp1_54 [map: 8, 11] : Fail due to conflict
+Coalesce list: (60)temp1_60 & (67)temp1_67 [map: 14, 17] : Success -> 14
+Coalesce list: (32)ivtmp.15_32 & (66)ivtmp.15_66 [map: 4, 16] : Success -> 16
+Coalesce list: (31)_20(D) & (57)code_57 [map: 0, 12] : Success -> 0
+Coalesce list: (46)temp1_46 & (60)temp1_60 [map: 8, 14] : Success -> 14
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_2 - 2 )
+Partition 2 (_3 - 3 )
+Partition 3 (_4 - 4 )
+Partition 4 (_5 - 5 )
+Partition 5 (_6 - 6 )
+Partition 6 (_7 - 7 )
+Partition 7 (_8 - 8 )
+Partition 8 (_9 - 9 )
+Partition 9 (_10 - 10 )
+Partition 10 (_11 - 11 )
+Partition 11 (_12 - 12 )
+Partition 12 (_13 - 13 )
+Partition 13 (_14 - 14 )
+Partition 14 (_15 - 15 )
+Partition 15 (_16 - 16 )
+Partition 16 (_17 - 17 )
+Partition 17 (_18 - 18 )
+Partition 18 (_19 - 19 )
+Partition 19 (_20(D) - 20 31 57 )
+Partition 20 (_21 - 21 )
+Partition 21 (_23 - 23 )
+Partition 22 (_24 - 24 )
+Partition 23 (_25 - 25 62 )
+Partition 24 (_27 - 27 )
+Partition 25 (_28 - 28 )
+Partition 26 (_29 - 29 )
+Partition 27 (cells_30 - 30 42 )
+Partition 28 (_33 - 33 )
+Partition 29 (_34 - 34 )
+Partition 30 (_36 - 36 )
+Partition 31 (_37 - 37 )
+Partition 32 (wch_40(D) - 40 )
+Partition 33 (win_43(D) - 43 )
+Partition 34 (line_44 - 44 )
+Partition 35 (end_45 - 45 )
+Partition 36 (temp2_53 - 47 53 58 )
+Partition 37 (temp1_54 - 54 73 )
+Partition 38 (temp1_60 - 46 60 67 )
+Partition 39 (_61 - 61 )
+Partition 40 (_63 - 63 )
+Partition 41 (_64 - 64 )
+Partition 42 (_65 - 65 )
+Partition 43 (ivtmp.15_66 - 32 66 69 )
+Partition 44 (_74 - 74 )
+Partition 45 (_75 - 75 )
+Partition 46 (_77 - 77 )
+
+
+Replacing Expressions
+_1 replace with --> _1 = wch_40(D)->chars[0];
+
+_2 replace with --> _2 = wch_40(D)->chars[0];
+
+_3 replace with --> _3 = (unsigned int) _2;
+
+_6 replace with --> _6 = win_43(D)->_line;
+
+_7 replace with --> _7 = win_43(D)->_cury;
+
+_8 replace with --> _8 = (long unsigned int) _7;
+
+_9 replace with --> _9 = _8 * 24;
+
+_11 replace with --> _11 = _4 < _19;
+
+_12 replace with --> _12 = (long unsigned int) _4;
+
+_13 replace with --> _13 = _12 * 32;
+
+_14 replace with --> _14 = (long unsigned int) _5;
+
+_15 replace with --> _15 = _14 * 32;
+
+_16 replace with --> _16 = (long unsigned int) cells_30;
+
+_17 replace with --> _17 = _16 * 32;
+
+_18 replace with --> _18 = -_17;
+
+_21 replace with --> _21 = _65 + 18446744073709551615;
+
+_23 replace with --> _23 = MEM[(unsigned int *)_75];
+
+_24 replace with --> _24 = _23 & 4294967040;
+
+_27 replace with --> _27 = _24 | _77;
+
+_28 replace with --> _28 = win_43(D)->_curx;
+
+_29 replace with --> _29 = _28 + cells_30;
+
+_34 replace with --> _34 = _36 + 1;
+
+_36 replace with --> _36 = _37 >> 5;
+
+_37 replace with --> _37 = _21 - _61;
+
+_61 replace with --> _61 = (unsigned long) end_45;
+
+_63 replace with --> _63 = _11 | _64;
+
+_64 replace with --> _64 = _19 == -1;
+
+_65 replace with --> _65 = (unsigned long) temp1_46;
+
+_74 replace with --> _74 = temp1_60 + 32;
+
+_77 replace with --> _77 = (unsigned int) _25;
+
+
+__attribute__((visibility ("default")))
+int _nc_insert_wch (struct WINDOW * win, const struct cchar_t * wch)
+{
+  unsigned long ivtmp.15;
+  const struct cchar_t * temp2;
+  struct cchar_t * temp1;
+  struct cchar_t * end;
+  struct ldat * line;
+  int cell;
+  int code;
+  int cells;
+  int _1;
+  int _2;
+  unsigned int _3;
+  int _4;
+  int _5;
+  struct ldat * _6;
+  int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  struct cchar_t * _10;
+  _Bool _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  sizetype _18;
+  int _19;
+  int _20(D);
+  unsigned long _21;
+  unsigned int _23;
+  unsigned int _24;
+  int _25;
+  unsigned int _27;
+  int _28;
+  int _29;
+  unsigned long _33;
+  unsigned long _34;
+  unsigned long _36;
+  unsigned long _37;
+  unsigned long _61;
+  _Bool _63;
+  _Bool _64;
+  unsigned long _65;
+  struct cchar_t * _74;
+  void * _75;
+  unsigned int _77;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _1 = wch_40(D)->chars[0];
+  cells_42 = wcwidth (_1);
+  if (cells_42 < 0)
+    goto <bb 3>; [25.50%]
+  else
+    goto <bb 4>; [74.50%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _2 = wch_40(D)->chars[0];
+  _3 = (unsigned int) _2;
+  code_57 = winsch (win_43(D), _3); [tail call]
+  goto <bb 16>; [100.00%]
+;;    succ:       16
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+  if (cells_42 == 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+;;    succ:       6
+
+;;   basic block 6, loop depth 0
+;;    pred:       4
+;;                5
+  # cells_30 = PHI <cells_42(4), 1(5)>
+  _4 = win_43(D)->_curx;
+  _5 = win_43(D)->_maxx;
+  if (_4 <= _5)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 16>; [50.00%]
+;;    succ:       7
+;;                16
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+  _6 = win_43(D)->_line;
+  _7 = win_43(D)->_cury;
+  _8 = (long unsigned int) _7;
+  _9 = _8 * 24;
+  line_44 = _6 + _9;
+  _10 = line_44->text;
+  _12 = (long unsigned int) _4;
+  _13 = _12 * 32;
+  end_45 = _10 + _13;
+  _14 = (long unsigned int) _5;
+  _15 = _14 * 32;
+  temp1_46 = _10 + _15;
+  _16 = (long unsigned int) cells_30;
+  _17 = _16 * 32;
+  _18 = -_17;
+  temp2_47 = temp1_46 + _18;
+  _19 = line_44->firstchar;
+  _11 = _4 < _19;
+  _64 = _19 == -1;
+  _63 = _11 | _64;
+  if (_63 != 0)
+    goto <bb 8>; [67.00%]
+  else
+    goto <bb 9>; [33.00%]
+;;    succ:       8
+;;                9
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+  line_44->firstchar = _4;
+;;    succ:       9
+
+;;   basic block 9, loop depth 0
+;;    pred:       7
+;;                8
+  line_44->lastchar = _5;
+  if (end_45 < temp1_46)
+    goto <bb 10>; [89.00%]
+  else
+    goto <bb 12>; [11.00%]
+;;    succ:       10
+;;                12
+
+;;   basic block 10, loop depth 1
+;;    pred:       10
+;;                9
+  # temp1_73 = PHI <temp1_54(10), temp1_46(9)>
+  # temp2_58 = PHI <temp2_53(10), temp2_47(9)>
+  temp2_53 = temp2_58 + 18446744073709551584;
+  temp1_54 = temp1_73 + 18446744073709551584;
+  MEM[(struct cchar_t *)temp1_54 + 32B] = MEM[(const struct cchar_t *)temp2_53 + 32B];
+  if (end_45 < temp1_54)
+    goto <bb 10>; [89.00%]
+  else
+    goto <bb 11>; [11.00%]
+;;    succ:       10
+;;                11
+
+;;   basic block 11, loop depth 0
+;;    pred:       10
+  _65 = (unsigned long) temp1_46;
+  _61 = (unsigned long) end_45;
+  _21 = _65 + 18446744073709551615;
+  _37 = _21 - _61;
+  _36 = _37 >> 5;
+  _34 = _36 + 1;
+  _33 = _34 * 18446744073709551584;
+  temp1_67 = temp1_46 + _33;
+;;    succ:       12
+
+;;   basic block 12, loop depth 0
+;;    pred:       11
+;;                9
+  # temp1_60 = PHI <temp1_67(11), temp1_46(9)>
+  *temp1_60 = _nc_render (win_43(D), *wch_40(D));
+  if (cells_30 != 1)
+    goto <bb 13>; [89.00%]
+  else
+    goto <bb 15>; [11.00%]
+;;    succ:       13
+;;                15
+
+;;   basic block 13, loop depth 0
+;;    pred:       12
+  _74 = temp1_60 + 32;
+  ivtmp.15_32 = (unsigned long) _74;
+;;    succ:       14
+
+;;   basic block 14, loop depth 1
+;;    pred:       14
+;;                13
+  # cell_62 = PHI <_25(14), 1(13)>
+  # ivtmp.15_66 = PHI <ivtmp.15_69(14), ivtmp.15_32(13)>
+  _75 = (void *) ivtmp.15_66;
+  _23 = MEM[(unsigned int *)_75];
+  _24 = _23 & 4294967040;
+  _25 = cell_62 + 1;
+  _77 = (unsigned int) _25;
+  _27 = _24 | _77;
+  MEM[(unsigned int *)_75] = _27;
+  ivtmp.15_69 = ivtmp.15_66 + 32;
+  if (_25 != cells_30)
+    goto <bb 14>; [89.00%]
+  else
+    goto <bb 15>; [11.00%]
+;;    succ:       14
+;;                15
+
+;;   basic block 15, loop depth 0
+;;    pred:       12
+;;                14
+  _28 = win_43(D)->_curx;
+  _29 = _28 + cells_30;
+  win_43(D)->_curx = _29;
+;;    succ:       16
+
+;;   basic block 16, loop depth 0
+;;    pred:       3
+;;                6
+;;                15
+  # code_31 = PHI <code_57(3), 0(6), 0(15)>
+  return code_31;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB5->BB6 : PART.27 = 1
+Inserting a partition copy on edge BB9->BB10 : PART.37 = PART.38
+Inserting a value copy on edge BB13->BB14 : PART.23 = 1
+Inserting a value copy on edge BB6->BB16 : PART.19 = 0
+Inserting a value copy on edge BB15->BB16 : PART.19 = 0
+
+;; Generating RTL for gimple basic block 2
+
+;; cells_42 = wcwidth (_1);
+
+(insn 14 13 15 (set (reg:SI 130)
+        (mem:SI (plus:DI (reg/v/f:DI 128 [ wch ])
+                (const_int 4 [0x4])) [1 wch_40(D)->chars[0]+0 S4 A32])) "../ncurses/./widechar/lib_ins_wch.c":52:17 -1
+     (nil))
+
+(insn 15 14 16 (set (reg:SI 5 di)
+        (reg:SI 130)) "../ncurses/./widechar/lib_ins_wch.c":52:17 -1
+     (nil))
+
+(insn 16 15 17 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":52:17 -1
+     (nil))
+
+(call_insn 17 16 18 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wcwidth") [flags 0x41]  <function_decl 0x7f8a6a91d900 wcwidth>) [0 wcwidth S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":52:17 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wcwidth") [flags 0x41]  <function_decl 0x7f8a6a91d900 wcwidth>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:SI (use (reg:SI 5 di))
+            (nil))))
+
+(insn 18 17 0 (set (reg/v:SI 108 [ cells ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_ins_wch.c":52:17 -1
+     (nil))
+
+;; if (cells_42 < 0)
+
+(insn 21 18 22 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 108 [ cells ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":55:8 -1
+     (nil))
+
+(jump_insn 22 21 0 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":55:8 -1
+     (int_list:REG_BR_PROB 799937660 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; code_57 = winsch (win_43(D), _3); [tail call]
+
+(insn 24 23 25 3 (set (reg/f:DI 131)
+        (const_int 40 [0x28])) "../ncurses/./widechar/lib_ins_wch.c":56:9 -1
+     (nil))
+
+(insn 25 24 26 3 (parallel [
+            (set (reg:CCZ 17 flags)
+                (unspec:CCZ [
+                        (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                                (const_int -8 [0xfffffffffffffff8])) [11 D.9154+0 S8 A64])
+                        (mem/v/f:DI (reg/f:DI 131) [12 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_TEST))
+            (clobber (scratch:DI))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":56:9 -1
+     (nil))
+
+(jump_insn 26 25 27 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 29)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":56:9 -1
+     (expr_list:REG_BR_PRED (concat (const_int 15 [0xf])
+            (const_int 9996 [0x270c]))
+        (nil)))
+
+(call_insn 27 26 28 3 (call (mem:QI (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7f8a6a500a00 __stack_chk_fail>) [0 __stack_chk_fail S1 A8])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":56:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7f8a6a500a00 __stack_chk_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (nil))
+
+(barrier 28 27 29)
+
+(code_label 29 28 30 3 3 (nil) [0 uses])
+
+(insn 30 29 31 3 (set (reg:SI 132)
+        (mem:SI (plus:DI (reg/v/f:DI 128 [ wch ])
+                (const_int 4 [0x4])) [1 wch_40(D)->chars[0]+0 S4 A32])) "../ncurses/./widechar/lib_ins_wch.c":56:9 -1
+     (nil))
+
+(insn 31 30 32 3 (set (reg:SI 4 si)
+        (reg:SI 132)) "../ncurses/./widechar/lib_ins_wch.c":56:9 -1
+     (nil))
+
+(insn 32 31 33 3 (set (reg:DI 5 di)
+        (reg/v/f:DI 127 [ win ])) "../ncurses/./widechar/lib_ins_wch.c":56:9 -1
+     (nil))
+
+(call_insn/j 33 32 34 3 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("winsch") [flags 0x41]  <function_decl 0x7f8a6a759000 winsch>) [0 winsch S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":56:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("winsch") [flags 0x41]  <function_decl 0x7f8a6a759000 winsch>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+
+(barrier 34 33 0)
+
+;; Generating RTL for gimple basic block 4
+
+;; 
+
+(code_label 36 34 37 2 (nil) [0 uses])
+
+(note 37 36 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (cells_42 == 0)
+
+(insn 38 37 39 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 108 [ cells ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":58:5 -1
+     (nil))
+
+(jump_insn 39 38 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":58:5 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 41 40 42 4 (nil) [0 uses])
+
+(note 42 41 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _4 = win_43(D)->_curx;
+
+(insn 43 42 0 (set (reg:SI 85 [ _4 ])
+        (mem:SI (plus:DI (reg/v/f:DI 127 [ win ])
+                (const_int 4 [0x4])) [1 win_43(D)->_curx+0 S4 A32])) "../ncurses/./widechar/lib_ins_wch.c":61:9 -1
+     (nil))
+
+;; _5 = win_43(D)->_maxx;
+
+(insn 44 43 0 (set (reg:SI 86 [ _5 ])
+        (mem:SI (plus:DI (reg/v/f:DI 127 [ win ])
+                (const_int 12 [0xc])) [1 win_43(D)->_maxx+0 S4 A32])) "../ncurses/./widechar/lib_ins_wch.c":61:23 -1
+     (nil))
+
+;; if (_4 <= _5)
+
+(insn 45 44 46 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 85 [ _4 ])
+            (reg:SI 86 [ _5 ]))) "../ncurses/./widechar/lib_ins_wch.c":61:5 -1
+     (nil))
+
+(jump_insn 46 45 0 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":61:5 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 7
+
+;; line_44 = _6 + _9;
+
+(insn 48 47 49 (set (reg:SI 134)
+        (mem:SI (reg/v/f:DI 127 [ win ]) [1 win_43(D)->_cury+0 S4 A64])) "../ncurses/./widechar/lib_ins_wch.c":63:42 -1
+     (nil))
+
+(insn 49 48 50 (set (reg:DI 133)
+        (sign_extend:DI (reg:SI 134))) "../ncurses/./widechar/lib_ins_wch.c":63:42 -1
+     (nil))
+
+(insn 50 49 51 (set (reg:DI 135)
+        (reg:DI 133)) "../ncurses/./widechar/lib_ins_wch.c":63:38 -1
+     (nil))
+
+(insn 51 50 52 (parallel [
+            (set (reg:DI 136)
+                (ashift:DI (reg:DI 135)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":63:38 -1
+     (nil))
+
+(insn 52 51 53 (parallel [
+            (set (reg:DI 137)
+                (plus:DI (reg:DI 136)
+                    (reg:DI 133)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":63:38 -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 133)
+            (const_int 3 [0x3]))
+        (nil)))
+
+(insn 53 52 54 (parallel [
+            (set (reg:DI 138)
+                (ashift:DI (reg:DI 137)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":63:38 -1
+     (nil))
+
+(insn 54 53 55 (set (reg:DI 137)
+        (reg:DI 138)) "../ncurses/./widechar/lib_ins_wch.c":63:38 -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 133)
+            (const_int 24 [0x18]))
+        (nil)))
+
+(insn 55 54 56 (set (reg/f:DI 139)
+        (mem/f:DI (plus:DI (reg/v/f:DI 127 [ win ])
+                (const_int 56 [0x38])) [6 win_43(D)->_line+0 S8 A64])) "../ncurses/./widechar/lib_ins_wch.c":63:19 -1
+     (nil))
+
+(insn 56 55 0 (parallel [
+            (set (reg/v/f:DI 113 [ line ])
+                (plus:DI (reg:DI 137)
+                    (reg/f:DI 139)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":63:19 -1
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 127 [ win ])
+                    (const_int 56 [0x38])) [6 win_43(D)->_line+0 S8 A64])
+            (reg:DI 137))
+        (nil)))
+
+;; _10 = line_44->text;
+
+(insn 57 56 0 (set (reg/f:DI 91 [ _10 ])
+        (mem/f:DI (reg/v/f:DI 113 [ line ]) [9 line_44->text+0 S8 A64])) "../ncurses/./widechar/lib_ins_wch.c":64:32 -1
+     (nil))
+
+;; end_45 = _10 + _13;
+
+(insn 58 57 59 (set (reg:DI 140)
+        (sign_extend:DI (reg:SI 85 [ _4 ]))) "../ncurses/./widechar/lib_ins_wch.c":64:42 -1
+     (nil))
+
+(insn 59 58 60 (parallel [
+            (set (reg:DI 141)
+                (ashift:DI (reg:DI 140)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":64:38 -1
+     (nil))
+
+(insn 60 59 0 (parallel [
+            (set (reg/v/f:DI 114 [ end ])
+                (plus:DI (reg/f:DI 91 [ _10 ])
+                    (reg:DI 141)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":64:20 -1
+     (nil))
+
+;; temp1_46 = _10 + _15;
+
+(insn 61 60 62 (set (reg:DI 142)
+        (sign_extend:DI (reg:SI 86 [ _5 ]))) "../ncurses/./widechar/lib_ins_wch.c":65:44 -1
+     (nil))
+
+(insn 62 61 63 (parallel [
+            (set (reg:DI 143)
+                (ashift:DI (reg:DI 142)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":65:40 -1
+     (nil))
+
+(insn 63 62 0 (parallel [
+            (set (reg/v/f:DI 117 [ temp1 ])
+                (plus:DI (reg/f:DI 91 [ _10 ])
+                    (reg:DI 143)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":65:20 -1
+     (nil))
+
+;; temp2_47 = temp1_46 + _18;
+
+(insn 64 63 65 (set (reg:DI 144)
+        (sign_extend:DI (reg/v:SI 108 [ cells ]))) "../ncurses/./widechar/lib_ins_wch.c":66:40 -1
+     (nil))
+
+(insn 65 64 66 (parallel [
+            (set (reg:DI 145)
+                (ashift:DI (reg:DI 144)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":66:40 -1
+     (nil))
+
+(insn 66 65 0 (parallel [
+            (set (reg/v/f:DI 115 [ temp2 ])
+                (minus:DI (reg/v/f:DI 117 [ temp1 ])
+                    (reg:DI 145)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":66:26 -1
+     (nil))
+
+;; _19 = line_44->firstchar;
+
+(insn 67 66 0 (set (reg:SI 100 [ _19 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ line ])
+                (const_int 8 [0x8])) [1 line_44->firstchar+0 S4 A64])) "../ncurses/./widechar/lib_ins_wch.c":68:6 -1
+     (nil))
+
+;; if (_63 != 0)
+
+(insn 68 67 69 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 85 [ _4 ])
+            (reg:SI 100 [ _19 ]))) "../ncurses/./widechar/lib_ins_wch.c":68:6 -1
+     (nil))
+
+(insn 69 68 70 (set (reg:QI 147)
+        (lt:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":68:6 -1
+     (nil))
+
+(insn 70 69 71 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 147)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":68:6 -1
+     (nil))
+
+(jump_insn 71 70 72 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 76)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":68:6 -1
+     (int_list:REG_BR_PROB 359703516 (nil)))
+
+(insn 72 71 73 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 100 [ _19 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./widechar/lib_ins_wch.c":68:6 -1
+     (nil))
+
+(insn 73 72 74 (set (reg:QI 149)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":68:6 -1
+     (nil))
+
+(insn 74 73 75 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 149)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":68:6 -1
+     (nil))
+
+(jump_insn 75 74 76 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":68:6 -1
+     (int_list:REG_BR_PROB 532834292 (nil)))
+
+(code_label 76 75 0 7 (nil) [0 uses])
+
+;; Generating RTL for gimple basic block 8
+
+;; line_44->firstchar = _4;
+
+(insn 78 77 0 (set (mem:SI (plus:DI (reg/v/f:DI 113 [ line ])
+                (const_int 8 [0x8])) [1 line_44->firstchar+0 S4 A64])
+        (reg:SI 85 [ _4 ])) "../ncurses/./widechar/lib_ins_wch.c":68:6 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 9
+
+;; 
+
+(code_label 79 78 80 6 (nil) [0 uses])
+
+(note 80 79 0 NOTE_INSN_BASIC_BLOCK)
+
+;; line_44->lastchar = _5;
+
+(insn 81 80 0 (set (mem:SI (plus:DI (reg/v/f:DI 113 [ line ])
+                (const_int 12 [0xc])) [1 line_44->lastchar+0 S4 A32])
+        (reg:SI 86 [ _5 ])) "../ncurses/./widechar/lib_ins_wch.c":68:6 -1
+     (nil))
+
+;; if (end_45 < temp1_46)
+
+(insn 82 81 83 (set (reg:CC 17 flags)
+        (compare:CC (reg/v/f:DI 114 [ end ])
+            (reg/v/f:DI 117 [ temp1 ]))) "../ncurses/./widechar/lib_ins_wch.c":69:19 -1
+     (nil))
+
+(jump_insn 83 82 0 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":69:19 -1
+     (int_list:REG_BR_PROB 118111604 (nil)))
+
+;; Generating RTL for gimple basic block 10
+
+;; temp2_53 = temp2_58 + 18446744073709551584;
+
+(insn 85 84 0 (parallel [
+            (set (reg/v/f:DI 115 [ temp2 ])
+                (plus:DI (reg/v/f:DI 115 [ temp2 ])
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":70:20 -1
+     (nil))
+
+;; temp1_54 = temp1_73 + 18446744073709551584;
+
+(insn 86 85 0 (parallel [
+            (set (reg/v/f:DI 116 [ temp1 ])
+                (plus:DI (reg/v/f:DI 116 [ temp1 ])
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":70:9 -1
+     (nil))
+
+;; MEM[(struct cchar_t *)temp1_54 + 32B] = MEM[(const struct cchar_t *)temp2_53 + 32B];
+
+(insn 87 86 88 (set (reg:TI 150)
+        (mem:TI (plus:DI (reg/v/f:DI 115 [ temp2 ])
+                (const_int 32 [0x20])) [2 MEM[(const struct cchar_t *)temp2_53 + 32B]+0 S16 A32])) "../ncurses/./widechar/lib_ins_wch.c":70:12 -1
+     (nil))
+
+(insn 88 87 89 (set (mem:TI (plus:DI (reg/v/f:DI 116 [ temp1 ])
+                (const_int 32 [0x20])) [2 MEM[(struct cchar_t *)temp1_54 + 32B]+0 S16 A32])
+        (reg:TI 150)) "../ncurses/./widechar/lib_ins_wch.c":70:12 -1
+     (nil))
+
+(insn 89 88 90 (set (reg:TI 151)
+        (mem:TI (plus:DI (reg/v/f:DI 115 [ temp2 ])
+                (const_int 48 [0x30])) [2 MEM[(const struct cchar_t *)temp2_53 + 32B]+16 S16 A32])) "../ncurses/./widechar/lib_ins_wch.c":70:12 -1
+     (nil))
+
+(insn 90 89 0 (set (mem:TI (plus:DI (reg/v/f:DI 116 [ temp1 ])
+                (const_int 48 [0x30])) [2 MEM[(struct cchar_t *)temp1_54 + 32B]+16 S16 A32])
+        (reg:TI 151)) "../ncurses/./widechar/lib_ins_wch.c":70:12 -1
+     (nil))
+
+;; if (end_45 < temp1_54)
+
+(insn 92 90 93 (set (reg:CC 17 flags)
+        (compare:CC (reg/v/f:DI 114 [ end ])
+            (reg/v/f:DI 116 [ temp1 ]))) "../ncurses/./widechar/lib_ins_wch.c":69:19 -1
+     (nil))
+
+(jump_insn 93 92 0 (set (pc)
+        (if_then_else (ltu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 91)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":69:19 -1
+     (int_list:REG_BR_PROB 955630228 (nil)))
+
+;; Generating RTL for gimple basic block 11
+
+;; _33 = _34 * 18446744073709551584;
+
+(insn 95 94 96 (parallel [
+            (set (reg:DI 152)
+                (plus:DI (reg/v/f:DI 117 [ temp1 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+(insn 96 95 97 (parallel [
+            (set (reg:DI 153)
+                (minus:DI (reg:DI 152)
+                    (reg/v/f:DI 114 [ end ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+(insn 97 96 98 (parallel [
+            (set (reg:DI 154)
+                (lshiftrt:DI (reg:DI 153)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+(insn 98 97 99 (parallel [
+            (set (reg:DI 155)
+                (plus:DI (reg:DI 154)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+(insn 99 98 100 (set (reg:DI 156)
+        (const_int 0 [0])) -1
+     (nil))
+
+(insn 100 99 101 (parallel [
+            (set (reg:DI 157)
+                (minus:DI (reg:DI 156)
+                    (reg:DI 155)))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 155)
+            (const_int -1 [0xffffffffffffffff]))
+        (nil)))
+
+(insn 101 100 102 (parallel [
+            (set (reg:DI 158)
+                (ashift:DI (reg:DI 157)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+(insn 102 101 103 (set (reg:DI 157)
+        (reg:DI 158)) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 155)
+            (const_int -32 [0xffffffffffffffe0]))
+        (nil)))
+
+(insn 103 102 0 (set (reg:DI 109 [ _33 ])
+        (reg:DI 157)) -1
+     (nil))
+
+;; temp1_67 = temp1_46 + _33;
+
+(insn 104 103 0 (parallel [
+            (set (reg/v/f:DI 117 [ temp1 ])
+                (plus:DI (reg/v/f:DI 117 [ temp1 ])
+                    (reg:DI 109 [ _33 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":70:9 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 12
+
+;; 
+
+(code_label 105 104 106 8 (nil) [0 uses])
+
+(note 106 105 0 NOTE_INSN_BASIC_BLOCK)
+
+;; *temp1_60 = _nc_render (win_43(D), *wch_40(D));
+
+(insn 107 106 108 (parallel [
+            (set (reg:DI 159)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+
+(insn 108 107 109 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (expr_list:REG_ARGS_SIZE (const_int 32 [0x20])
+        (nil)))
+
+(insn 109 108 110 (set (reg:DI 160)
+        (reg/f:DI 79 virtual-outgoing-args)) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+
+(insn 110 109 111 (set (reg:TI 161)
+        (mem:TI (reg/v/f:DI 128 [ wch ]) [2 *wch_40(D)+0 S16 A32])) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+
+(insn 111 110 112 (set (mem:TI (reg:DI 160) [0  S16 A64])
+        (reg:TI 161)) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+
+(insn 112 111 113 (set (reg:TI 162)
+        (mem:TI (plus:DI (reg/v/f:DI 128 [ wch ])
+                (const_int 16 [0x10])) [2 *wch_40(D)+16 S16 A32])) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+
+(insn 113 112 114 (set (mem:TI (plus:DI (reg:DI 160)
+                (const_int 16 [0x10])) [0  S16 A64])
+        (reg:TI 162)) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+
+(insn 114 113 115 (set (reg:DI 4 si)
+        (reg/v/f:DI 127 [ win ])) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+
+(insn 115 114 116 (set (reg:DI 5 di)
+        (reg:DI 159)) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+
+(call_insn 116 115 117 (call (mem:QI (symbol_ref:DI ("_nc_render") [flags 0x41]  <function_decl 0x7f8a6a900d00 _nc_render>) [0 _nc_render S1 A8])
+        (const_int 32 [0x20])) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_render") [flags 0x41]  <function_decl 0x7f8a6a900d00 _nc_render>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 117 116 118 (set (reg:TI 163)
+        (mem:TI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -48 [0xffffffffffffffd0])) [2  S16 A32])) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+
+(insn 118 117 119 (set (mem:TI (reg/v/f:DI 117 [ temp1 ]) [2 *temp1_60+0 S16 A32])
+        (reg:TI 163)) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+
+(insn 119 118 120 (set (reg:TI 164)
+        (mem:TI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -32 [0xffffffffffffffe0])) [2  S16 A32])) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+
+(insn 120 119 0 (set (mem:TI (plus:DI (reg/v/f:DI 117 [ temp1 ])
+                (const_int 16 [0x10])) [2 *temp1_60+16 S16 A32])
+        (reg:TI 164)) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+
+;; if (cells_30 != 1)
+
+(insn 121 120 122 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":73:26 -1
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (nil)))
+
+(insn 122 121 123 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 108 [ cells ])
+            (const_int 1 [0x1]))) "../ncurses/./widechar/lib_ins_wch.c":73:26 -1
+     (nil))
+
+(jump_insn 123 122 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":73:26 -1
+     (int_list:REG_BR_PROB 118111604 (nil)))
+
+;; Generating RTL for gimple basic block 13
+
+;; ivtmp.15_32 = (unsigned long) _74;
+
+(insn 125 124 0 (parallel [
+            (set (reg:DI 122 [ ivtmp.15 ])
+                (plus:DI (reg/v/f:DI 117 [ temp1 ])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+
+;; Generating RTL for gimple basic block 14
+
+;; _75 = (void *) ivtmp.15_66;
+
+(insn 127 126 0 (set (reg/f:DI 124 [ _75 ])
+        (reg:DI 122 [ ivtmp.15 ])) -1
+     (nil))
+
+;; _25 = cell_62 + 1;
+
+(insn 128 127 0 (parallel [
+            (set (reg/v:SI 104 [ cell ])
+                (plus:SI (reg/v:SI 104 [ cell ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":74:3 -1
+     (nil))
+
+;; MEM[(unsigned int *)_75] = _27;
+
+(insn 129 128 130 (set (reg:SI 166)
+        (mem:SI (reg/f:DI 124 [ _75 ]) [1 MEM[(unsigned int *)_75]+0 S4 A32])) "../ncurses/./widechar/lib_ins_wch.c":74:3 -1
+     (nil))
+
+(insn 130 129 131 (parallel [
+            (set (reg:SI 165)
+                (and:SI (reg:SI 166)
+                    (const_int -256 [0xffffffffffffff00])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":74:3 -1
+     (expr_list:REG_EQUAL (and:SI (mem:SI (reg/f:DI 124 [ _75 ]) [1 MEM[(unsigned int *)_75]+0 S4 A32])
+            (const_int -256 [0xffffffffffffff00]))
+        (nil)))
+
+(insn 131 130 132 (parallel [
+            (set (reg:SI 167)
+                (ior:SI (reg:SI 165)
+                    (reg/v:SI 104 [ cell ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":74:3 -1
+     (nil))
+
+(insn 132 131 0 (set (mem:SI (reg/f:DI 124 [ _75 ]) [1 MEM[(unsigned int *)_75]+0 S4 A32])
+        (reg:SI 167)) "../ncurses/./widechar/lib_ins_wch.c":74:3 -1
+     (nil))
+
+;; ivtmp.15_69 = ivtmp.15_66 + 32;
+
+(insn 133 132 0 (parallel [
+            (set (reg:DI 122 [ ivtmp.15 ])
+                (plus:DI (reg:DI 122 [ ivtmp.15 ])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":73:26 -1
+     (nil))
+
+;; if (_25 != cells_30)
+
+(insn 135 133 136 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 104 [ cell ])
+            (reg/v:SI 108 [ cells ]))) "../ncurses/./widechar/lib_ins_wch.c":73:26 -1
+     (nil))
+
+(jump_insn 136 135 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 134)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":73:26 -1
+     (int_list:REG_BR_PROB 955630228 (nil)))
+
+;; Generating RTL for gimple basic block 15
+
+;; 
+
+(code_label 137 136 138 10 (nil) [0 uses])
+
+(note 138 137 0 NOTE_INSN_BASIC_BLOCK)
+
+;; win_43(D)->_curx = _29;
+
+(insn 139 138 0 (parallel [
+            (set (mem:SI (plus:DI (reg/v/f:DI 127 [ win ])
+                        (const_int 4 [0x4])) [1 win_43(D)->_curx+0 S4 A32])
+                (plus:SI (mem:SI (plus:DI (reg/v/f:DI 127 [ win ])
+                            (const_int 4 [0x4])) [1 win_43(D)->_curx+0 S4 A32])
+                    (reg/v:SI 108 [ cells ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":77:19 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 16
+
+;; 
+
+(code_label 140 139 141 5 (nil) [0 uses])
+
+(note 141 140 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return code_31;
+
+(jump_insn 142 141 143 (set (pc)
+        (label_ref 0)) "../ncurses/./widechar/lib_ins_wch.c":80:12 -1
+     (nil))
+
+(barrier 143 142 0)
+Edge 6->16 redirected to 19
+Purged non-fallthru edges from bb 24
+Predictions for insn 26 bb 3
+  first match heuristics: 99.96%  exec 80854922 (estimated locally) hit 161709843 (estimated locally) (200.0%)
+  combined heuristics: 99.96%  exec 80854922 (estimated locally) hit 161709843 (estimated locally) (200.0%)
+  noreturn call heuristics: 99.96%  exec 80854922 (estimated locally) hit 161709843 (estimated locally) (200.0%)
+Predictions for insn 147 bb 18
+  first match heuristics: 99.96%  exec 236223200 (estimated locally) hit 472446398 (estimated locally) (200.0%)
+  combined heuristics: 99.96%  exec 236223200 (estimated locally) hit 472446398 (estimated locally) (200.0%)
+  noreturn call heuristics: 99.96%  exec 236223200 (estimated locally) hit 472446398 (estimated locally) (200.0%)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 10->12 redirected to 13
+Forwarding edge 11->12 to 13 failed.
+Deleted label in block 12.
+Redirecting jump 154 from 23 to 24.
+Merging block 23 into block 22...
+Merged blocks 22 and 23.
+Merged 22 and 23 without moving.
+Removing jump 142.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 11->12 to 13 failed.
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 12 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 317078122 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:317078122 (estimated locally) (FALLTHRU)
+(note 12 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 12 3 2 (set (reg/v/f:DI 127 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./widechar/lib_ins_wch.c":51:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 128 [ wch ])
+        (reg:DI 4 si [ wch ])) "../ncurses/./widechar/lib_ins_wch.c":51:1 -1
+     (nil))
+(note 4 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 4 6 2 (set (reg/f:DI 129)
+        (const_int 40 [0x28])) "../ncurses/./widechar/lib_ins_wch.c":51:1 -1
+     (nil))
+(insn 6 5 14 2 (parallel [
+            (set (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                        (const_int -8 [0xfffffffffffffff8])) [11 D.9154+0 S8 A64])
+                (unspec:DI [
+                        (mem/v/f:DI (reg/f:DI 129) [12 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_SET))
+            (set (scratch:DI)
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":51:1 -1
+     (nil))
+(insn 14 6 15 2 (set (reg:SI 130)
+        (mem:SI (plus:DI (reg/v/f:DI 128 [ wch ])
+                (const_int 4 [0x4])) [1 wch_40(D)->chars[0]+0 S4 A32])) "../ncurses/./widechar/lib_ins_wch.c":52:17 -1
+     (nil))
+(insn 15 14 16 2 (set (reg:SI 5 di)
+        (reg:SI 130)) "../ncurses/./widechar/lib_ins_wch.c":52:17 -1
+     (nil))
+(insn 16 15 17 2 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":52:17 -1
+     (nil))
+(call_insn 17 16 18 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wcwidth") [flags 0x41]  <function_decl 0x7f8a6a91d900 wcwidth>) [0 wcwidth S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":52:17 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wcwidth") [flags 0x41]  <function_decl 0x7f8a6a91d900 wcwidth>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:SI (use (reg:SI 5 di))
+            (nil))))
+(insn 18 17 21 2 (set (reg/v:SI 108 [ cells ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_ins_wch.c":52:17 -1
+     (nil))
+(insn 21 18 22 2 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 108 [ cells ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":55:8 -1
+     (nil))
+(jump_insn 22 21 23 2 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 36)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":55:8 -1
+     (int_list:REG_BR_PROB 799937660 (nil))
+ -> 36)
+;;  succ:       4 [25.5% (guessed)]  count:80854922 (estimated locally) (FALLTHRU)
+;;              7 [74.5% (guessed)]  count:236223200 (estimated locally)
+
+;; basic block 4, loop depth 0, count 80854922 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [25.5% (guessed)]  count:80854922 (estimated locally) (FALLTHRU)
+(note 23 22 24 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 25 4 (set (reg/f:DI 131)
+        (const_int 40 [0x28])) "../ncurses/./widechar/lib_ins_wch.c":56:9 -1
+     (nil))
+(insn 25 24 26 4 (parallel [
+            (set (reg:CCZ 17 flags)
+                (unspec:CCZ [
+                        (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                                (const_int -8 [0xfffffffffffffff8])) [11 D.9154+0 S8 A64])
+                        (mem/v/f:DI (reg/f:DI 131) [12 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_TEST))
+            (clobber (scratch:DI))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":56:9 -1
+     (nil))
+(jump_insn 26 25 159 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 29)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":56:9 -1
+     (int_list:REG_BR_PROB 1073312332 (nil))
+ -> 29)
+;;  succ:       6 [100.0% (guessed)]  count:80822580 (estimated locally)
+;;              5 [0.0% (guessed)]  count:32342 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 32342 (estimated locally)
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [0.0% (guessed)]  count:32342 (estimated locally) (FALLTHRU)
+(note 159 26 27 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(call_insn 27 159 28 5 (call (mem:QI (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7f8a6a500a00 __stack_chk_fail>) [0 __stack_chk_fail S1 A8])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":56:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7f8a6a500a00 __stack_chk_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (nil))
+;;  succ:      
+
+(barrier 28 27 29)
+;; basic block 6, loop depth 0, count 80822580 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL)
+;;  pred:       4 [100.0% (guessed)]  count:80822580 (estimated locally)
+(code_label 29 28 160 6 3 (nil) [1 uses])
+(note 160 29 30 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 30 160 31 6 (set (reg:SI 132)
+        (mem:SI (plus:DI (reg/v/f:DI 128 [ wch ])
+                (const_int 4 [0x4])) [1 wch_40(D)->chars[0]+0 S4 A32])) "../ncurses/./widechar/lib_ins_wch.c":56:9 -1
+     (nil))
+(insn 31 30 32 6 (set (reg:SI 4 si)
+        (reg:SI 132)) "../ncurses/./widechar/lib_ins_wch.c":56:9 -1
+     (nil))
+(insn 32 31 33 6 (set (reg:DI 5 di)
+        (reg/v/f:DI 127 [ win ])) "../ncurses/./widechar/lib_ins_wch.c":56:9 -1
+     (nil))
+(call_insn/j 33 32 34 6 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("winsch") [flags 0x41]  <function_decl 0x7f8a6a759000 winsch>) [0 winsch S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":56:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("winsch") [flags 0x41]  <function_decl 0x7f8a6a759000 winsch>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+;;  succ:       EXIT [always]  count:80822580 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 34 33 36)
+;; basic block 7, loop depth 0, count 236223200 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [74.5% (guessed)]  count:236223200 (estimated locally)
+(code_label 36 34 37 7 2 (nil) [1 uses])
+(note 37 36 38 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 38 37 39 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 108 [ cells ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":58:5 -1
+     (nil))
+(jump_insn 39 38 40 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 41)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":58:5 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 41)
+;;  succ:       8 [50.0% (guessed)]  count:118111600 (estimated locally) (FALLTHRU)
+;;              9 [50.0% (guessed)]  count:118111600 (estimated locally)
+
+;; basic block 8, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       7 [50.0% (guessed)]  count:118111600 (estimated locally) (FALLTHRU)
+(note 40 39 7 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 7 40 41 8 (set (reg/v:SI 108 [ cells ])
+        (const_int 1 [0x1])) "../ncurses/./widechar/lib_ins_wch.c":59:12 -1
+     (nil))
+;;  succ:       9 [always]  count:118111600 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 236223200 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [50.0% (guessed)]  count:118111600 (estimated locally)
+;;              8 [always]  count:118111600 (estimated locally) (FALLTHRU)
+(code_label 41 7 42 9 4 (nil) [1 uses])
+(note 42 41 43 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 43 42 44 9 (set (reg:SI 85 [ _4 ])
+        (mem:SI (plus:DI (reg/v/f:DI 127 [ win ])
+                (const_int 4 [0x4])) [1 win_43(D)->_curx+0 S4 A32])) "../ncurses/./widechar/lib_ins_wch.c":61:9 -1
+     (nil))
+(insn 44 43 45 9 (set (reg:SI 86 [ _5 ])
+        (mem:SI (plus:DI (reg/v/f:DI 127 [ win ])
+                (const_int 12 [0xc])) [1 win_43(D)->_maxx+0 S4 A32])) "../ncurses/./widechar/lib_ins_wch.c":61:23 -1
+     (nil))
+(insn 45 44 46 9 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 85 [ _4 ])
+            (reg:SI 86 [ _5 ]))) "../ncurses/./widechar/lib_ins_wch.c":61:5 -1
+     (nil))
+(jump_insn 46 45 47 9 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 157)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":61:5 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 157)
+;;  succ:       10 [50.0% (guessed)]  count:118111600 (estimated locally) (FALLTHRU)
+;;              22 [50.0% (guessed)]  count:118111600 (estimated locally)
+
+;; basic block 10, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       9 [50.0% (guessed)]  count:118111600 (estimated locally) (FALLTHRU)
+(note 47 46 48 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 48 47 49 10 (set (reg:SI 134)
+        (mem:SI (reg/v/f:DI 127 [ win ]) [1 win_43(D)->_cury+0 S4 A64])) "../ncurses/./widechar/lib_ins_wch.c":63:42 -1
+     (nil))
+(insn 49 48 50 10 (set (reg:DI 133)
+        (sign_extend:DI (reg:SI 134))) "../ncurses/./widechar/lib_ins_wch.c":63:42 -1
+     (nil))
+(insn 50 49 51 10 (set (reg:DI 135)
+        (reg:DI 133)) "../ncurses/./widechar/lib_ins_wch.c":63:38 -1
+     (nil))
+(insn 51 50 52 10 (parallel [
+            (set (reg:DI 136)
+                (ashift:DI (reg:DI 135)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":63:38 -1
+     (nil))
+(insn 52 51 53 10 (parallel [
+            (set (reg:DI 137)
+                (plus:DI (reg:DI 136)
+                    (reg:DI 133)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":63:38 -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 133)
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 53 52 54 10 (parallel [
+            (set (reg:DI 138)
+                (ashift:DI (reg:DI 137)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":63:38 -1
+     (nil))
+(insn 54 53 55 10 (set (reg:DI 137)
+        (reg:DI 138)) "../ncurses/./widechar/lib_ins_wch.c":63:38 -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 133)
+            (const_int 24 [0x18]))
+        (nil)))
+(insn 55 54 56 10 (set (reg/f:DI 139)
+        (mem/f:DI (plus:DI (reg/v/f:DI 127 [ win ])
+                (const_int 56 [0x38])) [6 win_43(D)->_line+0 S8 A64])) "../ncurses/./widechar/lib_ins_wch.c":63:19 -1
+     (nil))
+(insn 56 55 57 10 (parallel [
+            (set (reg/v/f:DI 113 [ line ])
+                (plus:DI (reg:DI 137)
+                    (reg/f:DI 139)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":63:19 -1
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 127 [ win ])
+                    (const_int 56 [0x38])) [6 win_43(D)->_line+0 S8 A64])
+            (reg:DI 137))
+        (nil)))
+(insn 57 56 58 10 (set (reg/f:DI 91 [ _10 ])
+        (mem/f:DI (reg/v/f:DI 113 [ line ]) [9 line_44->text+0 S8 A64])) "../ncurses/./widechar/lib_ins_wch.c":64:32 -1
+     (nil))
+(insn 58 57 59 10 (set (reg:DI 140)
+        (sign_extend:DI (reg:SI 85 [ _4 ]))) "../ncurses/./widechar/lib_ins_wch.c":64:42 -1
+     (nil))
+(insn 59 58 60 10 (parallel [
+            (set (reg:DI 141)
+                (ashift:DI (reg:DI 140)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":64:38 -1
+     (nil))
+(insn 60 59 61 10 (parallel [
+            (set (reg/v/f:DI 114 [ end ])
+                (plus:DI (reg/f:DI 91 [ _10 ])
+                    (reg:DI 141)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":64:20 -1
+     (nil))
+(insn 61 60 62 10 (set (reg:DI 142)
+        (sign_extend:DI (reg:SI 86 [ _5 ]))) "../ncurses/./widechar/lib_ins_wch.c":65:44 -1
+     (nil))
+(insn 62 61 63 10 (parallel [
+            (set (reg:DI 143)
+                (ashift:DI (reg:DI 142)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":65:40 -1
+     (nil))
+(insn 63 62 64 10 (parallel [
+            (set (reg/v/f:DI 117 [ temp1 ])
+                (plus:DI (reg/f:DI 91 [ _10 ])
+                    (reg:DI 143)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":65:20 -1
+     (nil))
+(insn 64 63 65 10 (set (reg:DI 144)
+        (sign_extend:DI (reg/v:SI 108 [ cells ]))) "../ncurses/./widechar/lib_ins_wch.c":66:40 -1
+     (nil))
+(insn 65 64 66 10 (parallel [
+            (set (reg:DI 145)
+                (ashift:DI (reg:DI 144)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":66:40 -1
+     (nil))
+(insn 66 65 67 10 (parallel [
+            (set (reg/v/f:DI 115 [ temp2 ])
+                (minus:DI (reg/v/f:DI 117 [ temp1 ])
+                    (reg:DI 145)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":66:26 -1
+     (nil))
+(insn 67 66 68 10 (set (reg:SI 100 [ _19 ])
+        (mem:SI (plus:DI (reg/v/f:DI 113 [ line ])
+                (const_int 8 [0x8])) [1 line_44->firstchar+0 S4 A64])) "../ncurses/./widechar/lib_ins_wch.c":68:6 -1
+     (nil))
+(insn 68 67 69 10 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 85 [ _4 ])
+            (reg:SI 100 [ _19 ]))) "../ncurses/./widechar/lib_ins_wch.c":68:6 -1
+     (nil))
+(insn 69 68 70 10 (set (reg:QI 147)
+        (lt:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":68:6 -1
+     (nil))
+(insn 70 69 71 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 147)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":68:6 -1
+     (nil))
+(jump_insn 71 70 161 10 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 165)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":68:6 806 {*jcc}
+     (int_list:REG_BR_PROB 359703516 (nil))
+ -> 165)
+;;  succ:       13 [33.5% (guessed)]  count:39567386 (estimated locally)
+;;              11 [66.5% (guessed)]  count:78544214 (estimated locally) (FALLTHRU)
+
+;; basic block 11, loop depth 0, count 78544214 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       10 [66.5% (guessed)]  count:78544214 (estimated locally) (FALLTHRU)
+(note 161 71 72 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 72 161 73 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 100 [ _19 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./widechar/lib_ins_wch.c":68:6 -1
+     (nil))
+(insn 73 72 74 11 (set (reg:QI 149)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":68:6 -1
+     (nil))
+(insn 74 73 75 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 149)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":68:6 -1
+     (nil))
+(jump_insn 75 74 162 11 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 79)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":68:6 -1
+     (int_list:REG_BR_PROB 532834292 (nil))
+ -> 79)
+;;  succ:       14 [49.6% (guessed)]  count:38976828 (estimated locally)
+;;              12 [50.4% (guessed)]  count:39567386 (estimated locally) (FALLTHRU)
+
+;; basic block 12, loop depth 0, count 39567386 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       11 [50.4% (guessed)]  count:39567386 (estimated locally) (FALLTHRU)
+(note 162 75 165 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       13 [always]  count:39567386 (estimated locally) (FALLTHRU)
+
+;; basic block 13, loop depth 0, count 79134772 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       12 [always]  count:39567386 (estimated locally) (FALLTHRU)
+;;              10 [33.5% (guessed)]  count:39567386 (estimated locally)
+(code_label 165 162 77 13 14 (nil) [1 uses])
+(note 77 165 78 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 78 77 79 13 (set (mem:SI (plus:DI (reg/v/f:DI 113 [ line ])
+                (const_int 8 [0x8])) [1 line_44->firstchar+0 S4 A64])
+        (reg:SI 85 [ _4 ])) "../ncurses/./widechar/lib_ins_wch.c":68:6 -1
+     (nil))
+;;  succ:       14 [always]  count:79134772 (estimated locally) (FALLTHRU)
+
+;; basic block 14, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       13 [always]  count:79134772 (estimated locally) (FALLTHRU)
+;;              11 [49.6% (guessed)]  count:38976828 (estimated locally)
+(code_label 79 78 80 14 6 (nil) [1 uses])
+(note 80 79 81 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 81 80 82 14 (set (mem:SI (plus:DI (reg/v/f:DI 113 [ line ])
+                (const_int 12 [0xc])) [1 line_44->lastchar+0 S4 A32])
+        (reg:SI 86 [ _5 ])) "../ncurses/./widechar/lib_ins_wch.c":68:6 -1
+     (nil))
+(insn 82 81 83 14 (set (reg:CC 17 flags)
+        (compare:CC (reg/v/f:DI 114 [ end ])
+            (reg/v/f:DI 117 [ temp1 ]))) "../ncurses/./widechar/lib_ins_wch.c":69:19 -1
+     (nil))
+(jump_insn 83 82 158 14 (set (pc)
+        (if_then_else (geu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 105)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":69:19 -1
+     (int_list:REG_BR_PROB 118111604 (nil))
+ -> 105)
+;;  succ:       15 [89.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+;;              18 [11.0% (guessed)]  count:12992276 (estimated locally)
+
+;; basic block 15, loop depth 0, count 105119324 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       14 [89.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+(note 158 83 8 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 8 158 91 15 (set (reg/v/f:DI 116 [ temp1 ])
+        (reg/v/f:DI 117 [ temp1 ])) "../ncurses/./widechar/lib_ins_wch.c":69:19 -1
+     (nil))
+;;  succ:       16 [always]  count:105119324 (estimated locally) (FALLTHRU)
+
+;; basic block 16, loop depth 1, count 955630226 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       16 [89.0% (guessed)]  count:850510902 (estimated locally) (DFS_BACK)
+;;              15 [always]  count:105119324 (estimated locally) (FALLTHRU)
+(code_label 91 8 84 16 9 (nil) [1 uses])
+(note 84 91 85 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 85 84 86 16 (parallel [
+            (set (reg/v/f:DI 115 [ temp2 ])
+                (plus:DI (reg/v/f:DI 115 [ temp2 ])
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":70:20 -1
+     (nil))
+(insn 86 85 87 16 (parallel [
+            (set (reg/v/f:DI 116 [ temp1 ])
+                (plus:DI (reg/v/f:DI 116 [ temp1 ])
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":70:9 -1
+     (nil))
+(insn 87 86 88 16 (set (reg:TI 150)
+        (mem:TI (plus:DI (reg/v/f:DI 115 [ temp2 ])
+                (const_int 32 [0x20])) [2 MEM[(const struct cchar_t *)temp2_53 + 32B]+0 S16 A32])) "../ncurses/./widechar/lib_ins_wch.c":70:12 -1
+     (nil))
+(insn 88 87 89 16 (set (mem:TI (plus:DI (reg/v/f:DI 116 [ temp1 ])
+                (const_int 32 [0x20])) [2 MEM[(struct cchar_t *)temp1_54 + 32B]+0 S16 A32])
+        (reg:TI 150)) "../ncurses/./widechar/lib_ins_wch.c":70:12 -1
+     (nil))
+(insn 89 88 90 16 (set (reg:TI 151)
+        (mem:TI (plus:DI (reg/v/f:DI 115 [ temp2 ])
+                (const_int 48 [0x30])) [2 MEM[(const struct cchar_t *)temp2_53 + 32B]+16 S16 A32])) "../ncurses/./widechar/lib_ins_wch.c":70:12 -1
+     (nil))
+(insn 90 89 92 16 (set (mem:TI (plus:DI (reg/v/f:DI 116 [ temp1 ])
+                (const_int 48 [0x30])) [2 MEM[(struct cchar_t *)temp1_54 + 32B]+16 S16 A32])
+        (reg:TI 151)) "../ncurses/./widechar/lib_ins_wch.c":70:12 -1
+     (nil))
+(insn 92 90 93 16 (set (reg:CC 17 flags)
+        (compare:CC (reg/v/f:DI 114 [ end ])
+            (reg/v/f:DI 116 [ temp1 ]))) "../ncurses/./widechar/lib_ins_wch.c":69:19 -1
+     (nil))
+(jump_insn 93 92 94 16 (set (pc)
+        (if_then_else (ltu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 91)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":69:19 -1
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 91)
+;;  succ:       16 [89.0% (guessed)]  count:850510902 (estimated locally) (DFS_BACK)
+;;              17 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+
+;; basic block 17, loop depth 0, count 105119324 (estimated locally), maybe hot
+;;  prev block 16, next block 18, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       16 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+(note 94 93 95 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 95 94 96 17 (parallel [
+            (set (reg:DI 152)
+                (plus:DI (reg/v/f:DI 117 [ temp1 ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 96 95 97 17 (parallel [
+            (set (reg:DI 153)
+                (minus:DI (reg:DI 152)
+                    (reg/v/f:DI 114 [ end ])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 97 96 98 17 (parallel [
+            (set (reg:DI 154)
+                (lshiftrt:DI (reg:DI 153)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 98 97 99 17 (parallel [
+            (set (reg:DI 155)
+                (plus:DI (reg:DI 154)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 99 98 100 17 (set (reg:DI 156)
+        (const_int 0 [0])) -1
+     (nil))
+(insn 100 99 101 17 (parallel [
+            (set (reg:DI 157)
+                (minus:DI (reg:DI 156)
+                    (reg:DI 155)))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 155)
+            (const_int -1 [0xffffffffffffffff]))
+        (nil)))
+(insn 101 100 102 17 (parallel [
+            (set (reg:DI 158)
+                (ashift:DI (reg:DI 157)
+                    (const_int 5 [0x5])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 102 101 103 17 (set (reg:DI 157)
+        (reg:DI 158)) -1
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 155)
+            (const_int -32 [0xffffffffffffffe0]))
+        (nil)))
+(insn 103 102 104 17 (set (reg:DI 109 [ _33 ])
+        (reg:DI 157)) -1
+     (nil))
+(insn 104 103 105 17 (parallel [
+            (set (reg/v/f:DI 117 [ temp1 ])
+                (plus:DI (reg/v/f:DI 117 [ temp1 ])
+                    (reg:DI 109 [ _33 ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":70:9 -1
+     (nil))
+;;  succ:       18 [always]  count:105119324 (estimated locally) (FALLTHRU)
+
+;; basic block 18, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 17, next block 19, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       17 [always]  count:105119324 (estimated locally) (FALLTHRU)
+;;              14 [11.0% (guessed)]  count:12992276 (estimated locally)
+(code_label 105 104 106 18 8 (nil) [1 uses])
+(note 106 105 107 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 107 106 108 18 (parallel [
+            (set (reg:DI 159)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+(insn 108 107 109 18 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (expr_list:REG_ARGS_SIZE (const_int 32 [0x20])
+        (nil)))
+(insn 109 108 110 18 (set (reg:DI 160)
+        (reg/f:DI 79 virtual-outgoing-args)) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+(insn 110 109 111 18 (set (reg:TI 161)
+        (mem:TI (reg/v/f:DI 128 [ wch ]) [2 *wch_40(D)+0 S16 A32])) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+(insn 111 110 112 18 (set (mem:TI (reg:DI 160) [0  S16 A64])
+        (reg:TI 161)) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+(insn 112 111 113 18 (set (reg:TI 162)
+        (mem:TI (plus:DI (reg/v/f:DI 128 [ wch ])
+                (const_int 16 [0x10])) [2 *wch_40(D)+16 S16 A32])) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+(insn 113 112 114 18 (set (mem:TI (plus:DI (reg:DI 160)
+                (const_int 16 [0x10])) [0  S16 A64])
+        (reg:TI 162)) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+(insn 114 113 115 18 (set (reg:DI 4 si)
+        (reg/v/f:DI 127 [ win ])) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+(insn 115 114 116 18 (set (reg:DI 5 di)
+        (reg:DI 159)) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+(call_insn 116 115 117 18 (call (mem:QI (symbol_ref:DI ("_nc_render") [flags 0x41]  <function_decl 0x7f8a6a900d00 _nc_render>) [0 _nc_render S1 A8])
+        (const_int 32 [0x20])) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_render") [flags 0x41]  <function_decl 0x7f8a6a900d00 _nc_render>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 117 116 118 18 (set (reg:TI 163)
+        (mem:TI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -48 [0xffffffffffffffd0])) [2  S16 A32])) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+(insn 118 117 119 18 (set (mem:TI (reg/v/f:DI 117 [ temp1 ]) [2 *temp1_60+0 S16 A32])
+        (reg:TI 163)) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+(insn 119 118 120 18 (set (reg:TI 164)
+        (mem:TI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -32 [0xffffffffffffffe0])) [2  S16 A32])) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+(insn 120 119 121 18 (set (mem:TI (plus:DI (reg/v/f:DI 117 [ temp1 ])
+                (const_int 16 [0x10])) [2 *temp1_60+16 S16 A32])
+        (reg:TI 164)) "../ncurses/./widechar/lib_ins_wch.c":72:15 -1
+     (nil))
+(insn 121 120 122 18 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":73:26 -1
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (nil)))
+(insn 122 121 123 18 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 108 [ cells ])
+            (const_int 1 [0x1]))) "../ncurses/./widechar/lib_ins_wch.c":73:26 -1
+     (nil))
+(jump_insn 123 122 124 18 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 137)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":73:26 -1
+     (int_list:REG_BR_PROB 118111604 (nil))
+ -> 137)
+;;  succ:       19 [89.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+;;              21 [11.0% (guessed)]  count:12992276 (estimated locally)
+
+;; basic block 19, loop depth 0, count 105119324 (estimated locally), maybe hot
+;;  prev block 18, next block 20, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       18 [89.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+(note 124 123 125 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 125 124 9 19 (parallel [
+            (set (reg:DI 122 [ ivtmp.15 ])
+                (plus:DI (reg/v/f:DI 117 [ temp1 ])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) -1
+     (nil))
+(insn 9 125 134 19 (set (reg/v:SI 104 [ cell ])
+        (const_int 1 [0x1])) "../ncurses/./widechar/lib_ins_wch.c":73:16 -1
+     (nil))
+;;  succ:       20 [always]  count:105119324 (estimated locally) (FALLTHRU)
+
+;; basic block 20, loop depth 1, count 955630226 (estimated locally), maybe hot
+;;  prev block 19, next block 21, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       20 [89.0% (guessed)]  count:850510902 (estimated locally) (DFS_BACK)
+;;              19 [always]  count:105119324 (estimated locally) (FALLTHRU)
+(code_label 134 9 126 20 11 (nil) [1 uses])
+(note 126 134 127 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 127 126 128 20 (set (reg/f:DI 124 [ _75 ])
+        (reg:DI 122 [ ivtmp.15 ])) -1
+     (nil))
+(insn 128 127 129 20 (parallel [
+            (set (reg/v:SI 104 [ cell ])
+                (plus:SI (reg/v:SI 104 [ cell ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":74:3 -1
+     (nil))
+(insn 129 128 130 20 (set (reg:SI 166)
+        (mem:SI (reg/f:DI 124 [ _75 ]) [1 MEM[(unsigned int *)_75]+0 S4 A32])) "../ncurses/./widechar/lib_ins_wch.c":74:3 -1
+     (nil))
+(insn 130 129 131 20 (parallel [
+            (set (reg:SI 165)
+                (and:SI (reg:SI 166)
+                    (const_int -256 [0xffffffffffffff00])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":74:3 -1
+     (expr_list:REG_EQUAL (and:SI (mem:SI (reg/f:DI 124 [ _75 ]) [1 MEM[(unsigned int *)_75]+0 S4 A32])
+            (const_int -256 [0xffffffffffffff00]))
+        (nil)))
+(insn 131 130 132 20 (parallel [
+            (set (reg:SI 167)
+                (ior:SI (reg:SI 165)
+                    (reg/v:SI 104 [ cell ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":74:3 -1
+     (nil))
+(insn 132 131 133 20 (set (mem:SI (reg/f:DI 124 [ _75 ]) [1 MEM[(unsigned int *)_75]+0 S4 A32])
+        (reg:SI 167)) "../ncurses/./widechar/lib_ins_wch.c":74:3 -1
+     (nil))
+(insn 133 132 135 20 (parallel [
+            (set (reg:DI 122 [ ivtmp.15 ])
+                (plus:DI (reg:DI 122 [ ivtmp.15 ])
+                    (const_int 32 [0x20])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":73:26 -1
+     (nil))
+(insn 135 133 136 20 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 104 [ cell ])
+            (reg/v:SI 108 [ cells ]))) "../ncurses/./widechar/lib_ins_wch.c":73:26 -1
+     (nil))
+(jump_insn 136 135 137 20 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 134)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":73:26 -1
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 134)
+;;  succ:       20 [89.0% (guessed)]  count:850510902 (estimated locally) (DFS_BACK)
+;;              21 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+
+;; basic block 21, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 20, next block 22, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       18 [11.0% (guessed)]  count:12992276 (estimated locally)
+;;              20 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+(code_label 137 136 138 21 10 (nil) [1 uses])
+(note 138 137 139 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 139 138 11 21 (parallel [
+            (set (mem:SI (plus:DI (reg/v/f:DI 127 [ win ])
+                        (const_int 4 [0x4])) [1 win_43(D)->_curx+0 S4 A32])
+                (plus:SI (mem:SI (plus:DI (reg/v/f:DI 127 [ win ])
+                            (const_int 4 [0x4])) [1 win_43(D)->_curx+0 S4 A32])
+                    (reg/v:SI 108 [ cells ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":77:19 -1
+     (nil))
+(insn 11 139 154 21 (set (reg/v:SI 126 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":53:9 -1
+     (nil))
+(jump_insn 154 11 155 21 (set (pc)
+        (label_ref:DI 144)) 807 {jump}
+     (nil)
+ -> 144)
+;;  succ:       24 [always]  count:118111600 (estimated locally)
+
+(barrier 155 154 157)
+;; basic block 22, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 21, next block 24, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       9 [50.0% (guessed)]  count:118111600 (estimated locally)
+(code_label 157 155 156 22 13 (nil) [1 uses])
+(note 156 157 10 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 10 156 144 22 (set (reg/v:SI 126 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":53:9 -1
+     (nil))
+;;  succ:       24 [always]  count:118111600 (estimated locally) (FALLTHRU)
+
+;; basic block 24, loop depth 0, count 236223200 (estimated locally), maybe hot
+;;  prev block 22, next block 25, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       22 [always]  count:118111600 (estimated locally) (FALLTHRU)
+;;              21 [always]  count:118111600 (estimated locally)
+(code_label 144 10 153 24 1 (nil) [1 uses])
+(note 153 144 145 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 145 153 146 24 (set (reg/f:DI 169)
+        (const_int 40 [0x28])) "../ncurses/./widechar/lib_ins_wch.c":81:1 -1
+     (nil))
+(insn 146 145 147 24 (parallel [
+            (set (reg:CCZ 17 flags)
+                (unspec:CCZ [
+                        (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                                (const_int -8 [0xfffffffffffffff8])) [11 D.9154+0 S8 A64])
+                        (mem/v/f:DI (reg/f:DI 169) [12 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_TEST))
+            (clobber (scratch:DI))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":81:1 -1
+     (nil))
+(jump_insn 147 146 163 24 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 150)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":81:1 -1
+     (int_list:REG_BR_PROB 1073312332 (nil))
+ -> 150)
+;;  succ:       26 [100.0% (guessed)]  count:236128711 (estimated locally)
+;;              25 [0.0% (guessed)]  count:94489 (estimated locally) (FALLTHRU)
+
+;; basic block 25, loop depth 0, count 94489 (estimated locally)
+;;  prev block 24, next block 26, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       24 [0.0% (guessed)]  count:94489 (estimated locally) (FALLTHRU)
+(note 163 147 148 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(call_insn 148 163 149 25 (call (mem:QI (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7f8a6a500a00 __stack_chk_fail>) [0 __stack_chk_fail S1 A8])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":81:1 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7f8a6a500a00 __stack_chk_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (nil))
+;;  succ:      
+
+(barrier 149 148 150)
+;; basic block 26, loop depth 0, count 236128711 (estimated locally), maybe hot
+;;  prev block 25, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       24 [100.0% (guessed)]  count:236128711 (estimated locally)
+(code_label 150 149 164 26 12 (nil) [1 uses])
+(note 164 150 151 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 151 164 152 26 (set (reg/i:SI 0 ax)
+        (reg/v:SI 126 [ <retval> ])) "../ncurses/./widechar/lib_ins_wch.c":81:1 -1
+     (nil))
+(insn 152 151 0 26 (use (reg/i:SI 0 ax)) "../ncurses/./widechar/lib_ins_wch.c":81:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:236128711 (estimated locally) (FALLTHRU)
+
+
+;; Function wins_wch (wins_wch, funcdef_no=92, decl_uid=7174, cgraph_uid=93, symbol_order=92)
+
+__attribute__((visibility ("default")))
+int wins_wch (struct WINDOW * win, const struct cchar_t * wch)
+{
+  int code;
+  unsigned long _13;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (win_3(D) != 0B)
+    goto <bb 3>; [98.26%]
+  else
+    goto <bb 4>; [1.74%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _13 = MEM <unsigned long> [(int *)win_3(D)];
+  code_9 = _nc_insert_wch (win_3(D), wch_7(D));
+  MEM <unsigned long> [(int *)win_3(D)] = _13;
+  _nc_synchook (win_3(D));
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+;;                3
+  # code_1 = PHI <-1(2), code_9(3)>
+  return code_1;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (code_1 - 1 )
+Partition 3 (win_3(D) - 3 )
+Partition 5 (_5(D) - 5 )
+Partition 7 (wch_7(D) - 7 )
+Partition 9 (code_9 - 9 )
+Partition 13 (_13 - 13 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (code_1 - 1 5 9 )
+Partition 1, base 1 (win_3(D) - 3 )
+Partition 3, base 2 (wch_7(D) - 7 )
+
+
+Partition map 
+
+Partition 0 (code_1 - 1 )
+Partition 1 (win_3(D) - 3 )
+Partition 2 (_5(D) - 5 )
+Partition 3 (wch_7(D) - 7 )
+Partition 4 (code_9 - 9 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) code_1 <-> _5(D)
+(9826, 0) code_1 <-> code_9
+
+Partition map 
+
+Partition 0 (code_1 - 1 )
+Partition 1 (win_3(D) - 3 )
+Partition 2 (_5(D) - 5 )
+Partition 3 (wch_7(D) - 7 )
+Partition 4 (code_9 - 9 )
+
+Coalesce list: (1)code_1 & (5)_5(D) [map: 0, 2] : Success -> 0
+Coalesce list: (1)code_1 & (9)code_9 [map: 0, 4] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (code_1 - 1 5 9 )
+Partition 1 (win_3(D) - 3 )
+Partition 2 (wch_7(D) - 7 )
+Partition 3 (_13 - 13 )
+
+__attribute__((visibility ("default")))
+int wins_wch (struct WINDOW * win, const struct cchar_t * wch)
+{
+  int code;
+  int _5(D);
+  unsigned long _13;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (win_3(D) != 0B)
+    goto <bb 3>; [98.26%]
+  else
+    goto <bb 4>; [1.74%]
+;;    succ:       3
+;;                4
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _13 = MEM <unsigned long> [(int *)win_3(D)];
+  code_9 = _nc_insert_wch (win_3(D), wch_7(D));
+  MEM <unsigned long> [(int *)win_3(D)] = _13;
+  _nc_synchook (win_3(D));
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+;;                3
+  # code_1 = PHI <-1(2), code_9(3)>
+  return code_1;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB2->BB4 : PART.0 = -1
+
+;; Generating RTL for gimple basic block 2
+
+;; if (win_3(D) != 0B)
+
+(insn 8 7 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 84 [ win ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":90:8 -1
+     (nil))
+
+(jump_insn 9 8 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":90:8 -1
+     (int_list:REG_BR_PROB 18683108 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _13 = MEM <unsigned long> [(int *)win_3(D)];
+
+(insn 11 10 0 (set (reg:DI 82 [ _13 ])
+        (mem:DI (reg/v/f:DI 84 [ win ]) [1 MEM <unsigned long> [(int *)win_3(D)]+0 S8 A64])) "../ncurses/./widechar/lib_ins_wch.c":91:17 -1
+     (nil))
+
+;; code_9 = _nc_insert_wch (win_3(D), wch_7(D));
+
+(insn 12 11 13 (set (reg:DI 4 si)
+        (reg/v/f:DI 85 [ wch ])) "../ncurses/./widechar/lib_ins_wch.c":94:9 -1
+     (nil))
+
+(insn 13 12 14 (set (reg:DI 5 di)
+        (reg/v/f:DI 84 [ win ])) "../ncurses/./widechar/lib_ins_wch.c":94:9 -1
+     (nil))
+
+(call_insn 14 13 15 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_insert_wch") [flags 0x3]  <function_decl 0x7f8a6a907000 _nc_insert_wch>) [0 _nc_insert_wch S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":94:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_insert_wch") [flags 0x3]  <function_decl 0x7f8a6a907000 _nc_insert_wch>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 15 14 0 (set (reg/v:SI 83 [ <retval> ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_ins_wch.c":94:9 -1
+     (nil))
+
+;; MEM <unsigned long> [(int *)win_3(D)] = _13;
+
+(insn 16 15 0 (set (mem:DI (reg/v/f:DI 84 [ win ]) [1 MEM <unsigned long> [(int *)win_3(D)]+0 S8 A64])
+        (reg:DI 82 [ _13 ])) "../ncurses/./widechar/lib_ins_wch.c":97:13 -1
+     (nil))
+
+;; _nc_synchook (win_3(D));
+
+(insn 17 16 18 (set (reg:DI 5 di)
+        (reg/v/f:DI 84 [ win ])) "../ncurses/./widechar/lib_ins_wch.c":98:2 -1
+     (nil))
+
+(call_insn 18 17 0 (call (mem:QI (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f8a6a900700 _nc_synchook>) [0 _nc_synchook S1 A8])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":98:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f8a6a900700 _nc_synchook>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; 
+
+(code_label 19 18 20 28 (nil) [0 uses])
+
+(note 20 19 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return code_1;
+
+(jump_insn 21 20 22 (set (pc)
+        (label_ref 0)) "../ncurses/./widechar/lib_ins_wch.c":100:5 -1
+     (nil))
+
+(barrier 22 21 0)
+Edge 2->4 redirected to 7
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 27 from 6 to 7.
+Merging block 6 into block 5...
+Merged blocks 5 and 6.
+Merged 5 and 6 without moving.
+Removing jump 21.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 6 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 6 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 6 3 2 (set (reg/v/f:DI 84 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./widechar/lib_ins_wch.c":85:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 85 [ wch ])
+        (reg:DI 4 si [ wch ])) "../ncurses/./widechar/lib_ins_wch.c":85:1 -1
+     (nil))
+(note 4 3 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 4 9 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 84 [ win ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":90:8 -1
+     (nil))
+(jump_insn 9 8 10 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 30)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":90:8 806 {*jcc}
+     (int_list:REG_BR_PROB 18683108 (nil))
+ -> 30)
+;;  succ:       4 [98.3% (guessed)]  count:1055058720 (estimated locally) (FALLTHRU)
+;;              5 [1.7% (guessed)]  count:18683104 (estimated locally)
+
+;; basic block 4, loop depth 0, count 1055058721 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [98.3% (guessed)]  count:1055058720 (estimated locally) (FALLTHRU)
+(note 10 9 11 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 11 10 12 4 (set (reg:DI 82 [ _13 ])
+        (mem:DI (reg/v/f:DI 84 [ win ]) [1 MEM <unsigned long> [(int *)win_3(D)]+0 S8 A64])) "../ncurses/./widechar/lib_ins_wch.c":91:17 -1
+     (nil))
+(insn 12 11 13 4 (set (reg:DI 4 si)
+        (reg/v/f:DI 85 [ wch ])) "../ncurses/./widechar/lib_ins_wch.c":94:9 -1
+     (nil))
+(insn 13 12 14 4 (set (reg:DI 5 di)
+        (reg/v/f:DI 84 [ win ])) "../ncurses/./widechar/lib_ins_wch.c":94:9 -1
+     (nil))
+(call_insn 14 13 15 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_insert_wch") [flags 0x3]  <function_decl 0x7f8a6a907000 _nc_insert_wch>) [0 _nc_insert_wch S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":94:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_insert_wch") [flags 0x3]  <function_decl 0x7f8a6a907000 _nc_insert_wch>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 15 14 16 4 (set (reg/v:SI 83 [ <retval> ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_ins_wch.c":94:9 -1
+     (nil))
+(insn 16 15 17 4 (set (mem:DI (reg/v/f:DI 84 [ win ]) [1 MEM <unsigned long> [(int *)win_3(D)]+0 S8 A64])
+        (reg:DI 82 [ _13 ])) "../ncurses/./widechar/lib_ins_wch.c":97:13 -1
+     (nil))
+(insn 17 16 18 4 (set (reg:DI 5 di)
+        (reg/v/f:DI 84 [ win ])) "../ncurses/./widechar/lib_ins_wch.c":98:2 -1
+     (nil))
+(call_insn 18 17 27 4 (call (mem:QI (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f8a6a900700 _nc_synchook>) [0 _nc_synchook S1 A8])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":98:2 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f8a6a900700 _nc_synchook>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(jump_insn 27 18 28 4 (set (pc)
+        (label_ref:DI 23)) 807 {jump}
+     (nil)
+ -> 23)
+;;  succ:       7 [always]  count:1055058721 (estimated locally)
+
+(barrier 28 27 30)
+;; basic block 5, loop depth 0, count 18683104 (estimated locally), maybe hot
+;;  prev block 4, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [1.7% (guessed)]  count:18683104 (estimated locally)
+(code_label 30 28 29 5 29 (nil) [1 uses])
+(note 29 30 5 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 5 29 23 5 (set (reg/v:SI 83 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./widechar/lib_ins_wch.c":86:9 -1
+     (nil))
+;;  succ:       7 [always]  count:18683104 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 5, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       5 [always]  count:18683104 (estimated locally) (FALLTHRU)
+;;              4 [always]  count:1055058721 (estimated locally)
+(code_label 23 5 26 7 27 (nil) [1 uses])
+(note 26 23 24 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 24 26 25 7 (set (reg/i:SI 0 ax)
+        (reg/v:SI 83 [ <retval> ])) "../ncurses/./widechar/lib_ins_wch.c":101:1 -1
+     (nil))
+(insn 25 24 0 7 (use (reg/i:SI 0 ax)) "../ncurses/./widechar/lib_ins_wch.c":101:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+
+;; Function wins_nwstr (wins_nwstr, funcdef_no=94, decl_uid=7171, cgraph_uid=95, symbol_order=94)
+
+__attribute__((visibility ("default")))
+int wins_nwstr (struct WINDOW * win, const wchar_t * wstr, int n)
+{
+  struct cchar_t tmp_cchar;
+  struct cchar_t tmp_cchar;
+  struct cchar_t tmp_cchar;
+  int len;
+  int num_wchars;
+  wchar_t tmp_wchars[6];
+  struct SCREEN * sp;
+  const wchar_t * cp;
+  int code;
+  _Bool _1;
+  _Bool _2;
+  _Bool _3;
+  int _4;
+  unsigned int _5;
+  _Bool _8;
+  _Bool _9;
+  _Bool _10;
+  long int _12;
+  long int _13;
+  long int _14;
+  int _15;
+  long int prephitmp_16;
+  int pretmp_18;
+  unsigned long _19;
+  _Bool _20;
+  int prephitmp_23;
+  int _25;
+  _Bool _26;
+  int prephitmp_29;
+  int pretmp_30;
+  _Bool _45;
+  int _62;
+  int _63;
+  int _64;
+  unsigned int _89;
+  unsigned int prephitmp_90;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _1 = win_33(D) != 0B;
+  _2 = wstr_34(D) != 0B;
+  _3 = _1 & _2;
+  if (_3 != 0)
+    goto <bb 3>; [98.00%]
+  else
+    goto <bb 23>; [2.00%]
+;;    succ:       3
+;;                23
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  if (n_36(D) < 0)
+    goto <bb 6>; [25.50%]
+  else
+    goto <bb 4>; [74.50%]
+;;    succ:       6
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  if (n_36(D) != 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 23>; [50.00%]
+;;    succ:       5
+;;                23
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  _14 = (long int) n_36(D);
+;;    succ:       6
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+;;                3
+  # prephitmp_16 = PHI <_14(5), 2147483647(3)>
+  sp_38 = _nc_screen_of (win_33(D));
+  _19 = MEM <unsigned long> [(int *)win_33(D)];
+  goto <bb 19>; [100.00%]
+;;    succ:       19
+
+;;   basic block 7, loop depth 1
+;;    pred:       19
+  len_43 = wcwidth (_15);
+  _4 = MEM[(const wchar_t *)cp_94];
+  _5 = (unsigned int) _4;
+  _45 = len_43 <= 0;
+  _20 = _5 <= 127;
+  _26 = _20 & _45;
+  if (_26 != 0)
+    goto <bb 8>; [20.50%]
+  else
+    goto <bb 12>; [79.50%]
+;;    succ:       8
+;;                12
+
+;;   basic block 8, loop depth 1
+;;    pred:       7
+  if (num_wchars_72 != 0)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 11>; [50.00%]
+;;    succ:       9
+;;                11
+
+;;   basic block 9, loop depth 1
+;;    pred:       8
+  setcchar (&tmp_cchar, &tmp_wchars, 0, 0, 0B);
+  _62 = _nc_insert_wch (win_33(D), &tmp_cchar);
+  tmp_cchar ={v} {CLOBBER};
+  if (_62 != 0)
+    goto <bb 22>; [2.20%]
+  else
+    goto <bb 10>; [97.80%]
+;;    succ:       22
+;;                10
+
+;;   basic block 10, loop depth 1
+;;    pred:       9
+  pretmp_30 = MEM[(const wchar_t *)cp_94];
+  _89 = (unsigned int) pretmp_30;
+;;    succ:       11
+
+;;   basic block 11, loop depth 1
+;;    pred:       8
+;;                10
+  # prephitmp_90 = PHI <_5(8), _89(10)>
+  code_48 = _nc_insert_ch (sp_38, win_33(D), prephitmp_90);
+  if (code_48 != 0)
+    goto <bb 22>; [12.59%]
+  else
+    goto <bb 18>; [87.41%]
+;;    succ:       22
+;;                18
+
+;;   basic block 12, loop depth 1
+;;    pred:       7
+  _8 = num_wchars_72 > 0;
+  _9 = len_43 > 0;
+  _10 = _8 & _9;
+  if (_10 != 0)
+    goto <bb 13>; [33.00%]
+  else
+    goto <bb 15>; [67.00%]
+;;    succ:       13
+;;                15
+
+;;   basic block 13, loop depth 1
+;;    pred:       12
+  setcchar (&tmp_cchar, &tmp_wchars, 0, 0, 0B);
+  _63 = _nc_insert_wch (win_33(D), &tmp_cchar);
+  tmp_cchar ={v} {CLOBBER};
+  if (_63 != 0)
+    goto <bb 22>; [2.20%]
+  else
+    goto <bb 14>; [97.80%]
+;;    succ:       22
+;;                14
+
+;;   basic block 14, loop depth 1
+;;    pred:       13
+  pretmp_18 = MEM[(const wchar_t *)cp_94];
+  goto <bb 17>; [100.00%]
+;;    succ:       17
+
+;;   basic block 15, loop depth 1
+;;    pred:       12
+  if (num_wchars_72 <= 4)
+    goto <bb 16>; [50.00%]
+  else
+    goto <bb 18>; [50.00%]
+;;    succ:       16
+;;                18
+
+;;   basic block 16, loop depth 1
+;;    pred:       15
+  _25 = num_wchars_72 + 1;
+;;    succ:       17
+
+;;   basic block 17, loop depth 1
+;;    pred:       16
+;;                14
+  # num_wchars_46 = PHI <num_wchars_72(16), _63(14)>
+  # prephitmp_29 = PHI <_4(16), pretmp_18(14)>
+  # prephitmp_23 = PHI <_25(16), 1(14)>
+  tmp_wchars[num_wchars_46] = prephitmp_29;
+  tmp_wchars[prephitmp_23] = 0;
+;;    succ:       18
+
+;;   basic block 18, loop depth 1
+;;    pred:       11
+;;                15
+;;                17
+  # num_wchars_56 = PHI <code_48(11), num_wchars_72(15), prephitmp_23(17)>
+  cp_55 = cp_94 + 4;
+  _12 = cp_55 - wstr_34(D);
+  _13 = _12 /[ex] 4;
+  if (_13 < prephitmp_16)
+    goto <bb 19>; [97.80%]
+  else
+    goto <bb 20>; [2.20%]
+;;    succ:       19
+;;                20
+
+;;   basic block 19, loop depth 1
+;;    pred:       18
+;;                6
+  # cp_94 = PHI <cp_55(18), wstr_34(D)(6)>
+  # num_wchars_72 = PHI <num_wchars_56(18), 0(6)>
+  _15 = MEM[(const wchar_t *)cp_94];
+  if (_15 != 0)
+    goto <bb 7>; [97.80%]
+  else
+    goto <bb 20>; [2.20%]
+;;    succ:       7
+;;                20
+
+;;   basic block 20, loop depth 0
+;;    pred:       19
+;;                18
+  # num_wchars_76 = PHI <num_wchars_72(19), num_wchars_56(18)>
+  if (num_wchars_76 != 0)
+    goto <bb 21>; [59.49%]
+  else
+    goto <bb 22>; [40.51%]
+;;    succ:       21
+;;                22
+
+;;   basic block 21, loop depth 0
+;;    pred:       20
+  setcchar (&tmp_cchar, &tmp_wchars, 0, 0, 0B);
+  _64 = _nc_insert_wch (win_33(D), &tmp_cchar);
+  tmp_cchar ={v} {CLOBBER};
+;;    succ:       22
+
+;;   basic block 22, loop depth 0
+;;    pred:       20
+;;                21
+;;                13
+;;                11
+;;                9
+  # code_21 = PHI <num_wchars_76(20), _64(21), _63(13), code_48(11), _62(9)>
+  MEM <unsigned long> [(int *)win_33(D)] = _19;
+  _nc_synchook (win_33(D));
+  tmp_wchars ={v} {CLOBBER};
+;;    succ:       23
+
+;;   basic block 23, loop depth 0
+;;    pred:       2
+;;                4
+;;                22
+  # code_22 = PHI <-1(2), n_36(D)(4), code_21(22)>
+  return code_22;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 4 (_4 - 4 )
+Partition 5 (_5 - 5 )
+Partition 8 (_8 - 8 )
+Partition 9 (_9 - 9 )
+Partition 10 (_10 - 10 )
+Partition 12 (_12 - 12 )
+Partition 13 (_13 - 13 )
+Partition 14 (_14 - 14 )
+Partition 15 (_15 - 15 )
+Partition 16 (prephitmp_16 - 16 )
+Partition 18 (pretmp_18 - 18 )
+Partition 19 (_19 - 19 )
+Partition 20 (_20 - 20 )
+Partition 21 (code_21 - 21 )
+Partition 22 (code_22 - 22 )
+Partition 23 (prephitmp_23 - 23 )
+Partition 25 (_25 - 25 )
+Partition 26 (_26 - 26 )
+Partition 29 (prephitmp_29 - 29 )
+Partition 30 (pretmp_30 - 30 )
+Partition 33 (win_33(D) - 33 )
+Partition 34 (wstr_34(D) - 34 )
+Partition 36 (n_36(D) - 36 )
+Partition 38 (sp_38 - 38 )
+Partition 39 (_39(D) - 39 )
+Partition 43 (len_43 - 43 )
+Partition 45 (_45 - 45 )
+Partition 46 (num_wchars_46 - 46 )
+Partition 48 (code_48 - 48 )
+Partition 55 (cp_55 - 55 )
+Partition 56 (num_wchars_56 - 56 )
+Partition 62 (_62 - 62 )
+Partition 63 (_63 - 63 )
+Partition 64 (_64 - 64 )
+Partition 72 (num_wchars_72 - 72 )
+Partition 76 (num_wchars_76 - 76 )
+Partition 89 (_89 - 89 )
+Partition 90 (prephitmp_90 - 90 )
+Partition 94 (cp_94 - 94 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_4 - 4 18 29 )
+Partition 2, base 2 (_14 - 14 16 )
+Partition 7, base 3 (code_21 - 21 22 23 25 36 39 46 48 56 62 63 64 72 76 )
+Partition 10, base 4 (win_33(D) - 33 )
+Partition 11, base 5 (wstr_34(D) - 34 55 94 )
+Partition 23, base 1 (_5 - 5 89 90 )
+
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_5 - 5 )
+Partition 2 (_14 - 14 )
+Partition 3 (prephitmp_16 - 16 )
+Partition 4 (pretmp_18 - 18 )
+Partition 5 (code_21 - 21 )
+Partition 6 (code_22 - 22 )
+Partition 7 (prephitmp_23 - 23 )
+Partition 8 (_25 - 25 )
+Partition 9 (prephitmp_29 - 29 )
+Partition 10 (win_33(D) - 33 )
+Partition 11 (wstr_34(D) - 34 )
+Partition 12 (n_36(D) - 36 )
+Partition 13 (_39(D) - 39 )
+Partition 14 (num_wchars_46 - 46 )
+Partition 15 (code_48 - 48 )
+Partition 16 (cp_55 - 55 )
+Partition 17 (num_wchars_56 - 56 )
+Partition 18 (_62 - 62 )
+Partition 19 (_63 - 63 )
+Partition 20 (_64 - 64 )
+Partition 21 (num_wchars_72 - 72 )
+Partition 22 (num_wchars_76 - 76 )
+Partition 23 (_89 - 89 )
+Partition 24 (prephitmp_90 - 90 )
+Partition 25 (cp_94 - 94 )
+
+
+Conflict graph:
+7: 14
+8: 21
+11: 16, 25
+12: 13
+13: 12
+14: 7
+16: 11
+21: 8
+25: 11
+
+After sorting:
+Sorted Coalesce list:
+(23244, 0) num_wchars_56 <-> num_wchars_72
+(18150, 0) cp_55 <-> cp_94
+(5001, 0) prephitmp_23 <-> num_wchars_56
+(3390, 0) code_48 <-> num_wchars_56
+(2547, 0) _4 <-> prephitmp_29
+(2547, 2) num_wchars_46 <-> num_wchars_72
+(2547, 2) prephitmp_23 <-> _25
+(2454, 0) pretmp_18 <-> prephitmp_29
+(2454, 1) num_wchars_46 <-> _63
+(1960, 0) _5 <-> prephitmp_90
+(1172, 0) code_22 <-> _39(D)
+(959, 0) _89 <-> prephitmp_90
+(856, 0) code_22 <-> n_36(D)
+(721, 0) code_21 <-> code_22
+(721, 3) wstr_34(D) <-> cp_94
+(488, 0) code_21 <-> code_48
+(430, 0) num_wchars_72 <-> num_wchars_76
+(428, 0) _14 <-> prephitmp_16
+(408, 0) num_wchars_56 <-> num_wchars_76
+(324, 0) code_21 <-> num_wchars_76
+(238, 0) code_21 <-> _64
+(110, 0) code_21 <-> _63
+(44, 0) code_21 <-> _62
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_5 - 5 )
+Partition 2 (_14 - 14 )
+Partition 3 (prephitmp_16 - 16 )
+Partition 4 (pretmp_18 - 18 )
+Partition 5 (code_21 - 21 )
+Partition 6 (code_22 - 22 )
+Partition 7 (prephitmp_23 - 23 )
+Partition 8 (_25 - 25 )
+Partition 9 (prephitmp_29 - 29 )
+Partition 10 (win_33(D) - 33 )
+Partition 11 (wstr_34(D) - 34 )
+Partition 12 (n_36(D) - 36 )
+Partition 13 (_39(D) - 39 )
+Partition 14 (num_wchars_46 - 46 )
+Partition 15 (code_48 - 48 )
+Partition 16 (cp_55 - 55 )
+Partition 17 (num_wchars_56 - 56 )
+Partition 18 (_62 - 62 )
+Partition 19 (_63 - 63 )
+Partition 20 (_64 - 64 )
+Partition 21 (num_wchars_72 - 72 )
+Partition 22 (num_wchars_76 - 76 )
+Partition 23 (_89 - 89 )
+Partition 24 (prephitmp_90 - 90 )
+Partition 25 (cp_94 - 94 )
+
+Coalesce list: (56)num_wchars_56 & (72)num_wchars_72 [map: 17, 21] : Success -> 17
+Coalesce list: (55)cp_55 & (94)cp_94 [map: 16, 25] : Success -> 16
+Coalesce list: (23)prephitmp_23 & (56)num_wchars_56 [map: 7, 17] : Success -> 17
+Coalesce list: (48)code_48 & (56)num_wchars_56 [map: 15, 17] : Success -> 17
+Coalesce list: (4)_4 & (29)prephitmp_29 [map: 0, 9] : Success -> 0
+Coalesce list: (46)num_wchars_46 & (72)num_wchars_56 [map: 14, 17] : Fail due to conflict
+Coalesce list: (23)num_wchars_56 & (25)_25 [map: 17, 8] : Fail due to conflict
+Coalesce list: (18)pretmp_18 & (29)_4 [map: 4, 0] : Success -> 0
+Coalesce list: (46)num_wchars_46 & (63)_63 [map: 14, 19] : Success -> 14
+Coalesce list: (5)_5 & (90)prephitmp_90 [map: 1, 24] : Success -> 1
+Coalesce list: (22)code_22 & (39)_39(D) [map: 6, 13] : Success -> 6
+Coalesce list: (89)_89 & (90)_5 [map: 23, 1] : Success -> 1
+Coalesce list: (22)code_22 & (36)n_36(D) [map: 6, 12] : Fail due to conflict
+Coalesce list: (21)code_21 & (22)code_22 [map: 5, 6] : Success -> 6
+Coalesce list: (34)wstr_34(D) & (94)cp_55 [map: 11, 16] : Fail due to conflict
+Coalesce list: (21)code_22 & (48)num_wchars_56 [map: 6, 17] : Success -> 17
+Coalesce list: (72)num_wchars_56 & (76)num_wchars_76 [map: 17, 22] : Success -> 17
+Coalesce list: (14)_14 & (16)prephitmp_16 [map: 2, 3] : Success -> 2
+Coalesce list: (56)num_wchars_56 & (76)num_wchars_56: Already Coalesced.
+Coalesce list: (21)num_wchars_56 & (76)num_wchars_56: Already Coalesced.
+Coalesce list: (21)num_wchars_56 & (64)_64 [map: 17, 20] : Success -> 17
+Coalesce list: (21)num_wchars_56 & (63)num_wchars_46 [map: 17, 14] : Fail due to conflict
+Coalesce list: (21)num_wchars_56 & (62)_62 [map: 17, 18] : Success -> 17
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_2 - 2 )
+Partition 2 (_3 - 3 )
+Partition 3 (_4 - 4 18 29 )
+Partition 4 (_5 - 5 89 90 )
+Partition 5 (_8 - 8 )
+Partition 6 (_9 - 9 )
+Partition 7 (_10 - 10 )
+Partition 8 (_12 - 12 )
+Partition 9 (_13 - 13 )
+Partition 10 (_14 - 14 16 )
+Partition 11 (_15 - 15 )
+Partition 12 (_19 - 19 )
+Partition 13 (_20 - 20 )
+Partition 14 (_25 - 25 )
+Partition 15 (_26 - 26 )
+Partition 16 (pretmp_30 - 30 )
+Partition 17 (win_33(D) - 33 )
+Partition 18 (wstr_34(D) - 34 )
+Partition 19 (n_36(D) - 36 )
+Partition 20 (sp_38 - 38 )
+Partition 21 (len_43 - 43 )
+Partition 22 (_45 - 45 )
+Partition 23 (num_wchars_46 - 46 63 )
+Partition 24 (cp_55 - 55 94 )
+Partition 25 (num_wchars_56 - 21 22 23 39 48 56 62 64 72 76 )
+
+
+Replacing Expressions
+_1 replace with --> _1 = win_33(D) != 0B;
+
+_2 replace with --> _2 = wstr_34(D) != 0B;
+
+_3 replace with --> _3 = _1 & _2;
+
+_8 replace with --> _8 = num_wchars_72 > 0;
+
+_9 replace with --> _9 = len_43 > 0;
+
+_10 replace with --> _10 = _8 & _9;
+
+_12 replace with --> _12 = cp_55 - wstr_34(D);
+
+_13 replace with --> _13 = _12 /[ex] 4;
+
+_20 replace with --> _20 = _5 <= 127;
+
+_26 replace with --> _26 = _20 & _45;
+
+pretmp_30 replace with --> pretmp_30 = MEM[(const wchar_t *)cp_94];
+
+_45 replace with --> _45 = len_43 <= 0;
+
+
+__attribute__((visibility ("default")))
+int wins_nwstr (struct WINDOW * win, const wchar_t * wstr, int n)
+{
+  struct cchar_t tmp_cchar;
+  struct cchar_t tmp_cchar;
+  struct cchar_t tmp_cchar;
+  int len;
+  int num_wchars;
+  wchar_t tmp_wchars[6];
+  struct SCREEN * sp;
+  const wchar_t * cp;
+  int code;
+  _Bool _1;
+  _Bool _2;
+  _Bool _3;
+  int _4;
+  unsigned int _5;
+  _Bool _8;
+  _Bool _9;
+  _Bool _10;
+  long int _12;
+  long int _13;
+  long int _14;
+  int _15;
+  long int prephitmp_16;
+  int pretmp_18;
+  unsigned long _19;
+  _Bool _20;
+  int prephitmp_23;
+  int _25;
+  _Bool _26;
+  int prephitmp_29;
+  int pretmp_30;
+  int _39(D);
+  _Bool _45;
+  int _62;
+  int _63;
+  int _64;
+  unsigned int _89;
+  unsigned int prephitmp_90;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  _1 = win_33(D) != 0B;
+  _2 = wstr_34(D) != 0B;
+  _3 = _1 & _2;
+  if (_3 != 0)
+    goto <bb 3>; [98.00%]
+  else
+    goto <bb 23>; [2.00%]
+;;    succ:       3
+;;                23
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  if (n_36(D) < 0)
+    goto <bb 6>; [25.50%]
+  else
+    goto <bb 4>; [74.50%]
+;;    succ:       6
+;;                4
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  if (n_36(D) != 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 23>; [50.00%]
+;;    succ:       5
+;;                23
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  _14 = (long int) n_36(D);
+;;    succ:       6
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+;;                3
+  # prephitmp_16 = PHI <_14(5), 2147483647(3)>
+  sp_38 = _nc_screen_of (win_33(D));
+  _19 = MEM <unsigned long> [(int *)win_33(D)];
+  goto <bb 19>; [100.00%]
+;;    succ:       19
+
+;;   basic block 7, loop depth 1
+;;    pred:       19
+  len_43 = wcwidth (_15);
+  _4 = MEM[(const wchar_t *)cp_94];
+  _5 = (unsigned int) _4;
+  _45 = len_43 <= 0;
+  _20 = _5 <= 127;
+  _26 = _20 & _45;
+  if (_26 != 0)
+    goto <bb 8>; [20.50%]
+  else
+    goto <bb 12>; [79.50%]
+;;    succ:       8
+;;                12
+
+;;   basic block 8, loop depth 1
+;;    pred:       7
+  if (num_wchars_72 != 0)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 11>; [50.00%]
+;;    succ:       9
+;;                11
+
+;;   basic block 9, loop depth 1
+;;    pred:       8
+  setcchar (&tmp_cchar, &tmp_wchars, 0, 0, 0B);
+  _62 = _nc_insert_wch (win_33(D), &tmp_cchar);
+  tmp_cchar ={v} {CLOBBER};
+  if (_62 != 0)
+    goto <bb 22>; [2.20%]
+  else
+    goto <bb 10>; [97.80%]
+;;    succ:       22
+;;                10
+
+;;   basic block 10, loop depth 1
+;;    pred:       9
+  pretmp_30 = MEM[(const wchar_t *)cp_94];
+  _89 = (unsigned int) pretmp_30;
+;;    succ:       11
+
+;;   basic block 11, loop depth 1
+;;    pred:       8
+;;                10
+  # prephitmp_90 = PHI <_5(8), _89(10)>
+  code_48 = _nc_insert_ch (sp_38, win_33(D), prephitmp_90);
+  if (code_48 != 0)
+    goto <bb 22>; [12.59%]
+  else
+    goto <bb 18>; [87.41%]
+;;    succ:       22
+;;                18
+
+;;   basic block 12, loop depth 1
+;;    pred:       7
+  _8 = num_wchars_72 > 0;
+  _9 = len_43 > 0;
+  _10 = _8 & _9;
+  if (_10 != 0)
+    goto <bb 13>; [33.00%]
+  else
+    goto <bb 15>; [67.00%]
+;;    succ:       13
+;;                15
+
+;;   basic block 13, loop depth 1
+;;    pred:       12
+  setcchar (&tmp_cchar, &tmp_wchars, 0, 0, 0B);
+  _63 = _nc_insert_wch (win_33(D), &tmp_cchar);
+  tmp_cchar ={v} {CLOBBER};
+  if (_63 != 0)
+    goto <bb 22>; [2.20%]
+  else
+    goto <bb 14>; [97.80%]
+;;    succ:       22
+;;                14
+
+;;   basic block 14, loop depth 1
+;;    pred:       13
+  pretmp_18 = MEM[(const wchar_t *)cp_94];
+  goto <bb 17>; [100.00%]
+;;    succ:       17
+
+;;   basic block 15, loop depth 1
+;;    pred:       12
+  if (num_wchars_72 <= 4)
+    goto <bb 16>; [50.00%]
+  else
+    goto <bb 18>; [50.00%]
+;;    succ:       16
+;;                18
+
+;;   basic block 16, loop depth 1
+;;    pred:       15
+  _25 = num_wchars_72 + 1;
+;;    succ:       17
+
+;;   basic block 17, loop depth 1
+;;    pred:       16
+;;                14
+  # num_wchars_46 = PHI <num_wchars_72(16), _63(14)>
+  # prephitmp_29 = PHI <_4(16), pretmp_18(14)>
+  # prephitmp_23 = PHI <_25(16), 1(14)>
+  tmp_wchars[num_wchars_46] = prephitmp_29;
+  tmp_wchars[prephitmp_23] = 0;
+;;    succ:       18
+
+;;   basic block 18, loop depth 1
+;;    pred:       11
+;;                15
+;;                17
+  # num_wchars_56 = PHI <code_48(11), num_wchars_72(15), prephitmp_23(17)>
+  cp_55 = cp_94 + 4;
+  _12 = cp_55 - wstr_34(D);
+  _13 = _12 /[ex] 4;
+  if (_13 < prephitmp_16)
+    goto <bb 19>; [97.80%]
+  else
+    goto <bb 20>; [2.20%]
+;;    succ:       19
+;;                20
+
+;;   basic block 19, loop depth 1
+;;    pred:       18
+;;                6
+  # cp_94 = PHI <cp_55(18), wstr_34(D)(6)>
+  # num_wchars_72 = PHI <num_wchars_56(18), 0(6)>
+  _15 = MEM[(const wchar_t *)cp_94];
+  if (_15 != 0)
+    goto <bb 7>; [97.80%]
+  else
+    goto <bb 20>; [2.20%]
+;;    succ:       7
+;;                20
+
+;;   basic block 20, loop depth 0
+;;    pred:       19
+;;                18
+  # num_wchars_76 = PHI <num_wchars_72(19), num_wchars_56(18)>
+  if (num_wchars_76 != 0)
+    goto <bb 21>; [59.49%]
+  else
+    goto <bb 22>; [40.51%]
+;;    succ:       21
+;;                22
+
+;;   basic block 21, loop depth 0
+;;    pred:       20
+  setcchar (&tmp_cchar, &tmp_wchars, 0, 0, 0B);
+  _64 = _nc_insert_wch (win_33(D), &tmp_cchar);
+  tmp_cchar ={v} {CLOBBER};
+;;    succ:       22
+
+;;   basic block 22, loop depth 0
+;;    pred:       20
+;;                21
+;;                13
+;;                11
+;;                9
+  # code_21 = PHI <num_wchars_76(20), _64(21), _63(13), code_48(11), _62(9)>
+  MEM <unsigned long> [(int *)win_33(D)] = _19;
+  _nc_synchook (win_33(D));
+  tmp_wchars ={v} {CLOBBER};
+;;    succ:       23
+
+;;   basic block 23, loop depth 0
+;;    pred:       2
+;;                4
+;;                22
+  # code_22 = PHI <-1(2), n_36(D)(4), code_21(22)>
+  return code_22;
+;;    succ:       EXIT
+
+}
+
+
+Partition 1: size 32 align 16
+	tmp_cchar	tmp_cchar	tmp_cchar
+Partition 0: size 24 align 16
+	tmp_wchars
+Inserting a value copy on edge BB3->BB6 : PART.10 = 2147483647
+Inserting a partition copy on edge BB16->BB17 : PART.23 = PART.25
+Inserting a partition copy on edge BB16->BB17 : PART.25 = PART.14
+Inserting a value copy on edge BB14->BB17 : PART.25 = 1
+Inserting a partition copy on edge BB6->BB19 : PART.24 = PART.18
+Inserting a value copy on edge BB6->BB19 : PART.25 = 0
+Inserting a partition copy on edge BB13->BB22 : PART.25 = PART.23
+Inserting a value copy on edge BB2->BB23 : PART.25 = -1
+Inserting a partition copy on edge BB4->BB23 : PART.25 = PART.19
+
+;; Generating RTL for gimple basic block 2
+
+;; if (_3 != 0)
+
+(insn 19 18 20 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 105 [ win ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":119:13 -1
+     (nil))
+
+(insn 20 19 21 (set (reg:QI 110)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":119:13 -1
+     (nil))
+
+(insn 21 20 22 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 110)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":119:8 -1
+     (nil))
+
+(jump_insn 22 21 23 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":119:8 -1
+     (int_list:REG_BR_PROB 10737428 (nil)))
+
+(insn 23 22 24 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 106 [ wstr ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":120:10 -1
+     (nil))
+
+(insn 24 23 25 (set (reg:QI 112)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":120:10 -1
+     (nil))
+
+(insn 25 24 26 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 112)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":119:8 -1
+     (nil))
+
+(jump_insn 26 25 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":119:8 -1
+     (int_list:REG_BR_PROB 10845876 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; if (n_36(D) < 0)
+
+(insn 30 27 31 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 107 [ n ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":122:5 -1
+     (nil))
+
+(jump_insn 31 30 0 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":122:5 -1
+     (int_list:REG_BR_PROB 273804172 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; if (n_36(D) != 0)
+
+(insn 33 32 34 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 107 [ n ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":127:5 -1
+     (nil))
+
+(jump_insn 34 33 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":127:5 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; _14 = (long int) n_36(D);
+
+(insn 36 35 0 (set (reg:DI 92 [ _14 ])
+        (sign_extend:DI (reg/v:SI 107 [ n ]))) "../ncurses/./widechar/lib_ins_wch.c":135:35 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 37 36 38 33 (nil) [0 uses])
+
+(note 38 37 0 NOTE_INSN_BASIC_BLOCK)
+
+;; sp_38 = _nc_screen_of (win_33(D));
+
+(insn 39 38 40 (set (reg:DI 5 di)
+        (reg/v/f:DI 105 [ win ])) "../ncurses/./widechar/lib_ins_wch.c":129:19 -1
+     (nil))
+
+(call_insn 40 39 41 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_screen_of") [flags 0x41]  <function_decl 0x7f8a6a8f6100 _nc_screen_of>) [0 _nc_screen_of S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":129:19 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_screen_of") [flags 0x41]  <function_decl 0x7f8a6a8f6100 _nc_screen_of>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+(insn 41 40 0 (set (reg/v/f:DI 99 [ sp ])
+        (reg:DI 0 ax)) "../ncurses/./widechar/lib_ins_wch.c":129:19 -1
+     (nil))
+
+;; _19 = MEM <unsigned long> [(int *)win_33(D)];
+
+(insn 42 41 0 (set (reg:DI 94 [ _19 ])
+        (mem:DI (reg/v/f:DI 105 [ win ]) [1 MEM <unsigned long> [(int *)win_33(D)]+0 S8 A64])) "../ncurses/./widechar/lib_ins_wch.c":130:21 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 7
+
+;; len_43 = wcwidth (_15);
+
+(insn 46 45 47 (set (reg:SI 5 di)
+        (reg:SI 93 [ _15 ])) "../ncurses/./widechar/lib_ins_wch.c":136:13 -1
+     (nil))
+
+(insn 47 46 48 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":136:13 -1
+     (nil))
+
+(call_insn 48 47 49 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wcwidth") [flags 0x41]  <function_decl 0x7f8a6a91d900 wcwidth>) [0 wcwidth S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":136:13 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wcwidth") [flags 0x41]  <function_decl 0x7f8a6a91d900 wcwidth>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:SI (use (reg:SI 5 di))
+            (nil))))
+
+(insn 49 48 0 (set (reg/v:SI 100 [ len ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_ins_wch.c":136:13 -1
+     (nil))
+
+;; _4 = MEM[(const wchar_t *)cp_94];
+
+(insn 50 49 0 (set (reg:SI 85 [ _4 ])
+        (mem:SI (reg/v/f:DI 103 [ cp ]) [1 MEM[(const wchar_t *)cp_94]+0 S4 A32])) "../ncurses/./widechar/lib_ins_wch.c":138:7 -1
+     (nil))
+
+;; _5 = (unsigned int) _4;
+
+(insn 51 50 0 (set (reg:SI 86 [ _5 ])
+        (reg:SI 85 [ _4 ])) "../ncurses/./widechar/lib_ins_wch.c":138:7 -1
+     (nil))
+
+;; if (_26 != 0)
+
+(insn 54 51 55 (set (reg:CC 17 flags)
+        (compare:CC (reg:SI 86 [ _5 ])
+            (const_int 127 [0x7f]))) "../ncurses/./widechar/lib_ins_wch.c":138:6 -1
+     (nil))
+
+(insn 55 54 56 (set (reg:QI 114)
+        (leu:QI (reg:CC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":138:6 -1
+     (nil))
+
+(insn 56 55 57 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 114)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":138:20 -1
+     (nil))
+
+(jump_insn 57 56 60 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":138:20 -1
+     (int_list:REG_BR_PROB 426812380 (nil)))
+
+(insn 60 57 61 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:SI 100 [ len ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":138:20 -1
+     (nil))
+
+(insn 61 60 62 (set (reg:QI 116)
+        (le:QI (reg:CCNO 17 flags)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":138:20 -1
+     (nil))
+
+(insn 62 61 63 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 116)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":138:20 -1
+     (nil))
+
+(jump_insn 63 62 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":138:20 -1
+     (int_list:REG_BR_PROB 708402292 (nil)))
+
+;; Generating RTL for gimple basic block 8
+
+;; if (num_wchars_72 != 0)
+
+(insn 65 64 66 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 104 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":139:10 -1
+     (nil))
+
+(jump_insn 66 65 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":139:10 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 9
+
+;; setcchar (&tmp_cchar, &tmp_wchars, 0, 0, 0B);
+
+(insn 68 67 69 (parallel [
+            (set (reg:DI 117)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -80 [0xffffffffffffffb0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+
+(insn 69 68 70 (parallel [
+            (set (reg:DI 118)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+
+(insn 70 69 71 (set (reg:DI 36 r8)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+
+(insn 71 70 72 (set (reg:SI 2 cx)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+
+(insn 72 71 73 (set (reg:SI 1 dx)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+
+(insn 73 72 74 (set (reg:DI 4 si)
+        (reg:DI 117)) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+
+(insn 74 73 75 (set (reg:DI 5 di)
+        (reg:DI 118)) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+
+(call_insn 75 74 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("setcchar") [flags 0x41]  <function_decl 0x7f8a6a7c7f00 setcchar>) [0 setcchar S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("setcchar") [flags 0x41]  <function_decl 0x7f8a6a7c7f00 setcchar>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (expr_list:DI (use (reg:DI 36 r8))
+                        (nil)))))))
+
+;; _62 = _nc_insert_wch (win_33(D), &tmp_cchar);
+
+(insn 76 75 77 (parallel [
+            (set (reg:DI 119)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+
+(insn 77 76 78 (set (reg:DI 4 si)
+        (reg:DI 119)) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+
+(insn 78 77 79 (set (reg:DI 5 di)
+        (reg/v/f:DI 105 [ win ])) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+
+(call_insn 79 78 80 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_insert_wch") [flags 0x3]  <function_decl 0x7f8a6a907000 _nc_insert_wch>) [0 _nc_insert_wch S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_insert_wch") [flags 0x3]  <function_decl 0x7f8a6a907000 _nc_insert_wch>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 80 79 0 (set (reg/v:SI 104 [ <retval> ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+
+;; tmp_cchar ={v} {CLOBBER};
+
+(nil)
+
+;; if (_62 != 0)
+
+(insn 81 80 82 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 104 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":140:7 -1
+     (nil))
+
+(jump_insn 82 81 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":140:7 -1
+     (int_list:REG_BR_PROB 23622324 (nil)))
+
+;; Generating RTL for gimple basic block 10
+
+;; _89 = (unsigned int) pretmp_30;
+
+(insn 84 83 0 (set (reg:SI 86 [ _5 ])
+        (mem:SI (reg/v/f:DI 103 [ cp ]) [1 MEM[(const wchar_t *)cp_94]+0 S4 A32])) "../ncurses/./widechar/lib_ins_wch.c":145:14 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 11
+
+;; 
+
+(code_label 85 84 86 36 (nil) [0 uses])
+
+(note 86 85 0 NOTE_INSN_BASIC_BLOCK)
+
+;; code_48 = _nc_insert_ch (sp_38, win_33(D), prephitmp_90);
+
+(insn 87 86 88 (set (reg:SI 1 dx)
+        (reg:SI 86 [ _5 ])) "../ncurses/./widechar/lib_ins_wch.c":145:14 -1
+     (nil))
+
+(insn 88 87 89 (set (reg:DI 4 si)
+        (reg/v/f:DI 105 [ win ])) "../ncurses/./widechar/lib_ins_wch.c":145:14 -1
+     (nil))
+
+(insn 89 88 90 (set (reg:DI 5 di)
+        (reg/v/f:DI 99 [ sp ])) "../ncurses/./widechar/lib_ins_wch.c":145:14 -1
+     (nil))
+
+(call_insn 90 89 91 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_insert_ch") [flags 0x41]  <function_decl 0x7f8a6a8eb300 _nc_insert_ch>) [0 _nc_insert_ch S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":145:14 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_insert_ch") [flags 0x41]  <function_decl 0x7f8a6a8eb300 _nc_insert_ch>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+
+(insn 91 90 0 (set (reg/v:SI 104 [ <retval> ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_ins_wch.c":145:14 -1
+     (nil))
+
+;; if (code_48 != 0)
+
+(insn 92 91 93 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 104 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":157:6 -1
+     (nil))
+
+(jump_insn 93 92 96 11 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":157:6 -1
+     (int_list:REG_BR_PROB 135181028 (nil)))
+
+(note 96 93 94 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 94 96 95 25 (set (pc)
+        (label_ref 0)) -1
+     (nil))
+
+(barrier 95 94 0)
+
+;; Generating RTL for gimple basic block 12
+
+;; 
+
+(code_label 97 95 98 35 (nil) [0 uses])
+
+(note 98 97 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (_10 != 0)
+
+(insn 101 98 102 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:SI 104 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":147:22 -1
+     (nil))
+
+(insn 102 101 103 (set (reg:QI 121)
+        (gt:QI (reg:CCNO 17 flags)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":147:22 -1
+     (nil))
+
+(insn 103 102 104 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 121)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":147:10 -1
+     (nil))
+
+(jump_insn 104 103 107 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":147:10 -1
+     (int_list:REG_BR_PROB 359703516 (nil)))
+
+(insn 107 104 108 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:SI 100 [ len ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":147:33 -1
+     (nil))
+
+(insn 108 107 109 (set (reg:QI 123)
+        (gt:QI (reg:CCNO 17 flags)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":147:33 -1
+     (nil))
+
+(insn 109 108 110 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 123)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":147:10 -1
+     (nil))
+
+(jump_insn 110 109 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":147:10 -1
+     (int_list:REG_BR_PROB 540907540 (nil)))
+
+;; Generating RTL for gimple basic block 13
+
+;; setcchar (&tmp_cchar, &tmp_wchars, 0, 0, 0B);
+
+(insn 112 111 113 (parallel [
+            (set (reg:DI 124)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -80 [0xffffffffffffffb0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+
+(insn 113 112 114 (parallel [
+            (set (reg:DI 125)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+
+(insn 114 113 115 (set (reg:DI 36 r8)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+
+(insn 115 114 116 (set (reg:SI 2 cx)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+
+(insn 116 115 117 (set (reg:SI 1 dx)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+
+(insn 117 116 118 (set (reg:DI 4 si)
+        (reg:DI 124)) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+
+(insn 118 117 119 (set (reg:DI 5 di)
+        (reg:DI 125)) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+
+(call_insn 119 118 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("setcchar") [flags 0x41]  <function_decl 0x7f8a6a7c7f00 setcchar>) [0 setcchar S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("setcchar") [flags 0x41]  <function_decl 0x7f8a6a7c7f00 setcchar>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (expr_list:DI (use (reg:DI 36 r8))
+                        (nil)))))))
+
+;; _63 = _nc_insert_wch (win_33(D), &tmp_cchar);
+
+(insn 120 119 121 (parallel [
+            (set (reg:DI 126)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+
+(insn 121 120 122 (set (reg:DI 4 si)
+        (reg:DI 126)) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+
+(insn 122 121 123 (set (reg:DI 5 di)
+        (reg/v/f:DI 105 [ win ])) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+
+(call_insn 123 122 124 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_insert_wch") [flags 0x3]  <function_decl 0x7f8a6a907000 _nc_insert_wch>) [0 _nc_insert_wch S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_insert_wch") [flags 0x3]  <function_decl 0x7f8a6a907000 _nc_insert_wch>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 124 123 0 (set (reg/v:SI 102 [ num_wchars ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+
+;; tmp_cchar ={v} {CLOBBER};
+
+(nil)
+
+;; if (_63 != 0)
+
+(insn 125 124 126 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 102 [ num_wchars ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":148:7 -1
+     (nil))
+
+(jump_insn 126 125 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":148:7 -1
+     (int_list:REG_BR_PROB 23622324 (nil)))
+
+;; Generating RTL for gimple basic block 14
+
+;; pretmp_18 = MEM[(const wchar_t *)cp_94];
+
+(insn 128 127 0 (set (reg:SI 85 [ _4 ])
+        (mem:SI (reg/v/f:DI 103 [ cp ]) [1 MEM[(const wchar_t *)cp_94]+0 S4 A32])) "../ncurses/./widechar/lib_ins_wch.c":153:31 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 15
+
+;; 
+
+(code_label 131 130 132 39 (nil) [0 uses])
+
+(note 132 131 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (num_wchars_72 <= 4)
+
+(insn 135 132 136 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 104 [ <retval> ])
+            (const_int 4 [0x4]))) "../ncurses/./widechar/lib_ins_wch.c":152:10 -1
+     (nil))
+
+(jump_insn 136 135 0 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":152:10 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 16
+
+;; _25 = num_wchars_72 + 1;
+
+(insn 138 137 0 (parallel [
+            (set (reg:SI 96 [ _25 ])
+                (plus:SI (reg/v:SI 104 [ <retval> ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":153:25 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 17
+
+;; 
+
+(code_label 139 138 140 40 (nil) [0 uses])
+
+(note 140 139 0 NOTE_INSN_BASIC_BLOCK)
+
+;; tmp_wchars[num_wchars_46] = prephitmp_29;
+
+(insn 141 140 142 (set (reg:DI 127)
+        (sign_extend:DI (reg/v:SI 102 [ num_wchars ]))) "../ncurses/./widechar/lib_ins_wch.c":153:29 -1
+     (nil))
+
+(insn 142 141 0 (set (mem:SI (plus:DI (plus:DI (mult:DI (reg:DI 127)
+                        (const_int 4 [0x4]))
+                    (reg/f:DI 77 virtual-stack-vars))
+                (const_int -80 [0xffffffffffffffb0])) [1 tmp_wchars[num_wchars_46]+0 S4 A32])
+        (reg:SI 85 [ _4 ])) "../ncurses/./widechar/lib_ins_wch.c":153:29 -1
+     (nil))
+
+;; tmp_wchars[prephitmp_23] = 0;
+
+(insn 143 142 144 (set (reg:DI 128)
+        (sign_extend:DI (reg/v:SI 104 [ <retval> ]))) "../ncurses/./widechar/lib_ins_wch.c":154:27 -1
+     (nil))
+
+(insn 144 143 0 (set (mem:SI (plus:DI (plus:DI (mult:DI (reg:DI 128)
+                        (const_int 4 [0x4]))
+                    (reg/f:DI 77 virtual-stack-vars))
+                (const_int -80 [0xffffffffffffffb0])) [1 tmp_wchars[prephitmp_23]+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":154:27 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 18
+
+;; 
+
+(code_label 145 144 146 38 (nil) [0 uses])
+
+(note 146 145 0 NOTE_INSN_BASIC_BLOCK)
+
+;; cp_55 = cp_94 + 4;
+
+(insn 147 146 0 (parallel [
+            (set (reg/v/f:DI 103 [ cp ])
+                (plus:DI (reg/v/f:DI 103 [ cp ])
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":135:61 -1
+     (nil))
+
+;; if (_13 < prephitmp_16)
+
+(insn 148 147 149 (parallel [
+            (set (reg:DI 129)
+                (minus:DI (reg/v/f:DI 103 [ cp ])
+                    (reg/v/f:DI 106 [ wstr ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":135:27 -1
+     (nil))
+
+(insn 149 148 150 (parallel [
+            (set (reg:DI 131)
+                (ashiftrt:DI (reg:DI 129)
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":135:27 -1
+     (expr_list:REG_EQUAL (div:DI (reg:DI 129)
+            (const_int 4 [0x4]))
+        (nil)))
+
+(insn 150 149 151 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:DI 131)
+            (reg:DI 92 [ _14 ]))) "../ncurses/./widechar/lib_ins_wch.c":135:40 -1
+     (nil))
+
+(jump_insn 151 150 0 (set (pc)
+        (if_then_else (ge (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":135:40 -1
+     (int_list:REG_BR_PROB 23622324 (nil)))
+
+;; Generating RTL for gimple basic block 19
+
+;; 
+
+(code_label 152 151 153 34 (nil) [0 uses])
+
+(note 153 152 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _15 = MEM[(const wchar_t *)cp_94];
+
+(insn 154 153 0 (set (reg:SI 93 [ _15 ])
+        (mem:SI (reg/v/f:DI 103 [ cp ]) [1 MEM[(const wchar_t *)cp_94]+0 S4 A32])) "../ncurses/./widechar/lib_ins_wch.c":135:44 -1
+     (nil))
+
+;; if (_15 != 0)
+
+(insn 156 154 157 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 93 [ _15 ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":135:40 -1
+     (nil))
+
+(jump_insn 157 156 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 155)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":135:40 -1
+     (int_list:REG_BR_PROB 1050119508 (nil)))
+
+;; Generating RTL for gimple basic block 20
+
+;; 
+
+(code_label 158 157 159 41 (nil) [0 uses])
+
+(note 159 158 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (num_wchars_76 != 0)
+
+(insn 160 159 161 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 104 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":160:9 -1
+     (nil))
+
+(jump_insn 161 160 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":160:9 -1
+     (int_list:REG_BR_PROB 434952668 (nil)))
+
+;; Generating RTL for gimple basic block 21
+
+;; setcchar (&tmp_cchar, &tmp_wchars, 0, 0, 0B);
+
+(insn 163 162 164 (parallel [
+            (set (reg:DI 132)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -80 [0xffffffffffffffb0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+
+(insn 164 163 165 (parallel [
+            (set (reg:DI 133)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+
+(insn 165 164 166 (set (reg:DI 36 r8)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+
+(insn 166 165 167 (set (reg:SI 2 cx)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+
+(insn 167 166 168 (set (reg:SI 1 dx)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+
+(insn 168 167 169 (set (reg:DI 4 si)
+        (reg:DI 132)) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+
+(insn 169 168 170 (set (reg:DI 5 di)
+        (reg:DI 133)) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+
+(call_insn 170 169 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("setcchar") [flags 0x41]  <function_decl 0x7f8a6a7c7f00 setcchar>) [0 setcchar S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("setcchar") [flags 0x41]  <function_decl 0x7f8a6a7c7f00 setcchar>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (expr_list:DI (use (reg:DI 36 r8))
+                        (nil)))))))
+
+;; _64 = _nc_insert_wch (win_33(D), &tmp_cchar);
+
+(insn 171 170 172 (parallel [
+            (set (reg:DI 134)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+
+(insn 172 171 173 (set (reg:DI 4 si)
+        (reg:DI 134)) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+
+(insn 173 172 174 (set (reg:DI 5 di)
+        (reg/v/f:DI 105 [ win ])) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+
+(call_insn 174 173 175 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_insert_wch") [flags 0x3]  <function_decl 0x7f8a6a907000 _nc_insert_wch>) [0 _nc_insert_wch S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_insert_wch") [flags 0x3]  <function_decl 0x7f8a6a907000 _nc_insert_wch>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 175 174 0 (set (reg/v:SI 104 [ <retval> ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+
+;; tmp_cchar ={v} {CLOBBER};
+
+(nil)
+
+;; Generating RTL for gimple basic block 22
+
+;; 
+
+(code_label 176 175 177 37 (nil) [0 uses])
+
+(note 177 176 0 NOTE_INSN_BASIC_BLOCK)
+
+;; MEM <unsigned long> [(int *)win_33(D)] = _19;
+
+(insn 178 177 0 (set (mem:DI (reg/v/f:DI 105 [ win ]) [1 MEM <unsigned long> [(int *)win_33(D)]+0 S8 A64])
+        (reg:DI 94 [ _19 ])) "../ncurses/./widechar/lib_ins_wch.c":165:17 -1
+     (nil))
+
+;; _nc_synchook (win_33(D));
+
+(insn 179 178 180 (set (reg:DI 5 di)
+        (reg/v/f:DI 105 [ win ])) "../ncurses/./widechar/lib_ins_wch.c":166:6 -1
+     (nil))
+
+(call_insn 180 179 0 (call (mem:QI (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f8a6a900700 _nc_synchook>) [0 _nc_synchook S1 A8])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":166:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f8a6a900700 _nc_synchook>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; tmp_wchars ={v} {CLOBBER};
+
+(nil)
+
+;; Generating RTL for gimple basic block 23
+
+;; 
+
+(code_label 181 180 182 32 (nil) [0 uses])
+
+(note 182 181 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return code_22;
+
+(jump_insn 183 182 184 (set (pc)
+        (label_ref 0)) "../ncurses/./widechar/lib_ins_wch.c":169:5 -1
+     (nil))
+
+(barrier 184 183 0)
+Edge 2->23 redirected to 27
+Edge 3->6 redirected to 28
+Edge 4->23 redirected to 29
+Edge 13->22 redirected to 30
+Predictions for insn 188 bb 26
+  first match heuristics: 99.96%  exec 125833836 (estimated locally) hit 251667671 (estimated locally) (200.0%)
+  combined heuristics: 99.96%  exec 125833836 (estimated locally) hit 251667671 (estimated locally) (200.0%)
+  noreturn call heuristics: 99.96%  exec 125833836 (estimated locally) hit 251667671 (estimated locally) (200.0%)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Forwarding edge 15->16 to 24 failed.
+Redirecting jump 195 from 32 to 33.
+Redirecting jump 203 from 32 to 33.
+Merging block 32 into block 31...
+Merged blocks 31 and 32.
+Merged 31 and 32 without moving.
+Removing jump 183.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 15->16 to 24 failed.
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 17 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 125833834 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:125833834 (estimated locally) (FALLTHRU)
+(note 17 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 17 3 2 (set (reg/v/f:DI 105 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./widechar/lib_ins_wch.c":113:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 106 [ wstr ])
+        (reg:DI 4 si [ wstr ])) "../ncurses/./widechar/lib_ins_wch.c":113:1 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v:SI 107 [ n ])
+        (reg:SI 1 dx [ n ])) "../ncurses/./widechar/lib_ins_wch.c":113:1 -1
+     (nil))
+(note 5 4 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 5 7 2 (set (reg/f:DI 108)
+        (const_int 40 [0x28])) "../ncurses/./widechar/lib_ins_wch.c":113:1 -1
+     (nil))
+(insn 7 6 19 2 (parallel [
+            (set (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                        (const_int -8 [0xfffffffffffffff8])) [11 D.9182+0 S8 A64])
+                (unspec:DI [
+                        (mem/v/f:DI (reg/f:DI 108) [12 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_SET))
+            (set (scratch:DI)
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":113:1 -1
+     (nil))
+(insn 19 7 20 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 105 [ win ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":119:13 -1
+     (nil))
+(insn 20 19 21 2 (set (reg:QI 110)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":119:13 -1
+     (nil))
+(insn 21 20 22 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 110)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":119:8 -1
+     (nil))
+(jump_insn 22 21 211 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 198)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":119:8 806 {*jcc}
+     (int_list:REG_BR_PROB 10737428 (nil))
+ -> 198)
+;;  succ:       30 [1.0% (guessed)]  count:1258339 (estimated locally)
+;;              4 [99.0% (guessed)]  count:124575495 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 124575495 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL)
+;;  pred:       2 [99.0% (guessed)]  count:124575495 (estimated locally) (FALLTHRU)
+(note 211 22 23 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 23 211 24 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 106 [ wstr ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":120:10 -1
+     (nil))
+(insn 24 23 25 4 (set (reg:QI 112)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":120:10 -1
+     (nil))
+(insn 25 24 26 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 112)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":119:8 -1
+     (nil))
+(jump_insn 26 25 27 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 198)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":119:8 806 {*jcc}
+     (int_list:REG_BR_PROB 10845876 (nil))
+ -> 198)
+;;  succ:       5 [99.0% (guessed)]  count:123317157 (estimated locally) (FALLTHRU)
+;;              30 [1.0% (guessed)]  count:1258338 (estimated locally)
+
+;; basic block 5, loop depth 0, count 123317157 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [99.0% (guessed)]  count:123317157 (estimated locally) (FALLTHRU)
+(note 27 26 30 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 30 27 31 5 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 107 [ n ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":122:5 -1
+     (nil))
+(jump_insn 31 30 32 5 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 202)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":122:5 806 {*jcc}
+     (int_list:REG_BR_PROB 273804172 (nil))
+ -> 202)
+;;  succ:       8 [25.5% (guessed)]  count:31445875 (estimated locally)
+;;              6 [74.5% (guessed)]  count:91871282 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 0, count 91871281 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [74.5% (guessed)]  count:91871282 (estimated locally) (FALLTHRU)
+(note 32 31 33 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 33 32 34 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 107 [ n ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":127:5 -1
+     (nil))
+(jump_insn 34 33 35 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 206)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":127:5 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 206)
+;;  succ:       7 [50.0% (guessed)]  count:45935641 (estimated locally) (FALLTHRU)
+;;              31 [50.0% (guessed)]  count:45935641 (estimated locally)
+
+;; basic block 7, loop depth 0, count 45935641 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       6 [50.0% (guessed)]  count:45935641 (estimated locally) (FALLTHRU)
+(note 35 34 36 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 36 35 199 7 (set (reg:DI 92 [ _14 ])
+        (sign_extend:DI (reg/v:SI 107 [ n ]))) "../ncurses/./widechar/lib_ins_wch.c":135:35 -1
+     (nil))
+(jump_insn 199 36 200 7 (set (pc)
+        (label_ref 37)) -1
+     (nil)
+ -> 37)
+;;  succ:       9 [always]  count:45935641 (estimated locally)
+
+(barrier 200 199 202)
+;; basic block 8, loop depth 0, count 31445875 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       5 [25.5% (guessed)]  count:31445875 (estimated locally)
+(code_label 202 200 201 8 45 (nil) [1 uses])
+(note 201 202 8 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 8 201 37 8 (set (reg:DI 92 [ _14 ])
+        (const_int 2147483647 [0x7fffffff])) -1
+     (nil))
+;;  succ:       9 [always]  count:31445875 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 77381516 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [always]  count:31445875 (estimated locally) (FALLTHRU)
+;;              7 [always]  count:45935641 (estimated locally)
+(code_label 37 8 38 9 33 (nil) [1 uses])
+(note 38 37 39 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 39 38 40 9 (set (reg:DI 5 di)
+        (reg/v/f:DI 105 [ win ])) "../ncurses/./widechar/lib_ins_wch.c":129:19 -1
+     (nil))
+(call_insn 40 39 41 9 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_screen_of") [flags 0x41]  <function_decl 0x7f8a6a8f6100 _nc_screen_of>) [0 _nc_screen_of S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":129:19 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_screen_of") [flags 0x41]  <function_decl 0x7f8a6a8f6100 _nc_screen_of>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 41 40 42 9 (set (reg/v/f:DI 99 [ sp ])
+        (reg:DI 0 ax)) "../ncurses/./widechar/lib_ins_wch.c":129:19 -1
+     (nil))
+(insn 42 41 12 9 (set (reg:DI 94 [ _19 ])
+        (mem:DI (reg/v/f:DI 105 [ win ]) [1 MEM <unsigned long> [(int *)win_33(D)]+0 S8 A64])) "../ncurses/./widechar/lib_ins_wch.c":130:21 -1
+     (nil))
+(insn 12 42 13 9 (set (reg/v/f:DI 103 [ cp ])
+        (reg/v/f:DI 106 [ wstr ])) "../ncurses/./widechar/lib_ins_wch.c":130:21 -1
+     (nil))
+(insn 13 12 43 9 (set (reg/v:SI 104 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":133:10 -1
+     (nil))
+(jump_insn 43 13 44 9 (set (pc)
+        (label_ref 152)) "../ncurses/./widechar/lib_ins_wch.c":130:21 -1
+     (nil)
+ -> 152)
+;;  succ:       25 [always]  count:77381516 (estimated locally)
+
+(barrier 44 43 155)
+;; basic block 10, loop depth 1, count 1027016874 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       25 [97.8% (guessed)]  count:1027016875 (estimated locally)
+(code_label 155 44 45 10 42 (nil) [1 uses])
+(note 45 155 46 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 46 45 47 10 (set (reg:SI 5 di)
+        (reg:SI 93 [ _15 ])) "../ncurses/./widechar/lib_ins_wch.c":136:13 -1
+     (nil))
+(insn 47 46 48 10 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":136:13 -1
+     (nil))
+(call_insn 48 47 49 10 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wcwidth") [flags 0x41]  <function_decl 0x7f8a6a91d900 wcwidth>) [0 wcwidth S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":136:13 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wcwidth") [flags 0x41]  <function_decl 0x7f8a6a91d900 wcwidth>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:SI (use (reg:SI 5 di))
+            (nil))))
+(insn 49 48 50 10 (set (reg/v:SI 100 [ len ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_ins_wch.c":136:13 -1
+     (nil))
+(insn 50 49 51 10 (set (reg:SI 85 [ _4 ])
+        (mem:SI (reg/v/f:DI 103 [ cp ]) [1 MEM[(const wchar_t *)cp_94]+0 S4 A32])) "../ncurses/./widechar/lib_ins_wch.c":138:7 -1
+     (nil))
+(insn 51 50 54 10 (set (reg:SI 86 [ _5 ])
+        (reg:SI 85 [ _4 ])) "../ncurses/./widechar/lib_ins_wch.c":138:7 -1
+     (nil))
+(insn 54 51 55 10 (set (reg:CC 17 flags)
+        (compare:CC (reg:SI 86 [ _5 ])
+            (const_int 127 [0x7f]))) "../ncurses/./widechar/lib_ins_wch.c":138:6 -1
+     (nil))
+(insn 55 54 56 10 (set (reg:QI 114)
+        (leu:QI (reg:CC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":138:6 -1
+     (nil))
+(insn 56 55 57 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 114)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":138:20 -1
+     (nil))
+(jump_insn 57 56 212 10 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 97)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":138:20 -1
+     (int_list:REG_BR_PROB 426812380 (nil))
+ -> 97)
+;;  succ:       17 [39.8% (guessed)]  count:408239208 (estimated locally)
+;;              11 [60.2% (guessed)]  count:618777666 (estimated locally) (FALLTHRU)
+
+;; basic block 11, loop depth 1, count 618777666 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL)
+;;  pred:       10 [60.2% (guessed)]  count:618777666 (estimated locally) (FALLTHRU)
+(note 212 57 60 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 60 212 61 11 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:SI 100 [ len ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":138:20 -1
+     (nil))
+(insn 61 60 62 11 (set (reg:QI 116)
+        (le:QI (reg:CCNO 17 flags)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":138:20 -1
+     (nil))
+(insn 62 61 63 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 116)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":138:20 -1
+     (nil))
+(jump_insn 63 62 64 11 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 97)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":138:20 -1
+     (int_list:REG_BR_PROB 708402292 (nil))
+ -> 97)
+;;  succ:       12 [34.0% (guessed)]  count:210538456 (estimated locally) (FALLTHRU)
+;;              17 [66.0% (guessed)]  count:408239210 (estimated locally)
+
+;; basic block 12, loop depth 1, count 210538457 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       11 [34.0% (guessed)]  count:210538456 (estimated locally) (FALLTHRU)
+(note 64 63 65 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 65 64 66 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 104 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":139:10 -1
+     (nil))
+(jump_insn 66 65 67 12 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 85)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":139:10 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 85)
+;;  succ:       13 [50.0% (guessed)]  count:105269229 (estimated locally) (FALLTHRU)
+;;              15 [50.0% (guessed)]  count:105269229 (estimated locally)
+
+;; basic block 13, loop depth 1, count 105269229 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       12 [50.0% (guessed)]  count:105269229 (estimated locally) (FALLTHRU)
+(note 67 66 68 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 68 67 69 13 (parallel [
+            (set (reg:DI 117)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -80 [0xffffffffffffffb0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+(insn 69 68 70 13 (parallel [
+            (set (reg:DI 118)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+(insn 70 69 71 13 (set (reg:DI 36 r8)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+(insn 71 70 72 13 (set (reg:SI 2 cx)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+(insn 72 71 73 13 (set (reg:SI 1 dx)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+(insn 73 72 74 13 (set (reg:DI 4 si)
+        (reg:DI 117)) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+(insn 74 73 75 13 (set (reg:DI 5 di)
+        (reg:DI 118)) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+(call_insn 75 74 76 13 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("setcchar") [flags 0x41]  <function_decl 0x7f8a6a7c7f00 setcchar>) [0 setcchar S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("setcchar") [flags 0x41]  <function_decl 0x7f8a6a7c7f00 setcchar>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (expr_list:DI (use (reg:DI 36 r8))
+                        (nil)))))))
+(insn 76 75 77 13 (parallel [
+            (set (reg:DI 119)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+(insn 77 76 78 13 (set (reg:DI 4 si)
+        (reg:DI 119)) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+(insn 78 77 79 13 (set (reg:DI 5 di)
+        (reg/v/f:DI 105 [ win ])) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+(call_insn 79 78 80 13 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_insert_wch") [flags 0x3]  <function_decl 0x7f8a6a907000 _nc_insert_wch>) [0 _nc_insert_wch S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_insert_wch") [flags 0x3]  <function_decl 0x7f8a6a907000 _nc_insert_wch>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 80 79 81 13 (set (reg/v:SI 104 [ <retval> ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+(insn 81 80 82 13 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 104 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":140:7 -1
+     (nil))
+(jump_insn 82 81 83 13 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 176)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":140:7 -1
+     (int_list:REG_BR_PROB 23622324 (nil))
+ -> 176)
+;;  succ:       29 [2.2% (guessed)]  count:2315923 (estimated locally)
+;;              14 [97.8% (guessed)]  count:102953306 (estimated locally) (FALLTHRU)
+
+;; basic block 14, loop depth 1, count 102953306 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       13 [97.8% (guessed)]  count:102953306 (estimated locally) (FALLTHRU)
+(note 83 82 84 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 84 83 85 14 (set (reg:SI 86 [ _5 ])
+        (mem:SI (reg/v/f:DI 103 [ cp ]) [1 MEM[(const wchar_t *)cp_94]+0 S4 A32])) "../ncurses/./widechar/lib_ins_wch.c":145:14 -1
+     (nil))
+;;  succ:       15 [always]  count:102953306 (estimated locally) (FALLTHRU)
+
+;; basic block 15, loop depth 1, count 208222534 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       12 [50.0% (guessed)]  count:105269229 (estimated locally)
+;;              14 [always]  count:102953306 (estimated locally) (FALLTHRU)
+(code_label 85 84 86 15 36 (nil) [1 uses])
+(note 86 85 87 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 87 86 88 15 (set (reg:SI 1 dx)
+        (reg:SI 86 [ _5 ])) "../ncurses/./widechar/lib_ins_wch.c":145:14 -1
+     (nil))
+(insn 88 87 89 15 (set (reg:DI 4 si)
+        (reg/v/f:DI 105 [ win ])) "../ncurses/./widechar/lib_ins_wch.c":145:14 -1
+     (nil))
+(insn 89 88 90 15 (set (reg:DI 5 di)
+        (reg/v/f:DI 99 [ sp ])) "../ncurses/./widechar/lib_ins_wch.c":145:14 -1
+     (nil))
+(call_insn 90 89 91 15 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_insert_ch") [flags 0x41]  <function_decl 0x7f8a6a8eb300 _nc_insert_ch>) [0 _nc_insert_ch S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":145:14 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_insert_ch") [flags 0x41]  <function_decl 0x7f8a6a8eb300 _nc_insert_ch>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 91 90 92 15 (set (reg/v:SI 104 [ <retval> ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_ins_wch.c":145:14 -1
+     (nil))
+(insn 92 91 93 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 104 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":157:6 -1
+     (nil))
+(jump_insn 93 92 96 15 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 176)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":157:6 -1
+     (int_list:REG_BR_PROB 135181028 (nil))
+ -> 176)
+;;  succ:       29 [12.6% (guessed)]  count:26214621 (estimated locally)
+;;              16 [87.4% (guessed)]  count:182007913 (estimated locally) (FALLTHRU)
+
+;; basic block 16, loop depth 1, count 182007913 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (NEW, REACHABLE, RTL)
+;;  pred:       15 [87.4% (guessed)]  count:182007913 (estimated locally) (FALLTHRU)
+(note 96 93 94 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 94 96 95 16 (set (pc)
+        (label_ref 145)) -1
+     (nil)
+ -> 145)
+;;  succ:       24 [always]  count:182007913 (estimated locally)
+
+(barrier 95 94 97)
+;; basic block 17, loop depth 1, count 816478417 (estimated locally), maybe hot
+;;  prev block 16, next block 18, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       11 [66.0% (guessed)]  count:408239210 (estimated locally)
+;;              10 [39.8% (guessed)]  count:408239208 (estimated locally)
+(code_label 97 95 98 17 35 (nil) [2 uses])
+(note 98 97 101 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 101 98 102 17 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:SI 104 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":147:22 -1
+     (nil))
+(insn 102 101 103 17 (set (reg:QI 121)
+        (gt:QI (reg:CCNO 17 flags)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":147:22 -1
+     (nil))
+(insn 103 102 104 17 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 121)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":147:10 -1
+     (nil))
+(jump_insn 104 103 213 17 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 131)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":147:10 -1
+     (int_list:REG_BR_PROB 359703516 (nil))
+ -> 131)
+;;  succ:       21 [33.5% (guessed)]  count:273520270 (estimated locally)
+;;              18 [66.5% (guessed)]  count:542958147 (estimated locally) (FALLTHRU)
+
+;; basic block 18, loop depth 1, count 542958147 (estimated locally), maybe hot
+;;  prev block 17, next block 19, flags: (NEW, REACHABLE, RTL)
+;;  pred:       17 [66.5% (guessed)]  count:542958147 (estimated locally) (FALLTHRU)
+(note 213 104 107 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 107 213 108 18 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:SI 100 [ len ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":147:33 -1
+     (nil))
+(insn 108 107 109 18 (set (reg:QI 123)
+        (gt:QI (reg:CCNO 17 flags)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":147:33 -1
+     (nil))
+(insn 109 108 110 18 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 123)
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":147:10 -1
+     (nil))
+(jump_insn 110 109 111 18 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 131)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":147:10 -1
+     (int_list:REG_BR_PROB 540907540 (nil))
+ -> 131)
+;;  succ:       19 [49.6% (guessed)]  count:269437877 (estimated locally) (FALLTHRU)
+;;              21 [50.4% (guessed)]  count:273520270 (estimated locally)
+
+;; basic block 19, loop depth 1, count 269437876 (estimated locally), maybe hot
+;;  prev block 18, next block 20, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       18 [49.6% (guessed)]  count:269437877 (estimated locally) (FALLTHRU)
+(note 111 110 112 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 112 111 113 19 (parallel [
+            (set (reg:DI 124)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -80 [0xffffffffffffffb0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+(insn 113 112 114 19 (parallel [
+            (set (reg:DI 125)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+(insn 114 113 115 19 (set (reg:DI 36 r8)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+(insn 115 114 116 19 (set (reg:SI 2 cx)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+(insn 116 115 117 19 (set (reg:SI 1 dx)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+(insn 117 116 118 19 (set (reg:DI 4 si)
+        (reg:DI 124)) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+(insn 118 117 119 19 (set (reg:DI 5 di)
+        (reg:DI 125)) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+(call_insn 119 118 120 19 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("setcchar") [flags 0x41]  <function_decl 0x7f8a6a7c7f00 setcchar>) [0 setcchar S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("setcchar") [flags 0x41]  <function_decl 0x7f8a6a7c7f00 setcchar>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (expr_list:DI (use (reg:DI 36 r8))
+                        (nil)))))))
+(insn 120 119 121 19 (parallel [
+            (set (reg:DI 126)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+(insn 121 120 122 19 (set (reg:DI 4 si)
+        (reg:DI 126)) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+(insn 122 121 123 19 (set (reg:DI 5 di)
+        (reg/v/f:DI 105 [ win ])) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+(call_insn 123 122 124 19 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_insert_wch") [flags 0x3]  <function_decl 0x7f8a6a907000 _nc_insert_wch>) [0 _nc_insert_wch S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_insert_wch") [flags 0x3]  <function_decl 0x7f8a6a907000 _nc_insert_wch>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 124 123 125 19 (set (reg/v:SI 102 [ num_wchars ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+(insn 125 124 126 19 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 102 [ num_wchars ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":148:7 -1
+     (nil))
+(jump_insn 126 125 127 19 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 210)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":148:7 806 {*jcc}
+     (int_list:REG_BR_PROB 23622324 (nil))
+ -> 210)
+;;  succ:       28 [2.2% (guessed)]  count:5927633 (estimated locally)
+;;              20 [97.8% (guessed)]  count:263510243 (estimated locally) (FALLTHRU)
+
+;; basic block 20, loop depth 1, count 263510243 (estimated locally), maybe hot
+;;  prev block 19, next block 21, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       19 [97.8% (guessed)]  count:263510243 (estimated locally) (FALLTHRU)
+(note 127 126 128 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 128 127 11 20 (set (reg:SI 85 [ _4 ])
+        (mem:SI (reg/v/f:DI 103 [ cp ]) [1 MEM[(const wchar_t *)cp_94]+0 S4 A32])) "../ncurses/./widechar/lib_ins_wch.c":153:31 -1
+     (nil))
+(insn 11 128 129 20 (set (reg/v:SI 104 [ <retval> ])
+        (const_int 1 [0x1])) "../ncurses/./widechar/lib_ins_wch.c":153:31 -1
+     (nil))
+(jump_insn 129 11 130 20 (set (pc)
+        (label_ref 139)) "../ncurses/./widechar/lib_ins_wch.c":153:31 -1
+     (nil)
+ -> 139)
+;;  succ:       23 [always]  count:263510243 (estimated locally)
+
+(barrier 130 129 131)
+;; basic block 21, loop depth 1, count 547040541 (estimated locally), maybe hot
+;;  prev block 20, next block 22, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       18 [50.4% (guessed)]  count:273520270 (estimated locally)
+;;              17 [33.5% (guessed)]  count:273520270 (estimated locally)
+(code_label 131 130 132 21 39 (nil) [2 uses])
+(note 132 131 135 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 135 132 136 21 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 104 [ <retval> ])
+            (const_int 4 [0x4]))) "../ncurses/./widechar/lib_ins_wch.c":152:10 -1
+     (nil))
+(jump_insn 136 135 137 21 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 145)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":152:10 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 145)
+;;  succ:       22 [50.0% (guessed)]  count:273520271 (estimated locally) (FALLTHRU)
+;;              24 [50.0% (guessed)]  count:273520271 (estimated locally)
+
+;; basic block 22, loop depth 1, count 273520271 (estimated locally), maybe hot
+;;  prev block 21, next block 23, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       21 [50.0% (guessed)]  count:273520271 (estimated locally) (FALLTHRU)
+(note 137 136 138 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 138 137 9 22 (parallel [
+            (set (reg:SI 96 [ _25 ])
+                (plus:SI (reg/v:SI 104 [ <retval> ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":153:25 -1
+     (nil))
+(insn 9 138 10 22 (set (reg/v:SI 102 [ num_wchars ])
+        (reg/v:SI 104 [ <retval> ])) "../ncurses/./widechar/lib_ins_wch.c":153:25 -1
+     (nil))
+(insn 10 9 139 22 (set (reg/v:SI 104 [ <retval> ])
+        (reg:SI 96 [ _25 ])) "../ncurses/./widechar/lib_ins_wch.c":153:25 -1
+     (nil))
+;;  succ:       23 [always]  count:273520271 (estimated locally) (FALLTHRU)
+
+;; basic block 23, loop depth 1, count 537030514 (estimated locally), maybe hot
+;;  prev block 22, next block 24, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       22 [always]  count:273520271 (estimated locally) (FALLTHRU)
+;;              20 [always]  count:263510243 (estimated locally)
+(code_label 139 10 140 23 40 (nil) [1 uses])
+(note 140 139 141 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 141 140 142 23 (set (reg:DI 127)
+        (sign_extend:DI (reg/v:SI 102 [ num_wchars ]))) "../ncurses/./widechar/lib_ins_wch.c":153:29 -1
+     (nil))
+(insn 142 141 143 23 (set (mem:SI (plus:DI (plus:DI (mult:DI (reg:DI 127)
+                        (const_int 4 [0x4]))
+                    (reg/f:DI 77 virtual-stack-vars))
+                (const_int -80 [0xffffffffffffffb0])) [1 tmp_wchars[num_wchars_46]+0 S4 A32])
+        (reg:SI 85 [ _4 ])) "../ncurses/./widechar/lib_ins_wch.c":153:29 -1
+     (nil))
+(insn 143 142 144 23 (set (reg:DI 128)
+        (sign_extend:DI (reg/v:SI 104 [ <retval> ]))) "../ncurses/./widechar/lib_ins_wch.c":154:27 -1
+     (nil))
+(insn 144 143 145 23 (set (mem:SI (plus:DI (plus:DI (mult:DI (reg:DI 128)
+                        (const_int 4 [0x4]))
+                    (reg/f:DI 77 virtual-stack-vars))
+                (const_int -80 [0xffffffffffffffb0])) [1 tmp_wchars[prephitmp_23]+0 S4 A32])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":154:27 -1
+     (nil))
+;;  succ:       24 [always]  count:537030514 (estimated locally) (FALLTHRU)
+
+;; basic block 24, loop depth 1, count 996360308 (estimated locally), maybe hot
+;;  prev block 23, next block 25, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       23 [always]  count:537030514 (estimated locally) (FALLTHRU)
+;;              21 [50.0% (guessed)]  count:273520271 (estimated locally)
+;;              16 [always]  count:182007913 (estimated locally)
+(code_label 145 144 146 24 38 (nil) [2 uses])
+(note 146 145 147 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 147 146 148 24 (parallel [
+            (set (reg/v/f:DI 103 [ cp ])
+                (plus:DI (reg/v/f:DI 103 [ cp ])
+                    (const_int 4 [0x4])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":135:61 -1
+     (nil))
+(insn 148 147 149 24 (parallel [
+            (set (reg:DI 129)
+                (minus:DI (reg/v/f:DI 103 [ cp ])
+                    (reg/v/f:DI 106 [ wstr ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":135:27 -1
+     (nil))
+(insn 149 148 150 24 (parallel [
+            (set (reg:DI 131)
+                (ashiftrt:DI (reg:DI 129)
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":135:27 -1
+     (expr_list:REG_EQUAL (div:DI (reg:DI 129)
+            (const_int 4 [0x4]))
+        (nil)))
+(insn 150 149 151 24 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:DI 131)
+            (reg:DI 92 [ _14 ]))) "../ncurses/./widechar/lib_ins_wch.c":135:40 -1
+     (nil))
+(jump_insn 151 150 152 24 (set (pc)
+        (if_then_else (ge (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 158)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":135:40 -1
+     (int_list:REG_BR_PROB 23622324 (nil))
+ -> 158)
+;;  succ:       25 [97.8% (guessed)]  count:974440381 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              26 [2.2% (guessed)]  count:21919927 (estimated locally)
+
+;; basic block 25, loop depth 1, count 1050119504 (estimated locally), maybe hot
+;;  prev block 24, next block 26, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       24 [97.8% (guessed)]  count:974440381 (estimated locally) (FALLTHRU,DFS_BACK)
+;;              9 [always]  count:77381516 (estimated locally)
+(code_label 152 151 153 25 34 (nil) [1 uses])
+(note 153 152 154 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(insn 154 153 156 25 (set (reg:SI 93 [ _15 ])
+        (mem:SI (reg/v/f:DI 103 [ cp ]) [1 MEM[(const wchar_t *)cp_94]+0 S4 A32])) "../ncurses/./widechar/lib_ins_wch.c":135:44 -1
+     (nil))
+(insn 156 154 157 25 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 93 [ _15 ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":135:40 -1
+     (nil))
+(jump_insn 157 156 158 25 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 155)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":135:40 -1
+     (int_list:REG_BR_PROB 1050119508 (nil))
+ -> 155)
+;;  succ:       10 [97.8% (guessed)]  count:1027016875 (estimated locally)
+;;              26 [2.2% (guessed)]  count:23102629 (estimated locally) (FALLTHRU)
+
+;; basic block 26, loop depth 0, count 42923341 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 45022556 (estimated locally), should be 42923341 (estimated locally)
+;;  prev block 25, next block 27, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       25 [2.2% (guessed)]  count:23102629 (estimated locally) (FALLTHRU)
+;;              24 [2.2% (guessed)]  count:21919927 (estimated locally)
+(code_label 158 157 159 26 41 (nil) [1 uses])
+(note 159 158 160 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 160 159 161 26 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 104 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":160:9 -1
+     (nil))
+(jump_insn 161 160 162 26 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 176)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":160:9 -1
+     (int_list:REG_BR_PROB 434952668 (nil))
+ -> 176)
+;;  succ:       27 [59.5% (guessed)]  count:25535901 (estimated locally) (FALLTHRU)
+;;              29 [40.5% (guessed)]  count:17387440 (estimated locally)
+
+;; basic block 27, loop depth 0, count 25535901 (estimated locally), maybe hot
+;;  prev block 26, next block 28, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       26 [59.5% (guessed)]  count:25535901 (estimated locally) (FALLTHRU)
+(note 162 161 163 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(insn 163 162 164 27 (parallel [
+            (set (reg:DI 132)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -80 [0xffffffffffffffb0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+(insn 164 163 165 27 (parallel [
+            (set (reg:DI 133)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+(insn 165 164 166 27 (set (reg:DI 36 r8)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+(insn 166 165 167 27 (set (reg:SI 2 cx)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+(insn 167 166 168 27 (set (reg:SI 1 dx)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+(insn 168 167 169 27 (set (reg:DI 4 si)
+        (reg:DI 132)) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+(insn 169 168 170 27 (set (reg:DI 5 di)
+        (reg:DI 133)) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (nil))
+(call_insn 170 169 171 27 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("setcchar") [flags 0x41]  <function_decl 0x7f8a6a7c7f00 setcchar>) [0 setcchar S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":107:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("setcchar") [flags 0x41]  <function_decl 0x7f8a6a7c7f00 setcchar>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (expr_list:SI (use (reg:SI 2 cx))
+                    (expr_list:DI (use (reg:DI 36 r8))
+                        (nil)))))))
+(insn 171 170 172 27 (parallel [
+            (set (reg:DI 134)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -48 [0xffffffffffffffd0])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+(insn 172 171 173 27 (set (reg:DI 4 si)
+        (reg:DI 134)) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+(insn 173 172 174 27 (set (reg:DI 5 di)
+        (reg/v/f:DI 105 [ win ])) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+(call_insn 174 173 175 27 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_insert_wch") [flags 0x3]  <function_decl 0x7f8a6a907000 _nc_insert_wch>) [0 _nc_insert_wch S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_insert_wch") [flags 0x3]  <function_decl 0x7f8a6a907000 _nc_insert_wch>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 175 174 207 27 (set (reg/v:SI 104 [ <retval> ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_ins_wch.c":108:12 -1
+     (nil))
+(jump_insn 207 175 208 27 (set (pc)
+        (label_ref 176)) -1
+     (nil)
+ -> 176)
+;;  succ:       29 [always]  count:25535901 (estimated locally)
+
+(barrier 208 207 210)
+;; basic block 28, loop depth 0, count 5927633 (estimated locally), maybe hot
+;;  prev block 27, next block 29, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       19 [2.2% (guessed)]  count:5927633 (estimated locally)
+(code_label 210 208 209 28 47 (nil) [1 uses])
+(note 209 210 14 28 [bb 28] NOTE_INSN_BASIC_BLOCK)
+(insn 14 209 176 28 (set (reg/v:SI 104 [ <retval> ])
+        (reg/v:SI 102 [ num_wchars ])) -1
+     (nil))
+;;  succ:       29 [always]  count:5927633 (estimated locally) (FALLTHRU)
+
+;; basic block 29, loop depth 0, count 77381518 (estimated locally), maybe hot
+;;  prev block 28, next block 30, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       26 [40.5% (guessed)]  count:17387440 (estimated locally)
+;;              13 [2.2% (guessed)]  count:2315923 (estimated locally)
+;;              28 [always]  count:5927633 (estimated locally) (FALLTHRU)
+;;              15 [12.6% (guessed)]  count:26214621 (estimated locally)
+;;              27 [always]  count:25535901 (estimated locally)
+(code_label 176 14 177 29 37 (nil) [4 uses])
+(note 177 176 178 29 [bb 29] NOTE_INSN_BASIC_BLOCK)
+(insn 178 177 179 29 (set (mem:DI (reg/v/f:DI 105 [ win ]) [1 MEM <unsigned long> [(int *)win_33(D)]+0 S8 A64])
+        (reg:DI 94 [ _19 ])) "../ncurses/./widechar/lib_ins_wch.c":165:17 -1
+     (nil))
+(insn 179 178 180 29 (set (reg:DI 5 di)
+        (reg/v/f:DI 105 [ win ])) "../ncurses/./widechar/lib_ins_wch.c":166:6 -1
+     (nil))
+(call_insn 180 179 195 29 (call (mem:QI (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f8a6a900700 _nc_synchook>) [0 _nc_synchook S1 A8])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":166:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_synchook") [flags 0x41]  <function_decl 0x7f8a6a900700 _nc_synchook>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(jump_insn 195 180 196 29 (set (pc)
+        (label_ref:DI 185)) 807 {jump}
+     (nil)
+ -> 185)
+;;  succ:       33 [always]  count:77381518 (estimated locally)
+
+(barrier 196 195 198)
+;; basic block 30, loop depth 0, count 2516677 (estimated locally), maybe hot
+;;  prev block 29, next block 31, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [1.0% (guessed)]  count:1258338 (estimated locally)
+;;              2 [1.0% (guessed)]  count:1258339 (estimated locally)
+(code_label 198 196 197 30 44 (nil) [2 uses])
+(note 197 198 15 30 [bb 30] NOTE_INSN_BASIC_BLOCK)
+(insn 15 197 203 30 (set (reg/v:SI 104 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./widechar/lib_ins_wch.c":114:9 -1
+     (nil))
+(jump_insn 203 15 204 30 (set (pc)
+        (label_ref:DI 185)) 807 {jump}
+     (nil)
+ -> 185)
+;;  succ:       33 [always]  count:2516677 (estimated locally)
+
+(barrier 204 203 206)
+;; basic block 31, loop depth 0, count 45935641 (estimated locally), maybe hot
+;;  prev block 30, next block 33, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       6 [50.0% (guessed)]  count:45935641 (estimated locally)
+(code_label 206 204 205 31 46 (nil) [1 uses])
+(note 205 206 16 31 [bb 31] NOTE_INSN_BASIC_BLOCK)
+(insn 16 205 185 31 (set (reg/v:SI 104 [ <retval> ])
+        (reg/v:SI 107 [ n ])) "../ncurses/./widechar/lib_ins_wch.c":125:7 -1
+     (nil))
+;;  succ:       33 [always]  count:45935641 (estimated locally) (FALLTHRU)
+
+;; basic block 33, loop depth 0, count 125833836 (estimated locally), maybe hot
+;;  prev block 31, next block 34, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       31 [always]  count:45935641 (estimated locally) (FALLTHRU)
+;;              29 [always]  count:77381518 (estimated locally)
+;;              30 [always]  count:2516677 (estimated locally)
+(code_label 185 16 194 33 31 (nil) [2 uses])
+(note 194 185 186 33 [bb 33] NOTE_INSN_BASIC_BLOCK)
+(insn 186 194 187 33 (set (reg/f:DI 136)
+        (const_int 40 [0x28])) "../ncurses/./widechar/lib_ins_wch.c":170:1 -1
+     (nil))
+(insn 187 186 188 33 (parallel [
+            (set (reg:CCZ 17 flags)
+                (unspec:CCZ [
+                        (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                                (const_int -8 [0xfffffffffffffff8])) [11 D.9182+0 S8 A64])
+                        (mem/v/f:DI (reg/f:DI 136) [12 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_TEST))
+            (clobber (scratch:DI))
+        ]) "../ncurses/./widechar/lib_ins_wch.c":170:1 -1
+     (nil))
+(jump_insn 188 187 214 33 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 191)
+            (pc))) "../ncurses/./widechar/lib_ins_wch.c":170:1 -1
+     (int_list:REG_BR_PROB 1073312332 (nil))
+ -> 191)
+;;  succ:       35 [100.0% (guessed)]  count:125783503 (estimated locally)
+;;              34 [0.0% (guessed)]  count:50333 (estimated locally) (FALLTHRU)
+
+;; basic block 34, loop depth 0, count 50333 (estimated locally)
+;;  prev block 33, next block 35, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       33 [0.0% (guessed)]  count:50333 (estimated locally) (FALLTHRU)
+(note 214 188 189 34 [bb 34] NOTE_INSN_BASIC_BLOCK)
+(call_insn 189 214 190 34 (call (mem:QI (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7f8a6a500a00 __stack_chk_fail>) [0 __stack_chk_fail S1 A8])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_ins_wch.c":170:1 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7f8a6a500a00 __stack_chk_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (nil))
+;;  succ:      
+
+(barrier 190 189 191)
+;; basic block 35, loop depth 0, count 125783503 (estimated locally), maybe hot
+;;  prev block 34, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       33 [100.0% (guessed)]  count:125783503 (estimated locally)
+(code_label 191 190 215 35 43 (nil) [1 uses])
+(note 215 191 192 35 [bb 35] NOTE_INSN_BASIC_BLOCK)
+(insn 192 215 193 35 (set (reg/i:SI 0 ax)
+        (reg/v:SI 104 [ <retval> ])) "../ncurses/./widechar/lib_ins_wch.c":170:1 -1
+     (nil))
+(insn 193 192 0 35 (use (reg/i:SI 0 ax)) "../ncurses/./widechar/lib_ins_wch.c":170:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:125783503 (estimated locally) (FALLTHRU)
+

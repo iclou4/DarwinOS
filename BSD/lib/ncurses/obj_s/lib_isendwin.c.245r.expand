@@ -1,0 +1,537 @@
+
+;; Function isendwin_sp (isendwin_sp, funcdef_no=91, decl_uid=6566, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+_Bool isendwin_sp (struct SCREEN * sp)
+{
+  int _1;
+  _Bool _2;
+  _Bool _5;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (sp_3(D) == 0B)
+    goto <bb 4>; [18.09%]
+  else
+    goto <bb 3>; [81.91%]
+;;    succ:       4
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = sp_3(D)->_endwin;
+  _5 = _1 == 3;
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+;;                3
+  # _2 = PHI <0(2), _5(3)>
+  return _2;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 3 (sp_3(D) - 3 )
+Partition 5 (_5 - 5 )
+Partition 6 (_6(D) - 6 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_2 - 2 5 6 )
+Partition 1, base 1 (sp_3(D) - 3 )
+
+
+Partition map 
+
+Partition 0 (_2 - 2 )
+Partition 1 (sp_3(D) - 3 )
+Partition 2 (_5 - 5 )
+Partition 3 (_6(D) - 6 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) _2 <-> _6(D)
+(8191, 0) _2 <-> _5
+
+Partition map 
+
+Partition 0 (_2 - 2 )
+Partition 1 (sp_3(D) - 3 )
+Partition 2 (_5 - 5 )
+Partition 3 (_6(D) - 6 )
+
+Coalesce list: (2)_2 & (6)_6(D) [map: 0, 3] : Success -> 0
+Coalesce list: (2)_2 & (5)_5 [map: 0, 2] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_1 - 1 )
+Partition 1 (_2 - 2 5 6 )
+Partition 2 (sp_3(D) - 3 )
+
+
+Replacing Expressions
+_1 replace with --> _1 = sp_3(D)->_endwin;
+
+
+__attribute__((visibility ("default")))
+_Bool isendwin_sp (struct SCREEN * sp)
+{
+  int _1;
+  _Bool _2;
+  _Bool _5;
+  _Bool _6(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (sp_3(D) == 0B)
+    goto <bb 4>; [18.09%]
+  else
+    goto <bb 3>; [81.91%]
+;;    succ:       4
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _1 = sp_3(D)->_endwin;
+  _5 = _1 == 3;
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+;;                3
+  # _2 = PHI <0(2), _5(3)>
+  return _2;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB2->BB4 : PART.1 = 0
+
+;; Generating RTL for gimple basic block 2
+
+;; if (sp_3(D) == 0B)
+
+(insn 7 6 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 84 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_isendwin.c":51:8 -1
+     (nil))
+
+(jump_insn 8 7 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_isendwin.c":51:8 -1
+     (int_list:REG_BR_PROB 194239900 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _5 = _1 == 3;
+
+(insn 10 9 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/v/f:DI 84 [ sp ])
+                    (const_int 736 [0x2e0])) [1 sp_3(D)->_endwin+0 S4 A64])
+            (const_int 3 [0x3]))) "../ncurses/./base/lib_isendwin.c":53:30 -1
+     (nil))
+
+(insn 11 10 12 (set (reg:QI 85)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_isendwin.c":53:30 -1
+     (nil))
+
+(insn 12 11 0 (set (reg:QI 83 [ <retval> ])
+        (reg:QI 85)) "../ncurses/./base/lib_isendwin.c":53:30 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 4
+
+;; 
+
+(code_label 13 12 14 2 (nil) [0 uses])
+
+(note 14 13 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return _2;
+
+(jump_insn 15 14 16 (set (pc)
+        (label_ref 0)) "../ncurses/./base/lib_isendwin.c":54:1 -1
+     (nil))
+
+(barrier 16 15 0)
+Edge 2->4 redirected to 7
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 21 from 6 to 7.
+Merging block 6 into block 5...
+Merged blocks 5 and 6.
+Merged 5 and 6 without moving.
+Removing jump 15.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 84 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/lib_isendwin.c":50:1 -1
+     (nil))
+(note 3 2 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 3 8 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 84 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_isendwin.c":51:8 -1
+     (nil))
+(jump_insn 8 7 9 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 24)
+            (pc))) "../ncurses/./base/lib_isendwin.c":51:8 806 {*jcc}
+     (int_list:REG_BR_PROB 194239900 (nil))
+ -> 24)
+;;  succ:       5 [18.1% (guessed)]  count:194239896 (estimated locally)
+;;              4 [81.9% (guessed)]  count:879501928 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 879501929 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [81.9% (guessed)]  count:879501928 (estimated locally) (FALLTHRU)
+(note 9 8 10 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 10 9 11 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/v/f:DI 84 [ sp ])
+                    (const_int 736 [0x2e0])) [1 sp_3(D)->_endwin+0 S4 A64])
+            (const_int 3 [0x3]))) "../ncurses/./base/lib_isendwin.c":53:30 -1
+     (nil))
+(insn 11 10 12 4 (set (reg:QI 85)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_isendwin.c":53:30 -1
+     (nil))
+(insn 12 11 21 4 (set (reg:QI 83 [ <retval> ])
+        (reg:QI 85)) "../ncurses/./base/lib_isendwin.c":53:30 -1
+     (nil))
+(jump_insn 21 12 22 4 (set (pc)
+        (label_ref:DI 17)) "../ncurses/./base/lib_isendwin.c":53:30 807 {jump}
+     (nil)
+ -> 17)
+;;  succ:       7 [always]  count:879501929 (estimated locally)
+
+(barrier 22 21 24)
+;; basic block 5, loop depth 0, count 194239896 (estimated locally), maybe hot
+;;  prev block 4, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [18.1% (guessed)]  count:194239896 (estimated locally)
+(code_label 24 22 23 5 3 (nil) [1 uses])
+(note 23 24 4 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 4 23 17 5 (set (reg:QI 83 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_isendwin.c":52:9 -1
+     (nil))
+;;  succ:       7 [always]  count:194239896 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 5, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       5 [always]  count:194239896 (estimated locally) (FALLTHRU)
+;;              4 [always]  count:879501929 (estimated locally)
+(code_label 17 4 20 7 1 (nil) [1 uses])
+(note 20 17 18 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 18 20 19 7 (set (reg/i:QI 0 ax)
+        (reg:QI 83 [ <retval> ])) "../ncurses/./base/lib_isendwin.c":54:1 -1
+     (nil))
+(insn 19 18 0 7 (use (reg/i:QI 0 ax)) "../ncurses/./base/lib_isendwin.c":54:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+
+;; Function isendwin (isendwin, funcdef_no=92, decl_uid=5687, cgraph_uid=93, symbol_order=92)
+
+__attribute__((visibility ("default")))
+_Bool isendwin ()
+{
+  struct SCREEN * SP.0_1;
+  int _3;
+  _Bool _4;
+  _Bool _5;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.0_1 = SP;
+  if (SP.0_1 == 0B)
+    goto <bb 4>; [18.09%]
+  else
+    goto <bb 3>; [81.91%]
+;;    succ:       4
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _3 = SP.0_1->_endwin;
+  _4 = _3 == 3;
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+;;                3
+  # _5 = PHI <0(2), _4(3)>
+  return _5;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (SP.0_1 - 1 )
+Partition 3 (_3 - 3 )
+Partition 4 (_4 - 4 )
+Partition 5 (_5 - 5 )
+Partition 6 (_6(D) - 6 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_4 - 4 5 6 )
+
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_5 - 5 )
+Partition 2 (_6(D) - 6 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) _5 <-> _6(D)
+(8191, 0) _4 <-> _5
+
+Partition map 
+
+Partition 0 (_4 - 4 )
+Partition 1 (_5 - 5 )
+Partition 2 (_6(D) - 6 )
+
+Coalesce list: (5)_5 & (6)_6(D) [map: 1, 2] : Success -> 1
+Coalesce list: (4)_4 & (5)_5 [map: 0, 1] : Success -> 1
+After Coalescing:
+
+Partition map 
+
+Partition 0 (SP.0_1 - 1 )
+Partition 1 (_3 - 3 )
+Partition 2 (_5 - 4 5 6 )
+
+
+Replacing Expressions
+_3 replace with --> _3 = SP.0_1->_endwin;
+
+
+__attribute__((visibility ("default")))
+_Bool isendwin ()
+{
+  struct SCREEN * SP.0_1;
+  int _3;
+  _Bool _4;
+  _Bool _5;
+  _Bool _6(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.0_1 = SP;
+  if (SP.0_1 == 0B)
+    goto <bb 4>; [18.09%]
+  else
+    goto <bb 3>; [81.91%]
+;;    succ:       4
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _3 = SP.0_1->_endwin;
+  _4 = _3 == 3;
+;;    succ:       4
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+;;                3
+  # _5 = PHI <0(2), _4(3)>
+  return _5;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB2->BB4 : PART.2 = 0
+
+;; Generating RTL for gimple basic block 2
+
+;; SP.0_1 = SP;
+
+(insn 6 5 0 (set (reg/f:DI 82 [ SP.0_1 ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f17aeaa9cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/lib_isendwin.c":60:12 -1
+     (nil))
+
+;; if (SP.0_1 == 0B)
+
+(insn 7 6 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ SP.0_1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_isendwin.c":51:8 -1
+     (nil))
+
+(jump_insn 8 7 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/lib_isendwin.c":51:8 -1
+     (int_list:REG_BR_PROB 194239900 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _4 = _3 == 3;
+
+(insn 10 9 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/f:DI 82 [ SP.0_1 ])
+                    (const_int 736 [0x2e0])) [1 SP.0_1->_endwin+0 S4 A64])
+            (const_int 3 [0x3]))) "../ncurses/./base/lib_isendwin.c":53:30 -1
+     (nil))
+
+(insn 11 10 12 (set (reg:QI 85)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_isendwin.c":53:30 -1
+     (nil))
+
+(insn 12 11 0 (set (reg:QI 84 [ <retval> ])
+        (reg:QI 85)) "../ncurses/./base/lib_isendwin.c":53:30 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 4
+
+;; 
+
+(code_label 13 12 14 6 (nil) [0 uses])
+
+(note 14 13 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return _5;
+
+(jump_insn 15 14 16 (set (pc)
+        (label_ref 0)) "../ncurses/./base/lib_isendwin.c":60:12 -1
+     (nil))
+
+(barrier 16 15 0)
+Edge 2->4 redirected to 7
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 21 from 6 to 7.
+Merging block 6 into block 5...
+Merged blocks 5 and 6.
+Merged 5 and 6 without moving.
+Removing jump 15.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 4 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 2 7 2 (set (reg/f:DI 82 [ SP.0_1 ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f17aeaa9cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/lib_isendwin.c":60:12 -1
+     (nil))
+(insn 7 6 8 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ SP.0_1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_isendwin.c":51:8 -1
+     (nil))
+(jump_insn 8 7 9 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 24)
+            (pc))) "../ncurses/./base/lib_isendwin.c":51:8 806 {*jcc}
+     (int_list:REG_BR_PROB 194239900 (nil))
+ -> 24)
+;;  succ:       5 [18.1% (guessed)]  count:194239896 (estimated locally)
+;;              4 [81.9% (guessed)]  count:879501928 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 879501929 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [81.9% (guessed)]  count:879501928 (estimated locally) (FALLTHRU)
+(note 9 8 10 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 10 9 11 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/f:DI 82 [ SP.0_1 ])
+                    (const_int 736 [0x2e0])) [1 SP.0_1->_endwin+0 S4 A64])
+            (const_int 3 [0x3]))) "../ncurses/./base/lib_isendwin.c":53:30 -1
+     (nil))
+(insn 11 10 12 4 (set (reg:QI 85)
+        (eq:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_isendwin.c":53:30 -1
+     (nil))
+(insn 12 11 21 4 (set (reg:QI 84 [ <retval> ])
+        (reg:QI 85)) "../ncurses/./base/lib_isendwin.c":53:30 -1
+     (nil))
+(jump_insn 21 12 22 4 (set (pc)
+        (label_ref:DI 17)) "../ncurses/./base/lib_isendwin.c":53:30 807 {jump}
+     (nil)
+ -> 17)
+;;  succ:       7 [always]  count:879501929 (estimated locally)
+
+(barrier 22 21 24)
+;; basic block 5, loop depth 0, count 194239896 (estimated locally), maybe hot
+;;  prev block 4, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [18.1% (guessed)]  count:194239896 (estimated locally)
+(code_label 24 22 23 5 7 (nil) [1 uses])
+(note 23 24 3 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 3 23 17 5 (set (reg:QI 84 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_isendwin.c":52:9 -1
+     (nil))
+;;  succ:       7 [always]  count:194239896 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 5, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       5 [always]  count:194239896 (estimated locally) (FALLTHRU)
+;;              4 [always]  count:879501929 (estimated locally)
+(code_label 17 3 20 7 5 (nil) [1 uses])
+(note 20 17 18 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 18 20 19 7 (set (reg/i:QI 0 ax)
+        (reg:QI 84 [ <retval> ])) "../ncurses/./base/lib_isendwin.c":61:1 -1
+     (nil))
+(insn 19 18 0 7 (use (reg/i:QI 0 ax)) "../ncurses/./base/lib_isendwin.c":61:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+

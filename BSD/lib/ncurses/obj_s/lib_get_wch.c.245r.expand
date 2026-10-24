@@ -1,0 +1,1861 @@
+
+;; Function wget_wch (wget_wch, funcdef_no=93, decl_uid=7139, cgraph_uid=94, symbol_order=93)
+
+__attribute__((visibility ("default")))
+int wget_wch (struct WINDOW * win, wint_t * result)
+{
+  wchar_t wch;
+  int status;
+  char buffer[145];
+  size_t count;
+  int value;
+  int code;
+  struct SCREEN * sp;
+  int value.0_1;
+  long unsigned int _2;
+  char _6;
+  int * _7;
+  int _8;
+  int _10;
+  int _12;
+  int _13;
+  int _14;
+  int value.4_15;
+  int wch.5_16;
+  int value.6_17;
+  unsigned int value.7_18;
+  int pretmp_37;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  value = 0;
+  _nc_mutex_lock (&_nc_globals.mutex_curses);
+  sp_33 = _nc_screen_of (win_31(D));
+  if (sp_33 != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 15>; [0.87%]
+;;    succ:       3
+;;                15
+
+;;   basic block 3, loop depth 1
+;;    pred:       2
+;;                13
+  # count_22 = PHI <0(2), _2(13)>
+  code_36 = _nc_wgetch (win_31(D), &value, 1);
+  if (code_36 == -1)
+    goto <bb 14>; [2.75%]
+  else
+    goto <bb 4>; [97.25%]
+;;    succ:       14
+;;                4
+
+;;   basic block 4, loop depth 1
+;;    pred:       3
+  if (code_36 == 256)
+    goto <bb 5>; [2.75%]
+  else
+    goto <bb 7>; [97.25%]
+;;    succ:       5
+;;                7
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  if (count_22 != 0)
+    goto <bb 6>; [33.00%]
+  else
+    goto <bb 14>; [67.00%]
+;;    succ:       6
+;;                14
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  value.0_1 = value;
+  ungetch_sp (sp_33, value.0_1);
+  goto <bb 14>; [100.00%]
+;;    succ:       14
+
+;;   basic block 7, loop depth 1
+;;    pred:       4
+  _2 = count_22 + 1;
+  pretmp_37 = value;
+  if (_2 == 145)
+    goto <bb 8>; [1.00%]
+  else
+    goto <bb 9>; [99.00%]
+;;    succ:       8
+;;                9
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+  ungetch_sp (sp_33, pretmp_37);
+  goto <bb 14>; [100.00%]
+;;    succ:       14
+
+;;   basic block 9, loop depth 1
+;;    pred:       7
+  _6 = (char) pretmp_37;
+  MEM[(char *)&buffer + -1B + _2 * 1] = _6;
+  _7 = __errno_location ();
+  _8 = mblen (0B, 0);
+  *_7 = _8;
+  _10 = mbtowc (0B, 0B, 0);
+  *_7 = _10;
+  status_44 = mblen (&buffer, _2);
+  if (status_44 >= 0)
+    goto <bb 10>; [2.75%]
+  else
+    goto <bb 13>; [97.25%]
+;;    succ:       10
+;;                13
+
+;;   basic block 10, loop depth 0
+;;    pred:       9
+  _12 = mblen (0B, 0);
+  *_7 = _12;
+  _13 = mbtowc (0B, 0B, 0);
+  *_7 = _13;
+  _14 = mbtowc (&wch, &buffer, _2);
+  if (_14 != status_44)
+    goto <bb 11>; [48.88%]
+  else
+    goto <bb 12>; [51.12%]
+;;    succ:       11
+;;                12
+
+;;   basic block 11, loop depth 0
+;;    pred:       10
+  value.4_15 = value;
+  ungetch_sp (sp_33, value.4_15);
+;;    succ:       12
+
+;;   basic block 12, loop depth 0
+;;    pred:       10
+;;                11
+  # code_19 = PHI <code_36(10), -1(11)>
+  wch.5_16 = wch;
+  value = wch.5_16;
+  wch ={v} {CLOBBER};
+  goto <bb 14>; [100.00%]
+;;    succ:       14
+
+;;   basic block 13, loop depth 1
+;;    pred:       9
+  buffer ={v} {CLOBBER};
+  goto <bb 3>; [100.00%]
+;;    succ:       3
+
+;;   basic block 14, loop depth 0
+;;    pred:       3
+;;                6
+;;                8
+;;                12
+;;                5
+  # code_20 = PHI <code_36(3), -1(6), -1(8), code_19(12), code_36(5)>
+  buffer ={v} {CLOBBER};
+;;    succ:       15
+
+;;   basic block 15, loop depth 0
+;;    pred:       14
+;;                2
+  # code_21 = PHI <code_20(14), -1(2)>
+  if (result_57(D) != 0B)
+    goto <bb 16>; [70.00%]
+  else
+    goto <bb 17>; [30.00%]
+;;    succ:       16
+;;                17
+
+;;   basic block 16, loop depth 0
+;;    pred:       15
+  value.6_17 = value;
+  value.7_18 = (unsigned int) value.6_17;
+  *result_57(D) = value.7_18;
+;;    succ:       17
+
+;;   basic block 17, loop depth 0
+;;    pred:       15
+;;                16
+  _nc_mutex_unlock (&_nc_globals.mutex_curses);
+  value ={v} {CLOBBER};
+  return code_21;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (value.0_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 6 (_6 - 6 )
+Partition 7 (_7 - 7 )
+Partition 8 (_8 - 8 )
+Partition 10 (_10 - 10 )
+Partition 11 (_11(D) - 11 )
+Partition 12 (_12 - 12 )
+Partition 13 (_13 - 13 )
+Partition 14 (_14 - 14 )
+Partition 15 (value.4_15 - 15 )
+Partition 16 (wch.5_16 - 16 )
+Partition 17 (value.6_17 - 17 )
+Partition 18 (value.7_18 - 18 )
+Partition 19 (code_19 - 19 )
+Partition 20 (code_20 - 20 )
+Partition 21 (code_21 - 21 )
+Partition 22 (count_22 - 22 )
+Partition 31 (win_31(D) - 31 )
+Partition 33 (sp_33 - 33 )
+Partition 36 (code_36 - 36 )
+Partition 37 (pretmp_37 - 37 )
+Partition 44 (status_44 - 44 )
+Partition 57 (result_57(D) - 57 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_2 - 2 22 )
+Partition 2, base 1 (_11(D) - 11 19 20 21 36 )
+Partition 6, base 2 (win_31(D) - 31 )
+Partition 8, base 3 (result_57(D) - 57 )
+
+
+Partition map 
+
+Partition 0 (_2 - 2 )
+Partition 1 (_11(D) - 11 )
+Partition 2 (code_19 - 19 )
+Partition 3 (code_20 - 20 )
+Partition 4 (code_21 - 21 )
+Partition 5 (count_22 - 22 )
+Partition 6 (win_31(D) - 31 )
+Partition 7 (code_36 - 36 )
+Partition 8 (result_57(D) - 57 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(9106, 0) _2 <-> count_22
+(908, 0) code_20 <-> code_36
+(902, 0) _11(D) <-> code_21
+(894, 0) code_20 <-> code_21
+(264, 0) code_19 <-> code_36
+(257, 0) code_19 <-> code_20
+
+Partition map 
+
+Partition 0 (_2 - 2 )
+Partition 1 (_11(D) - 11 )
+Partition 2 (code_19 - 19 )
+Partition 3 (code_20 - 20 )
+Partition 4 (code_21 - 21 )
+Partition 5 (count_22 - 22 )
+Partition 6 (win_31(D) - 31 )
+Partition 7 (code_36 - 36 )
+Partition 8 (result_57(D) - 57 )
+
+Coalesce list: (2)_2 & (22)count_22 [map: 0, 5] : Success -> 0
+Coalesce list: (20)code_20 & (36)code_36 [map: 3, 7] : Success -> 3
+Coalesce list: (11)_11(D) & (21)code_21 [map: 1, 4] : Success -> 1
+Coalesce list: (20)code_20 & (21)_11(D) [map: 3, 1] : Success -> 3
+Coalesce list: (19)code_19 & (36)code_20 [map: 2, 3] : Success -> 3
+Coalesce list: (19)code_20 & (20)code_20: Already Coalesced.
+After Coalescing:
+
+Partition map 
+
+Partition 0 (value.0_1 - 1 )
+Partition 1 (_2 - 2 22 )
+Partition 2 (_6 - 6 )
+Partition 3 (_7 - 7 )
+Partition 4 (_8 - 8 )
+Partition 5 (_10 - 10 )
+Partition 6 (_12 - 12 )
+Partition 7 (_13 - 13 )
+Partition 8 (_14 - 14 )
+Partition 9 (value.4_15 - 15 )
+Partition 10 (wch.5_16 - 16 )
+Partition 11 (value.6_17 - 17 )
+Partition 12 (value.7_18 - 18 )
+Partition 13 (code_20 - 11 19 20 21 36 )
+Partition 14 (win_31(D) - 31 )
+Partition 15 (sp_33 - 33 )
+Partition 16 (pretmp_37 - 37 )
+Partition 17 (status_44 - 44 )
+Partition 18 (result_57(D) - 57 )
+
+
+Replacing Expressions
+value.0_1 replace with --> value.0_1 = value;
+
+_6 replace with --> _6 = (char) pretmp_37;
+
+value.4_15 replace with --> value.4_15 = value;
+
+wch.5_16 replace with --> wch.5_16 = wch;
+
+value.6_17 replace with --> value.6_17 = value;
+
+value.7_18 replace with --> value.7_18 = (unsigned int) value.6_17;
+
+
+__attribute__((visibility ("default")))
+int wget_wch (struct WINDOW * win, wint_t * result)
+{
+  wchar_t wch;
+  int status;
+  char buffer[145];
+  size_t count;
+  int value;
+  int code;
+  struct SCREEN * sp;
+  int value.0_1;
+  long unsigned int _2;
+  char _6;
+  int * _7;
+  int _8;
+  int _10;
+  int _11(D);
+  int _12;
+  int _13;
+  int _14;
+  int value.4_15;
+  int wch.5_16;
+  int value.6_17;
+  unsigned int value.7_18;
+  int pretmp_37;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  value = 0;
+  _nc_mutex_lock (&_nc_globals.mutex_curses);
+  sp_33 = _nc_screen_of (win_31(D));
+  if (sp_33 != 0B)
+    goto <bb 3>; [99.13%]
+  else
+    goto <bb 15>; [0.87%]
+;;    succ:       3
+;;                15
+
+;;   basic block 3, loop depth 1
+;;    pred:       2
+;;                13
+  # count_22 = PHI <0(2), _2(13)>
+  code_36 = _nc_wgetch (win_31(D), &value, 1);
+  if (code_36 == -1)
+    goto <bb 14>; [2.75%]
+  else
+    goto <bb 4>; [97.25%]
+;;    succ:       14
+;;                4
+
+;;   basic block 4, loop depth 1
+;;    pred:       3
+  if (code_36 == 256)
+    goto <bb 5>; [2.75%]
+  else
+    goto <bb 7>; [97.25%]
+;;    succ:       5
+;;                7
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  if (count_22 != 0)
+    goto <bb 6>; [33.00%]
+  else
+    goto <bb 14>; [67.00%]
+;;    succ:       6
+;;                14
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  value.0_1 = value;
+  ungetch_sp (sp_33, value.0_1);
+  goto <bb 14>; [100.00%]
+;;    succ:       14
+
+;;   basic block 7, loop depth 1
+;;    pred:       4
+  _2 = count_22 + 1;
+  pretmp_37 = value;
+  if (_2 == 145)
+    goto <bb 8>; [1.00%]
+  else
+    goto <bb 9>; [99.00%]
+;;    succ:       8
+;;                9
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+  ungetch_sp (sp_33, pretmp_37);
+  goto <bb 14>; [100.00%]
+;;    succ:       14
+
+;;   basic block 9, loop depth 1
+;;    pred:       7
+  _6 = (char) pretmp_37;
+  MEM[(char *)&buffer + -1B + _2 * 1] = _6;
+  _7 = __errno_location ();
+  _8 = mblen (0B, 0);
+  *_7 = _8;
+  _10 = mbtowc (0B, 0B, 0);
+  *_7 = _10;
+  status_44 = mblen (&buffer, _2);
+  if (status_44 >= 0)
+    goto <bb 10>; [2.75%]
+  else
+    goto <bb 13>; [97.25%]
+;;    succ:       10
+;;                13
+
+;;   basic block 10, loop depth 0
+;;    pred:       9
+  _12 = mblen (0B, 0);
+  *_7 = _12;
+  _13 = mbtowc (0B, 0B, 0);
+  *_7 = _13;
+  _14 = mbtowc (&wch, &buffer, _2);
+  if (_14 != status_44)
+    goto <bb 11>; [48.88%]
+  else
+    goto <bb 12>; [51.12%]
+;;    succ:       11
+;;                12
+
+;;   basic block 11, loop depth 0
+;;    pred:       10
+  value.4_15 = value;
+  ungetch_sp (sp_33, value.4_15);
+;;    succ:       12
+
+;;   basic block 12, loop depth 0
+;;    pred:       10
+;;                11
+  # code_19 = PHI <code_36(10), -1(11)>
+  wch.5_16 = wch;
+  value = wch.5_16;
+  wch ={v} {CLOBBER};
+  goto <bb 14>; [100.00%]
+;;    succ:       14
+
+;;   basic block 13, loop depth 1
+;;    pred:       9
+  buffer ={v} {CLOBBER};
+  goto <bb 3>; [100.00%]
+;;    succ:       3
+
+;;   basic block 14, loop depth 0
+;;    pred:       3
+;;                6
+;;                8
+;;                12
+;;                5
+  # code_20 = PHI <code_36(3), -1(6), -1(8), code_19(12), code_36(5)>
+  buffer ={v} {CLOBBER};
+;;    succ:       15
+
+;;   basic block 15, loop depth 0
+;;    pred:       14
+;;                2
+  # code_21 = PHI <code_20(14), -1(2)>
+  if (result_57(D) != 0B)
+    goto <bb 16>; [70.00%]
+  else
+    goto <bb 17>; [30.00%]
+;;    succ:       16
+;;                17
+
+;;   basic block 16, loop depth 0
+;;    pred:       15
+  value.6_17 = value;
+  value.7_18 = (unsigned int) value.6_17;
+  *result_57(D) = value.7_18;
+;;    succ:       17
+
+;;   basic block 17, loop depth 0
+;;    pred:       15
+;;                16
+  _nc_mutex_unlock (&_nc_globals.mutex_curses);
+  value ={v} {CLOBBER};
+  return code_21;
+;;    succ:       EXIT
+
+}
+
+
+Partition 1: size 145 align 16
+	buffer
+Partition 2: size 4 align 4
+	wch
+Partition 0: size 4 align 4
+	value
+Inserting a value copy on edge BB2->BB3 : PART.1 = 0
+Inserting a value copy on edge BB11->BB12 : PART.13 = -1
+Inserting a value copy on edge BB6->BB14 : PART.13 = -1
+Inserting a value copy on edge BB8->BB14 : PART.13 = -1
+Inserting a value copy on edge BB2->BB15 : PART.13 = -1
+
+;; Generating RTL for gimple basic block 2
+
+;; value = 0;
+
+(insn 14 13 0 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -168 [0xffffffffffffff58])) [1 value+0 S4 A64])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":51:9 -1
+     (nil))
+
+;; _nc_mutex_lock (&_nc_globals.mutex_curses);
+
+(insn 15 14 16 (set (reg:DI 102)
+        (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fae5b03dea0 _nc_globals>)
+                (const_int 504 [0x1f8])))) "../ncurses/./widechar/lib_get_wch.c":62:5 -1
+     (nil))
+
+(insn 16 15 17 (set (reg:DI 5 di)
+        (reg:DI 102)) "../ncurses/./widechar/lib_get_wch.c":62:5 -1
+     (expr_list:REG_EQUAL (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fae5b03dea0 _nc_globals>)
+                (const_int 504 [0x1f8])))
+        (nil)))
+
+(call_insn 17 16 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_mutex_lock") [flags 0x41]  <function_decl 0x7fae5b0bc100 _nc_mutex_lock>) [0 _nc_mutex_lock S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":62:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_mutex_lock") [flags 0x41]  <function_decl 0x7fae5b0bc100 _nc_mutex_lock>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; sp_33 = _nc_screen_of (win_31(D));
+
+(insn 18 17 19 (set (reg:DI 5 di)
+        (reg/v/f:DI 99 [ win ])) "../ncurses/./widechar/lib_get_wch.c":63:10 -1
+     (nil))
+
+(call_insn 19 18 20 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_screen_of") [flags 0x41]  <function_decl 0x7fae5b106100 _nc_screen_of>) [0 _nc_screen_of S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":63:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_screen_of") [flags 0x41]  <function_decl 0x7fae5b106100 _nc_screen_of>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+(insn 20 19 0 (set (reg/v/f:DI 95 [ sp ])
+        (reg:DI 0 ax)) "../ncurses/./widechar/lib_get_wch.c":63:10 -1
+     (nil))
+
+;; if (sp_33 != 0B)
+
+(insn 21 20 22 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 95 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":65:8 -1
+     (nil))
+
+(jump_insn 22 21 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_get_wch.c":65:8 -1
+     (int_list:REG_BR_PROB 9341556 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; code_36 = _nc_wgetch (win_31(D), &value, 1);
+
+(insn 24 23 25 (parallel [
+            (set (reg:DI 103)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -168 [0xffffffffffffff58])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_get_wch.c":72:13 -1
+     (nil))
+
+(insn 25 24 26 (set (reg:SI 1 dx)
+        (const_int 1 [0x1])) "../ncurses/./widechar/lib_get_wch.c":72:13 -1
+     (nil))
+
+(insn 26 25 27 (set (reg:DI 4 si)
+        (reg:DI 103)) "../ncurses/./widechar/lib_get_wch.c":72:13 -1
+     (nil))
+
+(insn 27 26 28 (set (reg:DI 5 di)
+        (reg/v/f:DI 99 [ win ])) "../ncurses/./widechar/lib_get_wch.c":72:13 -1
+     (nil))
+
+(call_insn 28 27 29 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_wgetch") [flags 0x41]  <function_decl 0x7fae5b0fb200 _nc_wgetch>) [0 _nc_wgetch S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":72:13 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_wgetch") [flags 0x41]  <function_decl 0x7fae5b0fb200 _nc_wgetch>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+
+(insn 29 28 0 (set (reg/v:SI 98 [ <retval> ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_get_wch.c":72:13 -1
+     (nil))
+
+;; if (code_36 == -1)
+
+(insn 30 29 31 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 98 [ <retval> ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./widechar/lib_get_wch.c":74:9 -1
+     (nil))
+
+(jump_insn 31 30 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_get_wch.c":74:9 -1
+     (int_list:REG_BR_PROB 29527908 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; if (code_36 == 256)
+
+(insn 33 32 34 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 98 [ <retval> ])
+            (const_int 256 [0x100]))) "../ncurses/./widechar/lib_get_wch.c":76:16 -1
+     (nil))
+
+(jump_insn 34 33 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_get_wch.c":76:16 -1
+     (int_list:REG_BR_PROB 1044213924 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; if (count_22 != 0)
+
+(insn 36 35 37 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 83 [ count ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":84:6 -1
+     (nil))
+
+(jump_insn 37 36 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_get_wch.c":84:6 -1
+     (int_list:REG_BR_PROB 719407028 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; ungetch_sp (sp_33, value.0_1);
+
+(insn 39 38 40 (set (reg:SI 104)
+        (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -168 [0xffffffffffffff58])) [1 value+0 S4 A64])) "../ncurses/./widechar/lib_get_wch.c":85:7 -1
+     (nil))
+
+(insn 40 39 41 (set (reg:SI 4 si)
+        (reg:SI 104)) "../ncurses/./widechar/lib_get_wch.c":85:7 -1
+     (nil))
+
+(insn 41 40 42 (set (reg:DI 5 di)
+        (reg/v/f:DI 95 [ sp ])) "../ncurses/./widechar/lib_get_wch.c":85:7 -1
+     (nil))
+
+(call_insn 42 41 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ungetch_sp") [flags 0x41]  <function_decl 0x7fae5af95a00 ungetch_sp>) [0 ungetch_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":85:7 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("ungetch_sp") [flags 0x41]  <function_decl 0x7fae5af95a00 ungetch_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+
+;; Generating RTL for gimple basic block 7
+
+;; 
+
+(code_label 45 44 46 4 (nil) [0 uses])
+
+(note 46 45 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _2 = count_22 + 1;
+
+(insn 47 46 0 (parallel [
+            (set (reg/v:DI 83 [ count ])
+                (plus:DI (reg/v:DI 83 [ count ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_get_wch.c":89:23 -1
+     (nil))
+
+;; pretmp_37 = value;
+
+(insn 48 47 0 (set (reg:SI 96 [ pretmp_37 ])
+        (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -168 [0xffffffffffffff58])) [1 value+0 S4 A64])) "../ncurses/./widechar/lib_get_wch.c":85:7 -1
+     (nil))
+
+;; if (_2 == 145)
+
+(insn 49 48 50 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 83 [ count ])
+            (const_int 145 [0x91]))) "../ncurses/./widechar/lib_get_wch.c":89:16 -1
+     (nil))
+
+(jump_insn 50 49 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_get_wch.c":89:16 -1
+     (int_list:REG_BR_PROB 1063004412 (nil)))
+
+;; Generating RTL for gimple basic block 8
+
+;; ungetch_sp (sp_33, pretmp_37);
+
+(insn 52 51 53 (set (reg:SI 4 si)
+        (reg:SI 96 [ pretmp_37 ])) "../ncurses/./widechar/lib_get_wch.c":90:3 -1
+     (nil))
+
+(insn 53 52 54 (set (reg:DI 5 di)
+        (reg/v/f:DI 95 [ sp ])) "../ncurses/./widechar/lib_get_wch.c":90:3 -1
+     (nil))
+
+(call_insn 54 53 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ungetch_sp") [flags 0x41]  <function_decl 0x7fae5af95a00 ungetch_sp>) [0 ungetch_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":90:3 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("ungetch_sp") [flags 0x41]  <function_decl 0x7fae5af95a00 ungetch_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+
+;; Generating RTL for gimple basic block 9
+
+;; 
+
+(code_label 57 56 58 5 (nil) [0 uses])
+
+(note 58 57 0 NOTE_INSN_BASIC_BLOCK)
+
+;; MEM[(char *)&buffer + -1B + _2 * 1] = _6;
+
+(insn 59 58 60 (parallel [
+            (set (reg:DI 105)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -160 [0xffffffffffffff60])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_get_wch.c":96:19 -1
+     (nil))
+
+(insn 60 59 61 (parallel [
+            (set (reg:DI 106)
+                (plus:DI (reg:DI 105)
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_get_wch.c":96:19 -1
+     (nil))
+
+(insn 61 60 62 (parallel [
+            (set (reg/f:DI 107)
+                (plus:DI (reg/v:DI 83 [ count ])
+                    (reg:DI 106)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_get_wch.c":96:19 -1
+     (nil))
+
+(insn 62 61 0 (set (mem:QI (reg/f:DI 107) [0 MEM[(char *)&buffer + -1B + _2 * 1]+0 S1 A8])
+        (subreg:QI (reg:SI 96 [ pretmp_37 ]) 0)) "../ncurses/./widechar/lib_get_wch.c":96:21 -1
+     (nil))
+
+;; _7 = __errno_location ();
+
+(call_insn/u 63 62 64 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__errno_location") [flags 0x41]  <function_decl 0x7fae5b2ffc00 __errno_location>) [0 __errno_location S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__errno_location") [flags 0x41]  <function_decl 0x7fae5b2ffc00 __errno_location>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (nil))
+
+(insn 64 63 0 (set (reg/f:DI 85 [ _7 ])
+        (reg:DI 0 ax)) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (nil))
+
+;; _8 = mblen (0B, 0);
+
+(insn 65 64 66 (set (reg:DI 4 si)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (nil))
+
+(insn 66 65 67 (set (reg:DI 5 di)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (nil))
+
+(call_insn 67 66 68 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("mblen") [flags 0x41]  <function_decl 0x7fae5b600900 mblen>) [0 mblen S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("mblen") [flags 0x41]  <function_decl 0x7fae5b600900 mblen>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 68 67 0 (set (reg:SI 86 [ _8 ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (nil))
+
+;; *_7 = _8;
+
+(insn 69 68 0 (set (mem:SI (reg/f:DI 85 [ _7 ]) [1 *_7+0 S4 A32])
+        (reg:SI 86 [ _8 ])) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (nil))
+
+;; _10 = mbtowc (0B, 0B, 0);
+
+(insn 70 69 71 (set (reg:DI 1 dx)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (nil))
+
+(insn 71 70 72 (set (reg:DI 4 si)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (nil))
+
+(insn 72 71 73 (set (reg:DI 5 di)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (nil))
+
+(call_insn 73 72 74 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("mbtowc") [flags 0x41]  <function_decl 0x7fae5b600a00 mbtowc>) [0 mbtowc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("mbtowc") [flags 0x41]  <function_decl 0x7fae5b600a00 mbtowc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+
+(insn 74 73 0 (set (reg:SI 87 [ _10 ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (nil))
+
+;; *_7 = _10;
+
+(insn 75 74 0 (set (mem:SI (reg/f:DI 85 [ _7 ]) [1 *_7+0 S4 A32])
+        (reg:SI 87 [ _10 ])) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (nil))
+
+;; status_44 = mblen (&buffer, _2);
+
+(insn 76 75 77 (parallel [
+            (set (reg:DI 108)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -160 [0xffffffffffffff60])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_get_wch.c":98:12 -1
+     (nil))
+
+(insn 77 76 78 (set (reg:DI 4 si)
+        (reg/v:DI 83 [ count ])) "../ncurses/./widechar/lib_get_wch.c":98:12 -1
+     (nil))
+
+(insn 78 77 79 (set (reg:DI 5 di)
+        (reg:DI 108)) "../ncurses/./widechar/lib_get_wch.c":98:12 -1
+     (nil))
+
+(call_insn 79 78 80 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("mblen") [flags 0x41]  <function_decl 0x7fae5b600900 mblen>) [0 mblen S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":98:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("mblen") [flags 0x41]  <function_decl 0x7fae5b600900 mblen>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 80 79 0 (set (reg/v:SI 97 [ status ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_get_wch.c":98:12 -1
+     (nil))
+
+;; if (status_44 >= 0)
+
+(insn 83 80 84 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 97 [ status ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":99:6 -1
+     (nil))
+
+(jump_insn 84 83 0 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_get_wch.c":99:6 -1
+     (int_list:REG_BR_PROB 1044213924 (nil)))
+
+;; Generating RTL for gimple basic block 10
+
+;; _12 = mblen (0B, 0);
+
+(insn 86 85 87 (set (reg:DI 4 si)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (nil))
+
+(insn 87 86 88 (set (reg:DI 5 di)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (nil))
+
+(call_insn 88 87 89 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("mblen") [flags 0x41]  <function_decl 0x7fae5b600900 mblen>) [0 mblen S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("mblen") [flags 0x41]  <function_decl 0x7fae5b600900 mblen>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 89 88 0 (set (reg:SI 88 [ _12 ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (nil))
+
+;; *_7 = _12;
+
+(insn 90 89 0 (set (mem:SI (reg/f:DI 85 [ _7 ]) [1 *_7+0 S4 A32])
+        (reg:SI 88 [ _12 ])) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (nil))
+
+;; _13 = mbtowc (0B, 0B, 0);
+
+(insn 91 90 92 (set (reg:DI 1 dx)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (nil))
+
+(insn 92 91 93 (set (reg:DI 4 si)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (nil))
+
+(insn 93 92 94 (set (reg:DI 5 di)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (nil))
+
+(call_insn 94 93 95 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("mbtowc") [flags 0x41]  <function_decl 0x7fae5b600a00 mbtowc>) [0 mbtowc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("mbtowc") [flags 0x41]  <function_decl 0x7fae5b600a00 mbtowc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+
+(insn 95 94 0 (set (reg:SI 89 [ _13 ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (nil))
+
+;; *_7 = _13;
+
+(insn 96 95 0 (set (mem:SI (reg/f:DI 85 [ _7 ]) [1 *_7+0 S4 A32])
+        (reg:SI 89 [ _13 ])) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (nil))
+
+;; _14 = mbtowc (&wch, &buffer, _2);
+
+(insn 97 96 98 (parallel [
+            (set (reg:DI 109)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -160 [0xffffffffffffff60])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_get_wch.c":102:11 -1
+     (nil))
+
+(insn 98 97 99 (parallel [
+            (set (reg:DI 110)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -164 [0xffffffffffffff5c])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_get_wch.c":102:11 -1
+     (nil))
+
+(insn 99 98 100 (set (reg:DI 1 dx)
+        (reg/v:DI 83 [ count ])) "../ncurses/./widechar/lib_get_wch.c":102:11 -1
+     (nil))
+
+(insn 100 99 101 (set (reg:DI 4 si)
+        (reg:DI 109)) "../ncurses/./widechar/lib_get_wch.c":102:11 -1
+     (nil))
+
+(insn 101 100 102 (set (reg:DI 5 di)
+        (reg:DI 110)) "../ncurses/./widechar/lib_get_wch.c":102:11 -1
+     (nil))
+
+(call_insn 102 101 103 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("mbtowc") [flags 0x41]  <function_decl 0x7fae5b600a00 mbtowc>) [0 mbtowc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":102:11 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("mbtowc") [flags 0x41]  <function_decl 0x7fae5b600a00 mbtowc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+
+(insn 103 102 0 (set (reg:SI 90 [ _14 ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_get_wch.c":102:11 -1
+     (nil))
+
+;; if (_14 != status_44)
+
+(insn 104 103 105 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 90 [ _14 ])
+            (reg/v:SI 97 [ status ]))) "../ncurses/./widechar/lib_get_wch.c":102:10 -1
+     (nil))
+
+(jump_insn 105 104 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_get_wch.c":102:10 -1
+     (int_list:REG_BR_PROB 548896828 (nil)))
+
+;; Generating RTL for gimple basic block 11
+
+;; ungetch_sp (sp_33, value.4_15);
+
+(insn 107 106 108 (set (reg:SI 111)
+        (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -168 [0xffffffffffffff58])) [1 value+0 S4 A64])) "../ncurses/./widechar/lib_get_wch.c":104:4 -1
+     (nil))
+
+(insn 108 107 109 (set (reg:SI 4 si)
+        (reg:SI 111)) "../ncurses/./widechar/lib_get_wch.c":104:4 -1
+     (nil))
+
+(insn 109 108 110 (set (reg:DI 5 di)
+        (reg/v/f:DI 95 [ sp ])) "../ncurses/./widechar/lib_get_wch.c":104:4 -1
+     (nil))
+
+(call_insn 110 109 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ungetch_sp") [flags 0x41]  <function_decl 0x7fae5af95a00 ungetch_sp>) [0 ungetch_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":104:4 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("ungetch_sp") [flags 0x41]  <function_decl 0x7fae5af95a00 ungetch_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+
+;; Generating RTL for gimple basic block 12
+
+;; 
+
+(code_label 111 110 112 7 (nil) [0 uses])
+
+(note 112 111 0 NOTE_INSN_BASIC_BLOCK)
+
+;; value = wch.5_16;
+
+(insn 113 112 114 (set (reg:SI 112)
+        (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -164 [0xffffffffffffff5c])) [1 wch+0 S4 A32])) "../ncurses/./widechar/lib_get_wch.c":106:13 -1
+     (nil))
+
+(insn 114 113 0 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -168 [0xffffffffffffff58])) [1 value+0 S4 A64])
+        (reg:SI 112)) "../ncurses/./widechar/lib_get_wch.c":106:13 -1
+     (nil))
+
+;; wch ={v} {CLOBBER};
+
+(nil)
+
+;; Generating RTL for gimple basic block 13
+
+;; 
+
+(code_label 117 116 118 6 (nil) [0 uses])
+
+(note 118 117 0 NOTE_INSN_BASIC_BLOCK)
+
+;; buffer ={v} {CLOBBER};
+
+(nil)
+
+;; Generating RTL for gimple basic block 14
+
+;; 
+
+(code_label 122 121 123 3 (nil) [0 uses])
+
+(note 123 122 0 NOTE_INSN_BASIC_BLOCK)
+
+;; buffer ={v} {CLOBBER};
+
+(nil)
+
+;; Generating RTL for gimple basic block 15
+
+;; 
+
+(code_label 124 123 125 2 (nil) [0 uses])
+
+(note 125 124 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (result_57(D) != 0B)
+
+(insn 126 125 127 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 100 [ result ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":115:8 -1
+     (nil))
+
+(jump_insn 127 126 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./widechar/lib_get_wch.c":115:8 -1
+     (int_list:REG_BR_PROB 322122548 (nil)))
+
+;; Generating RTL for gimple basic block 16
+
+;; *result_57(D) = value.7_18;
+
+(insn 129 128 130 (set (reg:SI 113)
+        (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -168 [0xffffffffffffff58])) [1 value+0 S4 A64])) "../ncurses/./widechar/lib_get_wch.c":116:10 -1
+     (nil))
+
+(insn 130 129 0 (set (mem:SI (reg/v/f:DI 100 [ result ]) [1 *result_57(D)+0 S4 A32])
+        (reg:SI 113)) "../ncurses/./widechar/lib_get_wch.c":116:10 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 17
+
+;; 
+
+(code_label 131 130 132 9 (nil) [0 uses])
+
+(note 132 131 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _nc_mutex_unlock (&_nc_globals.mutex_curses);
+
+(insn 133 132 134 (set (reg:DI 114)
+        (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fae5b03dea0 _nc_globals>)
+                (const_int 504 [0x1f8])))) "../ncurses/./widechar/lib_get_wch.c":118:5 -1
+     (nil))
+
+(insn 134 133 135 (set (reg:DI 5 di)
+        (reg:DI 114)) "../ncurses/./widechar/lib_get_wch.c":118:5 -1
+     (expr_list:REG_EQUAL (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fae5b03dea0 _nc_globals>)
+                (const_int 504 [0x1f8])))
+        (nil)))
+
+(call_insn 135 134 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_mutex_unlock") [flags 0x41]  <function_decl 0x7fae5b0bc300 _nc_mutex_unlock>) [0 _nc_mutex_unlock S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":118:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_mutex_unlock") [flags 0x41]  <function_decl 0x7fae5b0bc300 _nc_mutex_unlock>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; value ={v} {CLOBBER};
+
+(nil)
+
+;; return code_21;
+
+(jump_insn 136 135 137 (set (pc)
+        (label_ref 0)) "../ncurses/./widechar/lib_get_wch.c":120:5 -1
+     (nil))
+
+(barrier 137 136 0)
+Edge 2->15 redirected to 21
+Predictions for insn 141 bb 19
+  first match heuristics: 99.96%  exec 96888637 (estimated locally) hit 193777273 (estimated locally) (200.0%)
+  combined heuristics: 99.96%  exec 96888637 (estimated locally) hit 193777273 (estimated locally) (200.0%)
+  noreturn call heuristics: 99.96%  exec 96888637 (estimated locally) hit 193777273 (estimated locally) (200.0%)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Edge 5->16 redirected to 18
+Edge 7->16 redirected to 18
+Redirecting jump 43 from 16 to 18.
+Redirecting jump 55 from 16 to 18.
+Redirecting jump 115 from 16 to 18.
+deleting block 16
+Removing jump 136.
+Merging block 21 into block 20...
+Merged blocks 20 and 21.
+Merged 20 and 21 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 12 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 96888637 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:96888637 (estimated locally) (FALLTHRU)
+(note 12 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 12 3 2 (set (reg/v/f:DI 99 [ win ])
+        (reg:DI 5 di [ win ])) "../ncurses/./widechar/lib_get_wch.c":48:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 100 [ result ])
+        (reg:DI 4 si [ result ])) "../ncurses/./widechar/lib_get_wch.c":48:1 -1
+     (nil))
+(note 4 3 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn 5 4 6 2 (set (reg/f:DI 101)
+        (const_int 40 [0x28])) "../ncurses/./widechar/lib_get_wch.c":48:1 -1
+     (nil))
+(insn 6 5 14 2 (parallel [
+            (set (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                        (const_int -8 [0xfffffffffffffff8])) [2 D.9197+0 S8 A64])
+                (unspec:DI [
+                        (mem/v/f:DI (reg/f:DI 101) [3 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_SET))
+            (set (scratch:DI)
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_get_wch.c":48:1 -1
+     (nil))
+(insn 14 6 15 2 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -168 [0xffffffffffffff58])) [1 value+0 S4 A64])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":51:9 -1
+     (nil))
+(insn 15 14 16 2 (set (reg:DI 102)
+        (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fae5b03dea0 _nc_globals>)
+                (const_int 504 [0x1f8])))) "../ncurses/./widechar/lib_get_wch.c":62:5 -1
+     (nil))
+(insn 16 15 17 2 (set (reg:DI 5 di)
+        (reg:DI 102)) "../ncurses/./widechar/lib_get_wch.c":62:5 -1
+     (expr_list:REG_EQUAL (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fae5b03dea0 _nc_globals>)
+                (const_int 504 [0x1f8])))
+        (nil)))
+(call_insn 17 16 18 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_mutex_lock") [flags 0x41]  <function_decl 0x7fae5b0bc100 _nc_mutex_lock>) [0 _nc_mutex_lock S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":62:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_mutex_lock") [flags 0x41]  <function_decl 0x7fae5b0bc100 _nc_mutex_lock>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 18 17 19 2 (set (reg:DI 5 di)
+        (reg/v/f:DI 99 [ win ])) "../ncurses/./widechar/lib_get_wch.c":63:10 -1
+     (nil))
+(call_insn 19 18 20 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_screen_of") [flags 0x41]  <function_decl 0x7fae5b106100 _nc_screen_of>) [0 _nc_screen_of S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":63:10 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_screen_of") [flags 0x41]  <function_decl 0x7fae5b106100 _nc_screen_of>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 20 19 21 2 (set (reg/v/f:DI 95 [ sp ])
+        (reg:DI 0 ax)) "../ncurses/./widechar/lib_get_wch.c":63:10 -1
+     (nil))
+(insn 21 20 22 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 95 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":65:8 -1
+     (nil))
+(jump_insn 22 21 148 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 152)
+            (pc))) "../ncurses/./widechar/lib_get_wch.c":65:8 806 {*jcc}
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 152)
+;;  succ:       4 [99.1% (guessed)]  count:96045706 (estimated locally) (FALLTHRU)
+;;              17 [0.9% (guessed)]  count:842931 (estimated locally)
+
+;; basic block 4, loop depth 0, count 96045706 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [99.1% (guessed)]  count:96045706 (estimated locally) (FALLTHRU)
+(note 148 22 7 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 7 148 119 4 (set (reg/v:DI 83 [ count ])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":66:9 -1
+     (nil))
+;;  succ:       5 [always]  count:96045706 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 1, count 1073741824 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [always]  count:96045706 (estimated locally) (FALLTHRU)
+;;              15 [always]  count:977696117 (estimated locally) (DFS_BACK)
+(code_label 119 7 23 5 8 (nil) [1 uses])
+(note 23 119 24 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 25 5 (parallel [
+            (set (reg:DI 103)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -168 [0xffffffffffffff58])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_get_wch.c":72:13 -1
+     (nil))
+(insn 25 24 26 5 (set (reg:SI 1 dx)
+        (const_int 1 [0x1])) "../ncurses/./widechar/lib_get_wch.c":72:13 -1
+     (nil))
+(insn 26 25 27 5 (set (reg:DI 4 si)
+        (reg:DI 103)) "../ncurses/./widechar/lib_get_wch.c":72:13 -1
+     (nil))
+(insn 27 26 28 5 (set (reg:DI 5 di)
+        (reg/v/f:DI 99 [ win ])) "../ncurses/./widechar/lib_get_wch.c":72:13 -1
+     (nil))
+(call_insn 28 27 29 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_wgetch") [flags 0x41]  <function_decl 0x7fae5b0fb200 _nc_wgetch>) [0 _nc_wgetch S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":72:13 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_wgetch") [flags 0x41]  <function_decl 0x7fae5b0fb200 _nc_wgetch>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 29 28 30 5 (set (reg/v:SI 98 [ <retval> ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_get_wch.c":72:13 -1
+     (nil))
+(insn 30 29 31 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 98 [ <retval> ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./widechar/lib_get_wch.c":74:9 -1
+     (nil))
+(jump_insn 31 30 32 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 124)
+            (pc))) "../ncurses/./widechar/lib_get_wch.c":74:9 806 {*jcc}
+     (int_list:REG_BR_PROB 29527908 (nil))
+ -> 124)
+;;  succ:       18 [2.8% (guessed)]  count:29527904 (estimated locally)
+;;              6 [97.2% (guessed)]  count:1044213920 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 1, count 1044213920 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [97.2% (guessed)]  count:1044213920 (estimated locally) (FALLTHRU)
+(note 32 31 33 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 33 32 34 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 98 [ <retval> ])
+            (const_int 256 [0x100]))) "../ncurses/./widechar/lib_get_wch.c":76:16 -1
+     (nil))
+(jump_insn 34 33 35 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 45)
+            (pc))) "../ncurses/./widechar/lib_get_wch.c":76:16 -1
+     (int_list:REG_BR_PROB 1044213924 (nil))
+ -> 45)
+;;  succ:       7 [2.8% (guessed)]  count:28715887 (estimated locally) (FALLTHRU)
+;;              9 [97.2% (guessed)]  count:1015498033 (estimated locally)
+
+;; basic block 7, loop depth 0, count 28715887 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       6 [2.8% (guessed)]  count:28715887 (estimated locally) (FALLTHRU)
+(note 35 34 36 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 36 35 37 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 83 [ count ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":84:6 -1
+     (nil))
+(jump_insn 37 36 38 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 124)
+            (pc))) "../ncurses/./widechar/lib_get_wch.c":84:6 806 {*jcc}
+     (int_list:REG_BR_PROB 719407028 (nil))
+ -> 124)
+;;  succ:       8 [33.0% (guessed)]  count:9476243 (estimated locally) (FALLTHRU)
+;;              18 [67.0% (guessed)]  count:19239644 (estimated locally)
+
+;; basic block 8, loop depth 0, count 9476243 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [33.0% (guessed)]  count:9476243 (estimated locally) (FALLTHRU)
+(note 38 37 39 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 39 38 40 8 (set (reg:SI 104)
+        (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -168 [0xffffffffffffff58])) [1 value+0 S4 A64])) "../ncurses/./widechar/lib_get_wch.c":85:7 -1
+     (nil))
+(insn 40 39 41 8 (set (reg:SI 4 si)
+        (reg:SI 104)) "../ncurses/./widechar/lib_get_wch.c":85:7 -1
+     (nil))
+(insn 41 40 42 8 (set (reg:DI 5 di)
+        (reg/v/f:DI 95 [ sp ])) "../ncurses/./widechar/lib_get_wch.c":85:7 -1
+     (nil))
+(call_insn 42 41 9 8 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ungetch_sp") [flags 0x41]  <function_decl 0x7fae5af95a00 ungetch_sp>) [0 ungetch_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":85:7 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("ungetch_sp") [flags 0x41]  <function_decl 0x7fae5af95a00 ungetch_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 9 42 43 8 (set (reg/v:SI 98 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./widechar/lib_get_wch.c":86:12 -1
+     (nil))
+(jump_insn 43 9 44 8 (set (pc)
+        (label_ref:DI 124)) "../ncurses/./widechar/lib_get_wch.c":85:7 807 {jump}
+     (nil)
+ -> 124)
+;;  succ:       18 [always]  count:9476243 (estimated locally)
+
+(barrier 44 43 45)
+;; basic block 9, loop depth 1, count 1015498034 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [97.2% (guessed)]  count:1015498033 (estimated locally)
+(code_label 45 44 46 9 4 (nil) [1 uses])
+(note 46 45 47 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 47 46 48 9 (parallel [
+            (set (reg/v:DI 83 [ count ])
+                (plus:DI (reg/v:DI 83 [ count ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_get_wch.c":89:23 -1
+     (nil))
+(insn 48 47 49 9 (set (reg:SI 96 [ pretmp_37 ])
+        (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -168 [0xffffffffffffff58])) [1 value+0 S4 A64])) "../ncurses/./widechar/lib_get_wch.c":85:7 -1
+     (nil))
+(insn 49 48 50 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:DI 83 [ count ])
+            (const_int 145 [0x91]))) "../ncurses/./widechar/lib_get_wch.c":89:16 -1
+     (nil))
+(jump_insn 50 49 51 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 57)
+            (pc))) "../ncurses/./widechar/lib_get_wch.c":89:16 -1
+     (int_list:REG_BR_PROB 1063004412 (nil))
+ -> 57)
+;;  succ:       10 [1.0% (guessed)]  count:10154978 (estimated locally) (FALLTHRU)
+;;              11 [99.0% (guessed)]  count:1005343056 (estimated locally)
+
+;; basic block 10, loop depth 0, count 10154978 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       9 [1.0% (guessed)]  count:10154978 (estimated locally) (FALLTHRU)
+(note 51 50 52 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 52 51 53 10 (set (reg:SI 4 si)
+        (reg:SI 96 [ pretmp_37 ])) "../ncurses/./widechar/lib_get_wch.c":90:3 -1
+     (nil))
+(insn 53 52 54 10 (set (reg:DI 5 di)
+        (reg/v/f:DI 95 [ sp ])) "../ncurses/./widechar/lib_get_wch.c":90:3 -1
+     (nil))
+(call_insn 54 53 10 10 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ungetch_sp") [flags 0x41]  <function_decl 0x7fae5af95a00 ungetch_sp>) [0 ungetch_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":90:3 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("ungetch_sp") [flags 0x41]  <function_decl 0x7fae5af95a00 ungetch_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 10 54 55 10 (set (reg/v:SI 98 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./widechar/lib_get_wch.c":91:8 -1
+     (nil))
+(jump_insn 55 10 56 10 (set (pc)
+        (label_ref:DI 124)) "../ncurses/./widechar/lib_get_wch.c":92:3 807 {jump}
+     (nil)
+ -> 124)
+;;  succ:       18 [always]  count:10154978 (estimated locally)
+
+(barrier 56 55 57)
+;; basic block 11, loop depth 1, count 1005343055 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       9 [99.0% (guessed)]  count:1005343056 (estimated locally)
+(code_label 57 56 58 11 5 (nil) [1 uses])
+(note 58 57 59 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 59 58 60 11 (parallel [
+            (set (reg:DI 105)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -160 [0xffffffffffffff60])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_get_wch.c":96:19 -1
+     (nil))
+(insn 60 59 61 11 (parallel [
+            (set (reg:DI 106)
+                (plus:DI (reg:DI 105)
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_get_wch.c":96:19 -1
+     (nil))
+(insn 61 60 62 11 (parallel [
+            (set (reg/f:DI 107)
+                (plus:DI (reg/v:DI 83 [ count ])
+                    (reg:DI 106)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_get_wch.c":96:19 -1
+     (nil))
+(insn 62 61 63 11 (set (mem:QI (reg/f:DI 107) [0 MEM[(char *)&buffer + -1B + _2 * 1]+0 S1 A8])
+        (subreg:QI (reg:SI 96 [ pretmp_37 ]) 0)) "../ncurses/./widechar/lib_get_wch.c":96:21 -1
+     (nil))
+(call_insn/u 63 62 64 11 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__errno_location") [flags 0x41]  <function_decl 0x7fae5b2ffc00 __errno_location>) [0 __errno_location S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__errno_location") [flags 0x41]  <function_decl 0x7fae5b2ffc00 __errno_location>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (nil))
+(insn 64 63 65 11 (set (reg/f:DI 85 [ _7 ])
+        (reg:DI 0 ax)) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (nil))
+(insn 65 64 66 11 (set (reg:DI 4 si)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (nil))
+(insn 66 65 67 11 (set (reg:DI 5 di)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (nil))
+(call_insn 67 66 68 11 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("mblen") [flags 0x41]  <function_decl 0x7fae5b600900 mblen>) [0 mblen S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("mblen") [flags 0x41]  <function_decl 0x7fae5b600900 mblen>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 68 67 69 11 (set (reg:SI 86 [ _8 ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (nil))
+(insn 69 68 70 11 (set (mem:SI (reg/f:DI 85 [ _7 ]) [1 *_7+0 S4 A32])
+        (reg:SI 86 [ _8 ])) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (nil))
+(insn 70 69 71 11 (set (reg:DI 1 dx)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (nil))
+(insn 71 70 72 11 (set (reg:DI 4 si)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (nil))
+(insn 72 71 73 11 (set (reg:DI 5 di)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (nil))
+(call_insn 73 72 74 11 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("mbtowc") [flags 0x41]  <function_decl 0x7fae5b600a00 mbtowc>) [0 mbtowc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("mbtowc") [flags 0x41]  <function_decl 0x7fae5b600a00 mbtowc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 74 73 75 11 (set (reg:SI 87 [ _10 ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (nil))
+(insn 75 74 76 11 (set (mem:SI (reg/f:DI 85 [ _7 ]) [1 *_7+0 S4 A32])
+        (reg:SI 87 [ _10 ])) "../ncurses/./widechar/lib_get_wch.c":97:3 -1
+     (nil))
+(insn 76 75 77 11 (parallel [
+            (set (reg:DI 108)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -160 [0xffffffffffffff60])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_get_wch.c":98:12 -1
+     (nil))
+(insn 77 76 78 11 (set (reg:DI 4 si)
+        (reg/v:DI 83 [ count ])) "../ncurses/./widechar/lib_get_wch.c":98:12 -1
+     (nil))
+(insn 78 77 79 11 (set (reg:DI 5 di)
+        (reg:DI 108)) "../ncurses/./widechar/lib_get_wch.c":98:12 -1
+     (nil))
+(call_insn 79 78 80 11 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("mblen") [flags 0x41]  <function_decl 0x7fae5b600900 mblen>) [0 mblen S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":98:12 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("mblen") [flags 0x41]  <function_decl 0x7fae5b600900 mblen>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 80 79 83 11 (set (reg/v:SI 97 [ status ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_get_wch.c":98:12 -1
+     (nil))
+(insn 83 80 84 11 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg/v:SI 97 [ status ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":99:6 -1
+     (nil))
+(jump_insn 84 83 85 11 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 117)
+            (pc))) "../ncurses/./widechar/lib_get_wch.c":99:6 -1
+     (int_list:REG_BR_PROB 1044213924 (nil))
+ -> 117)
+;;  succ:       12 [2.8% (guessed)]  count:27646938 (estimated locally) (FALLTHRU)
+;;              15 [97.2% (guessed)]  count:977696117 (estimated locally)
+
+;; basic block 12, loop depth 0, count 27646938 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       11 [2.8% (guessed)]  count:27646938 (estimated locally) (FALLTHRU)
+(note 85 84 86 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 86 85 87 12 (set (reg:DI 4 si)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (nil))
+(insn 87 86 88 12 (set (reg:DI 5 di)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (nil))
+(call_insn 88 87 89 12 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("mblen") [flags 0x41]  <function_decl 0x7fae5b600900 mblen>) [0 mblen S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("mblen") [flags 0x41]  <function_decl 0x7fae5b600900 mblen>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 89 88 90 12 (set (reg:SI 88 [ _12 ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (nil))
+(insn 90 89 91 12 (set (mem:SI (reg/f:DI 85 [ _7 ]) [1 *_7+0 S4 A32])
+        (reg:SI 88 [ _12 ])) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (nil))
+(insn 91 90 92 12 (set (reg:DI 1 dx)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (nil))
+(insn 92 91 93 12 (set (reg:DI 4 si)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (nil))
+(insn 93 92 94 12 (set (reg:DI 5 di)
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (nil))
+(call_insn 94 93 95 12 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("mbtowc") [flags 0x41]  <function_decl 0x7fae5b600a00 mbtowc>) [0 mbtowc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("mbtowc") [flags 0x41]  <function_decl 0x7fae5b600a00 mbtowc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 95 94 96 12 (set (reg:SI 89 [ _13 ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (nil))
+(insn 96 95 97 12 (set (mem:SI (reg/f:DI 85 [ _7 ]) [1 *_7+0 S4 A32])
+        (reg:SI 89 [ _13 ])) "../ncurses/./widechar/lib_get_wch.c":101:7 -1
+     (nil))
+(insn 97 96 98 12 (parallel [
+            (set (reg:DI 109)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -160 [0xffffffffffffff60])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_get_wch.c":102:11 -1
+     (nil))
+(insn 98 97 99 12 (parallel [
+            (set (reg:DI 110)
+                (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                    (const_int -164 [0xffffffffffffff5c])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./widechar/lib_get_wch.c":102:11 -1
+     (nil))
+(insn 99 98 100 12 (set (reg:DI 1 dx)
+        (reg/v:DI 83 [ count ])) "../ncurses/./widechar/lib_get_wch.c":102:11 -1
+     (nil))
+(insn 100 99 101 12 (set (reg:DI 4 si)
+        (reg:DI 109)) "../ncurses/./widechar/lib_get_wch.c":102:11 -1
+     (nil))
+(insn 101 100 102 12 (set (reg:DI 5 di)
+        (reg:DI 110)) "../ncurses/./widechar/lib_get_wch.c":102:11 -1
+     (nil))
+(call_insn 102 101 103 12 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("mbtowc") [flags 0x41]  <function_decl 0x7fae5b600a00 mbtowc>) [0 mbtowc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":102:11 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("mbtowc") [flags 0x41]  <function_decl 0x7fae5b600a00 mbtowc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 103 102 104 12 (set (reg:SI 90 [ _14 ])
+        (reg:SI 0 ax)) "../ncurses/./widechar/lib_get_wch.c":102:11 -1
+     (nil))
+(insn 104 103 105 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 90 [ _14 ])
+            (reg/v:SI 97 [ status ]))) "../ncurses/./widechar/lib_get_wch.c":102:10 -1
+     (nil))
+(jump_insn 105 104 106 12 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 111)
+            (pc))) "../ncurses/./widechar/lib_get_wch.c":102:10 -1
+     (int_list:REG_BR_PROB 548896828 (nil))
+ -> 111)
+;;  succ:       13 [48.9% (guessed)]  count:13513823 (estimated locally) (FALLTHRU)
+;;              14 [51.1% (guessed)]  count:14133115 (estimated locally)
+
+;; basic block 13, loop depth 0, count 13513823 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       12 [48.9% (guessed)]  count:13513823 (estimated locally) (FALLTHRU)
+(note 106 105 107 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 107 106 108 13 (set (reg:SI 111)
+        (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -168 [0xffffffffffffff58])) [1 value+0 S4 A64])) "../ncurses/./widechar/lib_get_wch.c":104:4 -1
+     (nil))
+(insn 108 107 109 13 (set (reg:SI 4 si)
+        (reg:SI 111)) "../ncurses/./widechar/lib_get_wch.c":104:4 -1
+     (nil))
+(insn 109 108 110 13 (set (reg:DI 5 di)
+        (reg/v/f:DI 95 [ sp ])) "../ncurses/./widechar/lib_get_wch.c":104:4 -1
+     (nil))
+(call_insn 110 109 8 13 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("ungetch_sp") [flags 0x41]  <function_decl 0x7fae5af95a00 ungetch_sp>) [0 ungetch_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":104:4 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("ungetch_sp") [flags 0x41]  <function_decl 0x7fae5af95a00 ungetch_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 8 110 111 13 (set (reg/v:SI 98 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./widechar/lib_get_wch.c":103:9 -1
+     (nil))
+;;  succ:       14 [always]  count:13513823 (estimated locally) (FALLTHRU)
+
+;; basic block 14, loop depth 0, count 27646938 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       12 [51.1% (guessed)]  count:14133115 (estimated locally)
+;;              13 [always]  count:13513823 (estimated locally) (FALLTHRU)
+(code_label 111 8 112 14 7 (nil) [1 uses])
+(note 112 111 113 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 113 112 114 14 (set (reg:SI 112)
+        (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -164 [0xffffffffffffff5c])) [1 wch+0 S4 A32])) "../ncurses/./widechar/lib_get_wch.c":106:13 -1
+     (nil))
+(insn 114 113 115 14 (set (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -168 [0xffffffffffffff58])) [1 value+0 S4 A64])
+        (reg:SI 112)) "../ncurses/./widechar/lib_get_wch.c":106:13 -1
+     (nil))
+(jump_insn 115 114 116 14 (set (pc)
+        (label_ref:DI 124)) 807 {jump}
+     (nil)
+ -> 124)
+;;  succ:       18 [always]  count:27646938 (estimated locally)
+
+(barrier 116 115 117)
+;; basic block 15, loop depth 1, count 977696117 (estimated locally), maybe hot
+;;  prev block 14, next block 17, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       11 [97.2% (guessed)]  count:977696117 (estimated locally)
+(code_label 117 116 118 15 6 (nil) [1 uses])
+(note 118 117 120 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 120 118 121 15 (set (pc)
+        (label_ref 119)) "../ncurses/./widechar/lib_get_wch.c":68:11 -1
+     (nil)
+ -> 119)
+;;  succ:       5 [always]  count:977696117 (estimated locally) (DFS_BACK)
+
+(barrier 121 120 152)
+;; basic block 17, loop depth 0, count 842931 (estimated locally), maybe hot
+;;  prev block 15, next block 18, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [0.9% (guessed)]  count:842931 (estimated locally)
+(code_label 152 121 151 17 11 (nil) [1 uses])
+(note 151 152 11 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 11 151 124 17 (set (reg/v:SI 98 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./widechar/lib_get_wch.c":112:7 -1
+     (nil))
+;;  succ:       18 [always]  count:842931 (estimated locally) (FALLTHRU)
+
+;; basic block 18, loop depth 0, count 96888637 (estimated locally), maybe hot
+;;  prev block 17, next block 19, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       17 [always]  count:842931 (estimated locally) (FALLTHRU)
+;;              14 [always]  count:27646938 (estimated locally)
+;;              5 [2.8% (guessed)]  count:29527904 (estimated locally)
+;;              7 [67.0% (guessed)]  count:19239644 (estimated locally)
+;;              8 [always]  count:9476243 (estimated locally)
+;;              10 [always]  count:10154978 (estimated locally)
+(code_label 124 11 125 18 2 (nil) [5 uses])
+(note 125 124 126 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 126 125 127 18 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 100 [ result ])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":115:8 -1
+     (nil))
+(jump_insn 127 126 128 18 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 131)
+            (pc))) "../ncurses/./widechar/lib_get_wch.c":115:8 -1
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 131)
+;;  succ:       19 [70.0% (guessed)]  count:67822046 (estimated locally) (FALLTHRU)
+;;              20 [30.0% (guessed)]  count:29066591 (estimated locally)
+
+;; basic block 19, loop depth 0, count 67822047 (estimated locally), maybe hot
+;;  prev block 18, next block 20, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       18 [70.0% (guessed)]  count:67822046 (estimated locally) (FALLTHRU)
+(note 128 127 129 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 129 128 130 19 (set (reg:SI 113)
+        (mem/c:SI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                (const_int -168 [0xffffffffffffff58])) [1 value+0 S4 A64])) "../ncurses/./widechar/lib_get_wch.c":116:10 -1
+     (nil))
+(insn 130 129 131 19 (set (mem:SI (reg/v/f:DI 100 [ result ]) [1 *result_57(D)+0 S4 A32])
+        (reg:SI 113)) "../ncurses/./widechar/lib_get_wch.c":116:10 -1
+     (nil))
+;;  succ:       20 [always]  count:67822047 (estimated locally) (FALLTHRU)
+
+;; basic block 20, loop depth 0, count 96888637 (estimated locally), maybe hot
+;;  prev block 19, next block 22, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       18 [30.0% (guessed)]  count:29066591 (estimated locally)
+;;              19 [always]  count:67822047 (estimated locally) (FALLTHRU)
+(code_label 131 130 132 20 9 (nil) [1 uses])
+(note 132 131 133 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 133 132 134 20 (set (reg:DI 114)
+        (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fae5b03dea0 _nc_globals>)
+                (const_int 504 [0x1f8])))) "../ncurses/./widechar/lib_get_wch.c":118:5 -1
+     (nil))
+(insn 134 133 135 20 (set (reg:DI 5 di)
+        (reg:DI 114)) "../ncurses/./widechar/lib_get_wch.c":118:5 -1
+     (expr_list:REG_EQUAL (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fae5b03dea0 _nc_globals>)
+                (const_int 504 [0x1f8])))
+        (nil)))
+(call_insn 135 134 139 20 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_mutex_unlock") [flags 0x41]  <function_decl 0x7fae5b0bc300 _nc_mutex_unlock>) [0 _nc_mutex_unlock S1 A8])
+            (const_int 0 [0]))) "../ncurses/./widechar/lib_get_wch.c":118:5 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_mutex_unlock") [flags 0x41]  <function_decl 0x7fae5b0bc300 _nc_mutex_unlock>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 139 135 140 20 (set (reg/f:DI 116)
+        (const_int 40 [0x28])) "../ncurses/./widechar/lib_get_wch.c":121:1 -1
+     (nil))
+(insn 140 139 141 20 (parallel [
+            (set (reg:CCZ 17 flags)
+                (unspec:CCZ [
+                        (mem/v/f/c:DI (plus:DI (reg/f:DI 77 virtual-stack-vars)
+                                (const_int -8 [0xfffffffffffffff8])) [2 D.9197+0 S8 A64])
+                        (mem/v/f:DI (reg/f:DI 116) [3 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_TEST))
+            (clobber (scratch:DI))
+        ]) "../ncurses/./widechar/lib_get_wch.c":121:1 -1
+     (nil))
+(jump_insn 141 140 153 20 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 144)
+            (pc))) "../ncurses/./widechar/lib_get_wch.c":121:1 -1
+     (int_list:REG_BR_PROB 1073312332 (nil))
+ -> 144)
+;;  succ:       23 [100.0% (guessed)]  count:96849882 (estimated locally)
+;;              22 [0.0% (guessed)]  count:38755 (estimated locally) (FALLTHRU)
+
+;; basic block 22, loop depth 0, count 38755 (estimated locally)
+;;  prev block 20, next block 23, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       20 [0.0% (guessed)]  count:38755 (estimated locally) (FALLTHRU)
+(note 153 141 142 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(call_insn 142 153 143 22 (call (mem:QI (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7fae5ad0f800 __stack_chk_fail>) [0 __stack_chk_fail S1 A8])
+        (const_int 0 [0])) "../ncurses/./widechar/lib_get_wch.c":121:1 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7fae5ad0f800 __stack_chk_fail>)
+        (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+            (expr_list:REG_NORETURN (const_int 0 [0])
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (nil))
+;;  succ:      
+
+(barrier 143 142 144)
+;; basic block 23, loop depth 0, count 96849882 (estimated locally), maybe hot
+;;  prev block 22, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       20 [100.0% (guessed)]  count:96849882 (estimated locally)
+(code_label 144 143 154 23 10 (nil) [1 uses])
+(note 154 144 145 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 145 154 146 23 (set (reg/i:SI 0 ax)
+        (reg/v:SI 98 [ <retval> ])) "../ncurses/./widechar/lib_get_wch.c":121:1 -1
+     (nil))
+(insn 146 145 0 23 (use (reg/i:SI 0 ax)) "../ncurses/./widechar/lib_get_wch.c":121:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:96849882 (estimated locally) (FALLTHRU)
+

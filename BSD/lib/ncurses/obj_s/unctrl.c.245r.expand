@@ -1,0 +1,1596 @@
+
+;; Function unctrl_sp (unctrl_sp, funcdef_no=93, decl_uid=7299, cgraph_uid=94, symbol_order=93)
+
+__attribute__((visibility ("default")))
+const char * unctrl_sp (struct SCREEN * sp, chtype ch)
+{
+  const char * result;
+  int check;
+  static const char unctrl_blob[1025] = "^@\x00^A\x00^B\x00^C\x00^D\x00^E\x00^F\x00^G\x00^H\x00^I\x00^J\x00^K\x00^L\x00^M\x00^N\x00^O\x00^P\x00^Q\x00^R\x00^S\x00^T\x00^U\x00^V\x00^W\x00^X\x00^Y\x00^Z\x00^[\x00^\\\x00^]\x00^^\x00^_\x00 \x00!\x00\"\x00#\x00$\x00%\x00&\x00\'\x00(\x00)\x00*\x00+\x00,\x00-\x00.\x00/\x000\x001\x002\x003\x004\x005\x006\x007\x008\x009\x00:\x00;\x00<\x00=\x00>\x00?\x00@\x00A\x00B\x00C\x00D\x00E\x00F\x00G\x00H\x00I\x00J\x00K\x00L\x00M\x00N\x00O\x00P\x00Q\x00R\x00S\x00T\x00U\x00V\x00W\x00X\x00Y\x00Z\x00[\x00\\\x00]\x00^\x00_\x00`\x00a\x00b\x00c\x00d\x00e\x00f\x00g\x00h\x00i\x00j\x00k\x00l\x00m\x00n\x00o\x00p\x00q\x00r\x00s\x00t\x00u\x00v\x00w\x00x\x00y\x00z\x00{\x00|\x00}\x00~\x00^?\x00~@\x00~A\x00~B\x00~C\x00~D\x00~E\x00~F\x00~G\x00~H\x00~I\x00~J\x00~K\x00~L\x00~M\x00~N\x00~O\x00~P\x00~Q\x00~R\x00~S\x00~T\x00~U\x00~V\x00~W\x00~X\x00~Y\x00~Z\x00~[\x00~\\\x00~]\x00~^\x00~_\x00M- \x00M-!\x00M-\"\x00M-#\x00M-$\x00M-%\x00M-&\x00M-\'\x00M-(\x00M-)\x00M-*\x00M-+\x00M-,\x00M--\x00M-.\x00M-/\x00M-0\x00M-1\x00M-2\x00M-3\x00M-4\x00M-5\x00M-6\x00M-7\x00M-8\x00M-9\x00M-:\x00M-;\x00M-<\x00M-=\x00M->\x00M-?\x00M-@\x00M-A\x00M-B\x00M-C\x00M-D\x00M-E\x00M-F\x00M-G\x00M-H\x00M-I\x00M-J\x00M-K\x00M-L\x00M-M\x00M-N\x00M-O\x00M-P\x00M-Q\x00M-R\x00M-S\x00M-T\x00M-U\x00M-V\x00M-W\x00M-X\x00M-Y\x00M-Z\x00M-[\x00M-\\\x00M-]\x00M-^\x00M-_\x00M-`\x00M-a\x00M-b\x00M-c\x00M-d\x00M-e\x00M-f\x00M-g\x00M-h\x00M-i\x00M-j\x00M-k\x00M-l\x00M-m\x00M-n\x00M-o\x00M-p\x00M-q\x00M-r\x00M-s\x00M-t\x00M-u\x00M-v\x00M-w\x00M-x\x00M-y\x00M-z\x00M-{\x00M-|\x00M-}\x00M-~\x00~?\x00\x80\x00\x81\x00\x82\x00\x83\x00\x84\x00\x85\x00\x86\x00\x87\x00\x88\x00\x89\x00\x8a\x00\x8b\x00\x8c\x00\x8d\x00\x8e\x00\x8f\x00\x90\x00\x91\x00\x92\x00\x93\x00\x94\x00\x95\x00\x96\x00\x97\x00\x98\x00\x99\x00\x9a\x00\x9b\x00\x9c\x00\x9d\x00\x9e\x00\x9f\x00\xa0\x00\xa1\x00\xa2\x00\xa3\x00\xa4\x00\xa5\x00\xa6\x00\xa7\x00\xa8\x00\xa9\x00\xaa\x00\xab\x00\xac\x00\xad\x00\xae\x00\xaf\x00\xb0\x00\xb1\x00\xb2\x00\xb3\x00\xb4\x00\xb5\x00\xb6\x00\xb7\x00\xb8\x00\xb9\x00\xba\x00\xbb\x00\xbc\x00\xbd\x00\xbe\x00\xbf\x00\xc0\x00\xc1\x00\xc2\x00\xc3\x00\xc4\x00\xc5\x00\xc6\x00\xc7\x00\xc8\x00\xc9\x00\xca\x00\xcb\x00\xcc\x00\xcd\x00\xce\x00\xcf\x00\xd0\x00\xd1\x00\xd2\x00\xd3\x00\xd4\x00\xd5\x00\xd6\x00\xd7\x00\xd8\x00\xd9\x00\xda\x00\xdb\x00\xdc\x00\xdd\x00\xde\x00\xdf\x00\xe0\x00\xe1\x00\xe2\x00\xe3\x00\xe4\x00\xe5\x00\xe6\x00\xe7\x00\xe8\x00\xe9\x00\xea\x00\xeb\x00\xec\x00\xed\x00\xee\x00\xef\x00\xf0\x00\xf1\x00\xf2\x00\xf3\x00\xf4\x00\xf5\x00\xf6\x00\xf7\x00\xf8\x00\xf9\x00\xfa\x00\xfb\x00\xfc\x00\xfd\x00\xfe\x00\xff\x00";
+  static const short int unctrl_c1[128] = {768, 770, 772, 774, 776, 778, 780, 782, 784, 786, 788, 790, 792, 794, 796, 798, 800, 802, 804, 806, 808, 810, 812, 814, 816, 818, 820, 822, 824, 826, 828, 830, 832, 834, 836, 838, 840, 842, 844, 846, 848, 850, 852, 854, 856, 858, 860, 862, 864, 866, 868, 870, 872, 874, 876, 878, 880, 882, 884, 886, 888, 890, 892, 894, 896, 898, 900, 902, 904, 906, 908, 910, 912, 914, 916, 918, 920, 922, 924, 926, 928, 930, 932, 934, 936, 938, 940, 942, 944, 946, 948, 950, 952, 954, 956, 958, 960, 962, 964, 966, 968, 970, 972, 974, 976, 978, 980, 982, 984, 986, 988, 990, 992, 994, 996, 998, 1000, 1002, 1004, 1006, 1008, 1010, 1012, 1014, 1016, 1018, 1020, 1022};
+  static const short int unctrl_table[256] = {0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51, 54, 57, 60, 63, 66, 69, 72, 75, 78, 81, 84, 87, 90, 93, 96, 98, 100, 102, 104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124, 126, 128, 130, 132, 134, 136, 138, 140, 142, 144, 146, 148, 150, 152, 154, 156, 158, 160, 162, 164, 166, 168, 170, 172, 174, 176, 178, 180, 182, 184, 186, 188, 190, 192, 194, 196, 198, 200, 202, 204, 206, 208, 210, 212, 214, 216, 218, 220, 222, 224, 226, 228, 230, 232, 234, 236, 238, 240, 242, 244, 246, 248, 250, 252, 254, 256, 258, 260, 262, 264, 266, 268, 270, 272, 274, 276, 278, 280, 282, 284, 286, 289, 292, 295, 298, 301, 304, 307, 310, 313, 316, 319, 322, 325, 328, 331, 334, 337, 340, 343, 346, 349, 352, 355, 358, 361, 364, 367, 370, 373, 376, 379, 382, 385, 389, 393, 397, 401, 405, 409, 413, 417, 421, 425, 429, 433, 437, 441, 445, 449, 453, 457, 461, 465, 469, 473, 477, 481, 485, 489, 493, 497, 501, 505, 509, 513, 517, 521, 525, 529, 533, 537, 541, 545, 549, 553, 557, 561, 565, 569, 573, 577, 581, 585, 589, 593, 597, 601, 605, 609, 613, 617, 621, 625, 629, 633, 637, 641, 645, 649, 653, 657, 661, 665, 669, 673, 677, 681, 685, 689, 693, 697, 701, 705, 709, 713, 717, 721, 725, 729, 733, 737, 741, 745, 749, 753, 757, 761, 765};
+  int ch.0_1;
+  unsigned int check.1_2;
+  int _3;
+  unsigned int _4;
+  int _5;
+  short int _6;
+  sizetype _7;
+  unsigned int _8;
+  _Bool _9;
+  int _10;
+  const short unsigned int * * _11;
+  const short unsigned int * _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  const short unsigned int * _15;
+  short unsigned int _16;
+  int _17;
+  short int _18;
+  sizetype _19;
+  short int _20;
+  sizetype _21;
+  short unsigned int _27;
+  _Bool _35;
+  _Bool _39;
+  _Bool _42;
+  unsigned int _51;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  ch.0_1 = (int) ch_25(D);
+  check_26 = ch.0_1 & 255;
+  check.1_2 = (unsigned int) check_26;
+  if (sp_29(D) != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 15>; [30.00%]
+;;    succ:       3
+;;                15
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _3 = sp_29(D)->_legacy_coding;
+  if (_3 > 1)
+    goto <bb 4>; [59.00%]
+  else
+    goto <bb 6>; [41.00%]
+;;    succ:       4
+;;                6
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _4 = check.1_2 + 4294967168;
+  if (_4 <= 31)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  _5 = check_26 + -128;
+  _6 = unctrl_c1[_5];
+  _7 = (sizetype) _6;
+  result_30 = &unctrl_blob + _7;
+  goto <bb 13>; [100.00%]
+;;    succ:       13
+
+;;   basic block 6, loop depth 0
+;;    pred:       3
+;;                4
+  _8 = check.1_2 + 4294967136;
+  if (_8 <= 95)
+    goto <bb 7>; [33.00%]
+  else
+    goto <bb 12>; [67.00%]
+;;    succ:       7
+;;                12
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+  _9 = _nc_unicode_locale ();
+  _39 = sp_29(D) != 0B;
+  _35 = ~_9;
+  _42 = _35 & _39;
+  if (_42 != 0)
+    goto <bb 8>; [56.28%]
+  else
+    goto <bb 12>; [43.72%]
+;;    succ:       8
+;;                12
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+  _10 = sp_29(D)->_legacy_coding;
+  if (_10 > 0)
+    goto <bb 11>; [59.00%]
+  else
+    goto <bb 9>; [41.00%]
+;;    succ:       11
+;;                9
+
+;;   basic block 9, loop depth 0
+;;    pred:       8
+  if (_10 == 0)
+    goto <bb 10>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+;;    succ:       10
+;;                12
+
+;;   basic block 10, loop depth 0
+;;    pred:       9
+  _11 = __ctype_b_loc ();
+  _12 = *_11;
+  _13 = (long unsigned int) check_26;
+  _14 = _13 * 2;
+  _15 = _12 + _14;
+  _16 = *_15;
+  _27 = _16 & 16384;
+  if (_27 != 0)
+    goto <bb 11>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+;;    succ:       11
+;;                12
+
+;;   basic block 11, loop depth 0
+;;    pred:       10
+;;                8
+  _17 = check_26 + -128;
+  _18 = unctrl_c1[_17];
+  _19 = (sizetype) _18;
+  result_32 = &unctrl_blob + _19;
+  goto <bb 13>; [100.00%]
+;;    succ:       13
+
+;;   basic block 12, loop depth 0
+;;    pred:       15
+;;                7
+;;                9
+;;                10
+;;                14
+;;                6
+  _20 = unctrl_table[check_26];
+  _21 = (sizetype) _20;
+  result_33 = &unctrl_blob + _21;
+;;    succ:       13
+
+;;   basic block 13, loop depth 0
+;;    pred:       11
+;;                12
+;;                5
+  # result_22 = PHI <result_32(11), result_33(12), result_30(5)>
+  return result_22;
+;;    succ:       EXIT
+
+;;   basic block 14, loop depth 0
+;;    pred:       15
+  _nc_unicode_locale ();
+  goto <bb 12>; [100.00%]
+;;    succ:       12
+
+;;   basic block 15, loop depth 0
+;;    pred:       2
+  _51 = check.1_2 + 4294967136;
+  if (_51 <= 95)
+    goto <bb 14>; [33.00%]
+  else
+    goto <bb 12>; [67.00%]
+;;    succ:       14
+;;                12
+
+}
+
+
+
+Partition map 
+
+Partition 1 (ch.0_1 - 1 )
+Partition 2 (check.1_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 4 (_4 - 4 )
+Partition 5 (_5 - 5 )
+Partition 6 (_6 - 6 )
+Partition 7 (_7 - 7 )
+Partition 8 (_8 - 8 )
+Partition 9 (_9 - 9 )
+Partition 10 (_10 - 10 )
+Partition 11 (_11 - 11 )
+Partition 12 (_12 - 12 )
+Partition 13 (_13 - 13 )
+Partition 14 (_14 - 14 )
+Partition 15 (_15 - 15 )
+Partition 16 (_16 - 16 )
+Partition 17 (_17 - 17 )
+Partition 18 (_18 - 18 )
+Partition 19 (_19 - 19 )
+Partition 20 (_20 - 20 )
+Partition 21 (_21 - 21 )
+Partition 22 (result_22 - 22 )
+Partition 25 (ch_25(D) - 25 )
+Partition 26 (check_26 - 26 )
+Partition 27 (_27 - 27 )
+Partition 29 (sp_29(D) - 29 )
+Partition 30 (result_30 - 30 )
+Partition 32 (result_32 - 32 )
+Partition 33 (result_33 - 33 )
+Partition 35 (_35 - 35 )
+Partition 39 (_39 - 39 )
+Partition 42 (_42 - 42 )
+Partition 47 (_47(D) - 47 )
+Partition 51 (_51 - 51 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (result_22 - 22 30 32 33 47 )
+Partition 1, base 1 (ch_25(D) - 25 )
+Partition 2, base 2 (sp_29(D) - 29 )
+
+
+Partition map 
+
+Partition 0 (result_22 - 22 )
+Partition 1 (ch_25(D) - 25 )
+Partition 2 (sp_29(D) - 29 )
+Partition 3 (result_30 - 30 )
+Partition 4 (result_32 - 32 )
+Partition 5 (result_33 - 33 )
+Partition 6 (_47(D) - 47 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) result_22 <-> _47(D)
+(7300, 0) result_22 <-> result_33
+(2065, 0) result_22 <-> result_30
+(635, 0) result_22 <-> result_32
+
+Partition map 
+
+Partition 0 (result_22 - 22 )
+Partition 1 (ch_25(D) - 25 )
+Partition 2 (sp_29(D) - 29 )
+Partition 3 (result_30 - 30 )
+Partition 4 (result_32 - 32 )
+Partition 5 (result_33 - 33 )
+Partition 6 (_47(D) - 47 )
+
+Coalesce list: (22)result_22 & (47)_47(D) [map: 0, 6] : Success -> 0
+Coalesce list: (22)result_22 & (33)result_33 [map: 0, 5] : Success -> 0
+Coalesce list: (22)result_22 & (30)result_30 [map: 0, 3] : Success -> 0
+Coalesce list: (22)result_22 & (32)result_32 [map: 0, 4] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (ch.0_1 - 1 )
+Partition 1 (check.1_2 - 2 )
+Partition 2 (_3 - 3 )
+Partition 3 (_4 - 4 )
+Partition 4 (_5 - 5 )
+Partition 5 (_6 - 6 )
+Partition 6 (_7 - 7 )
+Partition 7 (_8 - 8 )
+Partition 8 (_9 - 9 )
+Partition 9 (_10 - 10 )
+Partition 10 (_11 - 11 )
+Partition 11 (_12 - 12 )
+Partition 12 (_13 - 13 )
+Partition 13 (_14 - 14 )
+Partition 14 (_15 - 15 )
+Partition 15 (_16 - 16 )
+Partition 16 (_17 - 17 )
+Partition 17 (_18 - 18 )
+Partition 18 (_19 - 19 )
+Partition 19 (_20 - 20 )
+Partition 20 (_21 - 21 )
+Partition 21 (result_22 - 22 30 32 33 47 )
+Partition 22 (ch_25(D) - 25 )
+Partition 23 (check_26 - 26 )
+Partition 24 (_27 - 27 )
+Partition 25 (sp_29(D) - 29 )
+Partition 26 (_35 - 35 )
+Partition 27 (_39 - 39 )
+Partition 28 (_42 - 42 )
+Partition 29 (_51 - 51 )
+
+
+Replacing Expressions
+ch.0_1 replace with --> ch.0_1 = (int) ch_25(D);
+
+_3 replace with --> _3 = sp_29(D)->_legacy_coding;
+
+_4 replace with --> _4 = check.1_2 + 4294967168;
+
+_5 replace with --> _5 = check_26 + -128;
+
+_6 replace with --> _6 = unctrl_c1[_5];
+
+_7 replace with --> _7 = (sizetype) _6;
+
+_8 replace with --> _8 = check.1_2 + 4294967136;
+
+_12 replace with --> _12 = *_11;
+
+_13 replace with --> _13 = (long unsigned int) check_26;
+
+_14 replace with --> _14 = _13 * 2;
+
+_15 replace with --> _15 = _12 + _14;
+
+_16 replace with --> _16 = *_15;
+
+_17 replace with --> _17 = check_26 + -128;
+
+_18 replace with --> _18 = unctrl_c1[_17];
+
+_19 replace with --> _19 = (sizetype) _18;
+
+_20 replace with --> _20 = unctrl_table[check_26];
+
+_21 replace with --> _21 = (sizetype) _20;
+
+_27 replace with --> _27 = _16 & 16384;
+
+_35 replace with --> _35 = ~_9;
+
+_39 replace with --> _39 = sp_29(D) != 0B;
+
+_42 replace with --> _42 = _35 & _39;
+
+_51 replace with --> _51 = check.1_2 + 4294967136;
+
+
+__attribute__((visibility ("default")))
+const char * unctrl_sp (struct SCREEN * sp, chtype ch)
+{
+  const char * result;
+  int check;
+  static const char unctrl_blob[1025] = "^@\x00^A\x00^B\x00^C\x00^D\x00^E\x00^F\x00^G\x00^H\x00^I\x00^J\x00^K\x00^L\x00^M\x00^N\x00^O\x00^P\x00^Q\x00^R\x00^S\x00^T\x00^U\x00^V\x00^W\x00^X\x00^Y\x00^Z\x00^[\x00^\\\x00^]\x00^^\x00^_\x00 \x00!\x00\"\x00#\x00$\x00%\x00&\x00\'\x00(\x00)\x00*\x00+\x00,\x00-\x00.\x00/\x000\x001\x002\x003\x004\x005\x006\x007\x008\x009\x00:\x00;\x00<\x00=\x00>\x00?\x00@\x00A\x00B\x00C\x00D\x00E\x00F\x00G\x00H\x00I\x00J\x00K\x00L\x00M\x00N\x00O\x00P\x00Q\x00R\x00S\x00T\x00U\x00V\x00W\x00X\x00Y\x00Z\x00[\x00\\\x00]\x00^\x00_\x00`\x00a\x00b\x00c\x00d\x00e\x00f\x00g\x00h\x00i\x00j\x00k\x00l\x00m\x00n\x00o\x00p\x00q\x00r\x00s\x00t\x00u\x00v\x00w\x00x\x00y\x00z\x00{\x00|\x00}\x00~\x00^?\x00~@\x00~A\x00~B\x00~C\x00~D\x00~E\x00~F\x00~G\x00~H\x00~I\x00~J\x00~K\x00~L\x00~M\x00~N\x00~O\x00~P\x00~Q\x00~R\x00~S\x00~T\x00~U\x00~V\x00~W\x00~X\x00~Y\x00~Z\x00~[\x00~\\\x00~]\x00~^\x00~_\x00M- \x00M-!\x00M-\"\x00M-#\x00M-$\x00M-%\x00M-&\x00M-\'\x00M-(\x00M-)\x00M-*\x00M-+\x00M-,\x00M--\x00M-.\x00M-/\x00M-0\x00M-1\x00M-2\x00M-3\x00M-4\x00M-5\x00M-6\x00M-7\x00M-8\x00M-9\x00M-:\x00M-;\x00M-<\x00M-=\x00M->\x00M-?\x00M-@\x00M-A\x00M-B\x00M-C\x00M-D\x00M-E\x00M-F\x00M-G\x00M-H\x00M-I\x00M-J\x00M-K\x00M-L\x00M-M\x00M-N\x00M-O\x00M-P\x00M-Q\x00M-R\x00M-S\x00M-T\x00M-U\x00M-V\x00M-W\x00M-X\x00M-Y\x00M-Z\x00M-[\x00M-\\\x00M-]\x00M-^\x00M-_\x00M-`\x00M-a\x00M-b\x00M-c\x00M-d\x00M-e\x00M-f\x00M-g\x00M-h\x00M-i\x00M-j\x00M-k\x00M-l\x00M-m\x00M-n\x00M-o\x00M-p\x00M-q\x00M-r\x00M-s\x00M-t\x00M-u\x00M-v\x00M-w\x00M-x\x00M-y\x00M-z\x00M-{\x00M-|\x00M-}\x00M-~\x00~?\x00\x80\x00\x81\x00\x82\x00\x83\x00\x84\x00\x85\x00\x86\x00\x87\x00\x88\x00\x89\x00\x8a\x00\x8b\x00\x8c\x00\x8d\x00\x8e\x00\x8f\x00\x90\x00\x91\x00\x92\x00\x93\x00\x94\x00\x95\x00\x96\x00\x97\x00\x98\x00\x99\x00\x9a\x00\x9b\x00\x9c\x00\x9d\x00\x9e\x00\x9f\x00\xa0\x00\xa1\x00\xa2\x00\xa3\x00\xa4\x00\xa5\x00\xa6\x00\xa7\x00\xa8\x00\xa9\x00\xaa\x00\xab\x00\xac\x00\xad\x00\xae\x00\xaf\x00\xb0\x00\xb1\x00\xb2\x00\xb3\x00\xb4\x00\xb5\x00\xb6\x00\xb7\x00\xb8\x00\xb9\x00\xba\x00\xbb\x00\xbc\x00\xbd\x00\xbe\x00\xbf\x00\xc0\x00\xc1\x00\xc2\x00\xc3\x00\xc4\x00\xc5\x00\xc6\x00\xc7\x00\xc8\x00\xc9\x00\xca\x00\xcb\x00\xcc\x00\xcd\x00\xce\x00\xcf\x00\xd0\x00\xd1\x00\xd2\x00\xd3\x00\xd4\x00\xd5\x00\xd6\x00\xd7\x00\xd8\x00\xd9\x00\xda\x00\xdb\x00\xdc\x00\xdd\x00\xde\x00\xdf\x00\xe0\x00\xe1\x00\xe2\x00\xe3\x00\xe4\x00\xe5\x00\xe6\x00\xe7\x00\xe8\x00\xe9\x00\xea\x00\xeb\x00\xec\x00\xed\x00\xee\x00\xef\x00\xf0\x00\xf1\x00\xf2\x00\xf3\x00\xf4\x00\xf5\x00\xf6\x00\xf7\x00\xf8\x00\xf9\x00\xfa\x00\xfb\x00\xfc\x00\xfd\x00\xfe\x00\xff\x00";
+  static const short int unctrl_c1[128] = {768, 770, 772, 774, 776, 778, 780, 782, 784, 786, 788, 790, 792, 794, 796, 798, 800, 802, 804, 806, 808, 810, 812, 814, 816, 818, 820, 822, 824, 826, 828, 830, 832, 834, 836, 838, 840, 842, 844, 846, 848, 850, 852, 854, 856, 858, 860, 862, 864, 866, 868, 870, 872, 874, 876, 878, 880, 882, 884, 886, 888, 890, 892, 894, 896, 898, 900, 902, 904, 906, 908, 910, 912, 914, 916, 918, 920, 922, 924, 926, 928, 930, 932, 934, 936, 938, 940, 942, 944, 946, 948, 950, 952, 954, 956, 958, 960, 962, 964, 966, 968, 970, 972, 974, 976, 978, 980, 982, 984, 986, 988, 990, 992, 994, 996, 998, 1000, 1002, 1004, 1006, 1008, 1010, 1012, 1014, 1016, 1018, 1020, 1022};
+  static const short int unctrl_table[256] = {0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51, 54, 57, 60, 63, 66, 69, 72, 75, 78, 81, 84, 87, 90, 93, 96, 98, 100, 102, 104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124, 126, 128, 130, 132, 134, 136, 138, 140, 142, 144, 146, 148, 150, 152, 154, 156, 158, 160, 162, 164, 166, 168, 170, 172, 174, 176, 178, 180, 182, 184, 186, 188, 190, 192, 194, 196, 198, 200, 202, 204, 206, 208, 210, 212, 214, 216, 218, 220, 222, 224, 226, 228, 230, 232, 234, 236, 238, 240, 242, 244, 246, 248, 250, 252, 254, 256, 258, 260, 262, 264, 266, 268, 270, 272, 274, 276, 278, 280, 282, 284, 286, 289, 292, 295, 298, 301, 304, 307, 310, 313, 316, 319, 322, 325, 328, 331, 334, 337, 340, 343, 346, 349, 352, 355, 358, 361, 364, 367, 370, 373, 376, 379, 382, 385, 389, 393, 397, 401, 405, 409, 413, 417, 421, 425, 429, 433, 437, 441, 445, 449, 453, 457, 461, 465, 469, 473, 477, 481, 485, 489, 493, 497, 501, 505, 509, 513, 517, 521, 525, 529, 533, 537, 541, 545, 549, 553, 557, 561, 565, 569, 573, 577, 581, 585, 589, 593, 597, 601, 605, 609, 613, 617, 621, 625, 629, 633, 637, 641, 645, 649, 653, 657, 661, 665, 669, 673, 677, 681, 685, 689, 693, 697, 701, 705, 709, 713, 717, 721, 725, 729, 733, 737, 741, 745, 749, 753, 757, 761, 765};
+  int ch.0_1;
+  unsigned int check.1_2;
+  int _3;
+  unsigned int _4;
+  int _5;
+  short int _6;
+  sizetype _7;
+  unsigned int _8;
+  _Bool _9;
+  int _10;
+  const short unsigned int * * _11;
+  const short unsigned int * _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  const short unsigned int * _15;
+  short unsigned int _16;
+  int _17;
+  short int _18;
+  sizetype _19;
+  short int _20;
+  sizetype _21;
+  short unsigned int _27;
+  _Bool _35;
+  _Bool _39;
+  _Bool _42;
+  const char * _47(D);
+  unsigned int _51;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  ch.0_1 = (int) ch_25(D);
+  check_26 = ch.0_1 & 255;
+  check.1_2 = (unsigned int) check_26;
+  if (sp_29(D) != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 15>; [30.00%]
+;;    succ:       3
+;;                15
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _3 = sp_29(D)->_legacy_coding;
+  if (_3 > 1)
+    goto <bb 4>; [59.00%]
+  else
+    goto <bb 6>; [41.00%]
+;;    succ:       4
+;;                6
+
+;;   basic block 4, loop depth 0
+;;    pred:       3
+  _4 = check.1_2 + 4294967168;
+  if (_4 <= 31)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+;;    succ:       5
+;;                6
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  _5 = check_26 + -128;
+  _6 = unctrl_c1[_5];
+  _7 = (sizetype) _6;
+  result_30 = &unctrl_blob + _7;
+  goto <bb 13>; [100.00%]
+;;    succ:       13
+
+;;   basic block 6, loop depth 0
+;;    pred:       3
+;;                4
+  _8 = check.1_2 + 4294967136;
+  if (_8 <= 95)
+    goto <bb 7>; [33.00%]
+  else
+    goto <bb 12>; [67.00%]
+;;    succ:       7
+;;                12
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+  _9 = _nc_unicode_locale ();
+  _39 = sp_29(D) != 0B;
+  _35 = ~_9;
+  _42 = _35 & _39;
+  if (_42 != 0)
+    goto <bb 8>; [56.28%]
+  else
+    goto <bb 12>; [43.72%]
+;;    succ:       8
+;;                12
+
+;;   basic block 8, loop depth 0
+;;    pred:       7
+  _10 = sp_29(D)->_legacy_coding;
+  if (_10 > 0)
+    goto <bb 11>; [59.00%]
+  else
+    goto <bb 9>; [41.00%]
+;;    succ:       11
+;;                9
+
+;;   basic block 9, loop depth 0
+;;    pred:       8
+  if (_10 == 0)
+    goto <bb 10>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+;;    succ:       10
+;;                12
+
+;;   basic block 10, loop depth 0
+;;    pred:       9
+  _11 = __ctype_b_loc ();
+  _12 = *_11;
+  _13 = (long unsigned int) check_26;
+  _14 = _13 * 2;
+  _15 = _12 + _14;
+  _16 = *_15;
+  _27 = _16 & 16384;
+  if (_27 != 0)
+    goto <bb 11>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+;;    succ:       11
+;;                12
+
+;;   basic block 11, loop depth 0
+;;    pred:       10
+;;                8
+  _17 = check_26 + -128;
+  _18 = unctrl_c1[_17];
+  _19 = (sizetype) _18;
+  result_32 = &unctrl_blob + _19;
+  goto <bb 13>; [100.00%]
+;;    succ:       13
+
+;;   basic block 12, loop depth 0
+;;    pred:       15
+;;                7
+;;                9
+;;                10
+;;                14
+;;                6
+  _20 = unctrl_table[check_26];
+  _21 = (sizetype) _20;
+  result_33 = &unctrl_blob + _21;
+;;    succ:       13
+
+;;   basic block 13, loop depth 0
+;;    pred:       11
+;;                12
+;;                5
+  # result_22 = PHI <result_32(11), result_33(12), result_30(5)>
+  return result_22;
+;;    succ:       EXIT
+
+;;   basic block 14, loop depth 0
+;;    pred:       15
+  _nc_unicode_locale ();
+  goto <bb 12>; [100.00%]
+;;    succ:       12
+
+;;   basic block 15, loop depth 0
+;;    pred:       2
+  _51 = check.1_2 + 4294967136;
+  if (_51 <= 95)
+    goto <bb 14>; [33.00%]
+  else
+    goto <bb 12>; [67.00%]
+;;    succ:       14
+;;                12
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; check_26 = ch.0_1 & 255;
+
+(insn 7 6 0 (set (reg/v:SI 103 [ check ])
+        (zero_extend:SI (subreg:QI (reg/v:SI 111 [ ch ]) 0))) "../ncurses/unctrl.c":116:6 -1
+     (nil))
+
+;; check.1_2 = (unsigned int) check_26;
+
+(insn 8 7 0 (set (reg:SI 83 [ check.1_2 ])
+        (reg/v:SI 103 [ check ])) "../ncurses/unctrl.c":120:17 -1
+     (nil))
+
+;; if (sp_29(D) != 0B)
+
+(insn 9 8 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 110 [ sp ])
+            (const_int 0 [0]))) "../ncurses/unctrl.c":122:6 -1
+     (nil))
+
+(jump_insn 10 9 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/unctrl.c":122:6 -1
+     (int_list:REG_BR_PROB 322122548 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; if (_3 > 1)
+
+(insn 14 11 15 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 110 [ sp ])
+                    (const_int 1512 [0x5e8])) [1 sp_29(D)->_legacy_coding+0 S4 A64])
+            (const_int 1 [0x1]))) "../ncurses/unctrl.c":123:4 -1
+     (nil))
+
+(jump_insn 15 14 0 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/unctrl.c":123:4 -1
+     (int_list:REG_BR_PROB 440234148 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; if (_4 <= 31)
+
+(insn 17 16 20 (parallel [
+            (set (reg:SI 112)
+                (plus:SI (reg:SI 83 [ check.1_2 ])
+                    (const_int -128 [0xffffffffffffff80])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/unctrl.c":125:4 -1
+     (nil))
+
+(insn 20 17 21 (set (reg:CC 17 flags)
+        (compare:CC (reg:SI 112)
+            (const_int 31 [0x1f]))) "../ncurses/unctrl.c":125:4 -1
+     (nil))
+
+(jump_insn 21 20 0 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/unctrl.c":125:4 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; result_30 = &unctrl_blob + _7;
+
+(insn 23 22 24 (set (reg/f:DI 113)
+        (symbol_ref:DI ("unctrl_c1.2") [flags 0x2]  <var_decl 0x7f1837a0e240 unctrl_c1>)) "../ncurses/unctrl.c":126:36 -1
+     (nil))
+
+(insn 24 23 25 (parallel [
+            (set (reg:SI 114)
+                (plus:SI (reg/v:SI 103 [ check ])
+                    (const_int -128 [0xffffffffffffff80])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/unctrl.c":126:43 -1
+     (nil))
+
+(insn 25 24 26 (set (reg:DI 115)
+        (sign_extend:DI (reg:SI 114))) "../ncurses/unctrl.c":126:36 -1
+     (nil))
+
+(insn 26 25 27 (set (reg:DI 116)
+        (sign_extend:DI (mem/u:HI (plus:DI (mult:DI (reg:DI 115)
+                        (const_int 2 [0x2]))
+                    (reg/f:DI 113)) [11 unctrl_c1[_5]+0 S2 A16]))) "../ncurses/unctrl.c":126:36 -1
+     (nil))
+
+(insn 27 26 28 (set (reg:DI 117)
+        (symbol_ref:DI ("unctrl_blob.1") [flags 0x2]  <var_decl 0x7f183766b090 unctrl_blob>)) "../ncurses/unctrl.c":126:11 -1
+     (nil))
+
+(insn 28 27 0 (parallel [
+            (set (reg/v/f:DI 109 [ <retval> ])
+                (plus:DI (reg:DI 116)
+                    (reg:DI 117)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/unctrl.c":126:11 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 6
+
+;; 
+
+(code_label 31 30 32 3 (nil) [0 uses])
+
+(note 32 31 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (_8 <= 95)
+
+(insn 33 32 36 (parallel [
+            (set (reg:SI 118)
+                (plus:SI (reg:SI 83 [ check.1_2 ])
+                    (const_int -160 [0xffffffffffffff60])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/unctrl.c":129:4 -1
+     (nil))
+
+(insn 36 33 37 (set (reg:CC 17 flags)
+        (compare:CC (reg:SI 118)
+            (const_int 95 [0x5f]))) "../ncurses/unctrl.c":128:6 -1
+     (nil))
+
+(jump_insn 37 36 0 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/unctrl.c":128:6 -1
+     (int_list:REG_BR_PROB 719407028 (nil)))
+
+;; Generating RTL for gimple basic block 7
+
+;; _9 = _nc_unicode_locale ();
+
+(call_insn 39 38 40 (set (reg:QI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_unicode_locale") [flags 0x41]  <function_decl 0x7f1837a5ee00 _nc_unicode_locale>) [0 _nc_unicode_locale S1 A8])
+            (const_int 0 [0]))) "../ncurses/unctrl.c":130:8 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_unicode_locale") [flags 0x41]  <function_decl 0x7f1837a5ee00 _nc_unicode_locale>)
+        (nil))
+    (nil))
+
+(insn 40 39 0 (set (reg:QI 90 [ _9 ])
+        (reg:QI 0 ax)) "../ncurses/unctrl.c":130:8 -1
+     (nil))
+
+;; if (_42 != 0)
+
+(insn 41 40 42 (parallel [
+            (set (reg:QI 119)
+                (xor:QI (reg:QI 90 [ _9 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/unctrl.c":130:4 -1
+     (nil))
+
+(insn 42 41 43 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 119)
+            (const_int 0 [0]))) "../ncurses/unctrl.c":131:4 -1
+     (nil))
+
+(jump_insn 43 42 44 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/unctrl.c":131:4 -1
+     (int_list:REG_BR_PROB 234738244 (nil)))
+
+(insn 44 43 45 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 110 [ sp ])
+            (const_int 0 [0]))) "../ncurses/unctrl.c":131:4 -1
+     (nil))
+
+(insn 45 44 46 (set (reg:QI 121)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/unctrl.c":131:4 -1
+     (nil))
+
+(insn 46 45 47 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 121)
+            (const_int 0 [0]))) "../ncurses/unctrl.c":131:4 -1
+     (nil))
+
+(jump_insn 47 46 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/unctrl.c":131:4 -1
+     (int_list:REG_BR_PROB 300413820 (nil)))
+
+;; Generating RTL for gimple basic block 8
+
+;; _10 = sp_29(D)->_legacy_coding;
+
+(insn 49 48 0 (set (reg:SI 91 [ _10 ])
+        (mem:SI (plus:DI (reg/v/f:DI 110 [ sp ])
+                (const_int 1512 [0x5e8])) [1 sp_29(D)->_legacy_coding+0 S4 A64])) "../ncurses/unctrl.c":132:12 -1
+     (nil))
+
+;; if (_10 > 0)
+
+(insn 52 49 53 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 91 [ _10 ])
+            (const_int 0 [0]))) "../ncurses/unctrl.c":132:5 -1
+     (nil))
+
+(jump_insn 53 52 0 (set (pc)
+        (if_then_else (gt (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/unctrl.c":132:5 -1
+     (int_list:REG_BR_PROB 633507684 (nil)))
+
+;; Generating RTL for gimple basic block 9
+
+;; if (_10 == 0)
+
+(insn 55 54 56 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 91 [ _10 ])
+            (const_int 0 [0]))) "../ncurses/unctrl.c":133:6 -1
+     (nil))
+
+(jump_insn 56 55 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/unctrl.c":133:6 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 10
+
+;; _11 = __ctype_b_loc ();
+
+(call_insn/u 58 57 59 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__ctype_b_loc") [flags 0x41]  <function_decl 0x7f1837a90600 __ctype_b_loc>) [0 __ctype_b_loc S1 A8])
+            (const_int 0 [0]))) "../ncurses/unctrl.c":134:13 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__ctype_b_loc") [flags 0x41]  <function_decl 0x7f1837a90600 __ctype_b_loc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (nil))
+
+(insn 59 58 0 (set (reg/f:DI 92 [ _11 ])
+        (reg:DI 0 ax)) "../ncurses/unctrl.c":134:13 -1
+     (nil))
+
+;; if (_27 != 0)
+
+(insn 60 59 61 (set (reg:DI 122)
+        (sign_extend:DI (reg/v:SI 103 [ check ]))) "../ncurses/unctrl.c":134:13 -1
+     (nil))
+
+(insn 61 60 62 (set (reg/f:DI 123)
+        (mem/f:DI (reg/f:DI 92 [ _11 ]) [40 *_11+0 S8 A64])) "../ncurses/unctrl.c":134:13 -1
+     (nil))
+
+(insn 62 61 63 (set (reg:HI 125)
+        (mem:HI (plus:DI (mult:DI (reg:DI 122)
+                    (const_int 2 [0x2]))
+                (reg/f:DI 123)) [11 *_15+0 S2 A16])) "../ncurses/unctrl.c":134:10 -1
+     (nil))
+
+(insn 63 62 64 (parallel [
+            (set (reg:HI 124)
+                (and:HI (reg:HI 125)
+                    (const_int 16384 [0x4000])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/unctrl.c":134:10 -1
+     (expr_list:REG_EQUAL (and:HI (mem:HI (plus:DI (mult:DI (reg:DI 122)
+                        (const_int 2 [0x2]))
+                    (reg/f:DI 123)) [11 *_15+0 S2 A16])
+            (const_int 16384 [0x4000]))
+        (nil)))
+
+(insn 64 63 65 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 124)
+            (const_int 0 [0]))) "../ncurses/unctrl.c":134:10 -1
+     (nil))
+
+(jump_insn 65 64 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/unctrl.c":134:10 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 11
+
+;; 
+
+(code_label 66 65 67 6 (nil) [0 uses])
+
+(note 67 66 0 NOTE_INSN_BASIC_BLOCK)
+
+;; result_32 = &unctrl_blob + _19;
+
+(insn 68 67 69 (set (reg/f:DI 126)
+        (symbol_ref:DI ("unctrl_c1.2") [flags 0x2]  <var_decl 0x7f1837a0e240 unctrl_c1>)) "../ncurses/unctrl.c":135:36 -1
+     (nil))
+
+(insn 69 68 70 (parallel [
+            (set (reg:SI 127)
+                (plus:SI (reg/v:SI 103 [ check ])
+                    (const_int -128 [0xffffffffffffff80])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/unctrl.c":135:43 -1
+     (nil))
+
+(insn 70 69 71 (set (reg:DI 128)
+        (sign_extend:DI (reg:SI 127))) "../ncurses/unctrl.c":135:36 -1
+     (nil))
+
+(insn 71 70 72 (set (reg:DI 129)
+        (sign_extend:DI (mem/u:HI (plus:DI (mult:DI (reg:DI 128)
+                        (const_int 2 [0x2]))
+                    (reg/f:DI 126)) [11 unctrl_c1[_17]+0 S2 A16]))) "../ncurses/unctrl.c":135:36 -1
+     (nil))
+
+(insn 72 71 73 (set (reg:DI 130)
+        (symbol_ref:DI ("unctrl_blob.1") [flags 0x2]  <var_decl 0x7f183766b090 unctrl_blob>)) "../ncurses/unctrl.c":135:11 -1
+     (nil))
+
+(insn 73 72 0 (parallel [
+            (set (reg/v/f:DI 109 [ <retval> ])
+                (plus:DI (reg:DI 129)
+                    (reg:DI 130)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/unctrl.c":135:11 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 12
+
+;; 
+
+(code_label 76 75 77 5 (nil) [0 uses])
+
+(note 77 76 0 NOTE_INSN_BASIC_BLOCK)
+
+;; result_33 = &unctrl_blob + _21;
+
+(insn 78 77 79 (set (reg/f:DI 131)
+        (symbol_ref:DI ("unctrl_table.0") [flags 0x2]  <var_decl 0x7f1837a0e1b0 unctrl_table>)) "../ncurses/unctrl.c":138:39 -1
+     (nil))
+
+(insn 79 78 80 (set (reg:DI 132)
+        (sign_extend:DI (reg/v:SI 103 [ check ]))) "../ncurses/unctrl.c":138:39 -1
+     (nil))
+
+(insn 80 79 81 (set (reg:DI 133)
+        (sign_extend:DI (mem/u:HI (plus:DI (mult:DI (reg:DI 132)
+                        (const_int 2 [0x2]))
+                    (reg/f:DI 131)) [11 unctrl_table[check_26]+0 S2 A16]))) "../ncurses/unctrl.c":138:39 -1
+     (nil))
+
+(insn 81 80 82 (set (reg:DI 134)
+        (symbol_ref:DI ("unctrl_blob.1") [flags 0x2]  <var_decl 0x7f183766b090 unctrl_blob>)) "../ncurses/unctrl.c":138:11 -1
+     (nil))
+
+(insn 82 81 0 (parallel [
+            (set (reg/v/f:DI 109 [ <retval> ])
+                (plus:DI (reg:DI 133)
+                    (reg:DI 134)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/unctrl.c":138:11 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 13
+
+;; 
+
+(code_label 83 82 84 4 (nil) [0 uses])
+
+(note 84 83 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return result_22;
+
+(jump_insn 85 84 86 (set (pc)
+        (label_ref 0)) "../ncurses/unctrl.c":142:9 -1
+     (nil))
+
+(barrier 86 85 0)
+
+;; Generating RTL for gimple basic block 14
+
+;; _nc_unicode_locale ();
+
+(call_insn 88 87 0 (set (reg:QI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_unicode_locale") [flags 0x41]  <function_decl 0x7f1837a5ee00 _nc_unicode_locale>) [0 _nc_unicode_locale S1 A8])
+            (const_int 0 [0]))) "../ncurses/unctrl.c":130:8 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_unicode_locale") [flags 0x41]  <function_decl 0x7f1837a5ee00 _nc_unicode_locale>)
+        (nil))
+    (nil))
+
+;; Generating RTL for gimple basic block 15
+
+;; 
+
+(code_label 91 90 92 2 (nil) [0 uses])
+
+(note 92 91 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (_51 <= 95)
+
+(insn 94 92 97 15 (parallel [
+            (set (reg:SI 136)
+                (plus:SI (reg:SI 83 [ check.1_2 ])
+                    (const_int -160 [0xffffffffffffff60])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/unctrl.c":129:4 -1
+     (nil))
+
+(insn 97 94 98 15 (set (reg:CC 17 flags)
+        (compare:CC (reg:SI 136)
+            (const_int 95 [0x5f]))) "../ncurses/unctrl.c":128:6 -1
+     (nil))
+
+(jump_insn 98 97 101 15 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 93)
+            (pc))) "../ncurses/unctrl.c":128:6 -1
+     (int_list:REG_BR_PROB 354334804 (nil)))
+
+(note 101 98 99 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 99 101 100 17 (set (pc)
+        (label_ref 76)) "../ncurses/unctrl.c":128:6 -1
+     (nil))
+
+(barrier 100 99 0)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 29 from 15 to 19.
+Redirecting jump 74 from 15 to 19.
+Merging block 15 into block 14...
+Merged blocks 14 and 15.
+Merged 14 and 15 without moving.
+Forwarding edge 17->18 to 14 failed.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 17->18 to 14 failed.
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741823 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741823 (estimated locally) (FALLTHRU)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 5 3 2 (set (reg/v/f:DI 110 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/unctrl.c":9:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 111 [ ch ])
+        (reg:SI 4 si [ ch ])) "../ncurses/unctrl.c":9:1 -1
+     (nil))
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+(insn 7 4 8 2 (set (reg/v:SI 103 [ check ])
+        (zero_extend:SI (subreg:QI (reg/v:SI 111 [ ch ]) 0))) "../ncurses/unctrl.c":116:6 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:SI 83 [ check.1_2 ])
+        (reg/v:SI 103 [ check ])) "../ncurses/unctrl.c":120:17 -1
+     (nil))
+(insn 9 8 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 110 [ sp ])
+            (const_int 0 [0]))) "../ncurses/unctrl.c":122:6 -1
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 91)
+            (pc))) "../ncurses/unctrl.c":122:6 -1
+     (int_list:REG_BR_PROB 322122548 (nil))
+ -> 91)
+;;  succ:       4 [70.0% (guessed)]  count:751619279 (estimated locally) (FALLTHRU)
+;;              17 [30.0% (guessed)]  count:322122544 (estimated locally)
+
+;; basic block 4, loop depth 0, count 751619280 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [70.0% (guessed)]  count:751619279 (estimated locally) (FALLTHRU)
+(note 11 10 14 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 14 11 15 4 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/v/f:DI 110 [ sp ])
+                    (const_int 1512 [0x5e8])) [1 sp_29(D)->_legacy_coding+0 S4 A64])
+            (const_int 1 [0x1]))) "../ncurses/unctrl.c":123:4 -1
+     (nil))
+(jump_insn 15 14 16 4 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 31)
+            (pc))) "../ncurses/unctrl.c":123:4 -1
+     (int_list:REG_BR_PROB 440234148 (nil))
+ -> 31)
+;;  succ:       5 [59.0% (guessed)]  count:443455378 (estimated locally) (FALLTHRU)
+;;              7 [41.0% (guessed)]  count:308163902 (estimated locally)
+
+;; basic block 5, loop depth 0, count 443455377 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [59.0% (guessed)]  count:443455378 (estimated locally) (FALLTHRU)
+(note 16 15 17 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 20 5 (parallel [
+            (set (reg:SI 112)
+                (plus:SI (reg:SI 83 [ check.1_2 ])
+                    (const_int -128 [0xffffffffffffff80])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/unctrl.c":125:4 -1
+     (nil))
+(insn 20 17 21 5 (set (reg:CC 17 flags)
+        (compare:CC (reg:SI 112)
+            (const_int 31 [0x1f]))) "../ncurses/unctrl.c":125:4 -1
+     (nil))
+(jump_insn 21 20 22 5 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 31)
+            (pc))) "../ncurses/unctrl.c":125:4 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 31)
+;;  succ:       6 [50.0% (guessed)]  count:221727689 (estimated locally) (FALLTHRU)
+;;              7 [50.0% (guessed)]  count:221727689 (estimated locally)
+
+;; basic block 6, loop depth 0, count 221727689 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [50.0% (guessed)]  count:221727689 (estimated locally) (FALLTHRU)
+(note 22 21 23 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 24 6 (set (reg/f:DI 113)
+        (symbol_ref:DI ("unctrl_c1.2") [flags 0x2]  <var_decl 0x7f1837a0e240 unctrl_c1>)) "../ncurses/unctrl.c":126:36 -1
+     (nil))
+(insn 24 23 25 6 (parallel [
+            (set (reg:SI 114)
+                (plus:SI (reg/v:SI 103 [ check ])
+                    (const_int -128 [0xffffffffffffff80])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/unctrl.c":126:43 -1
+     (nil))
+(insn 25 24 26 6 (set (reg:DI 115)
+        (sign_extend:DI (reg:SI 114))) "../ncurses/unctrl.c":126:36 -1
+     (nil))
+(insn 26 25 27 6 (set (reg:DI 116)
+        (sign_extend:DI (mem/u:HI (plus:DI (mult:DI (reg:DI 115)
+                        (const_int 2 [0x2]))
+                    (reg/f:DI 113)) [11 unctrl_c1[_5]+0 S2 A16]))) "../ncurses/unctrl.c":126:36 -1
+     (nil))
+(insn 27 26 28 6 (set (reg:DI 117)
+        (symbol_ref:DI ("unctrl_blob.1") [flags 0x2]  <var_decl 0x7f183766b090 unctrl_blob>)) "../ncurses/unctrl.c":126:11 -1
+     (nil))
+(insn 28 27 29 6 (parallel [
+            (set (reg/v/f:DI 109 [ <retval> ])
+                (plus:DI (reg:DI 116)
+                    (reg:DI 117)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/unctrl.c":126:11 -1
+     (nil))
+(jump_insn 29 28 30 6 (set (pc)
+        (label_ref:DI 102)) "../ncurses/unctrl.c":126:11 807 {jump}
+     (nil)
+ -> 102)
+;;  succ:       19 [always]  count:221727689 (estimated locally)
+
+(barrier 30 29 31)
+;; basic block 7, loop depth 0, count 529891590 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [41.0% (guessed)]  count:308163902 (estimated locally)
+;;              5 [50.0% (guessed)]  count:221727689 (estimated locally)
+(code_label 31 30 32 7 3 (nil) [2 uses])
+(note 32 31 33 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 33 32 36 7 (parallel [
+            (set (reg:SI 118)
+                (plus:SI (reg:SI 83 [ check.1_2 ])
+                    (const_int -160 [0xffffffffffffff60])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/unctrl.c":129:4 -1
+     (nil))
+(insn 36 33 37 7 (set (reg:CC 17 flags)
+        (compare:CC (reg:SI 118)
+            (const_int 95 [0x5f]))) "../ncurses/unctrl.c":128:6 -1
+     (nil))
+(jump_insn 37 36 38 7 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 76)
+            (pc))) "../ncurses/unctrl.c":128:6 -1
+     (int_list:REG_BR_PROB 719407028 (nil))
+ -> 76)
+;;  succ:       8 [33.0% (guessed)]  count:174864224 (estimated locally) (FALLTHRU)
+;;              14 [67.0% (guessed)]  count:355027366 (estimated locally)
+
+;; basic block 8, loop depth 0, count 174864224 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [33.0% (guessed)]  count:174864224 (estimated locally) (FALLTHRU)
+(note 38 37 39 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(call_insn 39 38 40 8 (set (reg:QI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_unicode_locale") [flags 0x41]  <function_decl 0x7f1837a5ee00 _nc_unicode_locale>) [0 _nc_unicode_locale S1 A8])
+            (const_int 0 [0]))) "../ncurses/unctrl.c":130:8 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_unicode_locale") [flags 0x41]  <function_decl 0x7f1837a5ee00 _nc_unicode_locale>)
+        (nil))
+    (nil))
+(insn 40 39 41 8 (set (reg:QI 90 [ _9 ])
+        (reg:QI 0 ax)) "../ncurses/unctrl.c":130:8 -1
+     (nil))
+(insn 41 40 42 8 (parallel [
+            (set (reg:QI 119)
+                (xor:QI (reg:QI 90 [ _9 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/unctrl.c":130:4 -1
+     (nil))
+(insn 42 41 43 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 119)
+            (const_int 0 [0]))) "../ncurses/unctrl.c":131:4 -1
+     (nil))
+(jump_insn 43 42 106 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 76)
+            (pc))) "../ncurses/unctrl.c":131:4 -1
+     (int_list:REG_BR_PROB 234738244 (nil))
+ -> 76)
+;;  succ:       14 [21.9% (guessed)]  count:38228296 (estimated locally)
+;;              9 [78.1% (guessed)]  count:136635928 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 136635928 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL)
+;;  pred:       8 [78.1% (guessed)]  count:136635928 (estimated locally) (FALLTHRU)
+(note 106 43 44 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 44 106 45 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 110 [ sp ])
+            (const_int 0 [0]))) "../ncurses/unctrl.c":131:4 -1
+     (nil))
+(insn 45 44 46 9 (set (reg:QI 121)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/unctrl.c":131:4 -1
+     (nil))
+(insn 46 45 47 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 121)
+            (const_int 0 [0]))) "../ncurses/unctrl.c":131:4 -1
+     (nil))
+(jump_insn 47 46 48 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 76)
+            (pc))) "../ncurses/unctrl.c":131:4 -1
+     (int_list:REG_BR_PROB 300413820 (nil))
+ -> 76)
+;;  succ:       10 [72.0% (guessed)]  count:98407632 (estimated locally) (FALLTHRU)
+;;              14 [28.0% (guessed)]  count:38228296 (estimated locally)
+
+;; basic block 10, loop depth 0, count 98407632 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       9 [72.0% (guessed)]  count:98407632 (estimated locally) (FALLTHRU)
+(note 48 47 49 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 49 48 52 10 (set (reg:SI 91 [ _10 ])
+        (mem:SI (plus:DI (reg/v/f:DI 110 [ sp ])
+                (const_int 1512 [0x5e8])) [1 sp_29(D)->_legacy_coding+0 S4 A64])) "../ncurses/unctrl.c":132:12 -1
+     (nil))
+(insn 52 49 53 10 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg:SI 91 [ _10 ])
+            (const_int 0 [0]))) "../ncurses/unctrl.c":132:5 -1
+     (nil))
+(jump_insn 53 52 54 10 (set (pc)
+        (if_then_else (gt (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 66)
+            (pc))) "../ncurses/unctrl.c":132:5 -1
+     (int_list:REG_BR_PROB 633507684 (nil))
+ -> 66)
+;;  succ:       13 [59.0% (guessed)]  count:58060503 (estimated locally)
+;;              11 [41.0% (guessed)]  count:40347129 (estimated locally) (FALLTHRU)
+
+;; basic block 11, loop depth 0, count 40347129 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       10 [41.0% (guessed)]  count:40347129 (estimated locally) (FALLTHRU)
+(note 54 53 55 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 55 54 56 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 91 [ _10 ])
+            (const_int 0 [0]))) "../ncurses/unctrl.c":133:6 -1
+     (nil))
+(jump_insn 56 55 57 11 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 76)
+            (pc))) "../ncurses/unctrl.c":133:6 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 76)
+;;  succ:       12 [50.0% (guessed)]  count:20173565 (estimated locally) (FALLTHRU)
+;;              14 [50.0% (guessed)]  count:20173565 (estimated locally)
+
+;; basic block 12, loop depth 0, count 20173564 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       11 [50.0% (guessed)]  count:20173565 (estimated locally) (FALLTHRU)
+(note 57 56 58 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(call_insn/u 58 57 59 12 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__ctype_b_loc") [flags 0x41]  <function_decl 0x7f1837a90600 __ctype_b_loc>) [0 __ctype_b_loc S1 A8])
+            (const_int 0 [0]))) "../ncurses/unctrl.c":134:13 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("__ctype_b_loc") [flags 0x41]  <function_decl 0x7f1837a90600 __ctype_b_loc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (nil))
+(insn 59 58 60 12 (set (reg/f:DI 92 [ _11 ])
+        (reg:DI 0 ax)) "../ncurses/unctrl.c":134:13 -1
+     (nil))
+(insn 60 59 61 12 (set (reg:DI 122)
+        (sign_extend:DI (reg/v:SI 103 [ check ]))) "../ncurses/unctrl.c":134:13 -1
+     (nil))
+(insn 61 60 62 12 (set (reg/f:DI 123)
+        (mem/f:DI (reg/f:DI 92 [ _11 ]) [40 *_11+0 S8 A64])) "../ncurses/unctrl.c":134:13 -1
+     (nil))
+(insn 62 61 63 12 (set (reg:HI 125)
+        (mem:HI (plus:DI (mult:DI (reg:DI 122)
+                    (const_int 2 [0x2]))
+                (reg/f:DI 123)) [11 *_15+0 S2 A16])) "../ncurses/unctrl.c":134:10 -1
+     (nil))
+(insn 63 62 64 12 (parallel [
+            (set (reg:HI 124)
+                (and:HI (reg:HI 125)
+                    (const_int 16384 [0x4000])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/unctrl.c":134:10 -1
+     (expr_list:REG_EQUAL (and:HI (mem:HI (plus:DI (mult:DI (reg:DI 122)
+                        (const_int 2 [0x2]))
+                    (reg/f:DI 123)) [11 *_15+0 S2 A16])
+            (const_int 16384 [0x4000]))
+        (nil)))
+(insn 64 63 65 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 124)
+            (const_int 0 [0]))) "../ncurses/unctrl.c":134:10 -1
+     (nil))
+(jump_insn 65 64 66 12 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 76)
+            (pc))) "../ncurses/unctrl.c":134:10 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 76)
+;;  succ:       13 [50.0% (guessed)]  count:10086782 (estimated locally) (FALLTHRU)
+;;              14 [50.0% (guessed)]  count:10086782 (estimated locally)
+
+;; basic block 13, loop depth 0, count 68147286 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       12 [50.0% (guessed)]  count:10086782 (estimated locally) (FALLTHRU)
+;;              10 [59.0% (guessed)]  count:58060503 (estimated locally)
+(code_label 66 65 67 13 6 (nil) [1 uses])
+(note 67 66 68 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 68 67 69 13 (set (reg/f:DI 126)
+        (symbol_ref:DI ("unctrl_c1.2") [flags 0x2]  <var_decl 0x7f1837a0e240 unctrl_c1>)) "../ncurses/unctrl.c":135:36 -1
+     (nil))
+(insn 69 68 70 13 (parallel [
+            (set (reg:SI 127)
+                (plus:SI (reg/v:SI 103 [ check ])
+                    (const_int -128 [0xffffffffffffff80])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/unctrl.c":135:43 -1
+     (nil))
+(insn 70 69 71 13 (set (reg:DI 128)
+        (sign_extend:DI (reg:SI 127))) "../ncurses/unctrl.c":135:36 -1
+     (nil))
+(insn 71 70 72 13 (set (reg:DI 129)
+        (sign_extend:DI (mem/u:HI (plus:DI (mult:DI (reg:DI 128)
+                        (const_int 2 [0x2]))
+                    (reg/f:DI 126)) [11 unctrl_c1[_17]+0 S2 A16]))) "../ncurses/unctrl.c":135:36 -1
+     (nil))
+(insn 72 71 73 13 (set (reg:DI 130)
+        (symbol_ref:DI ("unctrl_blob.1") [flags 0x2]  <var_decl 0x7f183766b090 unctrl_blob>)) "../ncurses/unctrl.c":135:11 -1
+     (nil))
+(insn 73 72 74 13 (parallel [
+            (set (reg/v/f:DI 109 [ <retval> ])
+                (plus:DI (reg:DI 129)
+                    (reg:DI 130)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/unctrl.c":135:11 -1
+     (nil))
+(jump_insn 74 73 75 13 (set (pc)
+        (label_ref:DI 102)) "../ncurses/unctrl.c":135:11 807 {jump}
+     (nil)
+ -> 102)
+;;  succ:       19 [always]  count:68147286 (estimated locally)
+
+(barrier 75 74 76)
+;; basic block 14, loop depth 0, count 783866850 (estimated locally), maybe hot
+;;  prev block 13, next block 16, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [67.0% (guessed)]  count:355027366 (estimated locally)
+;;              9 [28.0% (guessed)]  count:38228296 (estimated locally)
+;;              11 [50.0% (guessed)]  count:20173565 (estimated locally)
+;;              12 [50.0% (guessed)]  count:10086782 (estimated locally)
+;;              16 [always (guessed)]  count:106300439 (estimated locally)
+;;              18 [always]  count:215822105 (estimated locally)
+;;              8 [21.9% (guessed)]  count:38228296 (estimated locally)
+(code_label 76 75 77 14 5 (nil) [7 uses])
+(note 77 76 78 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 78 77 79 14 (set (reg/f:DI 131)
+        (symbol_ref:DI ("unctrl_table.0") [flags 0x2]  <var_decl 0x7f1837a0e1b0 unctrl_table>)) "../ncurses/unctrl.c":138:39 -1
+     (nil))
+(insn 79 78 80 14 (set (reg:DI 132)
+        (sign_extend:DI (reg/v:SI 103 [ check ]))) "../ncurses/unctrl.c":138:39 -1
+     (nil))
+(insn 80 79 81 14 (set (reg:DI 133)
+        (sign_extend:DI (mem/u:HI (plus:DI (mult:DI (reg:DI 132)
+                        (const_int 2 [0x2]))
+                    (reg/f:DI 131)) [11 unctrl_table[check_26]+0 S2 A16]))) "../ncurses/unctrl.c":138:39 -1
+     (nil))
+(insn 81 80 82 14 (set (reg:DI 134)
+        (symbol_ref:DI ("unctrl_blob.1") [flags 0x2]  <var_decl 0x7f183766b090 unctrl_blob>)) "../ncurses/unctrl.c":138:11 -1
+     (nil))
+(insn 82 81 85 14 (parallel [
+            (set (reg/v/f:DI 109 [ <retval> ])
+                (plus:DI (reg:DI 133)
+                    (reg:DI 134)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/unctrl.c":138:11 -1
+     (nil))
+(jump_insn 85 82 86 14 (set (pc)
+        (label_ref 102)) "../ncurses/unctrl.c":142:9 -1
+     (nil)
+ -> 102)
+;;  succ:       19 [always]  count:783866850 (estimated locally)
+
+(barrier 86 85 93)
+;; basic block 16, loop depth 0, count 106300439 (estimated locally), maybe hot
+;;  prev block 14, next block 17, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       17 [33.0% (guessed)]  count:106300439 (estimated locally)
+(code_label 93 86 87 16 7 (nil) [1 uses])
+(note 87 93 88 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(call_insn 88 87 89 16 (set (reg:QI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_unicode_locale") [flags 0x41]  <function_decl 0x7f1837a5ee00 _nc_unicode_locale>) [0 _nc_unicode_locale S1 A8])
+            (const_int 0 [0]))) "../ncurses/unctrl.c":130:8 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_unicode_locale") [flags 0x41]  <function_decl 0x7f1837a5ee00 _nc_unicode_locale>)
+        (nil))
+    (nil))
+(jump_insn 89 88 90 16 (set (pc)
+        (label_ref 76)) "../ncurses/unctrl.c":130:8 -1
+     (nil)
+ -> 76)
+;;  succ:       14 [always (guessed)]  count:106300439 (estimated locally)
+
+(barrier 90 89 91)
+;; basic block 17, loop depth 0, count 322122544 (estimated locally), maybe hot
+;;  prev block 16, next block 18, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [30.0% (guessed)]  count:322122544 (estimated locally)
+(code_label 91 90 92 17 2 (nil) [1 uses])
+(note 92 91 94 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 94 92 97 17 (parallel [
+            (set (reg:SI 136)
+                (plus:SI (reg:SI 83 [ check.1_2 ])
+                    (const_int -160 [0xffffffffffffff60])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/unctrl.c":129:4 -1
+     (nil))
+(insn 97 94 98 17 (set (reg:CC 17 flags)
+        (compare:CC (reg:SI 136)
+            (const_int 95 [0x5f]))) "../ncurses/unctrl.c":128:6 -1
+     (nil))
+(jump_insn 98 97 101 17 (set (pc)
+        (if_then_else (leu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 93)
+            (pc))) "../ncurses/unctrl.c":128:6 -1
+     (int_list:REG_BR_PROB 354334804 (nil))
+ -> 93)
+;;  succ:       16 [33.0% (guessed)]  count:106300439 (estimated locally)
+;;              18 [67.0% (guessed)]  count:215822105 (estimated locally) (FALLTHRU)
+
+;; basic block 18, loop depth 0, count 215822105 (estimated locally), maybe hot
+;;  prev block 17, next block 19, flags: (NEW, REACHABLE, RTL)
+;;  pred:       17 [67.0% (guessed)]  count:215822105 (estimated locally) (FALLTHRU)
+(note 101 98 99 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 99 101 100 18 (set (pc)
+        (label_ref 76)) "../ncurses/unctrl.c":128:6 -1
+     (nil)
+ -> 76)
+;;  succ:       14 [always]  count:215822105 (estimated locally)
+
+(barrier 100 99 102)
+;; basic block 19, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 18, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       14 [always]  count:783866850 (estimated locally)
+;;              6 [always]  count:221727689 (estimated locally)
+;;              13 [always]  count:68147286 (estimated locally)
+(code_label 102 100 105 19 1 (nil) [3 uses])
+(note 105 102 103 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 103 105 104 19 (set (reg/i:DI 0 ax)
+        (reg/v/f:DI 109 [ <retval> ])) "../ncurses/unctrl.c":143:1 -1
+     (nil))
+(insn 104 103 0 19 (use (reg/i:DI 0 ax)) "../ncurses/unctrl.c":143:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+
+;; Function unctrl (unctrl, funcdef_no=94, decl_uid=7296, cgraph_uid=95, symbol_order=94)
+
+__attribute__((visibility ("default")))
+const char * unctrl (chtype ch)
+{
+  struct SCREEN * SP.4_1;
+  const char * _5;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.4_1 = SP;
+  _5 = unctrl_sp (SP.4_1, ch_3(D)); [tail call]
+  return _5;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (SP.4_1 - 1 )
+Partition 3 (ch_3(D) - 3 )
+Partition 5 (_5 - 5 )
+Partition 6 (_6(D) - 6 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (ch_3(D) - 3 )
+Partition 1, base 1 (_5 - 5 6 )
+
+
+Partition map 
+
+Partition 0 (ch_3(D) - 3 )
+Partition 1 (_5 - 5 )
+Partition 2 (_6(D) - 6 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(10000, 0) _5 <-> _6(D)
+
+Partition map 
+
+Partition 0 (ch_3(D) - 3 )
+Partition 1 (_5 - 5 )
+Partition 2 (_6(D) - 6 )
+
+Coalesce list: (5)_5 & (6)_6(D) [map: 1, 2] : Success -> 1
+After Coalescing:
+
+Partition map 
+
+Partition 0 (SP.4_1 - 1 )
+Partition 1 (ch_3(D) - 3 )
+Partition 2 (_5 - 5 6 )
+
+
+Replacing Expressions
+SP.4_1 replace with --> SP.4_1 = SP;
+
+
+__attribute__((visibility ("default")))
+const char * unctrl (chtype ch)
+{
+  struct SCREEN * SP.4_1;
+  const char * _5;
+  const char * _6(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  SP.4_1 = SP;
+  _5 = unctrl_sp (SP.4_1, ch_3(D)); [tail call]
+  return _5;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; _5 = unctrl_sp (SP.4_1, ch_3(D)); [tail call]
+
+(insn 6 5 7 2 (set (reg:DI 85)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f1837a0ecf0 SP>) [28 SP+0 S8 A64])) "../ncurses/unctrl.c":147:9 -1
+     (nil))
+
+(insn 7 6 8 2 (set (reg:SI 4 si)
+        (reg/v:SI 84 [ ch ])) "../ncurses/unctrl.c":147:9 -1
+     (nil))
+
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (reg:DI 85)) "../ncurses/unctrl.c":147:9 -1
+     (nil))
+
+(call_insn/j 9 8 10 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("unctrl_sp") [flags 0x3]  <function_decl 0x7f1837964100 unctrl_sp>) [0 unctrl_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/unctrl.c":147:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("unctrl_sp") [flags 0x3]  <function_decl 0x7f1837964100 unctrl_sp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+
+(barrier 10 9 0)
+Basic block 4 is marked unlikely by forward prop
+deleting block 4
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v:SI 84 [ ch ])
+        (reg:SI 5 di [ ch ])) "../ncurses/unctrl.c":146:1 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 7 2 (set (reg:DI 85)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f1837a0ecf0 SP>) [28 SP+0 S8 A64])) "../ncurses/unctrl.c":147:9 -1
+     (nil))
+(insn 7 6 8 2 (set (reg:SI 4 si)
+        (reg/v:SI 84 [ ch ])) "../ncurses/unctrl.c":147:9 -1
+     (nil))
+(insn 8 7 9 2 (set (reg:DI 5 di)
+        (reg:DI 85)) "../ncurses/unctrl.c":147:9 -1
+     (nil))
+(call_insn/j 9 8 10 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("unctrl_sp") [flags 0x3]  <function_decl 0x7f1837964100 unctrl_sp>) [0 unctrl_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/unctrl.c":147:9 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("unctrl_sp") [flags 0x3]  <function_decl 0x7f1837964100 unctrl_sp>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (ABNORMAL,SIBCALL)
+
+(barrier 10 9 0)

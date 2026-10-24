@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# metal - Apple Metal Shading Language Compiler Driver for ravynOS
+set -e
+
+TC="/Library/Developer/Toolchains/Default.xctoolchain"
+CLANG="$TC/usr/bin/clang++"
+SDK="/home/antonov/projects/build/Developer/Platforms/ravynOS.platform/Developer/SDKs/ravynOS.sdk"
+MTL_HDRS="/home/antonov/projects/ravynos/Frameworks/Metal/include"
+
+ARGS=()
+COMPILE_ONLY=0
+OUT=""
+INPUTS=()
+
+while [[ $# -gt 0 ]]; do
+	case "$1" in
+		-c)
+			COMPILE_ONLY=1
+			shift
+			;;
+		-o)
+			OUT="$2"
+			shift 2
+			;;
+		-*)
+			ARGS+=("$1")
+			shift
+			;;
+		*)
+			INPUTS+=("$1")
+			shift
+			;;
+	esac
+done
+
+if [[ ${#INPUTS[@]} -eq 0 ]]; then
+	echo "metal: fatal error: no input files" >&2
+	exit 1
+fi
+
+if [[ -z "$OUT" ]]; then
+	OUT="default.air"
+fi
+
+if [[ $COMPILE_ONLY -eq 1 ]]; then
+	exec "$CLANG" -target x86_64-apple-darwin19 --sysroot="$SDK" \
+		-x c++ -std=c++14 -O2 -fPIC -fvisibility=default \
+		-I"$MTL_HDRS" -I"$MTL_HDRS/Metal" -I"$MTL_HDRS/metal_stdlib" \
+		"${ARGS[@]}" -c "${INPUTS[@]}" -o "$OUT"
+else
+	exec "$CLANG" -target x86_64-apple-darwin19 --sysroot="$SDK" \
+		--ld-path="$TC/usr/bin/ld64" \
+		-shared -dylib -fPIC -O2 -fvisibility=default \
+		-I"$MTL_HDRS" -I"$MTL_HDRS/Metal" -I"$MTL_HDRS/metal_stdlib" \
+		"${ARGS[@]}" "${INPUTS[@]}" -o "$OUT"
+fi

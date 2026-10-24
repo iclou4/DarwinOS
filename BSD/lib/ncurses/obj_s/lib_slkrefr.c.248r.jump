@@ -1,0 +1,3498 @@
+
+;; Function slk_intern_refresh.part.0 (slk_intern_refresh.part.0, funcdef_no=97, decl_uid=9124, cgraph_uid=109, symbol_order=109)
+
+
+34 basic blocks, 51 edges.
+;; basic block 0, loop depth 0, count 178956968 (estimated locally), maybe hot
+;;  prev block (nil), next block 2, flags: (RTL, VISITED)
+;;  pred:      
+;;  succ:       2 [always]  count:178956968 (estimated locally) (FALLTHRU)
+
+;; basic block 2, loop depth 0, count 178956968 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:178956968 (estimated locally) (FALLTHRU)
+(note 7 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 163 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/lib_slkrefr.c":79:1 74 {*movdi_internal}
+     (nil))
+(note 3 2 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 3 10 2 (set (reg/v/f:DI 82 [ slk ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 163 [ sp ])
+                (const_int 800 [0x320])) [14 sp_1(D)->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":89:9 74 {*movdi_internal}
+     (nil))
+(insn 10 9 11 2 (set (reg/v:SI 83 [ fmt ])
+        (mem:SI (plus:DI (reg/v/f:DI 163 [ sp ])
+                (const_int 808 [0x328])) [1 sp_1(D)->slk_format+0 S4 A64])) "../ncurses/./base/lib_slkrefr.c":90:9 75 {*movsi_internal}
+     (nil))
+(call_insn 11 10 12 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f0680caa600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":91:14 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f0680caa600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 12 11 13 2 (set (reg/f:DI 84 [ _4 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_slkrefr.c":91:14 74 {*movdi_internal}
+     (nil))
+(insn 13 12 14 2 (set (reg/f:DI 164)
+        (mem/f:DI (plus:DI (reg/f:DI 84 [ _4 ])
+                (const_int 712 [0x2c8])) [31 _4->type2.Numbers+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":91:12 74 {*movdi_internal}
+     (nil))
+(insn 14 13 15 2 (set (reg/v:SI 86 [ numlab ])
+        (mem:SI (plus:DI (reg/f:DI 164)
+                (const_int 32 [0x20])) [1 MEM[(int *)_5 + 32B]+0 S4 A32])) "../ncurses/./base/lib_slkrefr.c":91:12 75 {*movsi_internal}
+     (nil))
+(insn 15 14 16 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 1 [0x1])) [6 slk_2->hidden+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":93:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 16 15 20 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 20)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":93:8 806 {*jcc}
+     (int_list:REG_BR_PROB 708669604 (nil))
+ -> 20)
+;;  succ:       37 [34.0% (guessed)]  count:60845370 (estimated locally) (FALLTHRU)
+;;              4 [66.0% (guessed)]  count:118111598 (estimated locally)
+
+;; basic block 4, loop depth 0, count 118111598 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [66.0% (guessed)]  count:118111598 (estimated locally)
+(code_label 20 16 21 4 2 (nil) [1 uses])
+(note 21 20 24 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 24 21 25 4 (set (reg:CCNO 17 flags)
+        (compare:CCNO (mem:HI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 26 [0x1a])) [11 slk_2->labcnt+0 S2 A16])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":96:19 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 25 24 227 4 (set (pc)
+        (if_then_else (gt (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 263)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":96:19 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 263)
+;;  succ:       7 [89.0% (guessed)]  count:105119322 (estimated locally)
+;;              5 [11.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 4, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [11.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU)
+;;              32 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+(code_label 227 25 26 5 18 (nil) [0 uses])
+(note 26 227 27 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 27 26 30 5 (set (mem:QI (reg/v/f:DI 82 [ slk ]) [6 slk_2->dirty+0 S1 A64])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":125:16 77 {*movqi_internal}
+     (nil))
+(insn 30 27 31 5 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:SI 86 [ numlab ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":127:8 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 31 30 263 5 (set (pc)
+        (if_then_else (gt (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 231)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":127:8 806 {*jcc}
+     (int_list:REG_BR_PROB 633507684 (nil))
+ -> 231)
+;;  succ:       34 [59.0% (guessed)]  count:69685844 (estimated locally)
+;;              37 [41.0% (guessed)]  count:48425756 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 105119322 (estimated locally), maybe hot
+;;  prev block 5, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       4 [89.0% (guessed)]  count:105119322 (estimated locally)
+(code_label 263 31 262 7 20 (nil) [1 uses])
+(note 262 263 4 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 4 262 36 7 (set (reg:DI 144 [ ivtmp.20 ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":96:19 74 {*movdi_internal}
+     (nil))
+;;  succ:       8 [always]  count:105119322 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 1, count 955630224 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       32 [89.0% (guessed)]  count:850510902 (estimated locally) (DFS_BACK)
+;;              7 [always]  count:105119322 (estimated locally) (FALLTHRU)
+(code_label 36 4 37 8 4 (nil) [1 uses])
+(note 37 36 38 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 38 37 39 8 (set (reg:DI 165)
+        (reg:DI 144 [ ivtmp.20 ])) 74 {*movdi_internal}
+     (nil))
+(insn 39 38 40 8 (parallel [
+            (set (reg:DI 166)
+                (ashift:DI (reg:DI 165)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) 656 {*ashldi3_1}
+     (nil))
+(insn 40 39 41 8 (parallel [
+            (set (reg:DI 167)
+                (plus:DI (reg:DI 166)
+                    (reg:DI 144 [ ivtmp.20 ])))
+            (clobber (reg:CC 17 flags))
+        ]) 210 {*adddi_1}
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 144 [ ivtmp.20 ])
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 41 40 42 8 (parallel [
+            (set (reg:DI 168)
+                (ashift:DI (reg:DI 167)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) 656 {*ashldi3_1}
+     (nil))
+(insn 42 41 43 8 (set (reg:DI 167)
+        (reg:DI 168)) 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 144 [ ivtmp.20 ])
+            (const_int 24 [0x18]))
+        (nil)))
+(insn 43 42 44 8 (set (reg:DI 152 [ _140 ])
+        (reg:DI 167)) 74 {*movdi_internal}
+     (nil))
+(insn 44 43 45 8 (set (reg/f:DI 169)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":97:28 74 {*movdi_internal}
+     (nil))
+(insn 45 44 46 8 (parallel [
+            (set (reg/f:DI 160 [ prephitmp_171 ])
+                (plus:DI (reg:DI 152 [ _140 ])
+                    (reg/f:DI 169)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":97:28 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])
+            (reg:DI 152 [ _140 ]))
+        (nil)))
+(insn 46 45 47 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (reg/v/f:DI 82 [ slk ]) [6 slk_2->dirty+0 S1 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":97:5 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 47 46 48 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 51)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":97:5 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 51)
+;;  succ:       10 [50.0% (guessed)]  count:477815112 (estimated locally)
+;;              9 [50.0% (guessed)]  count:477815112 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 1, count 477815112 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [50.0% (guessed)]  count:477815112 (estimated locally) (FALLTHRU)
+(note 48 47 49 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 49 48 50 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/f:DI 160 [ prephitmp_171 ])
+                    (const_int 20 [0x14])) [0 _182->dirty+0 S1 A32])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":97:17 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 50 49 51 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 221)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":97:17 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 221)
+;;  succ:       10 [50.0% (guessed)]  count:238907556 (estimated locally) (FALLTHRU)
+;;              32 [50.0% (guessed)]  count:238907556 (estimated locally)
+
+;; basic block 10, loop depth 1, count 716722668 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       9 [50.0% (guessed)]  count:238907556 (estimated locally) (FALLTHRU)
+;;              8 [50.0% (guessed)]  count:477815112 (estimated locally)
+(code_label 51 50 52 10 7 (nil) [1 uses])
+(note 52 51 53 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 53 52 54 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/f:DI 160 [ prephitmp_171 ])
+                    (const_int 21 [0x15])) [0 _182->visible+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":98:9 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 54 53 55 10 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 218)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":98:9 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 218)
+;;  succ:       11 [50.0% (guessed)]  count:358361334 (estimated locally) (FALLTHRU)
+;;              31 [50.0% (guessed)]  count:358361334 (estimated locally)
+
+;; basic block 11, loop depth 1, count 358361334 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       10 [50.0% (guessed)]  count:358361334 (estimated locally) (FALLTHRU)
+(note 55 54 58 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 58 55 59 11 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:SI 86 [ numlab ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":99:14 7 {*cmpsi_ccno_1}
+     (nil))
+(insn 59 58 60 11 (set (reg:QI 171)
+        (gt:QI (reg:CCNO 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":99:14 802 {*setcc_qi}
+     (nil))
+(insn 60 59 61 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 171)
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":99:6 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 61 60 266 11 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 103)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":99:6 806 {*jcc}
+     (int_list:REG_BR_PROB 359703516 (nil))
+ -> 103)
+;;  succ:       16 [33.5% (guessed)]  count:120051047 (estimated locally)
+;;              12 [66.5% (guessed)]  count:238310287 (estimated locally) (FALLTHRU)
+
+;; basic block 12, loop depth 1, count 238310287 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL)
+;;  pred:       11 [66.5% (guessed)]  count:238310287 (estimated locally) (FALLTHRU)
+(note 266 61 64 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 64 266 65 12 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 83 [ fmt ])
+            (const_int 2 [0x2]))) "../ncurses/./base/lib_slkrefr.c":99:21 11 {*cmpsi_1}
+     (nil))
+(insn 65 64 66 12 (set (reg:QI 173)
+        (le:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":99:21 802 {*setcc_qi}
+     (nil))
+(insn 66 65 67 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 173)
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":99:6 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 67 66 68 12 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 103)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":99:6 806 {*jcc}
+     (int_list:REG_BR_PROB 540907540 (nil))
+ -> 103)
+;;  succ:       13 [49.6% (guessed)]  count:118259240 (estimated locally) (FALLTHRU)
+;;              16 [50.4% (guessed)]  count:120051047 (estimated locally)
+
+;; basic block 13, loop depth 1, count 118259239 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       12 [49.6% (guessed)]  count:118259240 (estimated locally) (FALLTHRU)
+(note 68 67 69 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(call_insn 69 68 70 13 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f0680caa600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":103:15 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f0680caa600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 70 69 71 13 (set (reg/f:DI 94 [ _23 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_slkrefr.c":103:15 74 {*movdi_internal}
+     (nil))
+(insn 71 70 72 13 (set (reg/f:DI 174)
+        (mem/f:DI (plus:DI (reg/f:DI 94 [ _23 ])
+                (const_int 712 [0x2c8])) [31 _23->type2.Numbers+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":103:15 74 {*movdi_internal}
+     (nil))
+(insn 72 71 73 13 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/f:DI 174)
+                    (const_int 32 [0x20])) [1 MEM[(int *)_24 + 32B]+0 S4 A32])
+            (subreg:SI (reg:DI 144 [ ivtmp.20 ]) 0))) "../ncurses/./base/lib_slkrefr.c":103:10 11 {*cmpsi_1}
+     (nil))
+(jump_insn 73 72 74 13 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 79)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":103:10 806 {*jcc}
+     (int_list:REG_BR_PROB 354334804 (nil))
+ -> 79)
+;;  succ:       15 [33.0% (guessed)]  count:39025549 (estimated locally)
+;;              14 [67.0% (guessed)]  count:79233690 (estimated locally) (FALLTHRU)
+
+;; basic block 14, loop depth 1, count 79233690 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       13 [67.0% (guessed)]  count:79233690 (estimated locally) (FALLTHRU)
+(note 74 73 75 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 75 74 76 14 (set (reg/f:DI 175)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 76 75 79 14 (parallel [
+            (set (reg/f:DI 160 [ prephitmp_171 ])
+                (plus:DI (reg:DI 152 [ _140 ])
+                    (reg/f:DI 175)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":104:4 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])
+            (reg:DI 152 [ _140 ]))
+        (nil)))
+;;  succ:       31 [always]  count:79233690 (estimated locally) (FALLTHRU)
+
+;; basic block 15, loop depth 1, count 39025549 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       13 [33.0% (guessed)]  count:39025549 (estimated locally)
+(code_label 79 76 80 15 11 (nil) [1 uses])
+(note 80 79 81 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 81 80 82 15 (set (reg/f:DI 176)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 82 81 83 15 (set (reg:DI 100 [ _29 ])
+        (mem/f:DI (plus:DI (plus:DI (reg/f:DI 176)
+                    (reg:DI 152 [ _140 ]))
+                (const_int 8 [0x8])) [4 _27->form_text+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(call_insn 83 82 84 15 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f0680caa600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":104:4 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f0680caa600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 84 83 85 15 (set (reg/f:DI 101 [ _32 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 85 84 86 15 (parallel [
+            (set (reg:DI 177)
+                (plus:DI (reg:DI 144 [ ivtmp.20 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":104:4 210 {*adddi_1}
+     (nil))
+(insn 86 85 87 15 (set (reg/f:DI 178)
+        (mem/f:DI (plus:DI (reg/f:DI 101 [ _32 ])
+                (const_int 720 [0x2d0])) [50 _32->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 87 86 88 15 (set (reg:DI 179)
+        (mem/f:DI (plus:DI (reg/f:DI 178)
+                (const_int 1176 [0x498])) [4 MEM[(char * *)_33 + 1176B]+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 88 87 89 15 (set (reg:DI 1 dx)
+        (reg:DI 100 [ _29 ])) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 89 88 90 15 (set (reg:DI 4 si)
+        (reg:DI 177)) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 90 89 91 15 (set (reg:DI 5 di)
+        (reg:DI 179)) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 91 90 92 15 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":104:4 77 {*movqi_internal}
+     (nil))
+(call_insn 92 91 93 15 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("tparm") [flags 0x41]  <function_decl 0x7f0680bfb900 tparm>) [0 tparm S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":104:4 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("tparm") [flags 0x41]  <function_decl 0x7f0680bfb900 tparm>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (nil))))))
+(insn 93 92 94 15 (set (reg/f:DI 104 [ _35 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 94 93 95 15 (set (reg:DI 1 dx)
+        (reg/f:DI 104 [ _35 ])) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 95 94 96 15 (set (reg:DI 180)
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f06809beab0 *.LC0>)) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 96 95 97 15 (set (reg:DI 4 si)
+        (reg:DI 180)) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f06809beab0 *.LC0>)
+        (nil)))
+(insn 97 96 98 15 (set (reg:DI 5 di)
+        (reg/v/f:DI 163 [ sp ])) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(call_insn 98 97 99 15 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_putp_sp") [flags 0x41]  <function_decl 0x7f0680dadd00 _nc_putp_sp>) [0 _nc_putp_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":104:4 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_putp_sp") [flags 0x41]  <function_decl 0x7f0680dadd00 _nc_putp_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 99 98 100 15 (set (reg/f:DI 181)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":122:14 74 {*movdi_internal}
+     (nil))
+(insn 100 99 103 15 (parallel [
+            (set (reg/f:DI 160 [ prephitmp_171 ])
+                (plus:DI (reg:DI 152 [ _140 ])
+                    (reg/f:DI 181)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":122:14 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])
+            (reg:DI 152 [ _140 ]))
+        (nil)))
+;;  succ:       31 [always]  count:39025549 (estimated locally) (FALLTHRU)
+
+;; basic block 16, loop depth 1, count 240102094 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       12 [50.4% (guessed)]  count:120051047 (estimated locally)
+;;              11 [33.5% (guessed)]  count:120051047 (estimated locally)
+(code_label 103 100 104 16 10 (nil) [2 uses])
+(note 104 103 105 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 105 104 106 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 83 [ fmt ])
+            (const_int 4 [0x4]))) "../ncurses/./base/lib_slkrefr.c":111:10 11 {*cmpsi_1}
+     (nil))
+(jump_insn 106 105 107 16 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 188)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":111:10 806 {*jcc}
+     (int_list:REG_BR_PROB 856416484 (nil))
+ -> 188)
+;;  succ:       17 [20.2% (guessed)]  count:48596664 (estimated locally) (FALLTHRU)
+;;              30 [79.8% (guessed)]  count:191505430 (estimated locally)
+
+;; basic block 17, loop depth 1, count 48596664 (estimated locally), maybe hot
+;;  prev block 16, next block 18, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       16 [20.2% (guessed)]  count:48596664 (estimated locally) (FALLTHRU)
+(note 107 106 108 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 108 107 109 17 (set (reg/f:DI 161 [ pretmp_175 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 8 [0x8])) [9 slk_2->win+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":112:4 74 {*movdi_internal}
+     (nil))
+(insn 109 108 110 17 (set (reg:DI 5 di)
+        (reg/f:DI 161 [ pretmp_175 ])) "../ncurses/./base/lib_slkrefr.c":61:24 74 {*movdi_internal}
+     (nil))
+(call_insn 110 109 111 17 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_screen_of") [flags 0x41]  <function_decl 0x7f0680d91100 _nc_screen_of>) [0 _nc_screen_of S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":61:24 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_screen_of") [flags 0x41]  <function_decl 0x7f0680d91100 _nc_screen_of>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 111 110 112 17 (set (reg/v/f:DI 130 [ sp ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_slkrefr.c":61:24 74 {*movdi_internal}
+     (nil))
+(insn 112 111 113 17 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 161 [ pretmp_175 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":63:9 8 {*cmpdi_ccno_1}
+     (nil))
+(insn 113 112 114 17 (set (reg:QI 183)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":63:9 802 {*setcc_qi}
+     (nil))
+(insn 114 113 115 17 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 183)
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":63:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 115 114 267 17 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 269)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":63:8 806 {*jcc}
+     (int_list:REG_BR_PROB 268435460 (nil))
+ -> 269)
+;;  succ:       20 [25.0% (guessed)]  count:12149166 (estimated locally)
+;;              18 [75.0% (guessed)]  count:36447498 (estimated locally) (FALLTHRU)
+
+;; basic block 18, loop depth 1, count 36447498 (estimated locally), maybe hot
+;;  prev block 17, next block 20, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       17 [75.0% (guessed)]  count:36447498 (estimated locally) (FALLTHRU)
+(note 267 115 116 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 116 267 117 18 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 130 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":63:13 8 {*cmpdi_ccno_1}
+     (nil))
+(insn 117 116 118 18 (set (reg:QI 185)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":63:13 802 {*setcc_qi}
+     (nil))
+(insn 118 117 119 18 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 185)
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":63:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 119 118 269 18 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 126)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":63:8 806 {*jcc}
+     (int_list:REG_BR_PROB 715827884 (nil))
+ -> 126)
+;;  succ:       21 [66.7% (guessed)]  count:24298332 (estimated locally)
+;;              20 [33.3% (guessed)]  count:12149166 (estimated locally) (FALLTHRU)
+
+;; basic block 20, loop depth 1, count 24298332 (estimated locally), maybe hot
+;;  prev block 18, next block 21, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       18 [33.3% (guessed)]  count:12149166 (estimated locally) (FALLTHRU)
+;;              17 [25.0% (guessed)]  count:12149166 (estimated locally)
+(code_label 269 119 121 20 22 (nil) [1 uses])
+(note 121 269 122 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 122 121 123 20 (set (reg/f:DI 186)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":113:51 74 {*movdi_internal}
+     (nil))
+(insn 123 122 126 20 (parallel [
+            (set (reg/f:DI 160 [ prephitmp_171 ])
+                (plus:DI (reg:DI 152 [ _140 ])
+                    (reg/f:DI 186)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":113:51 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])
+            (reg:DI 152 [ _140 ]))
+        (nil)))
+;;  succ:       30 [always]  count:24298332 (estimated locally) (FALLTHRU)
+
+;; basic block 21, loop depth 1, count 24298332 (estimated locally), maybe hot
+;;  prev block 20, next block 22, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       18 [66.7% (guessed)]  count:24298332 (estimated locally)
+(code_label 126 123 127 21 13 (nil) [1 uses])
+(note 127 126 128 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 128 127 129 21 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/v/f:DI 130 [ sp ])
+                    (const_int 808 [0x328])) [1 sp_88->slk_format+0 S4 A64])
+            (const_int 4 [0x4]))) "../ncurses/./base/lib_slkrefr.c":63:19 11 {*cmpsi_1}
+     (nil))
+(jump_insn 129 128 130 21 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 135)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":63:19 806 {*jcc}
+     (int_list:REG_BR_PROB 217325348 (nil))
+ -> 135)
+;;  succ:       23 [20.2% (guessed)]  count:4917982 (estimated locally)
+;;              22 [79.8% (guessed)]  count:19380350 (estimated locally) (FALLTHRU)
+
+;; basic block 22, loop depth 1, count 19380350 (estimated locally), maybe hot
+;;  prev block 21, next block 23, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       21 [79.8% (guessed)]  count:19380350 (estimated locally) (FALLTHRU)
+(note 130 129 131 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 131 130 132 22 (set (reg/f:DI 187)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":113:51 74 {*movdi_internal}
+     (nil))
+(insn 132 131 135 22 (parallel [
+            (set (reg/f:DI 160 [ prephitmp_171 ])
+                (plus:DI (reg:DI 152 [ _140 ])
+                    (reg/f:DI 187)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":113:51 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])
+            (reg:DI 152 [ _140 ]))
+        (nil)))
+;;  succ:       30 [always]  count:19380350 (estimated locally) (FALLTHRU)
+
+;; basic block 23, loop depth 1, count 4917982 (estimated locally), maybe hot
+;;  prev block 22, next block 24, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       21 [20.2% (guessed)]  count:4917982 (estimated locally)
+(code_label 135 132 136 23 15 (nil) [1 uses])
+(note 136 135 137 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 137 136 138 23 (set (reg:SI 1 dx)
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":66:9 75 {*movsi_internal}
+     (nil))
+(insn 138 137 139 23 (set (reg:SI 4 si)
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":66:9 75 {*movsi_internal}
+     (nil))
+(insn 139 138 140 23 (set (reg:DI 5 di)
+        (reg/f:DI 161 [ pretmp_175 ])) "../ncurses/./base/lib_slkrefr.c":66:9 74 {*movdi_internal}
+     (nil))
+(call_insn 140 139 141 23 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wmove") [flags 0x41]  <function_decl 0x7f0680bf4600 wmove>) [0 wmove S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":66:9 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wmove") [flags 0x41]  <function_decl 0x7f0680bf4600 wmove>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 141 140 142 23 (set (reg:SI 135 [ _93 ])
+        (reg:SI 0 ax)) "../ncurses/./base/lib_slkrefr.c":66:9 75 {*movsi_internal}
+     (nil))
+(insn 142 141 143 23 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 135 [ _93 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_slkrefr.c":66:2 11 {*cmpsi_1}
+     (nil))
+(jump_insn 143 142 144 23 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 151)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":66:2 806 {*jcc}
+     (int_list:REG_BR_PROB 548896828 (nil))
+ -> 151)
+;;  succ:       24 [48.9% (guessed)]  count:2403910 (estimated locally) (FALLTHRU)
+;;              25 [51.1% (guessed)]  count:2514072 (estimated locally)
+
+;; basic block 24, loop depth 1, count 2403910 (estimated locally), maybe hot
+;;  prev block 23, next block 25, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       23 [48.9% (guessed)]  count:2403910 (estimated locally) (FALLTHRU)
+(note 144 143 145 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 145 144 146 24 (set (reg:SI 189)
+        (mem:SI (plus:DI (reg/f:DI 161 [ pretmp_175 ])
+                (const_int 12 [0xc])) [1 pretmp_175->_maxx+0 S4 A32])) "../ncurses/./base/lib_slkrefr.c":66:9 75 {*movsi_internal}
+     (nil))
+(insn 146 145 147 24 (parallel [
+            (set (reg:SI 188)
+                (plus:SI (reg:SI 189)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":66:9 209 {*addsi_1}
+     (expr_list:REG_EQUAL (plus:SI (mem:SI (plus:DI (reg/f:DI 161 [ pretmp_175 ])
+                    (const_int 12 [0xc])) [1 pretmp_175->_maxx+0 S4 A32])
+            (const_int 1 [0x1]))
+        (nil)))
+(insn 147 146 148 24 (set (reg:SI 1 dx)
+        (reg:SI 188)) "../ncurses/./base/lib_slkrefr.c":66:9 75 {*movsi_internal}
+     (nil))
+(insn 148 147 149 24 (set (reg:SI 4 si)
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":66:9 75 {*movsi_internal}
+     (nil))
+(insn 149 148 150 24 (set (reg:DI 5 di)
+        (reg/f:DI 161 [ pretmp_175 ])) "../ncurses/./base/lib_slkrefr.c":66:9 74 {*movdi_internal}
+     (nil))
+(call_insn 150 149 151 24 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("whline") [flags 0x41]  <function_decl 0x7f0680bf1b00 whline>) [0 whline S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":66:9 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("whline") [flags 0x41]  <function_decl 0x7f0680bf1b00 whline>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+;;  succ:       25 [always]  count:2403910 (estimated locally) (FALLTHRU)
+
+;; basic block 25, loop depth 1, count 4917982 (estimated locally), maybe hot
+;;  prev block 24, next block 26, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       23 [51.1% (guessed)]  count:2514072 (estimated locally)
+;;              24 [always]  count:2403910 (estimated locally) (FALLTHRU)
+(code_label 151 150 152 25 16 (nil) [1 uses])
+(note 152 151 153 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(insn 153 152 154 25 (set (reg:SI 1 dx)
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":67:2 75 {*movsi_internal}
+     (nil))
+(insn 154 153 155 25 (set (reg:SI 4 si)
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":67:2 75 {*movsi_internal}
+     (nil))
+(insn 155 154 156 25 (set (reg:DI 5 di)
+        (reg/f:DI 161 [ pretmp_175 ])) "../ncurses/./base/lib_slkrefr.c":67:2 74 {*movdi_internal}
+     (nil))
+(call_insn 156 155 157 25 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wmove") [flags 0x41]  <function_decl 0x7f0680bf4600 wmove>) [0 wmove S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":67:2 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wmove") [flags 0x41]  <function_decl 0x7f0680bf4600 wmove>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 157 156 160 25 (set (reg/f:DI 129 [ _78 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 130 [ sp ])
+                (const_int 800 [0x320])) [14 sp_88->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":69:20 74 {*movdi_internal}
+     (nil))
+(insn 160 157 161 25 (set (reg:CCNO 17 flags)
+        (compare:CCNO (mem:HI (plus:DI (reg/f:DI 129 [ _78 ])
+                    (const_int 24 [0x18])) [11 _115->maxlab+0 S2 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":69:16 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 161 160 162 25 (set (pc)
+        (if_then_else (gt (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 265)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":69:16 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 265)
+;;  succ:       27 [89.0% (guessed)]  count:4377004 (estimated locally)
+;;              26 [11.0% (guessed)]  count:540978 (estimated locally) (FALLTHRU)
+
+;; basic block 26, loop depth 1, count 540978 (estimated locally), maybe hot
+;;  prev block 25, next block 27, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       25 [11.0% (guessed)]  count:540978 (estimated locally) (FALLTHRU)
+(note 162 161 163 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 163 162 164 26 (set (reg/f:DI 190)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":113:51 74 {*movdi_internal}
+     (nil))
+(insn 164 163 265 26 (parallel [
+            (set (reg/f:DI 160 [ prephitmp_171 ])
+                (plus:DI (reg:DI 152 [ _140 ])
+                    (reg/f:DI 190)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":113:51 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])
+            (reg:DI 152 [ _140 ]))
+        (nil)))
+;;  succ:       30 [always]  count:540978 (estimated locally) (FALLTHRU)
+
+;; basic block 27, loop depth 1, count 4377004 (estimated locally), maybe hot
+;;  prev block 26, next block 28, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       25 [89.0% (guessed)]  count:4377004 (estimated locally)
+(code_label 265 164 264 27 21 (nil) [1 uses])
+(note 264 265 5 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(insn 5 264 6 27 (set (reg:DI 146 [ ivtmp.17 ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":69:16 74 {*movdi_internal}
+     (nil))
+(insn 6 5 167 27 (set (reg/v:SI 138 [ i ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":69:9 75 {*movsi_internal}
+     (nil))
+;;  succ:       28 [always]  count:4377004 (estimated locally) (FALLTHRU)
+
+;; basic block 28, loop depth 2, count 39790948 (estimated locally), maybe hot
+;;  prev block 27, next block 29, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       28 [89.0% (guessed)]  count:35413944 (estimated locally) (DFS_BACK)
+;;              27 [always]  count:4377004 (estimated locally) (FALLTHRU)
+(code_label 167 6 168 28 17 (nil) [1 uses])
+(note 168 167 169 28 [bb 28] NOTE_INSN_BASIC_BLOCK)
+(insn 169 168 170 28 (parallel [
+            (set (reg/v:SI 138 [ i ])
+                (plus:SI (reg/v:SI 138 [ i ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":70:6 209 {*addsi_1}
+     (nil))
+(insn 170 169 171 28 (set (reg/f:DI 191)
+        (mem/f:DI (plus:DI (reg/f:DI 129 [ _78 ])
+                (const_int 16 [0x10])) [45 _78->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":70:6 74 {*movdi_internal}
+     (nil))
+(insn 171 170 172 28 (set (reg:SI 192)
+        (mem:SI (plus:DI (plus:DI (reg/f:DI 191)
+                    (reg:DI 146 [ ivtmp.17 ]))
+                (const_int 16 [0x10])) [1 _102->ent_x+0 S4 A64])) "../ncurses/./base/lib_slkrefr.c":70:6 75 {*movsi_internal}
+     (nil))
+(insn 172 171 173 28 (set (reg:SI 36 r8)
+        (reg/v:SI 138 [ i ])) "../ncurses/./base/lib_slkrefr.c":70:6 75 {*movsi_internal}
+     (nil))
+(insn 173 172 174 28 (set (reg:DI 193)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f06809beb40 *.LC1>)) "../ncurses/./base/lib_slkrefr.c":70:6 74 {*movdi_internal}
+     (nil))
+(insn 174 173 175 28 (set (reg:DI 2 cx)
+        (reg:DI 193)) "../ncurses/./base/lib_slkrefr.c":70:6 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f06809beb40 *.LC1>)
+        (nil)))
+(insn 175 174 176 28 (set (reg:SI 1 dx)
+        (reg:SI 192)) "../ncurses/./base/lib_slkrefr.c":70:6 75 {*movsi_internal}
+     (nil))
+(insn 176 175 177 28 (set (reg:SI 4 si)
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":70:6 75 {*movsi_internal}
+     (nil))
+(insn 177 176 178 28 (set (reg:DI 5 di)
+        (reg/f:DI 161 [ pretmp_175 ])) "../ncurses/./base/lib_slkrefr.c":70:6 74 {*movdi_internal}
+     (nil))
+(insn 178 177 179 28 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":70:6 77 {*movqi_internal}
+     (nil))
+(call_insn 179 178 180 28 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("mvwprintw") [flags 0x41]  <function_decl 0x7f068107cd00 mvwprintw>) [0 mvwprintw S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":70:6 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("mvwprintw") [flags 0x41]  <function_decl 0x7f068107cd00 mvwprintw>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:SI (use (reg:SI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (expr_list:SI (use (reg:SI 36 r8))
+                            (nil))))))))
+(insn 180 179 181 28 (set (reg/f:DI 129 [ _78 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 130 [ sp ])
+                (const_int 800 [0x320])) [14 sp_88->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":69:20 74 {*movdi_internal}
+     (nil))
+(insn 181 180 182 28 (parallel [
+            (set (reg:DI 146 [ ivtmp.17 ])
+                (plus:DI (reg:DI 146 [ ivtmp.17 ])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":69:16 210 {*adddi_1}
+     (nil))
+(insn 182 181 183 28 (set (reg:SI 194)
+        (sign_extend:SI (mem:HI (plus:DI (reg/f:DI 129 [ _78 ])
+                    (const_int 24 [0x18])) [11 _98->maxlab+0 S2 A64]))) "../ncurses/./base/lib_slkrefr.c":69:26 151 {extendhisi2}
+     (nil))
+(insn 183 182 184 28 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 138 [ i ])
+            (reg:SI 194))) "../ncurses/./base/lib_slkrefr.c":69:16 11 {*cmpsi_1}
+     (nil))
+(jump_insn 184 183 185 28 (set (pc)
+        (if_then_else (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 167)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":69:16 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 167)
+;;  succ:       28 [89.0% (guessed)]  count:35413944 (estimated locally) (DFS_BACK)
+;;              29 [11.0% (guessed)]  count:4377004 (estimated locally) (FALLTHRU)
+
+;; basic block 29, loop depth 1, count 4377004 (estimated locally), maybe hot
+;;  prev block 28, next block 30, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       28 [11.0% (guessed)]  count:4377004 (estimated locally) (FALLTHRU)
+(note 185 184 186 29 [bb 29] NOTE_INSN_BASIC_BLOCK)
+(insn 186 185 187 29 (set (reg/f:DI 195)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":113:51 74 {*movdi_internal}
+     (nil))
+(insn 187 186 188 29 (parallel [
+            (set (reg/f:DI 160 [ prephitmp_171 ])
+                (plus:DI (reg:DI 152 [ _140 ])
+                    (reg/f:DI 195)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":113:51 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])
+            (reg:DI 152 [ _140 ]))
+        (nil)))
+;;  succ:       30 [always]  count:4377004 (estimated locally) (FALLTHRU)
+
+;; basic block 30, loop depth 1, count 240102094 (estimated locally), maybe hot
+;;  prev block 29, next block 31, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       16 [79.8% (guessed)]  count:191505430 (estimated locally)
+;;              22 [always]  count:19380350 (estimated locally) (FALLTHRU)
+;;              20 [always]  count:24298332 (estimated locally) (FALLTHRU)
+;;              29 [always]  count:4377004 (estimated locally) (FALLTHRU)
+;;              26 [always]  count:540978 (estimated locally) (FALLTHRU)
+(code_label 188 187 189 30 12 (nil) [1 uses])
+(note 189 188 190 30 [bb 30] NOTE_INSN_BASIC_BLOCK)
+(insn 190 189 191 30 (set (reg:SI 196)
+        (mem:SI (plus:DI (reg/f:DI 160 [ prephitmp_171 ])
+                (const_int 16 [0x10])) [1 prephitmp_159->ent_x+0 S4 A64])) "../ncurses/./base/lib_slkrefr.c":113:7 75 {*movsi_internal}
+     (nil))
+(insn 191 190 192 30 (parallel [
+            (set (reg:SI 197)
+                (smax:SI (reg/v:SI 83 [ fmt ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":113:23 1133 {*smaxsi3_1}
+     (nil))
+(insn 192 191 193 30 (parallel [
+            (set (reg:SI 198)
+                (plus:SI (reg:SI 197)
+                    (const_int -3 [0xfffffffffffffffd])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":113:7 209 {*addsi_1}
+     (nil))
+(insn 193 192 194 30 (set (reg:DI 199)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 8 [0x8])) [9 slk_2->win+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":113:7 74 {*movdi_internal}
+     (nil))
+(insn 194 193 195 30 (set (reg:SI 1 dx)
+        (reg:SI 196)) "../ncurses/./base/lib_slkrefr.c":113:7 75 {*movsi_internal}
+     (nil))
+(insn 195 194 196 30 (set (reg:SI 4 si)
+        (reg:SI 198)) "../ncurses/./base/lib_slkrefr.c":113:7 75 {*movsi_internal}
+     (nil))
+(insn 196 195 197 30 (set (reg:DI 5 di)
+        (reg:DI 199)) "../ncurses/./base/lib_slkrefr.c":113:7 74 {*movdi_internal}
+     (nil))
+(call_insn 197 196 198 30 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wmove") [flags 0x41]  <function_decl 0x7f0680bf4600 wmove>) [0 wmove S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":113:7 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wmove") [flags 0x41]  <function_decl 0x7f0680bf4600 wmove>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 198 197 199 30 (set (reg:SI 200)
+        (mem:SI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 32 [0x20])) [1 slk_2->attr.attr+0 S4 A64])) "../ncurses/./base/lib_slkrefr.c":114:14 75 {*movsi_internal}
+     (nil))
+(insn 199 198 200 30 (set (reg:DI 201)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 8 [0x8])) [9 slk_2->win+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":114:14 74 {*movdi_internal}
+     (nil))
+(insn 200 199 201 30 (set (reg:SI 4 si)
+        (reg:SI 200)) "../ncurses/./base/lib_slkrefr.c":114:14 75 {*movsi_internal}
+     (nil))
+(insn 201 200 202 30 (set (reg:DI 5 di)
+        (reg:DI 201)) "../ncurses/./base/lib_slkrefr.c":114:14 74 {*movdi_internal}
+     (nil))
+(call_insn 202 201 203 30 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wattrset") [flags 0x41]  <function_decl 0x7f0680bec600 wattrset>) [0 wattrset S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":114:14 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wattrset") [flags 0x41]  <function_decl 0x7f0680bec600 wattrset>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 203 202 204 30 (set (reg/f:DI 202)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":115:7 74 {*movdi_internal}
+     (nil))
+(insn 204 203 205 30 (set (reg:DI 203)
+        (mem/f:DI (plus:DI (plus:DI (reg/f:DI 202)
+                    (reg:DI 152 [ _140 ]))
+                (const_int 8 [0x8])) [4 _47->form_text+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":115:7 74 {*movdi_internal}
+     (nil))
+(insn 205 204 206 30 (set (reg:DI 204)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 8 [0x8])) [9 slk_2->win+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":115:7 74 {*movdi_internal}
+     (nil))
+(insn 206 205 207 30 (set (reg:SI 1 dx)
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkrefr.c":115:7 75 {*movsi_internal}
+     (nil))
+(insn 207 206 208 30 (set (reg:DI 4 si)
+        (reg:DI 203)) "../ncurses/./base/lib_slkrefr.c":115:7 74 {*movdi_internal}
+     (nil))
+(insn 208 207 209 30 (set (reg:DI 5 di)
+        (reg:DI 204)) "../ncurses/./base/lib_slkrefr.c":115:7 74 {*movdi_internal}
+     (nil))
+(call_insn 209 208 210 30 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("waddnstr") [flags 0x41]  <function_decl 0x7f0680bec200 waddnstr>) [0 waddnstr S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":115:7 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("waddnstr") [flags 0x41]  <function_decl 0x7f0680bec200 waddnstr>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 210 209 211 30 (set (reg/f:DI 205)
+        (mem/f:DI (plus:DI (reg/v/f:DI 163 [ sp ])
+                (const_int 152 [0x98])) [9 sp_1(D)->_stdscr+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":119:39 74 {*movdi_internal}
+     (nil))
+(insn 211 210 212 30 (set (reg:SI 206)
+        (mem:SI (plus:DI (reg/f:DI 205)
+                (const_int 28 [0x1c])) [1 _50->_attrs+0 S4 A32])) "../ncurses/./base/lib_slkrefr.c":119:14 75 {*movsi_internal}
+     (nil))
+(insn 212 211 213 30 (set (reg:DI 207)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 8 [0x8])) [9 slk_2->win+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":119:14 74 {*movdi_internal}
+     (nil))
+(insn 213 212 214 30 (set (reg:SI 4 si)
+        (reg:SI 206)) "../ncurses/./base/lib_slkrefr.c":119:14 75 {*movsi_internal}
+     (nil))
+(insn 214 213 215 30 (set (reg:DI 5 di)
+        (reg:DI 207)) "../ncurses/./base/lib_slkrefr.c":119:14 74 {*movdi_internal}
+     (nil))
+(call_insn 215 214 216 30 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wattrset") [flags 0x41]  <function_decl 0x7f0680bec600 wattrset>) [0 wattrset S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":119:14 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wattrset") [flags 0x41]  <function_decl 0x7f0680bec600 wattrset>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 216 215 217 30 (set (reg/f:DI 208)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":122:14 74 {*movdi_internal}
+     (nil))
+(insn 217 216 218 30 (parallel [
+            (set (reg/f:DI 160 [ prephitmp_171 ])
+                (plus:DI (reg:DI 152 [ _140 ])
+                    (reg/f:DI 208)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":122:14 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])
+            (reg:DI 152 [ _140 ]))
+        (nil)))
+;;  succ:       31 [always]  count:240102094 (estimated locally) (FALLTHRU)
+
+;; basic block 31, loop depth 1, count 716722668 (estimated locally), maybe hot
+;;  prev block 30, next block 32, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       10 [50.0% (guessed)]  count:358361334 (estimated locally)
+;;              14 [always]  count:79233690 (estimated locally) (FALLTHRU)
+;;              15 [always]  count:39025549 (estimated locally) (FALLTHRU)
+;;              30 [always]  count:240102094 (estimated locally) (FALLTHRU)
+(code_label 218 217 219 31 9 (nil) [1 uses])
+(note 219 218 220 31 [bb 31] NOTE_INSN_BASIC_BLOCK)
+(insn 220 219 221 31 (set (mem:QI (plus:DI (reg/f:DI 160 [ prephitmp_171 ])
+                (const_int 20 [0x14])) [0 prephitmp_171->dirty+0 S1 A32])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":122:24 77 {*movqi_internal}
+     (nil))
+;;  succ:       32 [always]  count:716722668 (estimated locally) (FALLTHRU)
+
+;; basic block 32, loop depth 1, count 955630226 (estimated locally), maybe hot
+;;  prev block 31, next block 34, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       9 [50.0% (guessed)]  count:238907556 (estimated locally)
+;;              31 [always]  count:716722668 (estimated locally) (FALLTHRU)
+(code_label 221 220 222 32 8 (nil) [1 uses])
+(note 222 221 223 32 [bb 32] NOTE_INSN_BASIC_BLOCK)
+(insn 223 222 224 32 (parallel [
+            (set (reg:DI 144 [ ivtmp.20 ])
+                (plus:DI (reg:DI 144 [ ivtmp.20 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":96:19 210 {*adddi_1}
+     (nil))
+(insn 224 223 225 32 (set (reg:SI 209)
+        (sign_extend:SI (mem:HI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 26 [0x1a])) [11 slk_2->labcnt+0 S2 A16]))) "../ncurses/./base/lib_slkrefr.c":96:24 151 {extendhisi2}
+     (nil))
+(insn 225 224 226 32 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 209)
+            (subreg:SI (reg:DI 144 [ ivtmp.20 ]) 0))) "../ncurses/./base/lib_slkrefr.c":96:19 11 {*cmpsi_1}
+     (nil))
+(jump_insn 226 225 231 32 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 36)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":96:19 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 36)
+;;  succ:       8 [89.0% (guessed)]  count:850510902 (estimated locally) (DFS_BACK)
+;;              5 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+
+;; basic block 34, loop depth 0, count 69685844 (estimated locally), maybe hot
+;;  prev block 32, next block 35, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [59.0% (guessed)]  count:69685844 (estimated locally)
+(code_label 231 226 232 34 5 (nil) [1 uses])
+(note 232 231 233 34 [bb 34] NOTE_INSN_BASIC_BLOCK)
+(insn 233 232 234 34 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 1 [0x1])) [6 slk_2->hidden+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":131:5 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 234 233 235 34 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 246)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":131:5 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 246)
+;;  succ:       35 [50.0% (guessed)]  count:34842922 (estimated locally) (FALLTHRU)
+;;              36 [50.0% (guessed)]  count:34842922 (estimated locally)
+
+;; basic block 35, loop depth 0, count 34842922 (estimated locally), maybe hot
+;;  prev block 34, next block 36, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       34 [50.0% (guessed)]  count:34842922 (estimated locally) (FALLTHRU)
+(note 235 234 236 35 [bb 35] NOTE_INSN_BASIC_BLOCK)
+(call_insn 236 235 237 35 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f0680caa600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":132:6 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f0680caa600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 237 236 238 35 (set (reg/f:DI 123 [ _60 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_slkrefr.c":132:6 74 {*movdi_internal}
+     (nil))
+(insn 238 237 239 35 (set (reg/f:DI 210)
+        (mem/f:DI (plus:DI (reg/f:DI 123 [ _60 ])
+                (const_int 720 [0x2d0])) [50 _60->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":132:6 74 {*movdi_internal}
+     (nil))
+(insn 239 238 240 35 (set (reg:DI 211)
+        (mem/f:DI (plus:DI (reg/f:DI 210)
+                (const_int 1256 [0x4e8])) [4 MEM[(char * *)_61 + 1256B]+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":132:6 74 {*movdi_internal}
+     (nil))
+(insn 240 239 241 35 (set (reg:DI 1 dx)
+        (reg:DI 211)) "../ncurses/./base/lib_slkrefr.c":132:6 74 {*movdi_internal}
+     (nil))
+(insn 241 240 242 35 (set (reg:DI 212)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x7f06809bebd0 *.LC2>)) "../ncurses/./base/lib_slkrefr.c":132:6 74 {*movdi_internal}
+     (nil))
+(insn 242 241 243 35 (set (reg:DI 4 si)
+        (reg:DI 212)) "../ncurses/./base/lib_slkrefr.c":132:6 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x7f06809bebd0 *.LC2>)
+        (nil)))
+(insn 243 242 244 35 (set (reg:DI 5 di)
+        (reg/v/f:DI 163 [ sp ])) "../ncurses/./base/lib_slkrefr.c":132:6 74 {*movdi_internal}
+     (nil))
+(call_insn/j 244 243 246 35 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_putp_sp") [flags 0x41]  <function_decl 0x7f0680dadd00 _nc_putp_sp>) [0 _nc_putp_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":132:6 828 {*sibcall_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_putp_sp") [flags 0x41]  <function_decl 0x7f0680dadd00 _nc_putp_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+;;  succ:       EXIT [always]  count:34842922 (estimated locally) (ABNORMAL,SIBCALL)
+
+;; basic block 36, loop depth 0, count 34842922 (estimated locally), maybe hot
+;;  prev block 35, next block 37, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       34 [50.0% (guessed)]  count:34842922 (estimated locally)
+(code_label 246 244 247 36 19 (nil) [1 uses])
+(note 247 246 248 36 [bb 36] NOTE_INSN_BASIC_BLOCK)
+(call_insn 248 247 249 36 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f0680caa600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":134:6 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f0680caa600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 249 248 250 36 (set (reg/f:DI 126 [ _63 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_slkrefr.c":134:6 74 {*movdi_internal}
+     (nil))
+(insn 250 249 251 36 (set (reg/f:DI 213)
+        (mem/f:DI (plus:DI (reg/f:DI 126 [ _63 ])
+                (const_int 720 [0x2d0])) [50 _63->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":134:6 74 {*movdi_internal}
+     (nil))
+(insn 251 250 252 36 (set (reg:DI 214)
+        (mem/f:DI (plus:DI (reg/f:DI 213)
+                (const_int 1248 [0x4e0])) [4 MEM[(char * *)_64 + 1248B]+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":134:6 74 {*movdi_internal}
+     (nil))
+(insn 252 251 253 36 (set (reg:DI 1 dx)
+        (reg:DI 214)) "../ncurses/./base/lib_slkrefr.c":134:6 74 {*movdi_internal}
+     (nil))
+(insn 253 252 254 36 (set (reg:DI 215)
+        (symbol_ref/f:DI ("*.LC3") [flags 0x2]  <var_decl 0x7f06809bec60 *.LC3>)) "../ncurses/./base/lib_slkrefr.c":134:6 74 {*movdi_internal}
+     (nil))
+(insn 254 253 255 36 (set (reg:DI 4 si)
+        (reg:DI 215)) "../ncurses/./base/lib_slkrefr.c":134:6 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC3") [flags 0x2]  <var_decl 0x7f06809bec60 *.LC3>)
+        (nil)))
+(insn 255 254 256 36 (set (reg:DI 5 di)
+        (reg/v/f:DI 163 [ sp ])) "../ncurses/./base/lib_slkrefr.c":134:6 74 {*movdi_internal}
+     (nil))
+(call_insn/j 256 255 260 36 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_putp_sp") [flags 0x41]  <function_decl 0x7f0680dadd00 _nc_putp_sp>) [0 _nc_putp_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":134:6 828 {*sibcall_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_putp_sp") [flags 0x41]  <function_decl 0x7f0680dadd00 _nc_putp_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+;;  succ:       EXIT [always]  count:34842922 (estimated locally) (ABNORMAL,SIBCALL)
+
+;; basic block 37, loop depth 0, count 109271126 (estimated locally), maybe hot
+;;  prev block 36, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       5 [41.0% (guessed)]  count:48425756 (estimated locally) (FALLTHRU)
+;;              2 [34.0% (guessed)]  count:60845370 (estimated locally) (FALLTHRU)
+(code_label 260 256 261 37 1 (nil) [0 uses])
+(note 261 260 0 37 [bb 37] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       EXIT [always]  count:109271126 (estimated locally) (FALLTHRU)
+
+;; basic block 1, loop depth 0, count 178956970 (estimated locally), maybe hot
+;;  prev block 37, next block (nil), flags: (REACHABLE, RTL, VISITED)
+;;  pred:       36 [always]  count:34842922 (estimated locally) (ABNORMAL,SIBCALL)
+;;              35 [always]  count:34842922 (estimated locally) (ABNORMAL,SIBCALL)
+;;              37 [always]  count:109271126 (estimated locally) (FALLTHRU)
+;;  succ:      
+
+
+
+
+try_optimize_cfg iteration 1
+
+;; basic block 2, loop depth 0, count 178956968 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (RTL)
+;;  pred:       ENTRY [always]  count:178956968 (estimated locally) (FALLTHRU)
+(note 7 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 163 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/lib_slkrefr.c":79:1 74 {*movdi_internal}
+     (nil))
+(note 3 2 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 3 10 2 (set (reg/v/f:DI 82 [ slk ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 163 [ sp ])
+                (const_int 800 [0x320])) [14 sp_1(D)->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":89:9 74 {*movdi_internal}
+     (nil))
+(insn 10 9 11 2 (set (reg/v:SI 83 [ fmt ])
+        (mem:SI (plus:DI (reg/v/f:DI 163 [ sp ])
+                (const_int 808 [0x328])) [1 sp_1(D)->slk_format+0 S4 A64])) "../ncurses/./base/lib_slkrefr.c":90:9 75 {*movsi_internal}
+     (nil))
+(call_insn 11 10 12 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f0680caa600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":91:14 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f0680caa600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 12 11 13 2 (set (reg/f:DI 84 [ _4 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_slkrefr.c":91:14 74 {*movdi_internal}
+     (nil))
+(insn 13 12 14 2 (set (reg/f:DI 164)
+        (mem/f:DI (plus:DI (reg/f:DI 84 [ _4 ])
+                (const_int 712 [0x2c8])) [31 _4->type2.Numbers+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":91:12 74 {*movdi_internal}
+     (nil))
+(insn 14 13 15 2 (set (reg/v:SI 86 [ numlab ])
+        (mem:SI (plus:DI (reg/f:DI 164)
+                (const_int 32 [0x20])) [1 MEM[(int *)_5 + 32B]+0 S4 A32])) "../ncurses/./base/lib_slkrefr.c":91:12 75 {*movsi_internal}
+     (nil))
+(insn 15 14 16 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 1 [0x1])) [6 slk_2->hidden+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":93:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 16 15 20 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 20)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":93:8 806 {*jcc}
+     (int_list:REG_BR_PROB 708669604 (nil))
+ -> 20)
+;;  succ:       33 [34.0% (guessed)]  count:60845370 (estimated locally) (FALLTHRU)
+;;              3 [66.0% (guessed)]  count:118111598 (estimated locally)
+
+;; basic block 3, loop depth 0, count 118111598 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (RTL)
+;;  pred:       2 [66.0% (guessed)]  count:118111598 (estimated locally)
+(code_label 20 16 21 3 2 (nil) [1 uses])
+(note 21 20 24 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 24 21 25 3 (set (reg:CCNO 17 flags)
+        (compare:CCNO (mem:HI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 26 [0x1a])) [11 slk_2->labcnt+0 S2 A16])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":96:19 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 25 24 227 3 (set (pc)
+        (if_then_else (gt (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 263)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":96:19 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 263)
+;;  succ:       5 [89.0% (guessed)]  count:105119322 (estimated locally)
+;;              4 [11.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 118111600 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (RTL)
+;;  pred:       3 [11.0% (guessed)]  count:12992276 (estimated locally) (FALLTHRU)
+;;              29 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+(code_label 227 25 26 4 18 (nil) [0 uses])
+(note 26 227 27 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 27 26 30 4 (set (mem:QI (reg/v/f:DI 82 [ slk ]) [6 slk_2->dirty+0 S1 A64])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":125:16 77 {*movqi_internal}
+     (nil))
+(insn 30 27 31 4 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:SI 86 [ numlab ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":127:8 7 {*cmpsi_ccno_1}
+     (nil))
+(jump_insn 31 30 263 4 (set (pc)
+        (if_then_else (gt (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref 231)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":127:8 806 {*jcc}
+     (int_list:REG_BR_PROB 633507684 (nil))
+ -> 231)
+;;  succ:       30 [59.0% (guessed)]  count:69685844 (estimated locally)
+;;              33 [41.0% (guessed)]  count:48425756 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 105119322 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (RTL)
+;;  pred:       3 [89.0% (guessed)]  count:105119322 (estimated locally)
+(code_label 263 31 262 5 20 (nil) [1 uses])
+(note 262 263 4 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 4 262 36 5 (set (reg:DI 144 [ ivtmp.20 ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":96:19 74 {*movdi_internal}
+     (nil))
+;;  succ:       6 [always]  count:105119322 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 1, count 955630224 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (RTL)
+;;  pred:       29 [89.0% (guessed)]  count:850510902 (estimated locally) (DFS_BACK)
+;;              5 [always]  count:105119322 (estimated locally) (FALLTHRU)
+(code_label 36 4 37 6 4 (nil) [1 uses])
+(note 37 36 38 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 38 37 39 6 (set (reg:DI 165)
+        (reg:DI 144 [ ivtmp.20 ])) 74 {*movdi_internal}
+     (nil))
+(insn 39 38 40 6 (parallel [
+            (set (reg:DI 166)
+                (ashift:DI (reg:DI 165)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) 656 {*ashldi3_1}
+     (nil))
+(insn 40 39 41 6 (parallel [
+            (set (reg:DI 167)
+                (plus:DI (reg:DI 166)
+                    (reg:DI 144 [ ivtmp.20 ])))
+            (clobber (reg:CC 17 flags))
+        ]) 210 {*adddi_1}
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 144 [ ivtmp.20 ])
+            (const_int 3 [0x3]))
+        (nil)))
+(insn 41 40 42 6 (parallel [
+            (set (reg:DI 168)
+                (ashift:DI (reg:DI 167)
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) 656 {*ashldi3_1}
+     (nil))
+(insn 42 41 43 6 (set (reg:DI 167)
+        (reg:DI 168)) 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (mult:DI (reg:DI 144 [ ivtmp.20 ])
+            (const_int 24 [0x18]))
+        (nil)))
+(insn 43 42 44 6 (set (reg:DI 152 [ _140 ])
+        (reg:DI 167)) 74 {*movdi_internal}
+     (nil))
+(insn 44 43 45 6 (set (reg/f:DI 169)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":97:28 74 {*movdi_internal}
+     (nil))
+(insn 45 44 46 6 (parallel [
+            (set (reg/f:DI 160 [ prephitmp_171 ])
+                (plus:DI (reg:DI 152 [ _140 ])
+                    (reg/f:DI 169)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":97:28 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])
+            (reg:DI 152 [ _140 ]))
+        (nil)))
+(insn 46 45 47 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (reg/v/f:DI 82 [ slk ]) [6 slk_2->dirty+0 S1 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":97:5 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 47 46 48 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 51)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":97:5 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 51)
+;;  succ:       8 [50.0% (guessed)]  count:477815112 (estimated locally)
+;;              7 [50.0% (guessed)]  count:477815112 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 1, count 477815112 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (RTL)
+;;  pred:       6 [50.0% (guessed)]  count:477815112 (estimated locally) (FALLTHRU)
+(note 48 47 49 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 49 48 50 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/f:DI 160 [ prephitmp_171 ])
+                    (const_int 20 [0x14])) [0 _182->dirty+0 S1 A32])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":97:17 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 50 49 51 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 221)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":97:17 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 221)
+;;  succ:       8 [50.0% (guessed)]  count:238907556 (estimated locally) (FALLTHRU)
+;;              29 [50.0% (guessed)]  count:238907556 (estimated locally)
+
+;; basic block 8, loop depth 1, count 716722668 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (RTL)
+;;  pred:       7 [50.0% (guessed)]  count:238907556 (estimated locally) (FALLTHRU)
+;;              6 [50.0% (guessed)]  count:477815112 (estimated locally)
+(code_label 51 50 52 8 7 (nil) [1 uses])
+(note 52 51 53 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 53 52 54 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/f:DI 160 [ prephitmp_171 ])
+                    (const_int 21 [0x15])) [0 _182->visible+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":98:9 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 54 53 55 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 218)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":98:9 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 218)
+;;  succ:       9 [50.0% (guessed)]  count:358361334 (estimated locally) (FALLTHRU)
+;;              28 [50.0% (guessed)]  count:358361334 (estimated locally)
+
+;; basic block 9, loop depth 1, count 358361334 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (RTL)
+;;  pred:       8 [50.0% (guessed)]  count:358361334 (estimated locally) (FALLTHRU)
+(note 55 54 58 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 58 55 59 9 (set (reg:CCNO 17 flags)
+        (compare:CCNO (reg/v:SI 86 [ numlab ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":99:14 7 {*cmpsi_ccno_1}
+     (nil))
+(insn 59 58 60 9 (set (reg:QI 171)
+        (gt:QI (reg:CCNO 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":99:14 802 {*setcc_qi}
+     (nil))
+(insn 60 59 61 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 171)
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":99:6 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 61 60 266 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 103)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":99:6 806 {*jcc}
+     (int_list:REG_BR_PROB 359703516 (nil))
+ -> 103)
+;;  succ:       14 [33.5% (guessed)]  count:120051047 (estimated locally)
+;;              10 [66.5% (guessed)]  count:238310287 (estimated locally) (FALLTHRU)
+
+;; basic block 10, loop depth 1, count 238310287 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (RTL)
+;;  pred:       9 [66.5% (guessed)]  count:238310287 (estimated locally) (FALLTHRU)
+(note 266 61 64 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 64 266 65 10 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 83 [ fmt ])
+            (const_int 2 [0x2]))) "../ncurses/./base/lib_slkrefr.c":99:21 11 {*cmpsi_1}
+     (nil))
+(insn 65 64 66 10 (set (reg:QI 173)
+        (le:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":99:21 802 {*setcc_qi}
+     (nil))
+(insn 66 65 67 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 173)
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":99:6 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 67 66 68 10 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 103)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":99:6 806 {*jcc}
+     (int_list:REG_BR_PROB 540907540 (nil))
+ -> 103)
+;;  succ:       11 [49.6% (guessed)]  count:118259240 (estimated locally) (FALLTHRU)
+;;              14 [50.4% (guessed)]  count:120051047 (estimated locally)
+
+;; basic block 11, loop depth 1, count 118259239 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (RTL)
+;;  pred:       10 [49.6% (guessed)]  count:118259240 (estimated locally) (FALLTHRU)
+(note 68 67 69 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(call_insn 69 68 70 11 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f0680caa600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":103:15 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f0680caa600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 70 69 71 11 (set (reg/f:DI 94 [ _23 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_slkrefr.c":103:15 74 {*movdi_internal}
+     (nil))
+(insn 71 70 72 11 (set (reg/f:DI 174)
+        (mem/f:DI (plus:DI (reg/f:DI 94 [ _23 ])
+                (const_int 712 [0x2c8])) [31 _23->type2.Numbers+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":103:15 74 {*movdi_internal}
+     (nil))
+(insn 72 71 73 11 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem:SI (plus:DI (reg/f:DI 174)
+                    (const_int 32 [0x20])) [1 MEM[(int *)_24 + 32B]+0 S4 A32])
+            (subreg:SI (reg:DI 144 [ ivtmp.20 ]) 0))) "../ncurses/./base/lib_slkrefr.c":103:10 11 {*cmpsi_1}
+     (nil))
+(jump_insn 73 72 74 11 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 79)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":103:10 806 {*jcc}
+     (int_list:REG_BR_PROB 354334804 (nil))
+ -> 79)
+;;  succ:       13 [33.0% (guessed)]  count:39025549 (estimated locally)
+;;              12 [67.0% (guessed)]  count:79233690 (estimated locally) (FALLTHRU)
+
+;; basic block 12, loop depth 1, count 79233690 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (RTL)
+;;  pred:       11 [67.0% (guessed)]  count:79233690 (estimated locally) (FALLTHRU)
+(note 74 73 75 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 75 74 76 12 (set (reg/f:DI 175)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 76 75 79 12 (parallel [
+            (set (reg/f:DI 160 [ prephitmp_171 ])
+                (plus:DI (reg:DI 152 [ _140 ])
+                    (reg/f:DI 175)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":104:4 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])
+            (reg:DI 152 [ _140 ]))
+        (nil)))
+;;  succ:       28 [always]  count:79233690 (estimated locally) (FALLTHRU)
+
+;; basic block 13, loop depth 1, count 39025549 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (RTL)
+;;  pred:       11 [33.0% (guessed)]  count:39025549 (estimated locally)
+(code_label 79 76 80 13 11 (nil) [1 uses])
+(note 80 79 81 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 81 80 82 13 (set (reg/f:DI 176)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 82 81 83 13 (set (reg:DI 100 [ _29 ])
+        (mem/f:DI (plus:DI (plus:DI (reg/f:DI 176)
+                    (reg:DI 152 [ _140 ]))
+                (const_int 8 [0x8])) [4 _27->form_text+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(call_insn 83 82 84 13 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f0680caa600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":104:4 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f0680caa600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 84 83 85 13 (set (reg/f:DI 101 [ _32 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 85 84 86 13 (parallel [
+            (set (reg:DI 177)
+                (plus:DI (reg:DI 144 [ ivtmp.20 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":104:4 210 {*adddi_1}
+     (nil))
+(insn 86 85 87 13 (set (reg/f:DI 178)
+        (mem/f:DI (plus:DI (reg/f:DI 101 [ _32 ])
+                (const_int 720 [0x2d0])) [50 _32->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 87 86 88 13 (set (reg:DI 179)
+        (mem/f:DI (plus:DI (reg/f:DI 178)
+                (const_int 1176 [0x498])) [4 MEM[(char * *)_33 + 1176B]+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 88 87 89 13 (set (reg:DI 1 dx)
+        (reg:DI 100 [ _29 ])) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 89 88 90 13 (set (reg:DI 4 si)
+        (reg:DI 177)) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 90 89 91 13 (set (reg:DI 5 di)
+        (reg:DI 179)) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 91 90 92 13 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":104:4 77 {*movqi_internal}
+     (nil))
+(call_insn 92 91 93 13 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("tparm") [flags 0x41]  <function_decl 0x7f0680bfb900 tparm>) [0 tparm S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":104:4 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("tparm") [flags 0x41]  <function_decl 0x7f0680bfb900 tparm>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (expr_list:DI (use (reg:DI 1 dx))
+                    (nil))))))
+(insn 93 92 94 13 (set (reg/f:DI 104 [ _35 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 94 93 95 13 (set (reg:DI 1 dx)
+        (reg/f:DI 104 [ _35 ])) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 95 94 96 13 (set (reg:DI 180)
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f06809beab0 *.LC0>)) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(insn 96 95 97 13 (set (reg:DI 4 si)
+        (reg:DI 180)) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f06809beab0 *.LC0>)
+        (nil)))
+(insn 97 96 98 13 (set (reg:DI 5 di)
+        (reg/v/f:DI 163 [ sp ])) "../ncurses/./base/lib_slkrefr.c":104:4 74 {*movdi_internal}
+     (nil))
+(call_insn 98 97 99 13 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_putp_sp") [flags 0x41]  <function_decl 0x7f0680dadd00 _nc_putp_sp>) [0 _nc_putp_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":104:4 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_putp_sp") [flags 0x41]  <function_decl 0x7f0680dadd00 _nc_putp_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+(insn 99 98 100 13 (set (reg/f:DI 181)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":122:14 74 {*movdi_internal}
+     (nil))
+(insn 100 99 103 13 (parallel [
+            (set (reg/f:DI 160 [ prephitmp_171 ])
+                (plus:DI (reg:DI 152 [ _140 ])
+                    (reg/f:DI 181)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":122:14 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])
+            (reg:DI 152 [ _140 ]))
+        (nil)))
+;;  succ:       28 [always]  count:39025549 (estimated locally) (FALLTHRU)
+
+;; basic block 14, loop depth 1, count 240102094 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (RTL)
+;;  pred:       10 [50.4% (guessed)]  count:120051047 (estimated locally)
+;;              9 [33.5% (guessed)]  count:120051047 (estimated locally)
+(code_label 103 100 104 14 10 (nil) [2 uses])
+(note 104 103 105 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 105 104 106 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 83 [ fmt ])
+            (const_int 4 [0x4]))) "../ncurses/./base/lib_slkrefr.c":111:10 11 {*cmpsi_1}
+     (nil))
+(jump_insn 106 105 107 14 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 188)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":111:10 806 {*jcc}
+     (int_list:REG_BR_PROB 856416484 (nil))
+ -> 188)
+;;  succ:       15 [20.2% (guessed)]  count:48596664 (estimated locally) (FALLTHRU)
+;;              27 [79.8% (guessed)]  count:191505430 (estimated locally)
+
+;; basic block 15, loop depth 1, count 48596664 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (RTL)
+;;  pred:       14 [20.2% (guessed)]  count:48596664 (estimated locally) (FALLTHRU)
+(note 107 106 108 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 108 107 109 15 (set (reg/f:DI 161 [ pretmp_175 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 8 [0x8])) [9 slk_2->win+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":112:4 74 {*movdi_internal}
+     (nil))
+(insn 109 108 110 15 (set (reg:DI 5 di)
+        (reg/f:DI 161 [ pretmp_175 ])) "../ncurses/./base/lib_slkrefr.c":61:24 74 {*movdi_internal}
+     (nil))
+(call_insn 110 109 111 15 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_screen_of") [flags 0x41]  <function_decl 0x7f0680d91100 _nc_screen_of>) [0 _nc_screen_of S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":61:24 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_screen_of") [flags 0x41]  <function_decl 0x7f0680d91100 _nc_screen_of>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 111 110 112 15 (set (reg/v/f:DI 130 [ sp ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_slkrefr.c":61:24 74 {*movdi_internal}
+     (nil))
+(insn 112 111 113 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 161 [ pretmp_175 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":63:9 8 {*cmpdi_ccno_1}
+     (nil))
+(insn 113 112 114 15 (set (reg:QI 183)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":63:9 802 {*setcc_qi}
+     (nil))
+(insn 114 113 115 15 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 183)
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":63:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 115 114 267 15 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 269)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":63:8 806 {*jcc}
+     (int_list:REG_BR_PROB 268435460 (nil))
+ -> 269)
+;;  succ:       17 [25.0% (guessed)]  count:12149166 (estimated locally)
+;;              16 [75.0% (guessed)]  count:36447498 (estimated locally) (FALLTHRU)
+
+;; basic block 16, loop depth 1, count 36447498 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (RTL)
+;;  pred:       15 [75.0% (guessed)]  count:36447498 (estimated locally) (FALLTHRU)
+(note 267 115 116 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 116 267 117 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 130 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":63:13 8 {*cmpdi_ccno_1}
+     (nil))
+(insn 117 116 118 16 (set (reg:QI 185)
+        (ne:QI (reg:CCZ 17 flags)
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":63:13 802 {*setcc_qi}
+     (nil))
+(insn 118 117 119 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 185)
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":63:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 119 118 269 16 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 126)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":63:8 806 {*jcc}
+     (int_list:REG_BR_PROB 715827884 (nil))
+ -> 126)
+;;  succ:       18 [66.7% (guessed)]  count:24298332 (estimated locally)
+;;              17 [33.3% (guessed)]  count:12149166 (estimated locally) (FALLTHRU)
+
+;; basic block 17, loop depth 1, count 24298332 (estimated locally), maybe hot
+;;  prev block 16, next block 18, flags: (RTL)
+;;  pred:       16 [33.3% (guessed)]  count:12149166 (estimated locally) (FALLTHRU)
+;;              15 [25.0% (guessed)]  count:12149166 (estimated locally)
+(code_label 269 119 121 17 22 (nil) [1 uses])
+(note 121 269 122 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 122 121 123 17 (set (reg/f:DI 186)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":113:51 74 {*movdi_internal}
+     (nil))
+(insn 123 122 126 17 (parallel [
+            (set (reg/f:DI 160 [ prephitmp_171 ])
+                (plus:DI (reg:DI 152 [ _140 ])
+                    (reg/f:DI 186)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":113:51 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])
+            (reg:DI 152 [ _140 ]))
+        (nil)))
+;;  succ:       27 [always]  count:24298332 (estimated locally) (FALLTHRU)
+
+;; basic block 18, loop depth 1, count 24298332 (estimated locally), maybe hot
+;;  prev block 17, next block 19, flags: (RTL)
+;;  pred:       16 [66.7% (guessed)]  count:24298332 (estimated locally)
+(code_label 126 123 127 18 13 (nil) [1 uses])
+(note 127 126 128 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 128 127 129 18 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:SI (plus:DI (reg/v/f:DI 130 [ sp ])
+                    (const_int 808 [0x328])) [1 sp_88->slk_format+0 S4 A64])
+            (const_int 4 [0x4]))) "../ncurses/./base/lib_slkrefr.c":63:19 11 {*cmpsi_1}
+     (nil))
+(jump_insn 129 128 130 18 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 135)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":63:19 806 {*jcc}
+     (int_list:REG_BR_PROB 217325348 (nil))
+ -> 135)
+;;  succ:       20 [20.2% (guessed)]  count:4917982 (estimated locally)
+;;              19 [79.8% (guessed)]  count:19380350 (estimated locally) (FALLTHRU)
+
+;; basic block 19, loop depth 1, count 19380350 (estimated locally), maybe hot
+;;  prev block 18, next block 20, flags: (RTL)
+;;  pred:       18 [79.8% (guessed)]  count:19380350 (estimated locally) (FALLTHRU)
+(note 130 129 131 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 131 130 132 19 (set (reg/f:DI 187)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":113:51 74 {*movdi_internal}
+     (nil))
+(insn 132 131 135 19 (parallel [
+            (set (reg/f:DI 160 [ prephitmp_171 ])
+                (plus:DI (reg:DI 152 [ _140 ])
+                    (reg/f:DI 187)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":113:51 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])
+            (reg:DI 152 [ _140 ]))
+        (nil)))
+;;  succ:       27 [always]  count:19380350 (estimated locally) (FALLTHRU)
+
+;; basic block 20, loop depth 1, count 4917982 (estimated locally), maybe hot
+;;  prev block 19, next block 21, flags: (RTL)
+;;  pred:       18 [20.2% (guessed)]  count:4917982 (estimated locally)
+(code_label 135 132 136 20 15 (nil) [1 uses])
+(note 136 135 137 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 137 136 138 20 (set (reg:SI 1 dx)
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":66:9 75 {*movsi_internal}
+     (nil))
+(insn 138 137 139 20 (set (reg:SI 4 si)
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":66:9 75 {*movsi_internal}
+     (nil))
+(insn 139 138 140 20 (set (reg:DI 5 di)
+        (reg/f:DI 161 [ pretmp_175 ])) "../ncurses/./base/lib_slkrefr.c":66:9 74 {*movdi_internal}
+     (nil))
+(call_insn 140 139 141 20 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wmove") [flags 0x41]  <function_decl 0x7f0680bf4600 wmove>) [0 wmove S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":66:9 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wmove") [flags 0x41]  <function_decl 0x7f0680bf4600 wmove>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 141 140 142 20 (set (reg:SI 135 [ _93 ])
+        (reg:SI 0 ax)) "../ncurses/./base/lib_slkrefr.c":66:9 75 {*movsi_internal}
+     (nil))
+(insn 142 141 143 20 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 135 [ _93 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/lib_slkrefr.c":66:2 11 {*cmpsi_1}
+     (nil))
+(jump_insn 143 142 144 20 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 151)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":66:2 806 {*jcc}
+     (int_list:REG_BR_PROB 548896828 (nil))
+ -> 151)
+;;  succ:       21 [48.9% (guessed)]  count:2403910 (estimated locally) (FALLTHRU)
+;;              22 [51.1% (guessed)]  count:2514072 (estimated locally)
+
+;; basic block 21, loop depth 1, count 2403910 (estimated locally), maybe hot
+;;  prev block 20, next block 22, flags: (RTL)
+;;  pred:       20 [48.9% (guessed)]  count:2403910 (estimated locally) (FALLTHRU)
+(note 144 143 145 21 [bb 21] NOTE_INSN_BASIC_BLOCK)
+(insn 145 144 146 21 (set (reg:SI 189)
+        (mem:SI (plus:DI (reg/f:DI 161 [ pretmp_175 ])
+                (const_int 12 [0xc])) [1 pretmp_175->_maxx+0 S4 A32])) "../ncurses/./base/lib_slkrefr.c":66:9 75 {*movsi_internal}
+     (nil))
+(insn 146 145 147 21 (parallel [
+            (set (reg:SI 188)
+                (plus:SI (reg:SI 189)
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":66:9 209 {*addsi_1}
+     (expr_list:REG_EQUAL (plus:SI (mem:SI (plus:DI (reg/f:DI 161 [ pretmp_175 ])
+                    (const_int 12 [0xc])) [1 pretmp_175->_maxx+0 S4 A32])
+            (const_int 1 [0x1]))
+        (nil)))
+(insn 147 146 148 21 (set (reg:SI 1 dx)
+        (reg:SI 188)) "../ncurses/./base/lib_slkrefr.c":66:9 75 {*movsi_internal}
+     (nil))
+(insn 148 147 149 21 (set (reg:SI 4 si)
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":66:9 75 {*movsi_internal}
+     (nil))
+(insn 149 148 150 21 (set (reg:DI 5 di)
+        (reg/f:DI 161 [ pretmp_175 ])) "../ncurses/./base/lib_slkrefr.c":66:9 74 {*movdi_internal}
+     (nil))
+(call_insn 150 149 151 21 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("whline") [flags 0x41]  <function_decl 0x7f0680bf1b00 whline>) [0 whline S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":66:9 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("whline") [flags 0x41]  <function_decl 0x7f0680bf1b00 whline>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+;;  succ:       22 [always]  count:2403910 (estimated locally) (FALLTHRU)
+
+;; basic block 22, loop depth 1, count 4917982 (estimated locally), maybe hot
+;;  prev block 21, next block 23, flags: (RTL)
+;;  pred:       20 [51.1% (guessed)]  count:2514072 (estimated locally)
+;;              21 [always]  count:2403910 (estimated locally) (FALLTHRU)
+(code_label 151 150 152 22 16 (nil) [1 uses])
+(note 152 151 153 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 153 152 154 22 (set (reg:SI 1 dx)
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":67:2 75 {*movsi_internal}
+     (nil))
+(insn 154 153 155 22 (set (reg:SI 4 si)
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":67:2 75 {*movsi_internal}
+     (nil))
+(insn 155 154 156 22 (set (reg:DI 5 di)
+        (reg/f:DI 161 [ pretmp_175 ])) "../ncurses/./base/lib_slkrefr.c":67:2 74 {*movdi_internal}
+     (nil))
+(call_insn 156 155 157 22 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wmove") [flags 0x41]  <function_decl 0x7f0680bf4600 wmove>) [0 wmove S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":67:2 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wmove") [flags 0x41]  <function_decl 0x7f0680bf4600 wmove>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 157 156 160 22 (set (reg/f:DI 129 [ _78 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 130 [ sp ])
+                (const_int 800 [0x320])) [14 sp_88->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":69:20 74 {*movdi_internal}
+     (nil))
+(insn 160 157 161 22 (set (reg:CCNO 17 flags)
+        (compare:CCNO (mem:HI (plus:DI (reg/f:DI 129 [ _78 ])
+                    (const_int 24 [0x18])) [11 _115->maxlab+0 S2 A64])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":69:16 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 161 160 162 22 (set (pc)
+        (if_then_else (gt (reg:CCNO 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 265)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":69:16 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 265)
+;;  succ:       24 [89.0% (guessed)]  count:4377004 (estimated locally)
+;;              23 [11.0% (guessed)]  count:540978 (estimated locally) (FALLTHRU)
+
+;; basic block 23, loop depth 1, count 540978 (estimated locally), maybe hot
+;;  prev block 22, next block 24, flags: (RTL)
+;;  pred:       22 [11.0% (guessed)]  count:540978 (estimated locally) (FALLTHRU)
+(note 162 161 163 23 [bb 23] NOTE_INSN_BASIC_BLOCK)
+(insn 163 162 164 23 (set (reg/f:DI 190)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":113:51 74 {*movdi_internal}
+     (nil))
+(insn 164 163 265 23 (parallel [
+            (set (reg/f:DI 160 [ prephitmp_171 ])
+                (plus:DI (reg:DI 152 [ _140 ])
+                    (reg/f:DI 190)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":113:51 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])
+            (reg:DI 152 [ _140 ]))
+        (nil)))
+;;  succ:       27 [always]  count:540978 (estimated locally) (FALLTHRU)
+
+;; basic block 24, loop depth 1, count 4377004 (estimated locally), maybe hot
+;;  prev block 23, next block 25, flags: (RTL)
+;;  pred:       22 [89.0% (guessed)]  count:4377004 (estimated locally)
+(code_label 265 164 264 24 21 (nil) [1 uses])
+(note 264 265 5 24 [bb 24] NOTE_INSN_BASIC_BLOCK)
+(insn 5 264 6 24 (set (reg:DI 146 [ ivtmp.17 ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":69:16 74 {*movdi_internal}
+     (nil))
+(insn 6 5 167 24 (set (reg/v:SI 138 [ i ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":69:9 75 {*movsi_internal}
+     (nil))
+;;  succ:       25 [always]  count:4377004 (estimated locally) (FALLTHRU)
+
+;; basic block 25, loop depth 2, count 39790948 (estimated locally), maybe hot
+;;  prev block 24, next block 26, flags: (RTL)
+;;  pred:       25 [89.0% (guessed)]  count:35413944 (estimated locally) (DFS_BACK)
+;;              24 [always]  count:4377004 (estimated locally) (FALLTHRU)
+(code_label 167 6 168 25 17 (nil) [1 uses])
+(note 168 167 169 25 [bb 25] NOTE_INSN_BASIC_BLOCK)
+(insn 169 168 170 25 (parallel [
+            (set (reg/v:SI 138 [ i ])
+                (plus:SI (reg/v:SI 138 [ i ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":70:6 209 {*addsi_1}
+     (nil))
+(insn 170 169 171 25 (set (reg/f:DI 191)
+        (mem/f:DI (plus:DI (reg/f:DI 129 [ _78 ])
+                (const_int 16 [0x10])) [45 _78->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":70:6 74 {*movdi_internal}
+     (nil))
+(insn 171 170 172 25 (set (reg:SI 192)
+        (mem:SI (plus:DI (plus:DI (reg/f:DI 191)
+                    (reg:DI 146 [ ivtmp.17 ]))
+                (const_int 16 [0x10])) [1 _102->ent_x+0 S4 A64])) "../ncurses/./base/lib_slkrefr.c":70:6 75 {*movsi_internal}
+     (nil))
+(insn 172 171 173 25 (set (reg:SI 36 r8)
+        (reg/v:SI 138 [ i ])) "../ncurses/./base/lib_slkrefr.c":70:6 75 {*movsi_internal}
+     (nil))
+(insn 173 172 174 25 (set (reg:DI 193)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f06809beb40 *.LC1>)) "../ncurses/./base/lib_slkrefr.c":70:6 74 {*movdi_internal}
+     (nil))
+(insn 174 173 175 25 (set (reg:DI 2 cx)
+        (reg:DI 193)) "../ncurses/./base/lib_slkrefr.c":70:6 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f06809beb40 *.LC1>)
+        (nil)))
+(insn 175 174 176 25 (set (reg:SI 1 dx)
+        (reg:SI 192)) "../ncurses/./base/lib_slkrefr.c":70:6 75 {*movsi_internal}
+     (nil))
+(insn 176 175 177 25 (set (reg:SI 4 si)
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":70:6 75 {*movsi_internal}
+     (nil))
+(insn 177 176 178 25 (set (reg:DI 5 di)
+        (reg/f:DI 161 [ pretmp_175 ])) "../ncurses/./base/lib_slkrefr.c":70:6 74 {*movdi_internal}
+     (nil))
+(insn 178 177 179 25 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":70:6 77 {*movqi_internal}
+     (nil))
+(call_insn 179 178 180 25 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("mvwprintw") [flags 0x41]  <function_decl 0x7f068107cd00 mvwprintw>) [0 mvwprintw S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":70:6 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("mvwprintw") [flags 0x41]  <function_decl 0x7f068107cd00 mvwprintw>)
+        (nil))
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (expr_list:SI (use (reg:SI 1 dx))
+                    (expr_list:DI (use (reg:DI 2 cx))
+                        (expr_list:SI (use (reg:SI 36 r8))
+                            (nil))))))))
+(insn 180 179 181 25 (set (reg/f:DI 129 [ _78 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 130 [ sp ])
+                (const_int 800 [0x320])) [14 sp_88->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":69:20 74 {*movdi_internal}
+     (nil))
+(insn 181 180 182 25 (parallel [
+            (set (reg:DI 146 [ ivtmp.17 ])
+                (plus:DI (reg:DI 146 [ ivtmp.17 ])
+                    (const_int 24 [0x18])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":69:16 210 {*adddi_1}
+     (nil))
+(insn 182 181 183 25 (set (reg:SI 194)
+        (sign_extend:SI (mem:HI (plus:DI (reg/f:DI 129 [ _78 ])
+                    (const_int 24 [0x18])) [11 _98->maxlab+0 S2 A64]))) "../ncurses/./base/lib_slkrefr.c":69:26 151 {extendhisi2}
+     (nil))
+(insn 183 182 184 25 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg/v:SI 138 [ i ])
+            (reg:SI 194))) "../ncurses/./base/lib_slkrefr.c":69:16 11 {*cmpsi_1}
+     (nil))
+(jump_insn 184 183 185 25 (set (pc)
+        (if_then_else (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 167)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":69:16 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 167)
+;;  succ:       25 [89.0% (guessed)]  count:35413944 (estimated locally) (DFS_BACK)
+;;              26 [11.0% (guessed)]  count:4377004 (estimated locally) (FALLTHRU)
+
+;; basic block 26, loop depth 1, count 4377004 (estimated locally), maybe hot
+;;  prev block 25, next block 27, flags: (RTL)
+;;  pred:       25 [11.0% (guessed)]  count:4377004 (estimated locally) (FALLTHRU)
+(note 185 184 186 26 [bb 26] NOTE_INSN_BASIC_BLOCK)
+(insn 186 185 187 26 (set (reg/f:DI 195)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":113:51 74 {*movdi_internal}
+     (nil))
+(insn 187 186 188 26 (parallel [
+            (set (reg/f:DI 160 [ prephitmp_171 ])
+                (plus:DI (reg:DI 152 [ _140 ])
+                    (reg/f:DI 195)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":113:51 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])
+            (reg:DI 152 [ _140 ]))
+        (nil)))
+;;  succ:       27 [always]  count:4377004 (estimated locally) (FALLTHRU)
+
+;; basic block 27, loop depth 1, count 240102094 (estimated locally), maybe hot
+;;  prev block 26, next block 28, flags: (RTL)
+;;  pred:       14 [79.8% (guessed)]  count:191505430 (estimated locally)
+;;              19 [always]  count:19380350 (estimated locally) (FALLTHRU)
+;;              17 [always]  count:24298332 (estimated locally) (FALLTHRU)
+;;              26 [always]  count:4377004 (estimated locally) (FALLTHRU)
+;;              23 [always]  count:540978 (estimated locally) (FALLTHRU)
+(code_label 188 187 189 27 12 (nil) [1 uses])
+(note 189 188 190 27 [bb 27] NOTE_INSN_BASIC_BLOCK)
+(insn 190 189 191 27 (set (reg:SI 196)
+        (mem:SI (plus:DI (reg/f:DI 160 [ prephitmp_171 ])
+                (const_int 16 [0x10])) [1 prephitmp_159->ent_x+0 S4 A64])) "../ncurses/./base/lib_slkrefr.c":113:7 75 {*movsi_internal}
+     (nil))
+(insn 191 190 192 27 (parallel [
+            (set (reg:SI 197)
+                (smax:SI (reg/v:SI 83 [ fmt ])
+                    (const_int 3 [0x3])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":113:23 1133 {*smaxsi3_1}
+     (nil))
+(insn 192 191 193 27 (parallel [
+            (set (reg:SI 198)
+                (plus:SI (reg:SI 197)
+                    (const_int -3 [0xfffffffffffffffd])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":113:7 209 {*addsi_1}
+     (nil))
+(insn 193 192 194 27 (set (reg:DI 199)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 8 [0x8])) [9 slk_2->win+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":113:7 74 {*movdi_internal}
+     (nil))
+(insn 194 193 195 27 (set (reg:SI 1 dx)
+        (reg:SI 196)) "../ncurses/./base/lib_slkrefr.c":113:7 75 {*movsi_internal}
+     (nil))
+(insn 195 194 196 27 (set (reg:SI 4 si)
+        (reg:SI 198)) "../ncurses/./base/lib_slkrefr.c":113:7 75 {*movsi_internal}
+     (nil))
+(insn 196 195 197 27 (set (reg:DI 5 di)
+        (reg:DI 199)) "../ncurses/./base/lib_slkrefr.c":113:7 74 {*movdi_internal}
+     (nil))
+(call_insn 197 196 198 27 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wmove") [flags 0x41]  <function_decl 0x7f0680bf4600 wmove>) [0 wmove S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":113:7 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wmove") [flags 0x41]  <function_decl 0x7f0680bf4600 wmove>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 198 197 199 27 (set (reg:SI 200)
+        (mem:SI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 32 [0x20])) [1 slk_2->attr.attr+0 S4 A64])) "../ncurses/./base/lib_slkrefr.c":114:14 75 {*movsi_internal}
+     (nil))
+(insn 199 198 200 27 (set (reg:DI 201)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 8 [0x8])) [9 slk_2->win+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":114:14 74 {*movdi_internal}
+     (nil))
+(insn 200 199 201 27 (set (reg:SI 4 si)
+        (reg:SI 200)) "../ncurses/./base/lib_slkrefr.c":114:14 75 {*movsi_internal}
+     (nil))
+(insn 201 200 202 27 (set (reg:DI 5 di)
+        (reg:DI 201)) "../ncurses/./base/lib_slkrefr.c":114:14 74 {*movdi_internal}
+     (nil))
+(call_insn 202 201 203 27 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wattrset") [flags 0x41]  <function_decl 0x7f0680bec600 wattrset>) [0 wattrset S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":114:14 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wattrset") [flags 0x41]  <function_decl 0x7f0680bec600 wattrset>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 203 202 204 27 (set (reg/f:DI 202)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":115:7 74 {*movdi_internal}
+     (nil))
+(insn 204 203 205 27 (set (reg:DI 203)
+        (mem/f:DI (plus:DI (plus:DI (reg/f:DI 202)
+                    (reg:DI 152 [ _140 ]))
+                (const_int 8 [0x8])) [4 _47->form_text+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":115:7 74 {*movdi_internal}
+     (nil))
+(insn 205 204 206 27 (set (reg:DI 204)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 8 [0x8])) [9 slk_2->win+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":115:7 74 {*movdi_internal}
+     (nil))
+(insn 206 205 207 27 (set (reg:SI 1 dx)
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkrefr.c":115:7 75 {*movsi_internal}
+     (nil))
+(insn 207 206 208 27 (set (reg:DI 4 si)
+        (reg:DI 203)) "../ncurses/./base/lib_slkrefr.c":115:7 74 {*movdi_internal}
+     (nil))
+(insn 208 207 209 27 (set (reg:DI 5 di)
+        (reg:DI 204)) "../ncurses/./base/lib_slkrefr.c":115:7 74 {*movdi_internal}
+     (nil))
+(call_insn 209 208 210 27 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("waddnstr") [flags 0x41]  <function_decl 0x7f0680bec200 waddnstr>) [0 waddnstr S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":115:7 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("waddnstr") [flags 0x41]  <function_decl 0x7f0680bec200 waddnstr>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:SI (use (reg:SI 1 dx))
+                (nil)))))
+(insn 210 209 211 27 (set (reg/f:DI 205)
+        (mem/f:DI (plus:DI (reg/v/f:DI 163 [ sp ])
+                (const_int 152 [0x98])) [9 sp_1(D)->_stdscr+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":119:39 74 {*movdi_internal}
+     (nil))
+(insn 211 210 212 27 (set (reg:SI 206)
+        (mem:SI (plus:DI (reg/f:DI 205)
+                (const_int 28 [0x1c])) [1 _50->_attrs+0 S4 A32])) "../ncurses/./base/lib_slkrefr.c":119:14 75 {*movsi_internal}
+     (nil))
+(insn 212 211 213 27 (set (reg:DI 207)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 8 [0x8])) [9 slk_2->win+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":119:14 74 {*movdi_internal}
+     (nil))
+(insn 213 212 214 27 (set (reg:SI 4 si)
+        (reg:SI 206)) "../ncurses/./base/lib_slkrefr.c":119:14 75 {*movsi_internal}
+     (nil))
+(insn 214 213 215 27 (set (reg:DI 5 di)
+        (reg:DI 207)) "../ncurses/./base/lib_slkrefr.c":119:14 74 {*movdi_internal}
+     (nil))
+(call_insn 215 214 216 27 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wattrset") [flags 0x41]  <function_decl 0x7f0680bec600 wattrset>) [0 wattrset S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":119:14 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wattrset") [flags 0x41]  <function_decl 0x7f0680bec600 wattrset>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 216 215 217 27 (set (reg/f:DI 208)
+        (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":122:14 74 {*movdi_internal}
+     (nil))
+(insn 217 216 218 27 (parallel [
+            (set (reg/f:DI 160 [ prephitmp_171 ])
+                (plus:DI (reg:DI 152 [ _140 ])
+                    (reg/f:DI 208)))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":122:14 210 {*adddi_1}
+     (expr_list:REG_EQUAL (plus:DI (mem/f:DI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 16 [0x10])) [45 slk_2->ent+0 S8 A64])
+            (reg:DI 152 [ _140 ]))
+        (nil)))
+;;  succ:       28 [always]  count:240102094 (estimated locally) (FALLTHRU)
+
+;; basic block 28, loop depth 1, count 716722668 (estimated locally), maybe hot
+;;  prev block 27, next block 29, flags: (RTL)
+;;  pred:       8 [50.0% (guessed)]  count:358361334 (estimated locally)
+;;              12 [always]  count:79233690 (estimated locally) (FALLTHRU)
+;;              13 [always]  count:39025549 (estimated locally) (FALLTHRU)
+;;              27 [always]  count:240102094 (estimated locally) (FALLTHRU)
+(code_label 218 217 219 28 9 (nil) [1 uses])
+(note 219 218 220 28 [bb 28] NOTE_INSN_BASIC_BLOCK)
+(insn 220 219 221 28 (set (mem:QI (plus:DI (reg/f:DI 160 [ prephitmp_171 ])
+                (const_int 20 [0x14])) [0 prephitmp_171->dirty+0 S1 A32])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":122:24 77 {*movqi_internal}
+     (nil))
+;;  succ:       29 [always]  count:716722668 (estimated locally) (FALLTHRU)
+
+;; basic block 29, loop depth 1, count 955630226 (estimated locally), maybe hot
+;;  prev block 28, next block 30, flags: (RTL)
+;;  pred:       7 [50.0% (guessed)]  count:238907556 (estimated locally)
+;;              28 [always]  count:716722668 (estimated locally) (FALLTHRU)
+(code_label 221 220 222 29 8 (nil) [1 uses])
+(note 222 221 223 29 [bb 29] NOTE_INSN_BASIC_BLOCK)
+(insn 223 222 224 29 (parallel [
+            (set (reg:DI 144 [ ivtmp.20 ])
+                (plus:DI (reg:DI 144 [ ivtmp.20 ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_slkrefr.c":96:19 210 {*adddi_1}
+     (nil))
+(insn 224 223 225 29 (set (reg:SI 209)
+        (sign_extend:SI (mem:HI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 26 [0x1a])) [11 slk_2->labcnt+0 S2 A16]))) "../ncurses/./base/lib_slkrefr.c":96:24 151 {extendhisi2}
+     (nil))
+(insn 225 224 226 29 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 209)
+            (subreg:SI (reg:DI 144 [ ivtmp.20 ]) 0))) "../ncurses/./base/lib_slkrefr.c":96:19 11 {*cmpsi_1}
+     (nil))
+(jump_insn 226 225 231 29 (set (pc)
+        (if_then_else (gt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 36)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":96:19 806 {*jcc}
+     (int_list:REG_BR_PROB 955630228 (nil))
+ -> 36)
+;;  succ:       6 [89.0% (guessed)]  count:850510902 (estimated locally) (DFS_BACK)
+;;              4 [11.0% (guessed)]  count:105119324 (estimated locally) (FALLTHRU)
+
+;; basic block 30, loop depth 0, count 69685844 (estimated locally), maybe hot
+;;  prev block 29, next block 31, flags: (RTL)
+;;  pred:       4 [59.0% (guessed)]  count:69685844 (estimated locally)
+(code_label 231 226 232 30 5 (nil) [1 uses])
+(note 232 231 233 30 [bb 30] NOTE_INSN_BASIC_BLOCK)
+(insn 233 232 234 30 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/v/f:DI 82 [ slk ])
+                    (const_int 1 [0x1])) [6 slk_2->hidden+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":131:5 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 234 233 235 30 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 246)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":131:5 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 246)
+;;  succ:       31 [50.0% (guessed)]  count:34842922 (estimated locally) (FALLTHRU)
+;;              32 [50.0% (guessed)]  count:34842922 (estimated locally)
+
+;; basic block 31, loop depth 0, count 34842922 (estimated locally), maybe hot
+;;  prev block 30, next block 32, flags: (RTL)
+;;  pred:       30 [50.0% (guessed)]  count:34842922 (estimated locally) (FALLTHRU)
+(note 235 234 236 31 [bb 31] NOTE_INSN_BASIC_BLOCK)
+(call_insn 236 235 237 31 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f0680caa600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":132:6 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f0680caa600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 237 236 238 31 (set (reg/f:DI 123 [ _60 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_slkrefr.c":132:6 74 {*movdi_internal}
+     (nil))
+(insn 238 237 239 31 (set (reg/f:DI 210)
+        (mem/f:DI (plus:DI (reg/f:DI 123 [ _60 ])
+                (const_int 720 [0x2d0])) [50 _60->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":132:6 74 {*movdi_internal}
+     (nil))
+(insn 239 238 240 31 (set (reg:DI 211)
+        (mem/f:DI (plus:DI (reg/f:DI 210)
+                (const_int 1256 [0x4e8])) [4 MEM[(char * *)_61 + 1256B]+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":132:6 74 {*movdi_internal}
+     (nil))
+(insn 240 239 241 31 (set (reg:DI 1 dx)
+        (reg:DI 211)) "../ncurses/./base/lib_slkrefr.c":132:6 74 {*movdi_internal}
+     (nil))
+(insn 241 240 242 31 (set (reg:DI 212)
+        (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x7f06809bebd0 *.LC2>)) "../ncurses/./base/lib_slkrefr.c":132:6 74 {*movdi_internal}
+     (nil))
+(insn 242 241 243 31 (set (reg:DI 4 si)
+        (reg:DI 212)) "../ncurses/./base/lib_slkrefr.c":132:6 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC2") [flags 0x2]  <var_decl 0x7f06809bebd0 *.LC2>)
+        (nil)))
+(insn 243 242 244 31 (set (reg:DI 5 di)
+        (reg/v/f:DI 163 [ sp ])) "../ncurses/./base/lib_slkrefr.c":132:6 74 {*movdi_internal}
+     (nil))
+(call_insn/j 244 243 246 31 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_putp_sp") [flags 0x41]  <function_decl 0x7f0680dadd00 _nc_putp_sp>) [0 _nc_putp_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":132:6 828 {*sibcall_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_putp_sp") [flags 0x41]  <function_decl 0x7f0680dadd00 _nc_putp_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+;;  succ:       EXIT [always]  count:34842922 (estimated locally) (ABNORMAL,SIBCALL)
+
+;; basic block 32, loop depth 0, count 34842922 (estimated locally), maybe hot
+;;  prev block 31, next block 33, flags: (RTL)
+;;  pred:       30 [50.0% (guessed)]  count:34842922 (estimated locally)
+(code_label 246 244 247 32 19 (nil) [1 uses])
+(note 247 246 248 32 [bb 32] NOTE_INSN_BASIC_BLOCK)
+(call_insn 248 247 249 32 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f0680caa600 _nc_cur_term>) [0 _nc_cur_term S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":134:6 824 {*call_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_cur_term") [flags 0x41]  <function_decl 0x7f0680caa600 _nc_cur_term>)
+        (nil))
+    (nil))
+(insn 249 248 250 32 (set (reg/f:DI 126 [ _63 ])
+        (reg:DI 0 ax)) "../ncurses/./base/lib_slkrefr.c":134:6 74 {*movdi_internal}
+     (nil))
+(insn 250 249 251 32 (set (reg/f:DI 213)
+        (mem/f:DI (plus:DI (reg/f:DI 126 [ _63 ])
+                (const_int 720 [0x2d0])) [50 _63->type2.Strings+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":134:6 74 {*movdi_internal}
+     (nil))
+(insn 251 250 252 32 (set (reg:DI 214)
+        (mem/f:DI (plus:DI (reg/f:DI 213)
+                (const_int 1248 [0x4e0])) [4 MEM[(char * *)_64 + 1248B]+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":134:6 74 {*movdi_internal}
+     (nil))
+(insn 252 251 253 32 (set (reg:DI 1 dx)
+        (reg:DI 214)) "../ncurses/./base/lib_slkrefr.c":134:6 74 {*movdi_internal}
+     (nil))
+(insn 253 252 254 32 (set (reg:DI 215)
+        (symbol_ref/f:DI ("*.LC3") [flags 0x2]  <var_decl 0x7f06809bec60 *.LC3>)) "../ncurses/./base/lib_slkrefr.c":134:6 74 {*movdi_internal}
+     (nil))
+(insn 254 253 255 32 (set (reg:DI 4 si)
+        (reg:DI 215)) "../ncurses/./base/lib_slkrefr.c":134:6 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC3") [flags 0x2]  <var_decl 0x7f06809bec60 *.LC3>)
+        (nil)))
+(insn 255 254 256 32 (set (reg:DI 5 di)
+        (reg/v/f:DI 163 [ sp ])) "../ncurses/./base/lib_slkrefr.c":134:6 74 {*movdi_internal}
+     (nil))
+(call_insn/j 256 255 260 32 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_putp_sp") [flags 0x41]  <function_decl 0x7f0680dadd00 _nc_putp_sp>) [0 _nc_putp_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":134:6 828 {*sibcall_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_putp_sp") [flags 0x41]  <function_decl 0x7f0680dadd00 _nc_putp_sp>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (nil)))))
+;;  succ:       EXIT [always]  count:34842922 (estimated locally) (ABNORMAL,SIBCALL)
+
+;; basic block 33, loop depth 0, count 109271126 (estimated locally), maybe hot
+;;  prev block 32, next block 1, flags: (RTL)
+;;  pred:       4 [41.0% (guessed)]  count:48425756 (estimated locally) (FALLTHRU)
+;;              2 [34.0% (guessed)]  count:60845370 (estimated locally) (FALLTHRU)
+(code_label 260 256 261 33 1 (nil) [0 uses])
+(note 261 260 0 33 [bb 33] NOTE_INSN_BASIC_BLOCK)
+;;  succ:       EXIT [always]  count:109271126 (estimated locally) (FALLTHRU)
+
+
+;; Function slk_noutrefresh_sp (slk_noutrefresh_sp, funcdef_no=93, decl_uid=6670, cgraph_uid=94, symbol_order=93)
+
+
+10 basic blocks, 12 edges.
+;; basic block 0, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block (nil), next block 2, flags: (RTL, VISITED)
+;;  pred:      
+;;  succ:       2 [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 7 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 87 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/lib_slkrefr.c":145:1 74 {*movdi_internal}
+     (nil))
+(note 3 2 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 3 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 87 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":148:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 36)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":148:8 806 {*jcc}
+     (int_list:REG_BR_PROB 4831844 (nil))
+ -> 36)
+;;  succ:       6 [0.5% (guessed)]  count:4831840 (estimated locally)
+;;              3 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+
+;; basic block 3, loop depth 0, count 1068909985 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+(note 11 10 12 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 3 (set (reg/f:DI 82 [ _1 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 87 [ sp ])
+                (const_int 800 [0x320])) [14 sp_5(D)->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":148:35 74 {*movdi_internal}
+     (nil))
+(insn 13 12 14 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":148:25 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 14 13 15 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 40)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":148:25 806 {*jcc}
+     (int_list:REG_BR_PROB 4831844 (nil))
+ -> 40)
+;;  succ:       7 [0.5% (guessed)]  count:4810097 (estimated locally)
+;;              4 [99.5% (guessed)]  count:1064099888 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 1064099888 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       3 [99.5% (guessed)]  count:1064099888 (estimated locally) (FALLTHRU)
+(note 15 14 16 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/f:DI 82 [ _1 ])
+                    (const_int 1 [0x1])) [6 _1->hidden+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":150:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 17 16 18 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 44)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":150:8 806 {*jcc}
+     (int_list:REG_BR_PROB 548896828 (nil))
+ -> 44)
+;;  succ:       8 [51.1% (guessed)]  count:543967866 (estimated locally)
+;;              5 [48.9% (guessed)]  count:520132022 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 520132021 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [48.9% (guessed)]  count:520132022 (estimated locally) (FALLTHRU)
+(note 18 17 19 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 5 (set (reg:DI 5 di)
+        (reg/v/f:DI 87 [ sp ])) 74 {*movdi_internal}
+     (nil))
+(call_insn 20 19 21 5 (call (mem:QI (symbol_ref:DI ("slk_intern_refresh.part.0") [flags 0x3]  <function_decl 0x7f0680997e00 slk_intern_refresh.part.0>) [0 slk_intern_refresh.part.0 S1 A8])
+        (const_int 0 [0])) 813 {*call}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("slk_intern_refresh.part.0") [flags 0x3]  <function_decl 0x7f0680997e00 slk_intern_refresh.part.0>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 21 20 22 5 (set (reg/f:DI 88)
+        (mem/f:DI (plus:DI (reg/v/f:DI 87 [ sp ])
+                (const_int 800 [0x320])) [14 sp_5(D)->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":154:5 74 {*movdi_internal}
+     (nil))
+(insn 22 21 23 5 (set (reg:DI 89)
+        (mem/f:DI (plus:DI (reg/f:DI 88)
+                (const_int 8 [0x8])) [9 _9->win+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":154:5 74 {*movdi_internal}
+     (nil))
+(insn 23 22 24 5 (set (reg:DI 5 di)
+        (reg:DI 89)) "../ncurses/./base/lib_slkrefr.c":154:5 74 {*movdi_internal}
+     (nil))
+(call_insn/j 24 23 36 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wnoutrefresh") [flags 0x41]  <function_decl 0x7f0680bf4700 wnoutrefresh>) [0 wnoutrefresh S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":154:5 828 {*sibcall_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wnoutrefresh") [flags 0x41]  <function_decl 0x7f0680bf4700 wnoutrefresh>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       EXIT [always]  count:520132021 (estimated locally) (ABNORMAL,SIBCALL)
+
+;; basic block 6, loop depth 0, count 4831840 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [0.5% (guessed)]  count:4831840 (estimated locally)
+(code_label 36 24 35 6 52 (nil) [1 uses])
+(note 35 36 6 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 6 35 40 6 (set (reg:SI 86 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkrefr.c":149:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:4831840 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 4810097 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       3 [0.5% (guessed)]  count:4810097 (estimated locally)
+(code_label 40 6 39 7 53 (nil) [1 uses])
+(note 39 40 4 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 4 39 44 7 (set (reg:SI 86 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkrefr.c":149:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:4810097 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 543967866 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [51.1% (guessed)]  count:543967866 (estimated locally)
+(code_label 44 4 43 8 54 (nil) [1 uses])
+(note 43 44 5 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 5 43 31 8 (set (reg:SI 86 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":151:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:543967866 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 553609803 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       8 [always]  count:543967866 (estimated locally) (FALLTHRU)
+;;              6 [always]  count:4831840 (estimated locally) (FALLTHRU)
+;;              7 [always]  count:4810097 (estimated locally) (FALLTHRU)
+(code_label 31 5 34 9 50 (nil) [0 uses])
+(note 34 31 32 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 32 34 33 9 (set (reg/i:SI 0 ax)
+        (reg:SI 86 [ <retval> ])) "../ncurses/./base/lib_slkrefr.c":155:1 75 {*movsi_internal}
+     (nil))
+(insn 33 32 0 9 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_slkrefr.c":155:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:553609803 (estimated locally) (FALLTHRU)
+
+;; basic block 1, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 9, next block (nil), flags: (REACHABLE, RTL, VISITED)
+;;  pred:       5 [always]  count:520132021 (estimated locally) (ABNORMAL,SIBCALL)
+;;              9 [always]  count:553609803 (estimated locally) (FALLTHRU)
+;;  succ:      
+
+
+
+
+try_optimize_cfg iteration 1
+
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (RTL)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 7 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 87 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/lib_slkrefr.c":145:1 74 {*movdi_internal}
+     (nil))
+(note 3 2 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 3 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 87 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":148:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 36)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":148:8 806 {*jcc}
+     (int_list:REG_BR_PROB 4831844 (nil))
+ -> 36)
+;;  succ:       6 [0.5% (guessed)]  count:4831840 (estimated locally)
+;;              3 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+
+;; basic block 3, loop depth 0, count 1068909985 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (RTL)
+;;  pred:       2 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+(note 11 10 12 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 3 (set (reg/f:DI 82 [ _1 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 87 [ sp ])
+                (const_int 800 [0x320])) [14 sp_5(D)->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":148:35 74 {*movdi_internal}
+     (nil))
+(insn 13 12 14 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":148:25 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 14 13 15 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 40)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":148:25 806 {*jcc}
+     (int_list:REG_BR_PROB 4831844 (nil))
+ -> 40)
+;;  succ:       7 [0.5% (guessed)]  count:4810097 (estimated locally)
+;;              4 [99.5% (guessed)]  count:1064099888 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 1064099888 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (RTL)
+;;  pred:       3 [99.5% (guessed)]  count:1064099888 (estimated locally) (FALLTHRU)
+(note 15 14 16 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/f:DI 82 [ _1 ])
+                    (const_int 1 [0x1])) [6 _1->hidden+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":150:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 17 16 18 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 44)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":150:8 806 {*jcc}
+     (int_list:REG_BR_PROB 548896828 (nil))
+ -> 44)
+;;  succ:       8 [51.1% (guessed)]  count:543967866 (estimated locally)
+;;              5 [48.9% (guessed)]  count:520132022 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 520132021 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (RTL)
+;;  pred:       4 [48.9% (guessed)]  count:520132022 (estimated locally) (FALLTHRU)
+(note 18 17 19 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 5 (set (reg:DI 5 di)
+        (reg/v/f:DI 87 [ sp ])) 74 {*movdi_internal}
+     (nil))
+(call_insn 20 19 21 5 (call (mem:QI (symbol_ref:DI ("slk_intern_refresh.part.0") [flags 0x3]  <function_decl 0x7f0680997e00 slk_intern_refresh.part.0>) [0 slk_intern_refresh.part.0 S1 A8])
+        (const_int 0 [0])) 813 {*call}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("slk_intern_refresh.part.0") [flags 0x3]  <function_decl 0x7f0680997e00 slk_intern_refresh.part.0>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 21 20 22 5 (set (reg/f:DI 88)
+        (mem/f:DI (plus:DI (reg/v/f:DI 87 [ sp ])
+                (const_int 800 [0x320])) [14 sp_5(D)->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":154:5 74 {*movdi_internal}
+     (nil))
+(insn 22 21 23 5 (set (reg:DI 89)
+        (mem/f:DI (plus:DI (reg/f:DI 88)
+                (const_int 8 [0x8])) [9 _9->win+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":154:5 74 {*movdi_internal}
+     (nil))
+(insn 23 22 24 5 (set (reg:DI 5 di)
+        (reg:DI 89)) "../ncurses/./base/lib_slkrefr.c":154:5 74 {*movdi_internal}
+     (nil))
+(call_insn/j 24 23 36 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wnoutrefresh") [flags 0x41]  <function_decl 0x7f0680bf4700 wnoutrefresh>) [0 wnoutrefresh S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":154:5 828 {*sibcall_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wnoutrefresh") [flags 0x41]  <function_decl 0x7f0680bf4700 wnoutrefresh>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       EXIT [always]  count:520132021 (estimated locally) (ABNORMAL,SIBCALL)
+
+;; basic block 6, loop depth 0, count 4831840 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (RTL)
+;;  pred:       2 [0.5% (guessed)]  count:4831840 (estimated locally)
+(code_label 36 24 35 6 52 (nil) [1 uses])
+(note 35 36 6 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 6 35 40 6 (set (reg:SI 86 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkrefr.c":149:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:4831840 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 4810097 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (RTL)
+;;  pred:       3 [0.5% (guessed)]  count:4810097 (estimated locally)
+(code_label 40 6 39 7 53 (nil) [1 uses])
+(note 39 40 4 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 4 39 44 7 (set (reg:SI 86 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkrefr.c":149:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:4810097 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 543967866 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (RTL)
+;;  pred:       4 [51.1% (guessed)]  count:543967866 (estimated locally)
+(code_label 44 4 43 8 54 (nil) [1 uses])
+(note 43 44 5 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 5 43 31 8 (set (reg:SI 86 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":151:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:543967866 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 553609803 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (RTL)
+;;  pred:       8 [always]  count:543967866 (estimated locally) (FALLTHRU)
+;;              6 [always]  count:4831840 (estimated locally) (FALLTHRU)
+;;              7 [always]  count:4810097 (estimated locally) (FALLTHRU)
+(code_label 31 5 34 9 50 (nil) [0 uses])
+(note 34 31 32 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 32 34 33 9 (set (reg/i:SI 0 ax)
+        (reg:SI 86 [ <retval> ])) "../ncurses/./base/lib_slkrefr.c":155:1 75 {*movsi_internal}
+     (nil))
+(insn 33 32 0 9 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_slkrefr.c":155:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:553609803 (estimated locally) (FALLTHRU)
+
+
+;; Function slk_noutrefresh (slk_noutrefresh, funcdef_no=94, decl_uid=6076, cgraph_uid=95, symbol_order=94)
+
+
+10 basic blocks, 12 edges.
+;; basic block 0, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block (nil), next block 2, flags: (RTL, VISITED)
+;;  pred:      
+;;  succ:       2 [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 6 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 6 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 2 9 2 (set (reg/f:DI 82 [ SP.2_1 ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f0680d36cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":161:12 74 {*movdi_internal}
+     (nil))
+(insn 9 8 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ SP.2_1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":148:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 36)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":148:8 806 {*jcc}
+     (int_list:REG_BR_PROB 4831844 (nil))
+ -> 36)
+;;  succ:       6 [0.5% (guessed)]  count:4831840 (estimated locally)
+;;              3 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+
+;; basic block 3, loop depth 0, count 1068909985 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+(note 11 10 12 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 3 (set (reg/f:DI 83 [ _5 ])
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ SP.2_1 ])
+                (const_int 800 [0x320])) [14 SP.2_1->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":148:35 74 {*movdi_internal}
+     (nil))
+(insn 13 12 14 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 83 [ _5 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":148:25 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 14 13 15 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 40)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":148:25 806 {*jcc}
+     (int_list:REG_BR_PROB 4831844 (nil))
+ -> 40)
+;;  succ:       7 [0.5% (guessed)]  count:4810097 (estimated locally)
+;;              4 [99.5% (guessed)]  count:1064099888 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 1064099888 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       3 [99.5% (guessed)]  count:1064099888 (estimated locally) (FALLTHRU)
+(note 15 14 16 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/f:DI 83 [ _5 ])
+                    (const_int 1 [0x1])) [6 _5->hidden+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":150:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 17 16 18 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 44)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":150:8 806 {*jcc}
+     (int_list:REG_BR_PROB 548896828 (nil))
+ -> 44)
+;;  succ:       8 [51.1% (guessed)]  count:543967866 (estimated locally)
+;;              5 [48.9% (guessed)]  count:520132022 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 520132021 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [48.9% (guessed)]  count:520132022 (estimated locally) (FALLTHRU)
+(note 18 17 19 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 5 (set (reg:DI 5 di)
+        (reg/f:DI 82 [ SP.2_1 ])) 74 {*movdi_internal}
+     (nil))
+(call_insn 20 19 21 5 (call (mem:QI (symbol_ref:DI ("slk_intern_refresh.part.0") [flags 0x3]  <function_decl 0x7f0680997e00 slk_intern_refresh.part.0>) [0 slk_intern_refresh.part.0 S1 A8])
+        (const_int 0 [0])) 813 {*call}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("slk_intern_refresh.part.0") [flags 0x3]  <function_decl 0x7f0680997e00 slk_intern_refresh.part.0>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 21 20 22 5 (set (reg/f:DI 88)
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ SP.2_1 ])
+                (const_int 800 [0x320])) [14 SP.2_1->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":154:5 74 {*movdi_internal}
+     (nil))
+(insn 22 21 23 5 (set (reg:DI 89)
+        (mem/f:DI (plus:DI (reg/f:DI 88)
+                (const_int 8 [0x8])) [9 _9->win+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":154:5 74 {*movdi_internal}
+     (nil))
+(insn 23 22 24 5 (set (reg:DI 5 di)
+        (reg:DI 89)) "../ncurses/./base/lib_slkrefr.c":154:5 74 {*movdi_internal}
+     (nil))
+(call_insn/j 24 23 36 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wnoutrefresh") [flags 0x41]  <function_decl 0x7f0680bf4700 wnoutrefresh>) [0 wnoutrefresh S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":154:5 828 {*sibcall_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wnoutrefresh") [flags 0x41]  <function_decl 0x7f0680bf4700 wnoutrefresh>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       EXIT [always]  count:520132021 (estimated locally) (ABNORMAL,SIBCALL)
+
+;; basic block 6, loop depth 0, count 4831840 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [0.5% (guessed)]  count:4831840 (estimated locally)
+(code_label 36 24 35 6 62 (nil) [1 uses])
+(note 35 36 5 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 5 35 40 6 (set (reg:SI 87 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkrefr.c":149:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:4831840 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 4810097 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       3 [0.5% (guessed)]  count:4810097 (estimated locally)
+(code_label 40 5 39 7 63 (nil) [1 uses])
+(note 39 40 3 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 3 39 44 7 (set (reg:SI 87 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkrefr.c":149:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:4810097 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 543967866 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [51.1% (guessed)]  count:543967866 (estimated locally)
+(code_label 44 3 43 8 64 (nil) [1 uses])
+(note 43 44 4 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 4 43 31 8 (set (reg:SI 87 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":151:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:543967866 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 553609803 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       8 [always]  count:543967866 (estimated locally) (FALLTHRU)
+;;              6 [always]  count:4831840 (estimated locally) (FALLTHRU)
+;;              7 [always]  count:4810097 (estimated locally) (FALLTHRU)
+(code_label 31 4 34 9 60 (nil) [0 uses])
+(note 34 31 32 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 32 34 33 9 (set (reg/i:SI 0 ax)
+        (reg:SI 87 [ <retval> ])) "../ncurses/./base/lib_slkrefr.c":162:1 75 {*movsi_internal}
+     (nil))
+(insn 33 32 0 9 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_slkrefr.c":162:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:553609803 (estimated locally) (FALLTHRU)
+
+;; basic block 1, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 9, next block (nil), flags: (REACHABLE, RTL, VISITED)
+;;  pred:       5 [always]  count:520132021 (estimated locally) (ABNORMAL,SIBCALL)
+;;              9 [always]  count:553609803 (estimated locally) (FALLTHRU)
+;;  succ:      
+
+
+
+
+try_optimize_cfg iteration 1
+
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (RTL)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 6 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 6 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 2 9 2 (set (reg/f:DI 82 [ SP.2_1 ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f0680d36cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":161:12 74 {*movdi_internal}
+     (nil))
+(insn 9 8 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ SP.2_1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":148:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 36)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":148:8 806 {*jcc}
+     (int_list:REG_BR_PROB 4831844 (nil))
+ -> 36)
+;;  succ:       6 [0.5% (guessed)]  count:4831840 (estimated locally)
+;;              3 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+
+;; basic block 3, loop depth 0, count 1068909985 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (RTL)
+;;  pred:       2 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+(note 11 10 12 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 3 (set (reg/f:DI 83 [ _5 ])
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ SP.2_1 ])
+                (const_int 800 [0x320])) [14 SP.2_1->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":148:35 74 {*movdi_internal}
+     (nil))
+(insn 13 12 14 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 83 [ _5 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":148:25 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 14 13 15 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 40)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":148:25 806 {*jcc}
+     (int_list:REG_BR_PROB 4831844 (nil))
+ -> 40)
+;;  succ:       7 [0.5% (guessed)]  count:4810097 (estimated locally)
+;;              4 [99.5% (guessed)]  count:1064099888 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 1064099888 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (RTL)
+;;  pred:       3 [99.5% (guessed)]  count:1064099888 (estimated locally) (FALLTHRU)
+(note 15 14 16 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/f:DI 83 [ _5 ])
+                    (const_int 1 [0x1])) [6 _5->hidden+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":150:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 17 16 18 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 44)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":150:8 806 {*jcc}
+     (int_list:REG_BR_PROB 548896828 (nil))
+ -> 44)
+;;  succ:       8 [51.1% (guessed)]  count:543967866 (estimated locally)
+;;              5 [48.9% (guessed)]  count:520132022 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 520132021 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (RTL)
+;;  pred:       4 [48.9% (guessed)]  count:520132022 (estimated locally) (FALLTHRU)
+(note 18 17 19 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 5 (set (reg:DI 5 di)
+        (reg/f:DI 82 [ SP.2_1 ])) 74 {*movdi_internal}
+     (nil))
+(call_insn 20 19 21 5 (call (mem:QI (symbol_ref:DI ("slk_intern_refresh.part.0") [flags 0x3]  <function_decl 0x7f0680997e00 slk_intern_refresh.part.0>) [0 slk_intern_refresh.part.0 S1 A8])
+        (const_int 0 [0])) 813 {*call}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("slk_intern_refresh.part.0") [flags 0x3]  <function_decl 0x7f0680997e00 slk_intern_refresh.part.0>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 21 20 22 5 (set (reg/f:DI 88)
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ SP.2_1 ])
+                (const_int 800 [0x320])) [14 SP.2_1->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":154:5 74 {*movdi_internal}
+     (nil))
+(insn 22 21 23 5 (set (reg:DI 89)
+        (mem/f:DI (plus:DI (reg/f:DI 88)
+                (const_int 8 [0x8])) [9 _9->win+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":154:5 74 {*movdi_internal}
+     (nil))
+(insn 23 22 24 5 (set (reg:DI 5 di)
+        (reg:DI 89)) "../ncurses/./base/lib_slkrefr.c":154:5 74 {*movdi_internal}
+     (nil))
+(call_insn/j 24 23 36 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wnoutrefresh") [flags 0x41]  <function_decl 0x7f0680bf4700 wnoutrefresh>) [0 wnoutrefresh S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":154:5 828 {*sibcall_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wnoutrefresh") [flags 0x41]  <function_decl 0x7f0680bf4700 wnoutrefresh>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       EXIT [always]  count:520132021 (estimated locally) (ABNORMAL,SIBCALL)
+
+;; basic block 6, loop depth 0, count 4831840 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (RTL)
+;;  pred:       2 [0.5% (guessed)]  count:4831840 (estimated locally)
+(code_label 36 24 35 6 62 (nil) [1 uses])
+(note 35 36 5 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 5 35 40 6 (set (reg:SI 87 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkrefr.c":149:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:4831840 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 4810097 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (RTL)
+;;  pred:       3 [0.5% (guessed)]  count:4810097 (estimated locally)
+(code_label 40 5 39 7 63 (nil) [1 uses])
+(note 39 40 3 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 3 39 44 7 (set (reg:SI 87 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkrefr.c":149:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:4810097 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 543967866 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (RTL)
+;;  pred:       4 [51.1% (guessed)]  count:543967866 (estimated locally)
+(code_label 44 3 43 8 64 (nil) [1 uses])
+(note 43 44 4 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 4 43 31 8 (set (reg:SI 87 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":151:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:543967866 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 553609803 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (RTL)
+;;  pred:       8 [always]  count:543967866 (estimated locally) (FALLTHRU)
+;;              6 [always]  count:4831840 (estimated locally) (FALLTHRU)
+;;              7 [always]  count:4810097 (estimated locally) (FALLTHRU)
+(code_label 31 4 34 9 60 (nil) [0 uses])
+(note 34 31 32 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 32 34 33 9 (set (reg/i:SI 0 ax)
+        (reg:SI 87 [ <retval> ])) "../ncurses/./base/lib_slkrefr.c":162:1 75 {*movsi_internal}
+     (nil))
+(insn 33 32 0 9 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_slkrefr.c":162:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:553609803 (estimated locally) (FALLTHRU)
+
+
+;; Function slk_refresh_sp (slk_refresh_sp, funcdef_no=95, decl_uid=6672, cgraph_uid=96, symbol_order=95)
+
+
+10 basic blocks, 12 edges.
+;; basic block 0, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block (nil), next block 2, flags: (RTL, VISITED)
+;;  pred:      
+;;  succ:       2 [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 7 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 87 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/lib_slkrefr.c":170:1 74 {*movdi_internal}
+     (nil))
+(note 3 2 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 3 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 87 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":173:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 36)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":173:8 806 {*jcc}
+     (int_list:REG_BR_PROB 4831844 (nil))
+ -> 36)
+;;  succ:       6 [0.5% (guessed)]  count:4831840 (estimated locally)
+;;              3 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+
+;; basic block 3, loop depth 0, count 1068909985 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+(note 11 10 12 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 3 (set (reg/f:DI 82 [ _1 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 87 [ sp ])
+                (const_int 800 [0x320])) [14 sp_5(D)->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":173:35 74 {*movdi_internal}
+     (nil))
+(insn 13 12 14 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":173:25 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 14 13 15 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 40)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":173:25 806 {*jcc}
+     (int_list:REG_BR_PROB 4831844 (nil))
+ -> 40)
+;;  succ:       7 [0.5% (guessed)]  count:4810097 (estimated locally)
+;;              4 [99.5% (guessed)]  count:1064099888 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 1064099888 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       3 [99.5% (guessed)]  count:1064099888 (estimated locally) (FALLTHRU)
+(note 15 14 16 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/f:DI 82 [ _1 ])
+                    (const_int 1 [0x1])) [6 _1->hidden+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":175:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 17 16 18 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 44)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":175:8 806 {*jcc}
+     (int_list:REG_BR_PROB 548896828 (nil))
+ -> 44)
+;;  succ:       8 [51.1% (guessed)]  count:543967866 (estimated locally)
+;;              5 [48.9% (guessed)]  count:520132022 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 520132021 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [48.9% (guessed)]  count:520132022 (estimated locally) (FALLTHRU)
+(note 18 17 19 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 5 (set (reg:DI 5 di)
+        (reg/v/f:DI 87 [ sp ])) 74 {*movdi_internal}
+     (nil))
+(call_insn 20 19 21 5 (call (mem:QI (symbol_ref:DI ("slk_intern_refresh.part.0") [flags 0x3]  <function_decl 0x7f0680997e00 slk_intern_refresh.part.0>) [0 slk_intern_refresh.part.0 S1 A8])
+        (const_int 0 [0])) 813 {*call}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("slk_intern_refresh.part.0") [flags 0x3]  <function_decl 0x7f0680997e00 slk_intern_refresh.part.0>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 21 20 22 5 (set (reg/f:DI 88)
+        (mem/f:DI (plus:DI (reg/v/f:DI 87 [ sp ])
+                (const_int 800 [0x320])) [14 sp_5(D)->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":179:5 74 {*movdi_internal}
+     (nil))
+(insn 22 21 23 5 (set (reg:DI 89)
+        (mem/f:DI (plus:DI (reg/f:DI 88)
+                (const_int 8 [0x8])) [9 _9->win+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":179:5 74 {*movdi_internal}
+     (nil))
+(insn 23 22 24 5 (set (reg:DI 5 di)
+        (reg:DI 89)) "../ncurses/./base/lib_slkrefr.c":179:5 74 {*movdi_internal}
+     (nil))
+(call_insn/j 24 23 36 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wrefresh") [flags 0x41]  <function_decl 0x7f0680bf4a00 wrefresh>) [0 wrefresh S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":179:5 828 {*sibcall_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wrefresh") [flags 0x41]  <function_decl 0x7f0680bf4a00 wrefresh>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       EXIT [always]  count:520132021 (estimated locally) (ABNORMAL,SIBCALL)
+
+;; basic block 6, loop depth 0, count 4831840 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [0.5% (guessed)]  count:4831840 (estimated locally)
+(code_label 36 24 35 6 69 (nil) [1 uses])
+(note 35 36 6 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 6 35 40 6 (set (reg:SI 86 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkrefr.c":174:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:4831840 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 4810097 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       3 [0.5% (guessed)]  count:4810097 (estimated locally)
+(code_label 40 6 39 7 70 (nil) [1 uses])
+(note 39 40 4 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 4 39 44 7 (set (reg:SI 86 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkrefr.c":174:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:4810097 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 543967866 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [51.1% (guessed)]  count:543967866 (estimated locally)
+(code_label 44 4 43 8 71 (nil) [1 uses])
+(note 43 44 5 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 5 43 31 8 (set (reg:SI 86 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":176:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:543967866 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 553609803 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       8 [always]  count:543967866 (estimated locally) (FALLTHRU)
+;;              6 [always]  count:4831840 (estimated locally) (FALLTHRU)
+;;              7 [always]  count:4810097 (estimated locally) (FALLTHRU)
+(code_label 31 5 34 9 67 (nil) [0 uses])
+(note 34 31 32 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 32 34 33 9 (set (reg/i:SI 0 ax)
+        (reg:SI 86 [ <retval> ])) "../ncurses/./base/lib_slkrefr.c":180:1 75 {*movsi_internal}
+     (nil))
+(insn 33 32 0 9 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_slkrefr.c":180:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:553609803 (estimated locally) (FALLTHRU)
+
+;; basic block 1, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 9, next block (nil), flags: (REACHABLE, RTL, VISITED)
+;;  pred:       5 [always]  count:520132021 (estimated locally) (ABNORMAL,SIBCALL)
+;;              9 [always]  count:553609803 (estimated locally) (FALLTHRU)
+;;  succ:      
+
+
+
+
+try_optimize_cfg iteration 1
+
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (RTL)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 7 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 7 3 2 (set (reg/v/f:DI 87 [ sp ])
+        (reg:DI 5 di [ sp ])) "../ncurses/./base/lib_slkrefr.c":170:1 74 {*movdi_internal}
+     (nil))
+(note 3 2 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn 9 3 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 87 [ sp ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":173:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 36)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":173:8 806 {*jcc}
+     (int_list:REG_BR_PROB 4831844 (nil))
+ -> 36)
+;;  succ:       6 [0.5% (guessed)]  count:4831840 (estimated locally)
+;;              3 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+
+;; basic block 3, loop depth 0, count 1068909985 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (RTL)
+;;  pred:       2 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+(note 11 10 12 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 3 (set (reg/f:DI 82 [ _1 ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 87 [ sp ])
+                (const_int 800 [0x320])) [14 sp_5(D)->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":173:35 74 {*movdi_internal}
+     (nil))
+(insn 13 12 14 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ _1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":173:25 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 14 13 15 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 40)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":173:25 806 {*jcc}
+     (int_list:REG_BR_PROB 4831844 (nil))
+ -> 40)
+;;  succ:       7 [0.5% (guessed)]  count:4810097 (estimated locally)
+;;              4 [99.5% (guessed)]  count:1064099888 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 1064099888 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (RTL)
+;;  pred:       3 [99.5% (guessed)]  count:1064099888 (estimated locally) (FALLTHRU)
+(note 15 14 16 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/f:DI 82 [ _1 ])
+                    (const_int 1 [0x1])) [6 _1->hidden+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":175:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 17 16 18 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 44)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":175:8 806 {*jcc}
+     (int_list:REG_BR_PROB 548896828 (nil))
+ -> 44)
+;;  succ:       8 [51.1% (guessed)]  count:543967866 (estimated locally)
+;;              5 [48.9% (guessed)]  count:520132022 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 520132021 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (RTL)
+;;  pred:       4 [48.9% (guessed)]  count:520132022 (estimated locally) (FALLTHRU)
+(note 18 17 19 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 5 (set (reg:DI 5 di)
+        (reg/v/f:DI 87 [ sp ])) 74 {*movdi_internal}
+     (nil))
+(call_insn 20 19 21 5 (call (mem:QI (symbol_ref:DI ("slk_intern_refresh.part.0") [flags 0x3]  <function_decl 0x7f0680997e00 slk_intern_refresh.part.0>) [0 slk_intern_refresh.part.0 S1 A8])
+        (const_int 0 [0])) 813 {*call}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("slk_intern_refresh.part.0") [flags 0x3]  <function_decl 0x7f0680997e00 slk_intern_refresh.part.0>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 21 20 22 5 (set (reg/f:DI 88)
+        (mem/f:DI (plus:DI (reg/v/f:DI 87 [ sp ])
+                (const_int 800 [0x320])) [14 sp_5(D)->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":179:5 74 {*movdi_internal}
+     (nil))
+(insn 22 21 23 5 (set (reg:DI 89)
+        (mem/f:DI (plus:DI (reg/f:DI 88)
+                (const_int 8 [0x8])) [9 _9->win+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":179:5 74 {*movdi_internal}
+     (nil))
+(insn 23 22 24 5 (set (reg:DI 5 di)
+        (reg:DI 89)) "../ncurses/./base/lib_slkrefr.c":179:5 74 {*movdi_internal}
+     (nil))
+(call_insn/j 24 23 36 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wrefresh") [flags 0x41]  <function_decl 0x7f0680bf4a00 wrefresh>) [0 wrefresh S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":179:5 828 {*sibcall_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wrefresh") [flags 0x41]  <function_decl 0x7f0680bf4a00 wrefresh>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       EXIT [always]  count:520132021 (estimated locally) (ABNORMAL,SIBCALL)
+
+;; basic block 6, loop depth 0, count 4831840 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (RTL)
+;;  pred:       2 [0.5% (guessed)]  count:4831840 (estimated locally)
+(code_label 36 24 35 6 69 (nil) [1 uses])
+(note 35 36 6 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 6 35 40 6 (set (reg:SI 86 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkrefr.c":174:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:4831840 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 4810097 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (RTL)
+;;  pred:       3 [0.5% (guessed)]  count:4810097 (estimated locally)
+(code_label 40 6 39 7 70 (nil) [1 uses])
+(note 39 40 4 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 4 39 44 7 (set (reg:SI 86 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkrefr.c":174:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:4810097 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 543967866 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (RTL)
+;;  pred:       4 [51.1% (guessed)]  count:543967866 (estimated locally)
+(code_label 44 4 43 8 71 (nil) [1 uses])
+(note 43 44 5 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 5 43 31 8 (set (reg:SI 86 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":176:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:543967866 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 553609803 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (RTL)
+;;  pred:       8 [always]  count:543967866 (estimated locally) (FALLTHRU)
+;;              6 [always]  count:4831840 (estimated locally) (FALLTHRU)
+;;              7 [always]  count:4810097 (estimated locally) (FALLTHRU)
+(code_label 31 5 34 9 67 (nil) [0 uses])
+(note 34 31 32 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 32 34 33 9 (set (reg/i:SI 0 ax)
+        (reg:SI 86 [ <retval> ])) "../ncurses/./base/lib_slkrefr.c":180:1 75 {*movsi_internal}
+     (nil))
+(insn 33 32 0 9 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_slkrefr.c":180:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:553609803 (estimated locally) (FALLTHRU)
+
+
+;; Function slk_refresh (slk_refresh, funcdef_no=96, decl_uid=6078, cgraph_uid=97, symbol_order=96)
+
+
+10 basic blocks, 12 edges.
+;; basic block 0, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block (nil), next block 2, flags: (RTL, VISITED)
+;;  pred:      
+;;  succ:       2 [always]  count:1073741824 (estimated locally) (FALLTHRU)
+
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 6 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 6 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 2 9 2 (set (reg/f:DI 82 [ SP.3_1 ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f0680d36cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":186:12 74 {*movdi_internal}
+     (nil))
+(insn 9 8 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ SP.3_1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":173:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 36)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":173:8 806 {*jcc}
+     (int_list:REG_BR_PROB 4831844 (nil))
+ -> 36)
+;;  succ:       6 [0.5% (guessed)]  count:4831840 (estimated locally)
+;;              3 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+
+;; basic block 3, loop depth 0, count 1068909985 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+(note 11 10 12 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 3 (set (reg/f:DI 83 [ _5 ])
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ SP.3_1 ])
+                (const_int 800 [0x320])) [14 SP.3_1->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":173:35 74 {*movdi_internal}
+     (nil))
+(insn 13 12 14 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 83 [ _5 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":173:25 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 14 13 15 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 40)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":173:25 806 {*jcc}
+     (int_list:REG_BR_PROB 4831844 (nil))
+ -> 40)
+;;  succ:       7 [0.5% (guessed)]  count:4810097 (estimated locally)
+;;              4 [99.5% (guessed)]  count:1064099888 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 1064099888 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       3 [99.5% (guessed)]  count:1064099888 (estimated locally) (FALLTHRU)
+(note 15 14 16 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/f:DI 83 [ _5 ])
+                    (const_int 1 [0x1])) [6 _5->hidden+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":175:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 17 16 18 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 44)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":175:8 806 {*jcc}
+     (int_list:REG_BR_PROB 548896828 (nil))
+ -> 44)
+;;  succ:       8 [51.1% (guessed)]  count:543967866 (estimated locally)
+;;              5 [48.9% (guessed)]  count:520132022 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 520132021 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       4 [48.9% (guessed)]  count:520132022 (estimated locally) (FALLTHRU)
+(note 18 17 19 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 5 (set (reg:DI 5 di)
+        (reg/f:DI 82 [ SP.3_1 ])) 74 {*movdi_internal}
+     (nil))
+(call_insn 20 19 21 5 (call (mem:QI (symbol_ref:DI ("slk_intern_refresh.part.0") [flags 0x3]  <function_decl 0x7f0680997e00 slk_intern_refresh.part.0>) [0 slk_intern_refresh.part.0 S1 A8])
+        (const_int 0 [0])) 813 {*call}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("slk_intern_refresh.part.0") [flags 0x3]  <function_decl 0x7f0680997e00 slk_intern_refresh.part.0>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 21 20 22 5 (set (reg/f:DI 88)
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ SP.3_1 ])
+                (const_int 800 [0x320])) [14 SP.3_1->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":179:5 74 {*movdi_internal}
+     (nil))
+(insn 22 21 23 5 (set (reg:DI 89)
+        (mem/f:DI (plus:DI (reg/f:DI 88)
+                (const_int 8 [0x8])) [9 _9->win+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":179:5 74 {*movdi_internal}
+     (nil))
+(insn 23 22 24 5 (set (reg:DI 5 di)
+        (reg:DI 89)) "../ncurses/./base/lib_slkrefr.c":179:5 74 {*movdi_internal}
+     (nil))
+(call_insn/j 24 23 36 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wrefresh") [flags 0x41]  <function_decl 0x7f0680bf4a00 wrefresh>) [0 wrefresh S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":179:5 828 {*sibcall_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wrefresh") [flags 0x41]  <function_decl 0x7f0680bf4a00 wrefresh>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       EXIT [always]  count:520132021 (estimated locally) (ABNORMAL,SIBCALL)
+
+;; basic block 6, loop depth 0, count 4831840 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [0.5% (guessed)]  count:4831840 (estimated locally)
+(code_label 36 24 35 6 79 (nil) [1 uses])
+(note 35 36 5 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 5 35 40 6 (set (reg:SI 87 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkrefr.c":174:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:4831840 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 4810097 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       3 [0.5% (guessed)]  count:4810097 (estimated locally)
+(code_label 40 5 39 7 80 (nil) [1 uses])
+(note 39 40 3 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 3 39 44 7 (set (reg:SI 87 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkrefr.c":174:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:4810097 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 543967866 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [51.1% (guessed)]  count:543967866 (estimated locally)
+(code_label 44 3 43 8 81 (nil) [1 uses])
+(note 43 44 4 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 4 43 31 8 (set (reg:SI 87 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":176:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:543967866 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 553609803 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       8 [always]  count:543967866 (estimated locally) (FALLTHRU)
+;;              6 [always]  count:4831840 (estimated locally) (FALLTHRU)
+;;              7 [always]  count:4810097 (estimated locally) (FALLTHRU)
+(code_label 31 4 34 9 77 (nil) [0 uses])
+(note 34 31 32 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 32 34 33 9 (set (reg/i:SI 0 ax)
+        (reg:SI 87 [ <retval> ])) "../ncurses/./base/lib_slkrefr.c":187:1 75 {*movsi_internal}
+     (nil))
+(insn 33 32 0 9 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_slkrefr.c":187:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:553609803 (estimated locally) (FALLTHRU)
+
+;; basic block 1, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 9, next block (nil), flags: (REACHABLE, RTL, VISITED)
+;;  pred:       5 [always]  count:520132021 (estimated locally) (ABNORMAL,SIBCALL)
+;;              9 [always]  count:553609803 (estimated locally) (FALLTHRU)
+;;  succ:      
+
+
+
+
+try_optimize_cfg iteration 1
+
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (RTL)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 6 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 6 8 2 NOTE_INSN_FUNCTION_BEG)
+(insn 8 2 9 2 (set (reg/f:DI 82 [ SP.3_1 ])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f0680d36cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":186:12 74 {*movdi_internal}
+     (nil))
+(insn 9 8 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 82 [ SP.3_1 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":173:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 36)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":173:8 806 {*jcc}
+     (int_list:REG_BR_PROB 4831844 (nil))
+ -> 36)
+;;  succ:       6 [0.5% (guessed)]  count:4831840 (estimated locally)
+;;              3 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+
+;; basic block 3, loop depth 0, count 1068909985 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (RTL)
+;;  pred:       2 [99.5% (guessed)]  count:1068909984 (estimated locally) (FALLTHRU)
+(note 11 10 12 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 12 11 13 3 (set (reg/f:DI 83 [ _5 ])
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ SP.3_1 ])
+                (const_int 800 [0x320])) [14 SP.3_1->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":173:35 74 {*movdi_internal}
+     (nil))
+(insn 13 12 14 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 83 [ _5 ])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":173:25 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 14 13 15 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 40)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":173:25 806 {*jcc}
+     (int_list:REG_BR_PROB 4831844 (nil))
+ -> 40)
+;;  succ:       7 [0.5% (guessed)]  count:4810097 (estimated locally)
+;;              4 [99.5% (guessed)]  count:1064099888 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 1064099888 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (RTL)
+;;  pred:       3 [99.5% (guessed)]  count:1064099888 (estimated locally) (FALLTHRU)
+(note 15 14 16 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 16 15 17 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/f:DI 83 [ _5 ])
+                    (const_int 1 [0x1])) [6 _5->hidden+0 S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":175:8 5 {*cmpqi_ccno_1}
+     (nil))
+(jump_insn 17 16 18 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 44)
+            (pc))) "../ncurses/./base/lib_slkrefr.c":175:8 806 {*jcc}
+     (int_list:REG_BR_PROB 548896828 (nil))
+ -> 44)
+;;  succ:       8 [51.1% (guessed)]  count:543967866 (estimated locally)
+;;              5 [48.9% (guessed)]  count:520132022 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 0, count 520132021 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (RTL)
+;;  pred:       4 [48.9% (guessed)]  count:520132022 (estimated locally) (FALLTHRU)
+(note 18 17 19 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 19 18 20 5 (set (reg:DI 5 di)
+        (reg/f:DI 82 [ SP.3_1 ])) 74 {*movdi_internal}
+     (nil))
+(call_insn 20 19 21 5 (call (mem:QI (symbol_ref:DI ("slk_intern_refresh.part.0") [flags 0x3]  <function_decl 0x7f0680997e00 slk_intern_refresh.part.0>) [0 slk_intern_refresh.part.0 S1 A8])
+        (const_int 0 [0])) 813 {*call}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("slk_intern_refresh.part.0") [flags 0x3]  <function_decl 0x7f0680997e00 slk_intern_refresh.part.0>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 21 20 22 5 (set (reg/f:DI 88)
+        (mem/f:DI (plus:DI (reg/f:DI 82 [ SP.3_1 ])
+                (const_int 800 [0x320])) [14 SP.3_1->_slk+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":179:5 74 {*movdi_internal}
+     (nil))
+(insn 22 21 23 5 (set (reg:DI 89)
+        (mem/f:DI (plus:DI (reg/f:DI 88)
+                (const_int 8 [0x8])) [9 _9->win+0 S8 A64])) "../ncurses/./base/lib_slkrefr.c":179:5 74 {*movdi_internal}
+     (nil))
+(insn 23 22 24 5 (set (reg:DI 5 di)
+        (reg:DI 89)) "../ncurses/./base/lib_slkrefr.c":179:5 74 {*movdi_internal}
+     (nil))
+(call_insn/j 24 23 36 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("wrefresh") [flags 0x41]  <function_decl 0x7f0680bf4a00 wrefresh>) [0 wrefresh S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/lib_slkrefr.c":179:5 828 {*sibcall_value}
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("wrefresh") [flags 0x41]  <function_decl 0x7f0680bf4a00 wrefresh>)
+        (nil))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+;;  succ:       EXIT [always]  count:520132021 (estimated locally) (ABNORMAL,SIBCALL)
+
+;; basic block 6, loop depth 0, count 4831840 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (RTL)
+;;  pred:       2 [0.5% (guessed)]  count:4831840 (estimated locally)
+(code_label 36 24 35 6 79 (nil) [1 uses])
+(note 35 36 5 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 5 35 40 6 (set (reg:SI 87 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkrefr.c":174:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:4831840 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 0, count 4810097 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (RTL)
+;;  pred:       3 [0.5% (guessed)]  count:4810097 (estimated locally)
+(code_label 40 5 39 7 80 (nil) [1 uses])
+(note 39 40 3 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 3 39 44 7 (set (reg:SI 87 [ <retval> ])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_slkrefr.c":174:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:4810097 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 0, count 543967866 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (RTL)
+;;  pred:       4 [51.1% (guessed)]  count:543967866 (estimated locally)
+(code_label 44 3 43 8 81 (nil) [1 uses])
+(note 43 44 4 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 4 43 31 8 (set (reg:SI 87 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/lib_slkrefr.c":176:2 75 {*movsi_internal}
+     (nil))
+;;  succ:       9 [always]  count:543967866 (estimated locally) (FALLTHRU)
+
+;; basic block 9, loop depth 0, count 553609803 (estimated locally), maybe hot
+;;  prev block 8, next block 1, flags: (RTL)
+;;  pred:       8 [always]  count:543967866 (estimated locally) (FALLTHRU)
+;;              6 [always]  count:4831840 (estimated locally) (FALLTHRU)
+;;              7 [always]  count:4810097 (estimated locally) (FALLTHRU)
+(code_label 31 4 34 9 77 (nil) [0 uses])
+(note 34 31 32 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 32 34 33 9 (set (reg/i:SI 0 ax)
+        (reg:SI 87 [ <retval> ])) "../ncurses/./base/lib_slkrefr.c":187:1 75 {*movsi_internal}
+     (nil))
+(insn 33 32 0 9 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_slkrefr.c":187:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:553609803 (estimated locally) (FALLTHRU)
+

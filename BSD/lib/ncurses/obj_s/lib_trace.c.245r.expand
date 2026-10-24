@@ -1,0 +1,117 @@
+
+;; Function curses_trace (curses_trace, funcdef_no=93, decl_uid=7292, cgraph_uid=94, symbol_order=94)
+
+__attribute__((visibility ("default")))
+unsigned int curses_trace (unsigned int tracelevel)
+{
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  return 0;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 2 (tracelevel_2(D) - 2 )
+Partition 3 (_3(D) - 3 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (tracelevel_2(D) - 2 )
+Partition 1, base 1 (_3(D) - 3 )
+
+
+Partition map 
+
+Partition 0 (tracelevel_2(D) - 2 )
+Partition 1 (_3(D) - 3 )
+
+
+Conflict graph:
+
+After sorting:
+Coalesce List:
+
+Partition map 
+
+Partition 0 (tracelevel_2(D) - 2 )
+Partition 1 (_3(D) - 3 )
+
+After Coalescing:
+
+Partition map 
+
+Partition 0 (tracelevel_2(D) - 2 )
+Partition 1 (_3(D) - 3 )
+
+__attribute__((visibility ("default")))
+unsigned int curses_trace (unsigned int tracelevel)
+{
+  unsigned int _3(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  return 0;
+;;    succ:       EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; return 0;
+
+(insn 6 5 7 (set (reg:SI 82 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./trace/lib_trace.c":205:12 -1
+     (nil))
+
+(jump_insn 7 6 8 (set (pc)
+        (label_ref 0)) "../ncurses/./trace/lib_trace.c":205:12 -1
+     (nil))
+
+(barrier 8 7 0)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Removing jump 7.
+Merging block 4 into block 2...
+Merged blocks 2 and 4.
+Merged 2 and 4 without moving.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 4 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 1, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+(note 4 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 4 3 2 (set (reg/v:SI 83 [ tracelevel ])
+        (reg:SI 5 di [ tracelevel ])) "../ncurses/./trace/lib_trace.c":109:1 -1
+     (nil))
+(note 3 2 6 2 NOTE_INSN_FUNCTION_BEG)
+(insn 6 3 10 2 (set (reg:SI 82 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./trace/lib_trace.c":205:12 -1
+     (nil))
+(insn 10 6 11 2 (set (reg/i:SI 0 ax)
+        (reg:SI 82 [ <retval> ])) "../ncurses/./trace/lib_trace.c":206:1 -1
+     (nil))
+(insn 11 10 0 2 (use (reg/i:SI 0 ax)) "../ncurses/./trace/lib_trace.c":206:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+

@@ -1,0 +1,1284 @@
+
+;; Function _nc_get_cur_term_sp (_nc_get_cur_term_sp, funcdef_no=91, decl_uid=8906, cgraph_uid=92, symbol_order=91)
+
+Creating trace 0 : start at note 1
+Creating trace 1 : start at note 49
+Creating trace 2 : start at code_label 34
+Creating trace 3 : start at note 55
+Processing trace 0 : start at note 1
+   saw edge from trace 0 to 1 (via fallthru 0)
+	push trace 1 to worklist
+Processing trace 1 : start at note 49
+   saw edge from trace 1 to 2 (via jump_insn 7)
+	push trace 2 to worklist
+   saw edge from trace 1 to 2 (via fallthru 0)
+Processing trace 2 : start at code_label 34
+   saw edge from trace 2 to 3 (via fallthru 0)
+	push trace 3 to worklist
+Processing trace 3 : start at note 55
+
+
+_nc_get_cur_term_sp
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 7 [sp]
+;;  regs ever live 	 0 [ax] 1 [dx] 5 [di] 17 [flags]
+;;  ref usage 	r0={4d,4u} r1={1d} r2={1d} r4={1d} r5={1d,2u} r7={1d,4u} r17={2d,2u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={1d} r37={1d} 
+;;    total ref usage 33{21d,12u,0e} in 8{8 regular + 0 call} insns.
+(note 1 0 56 NOTE_INSN_DELETED)
+(insn 56 1 4 2 (unspec_volatile [
+            (const_int 0 [0])
+        ] UNSPECV_NOP_ENDBR) 1242 {nop_endbr}
+     (nil))
+(note 4 56 49 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 49 4 3 2 NOTE_INSN_PROLOGUE_END)
+(note 3 49 23 2 NOTE_INSN_FUNCTION_BEG)
+(insn:TI 23 3 6 2 (set (reg/f:DI 0 ax [orig:82 <retval> ] [82])
+        (mem/f/c:DI (const:DI (plus:DI (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7fc5d5361f30 _nc_prescreen>)
+                    (const_int 680 [0x2a8]))) [1 _nc_prescreen._cur_term+0 S8 A64])) "../ncurses/./tinfo/lib_cur_term.c":54:22 74 {*movdi_internal}
+     (nil))
+(insn 6 23 7 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 5 di [orig:83 sp ] [83])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":54:19 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 7 6 8 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 34)
+            (pc))) "../ncurses/./tinfo/lib_cur_term.c":54:19 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 34)
+(note 8 7 9 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 9 8 10 3 (set (reg/f:DI 0 ax [orig:82 <retval> ] [82])
+        (mem/f:DI (plus:DI (reg/v/f:DI 5 di [orig:83 sp ] [83])
+                (const_int 48 [0x30])) [1 sp_7(D)->_term+0 S8 A64])) "../ncurses/./tinfo/lib_cur_term.c":54:22 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 5 di [orig:83 sp ] [83])
+        (nil)))
+(insn:TI 10 9 45 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 0 ax [orig:82 <retval> ] [82])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":54:19 8 {*cmpdi_ccno_1}
+     (nil))
+(insn 45 10 34 3 (set (reg:DI 0 ax [90])
+        (if_then_else:DI (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (mem/f/c:DI (const:DI (plus:DI (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7fc5d5361f30 _nc_prescreen>)
+                        (const_int 680 [0x2a8]))) [1 _nc_prescreen._cur_term+0 S8 A64])
+            (reg:DI 0 ax [90]))) "../ncurses/./tinfo/lib_cur_term.c":54:22 1101 {*movdicc_noc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (nil)))
+(code_label 34 45 37 4 1 (nil) [1 uses])
+(note 37 34 36 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 36 37 55 4 (use (reg/i:DI 0 ax)) "../ncurses/./tinfo/lib_cur_term.c":55:1 -1
+     (nil))
+(note 55 36 51 4 NOTE_INSN_EPILOGUE_BEG)
+(jump_insn:TI 51 55 52 4 (simple_return) "../ncurses/./tinfo/lib_cur_term.c":55:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 52 51 46)
+(note 46 52 0 NOTE_INSN_DELETED)
+
+;; Function _nc_get_cur_term (_nc_get_cur_term, funcdef_no=100, decl_uid=8728, cgraph_uid=93, symbol_order=92)
+
+Creating trace 0 : start at note 1
+Creating trace 1 : start at note 48
+Creating trace 2 : start at code_label 34
+Creating trace 3 : start at note 52
+Processing trace 0 : start at note 1
+   saw edge from trace 0 to 1 (via fallthru 0)
+	push trace 1 to worklist
+Processing trace 1 : start at note 48
+   saw edge from trace 1 to 2 (via jump_insn 7)
+	push trace 2 to worklist
+   saw edge from trace 1 to 2 (via fallthru 0)
+Processing trace 2 : start at code_label 34
+   saw edge from trace 2 to 3 (via fallthru 0)
+	push trace 3 to worklist
+Processing trace 3 : start at note 52
+
+
+_nc_get_cur_term
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 7 [sp]
+;;  regs ever live 	 0 [ax] 1 [dx] 17 [flags]
+;;  ref usage 	r0={4d,4u} r1={2d,2u} r2={1d} r4={1d} r5={1d} r7={1d,4u} r17={2d,2u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={1d} r37={1d} 
+;;    total ref usage 34{22d,12u,0e} in 9{9 regular + 0 call} insns.
+(note 1 0 53 NOTE_INSN_DELETED)
+(insn 53 1 3 2 (unspec_volatile [
+            (const_int 0 [0])
+        ] UNSPECV_NOP_ENDBR) 1242 {nop_endbr}
+     (nil))
+(note 3 53 48 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 48 3 2 2 NOTE_INSN_PROLOGUE_END)
+(note 2 48 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn:TI 5 2 23 2 (set (reg/f:DI 1 dx [orig:82 SP.6_3 ] [82])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7fc5d53cfcf0 SP>) [38 SP+0 S8 A64])) "../ncurses/./tinfo/lib_cur_term.c":70:12 74 {*movdi_internal}
+     (nil))
+(insn 23 5 6 2 (set (reg/f:DI 0 ax [orig:83 <retval> ] [83])
+        (mem/f/c:DI (const:DI (plus:DI (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7fc5d5361f30 _nc_prescreen>)
+                    (const_int 680 [0x2a8]))) [1 _nc_prescreen._cur_term+0 S8 A64])) "../ncurses/./tinfo/lib_cur_term.c":54:22 74 {*movdi_internal}
+     (nil))
+(insn:TI 6 23 7 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 1 dx [orig:82 SP.6_3 ] [82])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":54:19 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 7 6 8 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 34)
+            (pc))) "../ncurses/./tinfo/lib_cur_term.c":54:19 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 34)
+(note 8 7 9 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 9 8 10 3 (set (reg/f:DI 0 ax [orig:83 <retval> ] [83])
+        (mem/f:DI (plus:DI (reg/f:DI 1 dx [orig:82 SP.6_3 ] [82])
+                (const_int 48 [0x30])) [1 SP.6_3->_term+0 S8 A64])) "../ncurses/./tinfo/lib_cur_term.c":54:22 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 1 dx [orig:82 SP.6_3 ] [82])
+        (nil)))
+(insn:TI 10 9 44 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 0 ax [orig:83 <retval> ] [83])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":54:19 8 {*cmpdi_ccno_1}
+     (nil))
+(insn 44 10 34 3 (set (reg:DI 0 ax [89])
+        (if_then_else:DI (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (mem/f/c:DI (const:DI (plus:DI (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7fc5d5361f30 _nc_prescreen>)
+                        (const_int 680 [0x2a8]))) [1 _nc_prescreen._cur_term+0 S8 A64])
+            (reg:DI 0 ax [89]))) "../ncurses/./tinfo/lib_cur_term.c":54:22 1101 {*movdicc_noc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (nil)))
+(code_label 34 44 37 4 7 (nil) [1 uses])
+(note 37 34 36 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 36 37 52 4 (use (reg/i:DI 0 ax)) "../ncurses/./tinfo/lib_cur_term.c":60:1 -1
+     (nil))
+(note 52 36 50 4 NOTE_INSN_EPILOGUE_BEG)
+(jump_insn:TI 50 52 51 4 (simple_return) "../ncurses/./tinfo/lib_cur_term.c":60:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 51 50 45)
+(note 45 51 0 NOTE_INSN_DELETED)
+
+;; Function _nc_cur_term (_nc_cur_term, funcdef_no=93, decl_uid=7486, cgraph_uid=94, symbol_order=93)
+
+Creating trace 0 : start at note 1
+Creating trace 1 : start at note 48
+Creating trace 2 : start at code_label 34
+Creating trace 3 : start at note 52
+Processing trace 0 : start at note 1
+   saw edge from trace 0 to 1 (via fallthru 0)
+	push trace 1 to worklist
+Processing trace 1 : start at note 48
+   saw edge from trace 1 to 2 (via jump_insn 7)
+	push trace 2 to worklist
+   saw edge from trace 1 to 2 (via fallthru 0)
+Processing trace 2 : start at code_label 34
+   saw edge from trace 2 to 3 (via fallthru 0)
+	push trace 3 to worklist
+Processing trace 3 : start at note 52
+
+
+_nc_cur_term
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 7 [sp]
+;;  regs ever live 	 0 [ax] 1 [dx] 17 [flags]
+;;  ref usage 	r0={4d,4u} r1={2d,2u} r2={1d} r4={1d} r5={1d} r7={1d,4u} r17={2d,2u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={1d} r37={1d} 
+;;    total ref usage 34{22d,12u,0e} in 9{9 regular + 0 call} insns.
+(note 1 0 53 NOTE_INSN_DELETED)
+(insn 53 1 3 2 (unspec_volatile [
+            (const_int 0 [0])
+        ] UNSPECV_NOP_ENDBR) 1242 {nop_endbr}
+     (nil))
+(note 3 53 48 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 48 3 2 2 NOTE_INSN_PROLOGUE_END)
+(note 2 48 5 2 NOTE_INSN_FUNCTION_BEG)
+(insn:TI 5 2 23 2 (set (reg/f:DI 1 dx [orig:82 SP.6_1 ] [82])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7fc5d53cfcf0 SP>) [38 SP+0 S8 A64])) "../ncurses/./tinfo/lib_cur_term.c":70:12 74 {*movdi_internal}
+     (nil))
+(insn 23 5 6 2 (set (reg/f:DI 0 ax [orig:83 <retval> ] [83])
+        (mem/f/c:DI (const:DI (plus:DI (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7fc5d5361f30 _nc_prescreen>)
+                    (const_int 680 [0x2a8]))) [1 _nc_prescreen._cur_term+0 S8 A64])) "../ncurses/./tinfo/lib_cur_term.c":54:22 74 {*movdi_internal}
+     (nil))
+(insn:TI 6 23 7 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 1 dx [orig:82 SP.6_1 ] [82])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":54:19 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 7 6 8 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 34)
+            (pc))) "../ncurses/./tinfo/lib_cur_term.c":54:19 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 34)
+(note 8 7 9 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 9 8 10 3 (set (reg/f:DI 0 ax [orig:83 <retval> ] [83])
+        (mem/f:DI (plus:DI (reg/f:DI 1 dx [orig:82 SP.6_1 ] [82])
+                (const_int 48 [0x30])) [1 SP.6_1->_term+0 S8 A64])) "../ncurses/./tinfo/lib_cur_term.c":54:22 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 1 dx [orig:82 SP.6_1 ] [82])
+        (nil)))
+(insn:TI 10 9 44 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 0 ax [orig:83 <retval> ] [83])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":54:19 8 {*cmpdi_ccno_1}
+     (nil))
+(insn 44 10 34 3 (set (reg:DI 0 ax [89])
+        (if_then_else:DI (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (mem/f/c:DI (const:DI (plus:DI (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7fc5d5361f30 _nc_prescreen>)
+                        (const_int 680 [0x2a8]))) [1 _nc_prescreen._cur_term+0 S8 A64])
+            (reg:DI 0 ax [89]))) "../ncurses/./tinfo/lib_cur_term.c":54:22 1101 {*movdicc_noc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (nil)))
+(code_label 34 44 37 4 12 (nil) [1 uses])
+(note 37 34 36 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 36 37 52 4 (use (reg/i:DI 0 ax)) "../ncurses/./tinfo/lib_cur_term.c":74:1 -1
+     (nil))
+(note 52 36 50 4 NOTE_INSN_EPILOGUE_BEG)
+(jump_insn:TI 50 52 51 4 (simple_return) "../ncurses/./tinfo/lib_cur_term.c":74:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 51 50 45)
+(note 45 51 0 NOTE_INSN_DELETED)
+
+;; Function set_curterm_sp (set_curterm_sp, funcdef_no=94, decl_uid=7605, cgraph_uid=95, symbol_order=94)
+
+Creating trace 0 : start at note 1
+Creating trace 1 : start at note 95
+Creating trace 2 : start at code_label 19
+Creating trace 3 : start at code_label 48
+Creating trace 4 : start at code_label 51
+Creating trace 5 : start at note 107
+Processing trace 0 : start at note 1
+   saw edge from trace 0 to 1 (via fallthru 0)
+	push trace 1 to worklist
+Processing trace 1 : start at note 95
+   saw edge from trace 1 to 2 (via jump_insn 16)
+	push trace 2 to worklist
+   saw edge from trace 1 to 2 (via fallthru 0)
+Processing trace 2 : start at code_label 19
+   saw edge from trace 2 to 4 (via jump_insn 24)
+	push trace 4 to worklist
+   saw edge from trace 2 to 4 (via jump_insn 38)
+   saw edge from trace 2 to 3 (via jump_insn 45)
+	push trace 3 to worklist
+   saw edge from trace 2 to 3 (via fallthru 0)
+Processing trace 3 : start at code_label 48
+   saw edge from trace 3 to 4 (via fallthru 0)
+Processing trace 4 : start at code_label 51
+   saw edge from trace 4 to 5 (via fallthru 0)
+	push trace 5 to worklist
+Processing trace 5 : start at note 107
+
+
+set_curterm_sp
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9] 40 [r12] 41 [r13]
+;;  exit block uses 	 0 [ax] 3 [bx] 6 [bp] 7 [sp] 40 [r12] 41 [r13]
+;;  regs ever live 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 17 [flags] 40 [r12] 41 [r13]
+;;  ref usage 	r0={9d,7u} r1={5d,2u} r2={5d,1u} r3={3d,7u,1e} r4={4d,1u} r5={8d,5u} r6={3d,4u} r7={11d,25u} r8={4d} r9={4d} r10={4d} r11={4d} r12={4d} r13={4d} r14={4d} r15={4d} r17={11d,4u} r18={4d} r20={4d} r21={4d} r22={4d} r23={4d} r24={4d} r25={4d} r26={4d} r27={4d} r28={3d} r29={3d} r30={3d} r31={3d} r32={3d} r33={3d} r34={3d} r35={3d} r36={4d} r37={4d} r38={3d} r39={3d} r40={3d,3u} r41={3d,4u} r44={3d} r45={3d} r46={3d} r47={3d} r48={3d} r49={3d} r50={3d} r51={3d} r52={4d} r53={4d} r54={4d} r55={4d} r56={4d} r57={4d} r58={4d} r59={4d} r60={4d} r61={4d} r62={4d} r63={4d} r64={4d} r65={4d} r66={4d} r67={4d} r68={4d} r69={4d} r70={4d} r71={4d} r72={4d} r73={4d} r74={4d} r75={4d} 
+;;    total ref usage 355{291d,63u,1e} in 42{38 regular + 4 call} insns.
+(note 1 0 108 NOTE_INSN_DELETED)
+(insn 108 1 6 2 (unspec_volatile [
+            (const_int 0 [0])
+        ] UNSPECV_NOP_ENDBR) 1242 {nop_endbr}
+     (nil))
+(note 6 108 4 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 4 6 90 2 NOTE_INSN_FUNCTION_BEG)
+(insn/f:TI 90 4 109 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 41 r13)) "../ncurses/./tinfo/lib_cur_term.c":82:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 41 r13)
+        (nil)))
+(note 109 90 110 2
+	.cfi_def_cfa_offset 16
+	 NOTE_INSN_CFI)
+(note 110 109 8 2
+	.cfi_offset 13, -16
+	 NOTE_INSN_CFI)
+(insn 8 110 91 2 (set (reg/f:DI 41 r13 [101])
+        (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fc5d5361ea0 _nc_globals>)
+                (const_int 504 [0x1f8])))) "../ncurses/./tinfo/lib_cur_term.c":87:5 74 {*movdi_internal}
+     (expr_list:REG_EQUIV (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fc5d5361ea0 _nc_globals>)
+                (const_int 504 [0x1f8])))
+        (nil)))
+(insn/f:TI 91 8 111 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 40 r12)) "../ncurses/./tinfo/lib_cur_term.c":82:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 40 r12)
+        (nil)))
+(note 111 91 112 2
+	.cfi_def_cfa_offset 24
+	 NOTE_INSN_CFI)
+(note 112 111 92 2
+	.cfi_offset 12, -24
+	 NOTE_INSN_CFI)
+(insn/f:TI 92 112 113 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 6 bp)) "../ncurses/./tinfo/lib_cur_term.c":82:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 6 bp)
+        (nil)))
+(note 113 92 114 2
+	.cfi_def_cfa_offset 32
+	 NOTE_INSN_CFI)
+(note 114 113 2 2
+	.cfi_offset 6, -32
+	 NOTE_INSN_CFI)
+(insn 2 114 9 2 (set (reg/v/f:DI 6 bp [orig:92 sp ] [92])
+        (reg:DI 5 di [104])) "../ncurses/./tinfo/lib_cur_term.c":82:1 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 5 di [104])
+        (nil)))
+(insn 9 2 93 2 (set (reg:DI 5 di)
+        (reg/f:DI 41 r13 [101])) "../ncurses/./tinfo/lib_cur_term.c":87:5 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fc5d5361ea0 _nc_globals>)
+                (const_int 504 [0x1f8])))
+        (nil)))
+(insn/f:TI 93 9 115 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 3 bx)) "../ncurses/./tinfo/lib_cur_term.c":82:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 3 bx)
+        (nil)))
+(note 115 93 116 2
+	.cfi_def_cfa_offset 40
+	 NOTE_INSN_CFI)
+(note 116 115 3 2
+	.cfi_offset 3, -40
+	 NOTE_INSN_CFI)
+(insn 3 116 94 2 (set (reg/v/f:DI 3 bx [orig:93 termp ] [93])
+        (reg:DI 4 si [105])) "../ncurses/./tinfo/lib_cur_term.c":82:1 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 4 si [105])
+        (nil)))
+(insn/f:TI 94 3 117 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -8 [0xfffffffffffffff8])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) "../ncurses/./tinfo/lib_cur_term.c":82:1 1142 {pro_epilogue_adjust_stack_add_di}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -8 [0xfffffffffffffff8])))
+            (nil))))
+(note 117 94 95 2
+	.cfi_def_cfa_offset 48
+	 NOTE_INSN_CFI)
+(note 95 117 10 2 NOTE_INSN_PROLOGUE_END)
+(call_insn:TI 10 95 12 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_mutex_lock") [flags 0x41]  <function_decl 0x7fc5d53e0100 _nc_mutex_lock>) [0 _nc_mutex_lock S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":87:5 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_mutex_lock") [flags 0x41]  <function_decl 0x7fc5d53e0100 _nc_mutex_lock>)
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 12 10 13 2 (set (reg:DI 5 di)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7fc5d53cfcf0 SP>) [38 SP+0 S8 A64])) "../ncurses/./tinfo/lib_cur_term.c":70:12 74 {*movdi_internal}
+     (nil))
+(call_insn/i:TI 13 12 14 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_get_cur_term_sp") [flags 0x3]  <function_decl 0x7fc5d5446200 _nc_get_cur_term_sp>) [0 _nc_get_cur_term_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":70:12 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_get_cur_term_sp") [flags 0x3]  <function_decl 0x7fc5d5446200 _nc_get_cur_term_sp>)
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn:TI 14 13 15 2 (set (reg/f:DI 40 r12 [orig:91 <retval> ] [91])
+        (reg:DI 0 ax [106])) "../ncurses/./tinfo/lib_cur_term.c":70:12 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 0 ax [106])
+        (nil)))
+(insn 15 14 16 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 6 bp [orig:92 sp ] [92])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":89:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 16 15 17 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 19)
+            (pc))) "../ncurses/./tinfo/lib_cur_term.c":89:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 19)
+(note 17 16 18 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 18 17 19 3 (set (mem/f:DI (plus:DI (reg/v/f:DI 6 bp [orig:92 sp ] [92])
+                (const_int 48 [0x30])) [1 sp_14(D)->_term+0 S8 A64])
+        (reg/v/f:DI 3 bx [orig:93 termp ] [93])) "../ncurses/./tinfo/lib_cur_term.c":90:17 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 6 bp [orig:92 sp ] [92])
+        (nil)))
+(code_label 19 18 20 4 18 (nil) [1 uses])
+(note 20 19 22 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 22 20 23 4 (set (mem/f/c:DI (const:DI (plus:DI (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7fc5d5361f30 _nc_prescreen>)
+                    (const_int 680 [0x2a8]))) [1 _nc_prescreen._cur_term+0 S8 A64])
+        (reg/v/f:DI 3 bx [orig:93 termp ] [93])) "../ncurses/./tinfo/lib_cur_term.c":92:13 74 {*movdi_internal}
+     (nil))
+(insn 23 22 24 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 3 bx [orig:93 termp ] [93])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":96:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 24 23 29 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 51)
+            (pc))) "../ncurses/./tinfo/lib_cur_term.c":96:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 499612076 (nil)))
+ -> 51)
+(note 29 24 33 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(note 33 29 30 5 NOTE_INSN_DELETED)
+(insn:TI 30 33 32 5 (set (reg:SI 5 di [orig:97 termp_15(D)->_baudrate ] [97])
+        (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:93 termp ] [93])
+                (const_int 196 [0xc4])) [5 termp_15(D)->_baudrate+0 S4 A32])) "../ncurses/./tinfo/lib_cur_term.c":107:28 75 {*movsi_internal}
+     (expr_list:REG_EQUIV (mem:SI (plus:DI (reg/v/f:DI 3 bx [orig:93 termp ] [93])
+                (const_int 196 [0xc4])) [5 termp_15(D)->_baudrate+0 S4 A32])
+        (nil)))
+(call_insn:TI 32 30 34 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_ospeed") [flags 0x41]  <function_decl 0x7fc5d542ae00 _nc_ospeed>) [0 _nc_ospeed S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":107:28 824 {*call_value}
+     (expr_list:REG_DEAD (reg:SI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_ospeed") [flags 0x41]  <function_decl 0x7fc5d542ae00 _nc_ospeed>)
+            (nil)))
+    (expr_list:SI (use (reg:SI 5 di))
+        (nil)))
+(insn:TI 34 32 35 5 (set (mem/c:HI (symbol_ref:DI ("ospeed") [flags 0x40]  <var_decl 0x7fc5d5455090 ospeed>) [22 ospeed+0 S2 A16])
+        (reg:HI 0 ax [107])) "../ncurses/./tinfo/lib_cur_term.c":107:11 76 {*movhi_internal}
+     (expr_list:REG_DEAD (reg:HI 0 ax [107])
+        (nil)))
+(insn 35 34 37 5 (set (reg/f:DI 0 ax [orig:85 _4 ] [85])
+        (mem/f:DI (plus:DI (reg/v/f:DI 3 bx [orig:93 termp ] [93])
+                (const_int 720 [0x2d0])) [46 termp_15(D)->type2.Strings+0 S8 A64])) "../ncurses/./tinfo/lib_cur_term.c":108:25 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 3 bx [orig:93 termp ] [93])
+        (nil)))
+(insn:TI 37 35 38 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 0 ax [orig:85 _4 ] [85])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":108:5 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 38 37 39 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 51)
+            (pc))) "../ncurses/./tinfo/lib_cur_term.c":108:5 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 51)
+(note 39 38 40 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 40 39 106 6 (set (reg/f:DI 1 dx [orig:86 _5 ] [86])
+        (mem/f:DI (plus:DI (reg/f:DI 0 ax [orig:85 _4 ] [85])
+                (const_int 832 [0x340])) [7 MEM[(char * *)_4 + 832B]+0 S8 A64])) "../ncurses/./tinfo/lib_cur_term.c":109:19 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 0 ax [orig:85 _4 ] [85])
+        (nil)))
+(insn 106 40 89 6 (parallel [
+            (set (reg:DI 0 ax [orig:89 iftmp.7_8 ] [89])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/lib_cur_term.c":109:11 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn:TI 89 106 44 6 (set (reg/f:DI 2 cx [98])
+        (plus:DI (reg/f:DI 1 dx [orig:86 _5 ] [86])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./tinfo/lib_cur_term.c":109:19 206 {*leadi}
+     (nil))
+(insn:TI 44 89 45 6 (set (reg:CC 17 flags)
+        (compare:CC (reg/f:DI 2 cx [98])
+            (const_int -3 [0xfffffffffffffffd]))) "../ncurses/./tinfo/lib_cur_term.c":109:11 12 {*cmpdi_1}
+     (expr_list:REG_DEAD (reg/f:DI 2 cx [98])
+        (nil)))
+(jump_insn 45 44 46 6 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 48)
+            (pc))) "../ncurses/./tinfo/lib_cur_term.c":109:11 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CC 17 flags)
+        (int_list:REG_BR_PROB 536870916 (nil)))
+ -> 48)
+(note 46 45 47 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 47 46 48 7 (set (reg:QI 0 ax [orig:89 iftmp.7_8 ] [89])
+        (mem:QI (reg/f:DI 1 dx [orig:86 _5 ] [86]) [0 *_5+0 S1 A8])) "../ncurses/./tinfo/lib_cur_term.c":109:11 77 {*movqi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 1 dx [orig:86 _5 ] [86])
+        (nil)))
+(code_label 48 47 49 8 22 (nil) [1 uses])
+(note 49 48 50 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 50 49 51 8 (set (mem/c:QI (symbol_ref:DI ("PC") [flags 0x40]  <var_decl 0x7fc5d53cf1b0 PC>) [0 PC+0 S1 A8])
+        (reg:QI 0 ax [orig:89 iftmp.7_8 ] [89])) "../ncurses/./tinfo/lib_cur_term.c":109:9 77 {*movqi_internal}
+     (expr_list:REG_DEAD (reg:QI 0 ax [orig:89 iftmp.7_8 ] [89])
+        (nil)))
+(code_label 51 50 52 9 20 (nil) [2 uses])
+(note 52 51 54 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 54 52 55 9 (set (reg:DI 5 di)
+        (reg/f:DI 41 r13 [101])) "../ncurses/./tinfo/lib_cur_term.c":116:5 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 41 r13 [101])
+        (expr_list:REG_EQUAL (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fc5d5361ea0 _nc_globals>)
+                    (const_int 504 [0x1f8])))
+            (nil))))
+(call_insn:TI 55 54 107 9 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_mutex_unlock") [flags 0x41]  <function_decl 0x7fc5d53e0300 _nc_mutex_unlock>) [0 _nc_mutex_unlock S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":116:5 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_mutex_unlock") [flags 0x41]  <function_decl 0x7fc5d53e0300 _nc_mutex_unlock>)
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(note 107 55 97 9 NOTE_INSN_EPILOGUE_BEG)
+(insn/f 97 107 118 9 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) "../ncurses/./tinfo/lib_cur_term.c":120:1 1142 {pro_epilogue_adjust_stack_add_di}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 8 [0x8])))
+            (nil))))
+(note 118 97 59 9
+	.cfi_def_cfa_offset 40
+	 NOTE_INSN_CFI)
+(insn 59 118 60 9 (set (reg/i:DI 0 ax)
+        (reg/f:DI 40 r12 [orig:91 <retval> ] [91])) "../ncurses/./tinfo/lib_cur_term.c":120:1 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 40 r12 [orig:91 <retval> ] [91])
+        (nil)))
+(insn 60 59 98 9 (use (reg/i:DI 0 ax)) "../ncurses/./tinfo/lib_cur_term.c":120:1 -1
+     (nil))
+(insn/f:TI 98 60 119 9 (set (reg:DI 3 bx)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/lib_cur_term.c":120:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(note 119 98 99 9
+	.cfi_def_cfa_offset 32
+	 NOTE_INSN_CFI)
+(insn/f 99 119 120 9 (set (reg:DI 6 bp)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/lib_cur_term.c":120:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(note 120 99 100 9
+	.cfi_def_cfa_offset 24
+	 NOTE_INSN_CFI)
+(insn/f:TI 100 120 121 9 (set (reg:DI 40 r12)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/lib_cur_term.c":120:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(note 121 100 101 9
+	.cfi_def_cfa_offset 16
+	 NOTE_INSN_CFI)
+(insn/f 101 121 122 9 (set (reg:DI 41 r13)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/lib_cur_term.c":120:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(note 122 101 102 9
+	.cfi_def_cfa_offset 8
+	 NOTE_INSN_CFI)
+(jump_insn:TI 102 122 105 9 (simple_return) "../ncurses/./tinfo/lib_cur_term.c":120:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 105 102 88)
+(note 88 105 0 NOTE_INSN_DELETED)
+
+;; Function set_curterm (set_curterm, funcdef_no=95, decl_uid=7534, cgraph_uid=96, symbol_order=95)
+
+Creating trace 0 : start at note 1
+Creating trace 1 : start at note 18
+Processing trace 0 : start at note 1
+   saw edge from trace 0 to 1 (via fallthru 0)
+	push trace 1 to worklist
+Processing trace 1 : start at note 18
+
+
+set_curterm
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 7 [sp]
+;;  regs ever live 	 0 [ax] 4 [si] 5 [di] 7 [sp]
+;;  ref usage 	r0={2d,1u} r1={2d} r2={2d} r4={3d,1u} r5={3d,2u} r7={1d,3u} r8={1d} r9={1d} r10={1d} r11={1d} r12={1d} r13={1d} r14={1d} r15={1d} r17={1d} r18={1d} r20={2d} r21={2d} r22={2d} r23={2d} r24={2d} r25={2d} r26={2d} r27={2d} r28={1d} r29={1d} r30={1d} r31={1d} r32={1d} r33={1d} r34={1d} r35={1d} r36={2d} r37={2d} r38={1d} r39={1d} r44={1d} r45={1d} r46={1d} r47={1d} r48={1d} r49={1d} r50={1d} r51={1d} r52={1d} r53={1d} r54={1d} r55={1d} r56={1d} r57={1d} r58={1d} r59={1d} r60={1d} r61={1d} r62={1d} r63={1d} r64={1d} r65={1d} r66={1d} r67={1d} r68={1d} r69={1d} r70={1d} r71={1d} r72={1d} r73={1d} r74={1d} r75={1d} 
+;;    total ref usage 92{85d,7u,0e} in 3{2 regular + 1 call} insns.
+(note 1 0 21 NOTE_INSN_DELETED)
+(insn 21 1 4 2 (unspec_volatile [
+            (const_int 0 [0])
+        ] UNSPECV_NOP_ENDBR) 1242 {nop_endbr}
+     (nil))
+(note 4 21 18 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 18 4 3 2 NOTE_INSN_PROLOGUE_END)
+(note 3 18 2 2 NOTE_INSN_FUNCTION_BEG)
+(insn:TI 2 3 8 2 (set (reg/v/f:DI 4 si [orig:84 termp ] [84])
+        (reg:DI 5 di [86])) "../ncurses/./tinfo/lib_cur_term.c":125:1 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 5 di [86])
+        (nil)))
+(insn 8 2 9 2 (set (reg:DI 5 di)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7fc5d53cfcf0 SP>) [38 SP+0 S8 A64])) "../ncurses/./tinfo/lib_cur_term.c":126:12 74 {*movdi_internal}
+     (nil))
+(call_insn/j:TI 9 8 10 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("set_curterm_sp") [flags 0x3]  <function_decl 0x7fc5d5370e00 set_curterm_sp>) [0 set_curterm_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":126:12 828 {*sibcall_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:DI 4 si)
+            (expr_list:REG_CALL_DECL (symbol_ref:DI ("set_curterm_sp") [flags 0x3]  <function_decl 0x7fc5d5370e00 set_curterm_sp>)
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(barrier 10 9 17)
+(note 17 10 0 NOTE_INSN_DELETED)
+
+;; Function del_curterm_sp (del_curterm_sp, funcdef_no=96, decl_uid=7608, cgraph_uid=97, symbol_order=96)
+
+Creating trace 0 : start at note 1
+Creating trace 1 : start at note 121
+Creating trace 2 : start at code_label 37
+Creating trace 3 : start at code_label 45
+Creating trace 4 : start at code_label 56
+Creating trace 5 : start at code_label 68
+Creating trace 6 : start at note 156
+Creating trace 7 : start at code_label 151
+Creating trace 8 : start at code_label 150
+Creating trace 9 : start at code_label 30
+Creating trace 10 : start at code_label 89
+Processing trace 0 : start at note 1
+   saw edge from trace 0 to 10 (via jump_insn 10)
+	push trace 10 to worklist
+   saw edge from trace 0 to 1 (via fallthru 0)
+	push trace 1 to worklist
+Processing trace 1 : start at note 121
+   saw edge from trace 1 to 8 (via jump_insn 21)
+	push trace 8 to worklist
+   saw edge from trace 1 to 2 (via fallthru 0)
+	push trace 2 to worklist
+Processing trace 2 : start at code_label 37
+   saw edge from trace 2 to 3 (via jump_insn 41)
+	push trace 3 to worklist
+   saw edge from trace 2 to 3 (via fallthru 0)
+Processing trace 3 : start at code_label 45
+   saw edge from trace 3 to 4 (via jump_insn 50)
+	push trace 4 to worklist
+   saw edge from trace 3 to 4 (via fallthru 0)
+Processing trace 4 : start at code_label 56
+   saw edge from trace 4 to 7 (via jump_insn 64)
+	push trace 7 to worklist
+   saw edge from trace 4 to 5 (via fallthru 0)
+	push trace 5 to worklist
+Processing trace 5 : start at code_label 68
+   saw edge from trace 5 to 6 (via fallthru 0)
+	push trace 6 to worklist
+Processing trace 6 : start at note 156
+Processing trace 7 : start at code_label 151
+   saw edge from trace 7 to 5 (via jump_insn 152)
+Processing trace 8 : start at code_label 150
+   saw edge from trace 8 to 9 (via jump_insn 27)
+	push trace 9 to worklist
+   saw edge from trace 8 to 9 (via fallthru 0)
+Processing trace 9 : start at code_label 30
+   saw edge from trace 9 to 2 (via jump_insn 154)
+Processing trace 10 : start at code_label 89
+Fixup between trace 9 and 10:
+	.cfi_def_cfa_offset 8
+	.cfi_restore 3
+	.cfi_restore 6
+	.cfi_restore 12
+Fixup between trace 6 and 7:
+	.cfi_restore_state
+
+
+del_curterm_sp
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9] 40 [r12]
+;;  exit block uses 	 0 [ax] 3 [bx] 6 [bp] 7 [sp] 40 [r12]
+;;  regs ever live 	 0 [ax] 3 [bx] 4 [si] 5 [di] 6 [bp] 7 [sp] 17 [flags] 40 [r12]
+;;  ref usage 	r0={14d,4u} r1={11d} r2={11d} r3={3d,4u} r4={11d,3u} r5={21d,14u} r6={3d,9u,2e} r7={7d,31u} r8={11d} r9={11d} r10={11d} r11={11d} r12={11d} r13={11d} r14={11d} r15={11d} r17={18d,6u} r18={11d} r20={11d} r21={11d} r22={11d} r23={11d} r24={11d} r25={11d} r26={11d} r27={11d} r28={10d} r29={10d} r30={10d} r31={10d} r32={10d} r33={10d} r34={10d} r35={10d} r36={11d} r37={11d} r38={10d} r39={10d} r40={4d,5u} r44={10d} r45={10d} r46={10d} r47={10d} r48={10d} r49={10d} r50={10d} r51={10d} r52={11d} r53={11d} r54={11d} r55={11d} r56={11d} r57={11d} r58={11d} r59={11d} r60={11d} r61={11d} r62={11d} r63={11d} r64={11d} r65={11d} r66={11d} r67={11d} r68={11d} r69={11d} r70={11d} r71={11d} r72={11d} r73={11d} r74={11d} r75={11d} 
+;;    total ref usage 834{756d,76u,2e} in 54{43 regular + 11 call} insns.
+(note 1 0 157 NOTE_INSN_DELETED)
+(insn 157 1 7 2 (unspec_volatile [
+            (const_int 0 [0])
+        ] UNSPECV_NOP_ENDBR) 1242 {nop_endbr}
+     (nil))
+(note 7 157 4 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 4 7 9 2 NOTE_INSN_FUNCTION_BEG)
+(insn:TI 9 4 10 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 4 si [orig:93 termp ] [93])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":137:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 10 9 11 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 89)
+            (pc))) "../ncurses/./tinfo/lib_cur_term.c":137:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 18683108 (nil)))
+ -> 89)
+(note 11 10 118 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn/f:TI 118 11 158 3 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 40 r12)) "../ncurses/./tinfo/lib_cur_term.c":132:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 40 r12)
+        (nil)))
+(note 158 118 159 3
+	.cfi_def_cfa_offset 16
+	 NOTE_INSN_CFI)
+(note 159 158 119 3
+	.cfi_offset 12, -16
+	 NOTE_INSN_CFI)
+(insn/f:TI 119 159 160 3 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 6 bp)) "../ncurses/./tinfo/lib_cur_term.c":132:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 6 bp)
+        (nil)))
+(note 160 119 161 3
+	.cfi_def_cfa_offset 24
+	 NOTE_INSN_CFI)
+(note 161 160 127 3
+	.cfi_offset 6, -24
+	 NOTE_INSN_CFI)
+(insn 127 161 120 3 (set (reg/v/f:DI 6 bp [orig:93 termp ] [93])
+        (reg:DI 4 si [109])) 74 {*movdi_internal}
+     (nil))
+(insn/f:TI 120 127 162 3 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 3 bx)) "../ncurses/./tinfo/lib_cur_term.c":132:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 3 bx)
+        (nil)))
+(note 162 120 163 3
+	.cfi_def_cfa_offset 32
+	 NOTE_INSN_CFI)
+(note 163 162 121 3
+	.cfi_offset 3, -32
+	 NOTE_INSN_CFI)
+(note 121 163 128 3 NOTE_INSN_PROLOGUE_END)
+(insn 128 121 13 3 (set (reg/v/f:DI 3 bx [orig:92 sp ] [92])
+        (reg:DI 5 di [108])) 74 {*movdi_internal}
+     (nil))
+(call_insn/i:TI 13 128 15 3 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_get_cur_term_sp") [flags 0x3]  <function_decl 0x7fc5d5446200 _nc_get_cur_term_sp>) [0 _nc_get_cur_term_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":143:8 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_get_cur_term_sp") [flags 0x3]  <function_decl 0x7fc5d5446200 _nc_get_cur_term_sp>)
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 15 13 14 3 (set (reg:DI 5 di)
+        (reg/f:DI 4 si [orig:93 termp ] [93])) "../ncurses/./tinfo/lib_cur_term.c":151:2 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 4 si [orig:93 termp ] [93])
+        (nil)))
+(insn:TI 14 15 16 3 (set (reg/v/f:DI 40 r12 [orig:90 cur ] [90])
+        (reg:DI 0 ax [110])) "../ncurses/./tinfo/lib_cur_term.c":143:8 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 0 ax [110])
+        (nil)))
+(call_insn:TI 16 14 117 3 (call (mem:QI (symbol_ref:DI ("_nc_free_termtype1") [flags 0x41]  <function_decl 0x7fc5d53bc800 _nc_free_termtype1>) [0 _nc_free_termtype1 S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/lib_cur_term.c":151:2 813 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_free_termtype1") [flags 0x41]  <function_decl 0x7fc5d53bc800 _nc_free_termtype1>)
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 117 16 19 3 (set (reg/f:DI 5 di [94])
+        (plus:DI (reg/v/f:DI 6 bp [orig:93 termp ] [93])
+            (const_int 688 [0x2b0]))) "../ncurses/./tinfo/lib_cur_term.c":156:2 206 {*leadi}
+     (nil))
+(call_insn:TI 19 117 20 3 (call (mem:QI (symbol_ref:DI ("_nc_free_termtype2") [flags 0x41]  <function_decl 0x7fc5d53bc900 _nc_free_termtype2>) [0 _nc_free_termtype2 S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/lib_cur_term.c":156:2 813 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_free_termtype2") [flags 0x41]  <function_decl 0x7fc5d53bc900 _nc_free_termtype2>)
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 20 19 21 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 6 bp [orig:93 termp ] [93])
+            (reg/v/f:DI 40 r12 [orig:90 cur ] [90]))) "../ncurses/./tinfo/lib_cur_term.c":157:5 12 {*cmpdi_1}
+     (expr_list:REG_DEAD (reg/v/f:DI 40 r12 [orig:90 cur ] [90])
+        (nil)))
+(jump_insn 21 20 37 3 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 150)
+            (pc))) "../ncurses/./tinfo/lib_cur_term.c":157:5 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 187153204 (nil)))
+ -> 150)
+(code_label 37 21 38 4 34 (nil) [1 uses])
+(note 38 37 39 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 39 38 40 4 (set (reg/f:DI 5 di [orig:84 _3 ] [84])
+        (mem/f:DI (plus:DI (reg/v/f:DI 6 bp [orig:93 termp ] [93])
+                (const_int 200 [0xc8])) [7 termp_15(D)->_termname+0 S8 A64])) "../ncurses/./tinfo/lib_cur_term.c":160:2 74 {*movdi_internal}
+     (nil))
+(insn:TI 40 39 41 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 5 di [orig:84 _3 ] [84])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":160:2 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 41 40 42 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 45)
+            (pc))) "../ncurses/./tinfo/lib_cur_term.c":160:2 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 499612076 (nil)))
+ -> 45)
+(note 42 41 44 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(call_insn:TI 44 42 45 5 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc5d5827d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/lib_cur_term.c":160:2 813 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc5d5827d00 free>)
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(code_label 45 44 46 6 36 (nil) [1 uses])
+(note 46 45 48 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 48 46 49 6 (set (reg/f:DI 5 di [orig:85 _4 ] [85])
+        (mem/f/c:DI (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fc5d5361ea0 _nc_globals>)
+                    (const_int 488 [0x1e8]))) [7 _nc_globals.home_terminfo+0 S8 A64])) "../ncurses/./tinfo/lib_cur_term.c":162:17 74 {*movdi_internal}
+     (nil))
+(insn:TI 49 48 50 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 5 di [orig:85 _4 ] [85])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":162:5 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 50 49 51 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 56)
+            (pc))) "../ncurses/./tinfo/lib_cur_term.c":162:5 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 499612076 (nil)))
+ -> 56)
+(note 51 50 53 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(call_insn:TI 53 51 55 7 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc5d5827d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/lib_cur_term.c":163:6 813 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc5d5827d00 free>)
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 55 53 56 7 (set (mem/f/c:DI (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fc5d5361ea0 _nc_globals>)
+                    (const_int 488 [0x1e8]))) [7 _nc_globals.home_terminfo+0 S8 A64])
+        (const_int 0 [0])) "../ncurses/./tinfo/lib_cur_term.c":163:6 74 {*movdi_internal}
+     (nil))
+(code_label 56 55 57 8 37 (nil) [1 uses])
+(note 57 56 59 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(note 59 57 149 8 NOTE_INSN_DELETED)
+(insn:TI 149 59 64 8 (parallel [
+            (set (reg:CCZ 17 flags)
+                (compare:CCZ (plus:SI (mem/c:SI (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fc5d5361ea0 _nc_globals>)
+                                    (const_int 288 [0x120]))) [5 _nc_globals.terminal_count+0 S4 A64])
+                        (const_int -1 [0xffffffffffffffff]))
+                    (const_int 0 [0])))
+            (set (mem/c:SI (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fc5d5361ea0 _nc_globals>)
+                            (const_int 288 [0x120]))) [5 _nc_globals.terminal_count+0 S4 A64])
+                (plus:SI (mem/c:SI (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fc5d5361ea0 _nc_globals>)
+                                (const_int 288 [0x120]))) [5 _nc_globals.terminal_count+0 S4 A64])
+                    (const_int -1 [0xffffffffffffffff])))
+        ]) "../ncurses/./tinfo/lib_cur_term.c":174:5 218 {*addsi_2}
+     (nil))
+(jump_insn:TI 64 149 68 8 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 151)
+            (pc))) "../ncurses/./tinfo/lib_cur_term.c":174:5 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 354334804 (nil)))
+ -> 151)
+(code_label 68 64 69 9 38 (nil) [1 uses])
+(note 69 68 70 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 70 69 72 9 (set (reg/f:DI 5 di [orig:103 termp_15(D)->tparm_state.fmt_buff ] [103])
+        (mem/f:DI (plus:DI (reg/v/f:DI 6 bp [orig:93 termp ] [93])
+                (const_int 568 [0x238])) [7 termp_15(D)->tparm_state.fmt_buff+0 S8 A64])) "../ncurses/./tinfo/lib_cur_term.c":178:2 74 {*movdi_internal}
+     (expr_list:REG_EQUIV (mem/f:DI (plus:DI (reg/v/f:DI 6 bp [orig:93 termp ] [93])
+                (const_int 568 [0x238])) [7 termp_15(D)->tparm_state.fmt_buff+0 S8 A64])
+        (nil)))
+(call_insn:TI 72 70 73 9 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc5d5827d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/lib_cur_term.c":178:2 813 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc5d5827d00 free>)
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 73 72 75 9 (set (reg/f:DI 5 di [orig:104 termp_15(D)->tparm_state.out_buff ] [104])
+        (mem/f:DI (plus:DI (reg/v/f:DI 6 bp [orig:93 termp ] [93])
+                (const_int 544 [0x220])) [7 termp_15(D)->tparm_state.out_buff+0 S8 A64])) "../ncurses/./tinfo/lib_cur_term.c":179:2 74 {*movdi_internal}
+     (expr_list:REG_EQUIV (mem/f:DI (plus:DI (reg/v/f:DI 6 bp [orig:93 termp ] [93])
+                (const_int 544 [0x220])) [7 termp_15(D)->tparm_state.out_buff+0 S8 A64])
+        (nil)))
+(call_insn:TI 75 73 76 9 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc5d5827d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/lib_cur_term.c":179:2 813 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc5d5827d00 free>)
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 76 75 77 9 (set (reg:DI 5 di)
+        (reg/v/f:DI 6 bp [orig:93 termp ] [93])) "../ncurses/./tinfo/lib_cur_term.c":180:2 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 6 bp [orig:93 termp ] [93])
+        (nil)))
+(call_insn:TI 77 76 156 9 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc5d5827d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/lib_cur_term.c":180:2 813 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7fc5d5827d00 free>)
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(note 156 77 123 9 NOTE_INSN_EPILOGUE_BEG)
+(insn/f 123 156 171 9 (set (reg:DI 3 bx)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/lib_cur_term.c":186:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(note 171 123 164 9
+	.cfi_remember_state
+	 NOTE_INSN_CFI)
+(note 164 171 148 9
+	.cfi_def_cfa_offset 24
+	 NOTE_INSN_CFI)
+(insn 148 164 124 9 (parallel [
+            (set (reg:DI 0 ax [orig:91 <retval> ] [91])
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./tinfo/lib_cur_term.c":182:5 68 {*movdi_xor}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (nil)))
+(insn/f 124 148 165 9 (set (reg:DI 6 bp)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/lib_cur_term.c":186:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(note 165 124 84 9
+	.cfi_def_cfa_offset 16
+	 NOTE_INSN_CFI)
+(insn 84 165 125 9 (use (reg/i:SI 0 ax)) "../ncurses/./tinfo/lib_cur_term.c":186:1 -1
+     (nil))
+(insn/f:TI 125 84 166 9 (set (reg:DI 40 r12)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/lib_cur_term.c":186:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(note 166 125 126 9
+	.cfi_def_cfa_offset 8
+	 NOTE_INSN_CFI)
+(jump_insn:TI 126 166 114 9 (simple_return) "../ncurses/./tinfo/lib_cur_term.c":186:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 114 126 151)
+(code_label 151 114 172 10 54 (nil) [1 uses])
+(note 172 151 65 10
+	.cfi_restore_state
+	 NOTE_INSN_CFI)
+(note 65 172 66 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 66 65 67 10 (set (reg:DI 5 di)
+        (reg/v/f:DI 6 bp [orig:93 termp ] [93])) "../ncurses/./tinfo/lib_cur_term.c":175:6 74 {*movdi_internal}
+     (nil))
+(call_insn:TI 67 66 152 10 (call (mem:QI (symbol_ref:DI ("_nc_free_tparm") [flags 0x41]  <function_decl 0x7fc5d53c4600 _nc_free_tparm>) [0 _nc_free_tparm S1 A8])
+        (const_int 0 [0])) "../ncurses/./tinfo/lib_cur_term.c":175:6 813 {*call}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_free_tparm") [flags 0x41]  <function_decl 0x7fc5d53c4600 _nc_free_tparm>)
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(jump_insn 152 67 153 10 (set (pc)
+        (label_ref 68)) 807 {jump}
+     (nil)
+ -> 68)
+(barrier 153 152 150)
+(code_label 150 153 22 11 53 (nil) [1 uses])
+(note 22 150 23 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 23 22 24 11 (set (reg/f:DI 40 r12 [106])
+        (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fc5d5361ea0 _nc_globals>)
+                (const_int 504 [0x1f8])))) "../ncurses/./tinfo/lib_cur_term.c":87:5 74 {*movdi_internal}
+     (expr_list:REG_EQUIV (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fc5d5361ea0 _nc_globals>)
+                (const_int 504 [0x1f8])))
+        (nil)))
+(insn:TI 24 23 25 11 (set (reg:DI 5 di)
+        (reg/f:DI 40 r12 [106])) "../ncurses/./tinfo/lib_cur_term.c":87:5 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fc5d5361ea0 _nc_globals>)
+                (const_int 504 [0x1f8])))
+        (nil)))
+(call_insn:TI 25 24 26 11 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_mutex_lock") [flags 0x41]  <function_decl 0x7fc5d53e0100 _nc_mutex_lock>) [0 _nc_mutex_lock S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":87:5 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_mutex_lock") [flags 0x41]  <function_decl 0x7fc5d53e0100 _nc_mutex_lock>)
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 26 25 27 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 3 bx [orig:92 sp ] [92])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":89:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 27 26 28 11 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 30)
+            (pc))) "../ncurses/./tinfo/lib_cur_term.c":89:8 806 {*jcc}
+     (expr_list:REG_DEAD (reg:CCZ 17 flags)
+        (int_list:REG_BR_PROB 322122548 (nil)))
+ -> 30)
+(note 28 27 29 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 29 28 30 12 (set (mem/f:DI (plus:DI (reg/v/f:DI 3 bx [orig:92 sp ] [92])
+                (const_int 48 [0x30])) [1 sp_17(D)->_term+0 S8 A64])
+        (const_int 0 [0])) "../ncurses/./tinfo/lib_cur_term.c":90:17 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 3 bx [orig:92 sp ] [92])
+        (nil)))
+(code_label 30 29 31 13 35 (nil) [1 uses])
+(note 31 30 33 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 33 31 35 13 (set (mem/f/c:DI (const:DI (plus:DI (symbol_ref:DI ("_nc_prescreen") [flags 0x40]  <var_decl 0x7fc5d5361f30 _nc_prescreen>)
+                    (const_int 680 [0x2a8]))) [1 _nc_prescreen._cur_term+0 S8 A64])
+        (const_int 0 [0])) "../ncurses/./tinfo/lib_cur_term.c":92:13 74 {*movdi_internal}
+     (nil))
+(insn 35 33 36 13 (set (reg:DI 5 di)
+        (reg/f:DI 40 r12 [106])) "../ncurses/./tinfo/lib_cur_term.c":116:5 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 40 r12 [106])
+        (expr_list:REG_EQUAL (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fc5d5361ea0 _nc_globals>)
+                    (const_int 504 [0x1f8])))
+            (nil))))
+(call_insn:TI 36 35 154 13 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_mutex_unlock") [flags 0x41]  <function_decl 0x7fc5d53e0300 _nc_mutex_unlock>) [0 _nc_mutex_unlock S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":116:5 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_mutex_unlock") [flags 0x41]  <function_decl 0x7fc5d53e0300 _nc_mutex_unlock>)
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(jump_insn 154 36 155 13 (set (pc)
+        (label_ref 37)) "../ncurses/./tinfo/lib_cur_term.c":119:12 807 {jump}
+     (nil)
+ -> 37)
+(barrier 155 154 89)
+(code_label 89 155 167 14 39 (nil) [1 uses])
+(note 167 89 168 14
+	.cfi_def_cfa_offset 8
+	 NOTE_INSN_CFI)
+(note 168 167 169 14
+	.cfi_restore 3
+	 NOTE_INSN_CFI)
+(note 169 168 170 14
+	.cfi_restore 6
+	 NOTE_INSN_CFI)
+(note 170 169 88 14
+	.cfi_restore 12
+	 NOTE_INSN_CFI)
+(note 88 170 5 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn:TI 5 88 132 14 (set (reg/v:SI 0 ax [orig:91 <retval> ] [91])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./tinfo/lib_cur_term.c":133:9 75 {*movsi_internal}
+     (expr_list:REG_EQUAL (const_int -1 [0xffffffffffffffff])
+        (nil)))
+(insn 132 5 137 14 (use (reg/i:SI 0 ax)) "../ncurses/./tinfo/lib_cur_term.c":186:1 -1
+     (nil))
+(jump_insn:TI 137 132 136 14 (simple_return) "../ncurses/./tinfo/lib_cur_term.c":186:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 136 137 115)
+(note 115 136 0 NOTE_INSN_DELETED)
+
+;; Function del_curterm (del_curterm, funcdef_no=97, decl_uid=7536, cgraph_uid=98, symbol_order=97)
+
+Creating trace 0 : start at note 1
+Creating trace 1 : start at note 29
+Creating trace 2 : start at note 38
+Processing trace 0 : start at note 1
+   saw edge from trace 0 to 1 (via fallthru 0)
+	push trace 1 to worklist
+Processing trace 1 : start at note 29
+   saw edge from trace 1 to 2 (via fallthru 0)
+	push trace 2 to worklist
+Processing trace 2 : start at note 38
+
+
+del_curterm
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 6 [bp] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9] 40 [r12]
+;;  exit block uses 	 0 [ax] 6 [bp] 7 [sp] 40 [r12]
+;;  regs ever live 	 0 [ax] 4 [si] 5 [di] 6 [bp] 7 [sp] 17 [flags] 40 [r12]
+;;  ref usage 	r0={5d,3u} r1={4d} r2={4d} r4={5d,1u} r5={7d,4u} r6={3d,4u} r7={7d,13u} r8={3d} r9={3d} r10={3d} r11={3d} r12={3d} r13={3d} r14={3d} r15={3d} r17={5d} r18={3d} r20={4d} r21={4d} r22={4d} r23={4d} r24={4d} r25={4d} r26={4d} r27={4d} r28={3d} r29={3d} r30={3d} r31={3d} r32={3d} r33={3d} r34={3d} r35={3d} r36={4d} r37={4d} r38={3d} r39={3d} r40={4d,4u} r44={3d} r45={3d} r46={3d} r47={3d} r48={3d} r49={3d} r50={3d} r51={3d} r52={3d} r53={3d} r54={3d} r55={3d} r56={3d} r57={3d} r58={3d} r59={3d} r60={3d} r61={3d} r62={3d} r63={3d} r64={3d} r65={3d} r66={3d} r67={3d} r68={3d} r69={3d} r70={3d} r71={3d} r72={3d} r73={3d} r74={3d} r75={3d} 
+;;    total ref usage 266{237d,29u,0e} in 19{16 regular + 3 call} insns.
+(note 1 0 39 NOTE_INSN_DELETED)
+(insn 39 1 4 2 (unspec_volatile [
+            (const_int 0 [0])
+        ] UNSPECV_NOP_ENDBR) 1242 {nop_endbr}
+     (nil))
+(note 4 39 3 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 3 4 26 2 NOTE_INSN_FUNCTION_BEG)
+(insn/f:TI 26 3 40 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 40 r12)) "../ncurses/./tinfo/lib_cur_term.c":191:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 40 r12)
+        (nil)))
+(note 40 26 41 2
+	.cfi_def_cfa_offset 16
+	 NOTE_INSN_CFI)
+(note 41 40 2 2
+	.cfi_offset 12, -16
+	 NOTE_INSN_CFI)
+(insn 2 41 27 2 (set (reg/v/f:DI 40 r12 [orig:84 termp ] [84])
+        (reg:DI 5 di [89])) "../ncurses/./tinfo/lib_cur_term.c":191:1 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg:DI 5 di [89])
+        (nil)))
+(insn/f:TI 27 2 42 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0  S8 A8])
+        (reg:DI 6 bp)) "../ncurses/./tinfo/lib_cur_term.c":191:1 52 {*pushdi2_rex64}
+     (expr_list:REG_DEAD (reg:DI 6 bp)
+        (nil)))
+(note 42 27 43 2
+	.cfi_def_cfa_offset 24
+	 NOTE_INSN_CFI)
+(note 43 42 6 2
+	.cfi_offset 6, -24
+	 NOTE_INSN_CFI)
+(insn 6 43 7 2 (set (reg/f:DI 6 bp [85])
+        (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fc5d5361ea0 _nc_globals>)
+                (const_int 504 [0x1f8])))) "../ncurses/./tinfo/lib_cur_term.c":194:5 74 {*movdi_internal}
+     (expr_list:REG_EQUIV (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fc5d5361ea0 _nc_globals>)
+                (const_int 504 [0x1f8])))
+        (nil)))
+(insn:TI 7 6 28 2 (set (reg:DI 5 di)
+        (reg/f:DI 6 bp [85])) "../ncurses/./tinfo/lib_cur_term.c":194:5 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fc5d5361ea0 _nc_globals>)
+                (const_int 504 [0x1f8])))
+        (nil)))
+(insn/f:TI 28 7 44 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -8 [0xfffffffffffffff8])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) "../ncurses/./tinfo/lib_cur_term.c":191:1 1142 {pro_epilogue_adjust_stack_add_di}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -8 [0xfffffffffffffff8])))
+            (nil))))
+(note 44 28 29 2
+	.cfi_def_cfa_offset 32
+	 NOTE_INSN_CFI)
+(note 29 44 8 2 NOTE_INSN_PROLOGUE_END)
+(call_insn:TI 8 29 11 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_mutex_lock") [flags 0x41]  <function_decl 0x7fc5d53e0100 _nc_mutex_lock>) [0 _nc_mutex_lock S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":194:5 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_mutex_lock") [flags 0x41]  <function_decl 0x7fc5d53e0100 _nc_mutex_lock>)
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 11 8 10 2 (set (reg:DI 5 di)
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7fc5d53cfcf0 SP>) [38 SP+0 S8 A64])) "../ncurses/./tinfo/lib_cur_term.c":195:10 74 {*movdi_internal}
+     (nil))
+(insn 10 11 12 2 (set (reg:DI 4 si)
+        (reg/v/f:DI 40 r12 [orig:84 termp ] [84])) "../ncurses/./tinfo/lib_cur_term.c":195:10 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/v/f:DI 40 r12 [orig:84 termp ] [84])
+        (nil)))
+(call_insn:TI 12 10 15 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("del_curterm_sp") [flags 0x3]  <function_decl 0x7fc5d5370f00 del_curterm_sp>) [0 del_curterm_sp S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":195:10 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_DEAD (reg:DI 4 si)
+            (expr_list:REG_CALL_DECL (symbol_ref:DI ("del_curterm_sp") [flags 0x3]  <function_decl 0x7fc5d5370f00 del_curterm_sp>)
+                (expr_list:REG_EH_REGION (const_int 0 [0])
+                    (nil)))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 15 12 13 2 (set (reg:DI 5 di)
+        (reg/f:DI 6 bp [85])) "../ncurses/./tinfo/lib_cur_term.c":196:5 74 {*movdi_internal}
+     (expr_list:REG_DEAD (reg/f:DI 6 bp [85])
+        (expr_list:REG_EQUAL (const:DI (plus:DI (symbol_ref:DI ("_nc_globals") [flags 0x40]  <var_decl 0x7fc5d5361ea0 _nc_globals>)
+                    (const_int 504 [0x1f8])))
+            (nil))))
+(insn:TI 13 15 16 2 (set (reg/v:SI 40 r12 [orig:83 <retval> ] [83])
+        (reg:SI 0 ax [90])) "../ncurses/./tinfo/lib_cur_term.c":195:10 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg:SI 0 ax [90])
+        (nil)))
+(call_insn:TI 16 13 38 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_mutex_unlock") [flags 0x41]  <function_decl 0x7fc5d53e0300 _nc_mutex_unlock>) [0 _nc_mutex_unlock S1 A8])
+            (const_int 0 [0]))) "../ncurses/./tinfo/lib_cur_term.c":196:5 824 {*call_value}
+     (expr_list:REG_DEAD (reg:DI 5 di)
+        (expr_list:REG_UNUSED (reg:SI 0 ax)
+            (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_mutex_unlock") [flags 0x41]  <function_decl 0x7fc5d53e0300 _nc_mutex_unlock>)
+                (nil))))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(note 38 16 31 2 NOTE_INSN_EPILOGUE_BEG)
+(insn/f 31 38 45 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0  A8]))
+        ]) "../ncurses/./tinfo/lib_cur_term.c":199:1 1142 {pro_epilogue_adjust_stack_add_di}
+     (expr_list:REG_UNUSED (reg:CC 17 flags)
+        (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int 8 [0x8])))
+            (nil))))
+(note 45 31 20 2
+	.cfi_def_cfa_offset 24
+	 NOTE_INSN_CFI)
+(insn 20 45 21 2 (set (reg/i:SI 0 ax)
+        (reg/v:SI 40 r12 [orig:83 <retval> ] [83])) "../ncurses/./tinfo/lib_cur_term.c":199:1 75 {*movsi_internal}
+     (expr_list:REG_DEAD (reg/v:SI 40 r12 [orig:83 <retval> ] [83])
+        (nil)))
+(insn 21 20 32 2 (use (reg/i:SI 0 ax)) "../ncurses/./tinfo/lib_cur_term.c":199:1 -1
+     (nil))
+(insn/f:TI 32 21 46 2 (set (reg:DI 6 bp)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/lib_cur_term.c":199:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(note 46 32 33 2
+	.cfi_def_cfa_offset 16
+	 NOTE_INSN_CFI)
+(insn/f 33 46 47 2 (set (reg:DI 40 r12)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0  S8 A8])) "../ncurses/./tinfo/lib_cur_term.c":199:1 60 {*popdi1}
+     (expr_list:REG_CFA_ADJUST_CFA (set (reg/f:DI 7 sp)
+            (plus:DI (reg/f:DI 7 sp)
+                (const_int 8 [0x8])))
+        (nil)))
+(note 47 33 34 2
+	.cfi_def_cfa_offset 8
+	 NOTE_INSN_CFI)
+(jump_insn:TI 34 47 37 2 (simple_return) "../ncurses/./tinfo/lib_cur_term.c":199:1 837 {simple_return_internal}
+     (nil)
+ -> simple_return)
+(barrier 37 34 25)
+(note 25 37 0 NOTE_INSN_DELETED)

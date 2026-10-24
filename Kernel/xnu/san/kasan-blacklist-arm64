@@ -1,0 +1,56 @@
+# This file declares the list of source files that should be exempt from
+# AddressSanitizer instrumentation. Usually, this is because a file is used by
+# the AddressSanitizer runtime itself, or because the code executes before
+# the runtime has been initialized.
+
+[.*]
+
+# Blanket ignore non-sanitized functions
+fun:__nosan_*
+
+# Try really hard to avoid panicing while debugging
+src:/home/antonov/projects/ravynos/Kernel/xnu/osfmk/kdp/*
+src:/home/antonov/projects/ravynos/Kernel/xnu/osfmk/kern/debug.c
+
+[address]
+
+# Exclude linker sets
+type:struct linker_set_entry
+type:linker_set_entry
+
+# Exclude KASAN itself
+src:/home/antonov/projects/ravynos/Kernel/xnu/san/kasan.c
+src:/home/antonov/projects/ravynos/Kernel/xnu/san/kasan-fakestack.c
+src:/home/antonov/projects/ravynos/Kernel/xnu/san/kasan-x86_64.c
+src:/home/antonov/projects/ravynos/Kernel/xnu/san/kasan-memintrinsics.c
+src:/home/antonov/projects/ravynos/Kernel/xnu/san/kasan_dynamic_blacklist.c
+
+# Exclude other sanitizers
+src:/home/antonov/projects/ravynos/Kernel/xnu/san/ksancov.c
+
+# Exclude dtrace function that does weird stack manipulations
+fun:fbt_perfCallback
+
+# Exclude leak detection code that reads all memory
+fun:_ZL18IOTrackingLeakScanPv
+
+# Exclude KASAN dependencies
+# XXX: could this be relaxed since fakestack is reentrant?
+src:/home/antonov/projects/ravynos/Kernel/xnu/osfmk/kern/zalloc.c
+src:/home/antonov/projects/ravynos/Kernel/xnu/osfmk/kern/zcache.c
+
+[.*]
+src:/home/antonov/projects/ravynos/Kernel/xnu/san/ubsan*
+
+[bounds]
+src:/home/antonov/projects/ravynos/Kernel/xnu/osfmk/corecrypto/*
+
+[alignment]
+
+src:/home/antonov/projects/ravynos/Kernel/xnu/libsa/bootstrap.cpp
+src:/home/antonov/projects/ravynos/Kernel/xnu/bsd/net/necp_client.c
+src:/home/antonov/projects/ravynos/Kernel/xnu/pexpert/arm/pe_identify_machine.c
+
+[object-size]
+src:/home/antonov/projects/ravynos/Kernel/xnu/osfmk/i386/locks_i386.c
+

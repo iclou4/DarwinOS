@@ -1,0 +1,851 @@
+
+;; Function ungetch_sp (ungetch_sp, funcdef_no=91, decl_uid=6693, cgraph_uid=92, symbol_order=91)
+
+starting the processing of deferred insns
+ending the processing of deferred insns
+df_analyze called
+df_worklist_dataflow_doublequeue: n_basic_blocks 15 n_edges 19 count 15 (    1)
+df_worklist_dataflow_doublequeue: n_basic_blocks 15 n_edges 19 count 15 (    1)
+df_worklist_dataflow_doublequeue: n_basic_blocks 15 n_edges 19 count 15 (    1)
+df_worklist_dataflow_doublequeue: n_basic_blocks 15 n_edges 19 count 15 (    1)
+Trying to eliminate extension:
+(insn 49 105 97 7 (set (reg:SI 1 dx [orig:90 prephitmp_23 ] [90])
+        (zero_extend:SI (reg:HI 0 ax [orig:89 _10 ] [89]))) "../ncurses/./base/lib_ungetch.c":77:12 144 {*zero_extendhisi2}
+     (nil))
+Trying to eliminate extension:
+(insn 59 58 60 11 (set (reg:DI 0 ax [orig:94 prephitmp_23 ] [94])
+        (sign_extend:DI (reg:SI 1 dx [orig:90 prephitmp_23 ] [90]))) "../ncurses/./base/lib_ungetch.c":77:18 147 {*extendsidi2_rex64}
+     (nil))
+Elimination opportunities = 2 realized = 0
+starting the processing of deferred insns
+ending the processing of deferred insns
+
+
+ungetch_sp
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 7 [sp]
+;;  regs ever live 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 17 [flags]
+;;  ref usage 	r0={10d,11u} r1={5d,2u} r2={2d,4u} r4={1d,1u} r5={1d,9u} r7={1d,14u} r17={6d,6u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={1d} r37={1d} 
+;;    total ref usage 83{36d,47u,0e} in 35{35 regular + 0 call} insns.
+(note 1 0 12 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741823 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:1073741823 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(7){ }}
+;; lr  in  	 4 [si] 5 [di] 7 [sp]
+;; lr  use 	 5 [di] 7 [sp]
+;; lr  def 	 17 [flags]
+;; live  in  	 4 [si] 5 [di] 7 [sp]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(note 12 1 4 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 4 12 14 2 NOTE_INSN_FUNCTION_BEG)
+(insn 14 4 15 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 5 di [orig:92 sp ] [92])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":68:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 15 14 16 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 73)
+            (pc))) "../ncurses/./base/lib_ungetch.c":68:8 806 {*jcc}
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 73)
+;;  succ:       3 [99.1% (guessed)]  count:1064400271 (estimated locally) (FALLTHRU)
+;;              12 [0.9% (guessed)]  count:9341552 (estimated locally)
+;; lr  out 	 4 [si] 5 [di] 7 [sp]
+;; live  out 	 4 [si] 5 [di] 7 [sp]
+
+;; basic block 3, loop depth 0, count 1064400271 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       2 [99.1% (guessed)]  count:1064400271 (estimated locally) (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(7){ }}
+;; lr  in  	 4 [si] 5 [di] 7 [sp]
+;; lr  use 	 5 [di] 7 [sp]
+;; lr  def 	 2 [cx] 17 [flags]
+;; live  in  	 4 [si] 5 [di] 7 [sp]
+;; live  gen 	 2 [cx] 17 [flags]
+;; live  kill	
+(note 16 15 17 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 20 3 (set (reg:HI 2 cx [orig:82 _1 ] [82])
+        (mem:HI (plus:DI (reg/v/f:DI 5 di [orig:92 sp ] [92])
+                (const_int 730 [0x2da])) [1 sp_20(D)->_fifotail+0 S2 A16])) "../ncurses/./base/lib_ungetch.c":68:23 76 {*movhi_internal}
+     (nil))
+(insn 20 17 21 3 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 2 cx [orig:82 _1 ] [82])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":68:20 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 21 20 22 3 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 77)
+            (pc))) "../ncurses/./base/lib_ungetch.c":68:20 806 {*jcc}
+     (int_list:REG_BR_PROB 15032388 (nil))
+ -> 77)
+;;  succ:       4 [98.6% (guessed)]  count:1049498669 (estimated locally) (FALLTHRU)
+;;              13 [1.4% (guessed)]  count:14901602 (estimated locally)
+;; lr  out 	 2 [cx] 4 [si] 5 [di] 7 [sp]
+;; live  out 	 2 [cx] 4 [si] 5 [di] 7 [sp]
+
+;; basic block 4, loop depth 0, count 1049498669 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       3 [98.6% (guessed)]  count:1049498669 (estimated locally) (FALLTHRU)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(7){ }}
+;; lr  in  	 2 [cx] 4 [si] 5 [di] 7 [sp]
+;; lr  use 	 5 [di] 7 [sp]
+;; lr  def 	 0 [ax] 17 [flags]
+;; live  in  	 2 [cx] 4 [si] 5 [di] 7 [sp]
+;; live  gen 	 0 [ax] 17 [flags]
+;; live  kill	
+(note 22 21 23 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 26 4 (set (reg:HI 0 ax [orig:83 _2 ] [83])
+        (mem:HI (plus:DI (reg/v/f:DI 5 di [orig:92 sp ] [92])
+                (const_int 728 [0x2d8])) [1 sp_20(D)->_fifohead+0 S2 A64])) "../ncurses/./base/lib_ungetch.c":69:6 76 {*movhi_internal}
+     (nil))
+(insn 26 23 27 4 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 0 ax [orig:83 _2 ] [83])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":69:5 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 27 26 28 4 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 42)
+            (pc))) "../ncurses/./base/lib_ungetch.c":69:5 806 {*jcc}
+     (int_list:REG_BR_PROB 633507684 (nil))
+ -> 42)
+;;  succ:       5 [41.0% (guessed)]  count:430294451 (estimated locally) (FALLTHRU)
+;;              6 [59.0% (guessed)]  count:619204218 (estimated locally)
+;; lr  out 	 0 [ax] 2 [cx] 4 [si] 5 [di] 7 [sp] 17 [flags]
+;; live  out 	 0 [ax] 2 [cx] 4 [si] 5 [di] 7 [sp] 17 [flags]
+
+;; basic block 5, loop depth 0, count 430294450 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       4 [41.0% (guessed)]  count:430294451 (estimated locally) (FALLTHRU)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(7){ }}
+;; lr  in  	 2 [cx] 4 [si] 5 [di] 7 [sp]
+;; lr  use 	 2 [cx] 5 [di] 7 [sp]
+;; lr  def 	 0 [ax] 1 [dx] 17 [flags]
+;; live  in  	 2 [cx] 4 [si] 5 [di] 7 [sp]
+;; live  gen 	 0 [ax] 1 [dx] 17 [flags]
+;; live  kill	
+(note 28 27 106 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 106 28 91 5 (set (reg:SI 0 ax [97])
+        (plus:SI (reg:SI 2 cx [orig:82 _1 ] [82])
+            (const_int 1 [0x1]))) "../ncurses/./base/lib_ungetch.c":71:6 205 {*leasi}
+     (nil))
+(insn 91 106 103 5 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:HI 2 cx [orig:82 _1 ] [82])
+            (const_int 136 [0x88]))) "../ncurses/./base/lib_ungetch.c":71:6 10 {*cmphi_1}
+     (nil))
+(insn 103 91 107 5 (set (reg:HI 1 dx [98])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":71:6 76 {*movhi_internal}
+     (expr_list:REG_EQUIV (const_int -1 [0xffffffffffffffff])
+        (nil)))
+(insn 107 103 37 5 (set (reg:SI 0 ax [orig:86 _5 ] [86])
+        (if_then_else:SI (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (reg:SI 0 ax [97])
+            (reg:SI 1 dx [98]))) "../ncurses/./base/lib_ungetch.c":71:6 1100 {*movsicc_noc}
+     (nil))
+(insn 37 107 38 5 (set (mem:HI (plus:DI (reg/v/f:DI 5 di [orig:92 sp ] [92])
+                (const_int 728 [0x2d8])) [1 sp_20(D)->_fifohead+0 S2 A64])
+        (const_int 0 [0])) "../ncurses/./base/lib_ungetch.c":70:11 76 {*movhi_internal}
+     (nil))
+(insn 38 37 39 5 (set (mem:HI (plus:DI (reg/v/f:DI 5 di [orig:92 sp ] [92])
+                (const_int 730 [0x2da])) [1 sp_20(D)->_fifotail+0 S2 A16])
+        (reg:HI 0 ax [orig:86 _5 ] [86])) 76 {*movhi_internal}
+     (nil))
+(insn 39 38 8 5 (set (mem:HI (plus:DI (reg/v/f:DI 5 di [orig:92 sp ] [92])
+                (const_int 732 [0x2dc])) [1 sp_20(D)->_fifopeek+0 S2 A32])
+        (reg:HI 0 ax [orig:86 _5 ] [86])) "../ncurses/./base/lib_ungetch.c":72:11 76 {*movhi_internal}
+     (nil))
+(insn 8 39 95 5 (set (reg:SI 1 dx [orig:90 prephitmp_23 ] [90])
+        (const_int 0 [0])) 75 {*movsi_internal}
+     (expr_list:REG_EQUAL (const_int 0 [0])
+        (nil)))
+(jump_insn 95 8 96 5 (set (pc)
+        (label_ref 57)) 807 {jump}
+     (nil)
+ -> 57)
+;;  succ:       11 [always]  count:430294450 (estimated locally)
+;; lr  out 	 1 [dx] 4 [si] 5 [di] 7 [sp]
+;; live  out 	 1 [dx] 4 [si] 5 [di] 7 [sp]
+
+(barrier 96 95 42)
+;; basic block 6, loop depth 0, count 619204219 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       4 [59.0% (guessed)]  count:619204218 (estimated locally)
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 2 [cx] 4 [si] 5 [di] 7 [sp] 17 [flags]
+;; lr  use 	 7 [sp] 17 [flags]
+;; lr  def 	
+;; live  in  	 0 [ax] 2 [cx] 4 [si] 5 [di] 7 [sp] 17 [flags]
+;; live  gen 	
+;; live  kill	
+(code_label 42 96 43 6 3 (nil) [1 uses])
+(note 43 42 45 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 45 43 46 6 (set (pc)
+        (if_then_else (eq (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 85)
+            (pc))) "../ncurses/./base/lib_ungetch.c":74:6 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 85)
+;;  succ:       8 [50.0% (guessed)]  count:309602110 (estimated locally)
+;;              7 [50.0% (guessed)]  count:309602110 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 2 [cx] 4 [si] 5 [di] 7 [sp]
+;; live  out 	 0 [ax] 2 [cx] 4 [si] 5 [di] 7 [sp]
+
+;; basic block 7, loop depth 0, count 309602109 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       6 [50.0% (guessed)]  count:309602110 (estimated locally) (FALLTHRU)
+;; bb 7 artificial_defs: { }
+;; bb 7 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 2 [cx] 4 [si] 5 [di] 7 [sp]
+;; lr  use 	 0 [ax] 7 [sp]
+;; lr  def 	 0 [ax] 1 [dx] 17 [flags]
+;; live  in  	 0 [ax] 2 [cx] 4 [si] 5 [di] 7 [sp]
+;; live  gen 	 0 [ax] 1 [dx]
+;; live  kill	 17 [flags]
+(note 46 45 47 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(note 47 46 105 7 NOTE_INSN_DELETED)
+(insn 105 47 49 7 (parallel [
+            (set (reg:SI 0 ax [orig:89 _10 ] [89])
+                (plus:SI (reg:SI 0 ax [orig:83 _2 ] [83])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":74:6 209 {*addsi_1}
+     (nil))
+(insn 49 105 97 7 (set (reg:SI 1 dx [orig:90 prephitmp_23 ] [90])
+        (zero_extend:SI (reg:HI 0 ax [orig:89 _10 ] [89]))) "../ncurses/./base/lib_ungetch.c":77:12 144 {*zero_extendhisi2}
+     (nil))
+(jump_insn 97 49 98 7 (set (pc)
+        (label_ref 50)) 807 {jump}
+     (nil)
+ -> 50)
+;;  succ:       9 [always]  count:309602109 (estimated locally)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp]
+
+(barrier 98 97 85)
+;; basic block 8, loop depth 0, count 309602110 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       6 [50.0% (guessed)]  count:309602110 (estimated locally)
+;; bb 8 artificial_defs: { }
+;; bb 8 artificial_uses: { u-1(7){ }}
+;; lr  in  	 2 [cx] 4 [si] 5 [di] 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	 0 [ax] 1 [dx]
+;; live  in  	 2 [cx] 4 [si] 5 [di] 7 [sp]
+;; live  gen 	 0 [ax] 1 [dx]
+;; live  kill	
+(code_label 85 98 84 8 10 (nil) [1 uses])
+(note 84 85 6 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 6 84 7 8 (set (reg:SI 1 dx [orig:90 prephitmp_23 ] [90])
+        (const_int 136 [0x88])) 75 {*movsi_internal}
+     (nil))
+(insn 7 6 50 8 (set (reg:HI 0 ax [orig:89 _10 ] [89])
+        (const_int 136 [0x88])) "../ncurses/./base/lib_ungetch.c":74:6 76 {*movhi_internal}
+     (nil))
+;;  succ:       9 [always]  count:309602110 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp]
+
+;; basic block 9, loop depth 0, count 619204219 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       8 [always]  count:309602110 (estimated locally) (FALLTHRU)
+;;              7 [always]  count:309602109 (estimated locally)
+;; bb 9 artificial_defs: { }
+;; bb 9 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp]
+;; lr  use 	 0 [ax] 2 [cx] 5 [di] 7 [sp]
+;; lr  def 	 17 [flags]
+;; live  in  	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(code_label 50 7 51 9 6 (nil) [1 uses])
+(note 51 50 52 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 52 51 53 9 (set (mem:HI (plus:DI (reg/v/f:DI 5 di [orig:92 sp ] [92])
+                (const_int 728 [0x2d8])) [1 sp_20(D)->_fifohead+0 S2 A64])
+        (reg:HI 0 ax [orig:89 _10 ] [89])) 76 {*movhi_internal}
+     (nil))
+(insn 53 52 54 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 2 cx [orig:82 _1 ] [82])
+            (reg:HI 0 ax [orig:89 _10 ] [89]))) "../ncurses/./base/lib_ungetch.c":74:6 10 {*cmphi_1}
+     (nil))
+(jump_insn 54 53 55 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 57)
+            (pc))) "../ncurses/./base/lib_ungetch.c":74:6 806 {*jcc}
+     (int_list:REG_BR_PROB 708669604 (nil))
+ -> 57)
+;;  succ:       10 [34.0% (guessed)]  count:210529437 (estimated locally) (FALLTHRU)
+;;              11 [66.0% (guessed)]  count:408674782 (estimated locally)
+;; lr  out 	 1 [dx] 4 [si] 5 [di] 7 [sp]
+;; live  out 	 1 [dx] 4 [si] 5 [di] 7 [sp]
+
+;; basic block 10, loop depth 0, count 210529436 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       9 [34.0% (guessed)]  count:210529437 (estimated locally) (FALLTHRU)
+;; bb 10 artificial_defs: { }
+;; bb 10 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 4 [si] 5 [di] 7 [sp]
+;; lr  use 	 5 [di] 7 [sp]
+;; lr  def 	
+;; live  in  	 1 [dx] 4 [si] 5 [di] 7 [sp]
+;; live  gen 	
+;; live  kill	
+(note 55 54 56 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 56 55 57 10 (set (mem:HI (plus:DI (reg/v/f:DI 5 di [orig:92 sp ] [92])
+                (const_int 730 [0x2da])) [1 sp_20(D)->_fifotail+0 S2 A16])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":74:6 76 {*movhi_internal}
+     (nil))
+;;  succ:       11 [always]  count:210529436 (estimated locally) (FALLTHRU)
+;; lr  out 	 1 [dx] 4 [si] 5 [di] 7 [sp]
+;; live  out 	 1 [dx] 4 [si] 5 [di] 7 [sp]
+
+;; basic block 11, loop depth 0, count 1049498670 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       10 [always]  count:210529436 (estimated locally) (FALLTHRU)
+;;              9 [66.0% (guessed)]  count:408674782 (estimated locally)
+;;              5 [always]  count:430294450 (estimated locally)
+;; bb 11 artificial_defs: { }
+;; bb 11 artificial_uses: { u-1(7){ }}
+;; lr  in  	 1 [dx] 4 [si] 5 [di] 7 [sp]
+;; lr  use 	 1 [dx] 4 [si] 5 [di] 7 [sp]
+;; lr  def 	 0 [ax]
+;; live  in  	 1 [dx] 4 [si] 5 [di] 7 [sp]
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 57 56 58 11 5 (nil) [2 uses])
+(note 58 57 59 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 59 58 60 11 (set (reg:DI 0 ax [orig:94 prephitmp_23 ] [94])
+        (sign_extend:DI (reg:SI 1 dx [orig:90 prephitmp_23 ] [90]))) "../ncurses/./base/lib_ungetch.c":77:18 147 {*extendsidi2_rex64}
+     (nil))
+(note 60 59 61 11 NOTE_INSN_DELETED)
+(insn 61 60 10 11 (set (mem:SI (plus:DI (plus:DI (mult:DI (reg:DI 0 ax [orig:94 prephitmp_23 ] [94])
+                        (const_int 4 [0x4]))
+                    (reg/v/f:DI 5 di [orig:92 sp ] [92]))
+                (const_int 180 [0xb4])) [3 sp_20(D)->_fifo[prephitmp_26]+0 S4 A32])
+        (reg/v:SI 4 si [orig:93 ch ] [93])) "../ncurses/./base/lib_ungetch.c":77:18 75 {*movsi_internal}
+     (nil))
+(insn 10 61 99 11 (set (reg/v:SI 0 ax [orig:91 <retval> ] [91])
+        (const_int 0 [0])) "../ncurses/./base/lib_ungetch.c":85:5 75 {*movsi_internal}
+     (expr_list:REG_EQUAL (const_int 0 [0])
+        (nil)))
+(jump_insn 99 10 100 11 (set (pc)
+        (label_ref 66)) 807 {jump}
+     (nil)
+ -> 66)
+;;  succ:       14 [always]  count:1049498670 (estimated locally)
+;; lr  out 	 0 [ax] 7 [sp]
+;; live  out 	 0 [ax] 7 [sp]
+
+(barrier 100 99 73)
+;; basic block 12, loop depth 0, count 9341552 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       2 [0.9% (guessed)]  count:9341552 (estimated locally)
+;; bb 12 artificial_defs: { }
+;; bb 12 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	 0 [ax]
+;; live  in  	 7 [sp]
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 73 100 72 12 7 (nil) [1 uses])
+(note 72 73 11 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 11 72 101 12 (set (reg/v:SI 0 ax [orig:91 <retval> ] [91])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":64:9 75 {*movsi_internal}
+     (expr_list:REG_EQUAL (const_int -1 [0xffffffffffffffff])
+        (nil)))
+(jump_insn 101 11 102 12 (set (pc)
+        (label_ref 66)) 807 {jump}
+     (nil)
+ -> 66)
+;;  succ:       14 [always]  count:9341552 (estimated locally)
+;; lr  out 	 0 [ax] 7 [sp]
+;; live  out 	 0 [ax] 7 [sp]
+
+(barrier 102 101 77)
+;; basic block 13, loop depth 0, count 14901602 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       3 [1.4% (guessed)]  count:14901602 (estimated locally)
+;; bb 13 artificial_defs: { }
+;; bb 13 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	 0 [ax]
+;; live  in  	 7 [sp]
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 77 102 76 13 8 (nil) [1 uses])
+(note 76 77 9 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 9 76 66 13 (set (reg/v:SI 0 ax [orig:91 <retval> ] [91])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":64:9 75 {*movsi_internal}
+     (nil))
+;;  succ:       14 [always]  count:14901602 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 7 [sp]
+;; live  out 	 0 [ax] 7 [sp]
+
+;; basic block 14, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 13, next block 1, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       13 [always]  count:14901602 (estimated locally) (FALLTHRU)
+;;              11 [always]  count:1049498670 (estimated locally)
+;;              12 [always]  count:9341552 (estimated locally)
+;; bb 14 artificial_defs: { }
+;; bb 14 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 7 [sp]
+;; lr  use 	 0 [ax] 7 [sp]
+;; lr  def 	
+;; live  in  	 0 [ax] 7 [sp]
+;; live  gen 	
+;; live  kill	
+(code_label 66 9 69 14 1 (nil) [2 uses])
+(note 69 66 68 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 68 69 104 14 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_ungetch.c":88:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741824 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 7 [sp]
+;; live  out 	 0 [ax] 7 [sp]
+
+(note 104 68 0 NOTE_INSN_DELETED)
+
+;; Function ungetch (ungetch, funcdef_no=92, decl_uid=6123, cgraph_uid=93, symbol_order=92)
+
+starting the processing of deferred insns
+ending the processing of deferred insns
+df_analyze called
+df_worklist_dataflow_doublequeue: n_basic_blocks 15 n_edges 19 count 15 (    1)
+df_worklist_dataflow_doublequeue: n_basic_blocks 15 n_edges 19 count 15 (    1)
+df_worklist_dataflow_doublequeue: n_basic_blocks 15 n_edges 19 count 15 (    1)
+df_worklist_dataflow_doublequeue: n_basic_blocks 15 n_edges 19 count 15 (    1)
+Trying to eliminate extension:
+(insn 49 103 95 7 (set (reg:SI 2 cx [orig:91 prephitmp_26 ] [91])
+        (zero_extend:SI (reg:HI 1 dx [orig:90 _15 ] [90]))) "../ncurses/./base/lib_ungetch.c":77:12 144 {*zero_extendhisi2}
+     (nil))
+Trying to eliminate extension:
+(insn 59 58 60 11 (set (reg:DI 1 dx [orig:94 prephitmp_26 ] [94])
+        (sign_extend:DI (reg:SI 2 cx [orig:91 prephitmp_26 ] [91]))) "../ncurses/./base/lib_ungetch.c":77:18 147 {*extendsidi2_rex64}
+     (nil))
+Elimination opportunities = 2 realized = 0
+starting the processing of deferred insns
+ending the processing of deferred insns
+
+
+ungetch
+
+Dataflow summary:
+;;  fully invalidated by EH 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 8 [st] 9 [st(1)] 10 [st(2)] 11 [st(3)] 12 [st(4)] 13 [st(5)] 14 [st(6)] 15 [st(7)] 17 [flags] 18 [fpsr] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 28 [mm0] 29 [mm1] 30 [mm2] 31 [mm3] 32 [mm4] 33 [mm5] 34 [mm6] 35 [mm7] 36 [r8] 37 [r9] 38 [r10] 39 [r11] 44 [xmm8] 45 [xmm9] 46 [xmm10] 47 [xmm11] 48 [xmm12] 49 [xmm13] 50 [xmm14] 51 [xmm15] 52 [xmm16] 53 [xmm17] 54 [xmm18] 55 [xmm19] 56 [xmm20] 57 [xmm21] 58 [xmm22] 59 [xmm23] 60 [xmm24] 61 [xmm25] 62 [xmm26] 63 [xmm27] 64 [xmm28] 65 [xmm29] 66 [xmm30] 67 [xmm31] 68 [k0] 69 [k1] 70 [k2] 71 [k3] 72 [k4] 73 [k5] 74 [k6] 75 [k7]
+;;  hardware regs used 	 7 [sp]
+;;  regular block artificial uses 	 7 [sp]
+;;  eh block artificial uses 	 7 [sp] 16 [argp]
+;;  entry block defs 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp] 20 [xmm0] 21 [xmm1] 22 [xmm2] 23 [xmm3] 24 [xmm4] 25 [xmm5] 26 [xmm6] 27 [xmm7] 36 [r8] 37 [r9]
+;;  exit block uses 	 0 [ax] 7 [sp]
+;;  regs ever live 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 17 [flags]
+;;  ref usage 	r0={5d,11u} r1={7d,9u} r2={5d,2u} r4={2d,4u} r5={1d,1u} r7={1d,14u} r17={6d,6u} r20={1d} r21={1d} r22={1d} r23={1d} r24={1d} r25={1d} r26={1d} r27={1d} r36={1d} r37={1d} 
+;;    total ref usage 84{37d,47u,0e} in 36{36 regular + 0 call} insns.
+(note 1 0 11 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 1073741824 (estimated locally), maybe hot
+;;  prev block 0, next block 3, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       ENTRY [always]  count:1073741824 (estimated locally) (FALLTHRU)
+;; bb 2 artificial_defs: { }
+;; bb 2 artificial_uses: { u-1(7){ }}
+;; lr  in  	 5 [di] 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	 0 [ax] 17 [flags]
+;; live  in  	 5 [di] 7 [sp]
+;; live  gen 	 0 [ax] 17 [flags]
+;; live  kill	
+(note 11 1 3 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 3 11 13 2 NOTE_INSN_FUNCTION_BEG)
+(insn 13 3 14 2 (set (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+        (mem/f/c:DI (symbol_ref:DI ("SP") [flags 0x40]  <var_decl 0x7f9a0ac00cf0 SP>) [28 SP+0 S8 A64])) "../ncurses/./base/lib_ungetch.c":93:12 74 {*movdi_internal}
+     (nil))
+(insn 14 13 15 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":68:8 8 {*cmpdi_ccno_1}
+     (nil))
+(jump_insn 15 14 16 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 73)
+            (pc))) "../ncurses/./base/lib_ungetch.c":68:8 806 {*jcc}
+     (int_list:REG_BR_PROB 9341556 (nil))
+ -> 73)
+;;  succ:       3 [99.1% (guessed)]  count:1064400272 (estimated locally) (FALLTHRU)
+;;              12 [0.9% (guessed)]  count:9341552 (estimated locally)
+;; lr  out 	 0 [ax] 5 [di] 7 [sp]
+;; live  out 	 0 [ax] 5 [di] 7 [sp]
+
+;; basic block 3, loop depth 0, count 1064400272 (estimated locally), maybe hot
+;;  prev block 2, next block 4, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       2 [99.1% (guessed)]  count:1064400272 (estimated locally) (FALLTHRU)
+;; bb 3 artificial_defs: { }
+;; bb 3 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 5 [di] 7 [sp]
+;; lr  use 	 0 [ax] 7 [sp]
+;; lr  def 	 4 [si] 17 [flags]
+;; live  in  	 0 [ax] 5 [di] 7 [sp]
+;; live  gen 	 4 [si] 17 [flags]
+;; live  kill	
+(note 16 15 17 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 17 16 20 3 (set (reg:HI 4 si [orig:83 _6 ] [83])
+        (mem:HI (plus:DI (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+                (const_int 730 [0x2da])) [1 SP.2_1->_fifotail+0 S2 A16])) "../ncurses/./base/lib_ungetch.c":68:23 76 {*movhi_internal}
+     (nil))
+(insn 20 17 21 3 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 4 si [orig:83 _6 ] [83])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":68:20 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 21 20 22 3 (set (pc)
+        (if_then_else (lt (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 77)
+            (pc))) "../ncurses/./base/lib_ungetch.c":68:20 806 {*jcc}
+     (int_list:REG_BR_PROB 15032388 (nil))
+ -> 77)
+;;  succ:       4 [98.6% (guessed)]  count:1049498670 (estimated locally) (FALLTHRU)
+;;              13 [1.4% (guessed)]  count:14901602 (estimated locally)
+;; lr  out 	 0 [ax] 4 [si] 5 [di] 7 [sp]
+;; live  out 	 0 [ax] 4 [si] 5 [di] 7 [sp]
+
+;; basic block 4, loop depth 0, count 1049498670 (estimated locally), maybe hot
+;;  prev block 3, next block 5, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       3 [98.6% (guessed)]  count:1049498670 (estimated locally) (FALLTHRU)
+;; bb 4 artificial_defs: { }
+;; bb 4 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 4 [si] 5 [di] 7 [sp]
+;; lr  use 	 0 [ax] 7 [sp]
+;; lr  def 	 1 [dx] 17 [flags]
+;; live  in  	 0 [ax] 4 [si] 5 [di] 7 [sp]
+;; live  gen 	 1 [dx] 17 [flags]
+;; live  kill	
+(note 22 21 23 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 26 4 (set (reg:HI 1 dx [orig:84 _7 ] [84])
+        (mem:HI (plus:DI (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+                (const_int 728 [0x2d8])) [1 SP.2_1->_fifohead+0 S2 A64])) "../ncurses/./base/lib_ungetch.c":69:6 76 {*movhi_internal}
+     (nil))
+(insn 26 23 27 4 (set (reg:CCGOC 17 flags)
+        (compare:CCGOC (reg:HI 1 dx [orig:84 _7 ] [84])
+            (const_int 0 [0]))) "../ncurses/./base/lib_ungetch.c":69:5 6 {*cmphi_ccno_1}
+     (nil))
+(jump_insn 27 26 28 4 (set (pc)
+        (if_then_else (ge (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 42)
+            (pc))) "../ncurses/./base/lib_ungetch.c":69:5 806 {*jcc}
+     (int_list:REG_BR_PROB 633507684 (nil))
+ -> 42)
+;;  succ:       5 [41.0% (guessed)]  count:430294451 (estimated locally) (FALLTHRU)
+;;              6 [59.0% (guessed)]  count:619204219 (estimated locally)
+;; lr  out 	 0 [ax] 1 [dx] 4 [si] 5 [di] 7 [sp] 17 [flags]
+;; live  out 	 0 [ax] 1 [dx] 4 [si] 5 [di] 7 [sp] 17 [flags]
+
+;; basic block 5, loop depth 0, count 430294450 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       4 [41.0% (guessed)]  count:430294451 (estimated locally) (FALLTHRU)
+;; bb 5 artificial_defs: { }
+;; bb 5 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 4 [si] 5 [di] 7 [sp]
+;; lr  use 	 0 [ax] 4 [si] 7 [sp]
+;; lr  def 	 1 [dx] 2 [cx] 17 [flags]
+;; live  in  	 0 [ax] 4 [si] 5 [di] 7 [sp]
+;; live  gen 	 1 [dx] 2 [cx] 17 [flags]
+;; live  kill	
+(note 28 27 104 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 104 28 90 5 (set (reg:SI 1 dx [97])
+        (plus:SI (reg:SI 4 si [orig:83 _6 ] [83])
+            (const_int 1 [0x1]))) "../ncurses/./base/lib_ungetch.c":71:6 205 {*leasi}
+     (nil))
+(insn 90 104 101 5 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:HI 4 si [orig:83 _6 ] [83])
+            (const_int 136 [0x88]))) "../ncurses/./base/lib_ungetch.c":71:6 10 {*cmphi_1}
+     (nil))
+(insn 101 90 105 5 (set (reg:HI 2 cx [98])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":71:6 76 {*movhi_internal}
+     (expr_list:REG_EQUIV (const_int -1 [0xffffffffffffffff])
+        (nil)))
+(insn 105 101 37 5 (set (reg:SI 1 dx [orig:87 _10 ] [87])
+        (if_then_else:SI (lt (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (reg:SI 1 dx [97])
+            (reg:SI 2 cx [98]))) "../ncurses/./base/lib_ungetch.c":71:6 1100 {*movsicc_noc}
+     (nil))
+(insn 37 105 38 5 (set (mem:HI (plus:DI (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+                (const_int 728 [0x2d8])) [1 SP.2_1->_fifohead+0 S2 A64])
+        (const_int 0 [0])) "../ncurses/./base/lib_ungetch.c":70:11 76 {*movhi_internal}
+     (nil))
+(insn 38 37 39 5 (set (mem:HI (plus:DI (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+                (const_int 730 [0x2da])) [1 SP.2_1->_fifotail+0 S2 A16])
+        (reg:HI 1 dx [orig:87 _10 ] [87])) 76 {*movhi_internal}
+     (nil))
+(insn 39 38 7 5 (set (mem:HI (plus:DI (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+                (const_int 732 [0x2dc])) [1 SP.2_1->_fifopeek+0 S2 A32])
+        (reg:HI 1 dx [orig:87 _10 ] [87])) "../ncurses/./base/lib_ungetch.c":72:11 76 {*movhi_internal}
+     (nil))
+(insn 7 39 93 5 (set (reg:SI 2 cx [orig:91 prephitmp_26 ] [91])
+        (const_int 0 [0])) 75 {*movsi_internal}
+     (expr_list:REG_EQUAL (const_int 0 [0])
+        (nil)))
+(jump_insn 93 7 94 5 (set (pc)
+        (label_ref 57)) 807 {jump}
+     (nil)
+ -> 57)
+;;  succ:       11 [always]  count:430294450 (estimated locally)
+;; lr  out 	 0 [ax] 2 [cx] 5 [di] 7 [sp]
+;; live  out 	 0 [ax] 2 [cx] 5 [di] 7 [sp]
+
+(barrier 94 93 42)
+;; basic block 6, loop depth 0, count 619204220 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       4 [59.0% (guessed)]  count:619204219 (estimated locally)
+;; bb 6 artificial_defs: { }
+;; bb 6 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 4 [si] 5 [di] 7 [sp] 17 [flags]
+;; lr  use 	 7 [sp] 17 [flags]
+;; lr  def 	
+;; live  in  	 0 [ax] 1 [dx] 4 [si] 5 [di] 7 [sp] 17 [flags]
+;; live  gen 	
+;; live  kill	
+(code_label 42 94 43 6 15 (nil) [1 uses])
+(note 43 42 45 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 45 43 46 6 (set (pc)
+        (if_then_else (eq (reg:CCGOC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 85)
+            (pc))) "../ncurses/./base/lib_ungetch.c":74:6 806 {*jcc}
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 85)
+;;  succ:       8 [50.0% (guessed)]  count:309602110 (estimated locally)
+;;              7 [50.0% (guessed)]  count:309602110 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 4 [si] 5 [di] 7 [sp]
+;; live  out 	 0 [ax] 1 [dx] 4 [si] 5 [di] 7 [sp]
+
+;; basic block 7, loop depth 0, count 309602109 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       6 [50.0% (guessed)]  count:309602110 (estimated locally) (FALLTHRU)
+;; bb 7 artificial_defs: { }
+;; bb 7 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 4 [si] 5 [di] 7 [sp]
+;; lr  use 	 1 [dx] 7 [sp]
+;; lr  def 	 1 [dx] 2 [cx] 17 [flags]
+;; live  in  	 0 [ax] 1 [dx] 4 [si] 5 [di] 7 [sp]
+;; live  gen 	 1 [dx] 2 [cx]
+;; live  kill	 17 [flags]
+(note 46 45 47 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(note 47 46 103 7 NOTE_INSN_DELETED)
+(insn 103 47 49 7 (parallel [
+            (set (reg:SI 1 dx [orig:90 _15 ] [90])
+                (plus:SI (reg:SI 1 dx [orig:84 _7 ] [84])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/lib_ungetch.c":74:6 209 {*addsi_1}
+     (nil))
+(insn 49 103 95 7 (set (reg:SI 2 cx [orig:91 prephitmp_26 ] [91])
+        (zero_extend:SI (reg:HI 1 dx [orig:90 _15 ] [90]))) "../ncurses/./base/lib_ungetch.c":77:12 144 {*zero_extendhisi2}
+     (nil))
+(jump_insn 95 49 96 7 (set (pc)
+        (label_ref 50)) 807 {jump}
+     (nil)
+ -> 50)
+;;  succ:       9 [always]  count:309602109 (estimated locally)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp]
+
+(barrier 96 95 85)
+;; basic block 8, loop depth 0, count 309602110 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       6 [50.0% (guessed)]  count:309602110 (estimated locally)
+;; bb 8 artificial_defs: { }
+;; bb 8 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 4 [si] 5 [di] 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	 1 [dx] 2 [cx]
+;; live  in  	 0 [ax] 4 [si] 5 [di] 7 [sp]
+;; live  gen 	 1 [dx] 2 [cx]
+;; live  kill	
+(code_label 85 96 84 8 22 (nil) [1 uses])
+(note 84 85 5 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 5 84 6 8 (set (reg:SI 2 cx [orig:91 prephitmp_26 ] [91])
+        (const_int 136 [0x88])) 75 {*movsi_internal}
+     (nil))
+(insn 6 5 50 8 (set (reg:HI 1 dx [orig:90 _15 ] [90])
+        (const_int 136 [0x88])) "../ncurses/./base/lib_ungetch.c":74:6 76 {*movhi_internal}
+     (nil))
+;;  succ:       9 [always]  count:309602110 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp]
+;; live  out 	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp]
+
+;; basic block 9, loop depth 0, count 619204220 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       8 [always]  count:309602110 (estimated locally) (FALLTHRU)
+;;              7 [always]  count:309602109 (estimated locally)
+;; bb 9 artificial_defs: { }
+;; bb 9 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp]
+;; lr  use 	 0 [ax] 1 [dx] 4 [si] 7 [sp]
+;; lr  def 	 17 [flags]
+;; live  in  	 0 [ax] 1 [dx] 2 [cx] 4 [si] 5 [di] 7 [sp]
+;; live  gen 	 17 [flags]
+;; live  kill	
+(code_label 50 6 51 9 18 (nil) [1 uses])
+(note 51 50 52 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 52 51 53 9 (set (mem:HI (plus:DI (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+                (const_int 728 [0x2d8])) [1 SP.2_1->_fifohead+0 S2 A64])
+        (reg:HI 1 dx [orig:90 _15 ] [90])) 76 {*movhi_internal}
+     (nil))
+(insn 53 52 54 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:HI 4 si [orig:83 _6 ] [83])
+            (reg:HI 1 dx [orig:90 _15 ] [90]))) "../ncurses/./base/lib_ungetch.c":74:6 10 {*cmphi_1}
+     (nil))
+(jump_insn 54 53 55 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 57)
+            (pc))) "../ncurses/./base/lib_ungetch.c":74:6 806 {*jcc}
+     (int_list:REG_BR_PROB 708669604 (nil))
+ -> 57)
+;;  succ:       10 [34.0% (guessed)]  count:210529437 (estimated locally) (FALLTHRU)
+;;              11 [66.0% (guessed)]  count:408674783 (estimated locally)
+;; lr  out 	 0 [ax] 2 [cx] 5 [di] 7 [sp]
+;; live  out 	 0 [ax] 2 [cx] 5 [di] 7 [sp]
+
+;; basic block 10, loop depth 0, count 210529436 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       9 [34.0% (guessed)]  count:210529437 (estimated locally) (FALLTHRU)
+;; bb 10 artificial_defs: { }
+;; bb 10 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 2 [cx] 5 [di] 7 [sp]
+;; lr  use 	 0 [ax] 7 [sp]
+;; lr  def 	
+;; live  in  	 0 [ax] 2 [cx] 5 [di] 7 [sp]
+;; live  gen 	
+;; live  kill	
+(note 55 54 56 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 56 55 57 10 (set (mem:HI (plus:DI (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82])
+                (const_int 730 [0x2da])) [1 SP.2_1->_fifotail+0 S2 A16])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":74:6 76 {*movhi_internal}
+     (nil))
+;;  succ:       11 [always]  count:210529436 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 2 [cx] 5 [di] 7 [sp]
+;; live  out 	 0 [ax] 2 [cx] 5 [di] 7 [sp]
+
+;; basic block 11, loop depth 0, count 1049498671 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       10 [always]  count:210529436 (estimated locally) (FALLTHRU)
+;;              9 [66.0% (guessed)]  count:408674783 (estimated locally)
+;;              5 [always]  count:430294450 (estimated locally)
+;; bb 11 artificial_defs: { }
+;; bb 11 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 2 [cx] 5 [di] 7 [sp]
+;; lr  use 	 0 [ax] 2 [cx] 5 [di] 7 [sp]
+;; lr  def 	 0 [ax] 1 [dx]
+;; live  in  	 0 [ax] 2 [cx] 5 [di] 7 [sp]
+;; live  gen 	 0 [ax] 1 [dx]
+;; live  kill	
+(code_label 57 56 58 11 17 (nil) [2 uses])
+(note 58 57 59 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 59 58 60 11 (set (reg:DI 1 dx [orig:94 prephitmp_26 ] [94])
+        (sign_extend:DI (reg:SI 2 cx [orig:91 prephitmp_26 ] [91]))) "../ncurses/./base/lib_ungetch.c":77:18 147 {*extendsidi2_rex64}
+     (nil))
+(note 60 59 61 11 NOTE_INSN_DELETED)
+(insn 61 60 9 11 (set (mem:SI (plus:DI (plus:DI (mult:DI (reg:DI 1 dx [orig:94 prephitmp_26 ] [94])
+                        (const_int 4 [0x4]))
+                    (reg/f:DI 0 ax [orig:82 SP.2_1 ] [82]))
+                (const_int 180 [0xb4])) [3 SP.2_1->_fifo[prephitmp_29]+0 S4 A32])
+        (reg/v:SI 5 di [orig:93 ch ] [93])) "../ncurses/./base/lib_ungetch.c":77:18 75 {*movsi_internal}
+     (nil))
+(insn 9 61 97 11 (set (reg/v:SI 0 ax [orig:92 <retval> ] [92])
+        (const_int 0 [0])) "../ncurses/./base/lib_ungetch.c":85:5 75 {*movsi_internal}
+     (expr_list:REG_EQUAL (const_int 0 [0])
+        (nil)))
+(jump_insn 97 9 98 11 (set (pc)
+        (label_ref 66)) 807 {jump}
+     (nil)
+ -> 66)
+;;  succ:       14 [always]  count:1049498671 (estimated locally)
+;; lr  out 	 0 [ax] 7 [sp]
+;; live  out 	 0 [ax] 7 [sp]
+
+(barrier 98 97 73)
+;; basic block 12, loop depth 0, count 9341552 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       2 [0.9% (guessed)]  count:9341552 (estimated locally)
+;; bb 12 artificial_defs: { }
+;; bb 12 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	 0 [ax]
+;; live  in  	 7 [sp]
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 73 98 72 12 19 (nil) [1 uses])
+(note 72 73 10 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 10 72 99 12 (set (reg/v:SI 0 ax [orig:92 <retval> ] [92])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":64:9 75 {*movsi_internal}
+     (expr_list:REG_EQUAL (const_int -1 [0xffffffffffffffff])
+        (nil)))
+(jump_insn 99 10 100 12 (set (pc)
+        (label_ref 66)) 807 {jump}
+     (nil)
+ -> 66)
+;;  succ:       14 [always]  count:9341552 (estimated locally)
+;; lr  out 	 0 [ax] 7 [sp]
+;; live  out 	 0 [ax] 7 [sp]
+
+(barrier 100 99 77)
+;; basic block 13, loop depth 0, count 14901602 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       3 [1.4% (guessed)]  count:14901602 (estimated locally)
+;; bb 13 artificial_defs: { }
+;; bb 13 artificial_uses: { u-1(7){ }}
+;; lr  in  	 7 [sp]
+;; lr  use 	 7 [sp]
+;; lr  def 	 0 [ax]
+;; live  in  	 7 [sp]
+;; live  gen 	 0 [ax]
+;; live  kill	
+(code_label 77 100 76 13 20 (nil) [1 uses])
+(note 76 77 8 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 8 76 66 13 (set (reg/v:SI 0 ax [orig:92 <retval> ] [92])
+        (const_int -1 [0xffffffffffffffff])) "../ncurses/./base/lib_ungetch.c":64:9 75 {*movsi_internal}
+     (nil))
+;;  succ:       14 [always]  count:14901602 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 7 [sp]
+;; live  out 	 0 [ax] 7 [sp]
+
+;; basic block 14, loop depth 0, count 1073741825 (estimated locally), maybe hot
+;;  prev block 13, next block 1, flags: (REACHABLE, HOT_PARTITION, RTL, MODIFIED)
+;;  pred:       13 [always]  count:14901602 (estimated locally) (FALLTHRU)
+;;              11 [always]  count:1049498671 (estimated locally)
+;;              12 [always]  count:9341552 (estimated locally)
+;; bb 14 artificial_defs: { }
+;; bb 14 artificial_uses: { u-1(7){ }}
+;; lr  in  	 0 [ax] 7 [sp]
+;; lr  use 	 0 [ax] 7 [sp]
+;; lr  def 	
+;; live  in  	 0 [ax] 7 [sp]
+;; live  gen 	
+;; live  kill	
+(code_label 66 8 69 14 13 (nil) [2 uses])
+(note 69 66 68 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 68 69 102 14 (use (reg/i:SI 0 ax)) "../ncurses/./base/lib_ungetch.c":94:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:1073741825 (estimated locally) (FALLTHRU)
+;; lr  out 	 0 [ax] 7 [sp]
+;; live  out 	 0 [ax] 7 [sp]
+
+(note 102 68 0 NOTE_INSN_DELETED)

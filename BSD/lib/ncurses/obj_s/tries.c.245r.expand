@@ -1,0 +1,3025 @@
+
+;; Function _nc_expand_try (_nc_expand_try, funcdef_no=91, decl_uid=8718, cgraph_uid=92, symbol_order=91)
+
+__attribute__((visibility ("default")))
+char * _nc_expand_try (struct TRIES * tree, unsigned int code, int * count, size_t len)
+{
+  char * result;
+  struct TRIES * ptr;
+  struct tries * _2;
+  short unsigned int _3;
+  unsigned int _4;
+  int _5;
+  int _6;
+  long unsigned int _7;
+  unsigned char _8;
+  char * _9;
+  char _10;
+  long unsigned int _18;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (code_20(D) != 0)
+    goto <bb 4>; [71.00%]
+  else
+    goto <bb 3>; [29.00%]
+;;    succ:       4
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+;;                4
+;;                9
+;;                10
+  goto <bb 14>; [100.00%]
+;;    succ:       14
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+  if (tree_17(D) != 0B)
+    goto <bb 5>; [92.67%]
+  else
+    goto <bb 3>; [7.33%]
+;;    succ:       5
+;;                3
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  _18 = len_22(D) + 1;
+;;    succ:       6
+
+;;   basic block 6, loop depth 1
+;;    pred:       10
+;;                5
+  # ptr_46 = PHI <ptr_29(10), tree_17(D)(5)>
+  _2 = ptr_46->child;
+  result_25 = _nc_expand_try (_2, code_20(D), count_23(D), _18);
+  if (result_25 != 0B)
+    goto <bb 11>; [7.33%]
+  else
+    goto <bb 7>; [92.67%]
+;;    succ:       11
+;;                7
+
+;;   basic block 7, loop depth 1
+;;    pred:       6
+  _3 = ptr_46->value;
+  _4 = (unsigned int) _3;
+  if (_4 == code_20(D))
+    goto <bb 8>; [34.00%]
+  else
+    goto <bb 10>; [66.00%]
+;;    succ:       8
+;;                10
+
+;;   basic block 8, loop depth 1
+;;    pred:       7
+  _5 = *count_23(D);
+  _6 = _5 + -1;
+  *count_23(D) = _6;
+  if (_6 == -1)
+    goto <bb 9>; [7.33%]
+  else
+    goto <bb 10>; [92.67%]
+;;    succ:       9
+;;                10
+
+;;   basic block 9, loop depth 0
+;;    pred:       8
+  _7 = len_22(D) + 2;
+  result_28 = calloc (_7, 1);
+  if (result_28 != 0B)
+    goto <bb 11>; [100.00%]
+  else
+    goto <bb 3>; [0.00%]
+;;    succ:       11
+;;                3
+
+;;   basic block 10, loop depth 1
+;;    pred:       7
+;;                8
+  ptr_29 = ptr_46->sibling;
+  if (ptr_29 != 0B)
+    goto <bb 6>; [92.67%]
+  else
+    goto <bb 3>; [7.33%]
+;;    succ:       6
+;;                3
+
+;;   basic block 11, loop depth 0
+;;    pred:       6
+;;                9
+  # result_52 = PHI <result_25(6), result_28(9)>
+  _8 = ptr_46->ch;
+  _9 = result_52 + len_22(D);
+  _10 = (char) _8;
+  if (_10 == 0)
+    goto <bb 13>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+;;    succ:       13
+;;                12
+
+;;   basic block 12, loop depth 0
+;;    pred:       11
+  *_9 = _10;
+  goto <bb 14>; [100.00%]
+;;    succ:       14
+
+;;   basic block 13, loop depth 0
+;;    pred:       11
+  MEM[(unsigned char *)_9] = 128;
+;;    succ:       14
+
+;;   basic block 14, loop depth 0
+;;    pred:       13
+;;                3
+;;                12
+  # result_32 = PHI <result_52(13), 0B(3), result_52(12)>
+  return result_32;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 2 (_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 4 (_4 - 4 )
+Partition 5 (_5 - 5 )
+Partition 6 (_6 - 6 )
+Partition 7 (_7 - 7 )
+Partition 8 (_8 - 8 )
+Partition 9 (_9 - 9 )
+Partition 10 (_10 - 10 )
+Partition 17 (tree_17(D) - 17 )
+Partition 18 (_18 - 18 )
+Partition 20 (code_20(D) - 20 )
+Partition 22 (len_22(D) - 22 )
+Partition 23 (count_23(D) - 23 )
+Partition 25 (result_25 - 25 )
+Partition 28 (result_28 - 28 )
+Partition 29 (ptr_29 - 29 )
+Partition 32 (result_32 - 32 )
+Partition 46 (ptr_46 - 46 )
+Partition 52 (result_52 - 52 )
+Partition 55 (_55(D) - 55 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (tree_17(D) - 17 29 46 )
+Partition 1, base 1 (code_20(D) - 20 )
+Partition 2, base 2 (len_22(D) - 22 )
+Partition 3, base 3 (count_23(D) - 23 )
+Partition 4, base 4 (result_25 - 25 28 32 52 55 )
+
+
+Partition map 
+
+Partition 0 (tree_17(D) - 17 )
+Partition 1 (code_20(D) - 20 )
+Partition 2 (len_22(D) - 22 )
+Partition 3 (count_23(D) - 23 )
+Partition 4 (result_25 - 25 )
+Partition 5 (result_28 - 28 )
+Partition 6 (ptr_29 - 29 )
+Partition 7 (result_32 - 32 )
+Partition 8 (ptr_46 - 46 )
+Partition 9 (result_52 - 52 )
+Partition 10 (_55(D) - 55 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(15520, 0) ptr_29 <-> ptr_46
+(2291, 0) result_32 <-> _55(D)
+(1507, 0) tree_17(D) <-> ptr_46
+(968, 0) result_32 <-> result_52
+(428, 0) result_28 <-> result_52
+(302, 0) result_25 <-> result_52
+
+Partition map 
+
+Partition 0 (tree_17(D) - 17 )
+Partition 1 (code_20(D) - 20 )
+Partition 2 (len_22(D) - 22 )
+Partition 3 (count_23(D) - 23 )
+Partition 4 (result_25 - 25 )
+Partition 5 (result_28 - 28 )
+Partition 6 (ptr_29 - 29 )
+Partition 7 (result_32 - 32 )
+Partition 8 (ptr_46 - 46 )
+Partition 9 (result_52 - 52 )
+Partition 10 (_55(D) - 55 )
+
+Coalesce list: (29)ptr_29 & (46)ptr_46 [map: 6, 8] : Success -> 6
+Coalesce list: (32)result_32 & (55)_55(D) [map: 7, 10] : Success -> 7
+Coalesce list: (17)tree_17(D) & (46)ptr_29 [map: 0, 6] : Success -> 6
+Coalesce list: (32)result_32 & (52)result_52 [map: 7, 9] : Success -> 7
+Coalesce list: (28)result_28 & (52)result_32 [map: 5, 7] : Success -> 7
+Coalesce list: (25)result_25 & (52)result_32 [map: 4, 7] : Success -> 7
+After Coalescing:
+
+Partition map 
+
+Partition 0 (_2 - 2 )
+Partition 1 (_3 - 3 )
+Partition 2 (_4 - 4 )
+Partition 3 (_5 - 5 )
+Partition 4 (_6 - 6 )
+Partition 5 (_7 - 7 )
+Partition 6 (_8 - 8 )
+Partition 7 (_9 - 9 )
+Partition 8 (_10 - 10 )
+Partition 9 (_18 - 18 )
+Partition 10 (code_20(D) - 20 )
+Partition 11 (len_22(D) - 22 )
+Partition 12 (count_23(D) - 23 )
+Partition 13 (ptr_29 - 17 29 46 )
+Partition 14 (result_32 - 25 28 32 52 55 )
+
+
+Replacing Expressions
+_2 replace with --> _2 = ptr_46->child;
+
+_3 replace with --> _3 = ptr_46->value;
+
+_4 replace with --> _4 = (unsigned int) _3;
+
+_5 replace with --> _5 = *count_23(D);
+
+_7 replace with --> _7 = len_22(D) + 2;
+
+_8 replace with --> _8 = ptr_46->ch;
+
+
+__attribute__((visibility ("default")))
+char * _nc_expand_try (struct TRIES * tree, unsigned int code, int * count, size_t len)
+{
+  char * result;
+  struct TRIES * ptr;
+  struct tries * _2;
+  short unsigned int _3;
+  unsigned int _4;
+  int _5;
+  int _6;
+  long unsigned int _7;
+  unsigned char _8;
+  char * _9;
+  char _10;
+  long unsigned int _18;
+  char * _55(D);
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (code_20(D) != 0)
+    goto <bb 4>; [71.00%]
+  else
+    goto <bb 3>; [29.00%]
+;;    succ:       4
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+;;                4
+;;                9
+;;                10
+  goto <bb 14>; [100.00%]
+;;    succ:       14
+
+;;   basic block 4, loop depth 0
+;;    pred:       2
+  if (tree_17(D) != 0B)
+    goto <bb 5>; [92.67%]
+  else
+    goto <bb 3>; [7.33%]
+;;    succ:       5
+;;                3
+
+;;   basic block 5, loop depth 0
+;;    pred:       4
+  _18 = len_22(D) + 1;
+;;    succ:       6
+
+;;   basic block 6, loop depth 1
+;;    pred:       10
+;;                5
+  # ptr_46 = PHI <ptr_29(10), tree_17(D)(5)>
+  _2 = ptr_46->child;
+  result_25 = _nc_expand_try (_2, code_20(D), count_23(D), _18);
+  if (result_25 != 0B)
+    goto <bb 11>; [7.33%]
+  else
+    goto <bb 7>; [92.67%]
+;;    succ:       11
+;;                7
+
+;;   basic block 7, loop depth 1
+;;    pred:       6
+  _3 = ptr_46->value;
+  _4 = (unsigned int) _3;
+  if (_4 == code_20(D))
+    goto <bb 8>; [34.00%]
+  else
+    goto <bb 10>; [66.00%]
+;;    succ:       8
+;;                10
+
+;;   basic block 8, loop depth 1
+;;    pred:       7
+  _5 = *count_23(D);
+  _6 = _5 + -1;
+  *count_23(D) = _6;
+  if (_6 == -1)
+    goto <bb 9>; [7.33%]
+  else
+    goto <bb 10>; [92.67%]
+;;    succ:       9
+;;                10
+
+;;   basic block 9, loop depth 0
+;;    pred:       8
+  _7 = len_22(D) + 2;
+  result_28 = calloc (_7, 1);
+  if (result_28 != 0B)
+    goto <bb 11>; [100.00%]
+  else
+    goto <bb 3>; [0.00%]
+;;    succ:       11
+;;                3
+
+;;   basic block 10, loop depth 1
+;;    pred:       7
+;;                8
+  ptr_29 = ptr_46->sibling;
+  if (ptr_29 != 0B)
+    goto <bb 6>; [92.67%]
+  else
+    goto <bb 3>; [7.33%]
+;;    succ:       6
+;;                3
+
+;;   basic block 11, loop depth 0
+;;    pred:       6
+;;                9
+  # result_52 = PHI <result_25(6), result_28(9)>
+  _8 = ptr_46->ch;
+  _9 = result_52 + len_22(D);
+  _10 = (char) _8;
+  if (_10 == 0)
+    goto <bb 13>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+;;    succ:       13
+;;                12
+
+;;   basic block 12, loop depth 0
+;;    pred:       11
+  *_9 = _10;
+  goto <bb 14>; [100.00%]
+;;    succ:       14
+
+;;   basic block 13, loop depth 0
+;;    pred:       11
+  MEM[(unsigned char *)_9] = 128;
+;;    succ:       14
+
+;;   basic block 14, loop depth 0
+;;    pred:       13
+;;                3
+;;                12
+  # result_32 = PHI <result_52(13), 0B(3), result_52(12)>
+  return result_32;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB3->BB14 : PART.14 = 0B
+
+;; Generating RTL for gimple basic block 2
+
+;; if (code_20(D) != 0)
+
+(insn 10 9 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 94 [ code ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":56:8 -1
+     (nil))
+
+(jump_insn 11 10 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/tries.c":56:8 -1
+     (int_list:REG_BR_PROB 762356700 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; Generating RTL for gimple basic block 4
+
+;; 
+
+(code_label 15 14 16 2 (nil) [0 uses])
+
+(note 16 15 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (tree_17(D) != 0B)
+
+(insn 18 16 19 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 93 [ tree ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":57:13 -1
+     (nil))
+
+(jump_insn 19 18 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 17)
+            (pc))) "../ncurses/./base/tries.c":57:13 -1
+     (int_list:REG_BR_PROB 78705276 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; _18 = len_22(D) + 1;
+
+(insn 21 20 0 (parallel [
+            (set (reg:DI 91 [ _18 ])
+                (plus:DI (reg/v:DI 96 [ len ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/tries.c":58:20 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 6
+
+;; result_25 = _nc_expand_try (_2, code_20(D), count_23(D), _18);
+
+(insn 23 22 24 (set (reg:DI 2 cx)
+        (reg:DI 91 [ _18 ])) "../ncurses/./base/tries.c":58:20 -1
+     (nil))
+
+(insn 24 23 25 (set (reg:DI 1 dx)
+        (reg/v/f:DI 95 [ count ])) "../ncurses/./base/tries.c":58:20 -1
+     (nil))
+
+(insn 25 24 26 (set (reg:SI 4 si)
+        (reg/v:SI 94 [ code ])) "../ncurses/./base/tries.c":58:20 -1
+     (nil))
+
+(insn 26 25 27 (set (reg:DI 5 di)
+        (mem/f:DI (reg/v/f:DI 93 [ tree ]) [2 ptr_46->child+0 S8 A64])) "../ncurses/./base/tries.c":58:20 -1
+     (nil))
+
+(call_insn 27 26 28 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_expand_try") [flags 0x3]  <function_decl 0x7f4050793e00 _nc_expand_try>) [0 _nc_expand_try S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":58:20 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_expand_try") [flags 0x3]  <function_decl 0x7f4050793e00 _nc_expand_try>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+
+(insn 28 27 0 (set (reg/v/f:DI 92 [ <retval> ])
+        (reg:DI 0 ax)) "../ncurses/./base/tries.c":58:20 -1
+     (nil))
+
+;; if (result_25 != 0B)
+
+(insn 29 28 30 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 92 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":58:9 -1
+     (nil))
+
+(jump_insn 30 29 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/tries.c":58:9 -1
+     (int_list:REG_BR_PROB 78705276 (nil)))
+
+;; Generating RTL for gimple basic block 7
+
+;; if (_4 == code_20(D))
+
+(insn 32 31 33 (set (reg:SI 97)
+        (zero_extend:SI (mem:HI (plus:DI (reg/v/f:DI 93 [ tree ])
+                    (const_int 18 [0x12])) [4 ptr_46->value+0 S2 A16]))) "../ncurses/./base/tries.c":62:13 -1
+     (nil))
+
+(insn 33 32 34 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 97)
+            (reg/v:SI 94 [ code ]))) "../ncurses/./base/tries.c":62:9 -1
+     (nil))
+
+(jump_insn 34 33 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/tries.c":62:9 -1
+     (int_list:REG_BR_PROB 708669604 (nil)))
+
+;; Generating RTL for gimple basic block 8
+
+;; _6 = _5 + -1;
+
+(insn 36 35 37 (set (reg:SI 98)
+        (mem:SI (reg/v/f:DI 95 [ count ]) [1 *count_23(D)+0 S4 A32])) "../ncurses/./base/tries.c":63:10 -1
+     (nil))
+
+(insn 37 36 0 (parallel [
+            (set (reg:SI 86 [ _6 ])
+                (plus:SI (reg:SI 98)
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/tries.c":63:10 -1
+     (expr_list:REG_EQUAL (plus:SI (mem:SI (reg/v/f:DI 95 [ count ]) [1 *count_23(D)+0 S4 A32])
+            (const_int -1 [0xffffffffffffffff]))
+        (nil)))
+
+;; *count_23(D) = _6;
+
+(insn 38 37 0 (set (mem:SI (reg/v/f:DI 95 [ count ]) [1 *count_23(D)+0 S4 A32])
+        (reg:SI 86 [ _6 ])) "../ncurses/./base/tries.c":63:10 -1
+     (nil))
+
+;; if (_6 == -1)
+
+(insn 39 38 40 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 86 [ _6 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/tries.c":64:6 -1
+     (nil))
+
+(jump_insn 40 39 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/tries.c":64:6 -1
+     (int_list:REG_BR_PROB 995036556 (nil)))
+
+;; Generating RTL for gimple basic block 9
+
+;; result_28 = calloc (_7, 1);
+
+(insn 42 41 43 (parallel [
+            (set (reg:DI 99)
+                (plus:DI (reg/v:DI 96 [ len ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/tries.c":65:16 -1
+     (nil))
+
+(insn 43 42 44 (set (reg:DI 4 si)
+        (const_int 1 [0x1])) "../ncurses/./base/tries.c":65:16 -1
+     (nil))
+
+(insn 44 43 45 (set (reg:DI 5 di)
+        (reg:DI 99)) "../ncurses/./base/tries.c":65:16 -1
+     (nil))
+
+(call_insn 45 44 46 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7f4050b90600 calloc>) [0 __builtin_calloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":65:16 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7f4050b90600 calloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+
+(insn 46 45 47 (set (reg/f:DI 100)
+        (reg:DI 0 ax)) "../ncurses/./base/tries.c":65:16 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 100)
+        (nil)))
+
+(insn 47 46 0 (set (reg/v/f:DI 92 [ <retval> ])
+        (reg/f:DI 100)) "../ncurses/./base/tries.c":65:16 -1
+     (nil))
+
+;; if (result_28 != 0B)
+
+(insn 48 47 49 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 92 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":72:8 -1
+     (nil))
+
+(jump_insn 49 48 52 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/tries.c":72:8 -1
+     (int_list:REG_BR_PROB 1073741828 (nil)))
+
+(note 52 49 50 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 50 52 51 16 (set (pc)
+        (label_ref 17)) "../ncurses/./base/tries.c":72:8 -1
+     (nil))
+
+(barrier 51 50 0)
+
+;; Generating RTL for gimple basic block 10
+
+;; 
+
+(code_label 53 51 54 6 (nil) [0 uses])
+
+(note 54 53 0 NOTE_INSN_BASIC_BLOCK)
+
+;; ptr_29 = ptr_46->sibling;
+
+(insn 55 54 0 (set (reg/v/f:DI 93 [ tree ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 93 [ tree ])
+                (const_int 8 [0x8])) [2 ptr_46->sibling+0 S8 A64])) "../ncurses/./base/tries.c":69:10 -1
+     (nil))
+
+;; if (ptr_29 != 0B)
+
+(insn 57 55 58 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 93 [ tree ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":57:13 -1
+     (nil))
+
+(jump_insn 58 57 61 10 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 56)
+            (pc))) "../ncurses/./base/tries.c":57:13 -1
+     (int_list:REG_BR_PROB 995036556 (nil)))
+
+(note 61 58 59 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 59 61 60 17 (set (pc)
+        (label_ref 17)) -1
+     (nil))
+
+(barrier 60 59 0)
+
+;; Generating RTL for gimple basic block 11
+
+;; 
+
+(code_label 62 60 63 5 (nil) [0 uses])
+
+(note 63 62 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _9 = result_52 + len_22(D);
+
+(insn 64 63 0 (parallel [
+            (set (reg/f:DI 89 [ _9 ])
+                (plus:DI (reg/v/f:DI 92 [ <retval> ])
+                    (reg/v:DI 96 [ len ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/tries.c":73:28 -1
+     (nil))
+
+;; _10 = (char) _8;
+
+(insn 65 64 0 (set (reg:QI 90 [ _10 ])
+        (mem:QI (plus:DI (reg/v/f:DI 93 [ tree ])
+                (const_int 16 [0x10])) [0 ptr_46->ch+0 S1 A64])) "../ncurses/./base/tries.c":73:36 -1
+     (nil))
+
+;; if (_10 == 0)
+
+(insn 66 65 67 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 90 [ _10 ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":73:18 -1
+     (nil))
+
+(jump_insn 67 66 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/tries.c":73:18 -1
+     (int_list:REG_BR_PROB 536870916 (nil)))
+
+;; Generating RTL for gimple basic block 12
+
+;; *_9 = _10;
+
+(insn 69 68 0 (set (mem:QI (reg/f:DI 89 [ _9 ]) [0 *_9+0 S1 A8])
+        (reg:QI 90 [ _10 ])) "../ncurses/./base/tries.c":73:34 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 13
+
+;; 
+
+(code_label 72 71 73 8 (nil) [0 uses])
+
+(note 73 72 0 NOTE_INSN_BASIC_BLOCK)
+
+;; MEM[(unsigned char *)_9] = 128;
+
+(insn 74 73 0 (set (mem:QI (reg/f:DI 89 [ _9 ]) [0 MEM[(unsigned char *)_9]+0 S1 A8])
+        (const_int -128 [0xffffffffffffff80])) "../ncurses/./base/tries.c":74:42 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 14
+
+;; 
+
+(code_label 75 74 76 3 (nil) [0 uses])
+
+(note 76 75 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return result_32;
+
+(jump_insn 77 76 78 (set (pc)
+        (label_ref 0)) "../ncurses/./base/tries.c":84:12 -1
+     (nil))
+
+(barrier 78 77 0)
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 13 from 17 to 18.
+Forwarding edge 10->11 to 4 failed.
+Forwarding edge 12->13 to 4 failed.
+Redirecting jump 70 from 17 to 18.
+Merging block 17 into block 16...
+Merged blocks 16 and 17.
+Merged 16 and 17 without moving.
+Removing jump 77.
+
+
+try_optimize_cfg iteration 2
+
+Forwarding edge 10->11 to 4 failed.
+Forwarding edge 12->13 to 4 failed.
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 8 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 245946524 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:245946524 (estimated locally) (FALLTHRU)
+(note 8 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 8 3 2 (set (reg/v/f:DI 93 [ tree ])
+        (reg:DI 5 di [ tree ])) "../ncurses/./base/tries.c":52:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 94 [ code ])
+        (reg:SI 4 si [ code ])) "../ncurses/./base/tries.c":52:1 -1
+     (nil))
+(insn 4 3 5 2 (set (reg/v/f:DI 95 [ count ])
+        (reg:DI 1 dx [ count ])) "../ncurses/./base/tries.c":52:1 -1
+     (nil))
+(insn 5 4 6 2 (set (reg/v:DI 96 [ len ])
+        (reg:DI 2 cx [ len ])) "../ncurses/./base/tries.c":52:1 -1
+     (nil))
+(note 6 5 10 2 NOTE_INSN_FUNCTION_BEG)
+(insn 10 6 11 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 94 [ code ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":56:8 -1
+     (nil))
+(jump_insn 11 10 17 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 15)
+            (pc))) "../ncurses/./base/tries.c":56:8 -1
+     (int_list:REG_BR_PROB 762356700 (nil))
+ -> 15)
+;;  succ:       5 [71.0% (guessed)]  count:174622032 (estimated locally)
+;;              4 [29.0% (guessed)]  count:71324492 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 150029764 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [29.0% (guessed)]  count:71324492 (estimated locally) (FALLTHRU)
+;;              5 [7.3% (guessed)]  count:12799794 (estimated locally)
+;;              11 [always]  count:0 (estimated locally)
+;;              13 [always]  count:65905478 (estimated locally)
+(code_label 17 11 12 4 4 (nil) [3 uses])
+(note 12 17 7 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 7 12 13 4 (set (reg/v/f:DI 92 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/tries.c":54:11 -1
+     (nil))
+(jump_insn 13 7 14 4 (set (pc)
+        (label_ref:DI 79)) 807 {jump}
+     (nil)
+ -> 79)
+;;  succ:       18 [always]  count:150029764 (estimated locally)
+
+(barrier 14 13 15)
+;; basic block 5, loop depth 0, count 174622032 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [71.0% (guessed)]  count:174622032 (estimated locally)
+(code_label 15 14 16 5 2 (nil) [1 uses])
+(note 16 15 18 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 18 16 19 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 93 [ tree ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":57:13 -1
+     (nil))
+(jump_insn 19 18 20 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 17)
+            (pc))) "../ncurses/./base/tries.c":57:13 -1
+     (int_list:REG_BR_PROB 78705276 (nil))
+ -> 17)
+;;  succ:       6 [92.7% (guessed)]  count:161822238 (estimated locally) (FALLTHRU)
+;;              4 [7.3% (guessed)]  count:12799794 (estimated locally)
+
+;; basic block 6, loop depth 0, count 161822238 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [92.7% (guessed)]  count:161822238 (estimated locally) (FALLTHRU)
+(note 20 19 21 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 21 20 56 6 (parallel [
+            (set (reg:DI 91 [ _18 ])
+                (plus:DI (reg/v:DI 96 [ len ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/tries.c":58:20 -1
+     (nil))
+;;  succ:       7 [always]  count:161822238 (estimated locally) (FALLTHRU)
+
+;; basic block 7, loop depth 1, count 221351872 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 995036552 (estimated locally), should be 221351872 (estimated locally)
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       12 [92.7% (guessed)]  count:833214314 (estimated locally) (DFS_BACK)
+;;              6 [always]  count:161822238 (estimated locally) (FALLTHRU)
+(code_label 56 21 22 7 7 (nil) [1 uses])
+(note 22 56 23 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 23 22 24 7 (set (reg:DI 2 cx)
+        (reg:DI 91 [ _18 ])) "../ncurses/./base/tries.c":58:20 -1
+     (nil))
+(insn 24 23 25 7 (set (reg:DI 1 dx)
+        (reg/v/f:DI 95 [ count ])) "../ncurses/./base/tries.c":58:20 -1
+     (nil))
+(insn 25 24 26 7 (set (reg:SI 4 si)
+        (reg/v:SI 94 [ code ])) "../ncurses/./base/tries.c":58:20 -1
+     (nil))
+(insn 26 25 27 7 (set (reg:DI 5 di)
+        (mem/f:DI (reg/v/f:DI 93 [ tree ]) [2 ptr_46->child+0 S8 A64])) "../ncurses/./base/tries.c":58:20 -1
+     (nil))
+(call_insn 27 26 28 7 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_expand_try") [flags 0x3]  <function_decl 0x7f4050793e00 _nc_expand_try>) [0 _nc_expand_try S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":58:20 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_expand_try") [flags 0x3]  <function_decl 0x7f4050793e00 _nc_expand_try>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (expr_list:DI (use (reg:DI 1 dx))
+                (expr_list:DI (use (reg:DI 2 cx))
+                    (nil))))))
+(insn 28 27 29 7 (set (reg/v/f:DI 92 [ <retval> ])
+        (reg:DI 0 ax)) "../ncurses/./base/tries.c":58:20 -1
+     (nil))
+(insn 29 28 30 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 92 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":58:9 -1
+     (nil))
+(jump_insn 30 29 31 7 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 62)
+            (pc))) "../ncurses/./base/tries.c":58:9 -1
+     (int_list:REG_BR_PROB 78705276 (nil))
+ -> 62)
+;;  succ:       14 [7.3% (guessed)]  count:16225091 (estimated locally)
+;;              8 [92.7% (guessed)]  count:205126781 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 1, count 922100377 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 205126781 (estimated locally), should be 922100377 (estimated locally)
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [92.7% (guessed)]  count:205126781 (estimated locally) (FALLTHRU)
+(note 31 30 32 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 32 31 33 8 (set (reg:SI 97)
+        (zero_extend:SI (mem:HI (plus:DI (reg/v/f:DI 93 [ tree ])
+                    (const_int 18 [0x12])) [4 ptr_46->value+0 S2 A16]))) "../ncurses/./base/tries.c":62:13 -1
+     (nil))
+(insn 33 32 34 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 97)
+            (reg/v:SI 94 [ code ]))) "../ncurses/./base/tries.c":62:9 -1
+     (nil))
+(jump_insn 34 33 35 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 53)
+            (pc))) "../ncurses/./base/tries.c":62:9 -1
+     (int_list:REG_BR_PROB 708669604 (nil))
+ -> 53)
+;;  succ:       9 [34.0% (guessed)]  count:313514131 (estimated locally) (FALLTHRU)
+;;              12 [66.0% (guessed)]  count:608586246 (estimated locally)
+
+;; basic block 9, loop depth 1, count 313514131 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [34.0% (guessed)]  count:313514131 (estimated locally) (FALLTHRU)
+(note 35 34 36 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 36 35 37 9 (set (reg:SI 98)
+        (mem:SI (reg/v/f:DI 95 [ count ]) [1 *count_23(D)+0 S4 A32])) "../ncurses/./base/tries.c":63:10 -1
+     (nil))
+(insn 37 36 38 9 (parallel [
+            (set (reg:SI 86 [ _6 ])
+                (plus:SI (reg:SI 98)
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/tries.c":63:10 -1
+     (expr_list:REG_EQUAL (plus:SI (mem:SI (reg/v/f:DI 95 [ count ]) [1 *count_23(D)+0 S4 A32])
+            (const_int -1 [0xffffffffffffffff]))
+        (nil)))
+(insn 38 37 39 9 (set (mem:SI (reg/v/f:DI 95 [ count ]) [1 *count_23(D)+0 S4 A32])
+        (reg:SI 86 [ _6 ])) "../ncurses/./base/tries.c":63:10 -1
+     (nil))
+(insn 39 38 40 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 86 [ _6 ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/tries.c":64:6 -1
+     (nil))
+(jump_insn 40 39 41 9 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 53)
+            (pc))) "../ncurses/./base/tries.c":64:6 -1
+     (int_list:REG_BR_PROB 995036556 (nil))
+ -> 53)
+;;  succ:       10 [7.3% (guessed)]  count:22980585 (estimated locally) (FALLTHRU)
+;;              12 [92.7% (guessed)]  count:290533546 (estimated locally)
+
+;; basic block 10, loop depth 0, count 22980585 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       9 [7.3% (guessed)]  count:22980585 (estimated locally) (FALLTHRU)
+(note 41 40 42 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 42 41 43 10 (parallel [
+            (set (reg:DI 99)
+                (plus:DI (reg/v:DI 96 [ len ])
+                    (const_int 2 [0x2])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/tries.c":65:16 -1
+     (nil))
+(insn 43 42 44 10 (set (reg:DI 4 si)
+        (const_int 1 [0x1])) "../ncurses/./base/tries.c":65:16 -1
+     (nil))
+(insn 44 43 45 10 (set (reg:DI 5 di)
+        (reg:DI 99)) "../ncurses/./base/tries.c":65:16 -1
+     (nil))
+(call_insn 45 44 46 10 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7f4050b90600 calloc>) [0 __builtin_calloc S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":65:16 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("calloc") [flags 0x41]  <function_decl 0x7f4050b90600 calloc>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:DI (use (reg:DI 4 si))
+            (nil))))
+(insn 46 45 47 10 (set (reg/f:DI 100)
+        (reg:DI 0 ax)) "../ncurses/./base/tries.c":65:16 -1
+     (expr_list:REG_NOALIAS (reg/f:DI 100)
+        (nil)))
+(insn 47 46 48 10 (set (reg/v/f:DI 92 [ <retval> ])
+        (reg/f:DI 100)) "../ncurses/./base/tries.c":65:16 -1
+     (nil))
+(insn 48 47 49 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 92 [ <retval> ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":72:8 -1
+     (nil))
+(jump_insn 49 48 52 10 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 62)
+            (pc))) "../ncurses/./base/tries.c":72:8 -1
+     (int_list:REG_BR_PROB 1073741828 (nil))
+ -> 62)
+;;  succ:       14 [always (guessed)]  count:22980585 (estimated locally)
+;;              11 [never (guessed)]  count:0 (estimated locally) (FALLTHRU)
+
+;; basic block 11, loop depth 0, count 0 (estimated locally)
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL)
+;;  pred:       10 [never (guessed)]  count:0 (estimated locally) (FALLTHRU)
+(note 52 49 50 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 50 52 51 11 (set (pc)
+        (label_ref 17)) "../ncurses/./base/tries.c":72:8 -1
+     (nil)
+ -> 17)
+;;  succ:       4 [always]  count:0 (estimated locally)
+
+(barrier 51 50 53)
+;; basic block 12, loop depth 1, count 899119792 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [66.0% (guessed)]  count:608586246 (estimated locally)
+;;              9 [92.7% (guessed)]  count:290533546 (estimated locally)
+(code_label 53 51 54 12 6 (nil) [2 uses])
+(note 54 53 55 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 55 54 57 12 (set (reg/v/f:DI 93 [ tree ])
+        (mem/f:DI (plus:DI (reg/v/f:DI 93 [ tree ])
+                (const_int 8 [0x8])) [2 ptr_46->sibling+0 S8 A64])) "../ncurses/./base/tries.c":69:10 -1
+     (nil))
+(insn 57 55 58 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 93 [ tree ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":57:13 -1
+     (nil))
+(jump_insn 58 57 61 12 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 56)
+            (pc))) "../ncurses/./base/tries.c":57:13 -1
+     (int_list:REG_BR_PROB 995036556 (nil))
+ -> 56)
+;;  succ:       7 [92.7% (guessed)]  count:833214314 (estimated locally) (DFS_BACK)
+;;              13 [7.3% (guessed)]  count:65905478 (estimated locally) (FALLTHRU)
+
+;; basic block 13, loop depth 0, count 65905478 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL)
+;;  pred:       12 [7.3% (guessed)]  count:65905478 (estimated locally) (FALLTHRU)
+(note 61 58 59 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 59 61 60 13 (set (pc)
+        (label_ref 17)) -1
+     (nil)
+ -> 17)
+;;  succ:       4 [always]  count:65905478 (estimated locally)
+
+(barrier 60 59 62)
+;; basic block 14, loop depth 0, count 104022346 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 39205676 (estimated locally), should be 104022346 (estimated locally)
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       7 [7.3% (guessed)]  count:16225091 (estimated locally)
+;;              10 [always (guessed)]  count:22980585 (estimated locally)
+(code_label 62 60 63 14 5 (nil) [2 uses])
+(note 63 62 64 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 64 63 65 14 (parallel [
+            (set (reg/f:DI 89 [ _9 ])
+                (plus:DI (reg/v/f:DI 92 [ <retval> ])
+                    (reg/v:DI 96 [ len ])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/tries.c":73:28 -1
+     (nil))
+(insn 65 64 66 14 (set (reg:QI 90 [ _10 ])
+        (mem:QI (plus:DI (reg/v/f:DI 93 [ tree ])
+                (const_int 16 [0x10])) [0 ptr_46->ch+0 S1 A64])) "../ncurses/./base/tries.c":73:36 -1
+     (nil))
+(insn 66 65 67 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 90 [ _10 ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":73:18 -1
+     (nil))
+(jump_insn 67 66 68 14 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 72)
+            (pc))) "../ncurses/./base/tries.c":73:18 -1
+     (int_list:REG_BR_PROB 536870916 (nil))
+ -> 72)
+;;  succ:       16 [50.0% (guessed)]  count:52011173 (estimated locally)
+;;              15 [50.0% (guessed)]  count:52011173 (estimated locally) (FALLTHRU)
+
+;; basic block 15, loop depth 0, count 52011173 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       14 [50.0% (guessed)]  count:52011173 (estimated locally) (FALLTHRU)
+(note 68 67 69 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 69 68 70 15 (set (mem:QI (reg/f:DI 89 [ _9 ]) [0 *_9+0 S1 A8])
+        (reg:QI 90 [ _10 ])) "../ncurses/./base/tries.c":73:34 -1
+     (nil))
+(jump_insn 70 69 71 15 (set (pc)
+        (label_ref:DI 79)) "../ncurses/./base/tries.c":73:34 807 {jump}
+     (nil)
+ -> 79)
+;;  succ:       18 [always]  count:52011173 (estimated locally)
+
+(barrier 71 70 72)
+;; basic block 16, loop depth 0, count 52011173 (estimated locally), maybe hot
+;;  prev block 15, next block 18, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       14 [50.0% (guessed)]  count:52011173 (estimated locally)
+(code_label 72 71 73 16 8 (nil) [1 uses])
+(note 73 72 74 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 74 73 79 16 (set (mem:QI (reg/f:DI 89 [ _9 ]) [0 MEM[(unsigned char *)_9]+0 S1 A8])
+        (const_int -128 [0xffffffffffffff80])) "../ncurses/./base/tries.c":74:42 -1
+     (nil))
+;;  succ:       18 [always]  count:52011173 (estimated locally) (FALLTHRU)
+
+;; basic block 18, loop depth 0, count 245946525 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 254052110 (estimated locally), should be 245946525 (estimated locally)
+;;  prev block 16, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       16 [always]  count:52011173 (estimated locally) (FALLTHRU)
+;;              4 [always]  count:150029764 (estimated locally)
+;;              15 [always]  count:52011173 (estimated locally)
+(code_label 79 74 82 18 1 (nil) [2 uses])
+(note 82 79 80 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 80 82 81 18 (set (reg/i:DI 0 ax)
+        (reg/v/f:DI 92 [ <retval> ])) "../ncurses/./base/tries.c":85:1 -1
+     (nil))
+(insn 81 80 0 18 (use (reg/i:DI 0 ax)) "../ncurses/./base/tries.c":85:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:245946525 (estimated locally) (FALLTHRU)
+
+
+;; Function _nc_remove_key (_nc_remove_key, funcdef_no=92, decl_uid=8721, cgraph_uid=93, symbol_order=92)
+
+__attribute__((visibility ("default")))
+int _nc_remove_key (struct TRIES * * tree, unsigned int code)
+{
+  struct tries * * _2;
+  int _3;
+  struct TRIES * _4;
+  short unsigned int _5;
+  unsigned int _6;
+  struct tries * _7;
+  struct tries * _8;
+  struct TRIES * _10;
+  int _12;
+  struct TRIES * _25;
+  struct TRIES * _26;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (code_16(D) == 0)
+    goto <bb 10>; [34.00%]
+  else
+    goto <bb 3>; [66.00%]
+;;    succ:       10
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _25 = *tree_17(D);
+  if (_25 != 0B)
+    goto <bb 4>; [92.67%]
+  else
+    goto <bb 10>; [7.33%]
+;;    succ:       4
+;;                10
+
+;;   basic block 4, loop depth 1
+;;    pred:       9
+;;                3
+  # _26 = PHI <_10(9), _25(3)>
+  # tree_1 = PHI <tree_20(9), tree_17(D)(3)>
+  _2 = &_26->child;
+  _3 = _nc_remove_key (_2, code_16(D));
+  if (_3 != 0)
+    goto <bb 11>; [7.33%]
+  else
+    goto <bb 5>; [92.67%]
+;;    succ:       11
+;;                5
+
+;;   basic block 5, loop depth 1
+;;    pred:       4
+  _4 = *tree_1;
+  _5 = _4->value;
+  _6 = (unsigned int) _5;
+  if (_6 == code_16(D))
+    goto <bb 6>; [7.33%]
+  else
+    goto <bb 9>; [92.67%]
+;;    succ:       6
+;;                9
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  _7 = _4->child;
+  if (_7 != 0B)
+    goto <bb 7>; [82.57%]
+  else
+    goto <bb 8>; [17.43%]
+;;    succ:       7
+;;                8
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+  _4->value = 0;
+  goto <bb 11>; [100.00%]
+;;    succ:       11
+
+;;   basic block 8, loop depth 0
+;;    pred:       6
+  _8 = _4->sibling;
+  *tree_1 = _8;
+  free (_4);
+  goto <bb 11>; [100.00%]
+;;    succ:       11
+
+;;   basic block 9, loop depth 1
+;;    pred:       5
+  tree_20 = &_4->sibling;
+  _10 = MEM[(struct TRIES * *)_4 + 8B];
+  if (_10 != 0B)
+    goto <bb 4>; [92.67%]
+  else
+    goto <bb 10>; [7.33%]
+;;    succ:       4
+;;                10
+
+;;   basic block 10, loop depth 0
+;;    pred:       2
+;;                3
+;;                9
+;;    succ:       11
+
+;;   basic block 11, loop depth 0
+;;    pred:       10
+;;                4
+;;                8
+;;                7
+  # _12 = PHI <0(10), 1(4), 1(8), 1(7)>
+  return _12;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (tree_1 - 1 )
+Partition 2 (_2 - 2 )
+Partition 3 (_3 - 3 )
+Partition 4 (_4 - 4 )
+Partition 5 (_5 - 5 )
+Partition 6 (_6 - 6 )
+Partition 7 (_7 - 7 )
+Partition 8 (_8 - 8 )
+Partition 10 (_10 - 10 )
+Partition 11 (_11(D) - 11 )
+Partition 12 (_12 - 12 )
+Partition 16 (code_16(D) - 16 )
+Partition 17 (tree_17(D) - 17 )
+Partition 20 (tree_20 - 20 )
+Partition 25 (_25 - 25 )
+Partition 26 (_26 - 26 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (tree_1 - 1 17 20 )
+Partition 1, base 1 (_10 - 10 25 26 )
+Partition 2, base 2 (_11(D) - 11 12 )
+Partition 4, base 3 (code_16(D) - 16 )
+
+
+Partition map 
+
+Partition 0 (tree_1 - 1 )
+Partition 1 (_10 - 10 )
+Partition 2 (_11(D) - 11 )
+Partition 3 (_12 - 12 )
+Partition 4 (code_16(D) - 16 )
+Partition 5 (tree_17(D) - 17 )
+Partition 6 (tree_20 - 20 )
+Partition 7 (_25 - 25 )
+Partition 8 (_26 - 26 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(14750, 0) _10 <-> _26
+(14750, 0) tree_1 <-> tree_20
+(3784, 0) _25 <-> _26
+(3784, 0) tree_1 <-> tree_17(D)
+(3094, 0) _11(D) <-> _12
+
+Partition map 
+
+Partition 0 (tree_1 - 1 )
+Partition 1 (_10 - 10 )
+Partition 2 (_11(D) - 11 )
+Partition 3 (_12 - 12 )
+Partition 4 (code_16(D) - 16 )
+Partition 5 (tree_17(D) - 17 )
+Partition 6 (tree_20 - 20 )
+Partition 7 (_25 - 25 )
+Partition 8 (_26 - 26 )
+
+Coalesce list: (10)_10 & (26)_26 [map: 1, 8] : Success -> 1
+Coalesce list: (1)tree_1 & (20)tree_20 [map: 0, 6] : Success -> 0
+Coalesce list: (25)_25 & (26)_10 [map: 7, 1] : Success -> 1
+Coalesce list: (1)tree_1 & (17)tree_17(D) [map: 0, 5] : Success -> 0
+Coalesce list: (11)_11(D) & (12)_12 [map: 2, 3] : Success -> 2
+After Coalescing:
+
+Partition map 
+
+Partition 0 (tree_1 - 1 17 20 )
+Partition 1 (_2 - 2 )
+Partition 2 (_3 - 3 )
+Partition 3 (_4 - 4 )
+Partition 4 (_5 - 5 )
+Partition 5 (_6 - 6 )
+Partition 6 (_7 - 7 )
+Partition 7 (_8 - 8 )
+Partition 8 (_10 - 10 25 26 )
+Partition 9 (_11(D) - 11 12 )
+Partition 10 (code_16(D) - 16 )
+
+
+Replacing Expressions
+_2 replace with --> _2 = &_26->child;
+
+_5 replace with --> _5 = _4->value;
+
+_6 replace with --> _6 = (unsigned int) _5;
+
+_7 replace with --> _7 = _4->child;
+
+
+__attribute__((visibility ("default")))
+int _nc_remove_key (struct TRIES * * tree, unsigned int code)
+{
+  struct tries * * _2;
+  int _3;
+  struct TRIES * _4;
+  short unsigned int _5;
+  unsigned int _6;
+  struct tries * _7;
+  struct tries * _8;
+  struct TRIES * _10;
+  int _11(D);
+  int _12;
+  struct TRIES * _25;
+  struct TRIES * _26;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  if (code_16(D) == 0)
+    goto <bb 10>; [34.00%]
+  else
+    goto <bb 3>; [66.00%]
+;;    succ:       10
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  _25 = *tree_17(D);
+  if (_25 != 0B)
+    goto <bb 4>; [92.67%]
+  else
+    goto <bb 10>; [7.33%]
+;;    succ:       4
+;;                10
+
+;;   basic block 4, loop depth 1
+;;    pred:       9
+;;                3
+  # _26 = PHI <_10(9), _25(3)>
+  # tree_1 = PHI <tree_20(9), tree_17(D)(3)>
+  _2 = &_26->child;
+  _3 = _nc_remove_key (_2, code_16(D));
+  if (_3 != 0)
+    goto <bb 11>; [7.33%]
+  else
+    goto <bb 5>; [92.67%]
+;;    succ:       11
+;;                5
+
+;;   basic block 5, loop depth 1
+;;    pred:       4
+  _4 = *tree_1;
+  _5 = _4->value;
+  _6 = (unsigned int) _5;
+  if (_6 == code_16(D))
+    goto <bb 6>; [7.33%]
+  else
+    goto <bb 9>; [92.67%]
+;;    succ:       6
+;;                9
+
+;;   basic block 6, loop depth 0
+;;    pred:       5
+  _7 = _4->child;
+  if (_7 != 0B)
+    goto <bb 7>; [82.57%]
+  else
+    goto <bb 8>; [17.43%]
+;;    succ:       7
+;;                8
+
+;;   basic block 7, loop depth 0
+;;    pred:       6
+  _4->value = 0;
+  goto <bb 11>; [100.00%]
+;;    succ:       11
+
+;;   basic block 8, loop depth 0
+;;    pred:       6
+  _8 = _4->sibling;
+  *tree_1 = _8;
+  free (_4);
+  goto <bb 11>; [100.00%]
+;;    succ:       11
+
+;;   basic block 9, loop depth 1
+;;    pred:       5
+  tree_20 = &_4->sibling;
+  _10 = MEM[(struct TRIES * *)_4 + 8B];
+  if (_10 != 0B)
+    goto <bb 4>; [92.67%]
+  else
+    goto <bb 10>; [7.33%]
+;;    succ:       4
+;;                10
+
+;;   basic block 10, loop depth 0
+;;    pred:       2
+;;                3
+;;                9
+;;    succ:       11
+
+;;   basic block 11, loop depth 0
+;;    pred:       10
+;;                4
+;;                8
+;;                7
+  # _12 = PHI <0(10), 1(4), 1(8), 1(7)>
+  return _12;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB10->BB11 : PART.9 = 0
+Inserting a value copy on edge BB4->BB11 : PART.9 = 1
+Inserting a value copy on edge BB8->BB11 : PART.9 = 1
+Inserting a value copy on edge BB7->BB11 : PART.9 = 1
+
+;; Generating RTL for gimple basic block 2
+
+;; if (code_16(D) == 0)
+
+(insn 11 10 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 92 [ code ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":96:8 -1
+     (nil))
+
+(jump_insn 12 11 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/tries.c":96:8 -1
+     (int_list:REG_BR_PROB 365072228 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; _25 = *tree_17(D);
+
+(insn 14 13 0 (set (reg/f:DI 89 [ _10 ])
+        (mem/f:DI (reg/v/f:DI 91 [ tree ]) [2 *tree_17(D)+0 S8 A64])) "../ncurses/./base/tries.c":99:12 -1
+     (nil))
+
+;; if (_25 != 0B)
+
+(insn 15 14 16 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 89 [ _10 ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":99:18 -1
+     (nil))
+
+(jump_insn 16 15 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/tries.c":99:18 -1
+     (int_list:REG_BR_PROB 78705276 (nil)))
+
+;; Generating RTL for gimple basic block 4
+
+;; _3 = _nc_remove_key (_2, code_16(D));
+
+(insn 18 17 19 (set (reg:SI 4 si)
+        (reg/v:SI 92 [ code ])) "../ncurses/./base/tries.c":100:6 -1
+     (nil))
+
+(insn 19 18 20 (set (reg:DI 5 di)
+        (reg/f:DI 89 [ _10 ])) "../ncurses/./base/tries.c":100:6 -1
+     (nil))
+
+(call_insn 20 19 21 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_remove_key") [flags 0x3]  <function_decl 0x7f4050793f00 _nc_remove_key>) [0 _nc_remove_key S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":100:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_remove_key") [flags 0x3]  <function_decl 0x7f4050793f00 _nc_remove_key>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+
+(insn 21 20 0 (set (reg:SI 83 [ _3 ])
+        (reg:SI 0 ax)) "../ncurses/./base/tries.c":100:6 -1
+     (nil))
+
+;; if (_3 != 0)
+
+(insn 22 21 23 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 83 [ _3 ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":100:5 -1
+     (nil))
+
+(jump_insn 23 22 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/tries.c":100:5 -1
+     (int_list:REG_BR_PROB 78705276 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; _4 = *tree_1;
+
+(insn 25 24 0 (set (reg/f:DI 84 [ _4 ])
+        (mem/f:DI (reg/v/f:DI 91 [ tree ]) [2 *tree_1+0 S8 A64])) "../ncurses/./base/tries.c":103:7 -1
+     (nil))
+
+;; if (_6 == code_16(D))
+
+(insn 26 25 27 (set (reg:SI 93)
+        (zero_extend:SI (mem:HI (plus:DI (reg/f:DI 84 [ _4 ])
+                    (const_int 18 [0x12])) [4 _4->value+0 S2 A16]))) "../ncurses/./base/tries.c":103:13 -1
+     (nil))
+
+(insn 27 26 28 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 93)
+            (reg/v:SI 92 [ code ]))) "../ncurses/./base/tries.c":103:5 -1
+     (nil))
+
+(jump_insn 28 27 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/tries.c":103:5 -1
+     (int_list:REG_BR_PROB 995036556 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; if (_7 != 0B)
+
+(insn 30 29 31 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (reg/f:DI 84 [ _4 ]) [2 _4->child+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":104:9 -1
+     (nil))
+
+(jump_insn 31 30 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/tries.c":104:9 -1
+     (int_list:REG_BR_PROB 187153204 (nil)))
+
+;; Generating RTL for gimple basic block 7
+
+;; _4->value = 0;
+
+(insn 33 32 0 (set (mem:HI (plus:DI (reg/f:DI 84 [ _4 ])
+                (const_int 18 [0x12])) [4 _4->value+0 S2 A16])
+        (const_int 0 [0])) "../ncurses/./base/tries.c":106:18 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 8
+
+;; 
+
+(code_label 36 35 37 22 (nil) [0 uses])
+
+(note 37 36 0 NOTE_INSN_BASIC_BLOCK)
+
+;; _8 = _4->sibling;
+
+(insn 38 37 0 (set (reg/f:DI 88 [ _8 ])
+        (mem/f:DI (plus:DI (reg/f:DI 84 [ _4 ])
+                (const_int 8 [0x8])) [2 _4->sibling+0 S8 A64])) "../ncurses/./base/tries.c":109:18 -1
+     (nil))
+
+;; *tree_1 = _8;
+
+(insn 39 38 0 (set (mem/f:DI (reg/v/f:DI 91 [ tree ]) [2 *tree_1+0 S8 A64])
+        (reg/f:DI 88 [ _8 ])) "../ncurses/./base/tries.c":109:9 -1
+     (nil))
+
+;; free (_4);
+
+(insn 40 39 41 (set (reg:DI 5 di)
+        (reg/f:DI 84 [ _4 ])) "../ncurses/./base/tries.c":110:3 -1
+     (nil))
+
+(call_insn 41 40 0 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f4050b97d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/tries.c":110:3 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f4050b97d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; Generating RTL for gimple basic block 9
+
+;; 
+
+(code_label 44 43 45 21 (nil) [0 uses])
+
+(note 45 44 0 NOTE_INSN_BASIC_BLOCK)
+
+;; tree_20 = &_4->sibling;
+
+(insn 46 45 0 (parallel [
+            (set (reg/v/f:DI 91 [ tree ])
+                (plus:DI (reg/f:DI 84 [ _4 ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/tries.c":114:7 -1
+     (nil))
+
+;; _10 = MEM[(struct TRIES * *)_4 + 8B];
+
+(insn 47 46 0 (set (reg/f:DI 89 [ _10 ])
+        (mem/f:DI (plus:DI (reg/f:DI 84 [ _4 ])
+                (const_int 8 [0x8])) [2 MEM[(struct TRIES * *)_4 + 8B]+0 S8 A64])) "../ncurses/./base/tries.c":99:12 -1
+     (nil))
+
+;; if (_10 != 0B)
+
+(insn 49 47 50 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 89 [ _10 ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":99:18 -1
+     (nil))
+
+(jump_insn 50 49 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 48)
+            (pc))) "../ncurses/./base/tries.c":99:18 -1
+     (int_list:REG_BR_PROB 995036556 (nil)))
+
+;; Generating RTL for gimple basic block 10
+
+;; 
+
+(code_label 51 50 52 19 (nil) [0 uses])
+
+(note 52 51 0 NOTE_INSN_BASIC_BLOCK)
+
+;; Generating RTL for gimple basic block 11
+
+;; 
+
+(code_label 53 52 54 20 (nil) [0 uses])
+
+(note 54 53 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return _12;
+
+(jump_insn 55 54 56 (set (pc)
+        (label_ref 0)) "../ncurses/./base/tries.c":117:1 -1
+     (nil))
+
+(barrier 56 55 0)
+Edge 4->11 redirected to 14
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 34 from 13 to 14.
+Redirecting jump 42 from 13 to 14.
+Redirecting jump 61 from 13 to 14.
+Merging block 13 into block 12...
+Merged blocks 12 and 13.
+Merged 12 and 13 without moving.
+Removing jump 55.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 9 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 332168793 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       ENTRY [always]  count:332168793 (estimated locally) (FALLTHRU)
+(note 9 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 9 3 2 (set (reg/v/f:DI 91 [ tree ])
+        (reg:DI 5 di [ tree ])) "../ncurses/./base/tries.c":93:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v:SI 92 [ code ])
+        (reg:SI 4 si [ code ])) "../ncurses/./base/tries.c":93:1 -1
+     (nil))
+(note 4 3 11 2 NOTE_INSN_FUNCTION_BEG)
+(insn 11 4 12 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v:SI 92 [ code ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":96:8 -1
+     (nil))
+(jump_insn 12 11 13 2 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 51)
+            (pc))) "../ncurses/./base/tries.c":96:8 -1
+     (int_list:REG_BR_PROB 365072228 (nil))
+ -> 51)
+;;  succ:       11 [34.0% (guessed)]  count:112937391 (estimated locally)
+;;              4 [66.0% (guessed)]  count:219231402 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 219231402 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [66.0% (guessed)]  count:219231402 (estimated locally) (FALLTHRU)
+(note 13 12 14 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 14 13 15 4 (set (reg/f:DI 89 [ _10 ])
+        (mem/f:DI (reg/v/f:DI 91 [ tree ]) [2 *tree_17(D)+0 S8 A64])) "../ncurses/./base/tries.c":99:12 -1
+     (nil))
+(insn 15 14 16 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 89 [ _10 ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":99:18 -1
+     (nil))
+(jump_insn 16 15 48 4 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 51)
+            (pc))) "../ncurses/./base/tries.c":99:18 -1
+     (int_list:REG_BR_PROB 78705276 (nil))
+ -> 51)
+;;  succ:       5 [92.7% (guessed)]  count:203161741 (estimated locally) (FALLTHRU)
+;;              11 [7.3% (guessed)]  count:16069661 (estimated locally)
+
+;; basic block 5, loop depth 1, count 298951914 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 995036554 (estimated locally), should be 298951914 (estimated locally)
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       10 [92.7% (guessed)]  count:791874813 (estimated locally) (DFS_BACK)
+;;              4 [92.7% (guessed)]  count:203161741 (estimated locally) (FALLTHRU)
+(code_label 48 16 17 5 23 (nil) [1 uses])
+(note 17 48 18 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 18 17 19 5 (set (reg:SI 4 si)
+        (reg/v:SI 92 [ code ])) "../ncurses/./base/tries.c":100:6 -1
+     (nil))
+(insn 19 18 20 5 (set (reg:DI 5 di)
+        (reg/f:DI 89 [ _10 ])) "../ncurses/./base/tries.c":100:6 -1
+     (nil))
+(call_insn 20 19 21 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_nc_remove_key") [flags 0x3]  <function_decl 0x7f4050793f00 _nc_remove_key>) [0 _nc_remove_key S1 A8])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":100:6 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("_nc_remove_key") [flags 0x3]  <function_decl 0x7f4050793f00 _nc_remove_key>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (expr_list:SI (use (reg:SI 4 si))
+            (nil))))
+(insn 21 20 22 5 (set (reg:SI 83 [ _3 ])
+        (reg:SI 0 ax)) "../ncurses/./base/tries.c":100:6 -1
+     (nil))
+(insn 22 21 23 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 83 [ _3 ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":100:5 -1
+     (nil))
+(jump_insn 23 22 24 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 64)
+            (pc))) "../ncurses/./base/tries.c":100:5 806 {*jcc}
+     (int_list:REG_BR_PROB 78705276 (nil))
+ -> 64)
+;;  succ:       12 [7.3% (guessed)]  count:21913174 (estimated locally)
+;;              6 [92.7% (guessed)]  count:277038740 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 1, count 922100378 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 277038740 (estimated locally), should be 922100378 (estimated locally)
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       5 [92.7% (guessed)]  count:277038740 (estimated locally) (FALLTHRU)
+(note 24 23 25 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 25 24 26 6 (set (reg/f:DI 84 [ _4 ])
+        (mem/f:DI (reg/v/f:DI 91 [ tree ]) [2 *tree_1+0 S8 A64])) "../ncurses/./base/tries.c":103:7 -1
+     (nil))
+(insn 26 25 27 6 (set (reg:SI 93)
+        (zero_extend:SI (mem:HI (plus:DI (reg/f:DI 84 [ _4 ])
+                    (const_int 18 [0x12])) [4 _4->value+0 S2 A16]))) "../ncurses/./base/tries.c":103:13 -1
+     (nil))
+(insn 27 26 28 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:SI 93)
+            (reg/v:SI 92 [ code ]))) "../ncurses/./base/tries.c":103:5 -1
+     (nil))
+(jump_insn 28 27 29 6 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 44)
+            (pc))) "../ncurses/./base/tries.c":103:5 -1
+     (int_list:REG_BR_PROB 995036556 (nil))
+ -> 44)
+;;  succ:       7 [7.3% (guessed)]  count:67589955 (estimated locally) (FALLTHRU)
+;;              10 [92.7% (guessed)]  count:854510423 (estimated locally)
+
+;; basic block 7, loop depth 0, count 67589955 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [7.3% (guessed)]  count:67589955 (estimated locally) (FALLTHRU)
+(note 29 28 30 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 30 29 31 7 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (reg/f:DI 84 [ _4 ]) [2 _4->child+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":104:9 -1
+     (nil))
+(jump_insn 31 30 32 7 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 36)
+            (pc))) "../ncurses/./base/tries.c":104:9 -1
+     (int_list:REG_BR_PROB 187153204 (nil))
+ -> 36)
+;;  succ:       8 [82.6% (guessed)]  count:55809026 (estimated locally) (FALLTHRU)
+;;              9 [17.4% (guessed)]  count:11780929 (estimated locally)
+
+;; basic block 8, loop depth 0, count 55809025 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [82.6% (guessed)]  count:55809026 (estimated locally) (FALLTHRU)
+(note 32 31 33 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 33 32 8 8 (set (mem:HI (plus:DI (reg/f:DI 84 [ _4 ])
+                (const_int 18 [0x12])) [4 _4->value+0 S2 A16])
+        (const_int 0 [0])) "../ncurses/./base/tries.c":106:18 -1
+     (nil))
+(insn 8 33 34 8 (set (reg:SI 90 [ <retval> ])
+        (const_int 1 [0x1])) "../ncurses/./base/tries.c":112:6 -1
+     (nil))
+(jump_insn 34 8 35 8 (set (pc)
+        (label_ref:DI 57)) 807 {jump}
+     (nil)
+ -> 57)
+;;  succ:       14 [always]  count:55809025 (estimated locally)
+
+(barrier 35 34 36)
+;; basic block 9, loop depth 0, count 11780929 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       7 [17.4% (guessed)]  count:11780929 (estimated locally)
+(code_label 36 35 37 9 22 (nil) [1 uses])
+(note 37 36 38 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 38 37 39 9 (set (reg/f:DI 88 [ _8 ])
+        (mem/f:DI (plus:DI (reg/f:DI 84 [ _4 ])
+                (const_int 8 [0x8])) [2 _4->sibling+0 S8 A64])) "../ncurses/./base/tries.c":109:18 -1
+     (nil))
+(insn 39 38 40 9 (set (mem/f:DI (reg/v/f:DI 91 [ tree ]) [2 *tree_1+0 S8 A64])
+        (reg/f:DI 88 [ _8 ])) "../ncurses/./base/tries.c":109:9 -1
+     (nil))
+(insn 40 39 41 9 (set (reg:DI 5 di)
+        (reg/f:DI 84 [ _4 ])) "../ncurses/./base/tries.c":110:3 -1
+     (nil))
+(call_insn 41 40 7 9 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f4050b97d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/tries.c":110:3 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f4050b97d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 7 41 42 9 (set (reg:SI 90 [ <retval> ])
+        (const_int 1 [0x1])) "../ncurses/./base/tries.c":112:6 -1
+     (nil))
+(jump_insn 42 7 43 9 (set (pc)
+        (label_ref:DI 57)) "../ncurses/./base/tries.c":110:3 807 {jump}
+     (nil)
+ -> 57)
+;;  succ:       14 [always]  count:11780929 (estimated locally)
+
+(barrier 43 42 44)
+;; basic block 10, loop depth 1, count 854510424 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [92.7% (guessed)]  count:854510423 (estimated locally)
+(code_label 44 43 45 10 21 (nil) [1 uses])
+(note 45 44 46 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 46 45 47 10 (parallel [
+            (set (reg/v/f:DI 91 [ tree ])
+                (plus:DI (reg/f:DI 84 [ _4 ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/tries.c":114:7 -1
+     (nil))
+(insn 47 46 49 10 (set (reg/f:DI 89 [ _10 ])
+        (mem/f:DI (plus:DI (reg/f:DI 84 [ _4 ])
+                (const_int 8 [0x8])) [2 MEM[(struct TRIES * *)_4 + 8B]+0 S8 A64])) "../ncurses/./base/tries.c":99:12 -1
+     (nil))
+(insn 49 47 50 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 89 [ _10 ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":99:18 -1
+     (nil))
+(jump_insn 50 49 51 10 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 48)
+            (pc))) "../ncurses/./base/tries.c":99:18 -1
+     (int_list:REG_BR_PROB 995036556 (nil))
+ -> 48)
+;;  succ:       5 [92.7% (guessed)]  count:791874813 (estimated locally) (DFS_BACK)
+;;              11 [7.3% (guessed)]  count:62635611 (estimated locally) (FALLTHRU)
+
+;; basic block 11, loop depth 0, count 191642663 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       2 [34.0% (guessed)]  count:112937391 (estimated locally)
+;;              4 [7.3% (guessed)]  count:16069661 (estimated locally)
+;;              10 [7.3% (guessed)]  count:62635611 (estimated locally) (FALLTHRU)
+(code_label 51 50 52 11 19 (nil) [2 uses])
+(note 52 51 5 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(insn 5 52 61 11 (set (reg:SI 90 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/tries.c":97:2 -1
+     (nil))
+(jump_insn 61 5 62 11 (set (pc)
+        (label_ref:DI 57)) 807 {jump}
+     (nil)
+ -> 57)
+;;  succ:       14 [always]  count:191642663 (estimated locally)
+
+(barrier 62 61 64)
+;; basic block 12, loop depth 0, count 21913174 (estimated locally), maybe hot
+;;  prev block 11, next block 14, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [7.3% (guessed)]  count:21913174 (estimated locally)
+(code_label 64 62 63 12 24 (nil) [1 uses])
+(note 63 64 6 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 6 63 57 12 (set (reg:SI 90 [ <retval> ])
+        (const_int 1 [0x1])) "../ncurses/./base/tries.c":101:6 -1
+     (nil))
+;;  succ:       14 [always]  count:21913174 (estimated locally) (FALLTHRU)
+
+;; basic block 14, loop depth 0, count 332168794 (estimated locally), maybe hot
+;; Invalid sum of incoming counts 281145791 (estimated locally), should be 332168794 (estimated locally)
+;;  prev block 12, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       12 [always]  count:21913174 (estimated locally) (FALLTHRU)
+;;              8 [always]  count:55809025 (estimated locally)
+;;              9 [always]  count:11780929 (estimated locally)
+;;              11 [always]  count:191642663 (estimated locally)
+(code_label 57 6 60 14 18 (nil) [3 uses])
+(note 60 57 58 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 58 60 59 14 (set (reg/i:SI 0 ax)
+        (reg:SI 90 [ <retval> ])) "../ncurses/./base/tries.c":117:1 -1
+     (nil))
+(insn 59 58 0 14 (use (reg/i:SI 0 ax)) "../ncurses/./base/tries.c":117:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:332168794 (estimated locally) (FALLTHRU)
+
+
+;; Function _nc_remove_string (_nc_remove_string, funcdef_no=93, decl_uid=8724, cgraph_uid=94, symbol_order=93)
+
+__attribute__((visibility ("default")))
+int _nc_remove_string (struct TRIES * * tree, const char * string)
+{
+  unsigned long string.0_4;
+  unsigned char _5;
+  char _8;
+  const char * _9;
+  struct tries * * _10;
+  struct tries * _12;
+  struct tries * _13;
+  struct TRIES * _15;
+  char prephitmp_16;
+  int _17;
+  unsigned char _19;
+  unsigned long _26;
+  struct TRIES * _28;
+  struct TRIES * _29;
+  char pretmp_30;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  string.0_4 = (unsigned long) string_11(D);
+  _26 = string.0_4 + 18446744073709551615;
+  if (_26 > 18446744073709551613)
+    goto <bb 13>; [2.75%]
+  else
+    goto <bb 3>; [97.25%]
+;;    succ:       13
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  pretmp_30 = *string_11(D);
+;;    succ:       4
+
+;;   basic block 4, loop depth 1
+;;    pred:       9
+;;                3
+  # string_31 = PHI <_9(9), string_11(D)(3)>
+  # tree_32 = PHI <_10(9), tree_14(D)(3)>
+  # prephitmp_16 = PHI <_8(9), pretmp_30(3)>
+  if (prephitmp_16 == 0)
+    goto <bb 13>; [2.75%]
+  else
+    goto <bb 5>; [97.25%]
+;;    succ:       13
+;;                5
+
+;;   basic block 5, loop depth 1
+;;    pred:       4
+  _28 = *tree_32;
+  if (_28 != 0B)
+    goto <bb 6>; [94.50%]
+  else
+    goto <bb 13>; [5.50%]
+;;    succ:       6
+;;                13
+
+;;   basic block 6, loop depth 1
+;;    pred:       5
+  _19 = (unsigned char) prephitmp_16;
+;;    succ:       7
+
+;;   basic block 7, loop depth 2
+;;    pred:       12
+;;                6
+  # _29 = PHI <_15(12), _28(6)>
+  # tree_27 = PHI <tree_22(12), tree_32(6)>
+  _5 = _29->ch;
+  if (_5 == _19)
+    goto <bb 8>; [5.50%]
+  else
+    goto <bb 12>; [94.50%]
+;;    succ:       8
+;;                12
+
+;;   basic block 8, loop depth 1
+;;    pred:       7
+  _8 = MEM[(const char *)string_31 + 1B];
+  if (_8 != 0)
+    goto <bb 9>; [97.25%]
+  else
+    goto <bb 10>; [2.75%]
+;;    succ:       9
+;;                10
+
+;;   basic block 9, loop depth 1
+;;    pred:       8
+  _9 = string_31 + 1;
+  _10 = &_29->child;
+  if (_9 == -1B)
+    goto <bb 13>; [2.75%]
+  else
+    goto <bb 4>; [97.25%]
+;;    succ:       13
+;;                4
+
+;;   basic block 10, loop depth 0
+;;    pred:       8
+  _12 = _29->child;
+  if (_12 == 0B)
+    goto <bb 11>; [17.43%]
+  else
+    goto <bb 13>; [82.57%]
+;;    succ:       11
+;;                13
+
+;;   basic block 11, loop depth 0
+;;    pred:       10
+  _13 = _29->sibling;
+  *tree_27 = _13;
+  free (_29);
+  goto <bb 13>; [100.00%]
+;;    succ:       13
+
+;;   basic block 12, loop depth 2
+;;    pred:       7
+  tree_22 = &_29->sibling;
+  _15 = MEM[(struct TRIES * *)_29 + 8B];
+  if (_15 != 0B)
+    goto <bb 7>; [94.50%]
+  else
+    goto <bb 13>; [5.50%]
+;;    succ:       7
+;;                13
+
+;;   basic block 13, loop depth 0
+;;    pred:       4
+;;                11
+;;                2
+;;                12
+;;                10
+;;                9
+;;                5
+  # _17 = PHI <0(4), 1(11), 0(2), 0(12), 0(10), 0(9), 0(5)>
+  return _17;
+;;    succ:       EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 4 (string.0_4 - 4 )
+Partition 5 (_5 - 5 )
+Partition 8 (_8 - 8 )
+Partition 9 (_9 - 9 )
+Partition 10 (_10 - 10 )
+Partition 11 (string_11(D) - 11 )
+Partition 12 (_12 - 12 )
+Partition 13 (_13 - 13 )
+Partition 14 (tree_14(D) - 14 )
+Partition 15 (_15 - 15 )
+Partition 16 (prephitmp_16 - 16 )
+Partition 17 (_17 - 17 )
+Partition 19 (_19 - 19 )
+Partition 21 (_21(D) - 21 )
+Partition 22 (tree_22 - 22 )
+Partition 26 (_26 - 26 )
+Partition 27 (tree_27 - 27 )
+Partition 28 (_28 - 28 )
+Partition 29 (_29 - 29 )
+Partition 30 (pretmp_30 - 30 )
+Partition 31 (string_31 - 31 )
+Partition 32 (tree_32 - 32 )
+
+
+Coalescible Partition map 
+
+Partition 0, base 0 (_8 - 8 16 30 )
+Partition 1, base 1 (_9 - 9 11 31 )
+Partition 4, base 2 (_10 - 10 14 22 27 32 )
+Partition 5, base 3 (_15 - 15 28 29 )
+Partition 7, base 4 (_17 - 17 21 )
+
+
+Partition map 
+
+Partition 0 (_8 - 8 )
+Partition 1 (_9 - 9 )
+Partition 2 (_10 - 10 )
+Partition 3 (string_11(D) - 11 )
+Partition 4 (tree_14(D) - 14 )
+Partition 5 (_15 - 15 )
+Partition 6 (prephitmp_16 - 16 )
+Partition 7 (_17 - 17 )
+Partition 8 (_21(D) - 21 )
+Partition 9 (tree_22 - 22 )
+Partition 10 (tree_27 - 27 )
+Partition 11 (_28 - 28 )
+Partition 12 (_29 - 29 )
+Partition 13 (pretmp_30 - 30 )
+Partition 14 (string_31 - 31 )
+Partition 15 (tree_32 - 32 )
+
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(16878, 0) _15 <-> _29
+(16878, 0) tree_22 <-> tree_27
+(1011, 0) _28 <-> _29
+(1011, 0) tree_27 <-> tree_32
+(984, 0) _9 <-> string_31
+(984, 0) _10 <-> tree_32
+(984, 0) _8 <-> prephitmp_16
+(626, 0) _17 <-> _21(D)
+(608, 0) string_11(D) <-> string_31
+(608, 0) tree_14(D) <-> tree_32
+(608, 0) prephitmp_16 <-> pretmp_30
+
+Partition map 
+
+Partition 0 (_8 - 8 )
+Partition 1 (_9 - 9 )
+Partition 2 (_10 - 10 )
+Partition 3 (string_11(D) - 11 )
+Partition 4 (tree_14(D) - 14 )
+Partition 5 (_15 - 15 )
+Partition 6 (prephitmp_16 - 16 )
+Partition 7 (_17 - 17 )
+Partition 8 (_21(D) - 21 )
+Partition 9 (tree_22 - 22 )
+Partition 10 (tree_27 - 27 )
+Partition 11 (_28 - 28 )
+Partition 12 (_29 - 29 )
+Partition 13 (pretmp_30 - 30 )
+Partition 14 (string_31 - 31 )
+Partition 15 (tree_32 - 32 )
+
+Coalesce list: (15)_15 & (29)_29 [map: 5, 12] : Success -> 5
+Coalesce list: (22)tree_22 & (27)tree_27 [map: 9, 10] : Success -> 9
+Coalesce list: (28)_28 & (29)_15 [map: 11, 5] : Success -> 5
+Coalesce list: (27)tree_22 & (32)tree_32 [map: 9, 15] : Success -> 9
+Coalesce list: (9)_9 & (31)string_31 [map: 1, 14] : Success -> 1
+Coalesce list: (10)_10 & (32)tree_22 [map: 2, 9] : Success -> 9
+Coalesce list: (8)_8 & (16)prephitmp_16 [map: 0, 6] : Success -> 0
+Coalesce list: (17)_17 & (21)_21(D) [map: 7, 8] : Success -> 7
+Coalesce list: (11)string_11(D) & (31)_9 [map: 3, 1] : Success -> 1
+Coalesce list: (14)tree_14(D) & (32)tree_22 [map: 4, 9] : Success -> 9
+Coalesce list: (16)_8 & (30)pretmp_30 [map: 0, 13] : Success -> 0
+After Coalescing:
+
+Partition map 
+
+Partition 0 (string.0_4 - 4 )
+Partition 1 (_5 - 5 )
+Partition 2 (_8 - 8 16 30 )
+Partition 3 (_9 - 9 11 31 )
+Partition 4 (_12 - 12 )
+Partition 5 (_13 - 13 )
+Partition 6 (_15 - 15 28 29 )
+Partition 7 (_17 - 17 21 )
+Partition 8 (_19 - 19 )
+Partition 9 (tree_22 - 10 14 22 27 32 )
+Partition 10 (_26 - 26 )
+
+
+Replacing Expressions
+string.0_4 replace with --> string.0_4 = (unsigned long) string_11(D);
+
+_5 replace with --> _5 = _29->ch;
+
+_12 replace with --> _12 = _29->child;
+
+_26 replace with --> _26 = string.0_4 + 18446744073709551615;
+
+
+__attribute__((visibility ("default")))
+int _nc_remove_string (struct TRIES * * tree, const char * string)
+{
+  unsigned long string.0_4;
+  unsigned char _5;
+  char _8;
+  const char * _9;
+  struct tries * * _10;
+  struct tries * _12;
+  struct tries * _13;
+  struct TRIES * _15;
+  char prephitmp_16;
+  int _17;
+  unsigned char _19;
+  int _21(D);
+  unsigned long _26;
+  struct TRIES * _28;
+  struct TRIES * _29;
+  char pretmp_30;
+
+;;   basic block 2, loop depth 0
+;;    pred:       ENTRY
+  string.0_4 = (unsigned long) string_11(D);
+  _26 = string.0_4 + 18446744073709551615;
+  if (_26 > 18446744073709551613)
+    goto <bb 13>; [2.75%]
+  else
+    goto <bb 3>; [97.25%]
+;;    succ:       13
+;;                3
+
+;;   basic block 3, loop depth 0
+;;    pred:       2
+  pretmp_30 = *string_11(D);
+;;    succ:       4
+
+;;   basic block 4, loop depth 1
+;;    pred:       9
+;;                3
+  # string_31 = PHI <_9(9), string_11(D)(3)>
+  # tree_32 = PHI <_10(9), tree_14(D)(3)>
+  # prephitmp_16 = PHI <_8(9), pretmp_30(3)>
+  if (prephitmp_16 == 0)
+    goto <bb 13>; [2.75%]
+  else
+    goto <bb 5>; [97.25%]
+;;    succ:       13
+;;                5
+
+;;   basic block 5, loop depth 1
+;;    pred:       4
+  _28 = *tree_32;
+  if (_28 != 0B)
+    goto <bb 6>; [94.50%]
+  else
+    goto <bb 13>; [5.50%]
+;;    succ:       6
+;;                13
+
+;;   basic block 6, loop depth 1
+;;    pred:       5
+  _19 = (unsigned char) prephitmp_16;
+;;    succ:       7
+
+;;   basic block 7, loop depth 2
+;;    pred:       12
+;;                6
+  # _29 = PHI <_15(12), _28(6)>
+  # tree_27 = PHI <tree_22(12), tree_32(6)>
+  _5 = _29->ch;
+  if (_5 == _19)
+    goto <bb 8>; [5.50%]
+  else
+    goto <bb 12>; [94.50%]
+;;    succ:       8
+;;                12
+
+;;   basic block 8, loop depth 1
+;;    pred:       7
+  _8 = MEM[(const char *)string_31 + 1B];
+  if (_8 != 0)
+    goto <bb 9>; [97.25%]
+  else
+    goto <bb 10>; [2.75%]
+;;    succ:       9
+;;                10
+
+;;   basic block 9, loop depth 1
+;;    pred:       8
+  _9 = string_31 + 1;
+  _10 = &_29->child;
+  if (_9 == -1B)
+    goto <bb 13>; [2.75%]
+  else
+    goto <bb 4>; [97.25%]
+;;    succ:       13
+;;                4
+
+;;   basic block 10, loop depth 0
+;;    pred:       8
+  _12 = _29->child;
+  if (_12 == 0B)
+    goto <bb 11>; [17.43%]
+  else
+    goto <bb 13>; [82.57%]
+;;    succ:       11
+;;                13
+
+;;   basic block 11, loop depth 0
+;;    pred:       10
+  _13 = _29->sibling;
+  *tree_27 = _13;
+  free (_29);
+  goto <bb 13>; [100.00%]
+;;    succ:       13
+
+;;   basic block 12, loop depth 2
+;;    pred:       7
+  tree_22 = &_29->sibling;
+  _15 = MEM[(struct TRIES * *)_29 + 8B];
+  if (_15 != 0B)
+    goto <bb 7>; [94.50%]
+  else
+    goto <bb 13>; [5.50%]
+;;    succ:       7
+;;                13
+
+;;   basic block 13, loop depth 0
+;;    pred:       4
+;;                11
+;;                2
+;;                12
+;;                10
+;;                9
+;;                5
+  # _17 = PHI <0(4), 1(11), 0(2), 0(12), 0(10), 0(9), 0(5)>
+  return _17;
+;;    succ:       EXIT
+
+}
+
+
+Inserting a value copy on edge BB4->BB13 : PART.7 = 0
+Inserting a value copy on edge BB11->BB13 : PART.7 = 1
+Inserting a value copy on edge BB2->BB13 : PART.7 = 0
+Inserting a value copy on edge BB12->BB13 : PART.7 = 0
+Inserting a value copy on edge BB10->BB13 : PART.7 = 0
+Inserting a value copy on edge BB9->BB13 : PART.7 = 0
+Inserting a value copy on edge BB5->BB13 : PART.7 = 0
+
+;; Generating RTL for gimple basic block 2
+
+;; if (_26 > 18446744073709551613)
+
+(insn 14 13 17 (parallel [
+            (set (reg:DI 93)
+                (plus:DI (reg/v/f:DI 92 [ string ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/tries.c":128:9 -1
+     (nil))
+
+(insn 17 14 18 (set (reg:CC 17 flags)
+        (compare:CC (reg:DI 93)
+            (const_int -3 [0xfffffffffffffffd]))) "../ncurses/./base/tries.c":128:8 -1
+     (nil))
+
+(jump_insn 18 17 0 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/tries.c":128:8 -1
+     (int_list:REG_BR_PROB 29527908 (nil)))
+
+;; Generating RTL for gimple basic block 3
+
+;; pretmp_30 = *string_11(D);
+
+(insn 20 19 0 (set (reg:QI 84 [ _8 ])
+        (mem:QI (reg/v/f:DI 92 [ string ]) [0 *string_11(D)+0 S1 A8])) "../ncurses/./base/tries.c":128:34 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 4
+
+;; if (prephitmp_16 == 0)
+
+(insn 22 21 23 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 84 [ _8 ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":128:31 -1
+     (nil))
+
+(jump_insn 23 22 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/tries.c":128:31 -1
+     (int_list:REG_BR_PROB 29527908 (nil)))
+
+;; Generating RTL for gimple basic block 5
+
+;; _28 = *tree_32;
+
+(insn 25 24 0 (set (reg/f:DI 87 [ _15 ])
+        (mem/f:DI (reg/v/f:DI 91 [ tree ]) [2 *tree_32+0 S8 A64])) "../ncurses/./base/tries.c":131:12 -1
+     (nil))
+
+;; if (_28 != 0B)
+
+(insn 26 25 27 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 87 [ _15 ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":131:18 -1
+     (nil))
+
+(jump_insn 27 26 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/tries.c":131:18 -1
+     (int_list:REG_BR_PROB 59055804 (nil)))
+
+;; Generating RTL for gimple basic block 6
+
+;; _19 = (unsigned char) prephitmp_16;
+
+(insn 29 28 0 (set (reg:QI 88 [ _19 ])
+        (reg:QI 84 [ _8 ])) "../ncurses/./base/tries.c":132:28 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 7
+
+;; if (_5 == _19)
+
+(insn 31 30 32 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/f:DI 87 [ _15 ])
+                    (const_int 16 [0x10])) [0 _29->ch+0 S1 A64])
+            (reg:QI 88 [ _19 ]))) "../ncurses/./base/tries.c":132:5 -1
+     (nil))
+
+(jump_insn 32 31 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/tries.c":132:5 -1
+     (int_list:REG_BR_PROB 1014686028 (nil)))
+
+;; Generating RTL for gimple basic block 8
+
+;; _8 = MEM[(const char *)string_31 + 1B];
+
+(insn 34 33 0 (set (reg:QI 84 [ _8 ])
+        (mem:QI (plus:DI (reg/v/f:DI 92 [ string ])
+                (const_int 1 [0x1])) [0 MEM[(const char *)string_31 + 1B]+0 S1 A8])) "../ncurses/./base/tries.c":133:16 -1
+     (nil))
+
+;; if (_8 != 0)
+
+(insn 35 34 36 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 84 [ _8 ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":133:9 -1
+     (nil))
+
+(jump_insn 36 35 0 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/tries.c":133:9 -1
+     (int_list:REG_BR_PROB 29527908 (nil)))
+
+;; Generating RTL for gimple basic block 9
+
+;; _9 = string_31 + 1;
+
+(insn 38 37 0 (parallel [
+            (set (reg/v/f:DI 92 [ string ])
+                (plus:DI (reg/v/f:DI 92 [ string ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/tries.c":134:3 -1
+     (nil))
+
+;; _10 = &_29->child;
+
+(insn 39 38 0 (set (reg/v/f:DI 91 [ tree ])
+        (reg/f:DI 87 [ _15 ])) "../ncurses/./base/tries.c":134:3 -1
+     (nil))
+
+;; if (_9 == -1B)
+
+(insn 40 39 41 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 92 [ string ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/tries.c":128:8 -1
+     (nil))
+
+(jump_insn 41 40 45 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/tries.c":128:8 -1
+     (int_list:REG_BR_PROB 29527908 (nil)))
+
+(note 45 41 43 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+
+(jump_insn 43 45 44 15 (set (pc)
+        (label_ref 42)) -1
+     (nil))
+
+(barrier 44 43 0)
+
+;; Generating RTL for gimple basic block 10
+
+;; 
+
+(code_label 46 44 47 39 (nil) [0 uses])
+
+(note 47 46 0 NOTE_INSN_BASIC_BLOCK)
+
+;; if (_12 == 0B)
+
+(insn 48 47 49 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (reg/f:DI 87 [ _15 ]) [2 _29->child+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":135:9 -1
+     (nil))
+
+(jump_insn 49 48 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) "../ncurses/./base/tries.c":135:9 -1
+     (int_list:REG_BR_PROB 886588628 (nil)))
+
+;; Generating RTL for gimple basic block 11
+
+;; _13 = _29->sibling;
+
+(insn 51 50 0 (set (reg/f:DI 86 [ _13 ])
+        (mem/f:DI (plus:DI (reg/f:DI 87 [ _15 ])
+                (const_int 8 [0x8])) [2 _29->sibling+0 S8 A64])) "../ncurses/./base/tries.c":137:18 -1
+     (nil))
+
+;; *tree_27 = _13;
+
+(insn 52 51 0 (set (mem/f:DI (reg/v/f:DI 91 [ tree ]) [2 *tree_27+0 S8 A64])
+        (reg/f:DI 86 [ _13 ])) "../ncurses/./base/tries.c":137:9 -1
+     (nil))
+
+;; free (_29);
+
+(insn 53 52 54 (set (reg:DI 5 di)
+        (reg/f:DI 87 [ _15 ])) "../ncurses/./base/tries.c":138:3 -1
+     (nil))
+
+(call_insn 54 53 0 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f4050b97d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/tries.c":138:3 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f4050b97d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+
+;; Generating RTL for gimple basic block 12
+
+;; 
+
+(code_label 57 56 58 38 (nil) [0 uses])
+
+(note 58 57 0 NOTE_INSN_BASIC_BLOCK)
+
+;; tree_22 = &_29->sibling;
+
+(insn 59 58 0 (parallel [
+            (set (reg/v/f:DI 91 [ tree ])
+                (plus:DI (reg/f:DI 87 [ _15 ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/tries.c":144:7 -1
+     (nil))
+
+;; _15 = MEM[(struct TRIES * *)_29 + 8B];
+
+(insn 60 59 0 (set (reg/f:DI 87 [ _15 ])
+        (mem/f:DI (plus:DI (reg/f:DI 87 [ _15 ])
+                (const_int 8 [0x8])) [2 MEM[(struct TRIES * *)_29 + 8B]+0 S8 A64])) "../ncurses/./base/tries.c":131:12 -1
+     (nil))
+
+;; if (_15 != 0B)
+
+(insn 62 60 63 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 87 [ _15 ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":131:18 -1
+     (nil))
+
+(jump_insn 63 62 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 61)
+            (pc))) "../ncurses/./base/tries.c":131:18 -1
+     (int_list:REG_BR_PROB 1014686028 (nil)))
+
+;; Generating RTL for gimple basic block 13
+
+;; 
+
+(code_label 64 63 65 37 (nil) [0 uses])
+
+(note 65 64 0 NOTE_INSN_BASIC_BLOCK)
+
+;; return _17;
+
+(jump_insn 66 65 67 (set (pc)
+        (label_ref 0)) "../ncurses/./base/tries.c":147:1 -1
+     (nil))
+
+(barrier 67 66 0)
+Edge 2->13 redirected to 18
+Edge 4->13 redirected to 19
+Edge 5->13 redirected to 20
+Edge 9->13 redirected to 21
+Edge 10->13 redirected to 22
+
+
+try_optimize_cfg iteration 1
+
+Merging block 3 into block 2...
+Merged blocks 2 and 3.
+Merged 2 and 3 without moving.
+Redirecting jump 55 from 21 to 22.
+Redirecting jump 73 from 21 to 22.
+Redirecting jump 77 from 21 to 22.
+Redirecting jump 81 from 21 to 22.
+Redirecting jump 85 from 21 to 22.
+Redirecting jump 89 from 21 to 22.
+Merging block 21 into block 20...
+Merged blocks 20 and 21.
+Merged 20 and 21 without moving.
+Removing jump 66.
+
+
+try_optimize_cfg iteration 2
+
+fix_loop_structure: fixing up loops for function
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 12 NOTE_INSN_DELETED)
+;; basic block 2, loop depth 0, count 67178498 (estimated locally), maybe hot
+;;  prev block 0, next block 4, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       ENTRY [always]  count:67178498 (estimated locally) (FALLTHRU)
+(note 12 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(insn 2 12 3 2 (set (reg/v/f:DI 91 [ tree ])
+        (reg:DI 5 di [ tree ])) "../ncurses/./base/tries.c":125:1 -1
+     (nil))
+(insn 3 2 4 2 (set (reg/v/f:DI 92 [ string ])
+        (reg:DI 4 si [ string ])) "../ncurses/./base/tries.c":125:1 -1
+     (nil))
+(note 4 3 14 2 NOTE_INSN_FUNCTION_BEG)
+(insn 14 4 17 2 (parallel [
+            (set (reg:DI 93)
+                (plus:DI (reg/v/f:DI 92 [ string ])
+                    (const_int -1 [0xffffffffffffffff])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/tries.c":128:9 -1
+     (nil))
+(insn 17 14 18 2 (set (reg:CC 17 flags)
+        (compare:CC (reg:DI 93)
+            (const_int -3 [0xfffffffffffffffd]))) "../ncurses/./base/tries.c":128:8 -1
+     (nil))
+(jump_insn 18 17 19 2 (set (pc)
+        (if_then_else (gtu (reg:CC 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 76)
+            (pc))) "../ncurses/./base/tries.c":128:8 806 {*jcc}
+     (int_list:REG_BR_PROB 29527908 (nil))
+ -> 76)
+;;  succ:       16 [2.8% (guessed)]  count:1847409 (estimated locally)
+;;              4 [97.2% (guessed)]  count:65331089 (estimated locally) (FALLTHRU)
+
+;; basic block 4, loop depth 0, count 65331089 (estimated locally), maybe hot
+;;  prev block 2, next block 5, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       2 [97.2% (guessed)]  count:65331089 (estimated locally) (FALLTHRU)
+(note 19 18 20 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 20 19 42 4 (set (reg:QI 84 [ _8 ])
+        (mem:QI (reg/v/f:DI 92 [ string ]) [0 *string_11(D)+0 S1 A8])) "../ncurses/./base/tries.c":128:34 -1
+     (nil))
+;;  succ:       5 [always]  count:65331089 (estimated locally) (FALLTHRU)
+
+;; basic block 5, loop depth 1, count 118111599 (estimated locally), maybe hot
+;;  prev block 4, next block 6, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       4 [always]  count:65331089 (estimated locally) (FALLTHRU)
+;;              11 [always]  count:52780511 (estimated locally)
+(code_label 42 20 21 5 40 (nil) [1 uses])
+(note 21 42 22 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 22 21 23 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 84 [ _8 ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":128:31 -1
+     (nil))
+(jump_insn 23 22 24 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 80)
+            (pc))) "../ncurses/./base/tries.c":128:31 806 {*jcc}
+     (int_list:REG_BR_PROB 29527908 (nil))
+ -> 80)
+;;  succ:       17 [2.8% (guessed)]  count:3248069 (estimated locally)
+;;              6 [97.2% (guessed)]  count:114863530 (estimated locally) (FALLTHRU)
+
+;; basic block 6, loop depth 1, count 114863530 (estimated locally), maybe hot
+;;  prev block 5, next block 7, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       5 [97.2% (guessed)]  count:114863530 (estimated locally) (FALLTHRU)
+(note 24 23 25 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(insn 25 24 26 6 (set (reg/f:DI 87 [ _15 ])
+        (mem/f:DI (reg/v/f:DI 91 [ tree ]) [2 *tree_32+0 S8 A64])) "../ncurses/./base/tries.c":131:12 -1
+     (nil))
+(insn 26 25 27 6 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 87 [ _15 ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":131:18 -1
+     (nil))
+(jump_insn 27 26 28 6 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 84)
+            (pc))) "../ncurses/./base/tries.c":131:18 806 {*jcc}
+     (int_list:REG_BR_PROB 59055804 (nil))
+ -> 84)
+;;  succ:       7 [94.5% (guessed)]  count:108546036 (estimated locally) (FALLTHRU)
+;;              18 [5.5% (guessed)]  count:6317494 (estimated locally)
+
+;; basic block 7, loop depth 1, count 108546036 (estimated locally), maybe hot
+;;  prev block 6, next block 8, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       6 [94.5% (guessed)]  count:108546036 (estimated locally) (FALLTHRU)
+(note 28 27 29 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 29 28 61 7 (set (reg:QI 88 [ _19 ])
+        (reg:QI 84 [ _8 ])) "../ncurses/./base/tries.c":132:28 -1
+     (nil))
+;;  succ:       8 [always]  count:108546036 (estimated locally) (FALLTHRU)
+
+;; basic block 8, loop depth 2, count 1014686025 (estimated locally), maybe hot
+;;  prev block 7, next block 9, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       14 [94.5% (guessed)]  count:906139988 (estimated locally) (DFS_BACK)
+;;              7 [always]  count:108546036 (estimated locally) (FALLTHRU)
+(code_label 61 29 30 8 41 (nil) [1 uses])
+(note 30 61 31 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+(insn 31 30 32 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem:QI (plus:DI (reg/f:DI 87 [ _15 ])
+                    (const_int 16 [0x10])) [0 _29->ch+0 S1 A64])
+            (reg:QI 88 [ _19 ]))) "../ncurses/./base/tries.c":132:5 -1
+     (nil))
+(jump_insn 32 31 33 8 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 57)
+            (pc))) "../ncurses/./base/tries.c":132:5 -1
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 57)
+;;  succ:       9 [5.5% (guessed)]  count:55807731 (estimated locally) (FALLTHRU)
+;;              14 [94.5% (guessed)]  count:958878294 (estimated locally)
+
+;; basic block 9, loop depth 1, count 55807731 (estimated locally), maybe hot
+;;  prev block 8, next block 10, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [5.5% (guessed)]  count:55807731 (estimated locally) (FALLTHRU)
+(note 33 32 34 9 [bb 9] NOTE_INSN_BASIC_BLOCK)
+(insn 34 33 35 9 (set (reg:QI 84 [ _8 ])
+        (mem:QI (plus:DI (reg/v/f:DI 92 [ string ])
+                (const_int 1 [0x1])) [0 MEM[(const char *)string_31 + 1B]+0 S1 A8])) "../ncurses/./base/tries.c":133:16 -1
+     (nil))
+(insn 35 34 36 9 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 84 [ _8 ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":133:9 -1
+     (nil))
+(jump_insn 36 35 37 9 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 46)
+            (pc))) "../ncurses/./base/tries.c":133:9 -1
+     (int_list:REG_BR_PROB 29527908 (nil))
+ -> 46)
+;;  succ:       10 [97.2% (guessed)]  count:54273018 (estimated locally) (FALLTHRU)
+;;              12 [2.8% (guessed)]  count:1534713 (estimated locally)
+
+;; basic block 10, loop depth 1, count 54273019 (estimated locally), maybe hot
+;;  prev block 9, next block 11, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       9 [97.2% (guessed)]  count:54273018 (estimated locally) (FALLTHRU)
+(note 37 36 38 10 [bb 10] NOTE_INSN_BASIC_BLOCK)
+(insn 38 37 39 10 (parallel [
+            (set (reg/v/f:DI 92 [ string ])
+                (plus:DI (reg/v/f:DI 92 [ string ])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/tries.c":134:3 -1
+     (nil))
+(insn 39 38 40 10 (set (reg/v/f:DI 91 [ tree ])
+        (reg/f:DI 87 [ _15 ])) "../ncurses/./base/tries.c":134:3 -1
+     (nil))
+(insn 40 39 41 10 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/v/f:DI 92 [ string ])
+            (const_int -1 [0xffffffffffffffff]))) "../ncurses/./base/tries.c":128:8 -1
+     (nil))
+(jump_insn 41 40 45 10 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 88)
+            (pc))) "../ncurses/./base/tries.c":128:8 806 {*jcc}
+     (int_list:REG_BR_PROB 29527908 (nil))
+ -> 88)
+;;  succ:       19 [2.8% (guessed)]  count:1492508 (estimated locally)
+;;              11 [97.2% (guessed)]  count:52780511 (estimated locally) (FALLTHRU,DFS_BACK)
+
+;; basic block 11, loop depth 1, count 52780511 (estimated locally), maybe hot
+;;  prev block 10, next block 12, flags: (NEW, REACHABLE, RTL)
+;;  pred:       10 [97.2% (guessed)]  count:52780511 (estimated locally) (FALLTHRU,DFS_BACK)
+(note 45 41 43 11 [bb 11] NOTE_INSN_BASIC_BLOCK)
+(jump_insn 43 45 44 11 (set (pc)
+        (label_ref 42)) -1
+     (nil)
+ -> 42)
+;;  succ:       5 [always]  count:52780511 (estimated locally)
+
+(barrier 44 43 46)
+;; basic block 12, loop depth 0, count 1534713 (estimated locally), maybe hot
+;;  prev block 11, next block 13, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       9 [2.8% (guessed)]  count:1534713 (estimated locally)
+(code_label 46 44 47 12 39 (nil) [1 uses])
+(note 47 46 48 12 [bb 12] NOTE_INSN_BASIC_BLOCK)
+(insn 48 47 49 12 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/f:DI (reg/f:DI 87 [ _15 ]) [2 _29->child+0 S8 A64])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":135:9 -1
+     (nil))
+(jump_insn 49 48 50 12 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 92)
+            (pc))) "../ncurses/./base/tries.c":135:9 806 {*jcc}
+     (int_list:REG_BR_PROB 886588628 (nil))
+ -> 92)
+;;  succ:       13 [17.4% (guessed)]  count:267500 (estimated locally) (FALLTHRU)
+;;              20 [82.6% (guessed)]  count:1267213 (estimated locally)
+
+;; basic block 13, loop depth 0, count 267500 (estimated locally), maybe hot
+;;  prev block 12, next block 14, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       12 [17.4% (guessed)]  count:267500 (estimated locally) (FALLTHRU)
+(note 50 49 51 13 [bb 13] NOTE_INSN_BASIC_BLOCK)
+(insn 51 50 52 13 (set (reg/f:DI 86 [ _13 ])
+        (mem/f:DI (plus:DI (reg/f:DI 87 [ _15 ])
+                (const_int 8 [0x8])) [2 _29->sibling+0 S8 A64])) "../ncurses/./base/tries.c":137:18 -1
+     (nil))
+(insn 52 51 53 13 (set (mem/f:DI (reg/v/f:DI 91 [ tree ]) [2 *tree_27+0 S8 A64])
+        (reg/f:DI 86 [ _13 ])) "../ncurses/./base/tries.c":137:9 -1
+     (nil))
+(insn 53 52 54 13 (set (reg:DI 5 di)
+        (reg/f:DI 87 [ _15 ])) "../ncurses/./base/tries.c":138:3 -1
+     (nil))
+(call_insn 54 53 6 13 (call (mem:QI (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f4050b97d00 free>) [0 __builtin_free S1 A8])
+        (const_int 0 [0])) "../ncurses/./base/tries.c":138:3 -1
+     (expr_list:REG_CALL_DECL (symbol_ref:DI ("free") [flags 0x41]  <function_decl 0x7f4050b97d00 free>)
+        (expr_list:REG_EH_REGION (const_int 0 [0])
+            (nil)))
+    (expr_list:DI (use (reg:DI 5 di))
+        (nil)))
+(insn 6 54 55 13 (set (reg:SI 90 [ <retval> ])
+        (const_int 1 [0x1])) "../ncurses/./base/tries.c":139:3 -1
+     (nil))
+(jump_insn 55 6 56 13 (set (pc)
+        (label_ref:DI 68)) "../ncurses/./base/tries.c":139:3 807 {jump}
+     (nil)
+ -> 68)
+;;  succ:       22 [always]  count:267500 (estimated locally)
+
+(barrier 56 55 57)
+;; basic block 14, loop depth 2, count 958878294 (estimated locally), maybe hot
+;;  prev block 13, next block 15, flags: (NEW, REACHABLE, RTL, VISITED)
+;;  pred:       8 [94.5% (guessed)]  count:958878294 (estimated locally)
+(code_label 57 56 58 14 38 (nil) [1 uses])
+(note 58 57 59 14 [bb 14] NOTE_INSN_BASIC_BLOCK)
+(insn 59 58 60 14 (parallel [
+            (set (reg/v/f:DI 91 [ tree ])
+                (plus:DI (reg/f:DI 87 [ _15 ])
+                    (const_int 8 [0x8])))
+            (clobber (reg:CC 17 flags))
+        ]) "../ncurses/./base/tries.c":144:7 -1
+     (nil))
+(insn 60 59 62 14 (set (reg/f:DI 87 [ _15 ])
+        (mem/f:DI (plus:DI (reg/f:DI 87 [ _15 ])
+                (const_int 8 [0x8])) [2 MEM[(struct TRIES * *)_29 + 8B]+0 S8 A64])) "../ncurses/./base/tries.c":131:12 -1
+     (nil))
+(insn 62 60 63 14 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg/f:DI 87 [ _15 ])
+            (const_int 0 [0]))) "../ncurses/./base/tries.c":131:18 -1
+     (nil))
+(jump_insn 63 62 72 14 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 61)
+            (pc))) "../ncurses/./base/tries.c":131:18 -1
+     (int_list:REG_BR_PROB 1014686028 (nil))
+ -> 61)
+;;  succ:       8 [94.5% (guessed)]  count:906139988 (estimated locally) (DFS_BACK)
+;;              15 [5.5% (guessed)]  count:52738306 (estimated locally) (FALLTHRU)
+
+;; basic block 15, loop depth 0, count 52738306 (estimated locally), maybe hot
+;;  prev block 14, next block 16, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       14 [5.5% (guessed)]  count:52738306 (estimated locally) (FALLTHRU)
+(note 72 63 8 15 [bb 15] NOTE_INSN_BASIC_BLOCK)
+(insn 8 72 73 15 (set (reg:SI 90 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/tries.c":129:2 -1
+     (nil))
+(jump_insn 73 8 74 15 (set (pc)
+        (label_ref:DI 68)) 807 {jump}
+     (nil)
+ -> 68)
+;;  succ:       22 [always]  count:52738306 (estimated locally)
+
+(barrier 74 73 76)
+;; basic block 16, loop depth 0, count 1847409 (estimated locally), maybe hot
+;;  prev block 15, next block 17, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       2 [2.8% (guessed)]  count:1847409 (estimated locally)
+(code_label 76 74 75 16 42 (nil) [1 uses])
+(note 75 76 7 16 [bb 16] NOTE_INSN_BASIC_BLOCK)
+(insn 7 75 77 16 (set (reg:SI 90 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/tries.c":129:2 -1
+     (nil))
+(jump_insn 77 7 78 16 (set (pc)
+        (label_ref:DI 68)) 807 {jump}
+     (nil)
+ -> 68)
+;;  succ:       22 [always]  count:1847409 (estimated locally)
+
+(barrier 78 77 80)
+;; basic block 17, loop depth 0, count 3248069 (estimated locally), maybe hot
+;;  prev block 16, next block 18, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       5 [2.8% (guessed)]  count:3248069 (estimated locally)
+(code_label 80 78 79 17 43 (nil) [1 uses])
+(note 79 80 5 17 [bb 17] NOTE_INSN_BASIC_BLOCK)
+(insn 5 79 81 17 (set (reg:SI 90 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/tries.c":129:2 -1
+     (nil))
+(jump_insn 81 5 82 17 (set (pc)
+        (label_ref:DI 68)) 807 {jump}
+     (nil)
+ -> 68)
+;;  succ:       22 [always]  count:3248069 (estimated locally)
+
+(barrier 82 81 84)
+;; basic block 18, loop depth 0, count 6317494 (estimated locally), maybe hot
+;;  prev block 17, next block 19, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       6 [5.5% (guessed)]  count:6317494 (estimated locally)
+(code_label 84 82 83 18 44 (nil) [1 uses])
+(note 83 84 11 18 [bb 18] NOTE_INSN_BASIC_BLOCK)
+(insn 11 83 85 18 (set (reg:SI 90 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/tries.c":129:2 -1
+     (nil))
+(jump_insn 85 11 86 18 (set (pc)
+        (label_ref:DI 68)) 807 {jump}
+     (nil)
+ -> 68)
+;;  succ:       22 [always]  count:6317494 (estimated locally)
+
+(barrier 86 85 88)
+;; basic block 19, loop depth 0, count 1492508 (estimated locally), maybe hot
+;;  prev block 18, next block 20, flags: (NEW, REACHABLE, RTL, MODIFIED)
+;;  pred:       10 [2.8% (guessed)]  count:1492508 (estimated locally)
+(code_label 88 86 87 19 45 (nil) [1 uses])
+(note 87 88 10 19 [bb 19] NOTE_INSN_BASIC_BLOCK)
+(insn 10 87 89 19 (set (reg:SI 90 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/tries.c":129:2 -1
+     (nil))
+(jump_insn 89 10 90 19 (set (pc)
+        (label_ref:DI 68)) 807 {jump}
+     (nil)
+ -> 68)
+;;  succ:       22 [always]  count:1492508 (estimated locally)
+
+(barrier 90 89 92)
+;; basic block 20, loop depth 0, count 1267213 (estimated locally), maybe hot
+;;  prev block 19, next block 22, flags: (NEW, REACHABLE, RTL, MODIFIED, VISITED)
+;;  pred:       12 [82.6% (guessed)]  count:1267213 (estimated locally)
+(code_label 92 90 91 20 46 (nil) [1 uses])
+(note 91 92 9 20 [bb 20] NOTE_INSN_BASIC_BLOCK)
+(insn 9 91 68 20 (set (reg:SI 90 [ <retval> ])
+        (const_int 0 [0])) "../ncurses/./base/tries.c":129:2 -1
+     (nil))
+;;  succ:       22 [always]  count:1267213 (estimated locally) (FALLTHRU)
+
+;; basic block 22, loop depth 0, count 67178499 (estimated locally), maybe hot
+;;  prev block 20, next block 1, flags: (NEW, REACHABLE, RTL)
+;;  pred:       20 [always]  count:1267213 (estimated locally) (FALLTHRU)
+;;              13 [always]  count:267500 (estimated locally)
+;;              15 [always]  count:52738306 (estimated locally)
+;;              16 [always]  count:1847409 (estimated locally)
+;;              17 [always]  count:3248069 (estimated locally)
+;;              18 [always]  count:6317494 (estimated locally)
+;;              19 [always]  count:1492508 (estimated locally)
+(code_label 68 9 71 22 36 (nil) [6 uses])
+(note 71 68 69 22 [bb 22] NOTE_INSN_BASIC_BLOCK)
+(insn 69 71 70 22 (set (reg/i:SI 0 ax)
+        (reg:SI 90 [ <retval> ])) "../ncurses/./base/tries.c":147:1 -1
+     (nil))
+(insn 70 69 0 22 (use (reg/i:SI 0 ax)) "../ncurses/./base/tries.c":147:1 -1
+     (nil))
+;;  succ:       EXIT [always]  count:67178499 (estimated locally) (FALLTHRU)
+
