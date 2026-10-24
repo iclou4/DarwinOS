@@ -310,7 +310,7 @@ static void __install_exception_probe(void)
 -(void)applicationDidFinishLaunching:(NSNotification *)n
 {
     __klog("[BW] finishLaunching entered\n");
-    NSRect frame = NSMakeRect(350, 155, 580, 470);
+    NSRect frame = NSMakeRect(370, 157, 540, 460);
     NSWindow *w = [[NSWindow alloc]
         initWithContentRect:frame
         styleMask:NSBorderlessWindowMask
@@ -318,7 +318,7 @@ static void __install_exception_probe(void)
         defer:NO];
     [w setTitle:@"macOS Recovery"];
 
-    BWView *v = [[BWView alloc] initWithFrame:NSMakeRect(0, 0, 580, 470)];
+    BWView *v = [[BWView alloc] initWithFrame:NSMakeRect(0, 0, 540, 460)];
     [w setContentView:v];
     [w setReleasedWhenClosed:NO];
 
@@ -366,14 +366,14 @@ int main(int argc, const char *argv[])
     NSApplication *app = [NSApplication sharedApplication];
     AK_KDBG("bw0");
     {
-        NSRect frame = NSMakeRect(350, 155, 580, 470);
+        NSRect frame = NSMakeRect(370, 157, 540, 460);
         NSWindow *w = [[NSWindow alloc]
             initWithContentRect:frame
             styleMask:NSBorderlessWindowMask
             backing:NSBackingStoreBuffered
             defer:NO];
         [w setTitle:@"macOS Recovery"];
-        BWView *v = [[BWView alloc] initWithFrame:NSMakeRect(0, 0, 580, 470)];
+        BWView *v = [[BWView alloc] initWithFrame:NSMakeRect(0, 0, 540, 460)];
         [w setContentView:v];
         [w setReleasedWhenClosed:NO];
         AK_KDBG("bw1");
