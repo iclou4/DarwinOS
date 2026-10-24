@@ -837,9 +837,9 @@ init_bg_gradient(void)
             float r2 = dx * dx + dy * dy;
             float t = sqrtf(r2) * 0.75f;
             if (t > 1.0f) t = 1.0f;
-            /* Authentic macOS Tahoe Recovery vignette matching reference: 25 at center, 10 at corners */
-            int v = (int)roundf(25.0f - 15.0f * t);
-            if (v < 10) v = 10;
+            /* Authentic macOS Tahoe Recovery vignette: lighter and clearly visible! 56 at center, 26 at corners */
+            int v = (int)roundf(56.0f - 30.0f * t);
+            if (v < 26) v = 26;
             g_bg_gradient[y * g_w + x] = 0xff000000u | ((uint32_t)v << 16) | ((uint32_t)v << 8) | (uint32_t)v;
         }
     }
