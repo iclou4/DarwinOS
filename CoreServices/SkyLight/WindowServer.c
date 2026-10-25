@@ -102,10 +102,10 @@ wslog(const char *fmt, ...)
 
 #define kWindowServerTitlebarHeight 32.0
 
-static int      g_w = 1920;
-static int      g_h = 1080;
+static int      g_w = 1280;
+static int      g_h = 800;
 static int      g_depth = 32;
-static int      g_stride = 1920 * 4;
+static int      g_stride = 1280 * 4;
 static size_t   g_fbsize;
 static uint32_t *g_fb;
 static uint8_t  *g_vram;             /* zero-copy VRAM mapping, if available */
@@ -782,8 +782,8 @@ enum {
 
 #define TERM_MAX_COLS 140
 #define TERM_MAX_ROWS 45
-#define TERM_MAX_W 1920
-#define TERM_MAX_H 1080
+#define TERM_MAX_W 1280
+#define TERM_MAX_H 800
 
 static int g_show_terminal = 0;
 static double g_term_x = 280;

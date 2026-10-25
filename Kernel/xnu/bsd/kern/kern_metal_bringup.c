@@ -284,9 +284,9 @@ ps2_mouse_handle_byte(uint8_t b)
 		g_mouse_x += dx;
 		g_mouse_y += dy;
 		if (g_mouse_x < 0) g_mouse_x = 0;
-		if (g_mouse_x >= 1920) g_mouse_x = 1919;
+		if (g_mouse_x >= 1280) g_mouse_x = 1279;
 		if (g_mouse_y < 0) g_mouse_y = 0;
-		if (g_mouse_y >= 1080) g_mouse_y = 1079;
+		if (g_mouse_y >= 800) g_mouse_y = 799;
 
 		g_mouse_buttons = b0 & 0x07;
 		g_mouse_has_moved = 1;
