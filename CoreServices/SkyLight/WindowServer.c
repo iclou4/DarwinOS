@@ -33,6 +33,9 @@
 #include <pthread.h>
 #include <limits.h>
 #include <math.h>
+#include <dirent.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/mman.h>
@@ -770,7 +773,7 @@ static int g_about_dragging = 0;
 /* --- Terminal App State & Engine --- */
 static int g_show_terminal = 0;
 static double g_term_x = (1280 - TERM_W) / 2;
-static double g_term_y = 110;
+static double g_term_y = 60;
 static int g_term_dragging = 0;
 static int g_term_redraw_needed = 1;
 
@@ -778,9 +781,10 @@ static uint32_t g_term_window_pixels[TERM_W * TERM_H];
 static char g_term_lines[TERM_ROWS][TERM_COLS + 1];
 static int g_term_cursor_row = 0;
 static int g_term_cursor_col = 0;
-static char g_term_cmd[128];
+static char g_term_cmd[256];
 static int g_term_cmd_len = 0;
 static int g_term_inited = 0;
+static char g_term_cwd[256] = "/var/root";
 
 static void
 term_scroll_up(void)
@@ -830,86 +834,286 @@ term_init(void)
     }
     g_term_cursor_row = 0;
     g_term_cursor_col = 0;
-    term_print_string("darwinOS Recovery Environment\nType \"help\" for a list of built-in commands.\n\n-sh-3.2# ");
+    getcwd(g_term_cwd, sizeof(g_term_cwd));
+    if (g_term_cwd[0] == '\0') strcpy(g_term_cwd, "/var/root");
+    term_print_string("-sh-3.2# ");
     g_term_cmd_len = 0;
     g_term_cmd[0] = '\0';
     g_term_inited = 1;
 }
 
 static void
-term_exec_command(const char *cmd)
+term_exec_command(const char *cmd_line)
 {
-    while (*cmd == ' ') cmd++;
-    if (*cmd == '\0') {
+    while (*cmd_line == ' ') cmd_line++;
+    if (*cmd_line == '\0') {
         term_print_string("\n-sh-3.2# ");
         return;
     }
 
-    if (strcmp(cmd, "help") == 0) {
-        term_print_string("\nGNU bash, version 3.2.57(1)-release (x86_64-apple-darwin19)\n"
-                          "Built-in recovery commands:\n"
-                          "  help         Show this list of commands\n"
-                          "  uname -a     Display Darwin kernel version\n"
-                          "  sw_vers      Display system version\n"
-                          "  ls [-la]     List directory contents\n"
-                          "  pwd          Print working directory\n"
-                          "  whoami       Print current user\n"
-                          "  id           Print user/group identities\n"
-                          "  date         Print system date and time\n"
-                          "  clear        Clear screen\n"
-                          "  reboot       Reboot machine\n"
-                          "  halt         Shut down machine\n"
-                          "  exit         Close Terminal\n-sh-3.2# ");
-    } else if (strcmp(cmd, "uname") == 0 || strcmp(cmd, "uname -a") == 0) {
-        term_print_string("\nDarwin darwinOS 19.6.0 Darwin Kernel Version 19.6.0: root:xnu/RELEASE_X86_64 x86_64\n-sh-3.2# ");
-    } else if (strcmp(cmd, "sw_vers") == 0) {
-        term_print_string("\nProductName:    darwinOS\nProductVersion: 1.0\nBuildVersion:    19G73\n-sh-3.2# ");
-    } else if (strcmp(cmd, "pwd") == 0) {
-        term_print_string("\n/var/root\n-sh-3.2# ");
-    } else if (strcmp(cmd, "whoami") == 0) {
-        term_print_string("\nroot\n-sh-3.2# ");
-    } else if (strcmp(cmd, "id") == 0) {
-        term_print_string("\nuid=0(root) gid=0(wheel) groups=0(wheel)\n-sh-3.2# ");
-    } else if (strcmp(cmd, "date") == 0) {
-        term_print_string("\nSun Oct 25 11:00:00 UTC 2026\n-sh-3.2# ");
-    } else if (strcmp(cmd, "ls") == 0) {
-        term_print_string("\nApplications  Library  System  Users  bin  etc  sbin  tmp  usr  var\n-sh-3.2# ");
-    } else if (strcmp(cmd, "ls -l") == 0 || strcmp(cmd, "ls -la") == 0) {
-        term_print_string("\ntotal 80\n"
-                          "drwxr-xr-x  12 root  wheel   384 Oct 25 10:42 .\n"
-                          "drwxr-xr-x  12 root  wheel   384 Oct 25 10:42 ..\n"
-                          "drwxr-xr-x   3 root  wheel    96 Oct 25 10:42 Applications\n"
-                          "drwxr-xr-x   3 root  wheel    96 Oct 25 10:42 Library\n"
-                          "drwxr-xr-x   3 root  wheel    96 Oct 25 10:42 System\n"
-                          "drwxr-xr-x   3 root  wheel    96 Oct 25 10:42 Users\n"
-                          "drwxr-xr-x  38 root  wheel  1216 Oct 25 10:42 bin\n"
-                          "drwxr-xr-x  12 root  wheel   384 Oct 25 10:42 etc\n"
-                          "drwxr-xr-x  64 root  wheel  2048 Oct 25 10:42 sbin\n"
-                          "drwxrwxrwt   2 root  wheel    64 Oct 25 10:42 tmp\n"
-                          "drwxr-xr-x   9 root  wheel   288 Oct 25 10:42 usr\n"
-                          "drwxr-xr-x  26 root  wheel   832 Oct 25 10:42 var\n-sh-3.2# ");
-    } else if (strcmp(cmd, "clear") == 0) {
+    char line_copy[256];
+    strncpy(line_copy, cmd_line, sizeof(line_copy) - 1);
+    line_copy[sizeof(line_copy) - 1] = '\0';
+
+    char *argv[32];
+    int argc = 0;
+    char *token = strtok(line_copy, " \t\r\n");
+    while (token && argc < 31) {
+        argv[argc++] = token;
+        token = strtok(NULL, " \t\r\n");
+    }
+    argv[argc] = NULL;
+    if (argc == 0) {
+        term_print_string("\n-sh-3.2# ");
+        return;
+    }
+
+    const char *cmd = argv[0];
+
+    /* 1. Try fork + execve external Darwin binary if on disk */
+    int pfd[2];
+    if (pipe(pfd) == 0) {
+        pid_t pid = fork();
+        if (pid == 0) {
+            close(pfd[0]);
+            dup2(pfd[1], 1);
+            dup2(pfd[1], 2);
+            close(pfd[1]);
+
+            char bin_path[128];
+            if (cmd[0] == '/' || (cmd[0] == '.' && cmd[1] == '/')) {
+                execv(cmd, argv);
+            } else {
+                snprintf(bin_path, sizeof(bin_path), "/bin/%s", cmd);
+                execv(bin_path, argv);
+                snprintf(bin_path, sizeof(bin_path), "/usr/bin/%s", cmd);
+                execv(bin_path, argv);
+                snprintf(bin_path, sizeof(bin_path), "/sbin/%s", cmd);
+                execv(bin_path, argv);
+            }
+            _exit(127);
+        }
+        close(pfd[1]);
+        if (pid > 0) {
+            char buf[512];
+            ssize_t n;
+            int ran = 0;
+            int status = 0;
+            waitpid(pid, &status, 0);
+            if (WIFEXITED(status) && WEXITSTATUS(status) != 127) {
+                ran = 1;
+                term_print_string("\n");
+                while ((n = read(pfd[0], buf, sizeof(buf) - 1)) > 0) {
+                    buf[n] = '\0';
+                    term_print_string(buf);
+                }
+            }
+            close(pfd[0]);
+            if (ran) {
+                term_print_string("-sh-3.2# ");
+                return;
+            }
+        } else {
+            close(pfd[0]);
+        }
+    }
+
+    /* 2. Authentic Darwin built-in utilities */
+    if (strcmp(cmd, "clear") == 0) {
         for (int r = 0; r < TERM_ROWS; r++) {
             memset(g_term_lines[r], 0, TERM_COLS + 1);
         }
         g_term_cursor_row = 0;
         g_term_cursor_col = 0;
         term_print_string("-sh-3.2# ");
+        return;
+    } else if (strcmp(cmd, "cd") == 0) {
+        const char *target = argc > 1 ? argv[1] : "/";
+        if (chdir(target) == 0) {
+            getcwd(g_term_cwd, sizeof(g_term_cwd));
+        } else {
+            term_print_string("\n-sh: cd: ");
+            term_print_string(target);
+            term_print_string(": No such file or directory");
+        }
+        term_print_string("\n-sh-3.2# ");
+        return;
+    } else if (strcmp(cmd, "pwd") == 0) {
+        term_print_string("\n");
+        term_print_string(g_term_cwd);
+        term_print_string("\n-sh-3.2# ");
+        return;
+    } else if (strcmp(cmd, "echo") == 0) {
+        term_print_string("\n");
+        for (int i = 1; i < argc; i++) {
+            if (i > 1) term_print_string(" ");
+            term_print_string(argv[i]);
+        }
+        term_print_string("\n-sh-3.2# ");
+        return;
+    } else if (strcmp(cmd, "whoami") == 0) {
+        term_print_string("\nroot\n-sh-3.2# ");
+        return;
+    } else if (strcmp(cmd, "id") == 0) {
+        term_print_string("\nuid=0(root) gid=0(wheel) groups=0(wheel),1(daemon),2(kmem),3(sys),4(tty)\n-sh-3.2# ");
+        return;
+    } else if (strcmp(cmd, "date") == 0) {
+        time_t now = time(NULL);
+        char date_buf[64];
+        ctime_r(&now, date_buf);
+        term_print_string("\n");
+        term_print_string(date_buf);
+        term_print_string("-sh-3.2# ");
+        return;
+    } else if (strcmp(cmd, "uname") == 0) {
+        if (argc > 1 && strcmp(argv[1], "-a") == 0) {
+            term_print_string("\nDarwin darwinOS 26.0.0 Darwin Kernel Version 26.0.0: root:xnu-8792.81.2/RELEASE_X86_64 x86_64\n-sh-3.2# ");
+        } else if (argc > 1 && strcmp(argv[1], "-r") == 0) {
+            term_print_string("\n26.0.0\n-sh-3.2# ");
+        } else if (argc > 1 && strcmp(argv[1], "-m") == 0) {
+            term_print_string("\nx86_64\n-sh-3.2# ");
+        } else {
+            term_print_string("\nDarwin\n-sh-3.2# ");
+        }
+        return;
+    } else if (strcmp(cmd, "sw_vers") == 0) {
+        term_print_string("\nProductName:\tmacOS\nProductVersion:\t26.0\nBuildVersion:\t26A100\n-sh-3.2# ");
+        return;
+    } else if (strcmp(cmd, "csrutil") == 0) {
+        term_print_string("\nSystem Integrity Protection status: disabled (Apple Internal).\n-sh-3.2# ");
+        return;
+    } else if (strcmp(cmd, "diskutil") == 0) {
+        if (argc > 1 && strcmp(argv[1], "list") == 0) {
+            term_print_string("\n/dev/disk0 (internal, physical):\n"
+                              "   #:                       TYPE NAME                    SIZE       IDENTIFIER\n"
+                              "   0:      GUID_partition_scheme                        *8.0 GB     disk0\n"
+                              "   1:                        EFI EFI                     512.0 MB   disk0s1\n"
+                              "   2:                  Apple_HFS darwinOS Base System    7.5 GB     disk0s2\n-sh-3.2# ");
+        } else {
+            term_print_string("\nUsage: diskutil [list|info|mount|unmount|eraseDisk]\n-sh-3.2# ");
+        }
+        return;
+    } else if (strcmp(cmd, "nvram") == 0) {
+        term_print_string("\nboot-args\tdebug=0x0C serial=0 iotrace=0 io=0 slto_us=60000000 mtlinit=/mtl_app\n"
+                          "efi-boot-device\t<array><dict><key>IOMatch</key><dict><key>IOProviderClass</key><string>IOPCIDevice</string></dict></dict></array>\n-sh-3.2# ");
+        return;
+    } else if (strcmp(cmd, "ps") == 0) {
+        term_print_string("\n  PID TTY           TIME CMD\n"
+                          "    1 ??         0:02.14 /sbin/launchd\n"
+                          "    2 ??         0:00.86 /Applications/Install darwinOS.app/Contents/MacOS/Install darwinOS\n"
+                          "    3 ??         0:05.42 /System/Library/CoreServices/WindowServer.app/Contents/MacOS/WindowServer\n"
+                          "   10 ttys000    0:00.04 -sh\n-sh-3.2# ");
+        return;
+    } else if (strcmp(cmd, "df") == 0) {
+        term_print_string("\nFilesystem     512-blocks      Used Available Capacity iused      ifree %iused  Mounted on\n"
+                          "/dev/disk0s2     15724544   1258240  14466304     8%  157248    1808288    8%   /\n"
+                          "devfs                 384       384         0   100%     666          0  100%   /dev\n-sh-3.2# ");
+        return;
+    } else if (strcmp(cmd, "ls") == 0) {
+        const char *target = argc > 1 && argv[1][0] != '-' ? argv[1] : g_term_cwd;
+        DIR *dir = opendir(target);
+        if (dir) {
+            term_print_string("\n");
+            struct dirent *de;
+            int count = 0;
+            while ((de = readdir(dir)) != NULL) {
+                if (de->d_name[0] == '.' && (argc <= 1 || strstr(argv[1], "a") == NULL))
+                    continue;
+                if (count > 0 && count % 5 == 0) term_print_string("\n");
+                else if (count > 0) term_print_string("  ");
+                term_print_string(de->d_name);
+                count++;
+            }
+            closedir(dir);
+            term_print_string("\n-sh-3.2# ");
+        } else {
+            term_print_string("\nApplications  Library  System  Users  bin  etc  sbin  tmp  usr  var\n-sh-3.2# ");
+        }
+        return;
+    } else if (strcmp(cmd, "cat") == 0) {
+        if (argc < 2) {
+            term_print_string("\nUsage: cat <file>\n-sh-3.2# ");
+            return;
+        }
+        int fd = open(argv[1], O_RDONLY);
+        if (fd >= 0) {
+            term_print_string("\n");
+            char buf[256];
+            ssize_t n;
+            while ((n = read(fd, buf, sizeof(buf) - 1)) > 0) {
+                buf[n] = '\0';
+                term_print_string(buf);
+            }
+            close(fd);
+            term_print_string("\n-sh-3.2# ");
+        } else {
+            term_print_string("\ncat: ");
+            term_print_string(argv[1]);
+            term_print_string(": No such file or directory\n-sh-3.2# ");
+        }
+        return;
+    } else if (strcmp(cmd, "mkdir") == 0) {
+        if (argc < 2) {
+            term_print_string("\nUsage: mkdir <directory>\n-sh-3.2# ");
+            return;
+        }
+        if (mkdir(argv[1], 0755) != 0) {
+            term_print_string("\nmkdir: cannot create directory '");
+            term_print_string(argv[1]);
+            term_print_string("'\n-sh-3.2# ");
+        } else {
+            term_print_string("\n-sh-3.2# ");
+        }
+        return;
+    } else if (strcmp(cmd, "rm") == 0) {
+        if (argc < 2) {
+            term_print_string("\nUsage: rm <file>\n-sh-3.2# ");
+            return;
+        }
+        if (unlink(argv[1]) != 0) {
+            term_print_string("\nrm: ");
+            term_print_string(argv[1]);
+            term_print_string(": No such file or directory\n-sh-3.2# ");
+        } else {
+            term_print_string("\n-sh-3.2# ");
+        }
+        return;
+    } else if (strcmp(cmd, "touch") == 0) {
+        if (argc < 2) {
+            term_print_string("\nUsage: touch <file>\n-sh-3.2# ");
+            return;
+        }
+        int fd = open(argv[1], O_CREAT | O_WRONLY, 0644);
+        if (fd >= 0) close(fd);
+        term_print_string("\n-sh-3.2# ");
+        return;
     } else if (strcmp(cmd, "reboot") == 0) {
         term_print_string("\nRebooting system...\n");
         sync();
         reboot(0);
+        return;
     } else if (strcmp(cmd, "halt") == 0 || strcmp(cmd, "shutdown") == 0) {
         term_print_string("\nHalting system...\n");
         sync();
         reboot(0x08);
+        return;
     } else if (strcmp(cmd, "exit") == 0) {
         g_show_terminal = 0;
         g_dirty = 1;
+        return;
+    } else if (strcmp(cmd, "help") == 0) {
+        term_print_string("\nDarwin macOS Recovery Terminal (sh-3.2)\n"
+                          "Standard commands supported:\n"
+                          "  ls, pwd, cd, cat, echo, mkdir, rm, touch\n"
+                          "  uname, sw_vers, diskutil, csrutil, nvram\n"
+                          "  whoami, id, date, ps, df, clear\n"
+                          "  reboot, halt, exit\n-sh-3.2# ");
+        return;
     } else {
         term_print_string("\n-sh: ");
         term_print_string(cmd);
         term_print_string(": command not found\n-sh-3.2# ");
+        return;
     }
 }
 
@@ -918,13 +1122,13 @@ term_handle_char(char c)
 {
     if (c == '\n' || c == '\r') {
         g_term_cmd[g_term_cmd_len] = '\0';
-        char buf[128];
+        char buf[256];
         strncpy(buf, g_term_cmd, sizeof(buf) - 1);
         buf[sizeof(buf) - 1] = '\0';
         g_term_cmd_len = 0;
         g_term_cmd[0] = '\0';
         term_exec_command(buf);
-    } else if (c == '\b') {
+    } else if (c == '\b' || c == 127) {
         if (g_term_cmd_len > 0) {
             g_term_cmd[--g_term_cmd_len] = '\0';
             if (g_term_cursor_col > 0) {
@@ -1660,6 +1864,8 @@ struct ws2_mouse_state {
     int buttons;
     int has_moved;
     int key_scancode;
+    int key_count;
+    uint8_t key_buf[16];
 };
 
 static void
@@ -1701,6 +1907,31 @@ poll_input(void)
     if (py > g_h) py = g_h;
 
     buttons = ms.buttons;
+
+    /* Process all hardware keyboard scancodes immediately at top of poll */
+    if (ms.key_count > 0 || ms.key_scancode != 0) {
+        int kcnt = ms.key_count > 0 ? ms.key_count : 1;
+        for (int ki = 0; ki < kcnt; ki++) {
+            uint8_t sc = ms.key_count > 0 ? ms.key_buf[ki] : (uint8_t)(ms.key_scancode & 0xff);
+            if (sc == 0x2A || sc == 0x36) {
+                g_shift_down = 1;
+            } else if (sc == 0xAA || sc == 0xB6) {
+                g_shift_down = 0;
+            } else if ((sc & 0x80) == 0 && sc < 128) {
+                char c = g_shift_down ? g_scancode_shift[sc] : g_scancode_normal[sc];
+                if (!g_show_terminal && (c == 't' || c == 'T')) {
+                    g_show_terminal = 1;
+                    g_term_x = (g_w - TERM_W) / 2;
+                    g_term_y = 60;
+                    g_term_redraw_needed = 1;
+                    g_dirty = 1;
+                } else if (g_show_terminal && c != 0) {
+                    term_handle_char(c);
+                    g_dirty = 1;
+                }
+            }
+        }
+    }
 
     if (lastx < 0 && lasty < 0) {
         lastx = ms.mouse_x;
@@ -2050,27 +2281,7 @@ poll_input(void)
         }
     }
 
-    /* Keyboard input processing */
-    if (ms.key_scancode != 0) {
-        int sc = ms.key_scancode & 0xff;
-        if (sc == 0x2A || sc == 0x36) {
-            g_shift_down = 1;
-        } else if (sc == 0xAA || sc == 0xB6) {
-            g_shift_down = 0;
-        } else if ((sc & 0x80) == 0 && sc < 128) {
-            char c = g_shift_down ? g_scancode_shift[sc] : g_scancode_normal[sc];
-            if (!g_show_terminal && (c == 't' || c == 'T')) {
-                g_show_terminal = 1;
-                g_term_x = (g_w - TERM_W) / 2;
-                g_term_y = 100;
-                g_term_redraw_needed = 1;
-                g_dirty = 1;
-            } else if (g_show_terminal && c != 0) {
-                term_handle_char(c);
-                g_dirty = 1;
-            }
-        }
-    } else if ((buttons & 2) && !(lastbuttons & 2)) {
+    if ((buttons & 2) && !(lastbuttons & 2)) {
         struct mach_event me;
         memset(&me, 0, sizeof(me));
         me.code = NSRightMouseDown;
@@ -2110,27 +2321,7 @@ poll_input(void)
         }
     }
 
-    /* Keyboard input processing */
-    if (ms.key_scancode != 0) {
-        int sc = ms.key_scancode & 0xff;
-        if (sc == 0x2A || sc == 0x36) {
-            g_shift_down = 1;
-        } else if (sc == 0xAA || sc == 0xB6) {
-            g_shift_down = 0;
-        } else if ((sc & 0x80) == 0 && sc < 128) {
-            char c = g_shift_down ? g_scancode_shift[sc] : g_scancode_normal[sc];
-            if (!g_show_terminal && (c == 't' || c == 'T')) {
-                g_show_terminal = 1;
-                g_term_x = (g_w - TERM_W) / 2;
-                g_term_y = 100;
-                g_term_redraw_needed = 1;
-                g_dirty = 1;
-            } else if (g_show_terminal && c != 0) {
-                term_handle_char(c);
-                g_dirty = 1;
-            }
-        }
-    }
+
 
     pthread_mutex_unlock(&g_lock);
 

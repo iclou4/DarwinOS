@@ -288,20 +288,30 @@ ps2_mouse_init(void)
 		delay(100);
 	}
 
+	/* 1. Enable Keyboard & Mouse Interfaces */
+	outb(0x64, 0xAE); /* Enable keyboard interface */
+	delay(500);
 	outb(0x64, 0xA8); /* Enable mouse aux port */
 	delay(500);
 
+	/* 2. Configure Controller Command Byte */
 	outb(0x64, 0x20); /* Get command byte */
 	delay(500);
 	uint8_t cb = inb(0x60);
-	cb |= 0x02;       /* Enable mouse IRQ 12 */
-	cb &= ~0x20;      /* Enable mouse clock line */
+	cb |= 0x03;       /* Enable IRQ 1 (keyboard) and IRQ 12 (mouse) */
+	cb &= ~0x30;      /* Clear bits 4 & 5: Enable BOTH keyboard and mouse clocks */
+	cb |= 0x40;       /* Set bit 6: Translation enabled (Set 1 XT scancodes) */
 	outb(0x64, 0x60); /* Set command byte */
 	delay(500);
 	outb(0x60, cb);
 	delay(500);
 
-	/* Set defaults (0xF6) */
+	/* 3. Enable Keyboard Scanning */
+	outb(0x60, 0xF4);
+	delay(1000);
+	if (inb(0x64) & 0x01) (void)inb(0x60);
+
+	/* 4. Set mouse defaults (0xF6) */
 	outb(0x64, 0xD4);
 	delay(500);
 	outb(0x60, 0xF6);
@@ -312,7 +322,7 @@ ps2_mouse_init(void)
 		delay(100);
 	}
 
-	/* Enable data reporting (0xF4) */
+	/* 5. Enable mouse data reporting (0xF4) */
 	outb(0x64, 0xD4);
 	delay(500);
 	outb(0x60, 0xF4);
@@ -324,7 +334,7 @@ ps2_mouse_init(void)
 	}
 
 	ps2_packet_idx = 0;
-	kprintf("IOAccelerator [CURSOR]: PS/2 mouse hardware driver enabled at (640, 400)\n");
+	kprintf("IOAccelerator [INPUT]: PS/2 Keyboard and Mouse hardware drivers enabled!\n");
 }
 
 void
@@ -761,6 +771,7 @@ fb_present(struct proc *p, struct fb_present_args *uap, int32_t *retval)
 					if (next != g_ps2_kbd_tail) {
 						g_ps2_kbd_queue[g_ps2_kbd_head] = data;
 						g_ps2_kbd_head = next;
+						kprintf("KBD: 0x%02x\n", data);
 					}
 				}
 			} else {
@@ -774,6 +785,8 @@ fb_present(struct proc *p, struct fb_present_args *uap, int32_t *retval)
 			int buttons;
 			int has_moved;
 			int key_scancode;
+			int key_count;
+			uint8_t key_buf[16];
 		} mstate;
 
 		mstate.mouse_x = g_mouse_x;
@@ -781,12 +794,13 @@ fb_present(struct proc *p, struct fb_present_args *uap, int32_t *retval)
 		mstate.buttons = g_mouse_buttons;
 		mstate.has_moved = g_mouse_has_moved;
 		g_mouse_has_moved = 0;
-		if (g_ps2_kbd_head != g_ps2_kbd_tail) {
-			mstate.key_scancode = (int)g_ps2_kbd_queue[g_ps2_kbd_tail];
+		int kcnt = 0;
+		while (g_ps2_kbd_head != g_ps2_kbd_tail && kcnt < 16) {
+			mstate.key_buf[kcnt++] = g_ps2_kbd_queue[g_ps2_kbd_tail];
 			g_ps2_kbd_tail = (g_ps2_kbd_tail + 1) % 128;
-		} else {
-			mstate.key_scancode = 0;
 		}
+		mstate.key_count = kcnt;
+		mstate.key_scancode = kcnt > 0 ? (int)mstate.key_buf[0] : 0;
 
 		error = copyout(&mstate, src, sizeof(mstate));
 		*retval = 0;
