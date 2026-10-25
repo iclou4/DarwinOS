@@ -777,6 +777,11 @@ static double g_about_x = ABOUT_WINDOW_X;
 static double g_about_y = ABOUT_WINDOW_Y;
 static int g_about_dragging = 0;
 
+static int g_show_recovery = 1;
+static double g_recovery_x = 0;
+static double g_recovery_y = 0;
+static int g_recovery_dragging = 0;
+
 /* --- Terminal App State & Engine (Resizable, 80x24+ Dynamic) --- */
 enum {
     TERM_RESIZE_NONE = 0,
@@ -1296,23 +1301,22 @@ draw_terminal_window(void)
         /* 9-Slice Dynamic Rendering into g_term_window_pixels */
         int sc = TERM_SLICE_C; /* 76 */
 
-        /* 1. Corners */
-        for (int y = 0; y < sc; y++) {
-            memcpy(g_term_window_pixels + (size_t)y * cur_w,
-                   g_term_slice_tl + (size_t)y * sc, sc * 4);
-            memcpy(g_term_window_pixels + (size_t)y * cur_w + (cur_w - sc),
-                   g_term_slice_tr + (size_t)y * sc, sc * 4);
-            memcpy(g_term_window_pixels + (size_t)(cur_h - sc + y) * cur_w,
-                   g_term_slice_bl + (size_t)y * sc, sc * 4);
-            memcpy(g_term_window_pixels + (size_t)(cur_h - sc + y) * cur_w + (cur_w - sc),
-                   g_term_slice_br + (size_t)y * sc, sc * 4);
+        int body_y0 = TERM_PAD + 28;
+
+        /* 1. Center Body Fill (never overwrite corner regions) */
+        for (int y = body_y0; y < cur_h - sc; y++) {
+            uint32_t *row = g_term_window_pixels + (size_t)y * cur_w;
+            for (int x = sc; x < cur_w - sc; x++) {
+                row[x] = 0xff1e1e1eu;
+            }
         }
 
-        /* 2. Top & Bottom Edges */
-        for (int x = sc; x < cur_w - sc; x++) {
-            for (int y = 0; y < sc; y++) {
-                g_term_window_pixels[(size_t)y * cur_w + x] = g_term_slice_top[y];
-                g_term_window_pixels[(size_t)(cur_h - sc + y) * cur_w + x] = g_term_slice_bot[y];
+        /* 2. Titlebar horizontal filler */
+        for (int y = TERM_PAD; y < body_y0; y++) {
+            uint32_t *row = g_term_window_pixels + (size_t)y * cur_w;
+            uint32_t val = (y == body_y0 - 1) ? 0xff1a1a1au : 0xff2a2a2au;
+            for (int x = sc; x < cur_w - sc; x++) {
+                row[x] = val;
             }
         }
 
@@ -1326,26 +1330,24 @@ draw_terminal_window(void)
             }
         }
 
-        /* 4. Center Body Fill */
-        int body_x0 = TERM_PAD;
-        int body_x1 = TERM_PAD + g_term_body_w;
-        int body_y0 = TERM_PAD + 28;
-        int body_y1 = TERM_PAD + g_term_body_h;
-
-        for (int y = body_y0; y < body_y1; y++) {
-            uint32_t *row = g_term_window_pixels + (size_t)y * cur_w;
-            for (int x = body_x0; x < body_x1; x++) {
-                row[x] = 0xff1e1e1eu;
+        /* 4. Top & Bottom Edges */
+        for (int x = sc; x < cur_w - sc; x++) {
+            for (int y = 0; y < sc; y++) {
+                g_term_window_pixels[(size_t)y * cur_w + x] = g_term_slice_top[y];
+                g_term_window_pixels[(size_t)(cur_h - sc + y) * cur_w + x] = g_term_slice_bot[y];
             }
         }
 
-        /* Titlebar horizontal filler */
-        for (int y = TERM_PAD; y < body_y0; y++) {
-            uint32_t *row = g_term_window_pixels + (size_t)y * cur_w;
-            uint32_t val = (y == body_y0 - 1) ? 0xff1a1a1au : 0xff2a2a2au;
-            for (int x = sc; x < cur_w - sc; x++) {
-                row[x] = val;
-            }
+        /* 5. Corners (TL, TR, BL, BR) copied LAST to guarantee rounded squircle bottom corners */
+        for (int y = 0; y < sc; y++) {
+            memcpy(g_term_window_pixels + (size_t)y * cur_w,
+                   g_term_slice_tl + (size_t)y * sc, sc * 4);
+            memcpy(g_term_window_pixels + (size_t)y * cur_w + (cur_w - sc),
+                   g_term_slice_tr + (size_t)y * sc, sc * 4);
+            memcpy(g_term_window_pixels + (size_t)(cur_h - sc + y) * cur_w,
+                   g_term_slice_bl + (size_t)y * sc, sc * 4);
+            memcpy(g_term_window_pixels + (size_t)(cur_h - sc + y) * cur_w + (cur_w - sc),
+                   g_term_slice_br + (size_t)y * sc, sc * 4);
         }
 
         /* 5. Titlebar Center: Proxy Folder Icon + Title */
@@ -1427,6 +1429,27 @@ draw_terminal_window(void)
         }
     }
 }
+static inline void
+draw_recovery_window(void)
+{
+    if (!g_show_recovery || !g_fb) return;
+    int rx = (int)g_recovery_x;
+    int ry = (int)g_recovery_y;
+    int s_idx = g_recovery_selected_row;
+    if (s_idx < 0 || s_idx > 4) s_idx = 1;
+    const uint32_t *src_state = (s_idx == 4) ? g_recovery_state_4 : g_recovery_states[s_idx];
+
+    for (int dy = 0; dy < RECOVERY_UI_H && (ry + dy) < g_h; dy++) {
+        if (ry + dy < 0) continue;
+        uint32_t *dst = g_fb + (size_t)(ry + dy) * (size_t)g_w + rx;
+        const uint32_t *src = src_state + (size_t)dy * (size_t)RECOVERY_UI_W;
+        for (int dx = 0; dx < RECOVERY_UI_W; dx++) {
+            if (rx + dx < 0 || rx + dx >= g_w) continue;
+            dst[dx] = blend_pixel(dst[dx], src[dx]);
+        }
+    }
+}
+
 static inline void
 draw_about_window(void)
 {
@@ -1806,6 +1829,7 @@ composite_ex(int is_drag, int sc_x, int sc_y, int sc_w, int sc_h)
                     composite_window(w);
             }
         }
+        draw_recovery_window();
         draw_terminal_window();
         draw_about_window();
         draw_menubar();
@@ -1916,6 +1940,7 @@ composite_ex(int is_drag, int sc_x, int sc_y, int sc_w, int sc_h)
     }
     t_after_commit = now_ms();
 
+    draw_recovery_window();
     draw_terminal_window();
     draw_about_window();
     draw_menubar();
@@ -2331,6 +2356,33 @@ poll_input(void)
             }
         }
 
+        if (g_show_recovery) {
+            double rx = px - g_recovery_x;
+            double ry = ((double)g_h - py) - g_recovery_y;
+            if (rx >= 0.0 && rx < (double)RECOVERY_UI_W &&
+                ry >= 0.0 && ry < (double)RECOVERY_UI_H) {
+                g_term_focused = 0;
+                int clicked_row = -1;
+                if (ry >= 16.0 && ry < 90.0) clicked_row = 0;
+                else if (ry >= 90.0 && ry < 164.0) clicked_row = 1;
+                else if (ry >= 164.0 && ry < 238.0) clicked_row = 2;
+                else if (ry >= 238.0 && ry < 312.0) clicked_row = 3;
+
+                if (clicked_row >= 0) {
+                    g_recovery_selected_row = clicked_row;
+                    g_dirty = 1;
+                } else if (rx >= 324.0 && rx <= 408.0 && ry >= 324.0 && ry <= 360.0) {
+                    g_recovery_selected_row = 4;
+                    g_dirty = 1;
+                } else if (ry < 30.0) {
+                    g_recovery_dragging = 1;
+                }
+                lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                pthread_mutex_unlock(&g_lock);
+                return;
+            }
+        }
+
         if (g_show_about) {
             double win_body_x = px - (g_about_x + 28.0);
             double win_body_y = ((double)g_h - py) - (g_about_y + 28.0);
@@ -2581,6 +2633,25 @@ poll_input(void)
         g_about_dragging = 0;
         g_term_dragging = 0;
         g_term_resize_mode = TERM_RESIZE_NONE;
+        if (g_recovery_dragging) {
+            g_recovery_dragging = 0;
+            g_dirty = 1;
+        }
+        if (g_recovery_selected_row == 4) {
+            g_recovery_selected_row = 1;
+            g_dirty = 1;
+        }
+    }
+
+    /* Recovery Window Dragging (Fixed size, not resizable) */
+    if (g_show_recovery && g_recovery_dragging && (dx != 0 || dy != 0)) {
+        g_recovery_x += dx;
+        g_recovery_y -= dy;
+        if (g_recovery_x < 0) g_recovery_x = 0;
+        if (g_recovery_x > g_w - RECOVERY_UI_W) g_recovery_x = g_w - RECOVERY_UI_W;
+        if (g_recovery_y < MENUBAR_H) g_recovery_y = MENUBAR_H;
+        if (g_recovery_y > g_h - RECOVERY_UI_H) g_recovery_y = g_h - RECOVERY_UI_H;
+        g_dirty = 1;
     }
 
     /* Terminal Dragging */
@@ -3567,6 +3638,8 @@ main(int argc, char **argv)
     g_about_x = (g_w - ABOUT_WINDOW_W) / 2.0;
     g_about_y = (g_h - ABOUT_WINDOW_H) / 2.0;
     g_term_x = (g_w - (g_term_body_w + 32)) / 2.0;
+    g_recovery_x = (g_w - RECOVERY_UI_W) / 2.0;
+    g_recovery_y = (g_h - RECOVERY_UI_H) / 2.0;
     ws_metal_init();
 
     /* publish the first frame before any client connects */
