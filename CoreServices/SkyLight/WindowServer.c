@@ -520,7 +520,21 @@ composite_window(WSWindow *w)
         dst = g_fb + (size_t)fr * (size_t)g_w + dx;
 
         for (x = sx0; x < sx1; x++) {
-            dst[x - sx0] = blend_pixel(dst[x - sx0], src[x]);
+            uint32_t sp = src[x];
+            if (row < 16 || row >= ih - 16 || x < 16 || x >= iw - 16) {
+                float rx = (x < 16) ? (16.0f - (float)x) : (x >= iw - 16 ? ((float)x - ((float)iw - 16.0f)) : 0.0f);
+                float ry = (row < 16) ? (16.0f - (float)row) : (row >= ih - 16 ? ((float)row - ((float)ih - 16.0f)) : 0.0f);
+                if (rx > 0.0f && ry > 0.0f) {
+                    float dist = powf(powf(rx / 16.0f, 2.6f) + powf(ry / 16.0f, 2.6f), 1.0f / 2.6f);
+                    float cov = 0.5f - (dist - 1.0f) * 16.0f;
+                    if (cov <= 0.0f) continue;
+                    if (cov < 1.0f) {
+                        uint32_t a = (uint32_t)(((sp >> 24) & 0xff) * cov);
+                        sp = (a << 24) | (sp & 0x00ffffff);
+                    }
+                }
+            }
+            dst[x - sx0] = blend_pixel(dst[x - sx0], sp);
         }
     }
 }
@@ -1773,9 +1787,10 @@ draw_window_shadow(WSWindow *w, int sc_x, int sc_y, int sc_w, int sc_h)
                 int lcol = (px < corner_lx);
                 int cx = lcol ? corner_lx : corner_rx;
                 int cy = top_half ? corner_ty : corner_by;
-                int cdx = px - cx;
-                int cdy = py - cy;
-                if (cdx * cdx + cdy * cdy <= R * R) {
+                float cdx = fabsf((float)(px - cx));
+                float cdy = fabsf((float)(py - cy));
+                float dist = powf(powf(cdx / (float)R, 2.6f) + powf(cdy / (float)R, 2.6f), 1.0f / 2.6f);
+                if (dist <= 1.0f) {
                     if (lcol) px = corner_lx - 1;
                     continue;
                 }

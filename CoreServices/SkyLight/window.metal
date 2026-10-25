@@ -5,7 +5,7 @@
  *
  * Implements Apple Metal Shading Language (MSL) pipeline for WindowServer:
  * - Direct .metal source shader loaded via Metal.framework
- * - Analytical macOS 26 Tahoe 16pt continuous rounded corner antialiasing
+ * - Analytical macOS 26 Tahoe 16pt continuous squircle (n=2.6) corner antialiasing
  * - Linear BGRA8Unorm texture sampling & alpha blending
  */
 
@@ -30,7 +30,7 @@ vertex void window_vertex(const mtl_vertex_in *in, mtl_vertex_out *out)
 
 /*
  * window_fragment: Samples window backing surface texture and performs
- * continuous 16pt corner clipping with analytical antialiasing.
+ * continuous 16pt corner clipping with analytical squircle (n=2.6) antialiasing.
  */
 fragment void window_fragment(const mtl_fragment_in *in, mtl_fragment_out *out)
 {
@@ -39,6 +39,7 @@ fragment void window_fragment(const mtl_fragment_in *in, mtl_fragment_out *out)
     float win_w = in->varying[1].x;
     float win_h = in->varying[1].y;
     const float R = 16.0f;
+    const float n = 2.6f;
 
     mtl_float4 texel = mtl_sample_texture(in, 0, mtl_make_float2(u, v));
     float px = u * win_w;
@@ -52,10 +53,11 @@ fragment void window_fragment(const mtl_fragment_in *in, mtl_fragment_out *out)
     if ((topc || botc) && (lcol || rcol)) {
         float cx = lcol ? R : (win_w - R);
         float cy = topc ? R : (win_h - R);
-        float dx = px - cx;
-        float dy = py - cy;
-        float dist = sqrt(dx * dx + dy * dy);
-        float cov = R + 0.5f - dist;
+        float dx = fabs(px - cx);
+        float dy = fabs(py - cy);
+        float dist = pow(pow(dx / R, n) + pow(dy / R, n), 1.0f / n);
+        float px_dist = (dist - 1.0f) * R;
+        float cov = clamp(0.5f - px_dist, 0.0f, 1.0f);
         if (cov <= 0.0f) {
             out->color = mtl_make_float4(0.0f, 0.0f, 0.0f, 0.0f);
             out->discard = 1;
