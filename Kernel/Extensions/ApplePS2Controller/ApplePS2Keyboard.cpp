@@ -83,8 +83,20 @@ ApplePS2Keyboard * ApplePS2Keyboard::probe(IOService * provider, SInt32 * score)
 
 bool ApplePS2Keyboard::start(IOService * provider)
 {
-    IOLog("ApplePS2Keyboard: bypassed for direct Metal WindowServer PS/2 keyboard engine\n");
-    return false;
+    if (!super::start(provider)) {
+        return false;
+    }
+
+    _device = OSDynamicCast(ApplePS2KeyboardDevice, provider);
+    if (_device == NULL) {
+        return false;
+    }
+
+    setKeyboardEnable(true);
+    registerService();
+
+    IOLog("ApplePS2Keyboard: started (direct WindowServer polling mode)\n");
+    return true;
 }
 
 void ApplePS2Keyboard::stop(IOService * provider)

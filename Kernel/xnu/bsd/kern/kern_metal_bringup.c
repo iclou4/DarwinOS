@@ -664,7 +664,13 @@ fb_present(struct proc *p, struct fb_present_args *uap, int32_t *retval)
 		    phys, user_addr, size / 1024);
 
 		if (src != 0) {
-			error = copyout(&user_addr, src, sizeof(user_addr));
+			uint64_t fb_info[5];
+			fb_info[0] = user_addr;
+			fb_info[1] = fb.width;
+			fb_info[2] = fb.height;
+			fb_info[3] = fb.stride;
+			fb_info[4] = fb.depth;
+			error = copyout(fb_info, src, sizeof(fb_info));
 		}
 		*retval = 0;
 		return error;
@@ -956,16 +962,29 @@ mtl_install_test_payload(void)
 			break;
 		}
 
-		char path[256];
-		const char *n = h->name;
-		if (n[0] == '.' && n[1] == '/') {
-			n += 2;
+		char name_buf[101];
+		char prefix_buf[156];
+		memcpy(name_buf, h->name, sizeof(h->name));
+		name_buf[sizeof(h->name)] = '\0';
+		memcpy(prefix_buf, h->prefix, sizeof(h->prefix));
+		prefix_buf[sizeof(h->prefix)] = '\0';
+
+		const char *pfx = prefix_buf;
+		const char *n = name_buf;
+		if (pfx[0] == '.' && pfx[1] == '/') pfx += 2;
+		if (n[0] == '.' && n[1] == '/') n += 2;
+
+		char path[512];
+		if (pfx[0] != '\0') {
+			snprintf(path, sizeof(path), "/%s/%s", pfx, n);
+		} else {
+			if (n[0] == '\0') {
+				offset += 512;
+				continue;
+			}
+			snprintf(path, sizeof(path), "/%s", n);
 		}
-		if (n[0] == '\0') {
-			offset += 512;
-			continue;
-		}
-		snprintf(path, sizeof(path), "/%s", n);
+
 		size_t plen = strlen(path);
 		if (plen > 1 && path[plen - 1] == '/') {
 			path[plen - 1] = '\0';
@@ -979,14 +998,33 @@ mtl_install_test_payload(void)
 
 		offset += 512;
 
+		/* Ensure parent directories exist */
+		{
+			char tmp[512];
+			size_t len = strlen(path);
+			if (len > 0 && len < sizeof(tmp)) {
+				memcpy(tmp, path, len + 1);
+				for (size_t i = 1; i < len; i++) {
+					if (tmp[i] == '/') {
+						tmp[i] = '\0';
+						kernel_mkdir(tmp, 0755);
+						tmp[i] = '/';
+					}
+				}
+			}
+		}
+
 		if (h->typeflag == '5') {
 			kernel_mkdir(path, (int)mode);
 		} else if (h->typeflag == '2') {
-			int err = kernel_symlink(h->linkname, path);
+			char link_buf[101];
+			memcpy(link_buf, h->linkname, sizeof(h->linkname));
+			link_buf[sizeof(h->linkname)] = '\0';
+			int err = kernel_symlink(link_buf, path);
 			if (err == 0) {
-				kprintf("mtl: symlink %s -> %s\n", path, h->linkname);
+				kprintf("mtl: symlink %s -> %s\n", path, link_buf);
 			} else {
-				kprintf("mtl: symlink %s -> %s FAILED (%d)\n", path, h->linkname, err);
+				kprintf("mtl: symlink %s -> %s FAILED (%d)\n", path, link_buf, err);
 			}
 		} else if (h->typeflag == '0' || h->typeflag == '\0') {
 			int err = kernel_write_file(path, mtl_tar_payload + offset, file_size, (int)mode);

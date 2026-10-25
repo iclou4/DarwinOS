@@ -1136,7 +1136,11 @@ vfs_mountroot(void)
 	 */
 	bdevvp_rootvp = rootvp;
 
+	extern char rootdevice[];
+	kprintf("vfs_mountroot: rootdev=0x%x, rootdevice='%s', vfsconf=%p\n", rootdev, rootdevice, vfsconf);
 	for (vfsp = vfsconf; vfsp; vfsp = vfsp->vfc_next) {
+		kprintf("vfs_mountroot: candidate '%s', mountroot=%p, canmount=%d\n",
+		    vfsp->vfc_name, vfsp->vfc_mountroot, (int)ISSET(vfsp->vfc_vfsflags, VFC_VFSCANMOUNTROOT));
 		if (vfsp->vfc_mountroot == NULL
 		    && !ISSET(vfsp->vfc_vfsflags, VFC_VFSCANMOUNTROOT)) {
 			continue;
@@ -1150,6 +1154,7 @@ vfs_mountroot(void)
 		} else {
 			error = VFS_MOUNT(mp, rootvp, 0, ctx);
 		}
+		kprintf("vfs_mountroot: candidate '%s' result error=%d\n", vfsp->vfc_name, error);
 
 		if (!error) {
 			if (bdevvp_rootvp != rootvp) {

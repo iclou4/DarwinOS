@@ -102,10 +102,10 @@ wslog(const char *fmt, ...)
 
 #define kWindowServerTitlebarHeight 32.0
 
-static int      g_w = 1280;
-static int      g_h = 800;
+static int      g_w = 1920;
+static int      g_h = 1080;
 static int      g_depth = 32;
-static int      g_stride = 1280 * 4;
+static int      g_stride = 1920 * 4;
 static size_t   g_fbsize;
 static uint32_t *g_fb;
 static uint8_t  *g_vram;             /* zero-copy VRAM mapping, if available */
@@ -122,17 +122,24 @@ now_ms(void)
 static void
 fb_map(void)
 {
-    uint64_t addr = 0;
+    uint64_t info[5] = {0};
 
     /*
      * (w,h) == (0,0) maps the scanout framebuffer into this task.  Writing
      * straight into VRAM turns a present into a streaming copy instead of a
      * 4 MB copyin through the kernel (which costs ~1s per frame under TCG).
      */
-    ws_invoke(SYS_FB, (long)&addr, 0, 0, 0);
-    if (addr != 0) {
-        g_vram = (uint8_t *)(uintptr_t)addr;
-        wslog("WindowServer: vram mapped at %p", g_vram);
+    ws_invoke(SYS_FB, (long)info, 0, 0, 0);
+    if (info[0] != 0) {
+        g_vram = (uint8_t *)(uintptr_t)info[0];
+        if (info[1] > 0 && info[2] > 0) {
+            g_w = (int)info[1];
+            g_h = (int)info[2];
+            g_stride = (int)info[3];
+            g_depth = (int)info[4];
+            g_fbsize = (size_t)g_stride * (size_t)g_h;
+        }
+        wslog("WindowServer: vram mapped at %p (%dx%d, stride %d)", g_vram, g_w, g_h, g_stride);
     } else {
         wslog("WindowServer: vram map unavailable, present stays a syscall");
     }
@@ -782,11 +789,11 @@ enum {
 
 #define TERM_MAX_COLS 140
 #define TERM_MAX_ROWS 45
-#define TERM_MAX_W 1280
-#define TERM_MAX_H 800
+#define TERM_MAX_W 1920
+#define TERM_MAX_H 1080
 
 static int g_show_terminal = 0;
-static double g_term_x = 280;
+static double g_term_x = 610;
 static double g_term_y = 60;
 static int g_term_body_w = 668;
 static int g_term_body_h = 452;
@@ -919,9 +926,9 @@ term_exec_command(const char *cmd_line)
         pid_t pid = fork();
         if (pid == 0) {
             close(pfd[0]);
-            dup2(pfd[1], 1);
-            dup2(pfd[1], 2);
-            close(pfd[1]);
+            if (pfd[1] != 1) dup2(pfd[1], 1);
+            if (pfd[1] != 2) dup2(pfd[1], 2);
+            if (pfd[1] != 1 && pfd[1] != 2) close(pfd[1]);
 
             char bin_path[128];
             if (cmd[0] == '/' || (cmd[0] == '.' && cmd[1] == '/')) {
@@ -1135,12 +1142,12 @@ term_exec_command(const char *cmd_line)
     } else if (strcmp(cmd, "reboot") == 0 || strcmp(cmd, "restart") == 0) {
         term_print_string("\nRebooting system...\n");
         sync();
-        reboot(0);
+        reboot(0x400);
         return;
     } else if (strcmp(cmd, "halt") == 0 || strcmp(cmd, "shutdown") == 0) {
         term_print_string("\nHalting system...\n");
         sync();
-        reboot(0x08);
+        reboot(0x400 | 0x08);
         return;
     } else if (strcmp(cmd, "exit") == 0) {
         g_show_terminal = 0;
@@ -2453,16 +2460,16 @@ poll_input(void)
                 if (clicked_row == 2) {
                     wslog("WindowServer: Apple Menu -> Restart clicked! Syncing and rebooting...");
                     sync();
-                    reboot(0);
+                    reboot(0x400);
                 } else if (clicked_row == 3) {
                     wslog("WindowServer: Apple Menu -> Shut Down clicked! Syncing and halting...");
                     sync();
-                    reboot(0x08); /* RB_HALT */
+                    reboot(0x400 | 0x08); /* RB_HALT */
                 }
             } else if (is_term_menu) {
                 if (g_active_menu == 0) {
                     if (clicked_row == 0) {
-                        g_show_about = 1; g_about_x = ABOUT_WINDOW_X; g_about_y = ABOUT_WINDOW_Y;
+                        g_show_about = 1; g_about_x = (g_w - ABOUT_WINDOW_W) / 2.0; g_about_y = (g_h - ABOUT_WINDOW_H) / 2.0;
                     } else if (clicked_row == 4) {
                         term_exec_command("clear");
                     } else if (clicked_row == 6) {
@@ -3555,8 +3562,11 @@ main(int argc, char **argv)
         return 1;
     wslog("WindowServer: service port name = %u", (unsigned)service);
 
-    fb_alloc();
     fb_map();
+    fb_alloc();
+    g_about_x = (g_w - ABOUT_WINDOW_W) / 2.0;
+    g_about_y = (g_h - ABOUT_WINDOW_H) / 2.0;
+    g_term_x = (g_w - (g_term_body_w + 32)) / 2.0;
     ws_metal_init();
 
     /* publish the first frame before any client connects */
