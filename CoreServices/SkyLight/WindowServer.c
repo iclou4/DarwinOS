@@ -45,6 +45,7 @@
 #include "cursor_data.h"
 #include "menubar_data.h"
 #include "recovery_ui_data.h"
+#include "terminal_data.h"
 #include <Metal/MTLSoftware.h>
 
 /* ------------------------------------------------------------------ */
@@ -766,6 +767,270 @@ static double g_about_x = ABOUT_WINDOW_X;
 static double g_about_y = ABOUT_WINDOW_Y;
 static int g_about_dragging = 0;
 
+/* --- Terminal App State & Engine --- */
+static int g_show_terminal = 0;
+static double g_term_x = (1280 - TERM_W) / 2;
+static double g_term_y = 110;
+static int g_term_dragging = 0;
+static int g_term_redraw_needed = 1;
+
+static uint32_t g_term_window_pixels[TERM_W * TERM_H];
+static char g_term_lines[TERM_ROWS][TERM_COLS + 1];
+static int g_term_cursor_row = 0;
+static int g_term_cursor_col = 0;
+static char g_term_cmd[128];
+static int g_term_cmd_len = 0;
+static int g_term_inited = 0;
+
+static void
+term_scroll_up(void)
+{
+    for (int r = 0; r < TERM_ROWS - 1; r++) {
+        memcpy(g_term_lines[r], g_term_lines[r + 1], TERM_COLS + 1);
+    }
+    memset(g_term_lines[TERM_ROWS - 1], 0, TERM_COLS + 1);
+}
+
+static void
+term_print_string(const char *str)
+{
+    while (*str) {
+        if (*str == '\n') {
+            g_term_cursor_col = 0;
+            if (g_term_cursor_row < TERM_ROWS - 1) {
+                g_term_cursor_row++;
+            } else {
+                term_scroll_up();
+            }
+        } else if (*str == '\r') {
+            g_term_cursor_col = 0;
+        } else {
+            if (g_term_cursor_col >= TERM_COLS) {
+                g_term_cursor_col = 0;
+                if (g_term_cursor_row < TERM_ROWS - 1) {
+                    g_term_cursor_row++;
+                } else {
+                    term_scroll_up();
+                }
+            }
+            g_term_lines[g_term_cursor_row][g_term_cursor_col++] = *str;
+            g_term_lines[g_term_cursor_row][g_term_cursor_col] = '\0';
+        }
+        str++;
+    }
+    g_term_redraw_needed = 1;
+}
+
+static void
+term_init(void)
+{
+    if (g_term_inited) return;
+    for (int r = 0; r < TERM_ROWS; r++) {
+        memset(g_term_lines[r], 0, TERM_COLS + 1);
+    }
+    g_term_cursor_row = 0;
+    g_term_cursor_col = 0;
+    term_print_string("darwinOS Recovery Environment\nType \"help\" for a list of built-in commands.\n\n-sh-3.2# ");
+    g_term_cmd_len = 0;
+    g_term_cmd[0] = '\0';
+    g_term_inited = 1;
+}
+
+static void
+term_exec_command(const char *cmd)
+{
+    while (*cmd == ' ') cmd++;
+    if (*cmd == '\0') {
+        term_print_string("\n-sh-3.2# ");
+        return;
+    }
+
+    if (strcmp(cmd, "help") == 0) {
+        term_print_string("\nGNU bash, version 3.2.57(1)-release (x86_64-apple-darwin19)\n"
+                          "Built-in recovery commands:\n"
+                          "  help         Show this list of commands\n"
+                          "  uname -a     Display Darwin kernel version\n"
+                          "  sw_vers      Display system version\n"
+                          "  ls [-la]     List directory contents\n"
+                          "  pwd          Print working directory\n"
+                          "  whoami       Print current user\n"
+                          "  id           Print user/group identities\n"
+                          "  date         Print system date and time\n"
+                          "  clear        Clear screen\n"
+                          "  reboot       Reboot machine\n"
+                          "  halt         Shut down machine\n"
+                          "  exit         Close Terminal\n-sh-3.2# ");
+    } else if (strcmp(cmd, "uname") == 0 || strcmp(cmd, "uname -a") == 0) {
+        term_print_string("\nDarwin darwinOS 19.6.0 Darwin Kernel Version 19.6.0: root:xnu/RELEASE_X86_64 x86_64\n-sh-3.2# ");
+    } else if (strcmp(cmd, "sw_vers") == 0) {
+        term_print_string("\nProductName:    darwinOS\nProductVersion: 1.0\nBuildVersion:    19G73\n-sh-3.2# ");
+    } else if (strcmp(cmd, "pwd") == 0) {
+        term_print_string("\n/var/root\n-sh-3.2# ");
+    } else if (strcmp(cmd, "whoami") == 0) {
+        term_print_string("\nroot\n-sh-3.2# ");
+    } else if (strcmp(cmd, "id") == 0) {
+        term_print_string("\nuid=0(root) gid=0(wheel) groups=0(wheel)\n-sh-3.2# ");
+    } else if (strcmp(cmd, "date") == 0) {
+        term_print_string("\nSun Oct 25 11:00:00 UTC 2026\n-sh-3.2# ");
+    } else if (strcmp(cmd, "ls") == 0) {
+        term_print_string("\nApplications  Library  System  Users  bin  etc  sbin  tmp  usr  var\n-sh-3.2# ");
+    } else if (strcmp(cmd, "ls -l") == 0 || strcmp(cmd, "ls -la") == 0) {
+        term_print_string("\ntotal 80\n"
+                          "drwxr-xr-x  12 root  wheel   384 Oct 25 10:42 .\n"
+                          "drwxr-xr-x  12 root  wheel   384 Oct 25 10:42 ..\n"
+                          "drwxr-xr-x   3 root  wheel    96 Oct 25 10:42 Applications\n"
+                          "drwxr-xr-x   3 root  wheel    96 Oct 25 10:42 Library\n"
+                          "drwxr-xr-x   3 root  wheel    96 Oct 25 10:42 System\n"
+                          "drwxr-xr-x   3 root  wheel    96 Oct 25 10:42 Users\n"
+                          "drwxr-xr-x  38 root  wheel  1216 Oct 25 10:42 bin\n"
+                          "drwxr-xr-x  12 root  wheel   384 Oct 25 10:42 etc\n"
+                          "drwxr-xr-x  64 root  wheel  2048 Oct 25 10:42 sbin\n"
+                          "drwxrwxrwt   2 root  wheel    64 Oct 25 10:42 tmp\n"
+                          "drwxr-xr-x   9 root  wheel   288 Oct 25 10:42 usr\n"
+                          "drwxr-xr-x  26 root  wheel   832 Oct 25 10:42 var\n-sh-3.2# ");
+    } else if (strcmp(cmd, "clear") == 0) {
+        for (int r = 0; r < TERM_ROWS; r++) {
+            memset(g_term_lines[r], 0, TERM_COLS + 1);
+        }
+        g_term_cursor_row = 0;
+        g_term_cursor_col = 0;
+        term_print_string("-sh-3.2# ");
+    } else if (strcmp(cmd, "reboot") == 0) {
+        term_print_string("\nRebooting system...\n");
+        sync();
+        reboot(0);
+    } else if (strcmp(cmd, "halt") == 0 || strcmp(cmd, "shutdown") == 0) {
+        term_print_string("\nHalting system...\n");
+        sync();
+        reboot(0x08);
+    } else if (strcmp(cmd, "exit") == 0) {
+        g_show_terminal = 0;
+        g_dirty = 1;
+    } else {
+        term_print_string("\n-sh: ");
+        term_print_string(cmd);
+        term_print_string(": command not found\n-sh-3.2# ");
+    }
+}
+
+static void
+term_handle_char(char c)
+{
+    if (c == '\n' || c == '\r') {
+        g_term_cmd[g_term_cmd_len] = '\0';
+        char buf[128];
+        strncpy(buf, g_term_cmd, sizeof(buf) - 1);
+        buf[sizeof(buf) - 1] = '\0';
+        g_term_cmd_len = 0;
+        g_term_cmd[0] = '\0';
+        term_exec_command(buf);
+    } else if (c == '\b') {
+        if (g_term_cmd_len > 0) {
+            g_term_cmd[--g_term_cmd_len] = '\0';
+            if (g_term_cursor_col > 0) {
+                g_term_lines[g_term_cursor_row][--g_term_cursor_col] = '\0';
+                g_term_redraw_needed = 1;
+            }
+        }
+    } else if (c >= 32 && c <= 126) {
+        if (g_term_cmd_len < (int)sizeof(g_term_cmd) - 2 && g_term_cursor_col < TERM_COLS - 1) {
+            g_term_cmd[g_term_cmd_len++] = c;
+            g_term_cmd[g_term_cmd_len] = '\0';
+            g_term_lines[g_term_cursor_row][g_term_cursor_col++] = c;
+            g_term_lines[g_term_cursor_row][g_term_cursor_col] = '\0';
+            g_term_redraw_needed = 1;
+        }
+    }
+}
+
+static void
+term_render_glyph(uint32_t *dst_surface, int x0, int y0, char c, uint32_t text_color)
+{
+    if (c < 32 || c > 126) return;
+    int glyph_idx = c - 32;
+    const uint8_t *glyph_col_start = g_sfmono_atlas + glyph_idx * TERM_CHAR_W;
+
+    unsigned tr = (text_color >> 16) & 0xffu;
+    unsigned tg = (text_color >> 8) & 0xffu;
+    unsigned tb = text_color & 0xffu;
+
+    for (int gy = 0; gy < TERM_CHAR_H; gy++) {
+        int py = y0 + gy;
+        if (py < 0 || py >= TERM_H) continue;
+        const uint8_t *src_row = glyph_col_start + gy * (95 * TERM_CHAR_W);
+        uint32_t *dst_row = dst_surface + (size_t)py * (size_t)TERM_W;
+
+        for (int gx = 0; gx < TERM_CHAR_W; gx++) {
+            int px = x0 + gx;
+            if (px < 0 || px >= TERM_W) continue;
+            unsigned a = src_row[gx];
+            if (a == 0) continue;
+
+            uint32_t d = dst_row[px];
+            if (a == 255) {
+                dst_row[px] = (0xff000000u | (tr << 16) | (tg << 8) | tb);
+            } else {
+                unsigned inv = 255u - a;
+                unsigned dr = (d >> 16) & 0xffu;
+                unsigned dg = (d >> 8) & 0xffu;
+                unsigned db = d & 0xffu;
+                unsigned r = (tr * a + dr * inv + 127u) / 255u;
+                unsigned g = (tg * a + dg * inv + 127u) / 255u;
+                unsigned b = (tb * a + db * inv + 127u) / 255u;
+                dst_row[px] = (0xff000000u | (r << 16) | (g << 8) | b);
+            }
+        }
+    }
+}
+
+static inline void
+draw_terminal_window(void)
+{
+    if (!g_show_terminal || !g_fb) return;
+    term_init();
+
+    if (g_term_redraw_needed) {
+        memcpy(g_term_window_pixels, g_terminal_base_pixels, sizeof(g_terminal_base_pixels));
+        for (int r = 0; r < TERM_ROWS; r++) {
+            int y = TERM_PAD + TERM_MARGIN_TOP + r * TERM_CHAR_H;
+            const char *line = g_term_lines[r];
+            int len = strlen(line);
+            for (int c = 0; c < len && c < TERM_COLS; c++) {
+                int x = TERM_PAD + TERM_MARGIN_LEFT + c * TERM_CHAR_W;
+                term_render_glyph(g_term_window_pixels, x, y, line[c], 0x00ECECECu);
+            }
+        }
+        /* Render block cursor █ at cursor position */
+        int cur_x = TERM_PAD + TERM_MARGIN_LEFT + g_term_cursor_col * TERM_CHAR_W;
+        int cur_y = TERM_PAD + TERM_MARGIN_TOP + g_term_cursor_row * TERM_CHAR_H;
+        for (int dy = 1; dy < TERM_CHAR_H - 1; dy++) {
+            int py = cur_y + dy;
+            if (py >= 0 && py < TERM_H) {
+                uint32_t *row = g_term_window_pixels + (size_t)py * (size_t)TERM_W;
+                for (int dx = 0; dx < TERM_CHAR_W; dx++) {
+                    int px = cur_x + dx;
+                    if (px >= 0 && px < TERM_W) {
+                        row[px] = 0xffc8c8c8u;
+                    }
+                }
+            }
+        }
+        g_term_redraw_needed = 0;
+    }
+
+    int tx = (int)g_term_x;
+    int ty = (int)g_term_y;
+    for (int dy = 0; dy < TERM_H && (ty + dy) < g_h; dy++) {
+        if (ty + dy < 0) continue;
+        uint32_t *dst = g_fb + (size_t)(ty + dy) * (size_t)g_w + tx;
+        const uint32_t *src = g_term_window_pixels + (size_t)dy * (size_t)TERM_W;
+        for (int dx = 0; dx < TERM_W; dx++) {
+            if (tx + dx < 0 || tx + dx >= g_w) continue;
+            dst[dx] = blend_pixel(dst[dx], src[dx]);
+        }
+    }
+}
+
 static inline void
 draw_about_window(void)
 {
@@ -1081,6 +1346,7 @@ composite_ex(int is_drag, int sc_x, int sc_y, int sc_w, int sc_h)
                     composite_window(w);
             }
         }
+        draw_terminal_window();
         draw_about_window();
         draw_menubar();
         if (!g_cursor_hidden)
@@ -1190,6 +1456,7 @@ composite_ex(int is_drag, int sc_x, int sc_y, int sc_w, int sc_h)
     }
     t_after_commit = now_ms();
 
+    draw_terminal_window();
     draw_about_window();
     draw_menubar();
 
@@ -1348,11 +1615,51 @@ activate_app(WSApp *app, WSWindow *win)
 /* input                                                              */
 /* ------------------------------------------------------------------ */
 
+static int g_shift_down = 0;
+static const char g_scancode_normal[128] = {
+    [0x02] = '1', [0x03] = '2', [0x04] = '3', [0x05] = '4',
+    [0x06] = '5', [0x07] = '6', [0x08] = '7', [0x09] = '8',
+    [0x0A] = '9', [0x0B] = '0', [0x0C] = '-', [0x0D] = '=',
+    [0x0E] = '\b', [0x0F] = '\t',
+    [0x10] = 'q', [0x11] = 'w', [0x12] = 'e', [0x13] = 'r',
+    [0x14] = 't', [0x15] = 'y', [0x16] = 'u', [0x17] = 'i',
+    [0x18] = 'o', [0x19] = 'p', [0x1A] = '[', [0x1B] = ']',
+    [0x1C] = '\n',
+    [0x1E] = 'a', [0x1F] = 's', [0x20] = 'd', [0x21] = 'f',
+    [0x22] = 'g', [0x23] = 'h', [0x24] = 'j', [0x25] = 'k',
+    [0x26] = 'l', [0x27] = ';', [0x28] = '\'', [0x29] = '`',
+    [0x2B] = '\\',
+    [0x2C] = 'z', [0x2D] = 'x', [0x2E] = 'c', [0x2F] = 'v',
+    [0x30] = 'b', [0x31] = 'n', [0x32] = 'm', [0x33] = ',',
+    [0x34] = '.', [0x35] = '/',
+    [0x39] = ' '
+};
+
+static const char g_scancode_shift[128] = {
+    [0x02] = '!', [0x03] = '@', [0x04] = '#', [0x05] = '$',
+    [0x06] = '%', [0x07] = '^', [0x08] = '&', [0x09] = '*',
+    [0x0A] = '(', [0x0B] = ')', [0x0C] = '_', [0x0D] = '+',
+    [0x0E] = '\b', [0x0F] = '\t',
+    [0x10] = 'Q', [0x11] = 'W', [0x12] = 'E', [0x13] = 'R',
+    [0x14] = 'T', [0x15] = 'Y', [0x16] = 'U', [0x17] = 'I',
+    [0x18] = 'O', [0x19] = 'P', [0x1A] = '{', [0x1B] = '}',
+    [0x1C] = '\n',
+    [0x1E] = 'A', [0x1F] = 'S', [0x20] = 'D', [0x21] = 'F',
+    [0x22] = 'G', [0x23] = 'H', [0x24] = 'J', [0x25] = 'K',
+    [0x26] = 'L', [0x27] = ':', [0x28] = '"', [0x29] = '~',
+    [0x2B] = '|',
+    [0x2C] = 'Z', [0x2D] = 'X', [0x2E] = 'C', [0x2F] = 'V',
+    [0x30] = 'B', [0x31] = 'N', [0x32] = 'M', [0x33] = '<',
+    [0x34] = '>', [0x35] = '?',
+    [0x39] = ' '
+};
+
 struct ws2_mouse_state {
     int mouse_x;
     int mouse_y;
     int buttons;
     int has_moved;
+    int key_scancode;
 };
 
 static void
@@ -1429,6 +1736,33 @@ poll_input(void)
 
     if ((buttons & 1) && !(lastbuttons & 1)) {
         /* left down */
+        if (g_show_terminal) {
+            double win_body_x = px - (g_term_x + (double)TERM_PAD);
+            double win_body_y = ((double)g_h - py) - (g_term_y + (double)TERM_PAD);
+            int inside_body = (win_body_x >= 0 && win_body_x < TERM_BODY_W &&
+                               win_body_y >= 0 && win_body_y < TERM_BODY_H);
+
+            if (inside_body) {
+                double rdx = win_body_x - 18.0;
+                double rdy = win_body_y - 14.0;
+                if (rdx * rdx + rdy * rdy <= 49.0) {
+                    g_show_terminal = 0;
+                    g_term_dragging = 0;
+                    g_dirty = 1;
+                    lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                    pthread_mutex_unlock(&g_lock);
+                    return;
+                }
+                if (win_body_y < 28.0) {
+                    g_term_dragging = 1;
+                }
+                g_dirty = 1;
+                lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                pthread_mutex_unlock(&g_lock);
+                return;
+            }
+        }
+
         if (g_show_about) {
             double win_body_x = px - (g_about_x + 28.0);
             double win_body_y = ((double)g_h - py) - (g_about_y + 28.0);
@@ -1471,22 +1805,58 @@ poll_input(void)
             pthread_mutex_unlock(&g_lock);
             return;
         } else if (g_active_menu >= 0) {
+            int drop_x = 0, drop_y = 0, drop_w = 0, drop_h = 0;
+            if (g_active_menu == 10) { drop_x = DROPDOWN_APPLE_X; drop_y = DROPDOWN_APPLE_Y; drop_w = DROPDOWN_APPLE_W; drop_h = DROPDOWN_APPLE_H; }
+            else if (g_active_menu == 0) { drop_x = DROPDOWN_RECOVERY_X; drop_y = DROPDOWN_RECOVERY_Y; drop_w = DROPDOWN_RECOVERY_W; drop_h = DROPDOWN_RECOVERY_H; }
+            else if (g_active_menu == 1) { drop_x = DROPDOWN_FILE_X; drop_y = DROPDOWN_FILE_Y; drop_w = DROPDOWN_FILE_W; drop_h = DROPDOWN_FILE_H; }
+            else if (g_active_menu == 2) { drop_x = DROPDOWN_EDIT_X; drop_y = DROPDOWN_EDIT_Y; drop_w = DROPDOWN_EDIT_W; drop_h = DROPDOWN_EDIT_H; }
+            else if (g_active_menu == 3) { drop_x = DROPDOWN_UTILITIES_X; drop_y = DROPDOWN_UTILITIES_Y; drop_w = DROPDOWN_UTILITIES_W; drop_h = DROPDOWN_UTILITIES_H; }
+            else if (g_active_menu == 4) { drop_x = DROPDOWN_WINDOW_X; drop_y = DROPDOWN_WINDOW_Y; drop_w = DROPDOWN_WINDOW_W; drop_h = DROPDOWN_WINDOW_H; }
+            else if (g_active_menu == 5) { drop_x = DROPDOWN_HELP_X; drop_y = DROPDOWN_HELP_Y; drop_w = DROPDOWN_HELP_W; drop_h = DROPDOWN_HELP_H; }
+
+            double mx = px - drop_x;
+            double my = ((double)g_h - py) - drop_y;
+            int clicked_row = -1;
+            if (mx >= 0 && mx < drop_w && my >= 0 && my < drop_h) {
+                if (g_active_menu == 10) {
+                    if (my >= 4 && my < 25) clicked_row = 0;
+                    else if (my >= 32 && my < 53) clicked_row = 2;
+                    else if (my >= 53 && my < 74) clicked_row = 3;
+                } else if (g_active_menu == 0) {
+                    if (my >= 4 && my < 25) clicked_row = 0;
+                } else if (g_active_menu == 3) {
+                    if (my >= 4 && my < 25) clicked_row = 0;
+                    else if (my >= 25 && my < 46) clicked_row = 1;
+                    else if (my >= 46 && my < 67) clicked_row = 2;
+                    else if (my >= 67 && my < 88) clicked_row = 3;
+                }
+            }
+            if (clicked_row < 0) clicked_row = g_hovered_row;
+
             /* Execute action of selected menu row */
             if (g_active_menu == 10) {
-                if (g_hovered_row == 2) {
+                if (clicked_row == 2) {
                     wslog("WindowServer: Apple Menu -> Restart clicked! Syncing and rebooting...");
                     sync();
                     reboot(0);
-                } else if (g_hovered_row == 3) {
+                } else if (clicked_row == 3) {
                     wslog("WindowServer: Apple Menu -> Shut Down clicked! Syncing and halting...");
                     sync();
                     reboot(0x08); /* RB_HALT */
                 }
             } else if (g_active_menu == 0) {
-                if (g_hovered_row == 0) {
+                if (clicked_row == 0) {
                     g_show_about = 1;
                     g_about_x = ABOUT_WINDOW_X;
                     g_about_y = ABOUT_WINDOW_Y;
+                }
+            } else if (g_active_menu == 3) {
+                if (clicked_row == 2) {
+                    wslog("WindowServer: Utilities -> Terminal clicked! Launching Terminal...");
+                    g_show_terminal = 1;
+                    g_term_x = (g_w - TERM_W) / 2;
+                    g_term_y = 100;
+                    g_term_redraw_needed = 1;
                 }
             }
             g_active_menu = -1;
@@ -1548,6 +1918,17 @@ poll_input(void)
         }
     } else if (!(buttons & 1)) {
         g_about_dragging = 0;
+        g_term_dragging = 0;
+    }
+
+    if (g_show_terminal && g_term_dragging && (dx != 0 || dy != 0)) {
+        g_term_x += dx;
+        g_term_y -= dy;
+        if (g_term_x < -TERM_PAD) g_term_x = -TERM_PAD;
+        if (g_term_x > g_w - TERM_W + TERM_PAD) g_term_x = g_w - TERM_W + TERM_PAD;
+        if (g_term_y < MENUBAR_H - TERM_PAD) g_term_y = MENUBAR_H - TERM_PAD;
+        if (g_term_y > g_h - TERM_H + TERM_PAD) g_term_y = g_h - TERM_H + TERM_PAD;
+        g_dirty = 1;
     }
 
     if (g_show_about && g_about_dragging && (dx != 0 || dy != 0)) {
@@ -1667,6 +2048,28 @@ poll_input(void)
             me.dx = dx; me.dy = dy;
             send_event(under, &me);
         }
+    }
+
+    /* Keyboard input processing */
+    if (ms.key_scancode != 0) {
+        int sc = ms.key_scancode & 0xff;
+        if (sc == 0x2A || sc == 0x36) {
+            g_shift_down = 1;
+        } else if (sc == 0xAA || sc == 0xB6) {
+            g_shift_down = 0;
+        } else if ((sc & 0x80) == 0 && sc < 128) {
+            char c = g_shift_down ? g_scancode_shift[sc] : g_scancode_normal[sc];
+            if (!g_show_terminal && (c == 't' || c == 'T')) {
+                g_show_terminal = 1;
+                g_term_x = (g_w - TERM_W) / 2;
+                g_term_y = 100;
+                g_term_redraw_needed = 1;
+                g_dirty = 1;
+            } else if (g_show_terminal && c != 0) {
+                term_handle_char(c);
+                g_dirty = 1;
+            }
+        }
     } else if ((buttons & 2) && !(lastbuttons & 2)) {
         struct mach_event me;
         memset(&me, 0, sizeof(me));
@@ -1704,6 +2107,28 @@ poll_input(void)
             me.buttons[0] = (buttons & 1) ? 1 : 0;
             me.buttons[1] = (buttons & 2) ? 1 : 0;
             send_event(under, &me);
+        }
+    }
+
+    /* Keyboard input processing */
+    if (ms.key_scancode != 0) {
+        int sc = ms.key_scancode & 0xff;
+        if (sc == 0x2A || sc == 0x36) {
+            g_shift_down = 1;
+        } else if (sc == 0xAA || sc == 0xB6) {
+            g_shift_down = 0;
+        } else if ((sc & 0x80) == 0 && sc < 128) {
+            char c = g_shift_down ? g_scancode_shift[sc] : g_scancode_normal[sc];
+            if (!g_show_terminal && (c == 't' || c == 'T')) {
+                g_show_terminal = 1;
+                g_term_x = (g_w - TERM_W) / 2;
+                g_term_y = 100;
+                g_term_redraw_needed = 1;
+                g_dirty = 1;
+            } else if (g_show_terminal && c != 0) {
+                term_handle_char(c);
+                g_dirty = 1;
+            }
         }
     }
 

@@ -575,6 +575,8 @@ extern void nanoseconds_to_absolutetime(uint64_t nanosecs, uint64_t *result);
 static uint32_t fb_present_frames;
 static uint64_t fb_frame_interval_abs;
 static uint64_t fb_next_deadline;
+static uint8_t g_ps2_kbd_queue[128];
+static int g_ps2_kbd_head = 0, g_ps2_kbd_tail = 0;
 
 int
 fb_present(struct proc *p, struct fb_present_args *uap, int32_t *retval)
@@ -754,6 +756,12 @@ fb_present(struct proc *p, struct fb_present_args *uap, int32_t *retval)
 				uint8_t data = inb(0x60);
 				if (status & 0x20) {
 					ps2_mouse_handle_byte(data);
+				} else {
+					int next = (g_ps2_kbd_head + 1) % 128;
+					if (next != g_ps2_kbd_tail) {
+						g_ps2_kbd_queue[g_ps2_kbd_head] = data;
+						g_ps2_kbd_head = next;
+					}
 				}
 			} else {
 				break;
@@ -765,6 +773,7 @@ fb_present(struct proc *p, struct fb_present_args *uap, int32_t *retval)
 			int mouse_y;
 			int buttons;
 			int has_moved;
+			int key_scancode;
 		} mstate;
 
 		mstate.mouse_x = g_mouse_x;
@@ -772,6 +781,12 @@ fb_present(struct proc *p, struct fb_present_args *uap, int32_t *retval)
 		mstate.buttons = g_mouse_buttons;
 		mstate.has_moved = g_mouse_has_moved;
 		g_mouse_has_moved = 0;
+		if (g_ps2_kbd_head != g_ps2_kbd_tail) {
+			mstate.key_scancode = (int)g_ps2_kbd_queue[g_ps2_kbd_tail];
+			g_ps2_kbd_tail = (g_ps2_kbd_tail + 1) % 128;
+		} else {
+			mstate.key_scancode = 0;
+		}
 
 		error = copyout(&mstate, src, sizeof(mstate));
 		*retval = 0;
