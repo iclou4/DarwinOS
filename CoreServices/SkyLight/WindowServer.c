@@ -26,6 +26,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/reboot.h>
 #include <fcntl.h>
 #include <errno.h>
 #include <signal.h>
@@ -446,43 +447,31 @@ win_at(double x, double y)
 static inline uint32_t
 blend_pixel(uint32_t d, uint32_t s)
 {
-    unsigned sa = s >> 24;
-    unsigned inv;
-    unsigned sb, sg, sr, db, dg, dr, b, g, r, a;
-
+    unsigned sa = (s >> 24) & 0xffu;
     if (sa == 255)
         return s;
     if (sa == 0)
         return d;
 
-    inv = 255u - sa;
-    sb = s & 0xffu; sg = (s >> 8) & 0xffu; sr = (s >> 16) & 0xffu;
-    db = d & 0xffu; dg = (d >> 8) & 0xffu; dr = (d >> 16) & 0xffu;
+    unsigned inv = 255u - sa;
+    unsigned sr = (s >> 16) & 0xffu;
+    unsigned sg = (s >> 8) & 0xffu;
+    unsigned sb = s & 0xffu;
+    unsigned dr = (d >> 16) & 0xffu;
+    unsigned dg = (d >> 8) & 0xffu;
+    unsigned db = d & 0xffu;
 
-    b = sb + (db * inv + 127u) / 255u;
-    g = sg + (dg * inv + 127u) / 255u;
-    r = sr + (dr * inv + 127u) / 255u;
-    a = sa + (((d >> 24) * inv + 127u) / 255u);
+    unsigned r = (sr * sa + dr * inv + 127u) / 255u;
+    unsigned g = (sg * sa + dg * inv + 127u) / 255u;
+    unsigned b = (sb * sa + db * inv + 127u) / 255u;
 
-    if (b > 255) b = 255;
-    if (g > 255) g = 255;
-    if (r > 255) r = 255;
-    if (a > 255) a = 255;
-
-    return (a << 24) | (r << 16) | (g << 8) | b;
+    return 0xff000000u | (r << 16) | (g << 8) | b;
 }
 
 static void
 composite_window(WSWindow *w)
 {
     int iw, ih, base, dx, sx0, sx1, row;
-
-    /* macOS 26 (Tahoe) window corner radius: 16pt for a titlebar-only
-     * window, 26pt for toolbar windows.  Source: WWDC25 session 310,
-     * "Build an AppKit app with the new design", ~7:00. */
-    const float R = 16.0f;
-    const float R_outer = R + 0.5f;
-    const float R_inner = R - 0.5f;
 
     if (w->surface == NULL || w->w <= 0 || w->h <= 0)
         return;
@@ -505,12 +494,6 @@ composite_window(WSWindow *w)
     if (dx + (sx1 - sx0) > g_w)
         sx1 = sx0 + (g_w - dx);
 
-    /*
-     * The window backing store is a flipped:NO O2 surface: buffer row 0 is
-     * the top of the window.  The presented buffer also has row 0 at the top
-     * of the screen.  A window at Cocoa y (bottom-up) therefore starts at
-     * presented row (screenHeight - y - height).
-     */
     base = g_h - (int)w->y - ih;
 
     for (row = 0; row < ih; row++) {
@@ -518,9 +501,6 @@ composite_window(WSWindow *w)
         uint32_t *src;
         uint32_t *dst;
         int x;
-        int topc = row < (int)R;
-        int botc = row >= ih - (int)R;
-        float ry = topc ? (float)(row + 0.5f - R) : (float)(row + 0.5f - (ih - R));
 
         if (fr < 0 || fr >= g_h)
             continue;
@@ -529,41 +509,6 @@ composite_window(WSWindow *w)
         dst = g_fb + (size_t)fr * (size_t)g_w + dx;
 
         for (x = sx0; x < sx1; x++) {
-            int skip = 0;
-
-            /* rounded corners (all four, Tahoe 16pt):
-             * analytical subpixel coverage (antialiasing) */
-            if (topc || botc) {
-                int lcol = x < (int)R;
-                int rcol = x >= iw - (int)R;
-                if (lcol || rcol) {
-                    float rx = lcol ? (float)(x + 0.5f - R) : (float)(x + 0.5f - (iw - R));
-                    float nx = fabsf(rx) / R;
-                    float ny = fabsf(ry) / R;
-                    float dist = powf(powf(nx, 3.6f) + powf(ny, 3.6f), 0.2777778f) * R;
-                    if (dist >= R_outer) {
-                        skip = 1;
-                    } else if (dist > R_inner) {
-                        /* Subpixel coverage feather band: [R-0.5, R+0.5] */
-                        float cov = R_outer - dist;
-                        uint32_t s = src[x];
-                        unsigned orig_sa = (s >> 24) & 0xffu;
-                        unsigned sa = (unsigned)(orig_sa * cov);
-                        if (sa == 0) {
-                            skip = 1;
-                        } else {
-                            unsigned sb = ((s & 0xffu) * sa + 127u) / 255u;
-                            unsigned sg = (((s >> 8) & 0xffu) * sa + 127u) / 255u;
-                            unsigned sr = (((s >> 16) & 0xffu) * sa + 127u) / 255u;
-                            dst[x - sx0] = blend_pixel(dst[x - sx0],
-                                                       (sa << 24) | (sr << 16) | (sg << 8) | sb);
-                            continue;
-                        }
-                    }
-                }
-            }
-            if (skip)
-                continue;
             dst[x - sx0] = blend_pixel(dst[x - sx0], src[x]);
         }
     }
@@ -815,35 +760,94 @@ ws_metal_init(void)
 }
 
 static int g_active_menu = -1;
+static int g_hovered_row = -1;
+static int g_show_about = 0;
+static double g_about_x = ABOUT_WINDOW_X;
+static double g_about_y = ABOUT_WINDOW_Y;
+static int g_about_dragging = 0;
+
+static inline void
+draw_about_window(void)
+{
+    if (!g_show_about || !g_fb) return;
+    int ax = (int)g_about_x;
+    int ay = (int)g_about_y;
+    for (int dy = 0; dy < ABOUT_WINDOW_H && (ay + dy) < g_h; dy++) {
+        if (ay + dy < 0) continue;
+        uint32_t *dst = g_fb + (size_t)(ay + dy) * (size_t)g_w + ax;
+        const uint32_t *src = g_about_window_pixels + (size_t)dy * (size_t)ABOUT_WINDOW_W;
+        for (int dx = 0; dx < ABOUT_WINDOW_W; dx++) {
+            if (ax + dx < 0 || ax + dx >= g_w) continue;
+            dst[dx] = blend_pixel(dst[dx], src[dx]);
+        }
+    }
+}
 
 static inline void
 draw_menubar(void)
 {
     if (!g_fb || g_w < MENUBAR_W) return;
     const uint32_t *mb_src = g_menubar_pixels;
-    if (g_active_menu == 0) mb_src = g_menubar_recovery;
+    if (g_active_menu == 10) mb_src = g_menubar_apple;
+    else if (g_active_menu == 0) mb_src = g_menubar_recovery;
+    else if (g_active_menu == 1) mb_src = g_menubar_file;
+    else if (g_active_menu == 2) mb_src = g_menubar_edit;
     else if (g_active_menu == 3) mb_src = g_menubar_utilities;
+    else if (g_active_menu == 4) mb_src = g_menubar_window;
+    else if (g_active_menu == 5) mb_src = g_menubar_help;
 
     for (int y = 0; y < MENUBAR_H && y < g_h; y++) {
         memcpy(g_fb + (size_t)y * (size_t)g_w, mb_src + (size_t)y * (size_t)MENUBAR_W, (size_t)MENUBAR_W * 4);
     }
 
-    if (g_active_menu == 0) {
-        for (int dy = 0; dy < DROPDOWN_RECOVERY_H && (DROPDOWN_RECOVERY_Y + dy) < g_h; dy++) {
-            uint32_t *dst = g_fb + (size_t)(DROPDOWN_RECOVERY_Y + dy) * (size_t)g_w + DROPDOWN_RECOVERY_X;
-            const uint32_t *src = g_dropdown_recovery + (size_t)dy * (size_t)DROPDOWN_RECOVERY_W;
-            for (int dx = 0; dx < DROPDOWN_RECOVERY_W; dx++) {
-                uint32_t p = src[dx];
-                if ((p >> 24) != 0) dst[dx] = p;
-            }
-        }
+    const uint32_t *drop_pixels = NULL;
+    int drop_x = 0, drop_y = 0, drop_w = 0, drop_h = 0;
+
+    if (g_active_menu == 10) {
+        drop_x = DROPDOWN_APPLE_X; drop_y = DROPDOWN_APPLE_Y;
+        drop_w = DROPDOWN_APPLE_W; drop_h = DROPDOWN_APPLE_H;
+        int st_idx = 0;
+        if (g_hovered_row == 0) st_idx = 1;
+        else if (g_hovered_row == 2) st_idx = 2;
+        else if (g_hovered_row == 3) st_idx = 3;
+        drop_pixels = g_dropdown_apple_states[st_idx];
+    } else if (g_active_menu == 0) {
+        drop_x = DROPDOWN_RECOVERY_X; drop_y = DROPDOWN_RECOVERY_Y;
+        drop_w = DROPDOWN_RECOVERY_W; drop_h = DROPDOWN_RECOVERY_H;
+        int st_idx = (g_hovered_row == 0) ? 1 : 0;
+        drop_pixels = g_dropdown_recovery_states[st_idx];
+    } else if (g_active_menu == 1) {
+        drop_x = DROPDOWN_FILE_X; drop_y = DROPDOWN_FILE_Y;
+        drop_w = DROPDOWN_FILE_W; drop_h = DROPDOWN_FILE_H;
+        int st_idx = (g_hovered_row == 0) ? 1 : 0;
+        drop_pixels = g_dropdown_file_states[st_idx];
+    } else if (g_active_menu == 2) {
+        drop_x = DROPDOWN_EDIT_X; drop_y = DROPDOWN_EDIT_Y;
+        drop_w = DROPDOWN_EDIT_W; drop_h = DROPDOWN_EDIT_H;
+        drop_pixels = g_dropdown_edit_states[0];
     } else if (g_active_menu == 3) {
-        for (int dy = 0; dy < DROPDOWN_UTILITIES_H && (DROPDOWN_UTILITIES_Y + dy) < g_h; dy++) {
-            uint32_t *dst = g_fb + (size_t)(DROPDOWN_UTILITIES_Y + dy) * (size_t)g_w + DROPDOWN_UTILITIES_X;
-            const uint32_t *src = g_dropdown_utilities + (size_t)dy * (size_t)DROPDOWN_UTILITIES_W;
-            for (int dx = 0; dx < DROPDOWN_UTILITIES_W; dx++) {
-                uint32_t p = src[dx];
-                if ((p >> 24) != 0) dst[dx] = p;
+        drop_x = DROPDOWN_UTILITIES_X; drop_y = DROPDOWN_UTILITIES_Y;
+        drop_w = DROPDOWN_UTILITIES_W; drop_h = DROPDOWN_UTILITIES_H;
+        int st_idx = (g_hovered_row >= 0 && g_hovered_row < 4) ? (g_hovered_row + 1) : 0;
+        drop_pixels = g_dropdown_utilities_states[st_idx];
+    } else if (g_active_menu == 4) {
+        drop_x = DROPDOWN_WINDOW_X; drop_y = DROPDOWN_WINDOW_Y;
+        drop_w = DROPDOWN_WINDOW_W; drop_h = DROPDOWN_WINDOW_H;
+        int st_idx = (g_hovered_row == 3) ? 1 : 0;
+        drop_pixels = g_dropdown_window_states[st_idx];
+    } else if (g_active_menu == 5) {
+        drop_x = DROPDOWN_HELP_X; drop_y = DROPDOWN_HELP_Y;
+        drop_w = DROPDOWN_HELP_W; drop_h = DROPDOWN_HELP_H;
+        int st_idx = (g_hovered_row == 0) ? 1 : 0;
+        drop_pixels = g_dropdown_help_states[st_idx];
+    }
+
+    if (drop_pixels) {
+        for (int dy = 0; dy < drop_h && (drop_y + dy) < g_h; dy++) {
+            uint32_t *dst = g_fb + (size_t)(drop_y + dy) * (size_t)g_w + drop_x;
+            const uint32_t *src = drop_pixels + (size_t)dy * (size_t)drop_w;
+            for (int dx = 0; dx < drop_w; dx++) {
+                dst[dx] = blend_pixel(dst[dx], src[dx]);
             }
         }
     }
@@ -865,9 +869,9 @@ init_bg_gradient(void)
             float r2 = dx * dx + dy * dy;
             float t = sqrtf(r2) * 0.75f;
             if (t > 1.0f) t = 1.0f;
-            /* Authentic macOS Tahoe Recovery vignette: lighter and clearly visible! 56 at center, 26 at corners */
-            int v = (int)roundf(56.0f - 30.0f * t);
-            if (v < 26) v = 26;
+            /* Authentic macOS Recovery vignette: rich Apple dark grey wallpaper */
+            int v = (int)roundf(38.0f - 16.0f * t);
+            if (v < 20) v = 20;
             g_bg_gradient[y * g_w + x] = 0xff000000u | ((uint32_t)v << 16) | ((uint32_t)v << 8) | (uint32_t)v;
         }
     }
@@ -1077,6 +1081,7 @@ composite_ex(int is_drag, int sc_x, int sc_y, int sc_w, int sc_h)
                     composite_window(w);
             }
         }
+        draw_about_window();
         draw_menubar();
         if (!g_cursor_hidden)
             composite_cursor();
@@ -1105,7 +1110,7 @@ composite_ex(int is_drag, int sc_x, int sc_y, int sc_w, int sc_h)
             memset(&wrpd, 0, sizeof(wrpd));
             wrpd.color_attachment = g_mtl_screen;
             wrpd.color_store_action = MTLStoreActionStore;
-            wrpd.clear_color = mtl_make_float4(22.0f / 255.0f, 22.0f / 255.0f, 22.0f / 255.0f, 1.0f);
+            wrpd.clear_color = mtl_make_float4(32.0f / 255.0f, 32.0f / 255.0f, 34.0f / 255.0f, 1.0f);
             wrpd.color_load_action = MTLLoadActionLoad;
 
             mtl_render_encoder_t *wenc = mtl_command_buffer_render_encoder(wcb, &wrpd);
@@ -1185,6 +1190,7 @@ composite_ex(int is_drag, int sc_x, int sc_y, int sc_w, int sc_h)
     }
     t_after_commit = now_ms();
 
+    draw_about_window();
     draw_menubar();
 
     if (!g_cursor_hidden)
@@ -1423,20 +1429,68 @@ poll_input(void)
 
     if ((buttons & 1) && !(lastbuttons & 1)) {
         /* left down */
-        if (py >= (double)(g_h - MENUBAR_H)) {
-            if (px >= 14 && px < 100) {
-                g_active_menu = (g_active_menu == 0) ? -1 : 0;
-            } else if (px >= 170 && px < 235) {
-                g_active_menu = (g_active_menu == 3) ? -1 : 3;
-            } else {
-                g_active_menu = -1;
+        if (g_show_about) {
+            double win_body_x = px - (g_about_x + 28.0);
+            double win_body_y = ((double)g_h - py) - (g_about_y + 28.0);
+            int inside_body = (win_body_x >= 0 && win_body_x < ABOUT_WINDOW_BODY_W &&
+                               win_body_y >= 0 && win_body_y < ABOUT_WINDOW_BODY_H);
+
+            if (inside_body) {
+                double rdx = win_body_x - 18.0;
+                double rdy = win_body_y - 16.0;
+                if (rdx * rdx + rdy * rdy <= 49.0) {
+                    g_show_about = 0;
+                    g_about_dragging = 0;
+                    g_dirty = 1;
+                    lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                    pthread_mutex_unlock(&g_lock);
+                    return;
+                }
+                g_about_dragging = 1;
+                g_dirty = 1;
+                lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                pthread_mutex_unlock(&g_lock);
+                return;
             }
+        }
+
+        if (py >= (double)(g_h - MENUBAR_H)) {
+            int clicked_menu = -1;
+            if (px >= 6 && px < 35) clicked_menu = 10;
+            else if (px >= 35 && px < 100) clicked_menu = 0;
+            else if (px >= 100 && px < 134) clicked_menu = 1;
+            else if (px >= 134 && px < 172) clicked_menu = 2;
+            else if (px >= 172 && px < 226) clicked_menu = 3;
+            else if (px >= 226 && px < 285) clicked_menu = 4;
+            else if (px >= 285 && px < 330) clicked_menu = 5;
+
+            g_active_menu = (g_active_menu == clicked_menu) ? -1 : clicked_menu;
+            g_hovered_row = -1;
             g_dirty = 1;
             lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
             pthread_mutex_unlock(&g_lock);
             return;
         } else if (g_active_menu >= 0) {
+            /* Execute action of selected menu row */
+            if (g_active_menu == 10) {
+                if (g_hovered_row == 2) {
+                    wslog("WindowServer: Apple Menu -> Restart clicked! Syncing and rebooting...");
+                    sync();
+                    reboot(0);
+                } else if (g_hovered_row == 3) {
+                    wslog("WindowServer: Apple Menu -> Shut Down clicked! Syncing and halting...");
+                    sync();
+                    reboot(0x08); /* RB_HALT */
+                }
+            } else if (g_active_menu == 0) {
+                if (g_hovered_row == 0) {
+                    g_show_about = 1;
+                    g_about_x = ABOUT_WINDOW_X;
+                    g_about_y = ABOUT_WINDOW_Y;
+                }
+            }
             g_active_menu = -1;
+            g_hovered_row = -1;
             g_dirty = 1;
         }
 
@@ -1445,17 +1499,17 @@ poll_input(void)
             int win_y = (int)((under->y + under->h) - py);
             if (win_x >= 0 && win_x < RECOVERY_UI_W && win_y >= 0 && win_y < RECOVERY_UI_H) {
                 int clicked_row = -1;
-                if (win_y >= 20 && win_y < 112) clicked_row = 0;
-                else if (win_y >= 112 && win_y < 204) clicked_row = 1;
-                else if (win_y >= 204 && win_y < 296) clicked_row = 2;
-                else if (win_y >= 296 && win_y < 388) clicked_row = 3;
+                if (win_y >= 16 && win_y < 90) clicked_row = 0;
+                else if (win_y >= 90 && win_y < 164) clicked_row = 1;
+                else if (win_y >= 164 && win_y < 238) clicked_row = 2;
+                else if (win_y >= 238 && win_y < 312) clicked_row = 3;
 
                 if (clicked_row >= 0) {
                     g_recovery_selected_row = clicked_row;
                     memcpy(under->surface, g_recovery_states[clicked_row], (size_t)RECOVERY_UI_W * (size_t)RECOVERY_UI_H * 4);
                     under->mtl_tex = NULL;
                     g_dirty = 1;
-                } else if (win_x >= 380 && win_x <= 465 && win_y >= 398 && win_y <= 430) {
+                } else if (win_x >= 324 && win_x <= 408 && win_y >= 328 && win_y <= 360) {
                     memcpy(under->surface, g_recovery_state_4, (size_t)RECOVERY_UI_W * (size_t)RECOVERY_UI_H * 4);
                     under->mtl_tex = NULL;
                     g_dirty = 1;
@@ -1492,12 +1546,103 @@ poll_input(void)
             me.buttons[0] = 1;
             send_event(under, &me);
         }
-    } else if (!(buttons & 1) && (lastbuttons & 1)) {
+    } else if (!(buttons & 1)) {
+        g_about_dragging = 0;
+    }
+
+    if (g_show_about && g_about_dragging && (dx != 0 || dy != 0)) {
+        g_about_x += dx;
+        g_about_y -= dy;
+        if (g_about_x < 0) g_about_x = 0;
+        if (g_about_x > g_w - ABOUT_WINDOW_W) g_about_x = g_w - ABOUT_WINDOW_W;
+        if (g_about_y < MENUBAR_H) g_about_y = MENUBAR_H;
+        if (g_about_y > g_h - ABOUT_WINDOW_H) g_about_y = g_h - ABOUT_WINDOW_H;
+        g_dirty = 1;
+    }
+
+    if (g_active_menu >= 0) {
+        /* Real macOS menubar scrubbing across all 7 menus */
+        if (py >= (double)(g_h - MENUBAR_H)) {
+            int scrub = -1;
+            if (px >= 6 && px < 35) scrub = 10;
+            else if (px >= 35 && px < 100) scrub = 0;
+            else if (px >= 100 && px < 134) scrub = 1;
+            else if (px >= 134 && px < 172) scrub = 2;
+            else if (px >= 172 && px < 226) scrub = 3;
+            else if (px >= 226 && px < 285) scrub = 4;
+            else if (px >= 285 && px < 330) scrub = 5;
+
+            if (scrub >= 0 && scrub != g_active_menu) {
+                g_active_menu = scrub;
+                g_hovered_row = -1;
+                g_dirty = 1;
+            }
+        }
+
+        int drop_x = 0, drop_y = 0, drop_w = 0, drop_h = 0;
+        if (g_active_menu == 10) {
+            drop_x = DROPDOWN_APPLE_X; drop_y = DROPDOWN_APPLE_Y;
+            drop_w = DROPDOWN_APPLE_W; drop_h = DROPDOWN_APPLE_H;
+        } else if (g_active_menu == 0) {
+            drop_x = DROPDOWN_RECOVERY_X; drop_y = DROPDOWN_RECOVERY_Y;
+            drop_w = DROPDOWN_RECOVERY_W; drop_h = DROPDOWN_RECOVERY_H;
+        } else if (g_active_menu == 1) {
+            drop_x = DROPDOWN_FILE_X; drop_y = DROPDOWN_FILE_Y;
+            drop_w = DROPDOWN_FILE_W; drop_h = DROPDOWN_FILE_H;
+        } else if (g_active_menu == 2) {
+            drop_x = DROPDOWN_EDIT_X; drop_y = DROPDOWN_EDIT_Y;
+            drop_w = DROPDOWN_EDIT_W; drop_h = DROPDOWN_EDIT_H;
+        } else if (g_active_menu == 3) {
+            drop_x = DROPDOWN_UTILITIES_X; drop_y = DROPDOWN_UTILITIES_Y;
+            drop_w = DROPDOWN_UTILITIES_W; drop_h = DROPDOWN_UTILITIES_H;
+        } else if (g_active_menu == 4) {
+            drop_x = DROPDOWN_WINDOW_X; drop_y = DROPDOWN_WINDOW_Y;
+            drop_w = DROPDOWN_WINDOW_W; drop_h = DROPDOWN_WINDOW_H;
+        } else if (g_active_menu == 5) {
+            drop_x = DROPDOWN_HELP_X; drop_y = DROPDOWN_HELP_Y;
+            drop_w = DROPDOWN_HELP_W; drop_h = DROPDOWN_HELP_H;
+        }
+
+        double mx = px - drop_x;
+        double my = ((double)g_h - py) - drop_y;
+        int new_hover = -1;
+        if (mx >= 5 && mx < drop_w - 5 && my >= 4 && my < drop_h - 4) {
+            if (g_active_menu == 10) {
+                if (my >= 4 && my < 25) new_hover = 0;
+                else if (my >= 32 && my < 53) new_hover = 2;
+                else if (my >= 53 && my < 74) new_hover = 3;
+            } else if (g_active_menu == 0) {
+                if (my >= 4 && my < 25) new_hover = 0;
+            } else if (g_active_menu == 1) {
+                if (my >= 4 && my < 25) new_hover = 0;
+            } else if (g_active_menu == 3) {
+                if (my >= 4 && my < 25) new_hover = 0;
+                else if (my >= 25 && my < 46) new_hover = 1;
+                else if (my >= 46 && my < 67) new_hover = 2;
+                else if (my >= 67 && my < 88) new_hover = 3;
+            } else if (g_active_menu == 4) {
+                if (my >= 53 && my < 74) new_hover = 3;
+            } else if (g_active_menu == 5) {
+                if (my >= 4 && my < 25) new_hover = 0;
+            }
+        }
+        if (new_hover != g_hovered_row) {
+            g_hovered_row = new_hover;
+            g_dirty = 1;
+        }
+    } else {
+        if (g_hovered_row != -1) {
+            g_hovered_row = -1;
+            g_dirty = 1;
+        }
+    }
+
+    if (!(buttons & 1) && (lastbuttons & 1)) {
         /* left up */
         if (under && under->surface) {
             int win_x = (int)(px - under->x);
             int win_y = (int)((under->y + under->h) - py);
-            if (win_x >= 380 && win_x <= 464 && win_y >= 398 && win_y <= 426) {
+            if (win_x >= 324 && win_x <= 408 && win_y >= 328 && win_y <= 360) {
                 memcpy(under->surface, g_recovery_states[g_recovery_selected_row], (size_t)RECOVERY_UI_W * (size_t)RECOVERY_UI_H * 4);
                 under->mtl_tex = NULL;
                 g_dirty = 1;
