@@ -770,15 +770,35 @@ static double g_about_x = ABOUT_WINDOW_X;
 static double g_about_y = ABOUT_WINDOW_Y;
 static int g_about_dragging = 0;
 
-/* --- Terminal App State & Engine --- */
+/* --- Terminal App State & Engine (Resizable, 80x24+ Dynamic) --- */
+enum {
+    TERM_RESIZE_NONE = 0,
+    TERM_RESIZE_RIGHT,
+    TERM_RESIZE_BOTTOM,
+    TERM_RESIZE_BOTTOM_RIGHT,
+    TERM_RESIZE_LEFT,
+    TERM_RESIZE_BOTTOM_LEFT
+};
+
+#define TERM_MAX_COLS 140
+#define TERM_MAX_ROWS 45
+#define TERM_MAX_W 1280
+#define TERM_MAX_H 800
+
 static int g_show_terminal = 0;
-static double g_term_x = (1280 - TERM_W) / 2;
+static double g_term_x = 280;
 static double g_term_y = 60;
+static int g_term_body_w = 668;
+static int g_term_body_h = 452;
 static int g_term_dragging = 0;
+static int g_term_resize_mode = TERM_RESIZE_NONE;
+static int g_term_is_zoomed = 0;
+static double g_term_prev_x = 280, g_term_prev_y = 60;
+static int g_term_prev_w = 668, g_term_prev_h = 452;
 static int g_term_redraw_needed = 1;
 
-static uint32_t g_term_window_pixels[TERM_W * TERM_H];
-static char g_term_lines[TERM_ROWS][TERM_COLS + 1];
+static uint32_t g_term_window_pixels[TERM_MAX_W * TERM_MAX_H];
+static char g_term_lines[TERM_MAX_ROWS][TERM_MAX_COLS + 1];
 static int g_term_cursor_row = 0;
 static int g_term_cursor_col = 0;
 static char g_term_cmd[256];
@@ -786,22 +806,44 @@ static int g_term_cmd_len = 0;
 static int g_term_inited = 0;
 static char g_term_cwd[256] = "/var/root";
 
+static inline int
+term_cur_cols(void)
+{
+    int c = (g_term_body_w - (TERM_MARGIN_LEFT + 14)) / TERM_CHAR_W;
+    if (c < 40) c = 40;
+    if (c > TERM_MAX_COLS) c = TERM_MAX_COLS;
+    return c;
+}
+
+static inline int
+term_cur_rows(void)
+{
+    int r = (g_term_body_h - (TERM_MARGIN_TOP + 10)) / TERM_CHAR_H;
+    if (r < 10) r = 10;
+    if (r > TERM_MAX_ROWS) r = TERM_MAX_ROWS;
+    return r;
+}
+
 static void
 term_scroll_up(void)
 {
-    for (int r = 0; r < TERM_ROWS - 1; r++) {
-        memcpy(g_term_lines[r], g_term_lines[r + 1], TERM_COLS + 1);
+    int rows = term_cur_rows();
+    int cols = term_cur_cols();
+    for (int r = 0; r < rows - 1; r++) {
+        memcpy(g_term_lines[r], g_term_lines[r + 1], cols + 1);
     }
-    memset(g_term_lines[TERM_ROWS - 1], 0, TERM_COLS + 1);
+    memset(g_term_lines[rows - 1], 0, cols + 1);
 }
 
 static void
 term_print_string(const char *str)
 {
+    int cols = term_cur_cols();
+    int rows = term_cur_rows();
     while (*str) {
         if (*str == '\n') {
             g_term_cursor_col = 0;
-            if (g_term_cursor_row < TERM_ROWS - 1) {
+            if (g_term_cursor_row < rows - 1) {
                 g_term_cursor_row++;
             } else {
                 term_scroll_up();
@@ -809,9 +851,9 @@ term_print_string(const char *str)
         } else if (*str == '\r') {
             g_term_cursor_col = 0;
         } else {
-            if (g_term_cursor_col >= TERM_COLS) {
+            if (g_term_cursor_col >= cols) {
                 g_term_cursor_col = 0;
-                if (g_term_cursor_row < TERM_ROWS - 1) {
+                if (g_term_cursor_row < rows - 1) {
                     g_term_cursor_row++;
                 } else {
                     term_scroll_up();
@@ -829,8 +871,8 @@ static void
 term_init(void)
 {
     if (g_term_inited) return;
-    for (int r = 0; r < TERM_ROWS; r++) {
-        memset(g_term_lines[r], 0, TERM_COLS + 1);
+    for (int r = 0; r < TERM_MAX_ROWS; r++) {
+        memset(g_term_lines[r], 0, TERM_MAX_COLS + 1);
     }
     g_term_cursor_row = 0;
     g_term_cursor_col = 0;
@@ -920,8 +962,10 @@ term_exec_command(const char *cmd_line)
 
     /* 2. Authentic Darwin built-in utilities */
     if (strcmp(cmd, "clear") == 0) {
-        for (int r = 0; r < TERM_ROWS; r++) {
-            memset(g_term_lines[r], 0, TERM_COLS + 1);
+        int rows = term_cur_rows();
+        int cols = term_cur_cols();
+        for (int r = 0; r < rows; r++) {
+            memset(g_term_lines[r], 0, cols + 1);
         }
         g_term_cursor_row = 0;
         g_term_cursor_col = 0;
@@ -1120,6 +1164,7 @@ term_exec_command(const char *cmd_line)
 static void
 term_handle_char(char c)
 {
+    int cols = term_cur_cols();
     if (c == '\n' || c == '\r') {
         g_term_cmd[g_term_cmd_len] = '\0';
         char buf[256];
@@ -1137,7 +1182,7 @@ term_handle_char(char c)
             }
         }
     } else if (c >= 32 && c <= 126) {
-        if (g_term_cmd_len < (int)sizeof(g_term_cmd) - 2 && g_term_cursor_col < TERM_COLS - 1) {
+        if (g_term_cmd_len < (int)sizeof(g_term_cmd) - 2 && g_term_cursor_col < cols - 1) {
             g_term_cmd[g_term_cmd_len++] = c;
             g_term_cmd[g_term_cmd_len] = '\0';
             g_term_lines[g_term_cursor_row][g_term_cursor_col++] = c;
@@ -1148,7 +1193,7 @@ term_handle_char(char c)
 }
 
 static void
-term_render_glyph(uint32_t *dst_surface, int x0, int y0, char c, uint32_t text_color)
+term_render_glyph(uint32_t *dst_surface, int dst_w, int dst_h, int x0, int y0, char c, uint32_t text_color)
 {
     if (c < 32 || c > 126) return;
     int glyph_idx = c - 32;
@@ -1160,29 +1205,67 @@ term_render_glyph(uint32_t *dst_surface, int x0, int y0, char c, uint32_t text_c
 
     for (int gy = 0; gy < TERM_CHAR_H; gy++) {
         int py = y0 + gy;
-        if (py < 0 || py >= TERM_H) continue;
+        if (py < 0 || py >= dst_h) continue;
         const uint8_t *src_row = glyph_col_start + gy * (95 * TERM_CHAR_W);
-        uint32_t *dst_row = dst_surface + (size_t)py * (size_t)TERM_W;
+        uint32_t *dst_row = dst_surface + (size_t)py * (size_t)dst_w;
 
         for (int gx = 0; gx < TERM_CHAR_W; gx++) {
             int px = x0 + gx;
-            if (px < 0 || px >= TERM_W) continue;
+            if (px < 0 || px >= dst_w) continue;
             unsigned a = src_row[gx];
             if (a == 0) continue;
 
-            uint32_t d = dst_row[px];
             if (a == 255) {
                 dst_row[px] = (0xff000000u | (tr << 16) | (tg << 8) | tb);
             } else {
-                unsigned inv = 255u - a;
+                uint32_t d = dst_row[px];
                 unsigned dr = (d >> 16) & 0xffu;
                 unsigned dg = (d >> 8) & 0xffu;
                 unsigned db = d & 0xffu;
+                unsigned inv = 255u - a;
                 unsigned r = (tr * a + dr * inv + 127u) / 255u;
                 unsigned g = (tg * a + dg * inv + 127u) / 255u;
                 unsigned b = (tb * a + db * inv + 127u) / 255u;
                 dst_row[px] = (0xff000000u | (r << 16) | (g << 8) | b);
             }
+        }
+    }
+}
+
+static void
+term_render_title_char(uint32_t *dst_surface, int dst_w, int dst_h, int x0, int y0, char c, uint32_t text_color)
+{
+    const char *chars = "-sh 0123456789x";
+    const char *p = strchr(chars, c);
+    if (!p) return;
+    int idx = (int)(p - chars);
+    const uint8_t *col_start = g_title_atlas + idx * TERM_TITLE_W;
+
+    unsigned tr = (text_color >> 16) & 0xffu;
+    unsigned tg = (text_color >> 8) & 0xffu;
+    unsigned tb = text_color & 0xffu;
+
+    for (int gy = 0; gy < TERM_TITLE_H; gy++) {
+        int py = y0 + gy;
+        if (py < 0 || py >= dst_h) continue;
+        const uint8_t *src_row = col_start + gy * (15 * TERM_TITLE_W);
+        uint32_t *dst_row = dst_surface + (size_t)py * (size_t)dst_w;
+
+        for (int gx = 0; gx < TERM_TITLE_W; gx++) {
+            int px = x0 + gx;
+            if (px < 0 || px >= dst_w) continue;
+            unsigned a = src_row[gx];
+            if (a == 0) continue;
+
+            uint32_t d = dst_row[px];
+            unsigned dr = (d >> 16) & 0xffu;
+            unsigned dg = (d >> 8) & 0xffu;
+            unsigned db = d & 0xffu;
+            unsigned inv = 255u - a;
+            unsigned r = (tr * a + dr * inv + 127u) / 255u;
+            unsigned g = (tg * a + dg * inv + 127u) / 255u;
+            unsigned b = (tb * a + db * inv + 127u) / 255u;
+            dst_row[px] = (0xff000000u | (r << 16) | (g << 8) | b);
         }
     }
 }
@@ -1193,28 +1276,129 @@ draw_terminal_window(void)
     if (!g_show_terminal || !g_fb) return;
     term_init();
 
+    int cur_w = g_term_body_w + TERM_PAD * 2;
+    int cur_h = g_term_body_h + TERM_PAD * 2;
+    if (cur_w > TERM_MAX_W) cur_w = TERM_MAX_W;
+    if (cur_h > TERM_MAX_H) cur_h = TERM_MAX_H;
+
+    int cols = term_cur_cols();
+    int rows = term_cur_rows();
+
     if (g_term_redraw_needed) {
-        memcpy(g_term_window_pixels, g_terminal_base_pixels, sizeof(g_terminal_base_pixels));
-        for (int r = 0; r < TERM_ROWS; r++) {
+        /* 9-Slice Dynamic Rendering into g_term_window_pixels */
+        int sc = TERM_SLICE_C; /* 76 */
+
+        /* 1. Corners */
+        for (int y = 0; y < sc; y++) {
+            memcpy(g_term_window_pixels + (size_t)y * cur_w,
+                   g_term_slice_tl + (size_t)y * sc, sc * 4);
+            memcpy(g_term_window_pixels + (size_t)y * cur_w + (cur_w - sc),
+                   g_term_slice_tr + (size_t)y * sc, sc * 4);
+            memcpy(g_term_window_pixels + (size_t)(cur_h - sc + y) * cur_w,
+                   g_term_slice_bl + (size_t)y * sc, sc * 4);
+            memcpy(g_term_window_pixels + (size_t)(cur_h - sc + y) * cur_w + (cur_w - sc),
+                   g_term_slice_br + (size_t)y * sc, sc * 4);
+        }
+
+        /* 2. Top & Bottom Edges */
+        for (int x = sc; x < cur_w - sc; x++) {
+            for (int y = 0; y < sc; y++) {
+                g_term_window_pixels[(size_t)y * cur_w + x] = g_term_slice_top[y];
+                g_term_window_pixels[(size_t)(cur_h - sc + y) * cur_w + x] = g_term_slice_bot[y];
+            }
+        }
+
+        /* 3. Left & Right Edges */
+        for (int y = sc; y < cur_h - sc; y++) {
+            uint32_t *row_l = g_term_window_pixels + (size_t)y * cur_w;
+            uint32_t *row_r = row_l + (cur_w - sc);
+            for (int x = 0; x < sc; x++) {
+                row_l[x] = g_term_slice_left[x];
+                row_r[x] = g_term_slice_right[x];
+            }
+        }
+
+        /* 4. Center Body Fill */
+        int body_x0 = TERM_PAD;
+        int body_x1 = TERM_PAD + g_term_body_w;
+        int body_y0 = TERM_PAD + 28;
+        int body_y1 = TERM_PAD + g_term_body_h;
+
+        for (int y = body_y0; y < body_y1; y++) {
+            uint32_t *row = g_term_window_pixels + (size_t)y * cur_w;
+            for (int x = body_x0; x < body_x1; x++) {
+                row[x] = 0xff1e1e1eu;
+            }
+        }
+
+        /* Titlebar horizontal filler */
+        for (int y = TERM_PAD; y < body_y0; y++) {
+            uint32_t *row = g_term_window_pixels + (size_t)y * cur_w;
+            uint32_t val = (y == body_y0 - 1) ? 0xff1a1a1au : 0xff2a2a2au;
+            for (int x = sc; x < cur_w - sc; x++) {
+                row[x] = val;
+            }
+        }
+
+        /* 5. Titlebar Center: Proxy Folder Icon + Title */
+        char titlestr[32];
+        snprintf(titlestr, sizeof(titlestr), "-sh - %dx%d", cols, rows);
+        int tlen = strlen(titlestr);
+        int total_tw = TERM_FOLDER_W + 6 + tlen * TERM_TITLE_W;
+        int start_tx = TERM_PAD + (g_term_body_w - total_tw) / 2;
+        int start_ty = TERM_PAD + (28 - TERM_FOLDER_H) / 2;
+
+        /* Blit Folder Icon */
+        for (int fy = 0; fy < TERM_FOLDER_H; fy++) {
+            uint32_t *row = g_term_window_pixels + (size_t)(start_ty + fy) * cur_w + start_tx;
+            const uint32_t *src_row = g_term_folder_icon + (size_t)fy * TERM_FOLDER_W;
+            for (int fx = 0; fx < TERM_FOLDER_W; fx++) {
+                row[fx] = blend_pixel(row[fx], src_row[fx]);
+            }
+        }
+
+        /* Blit Title String in SF Pro Semibold */
+        int text_tx = start_tx + TERM_FOLDER_W + 6;
+        int text_ty = TERM_PAD + (28 - TERM_TITLE_H) / 2;
+        for (int ti = 0; ti < tlen; ti++) {
+            term_render_title_char(g_term_window_pixels, cur_w, cur_h,
+                                   text_tx + ti * TERM_TITLE_W, text_ty,
+                                   titlestr[ti], 0x00d8d8d8u);
+        }
+
+        /* 6. Subtle Right-Side Scrollbar Thumb */
+        int sb_x = TERM_PAD + g_term_body_w - 6;
+        int sb_y0 = TERM_PAD + 38;
+        int sb_h = 44;
+        for (int dy = 0; dy < sb_h; dy++) {
+            uint32_t *row = g_term_window_pixels + (size_t)(sb_y0 + dy) * cur_w;
+            for (int dx = 0; dx < 4; dx++) {
+                row[sb_x + dx] = 0xff383838u;
+            }
+        }
+
+        /* 7. Text Lines & Cursor */
+        for (int r = 0; r < rows; r++) {
             int y = TERM_PAD + TERM_MARGIN_TOP + r * TERM_CHAR_H;
             const char *line = g_term_lines[r];
             int len = strlen(line);
-            for (int c = 0; c < len && c < TERM_COLS; c++) {
+            for (int c = 0; c < len && c < cols; c++) {
                 int x = TERM_PAD + TERM_MARGIN_LEFT + c * TERM_CHAR_W;
-                term_render_glyph(g_term_window_pixels, x, y, line[c], 0x00ECECECu);
+                term_render_glyph(g_term_window_pixels, cur_w, cur_h, x, y, line[c], 0x00ECECECu);
             }
         }
-        /* Render block cursor █ at cursor position */
+
+        /* Render block cursor */
         int cur_x = TERM_PAD + TERM_MARGIN_LEFT + g_term_cursor_col * TERM_CHAR_W;
         int cur_y = TERM_PAD + TERM_MARGIN_TOP + g_term_cursor_row * TERM_CHAR_H;
         for (int dy = 1; dy < TERM_CHAR_H - 1; dy++) {
             int py = cur_y + dy;
-            if (py >= 0 && py < TERM_H) {
-                uint32_t *row = g_term_window_pixels + (size_t)py * (size_t)TERM_W;
+            if (py >= 0 && py < cur_h) {
+                uint32_t *row = g_term_window_pixels + (size_t)py * cur_w;
                 for (int dx = 0; dx < TERM_CHAR_W; dx++) {
                     int px = cur_x + dx;
-                    if (px >= 0 && px < TERM_W) {
-                        row[px] = 0xffc8c8c8u;
+                    if (px >= 0 && px < cur_w) {
+                        row[px] = 0xffc0c0c0u;
                     }
                 }
             }
@@ -1222,19 +1406,19 @@ draw_terminal_window(void)
         g_term_redraw_needed = 0;
     }
 
+    /* Blit into Framebuffer */
     int tx = (int)g_term_x;
     int ty = (int)g_term_y;
-    for (int dy = 0; dy < TERM_H && (ty + dy) < g_h; dy++) {
+    for (int dy = 0; dy < cur_h && (ty + dy) < g_h; dy++) {
         if (ty + dy < 0) continue;
         uint32_t *dst = g_fb + (size_t)(ty + dy) * (size_t)g_w + tx;
-        const uint32_t *src = g_term_window_pixels + (size_t)dy * (size_t)TERM_W;
-        for (int dx = 0; dx < TERM_W; dx++) {
+        const uint32_t *src = g_term_window_pixels + (size_t)dy * (size_t)cur_w;
+        for (int dx = 0; dx < cur_w; dx++) {
             if (tx + dx < 0 || tx + dx >= g_w) continue;
             dst[dx] = blend_pixel(dst[dx], src[dx]);
         }
     }
 }
-
 static inline void
 draw_about_window(void)
 {
@@ -1921,7 +2105,7 @@ poll_input(void)
                 char c = g_shift_down ? g_scancode_shift[sc] : g_scancode_normal[sc];
                 if (!g_show_terminal && (c == 't' || c == 'T')) {
                     g_show_terminal = 1;
-                    g_term_x = (g_w - TERM_W) / 2;
+                    g_term_x = (g_w - (g_term_body_w + TERM_PAD * 2)) / 2;
                     g_term_y = 60;
                     g_term_redraw_needed = 1;
                     g_dirty = 1;
@@ -1970,24 +2154,91 @@ poll_input(void)
         if (g_show_terminal) {
             double win_body_x = px - (g_term_x + (double)TERM_PAD);
             double win_body_y = ((double)g_h - py) - (g_term_y + (double)TERM_PAD);
-            int inside_body = (win_body_x >= 0 && win_body_x < TERM_BODY_W &&
-                               win_body_y >= 0 && win_body_y < TERM_BODY_H);
 
-            if (inside_body) {
-                double rdx = win_body_x - 18.0;
-                double rdy = win_body_y - 14.0;
-                if (rdx * rdx + rdy * rdy <= 49.0) {
+            /* Traffic Lights */
+            if (win_body_y >= 4.0 && win_body_y <= 24.0) {
+                /* Red Close */
+                if (win_body_x >= 10.0 && win_body_x <= 28.0) {
                     g_show_terminal = 0;
                     g_term_dragging = 0;
+                    g_term_resize_mode = TERM_RESIZE_NONE;
                     g_dirty = 1;
                     lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
                     pthread_mutex_unlock(&g_lock);
                     return;
                 }
-                if (win_body_y < 28.0) {
-                    g_term_dragging = 1;
+                /* Yellow Minimize */
+                if (win_body_x >= 30.0 && win_body_x <= 48.0) {
+                    g_show_terminal = 0;
+                    g_term_dragging = 0;
+                    g_term_resize_mode = TERM_RESIZE_NONE;
+                    g_dirty = 1;
+                    lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                    pthread_mutex_unlock(&g_lock);
+                    return;
                 }
-                g_dirty = 1;
+                /* Green Zoom (Toggle standard / expanded) */
+                if (win_body_x >= 50.0 && win_body_x <= 68.0) {
+                    if (!g_term_is_zoomed) {
+                        g_term_prev_x = g_term_x;
+                        g_term_prev_y = g_term_y;
+                        g_term_prev_w = g_term_body_w;
+                        g_term_prev_h = g_term_body_h;
+                        g_term_x = 30;
+                        g_term_y = MENUBAR_H + 8;
+                        g_term_body_w = g_w - 60 - TERM_PAD * 2;
+                        g_term_body_h = g_h - MENUBAR_H - 24 - TERM_PAD * 2;
+                        g_term_is_zoomed = 1;
+                    } else {
+                        g_term_x = g_term_prev_x;
+                        g_term_y = g_term_prev_y;
+                        g_term_body_w = g_term_prev_w;
+                        g_term_body_h = g_term_prev_h;
+                        g_term_is_zoomed = 0;
+                    }
+                    g_term_redraw_needed = 1;
+                    g_dirty = 1;
+                    lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                    pthread_mutex_unlock(&g_lock);
+                    return;
+                }
+            }
+
+            /* Resizing Edge & Corner Hit-Testing (ONLY Terminal window is resizable) */
+            int near_right = (win_body_x >= g_term_body_w - 10.0 && win_body_x <= g_term_body_w + 14.0);
+            int near_bottom = (win_body_y >= g_term_body_h - 10.0 && win_body_y <= g_term_body_h + 14.0);
+            int near_left = (win_body_x >= -14.0 && win_body_x <= 8.0);
+
+            if (near_right && near_bottom) {
+                g_term_resize_mode = TERM_RESIZE_BOTTOM_RIGHT;
+                lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                pthread_mutex_unlock(&g_lock);
+                return;
+            } else if (near_left && near_bottom) {
+                g_term_resize_mode = TERM_RESIZE_BOTTOM_LEFT;
+                lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                pthread_mutex_unlock(&g_lock);
+                return;
+            } else if (near_right && win_body_y >= 0.0 && win_body_y <= g_term_body_h) {
+                g_term_resize_mode = TERM_RESIZE_RIGHT;
+                lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                pthread_mutex_unlock(&g_lock);
+                return;
+            } else if (near_bottom && win_body_x >= 0.0 && win_body_x <= g_term_body_w) {
+                g_term_resize_mode = TERM_RESIZE_BOTTOM;
+                lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                pthread_mutex_unlock(&g_lock);
+                return;
+            } else if (near_left && win_body_y >= 0.0 && win_body_y <= g_term_body_h) {
+                g_term_resize_mode = TERM_RESIZE_LEFT;
+                lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                pthread_mutex_unlock(&g_lock);
+                return;
+            }
+
+            /* Titlebar dragging */
+            if (win_body_y >= 0.0 && win_body_y <= 28.0 && win_body_x >= 0.0 && win_body_x <= g_term_body_w) {
+                g_term_dragging = 1;
                 lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
                 pthread_mutex_unlock(&g_lock);
                 return;
@@ -2085,7 +2336,7 @@ poll_input(void)
                 if (clicked_row == 2) {
                     wslog("WindowServer: Utilities -> Terminal clicked! Launching Terminal...");
                     g_show_terminal = 1;
-                    g_term_x = (g_w - TERM_W) / 2;
+                    g_term_x = (g_w - (g_term_body_w + TERM_PAD * 2)) / 2;
                     g_term_y = 100;
                     g_term_redraw_needed = 1;
                 }
@@ -2150,16 +2401,78 @@ poll_input(void)
     } else if (!(buttons & 1)) {
         g_about_dragging = 0;
         g_term_dragging = 0;
+        g_term_resize_mode = TERM_RESIZE_NONE;
     }
 
+    /* Terminal Dragging */
     if (g_show_terminal && g_term_dragging && (dx != 0 || dy != 0)) {
         g_term_x += dx;
         g_term_y -= dy;
+        int max_x = g_w - (g_term_body_w + TERM_PAD);
+        int max_y = g_h - (g_term_body_h + TERM_PAD);
         if (g_term_x < -TERM_PAD) g_term_x = -TERM_PAD;
-        if (g_term_x > g_w - TERM_W + TERM_PAD) g_term_x = g_w - TERM_W + TERM_PAD;
+        if (g_term_x > max_x) g_term_x = max_x;
         if (g_term_y < MENUBAR_H - TERM_PAD) g_term_y = MENUBAR_H - TERM_PAD;
-        if (g_term_y > g_h - TERM_H + TERM_PAD) g_term_y = g_h - TERM_H + TERM_PAD;
+        if (g_term_y > max_y) g_term_y = max_y;
         g_dirty = 1;
+    }
+
+    /* Terminal Resizing (ONLY Terminal window expands/stretches) */
+    if (g_show_terminal && g_term_resize_mode != TERM_RESIZE_NONE && (dx != 0 || dy != 0)) {
+        if (g_term_resize_mode == TERM_RESIZE_RIGHT) {
+            g_term_body_w += (int)dx;
+        } else if (g_term_resize_mode == TERM_RESIZE_BOTTOM) {
+            g_term_body_h -= (int)dy;
+        } else if (g_term_resize_mode == TERM_RESIZE_BOTTOM_RIGHT) {
+            g_term_body_w += (int)dx;
+            g_term_body_h -= (int)dy;
+        } else if (g_term_resize_mode == TERM_RESIZE_LEFT) {
+            g_term_x += dx;
+            g_term_body_w -= (int)dx;
+        } else if (g_term_resize_mode == TERM_RESIZE_BOTTOM_LEFT) {
+            g_term_x += dx;
+            g_term_body_w -= (int)dx;
+            g_term_body_h -= (int)dy;
+        }
+
+        if (g_term_body_w < 380) g_term_body_w = 380;
+        if (g_term_body_w > g_w - 40 - TERM_PAD * 2) g_term_body_w = g_w - 40 - TERM_PAD * 2;
+        if (g_term_body_h < 180) g_term_body_h = 180;
+        if (g_term_body_h > g_h - MENUBAR_H - 24 - TERM_PAD * 2) g_term_body_h = g_h - MENUBAR_H - 24 - TERM_PAD * 2;
+
+        g_term_redraw_needed = 1;
+        g_dirty = 1;
+    }
+
+    /* Dynamic Cursor Update on Hover over Terminal Window */
+    if (g_show_terminal) {
+        double win_body_x = px - (g_term_x + (double)TERM_PAD);
+        double win_body_y = ((double)g_h - py) - (g_term_y + (double)TERM_PAD);
+        if (win_body_x >= -8.0 && win_body_x <= g_term_body_w + 12.0 &&
+            win_body_y >= -8.0 && win_body_y <= g_term_body_h + 12.0) {
+            int near_r = (win_body_x >= g_term_body_w - 8.0);
+            int near_b = (win_body_y >= g_term_body_h - 8.0);
+            int near_l = (win_body_x <= 6.0);
+
+            int target_cursor = WSCURSOR_ARROW;
+            if (near_r && near_b) target_cursor = WSCURSOR_RESIZE_NWSE;
+            else if (near_l && near_b) target_cursor = WSCURSOR_RESIZE_NESW;
+            else if (near_r || near_l) target_cursor = WSCURSOR_RESIZE_LEFTRIGHT;
+            else if (near_b) target_cursor = WSCURSOR_RESIZE_UPDOWN;
+            else if (win_body_y > 28.0) target_cursor = WSCURSOR_IBEAM;
+
+            if (g_current_cursor_id != target_cursor) {
+                cursor_restore();
+                g_current_cursor_id = target_cursor;
+                composite_cursor();
+                g_dirty = 1;
+            }
+        } else if (g_current_cursor_id != WSCURSOR_ARROW && !g_term_dragging && g_term_resize_mode == TERM_RESIZE_NONE) {
+            cursor_restore();
+            g_current_cursor_id = WSCURSOR_ARROW;
+            composite_cursor();
+            g_dirty = 1;
+        }
     }
 
     if (g_show_about && g_about_dragging && (dx != 0 || dy != 0)) {
