@@ -83,23 +83,8 @@ ApplePS2Keyboard * ApplePS2Keyboard::probe(IOService * provider, SInt32 * score)
 
 bool ApplePS2Keyboard::start(IOService * provider)
 {
-    if (!super::start(provider)) {
-        return false;
-    }
-
-    _device = OSDynamicCast(ApplePS2KeyboardDevice, provider);
-    if (_device == NULL) {
-        return false;
-    }
-
-    _device->installInterruptAction(this,
-        (PS2InterruptAction)&ApplePS2Keyboard::interruptOccurred);
-    _interruptInstalled = true;
-
-    setKeyboardEnable(true);
-
-    IOLog("ApplePS2Keyboard: started (set-1 scancodes -> ADB)\n");
-    return true;
+    IOLog("ApplePS2Keyboard: bypassed for direct Metal WindowServer PS/2 keyboard engine\n");
+    return false;
 }
 
 void ApplePS2Keyboard::stop(IOService * provider)

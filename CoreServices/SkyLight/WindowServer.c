@@ -796,6 +796,7 @@ static int g_term_is_zoomed = 0;
 static double g_term_prev_x = 280, g_term_prev_y = 60;
 static int g_term_prev_w = 668, g_term_prev_h = 452;
 static int g_term_redraw_needed = 1;
+static int g_term_focused = 1;
 
 static uint32_t g_term_window_pixels[TERM_MAX_W * TERM_MAX_H];
 static char g_term_lines[TERM_MAX_ROWS][TERM_MAX_COLS + 1];
@@ -1131,7 +1132,7 @@ term_exec_command(const char *cmd_line)
         if (fd >= 0) close(fd);
         term_print_string("\n-sh-3.2# ");
         return;
-    } else if (strcmp(cmd, "reboot") == 0) {
+    } else if (strcmp(cmd, "reboot") == 0 || strcmp(cmd, "restart") == 0) {
         term_print_string("\nRebooting system...\n");
         sync();
         reboot(0);
@@ -1440,14 +1441,28 @@ static inline void
 draw_menubar(void)
 {
     if (!g_fb || g_w < MENUBAR_W) return;
-    const uint32_t *mb_src = g_menubar_pixels;
-    if (g_active_menu == 10) mb_src = g_menubar_apple;
-    else if (g_active_menu == 0) mb_src = g_menubar_recovery;
-    else if (g_active_menu == 1) mb_src = g_menubar_file;
-    else if (g_active_menu == 2) mb_src = g_menubar_edit;
-    else if (g_active_menu == 3) mb_src = g_menubar_utilities;
-    else if (g_active_menu == 4) mb_src = g_menubar_window;
-    else if (g_active_menu == 5) mb_src = g_menubar_help;
+    const uint32_t *mb_src;
+    int is_term_menu = (g_show_terminal && g_term_focused);
+
+    if (is_term_menu) {
+        if (g_active_menu == 10) mb_src = g_menubar_term_apple;
+        else if (g_active_menu == 0) mb_src = g_menubar_term_terminal;
+        else if (g_active_menu == 1) mb_src = g_menubar_term_shell;
+        else if (g_active_menu == 2) mb_src = g_menubar_term_edit;
+        else if (g_active_menu == 3) mb_src = g_menubar_term_view;
+        else if (g_active_menu == 4) mb_src = g_menubar_term_window;
+        else if (g_active_menu == 5) mb_src = g_menubar_term_help;
+        else mb_src = g_menubar_term_normal;
+    } else {
+        if (g_active_menu == 10) mb_src = g_menubar_apple;
+        else if (g_active_menu == 0) mb_src = g_menubar_recovery;
+        else if (g_active_menu == 1) mb_src = g_menubar_file;
+        else if (g_active_menu == 2) mb_src = g_menubar_edit;
+        else if (g_active_menu == 3) mb_src = g_menubar_utilities;
+        else if (g_active_menu == 4) mb_src = g_menubar_window;
+        else if (g_active_menu == 5) mb_src = g_menubar_help;
+        else mb_src = g_menubar_pixels;
+    }
 
     for (int y = 0; y < MENUBAR_H && y < g_h; y++) {
         memcpy(g_fb + (size_t)y * (size_t)g_w, mb_src + (size_t)y * (size_t)MENUBAR_W, (size_t)MENUBAR_W * 4);
@@ -1464,35 +1479,78 @@ draw_menubar(void)
         else if (g_hovered_row == 2) st_idx = 2;
         else if (g_hovered_row == 3) st_idx = 3;
         drop_pixels = g_dropdown_apple_states[st_idx];
-    } else if (g_active_menu == 0) {
-        drop_x = DROPDOWN_RECOVERY_X; drop_y = DROPDOWN_RECOVERY_Y;
-        drop_w = DROPDOWN_RECOVERY_W; drop_h = DROPDOWN_RECOVERY_H;
-        int st_idx = (g_hovered_row == 0) ? 1 : 0;
-        drop_pixels = g_dropdown_recovery_states[st_idx];
-    } else if (g_active_menu == 1) {
-        drop_x = DROPDOWN_FILE_X; drop_y = DROPDOWN_FILE_Y;
-        drop_w = DROPDOWN_FILE_W; drop_h = DROPDOWN_FILE_H;
-        int st_idx = (g_hovered_row == 0) ? 1 : 0;
-        drop_pixels = g_dropdown_file_states[st_idx];
-    } else if (g_active_menu == 2) {
-        drop_x = DROPDOWN_EDIT_X; drop_y = DROPDOWN_EDIT_Y;
-        drop_w = DROPDOWN_EDIT_W; drop_h = DROPDOWN_EDIT_H;
-        drop_pixels = g_dropdown_edit_states[0];
-    } else if (g_active_menu == 3) {
-        drop_x = DROPDOWN_UTILITIES_X; drop_y = DROPDOWN_UTILITIES_Y;
-        drop_w = DROPDOWN_UTILITIES_W; drop_h = DROPDOWN_UTILITIES_H;
-        int st_idx = (g_hovered_row >= 0 && g_hovered_row < 4) ? (g_hovered_row + 1) : 0;
-        drop_pixels = g_dropdown_utilities_states[st_idx];
-    } else if (g_active_menu == 4) {
-        drop_x = DROPDOWN_WINDOW_X; drop_y = DROPDOWN_WINDOW_Y;
-        drop_w = DROPDOWN_WINDOW_W; drop_h = DROPDOWN_WINDOW_H;
-        int st_idx = (g_hovered_row == 3) ? 1 : 0;
-        drop_pixels = g_dropdown_window_states[st_idx];
-    } else if (g_active_menu == 5) {
-        drop_x = DROPDOWN_HELP_X; drop_y = DROPDOWN_HELP_Y;
-        drop_w = DROPDOWN_HELP_W; drop_h = DROPDOWN_HELP_H;
-        int st_idx = (g_hovered_row == 0) ? 1 : 0;
-        drop_pixels = g_dropdown_help_states[st_idx];
+    } else if (is_term_menu) {
+        if (g_active_menu == 0) {
+            drop_x = DROPDOWN_TERM_APP_X; drop_y = DROPDOWN_TERM_APP_Y;
+            drop_w = DROPDOWN_TERM_APP_W; drop_h = DROPDOWN_TERM_APP_H;
+            int st_idx = 0;
+            if (g_hovered_row == 0) st_idx = 1;
+            else if (g_hovered_row == 2) st_idx = 2;
+            else if (g_hovered_row == 4) st_idx = 3;
+            else if (g_hovered_row == 6) st_idx = 4;
+            drop_pixels = g_dropdown_term_app_states[st_idx];
+        } else if (g_active_menu == 1) {
+            drop_x = DROPDOWN_TERM_SHELL_X; drop_y = DROPDOWN_TERM_SHELL_Y;
+            drop_w = DROPDOWN_TERM_SHELL_W; drop_h = DROPDOWN_TERM_SHELL_H;
+            int st_idx = 0;
+            if (g_hovered_row == 0) st_idx = 1;
+            else if (g_hovered_row == 1) st_idx = 2;
+            drop_pixels = g_dropdown_term_shell_states[st_idx];
+        } else if (g_active_menu == 2) {
+            drop_x = DROPDOWN_TERM_EDIT_X; drop_y = DROPDOWN_TERM_EDIT_Y;
+            drop_w = DROPDOWN_TERM_EDIT_W; drop_h = DROPDOWN_TERM_EDIT_H;
+            int st_idx = (g_hovered_row >= 0 && g_hovered_row < 3) ? (g_hovered_row + 1) : 0;
+            drop_pixels = g_dropdown_term_edit_states[st_idx];
+        } else if (g_active_menu == 3) {
+            drop_x = DROPDOWN_TERM_VIEW_X; drop_y = DROPDOWN_TERM_VIEW_Y;
+            drop_w = DROPDOWN_TERM_VIEW_W; drop_h = DROPDOWN_TERM_VIEW_H;
+            int st_idx = (g_hovered_row >= 0 && g_hovered_row < 2) ? (g_hovered_row + 1) : 0;
+            drop_pixels = g_dropdown_term_view_states[st_idx];
+        } else if (g_active_menu == 4) {
+            drop_x = DROPDOWN_TERM_WINDOW_X; drop_y = DROPDOWN_TERM_WINDOW_Y;
+            drop_w = DROPDOWN_TERM_WINDOW_W; drop_h = DROPDOWN_TERM_WINDOW_H;
+            int st_idx = 0;
+            if (g_hovered_row == 0) st_idx = 1;
+            else if (g_hovered_row == 1) st_idx = 2;
+            else if (g_hovered_row == 3) st_idx = 3;
+            drop_pixels = g_dropdown_term_window_states[st_idx];
+        } else if (g_active_menu == 5) {
+            drop_x = DROPDOWN_TERM_HELP_X; drop_y = DROPDOWN_TERM_HELP_Y;
+            drop_w = DROPDOWN_TERM_HELP_W; drop_h = DROPDOWN_TERM_HELP_H;
+            int st_idx = (g_hovered_row == 0) ? 1 : 0;
+            drop_pixels = g_dropdown_term_help_states[st_idx];
+        }
+    } else {
+        if (g_active_menu == 0) {
+            drop_x = DROPDOWN_RECOVERY_X; drop_y = DROPDOWN_RECOVERY_Y;
+            drop_w = DROPDOWN_RECOVERY_W; drop_h = DROPDOWN_RECOVERY_H;
+            int st_idx = (g_hovered_row == 0) ? 1 : 0;
+            drop_pixels = g_dropdown_recovery_states[st_idx];
+        } else if (g_active_menu == 1) {
+            drop_x = DROPDOWN_FILE_X; drop_y = DROPDOWN_FILE_Y;
+            drop_w = DROPDOWN_FILE_W; drop_h = DROPDOWN_FILE_H;
+            int st_idx = (g_hovered_row == 0) ? 1 : 0;
+            drop_pixels = g_dropdown_file_states[st_idx];
+        } else if (g_active_menu == 2) {
+            drop_x = DROPDOWN_EDIT_X; drop_y = DROPDOWN_EDIT_Y;
+            drop_w = DROPDOWN_EDIT_W; drop_h = DROPDOWN_EDIT_H;
+            drop_pixels = g_dropdown_edit_states[0];
+        } else if (g_active_menu == 3) {
+            drop_x = DROPDOWN_UTILITIES_X; drop_y = DROPDOWN_UTILITIES_Y;
+            drop_w = DROPDOWN_UTILITIES_W; drop_h = DROPDOWN_UTILITIES_H;
+            int st_idx = (g_hovered_row >= 0 && g_hovered_row < 4) ? (g_hovered_row + 1) : 0;
+            drop_pixels = g_dropdown_utilities_states[st_idx];
+        } else if (g_active_menu == 4) {
+            drop_x = DROPDOWN_WINDOW_X; drop_y = DROPDOWN_WINDOW_Y;
+            drop_w = DROPDOWN_WINDOW_W; drop_h = DROPDOWN_WINDOW_H;
+            int st_idx = (g_hovered_row == 3) ? 1 : 0;
+            drop_pixels = g_dropdown_window_states[st_idx];
+        } else if (g_active_menu == 5) {
+            drop_x = DROPDOWN_HELP_X; drop_y = DROPDOWN_HELP_Y;
+            drop_w = DROPDOWN_HELP_W; drop_h = DROPDOWN_HELP_H;
+            int st_idx = (g_hovered_row == 0) ? 1 : 0;
+            drop_pixels = g_dropdown_help_states[st_idx];
+        }
     }
 
     if (drop_pixels) {
@@ -2103,8 +2161,10 @@ poll_input(void)
                 g_shift_down = 0;
             } else if ((sc & 0x80) == 0 && sc < 128) {
                 char c = g_shift_down ? g_scancode_shift[sc] : g_scancode_normal[sc];
+                wslog("WS_KBD: sc=0x%02x char='%c' (term=%d)", sc, c ? c : '?', g_show_terminal);
                 if (!g_show_terminal && (c == 't' || c == 'T')) {
                     g_show_terminal = 1;
+                    g_term_focused = 1;
                     g_term_x = (g_w - (g_term_body_w + TERM_PAD * 2)) / 2;
                     g_term_y = 60;
                     g_term_redraw_needed = 1;
@@ -2239,6 +2299,18 @@ poll_input(void)
             /* Titlebar dragging */
             if (win_body_y >= 0.0 && win_body_y <= 28.0 && win_body_x >= 0.0 && win_body_x <= g_term_body_w) {
                 g_term_dragging = 1;
+                g_term_focused = 1;
+                g_dirty = 1;
+                lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                pthread_mutex_unlock(&g_lock);
+                return;
+            }
+
+            /* Terminal Window Body Click (Terminal focus/interaction - do not let click bleed through to Recovery!) */
+            if (win_body_x >= 0.0 && win_body_x <= g_term_body_w &&
+                win_body_y >= 0.0 && win_body_y <= g_term_body_h) {
+                g_term_focused = 1;
+                g_dirty = 1;
                 lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
                 pthread_mutex_unlock(&g_lock);
                 return;
@@ -2272,13 +2344,24 @@ poll_input(void)
 
         if (py >= (double)(g_h - MENUBAR_H)) {
             int clicked_menu = -1;
-            if (px >= 6 && px < 35) clicked_menu = 10;
-            else if (px >= 35 && px < 100) clicked_menu = 0;
-            else if (px >= 100 && px < 134) clicked_menu = 1;
-            else if (px >= 134 && px < 172) clicked_menu = 2;
-            else if (px >= 172 && px < 226) clicked_menu = 3;
-            else if (px >= 226 && px < 285) clicked_menu = 4;
-            else if (px >= 285 && px < 330) clicked_menu = 5;
+            int is_term_menu = (g_show_terminal && g_term_focused);
+            if (is_term_menu) {
+                if (px >= 6 && px < 35) clicked_menu = 10;
+                else if (px >= 35 && px < 98) clicked_menu = 0;
+                else if (px >= 98 && px < 138) clicked_menu = 1;
+                else if (px >= 138 && px < 172) clicked_menu = 2;
+                else if (px >= 172 && px < 212) clicked_menu = 3;
+                else if (px >= 212 && px < 272) clicked_menu = 4;
+                else if (px >= 272 && px < 315) clicked_menu = 5;
+            } else {
+                if (px >= 6 && px < 35) clicked_menu = 10;
+                else if (px >= 35 && px < 100) clicked_menu = 0;
+                else if (px >= 100 && px < 134) clicked_menu = 1;
+                else if (px >= 134 && px < 172) clicked_menu = 2;
+                else if (px >= 172 && px < 226) clicked_menu = 3;
+                else if (px >= 226 && px < 285) clicked_menu = 4;
+                else if (px >= 285 && px < 330) clicked_menu = 5;
+            }
 
             g_active_menu = (g_active_menu == clicked_menu) ? -1 : clicked_menu;
             g_hovered_row = -1;
@@ -2287,14 +2370,26 @@ poll_input(void)
             pthread_mutex_unlock(&g_lock);
             return;
         } else if (g_active_menu >= 0) {
+            int is_term_menu = (g_show_terminal && g_term_focused);
             int drop_x = 0, drop_y = 0, drop_w = 0, drop_h = 0;
-            if (g_active_menu == 10) { drop_x = DROPDOWN_APPLE_X; drop_y = DROPDOWN_APPLE_Y; drop_w = DROPDOWN_APPLE_W; drop_h = DROPDOWN_APPLE_H; }
-            else if (g_active_menu == 0) { drop_x = DROPDOWN_RECOVERY_X; drop_y = DROPDOWN_RECOVERY_Y; drop_w = DROPDOWN_RECOVERY_W; drop_h = DROPDOWN_RECOVERY_H; }
-            else if (g_active_menu == 1) { drop_x = DROPDOWN_FILE_X; drop_y = DROPDOWN_FILE_Y; drop_w = DROPDOWN_FILE_W; drop_h = DROPDOWN_FILE_H; }
-            else if (g_active_menu == 2) { drop_x = DROPDOWN_EDIT_X; drop_y = DROPDOWN_EDIT_Y; drop_w = DROPDOWN_EDIT_W; drop_h = DROPDOWN_EDIT_H; }
-            else if (g_active_menu == 3) { drop_x = DROPDOWN_UTILITIES_X; drop_y = DROPDOWN_UTILITIES_Y; drop_w = DROPDOWN_UTILITIES_W; drop_h = DROPDOWN_UTILITIES_H; }
-            else if (g_active_menu == 4) { drop_x = DROPDOWN_WINDOW_X; drop_y = DROPDOWN_WINDOW_Y; drop_w = DROPDOWN_WINDOW_W; drop_h = DROPDOWN_WINDOW_H; }
-            else if (g_active_menu == 5) { drop_x = DROPDOWN_HELP_X; drop_y = DROPDOWN_HELP_Y; drop_w = DROPDOWN_HELP_W; drop_h = DROPDOWN_HELP_H; }
+            if (g_active_menu == 10) {
+                drop_x = DROPDOWN_APPLE_X; drop_y = DROPDOWN_APPLE_Y;
+                drop_w = DROPDOWN_APPLE_W; drop_h = DROPDOWN_APPLE_H;
+            } else if (is_term_menu) {
+                if (g_active_menu == 0) { drop_x = DROPDOWN_TERM_APP_X; drop_y = DROPDOWN_TERM_APP_Y; drop_w = DROPDOWN_TERM_APP_W; drop_h = DROPDOWN_TERM_APP_H; }
+                else if (g_active_menu == 1) { drop_x = DROPDOWN_TERM_SHELL_X; drop_y = DROPDOWN_TERM_SHELL_Y; drop_w = DROPDOWN_TERM_SHELL_W; drop_h = DROPDOWN_TERM_SHELL_H; }
+                else if (g_active_menu == 2) { drop_x = DROPDOWN_TERM_EDIT_X; drop_y = DROPDOWN_TERM_EDIT_Y; drop_w = DROPDOWN_TERM_EDIT_W; drop_h = DROPDOWN_TERM_EDIT_H; }
+                else if (g_active_menu == 3) { drop_x = DROPDOWN_TERM_VIEW_X; drop_y = DROPDOWN_TERM_VIEW_Y; drop_w = DROPDOWN_TERM_VIEW_W; drop_h = DROPDOWN_TERM_VIEW_H; }
+                else if (g_active_menu == 4) { drop_x = DROPDOWN_TERM_WINDOW_X; drop_y = DROPDOWN_TERM_WINDOW_Y; drop_w = DROPDOWN_TERM_WINDOW_W; drop_h = DROPDOWN_TERM_WINDOW_H; }
+                else if (g_active_menu == 5) { drop_x = DROPDOWN_TERM_HELP_X; drop_y = DROPDOWN_TERM_HELP_Y; drop_w = DROPDOWN_TERM_HELP_W; drop_h = DROPDOWN_TERM_HELP_H; }
+            } else {
+                if (g_active_menu == 0) { drop_x = DROPDOWN_RECOVERY_X; drop_y = DROPDOWN_RECOVERY_Y; drop_w = DROPDOWN_RECOVERY_W; drop_h = DROPDOWN_RECOVERY_H; }
+                else if (g_active_menu == 1) { drop_x = DROPDOWN_FILE_X; drop_y = DROPDOWN_FILE_Y; drop_w = DROPDOWN_FILE_W; drop_h = DROPDOWN_FILE_H; }
+                else if (g_active_menu == 2) { drop_x = DROPDOWN_EDIT_X; drop_y = DROPDOWN_EDIT_Y; drop_w = DROPDOWN_EDIT_W; drop_h = DROPDOWN_EDIT_H; }
+                else if (g_active_menu == 3) { drop_x = DROPDOWN_UTILITIES_X; drop_y = DROPDOWN_UTILITIES_Y; drop_w = DROPDOWN_UTILITIES_W; drop_h = DROPDOWN_UTILITIES_H; }
+                else if (g_active_menu == 4) { drop_x = DROPDOWN_WINDOW_X; drop_y = DROPDOWN_WINDOW_Y; drop_w = DROPDOWN_WINDOW_W; drop_h = DROPDOWN_WINDOW_H; }
+                else if (g_active_menu == 5) { drop_x = DROPDOWN_HELP_X; drop_y = DROPDOWN_HELP_Y; drop_w = DROPDOWN_HELP_W; drop_h = DROPDOWN_HELP_H; }
+            }
 
             double mx = px - drop_x;
             double my = ((double)g_h - py) - drop_y;
@@ -2304,13 +2399,44 @@ poll_input(void)
                     if (my >= 4 && my < 25) clicked_row = 0;
                     else if (my >= 32 && my < 53) clicked_row = 2;
                     else if (my >= 53 && my < 74) clicked_row = 3;
-                } else if (g_active_menu == 0) {
-                    if (my >= 4 && my < 25) clicked_row = 0;
-                } else if (g_active_menu == 3) {
-                    if (my >= 4 && my < 25) clicked_row = 0;
-                    else if (my >= 25 && my < 46) clicked_row = 1;
-                    else if (my >= 46 && my < 67) clicked_row = 2;
-                    else if (my >= 67 && my < 88) clicked_row = 3;
+                } else if (is_term_menu) {
+                    if (g_active_menu == 0) {
+                        if (my >= 4 && my < 25) clicked_row = 0;
+                        else if (my >= 32 && my < 53) clicked_row = 2;
+                        else if (my >= 60 && my < 81) clicked_row = 4;
+                        else if (my >= 88 && my < 109) clicked_row = 6;
+                    } else if (g_active_menu == 1) {
+                        if (my >= 4 && my < 25) clicked_row = 0;
+                        else if (my >= 25 && my < 46) clicked_row = 1;
+                    } else if (g_active_menu == 2) {
+                        if (my >= 4 && my < 25) clicked_row = 0;
+                        else if (my >= 25 && my < 46) clicked_row = 1;
+                        else if (my >= 46 && my < 67) clicked_row = 2;
+                    } else if (g_active_menu == 3) {
+                        if (my >= 4 && my < 25) clicked_row = 0;
+                        else if (my >= 25 && my < 46) clicked_row = 1;
+                    } else if (g_active_menu == 4) {
+                        if (my >= 4 && my < 25) clicked_row = 0;
+                        else if (my >= 25 && my < 46) clicked_row = 1;
+                        else if (my >= 53 && my < 74) clicked_row = 3;
+                    } else if (g_active_menu == 5) {
+                        if (my >= 4 && my < 25) clicked_row = 0;
+                    }
+                } else {
+                    if (g_active_menu == 0) {
+                        if (my >= 4 && my < 25) clicked_row = 0;
+                    } else if (g_active_menu == 1) {
+                        if (my >= 4 && my < 25) clicked_row = 0;
+                    } else if (g_active_menu == 3) {
+                        if (my >= 4 && my < 25) clicked_row = 0;
+                        else if (my >= 25 && my < 46) clicked_row = 1;
+                        else if (my >= 46 && my < 67) clicked_row = 2;
+                        else if (my >= 67 && my < 88) clicked_row = 3;
+                    } else if (g_active_menu == 4) {
+                        if (my >= 53 && my < 74) clicked_row = 3;
+                    } else if (g_active_menu == 5) {
+                        if (my >= 4 && my < 25) clicked_row = 0;
+                    }
                 }
             }
             if (clicked_row < 0) clicked_row = g_hovered_row;
@@ -2326,19 +2452,56 @@ poll_input(void)
                     sync();
                     reboot(0x08); /* RB_HALT */
                 }
-            } else if (g_active_menu == 0) {
-                if (clicked_row == 0) {
-                    g_show_about = 1;
-                    g_about_x = ABOUT_WINDOW_X;
-                    g_about_y = ABOUT_WINDOW_Y;
+            } else if (is_term_menu) {
+                if (g_active_menu == 0) {
+                    if (clicked_row == 0) {
+                        g_show_about = 1; g_about_x = ABOUT_WINDOW_X; g_about_y = ABOUT_WINDOW_Y;
+                    } else if (clicked_row == 4) {
+                        term_exec_command("clear");
+                    } else if (clicked_row == 6) {
+                        g_show_terminal = 0; g_term_focused = 0;
+                    }
+                } else if (g_active_menu == 1) {
+                    if (clicked_row == 0) {
+                        g_term_x = (g_w - (g_term_body_w + TERM_PAD * 2)) / 2; g_term_y = 60; g_term_redraw_needed = 1;
+                    } else if (clicked_row == 1) {
+                        g_show_terminal = 0; g_term_focused = 0;
+                    }
+                } else if (g_active_menu == 4) {
+                    if (clicked_row == 0) {
+                        g_show_terminal = 0; g_term_focused = 0;
+                    } else if (clicked_row == 1) {
+                        /* Toggle zoom */
+                        if (!g_term_is_zoomed) {
+                            g_term_prev_x = g_term_x; g_term_prev_y = g_term_y;
+                            g_term_prev_w = g_term_body_w; g_term_prev_h = g_term_body_h;
+                            g_term_x = 30; g_term_y = MENUBAR_H + 8;
+                            g_term_body_w = g_w - 60 - TERM_PAD * 2; g_term_body_h = g_h - MENUBAR_H - 24 - TERM_PAD * 2;
+                            g_term_is_zoomed = 1;
+                        } else {
+                            g_term_x = g_term_prev_x; g_term_y = g_term_prev_y;
+                            g_term_body_w = g_term_prev_w; g_term_body_h = g_term_prev_h;
+                            g_term_is_zoomed = 0;
+                        }
+                        g_term_redraw_needed = 1;
+                    }
                 }
-            } else if (g_active_menu == 3) {
-                if (clicked_row == 2) {
-                    wslog("WindowServer: Utilities -> Terminal clicked! Launching Terminal...");
-                    g_show_terminal = 1;
-                    g_term_x = (g_w - (g_term_body_w + TERM_PAD * 2)) / 2;
-                    g_term_y = 100;
-                    g_term_redraw_needed = 1;
+            } else {
+                if (g_active_menu == 0) {
+                    if (clicked_row == 0) {
+                        g_show_about = 1;
+                        g_about_x = ABOUT_WINDOW_X;
+                        g_about_y = ABOUT_WINDOW_Y;
+                    }
+                } else if (g_active_menu == 3) {
+                    if (clicked_row == 2) {
+                        wslog("WindowServer: Utilities -> Terminal clicked! Launching Terminal...");
+                        g_show_terminal = 1;
+                        g_term_focused = 1;
+                        g_term_x = (g_w - (g_term_body_w + TERM_PAD * 2)) / 2;
+                        g_term_y = 60;
+                        g_term_redraw_needed = 1;
+                    }
                 }
             }
             g_active_menu = -1;
@@ -2347,6 +2510,8 @@ poll_input(void)
         }
 
         if (under && under->surface) {
+            g_term_focused = 0;
+            g_dirty = 1;
             int win_x = (int)(px - under->x);
             int win_y = (int)((under->y + under->h) - py);
             if (win_x >= 0 && win_x < RECOVERY_UI_W && win_y >= 0 && win_y < RECOVERY_UI_H) {
@@ -2486,16 +2651,27 @@ poll_input(void)
     }
 
     if (g_active_menu >= 0) {
+        int is_term_menu = (g_show_terminal && g_term_focused);
         /* Real macOS menubar scrubbing across all 7 menus */
         if (py >= (double)(g_h - MENUBAR_H)) {
             int scrub = -1;
-            if (px >= 6 && px < 35) scrub = 10;
-            else if (px >= 35 && px < 100) scrub = 0;
-            else if (px >= 100 && px < 134) scrub = 1;
-            else if (px >= 134 && px < 172) scrub = 2;
-            else if (px >= 172 && px < 226) scrub = 3;
-            else if (px >= 226 && px < 285) scrub = 4;
-            else if (px >= 285 && px < 330) scrub = 5;
+            if (is_term_menu) {
+                if (px >= 6 && px < 35) scrub = 10;
+                else if (px >= 35 && px < 98) scrub = 0;
+                else if (px >= 98 && px < 138) scrub = 1;
+                else if (px >= 138 && px < 172) scrub = 2;
+                else if (px >= 172 && px < 212) scrub = 3;
+                else if (px >= 212 && px < 272) scrub = 4;
+                else if (px >= 272 && px < 315) scrub = 5;
+            } else {
+                if (px >= 6 && px < 35) scrub = 10;
+                else if (px >= 35 && px < 100) scrub = 0;
+                else if (px >= 100 && px < 134) scrub = 1;
+                else if (px >= 134 && px < 172) scrub = 2;
+                else if (px >= 172 && px < 226) scrub = 3;
+                else if (px >= 226 && px < 285) scrub = 4;
+                else if (px >= 285 && px < 330) scrub = 5;
+            }
 
             if (scrub >= 0 && scrub != g_active_menu) {
                 g_active_menu = scrub;
@@ -2508,24 +2684,20 @@ poll_input(void)
         if (g_active_menu == 10) {
             drop_x = DROPDOWN_APPLE_X; drop_y = DROPDOWN_APPLE_Y;
             drop_w = DROPDOWN_APPLE_W; drop_h = DROPDOWN_APPLE_H;
-        } else if (g_active_menu == 0) {
-            drop_x = DROPDOWN_RECOVERY_X; drop_y = DROPDOWN_RECOVERY_Y;
-            drop_w = DROPDOWN_RECOVERY_W; drop_h = DROPDOWN_RECOVERY_H;
-        } else if (g_active_menu == 1) {
-            drop_x = DROPDOWN_FILE_X; drop_y = DROPDOWN_FILE_Y;
-            drop_w = DROPDOWN_FILE_W; drop_h = DROPDOWN_FILE_H;
-        } else if (g_active_menu == 2) {
-            drop_x = DROPDOWN_EDIT_X; drop_y = DROPDOWN_EDIT_Y;
-            drop_w = DROPDOWN_EDIT_W; drop_h = DROPDOWN_EDIT_H;
-        } else if (g_active_menu == 3) {
-            drop_x = DROPDOWN_UTILITIES_X; drop_y = DROPDOWN_UTILITIES_Y;
-            drop_w = DROPDOWN_UTILITIES_W; drop_h = DROPDOWN_UTILITIES_H;
-        } else if (g_active_menu == 4) {
-            drop_x = DROPDOWN_WINDOW_X; drop_y = DROPDOWN_WINDOW_Y;
-            drop_w = DROPDOWN_WINDOW_W; drop_h = DROPDOWN_WINDOW_H;
-        } else if (g_active_menu == 5) {
-            drop_x = DROPDOWN_HELP_X; drop_y = DROPDOWN_HELP_Y;
-            drop_w = DROPDOWN_HELP_W; drop_h = DROPDOWN_HELP_H;
+        } else if (is_term_menu) {
+            if (g_active_menu == 0) { drop_x = DROPDOWN_TERM_APP_X; drop_y = DROPDOWN_TERM_APP_Y; drop_w = DROPDOWN_TERM_APP_W; drop_h = DROPDOWN_TERM_APP_H; }
+            else if (g_active_menu == 1) { drop_x = DROPDOWN_TERM_SHELL_X; drop_y = DROPDOWN_TERM_SHELL_Y; drop_w = DROPDOWN_TERM_SHELL_W; drop_h = DROPDOWN_TERM_SHELL_H; }
+            else if (g_active_menu == 2) { drop_x = DROPDOWN_TERM_EDIT_X; drop_y = DROPDOWN_TERM_EDIT_Y; drop_w = DROPDOWN_TERM_EDIT_W; drop_h = DROPDOWN_TERM_EDIT_H; }
+            else if (g_active_menu == 3) { drop_x = DROPDOWN_TERM_VIEW_X; drop_y = DROPDOWN_TERM_VIEW_Y; drop_w = DROPDOWN_TERM_VIEW_W; drop_h = DROPDOWN_TERM_VIEW_H; }
+            else if (g_active_menu == 4) { drop_x = DROPDOWN_TERM_WINDOW_X; drop_y = DROPDOWN_TERM_WINDOW_Y; drop_w = DROPDOWN_TERM_WINDOW_W; drop_h = DROPDOWN_TERM_WINDOW_H; }
+            else if (g_active_menu == 5) { drop_x = DROPDOWN_TERM_HELP_X; drop_y = DROPDOWN_TERM_HELP_Y; drop_w = DROPDOWN_TERM_HELP_W; drop_h = DROPDOWN_TERM_HELP_H; }
+        } else {
+            if (g_active_menu == 0) { drop_x = DROPDOWN_RECOVERY_X; drop_y = DROPDOWN_RECOVERY_Y; drop_w = DROPDOWN_RECOVERY_W; drop_h = DROPDOWN_RECOVERY_H; }
+            else if (g_active_menu == 1) { drop_x = DROPDOWN_FILE_X; drop_y = DROPDOWN_FILE_Y; drop_w = DROPDOWN_FILE_W; drop_h = DROPDOWN_FILE_H; }
+            else if (g_active_menu == 2) { drop_x = DROPDOWN_EDIT_X; drop_y = DROPDOWN_EDIT_Y; drop_w = DROPDOWN_EDIT_W; drop_h = DROPDOWN_EDIT_H; }
+            else if (g_active_menu == 3) { drop_x = DROPDOWN_UTILITIES_X; drop_y = DROPDOWN_UTILITIES_Y; drop_w = DROPDOWN_UTILITIES_W; drop_h = DROPDOWN_UTILITIES_H; }
+            else if (g_active_menu == 4) { drop_x = DROPDOWN_WINDOW_X; drop_y = DROPDOWN_WINDOW_Y; drop_w = DROPDOWN_WINDOW_W; drop_h = DROPDOWN_WINDOW_H; }
+            else if (g_active_menu == 5) { drop_x = DROPDOWN_HELP_X; drop_y = DROPDOWN_HELP_Y; drop_w = DROPDOWN_HELP_W; drop_h = DROPDOWN_HELP_H; }
         }
 
         double mx = px - drop_x;
@@ -2536,19 +2708,44 @@ poll_input(void)
                 if (my >= 4 && my < 25) new_hover = 0;
                 else if (my >= 32 && my < 53) new_hover = 2;
                 else if (my >= 53 && my < 74) new_hover = 3;
-            } else if (g_active_menu == 0) {
-                if (my >= 4 && my < 25) new_hover = 0;
-            } else if (g_active_menu == 1) {
-                if (my >= 4 && my < 25) new_hover = 0;
-            } else if (g_active_menu == 3) {
-                if (my >= 4 && my < 25) new_hover = 0;
-                else if (my >= 25 && my < 46) new_hover = 1;
-                else if (my >= 46 && my < 67) new_hover = 2;
-                else if (my >= 67 && my < 88) new_hover = 3;
-            } else if (g_active_menu == 4) {
-                if (my >= 53 && my < 74) new_hover = 3;
-            } else if (g_active_menu == 5) {
-                if (my >= 4 && my < 25) new_hover = 0;
+            } else if (is_term_menu) {
+                if (g_active_menu == 0) {
+                    if (my >= 4 && my < 25) new_hover = 0;
+                    else if (my >= 32 && my < 53) new_hover = 2;
+                    else if (my >= 60 && my < 81) new_hover = 4;
+                    else if (my >= 88 && my < 109) new_hover = 6;
+                } else if (g_active_menu == 1) {
+                    if (my >= 4 && my < 25) new_hover = 0;
+                    else if (my >= 25 && my < 46) new_hover = 1;
+                } else if (g_active_menu == 2) {
+                    if (my >= 4 && my < 25) new_hover = 0;
+                    else if (my >= 25 && my < 46) new_hover = 1;
+                    else if (my >= 46 && my < 67) new_hover = 2;
+                } else if (g_active_menu == 3) {
+                    if (my >= 4 && my < 25) new_hover = 0;
+                    else if (my >= 25 && my < 46) new_hover = 1;
+                } else if (g_active_menu == 4) {
+                    if (my >= 4 && my < 25) new_hover = 0;
+                    else if (my >= 25 && my < 46) new_hover = 1;
+                    else if (my >= 53 && my < 74) new_hover = 3;
+                } else if (g_active_menu == 5) {
+                    if (my >= 4 && my < 25) new_hover = 0;
+                }
+            } else {
+                if (g_active_menu == 0) {
+                    if (my >= 4 && my < 25) new_hover = 0;
+                } else if (g_active_menu == 1) {
+                    if (my >= 4 && my < 25) new_hover = 0;
+                } else if (g_active_menu == 3) {
+                    if (my >= 4 && my < 25) new_hover = 0;
+                    else if (my >= 25 && my < 46) new_hover = 1;
+                    else if (my >= 46 && my < 67) new_hover = 2;
+                    else if (my >= 67 && my < 88) new_hover = 3;
+                } else if (g_active_menu == 4) {
+                    if (my >= 53 && my < 74) new_hover = 3;
+                } else if (g_active_menu == 5) {
+                    if (my >= 4 && my < 25) new_hover = 0;
+                }
             }
         }
         if (new_hover != g_hovered_row) {

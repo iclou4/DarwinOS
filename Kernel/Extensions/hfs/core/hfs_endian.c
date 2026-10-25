@@ -93,7 +93,7 @@ hfs_swap_BTNode (
 {
     BTNodeDescriptor *srcDesc = src->buffer;
     u_int16_t *srcOffs = NULL;
-	BTreeControlBlockPtr btcb = (BTreeControlBlockPtr)VTOF(vp)->fcbBTCBPtr;
+	BTreeControlBlockPtr btcb = (vp && VTOF(vp)) ? (BTreeControlBlockPtr)VTOF(vp)->fcbBTCBPtr : NULL;
     u_int16_t i; /* index to match srcDesc->numRecords */
     int error = 0;
 
@@ -124,13 +124,13 @@ hfs_swap_BTNode (
 		 * checking for invalid forwards and backwards links, since the header node's
 		 * links can point back to itself legitimately.
     	 */
-    	if (btcb->totalNodes != 0) {
-			if (srcDesc->fLink >= btcb->totalNodes) {
+    	if (btcb != NULL && btcb->totalNodes != 0) {
+			if (btcb != NULL && srcDesc->fLink >= btcb->totalNodes) {
 				hfs_corruption_debug("hfs_swap_BTNode: invalid forward link (0x%08x >= 0x%08x)\n", srcDesc->fLink, btcb->totalNodes);
 				error = fsBTInvalidHeaderErr;
 				goto fail;
 			}
-			if (srcDesc->bLink >= btcb->totalNodes) {
+			if (btcb != NULL && srcDesc->bLink >= btcb->totalNodes) {
 				hfs_corruption_debug("hfs_swap_BTNode: invalid backward link (0x%08x >= 0x%08x)\n", srcDesc->bLink, btcb->totalNodes);
 				error = fsBTInvalidHeaderErr;
 				goto fail;
@@ -280,7 +280,7 @@ hfs_swap_BTNode (
 		 * Ignore the header node since its forward and backwards links can legitimately
 		 * point to itself.
 		 */
-		if (srcDesc->fLink >= btcb->totalNodes) {
+		if (btcb != NULL && srcDesc->fLink >= btcb->totalNodes) {
 			panic("hfs_UNswap_BTNode: invalid forward link (0x%08X)\n", srcDesc->fLink);
 			error = fsBTInvalidHeaderErr;
 			goto fail;
@@ -292,7 +292,7 @@ hfs_swap_BTNode (
 			goto fail;
 		}
 		
-		if (srcDesc->bLink >= btcb->totalNodes) {
+		if (btcb != NULL && srcDesc->bLink >= btcb->totalNodes) {
 			panic("hfs_UNswap_BTNode: invalid backward link (0x%08X)\n", srcDesc->bLink);
 			error = fsBTInvalidHeaderErr;
 			goto fail;

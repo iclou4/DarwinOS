@@ -388,23 +388,23 @@ int ACPIPlatformExpert::handlePEHaltRestart(unsigned int type) {
 
     switch (type) {
         case kPERestartCPU:
-            // Note: This code may or may not work reliably on all systems.
-            // The original author of it indicated that it should work on any
-            // system with a compliant PCI controller.
-
-            // Obtained from: http://smackerelofopinion.blogspot.nl/2009/06/rebooting-pc.html
+            // Standard PCI Reset Control Register (0xCF9): 0x02 then 0x06 (system reset)
             outb(0xCF9, 0x02);
+            for (volatile int i = 0; i < 10000; i++) temporary_sum += i;
+            outb(0xCF9, 0x06);
+            outb(0xCF9, 0x0E);
 
-            // A delay of some sort is required here.
-            temporary_sum = 2;
-            temporary_sum += 2;
-
-            outb(0xCF9, 0x04);
-
-            // This should not be reached, but just in case...
+            // 8042 keyboard controller pulse CPU reset line
+            outb(0x64, 0xFE);
             break;
 
         case kPEHaltCPU:
+            // ACPI power off (QEMU port 0x604 / 0xB004)
+            outw(0x604, 0x2000);
+            outw(0xB004, 0x2000);
+            outw(0x4004, 0x3400);
+            break;
+
         default:
             ret = -1;
             break;

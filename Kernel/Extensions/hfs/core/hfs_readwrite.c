@@ -5131,7 +5131,7 @@ hfs_vnop_bwrite(struct vnop_bwrite_args *ap)
 		 * been swapped and validated when it was written to the journal,
 		 * so we won't do anything here.
 		 */
-		if (((u_int16_t *)((char *)buf_dataptr(bp) + buf_count(bp) - 2))[0] == 0x000e) {
+		if (((u_int16_t *)((char *)buf_dataptr(bp) + buf_count(bp) - 2))[0] == 0x000e && VTOF(vp) != NULL && VTOF(vp)->fcbBTCBPtr != NULL) {
 			/* Prepare the block pointer */
 			block.blockHeader = bp;
 			block.buffer = (char *)buf_dataptr(bp);

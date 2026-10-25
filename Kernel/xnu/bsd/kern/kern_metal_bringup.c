@@ -225,12 +225,27 @@ static int g_mouse_has_moved = 0;
 static uint8_t ps2_packet[3];
 static int ps2_packet_idx = 0;
 
+static uint8_t g_ps2_kbd_queue[128];
+static int g_ps2_kbd_head = 0, g_ps2_kbd_tail = 0;
+
+void
+ps2_keyboard_enqueue_scancode(uint8_t scancode)
+{
+	int next = (g_ps2_kbd_head + 1) % 128;
+	if (next != g_ps2_kbd_tail) {
+		g_ps2_kbd_queue[g_ps2_kbd_head] = scancode;
+		g_ps2_kbd_head = next;
+		kprintf("KBD_QUEUE: 0x%02x\n", scancode);
+	}
+}
+
 static void
 ps2_mouse_handle_byte(uint8_t b)
 {
 	if (ps2_packet_idx == 0) {
 		/* Byte 0 must have Bit 3 set to 1 */
 		if ((b & 0x08) != 0x08) {
+			ps2_keyboard_enqueue_scancode(b);
 			return;
 		}
 		ps2_packet[0] = b;
@@ -585,8 +600,6 @@ extern void nanoseconds_to_absolutetime(uint64_t nanosecs, uint64_t *result);
 static uint32_t fb_present_frames;
 static uint64_t fb_frame_interval_abs;
 static uint64_t fb_next_deadline;
-static uint8_t g_ps2_kbd_queue[128];
-static int g_ps2_kbd_head = 0, g_ps2_kbd_tail = 0;
 
 int
 fb_present(struct proc *p, struct fb_present_args *uap, int32_t *retval)
@@ -767,12 +780,7 @@ fb_present(struct proc *p, struct fb_present_args *uap, int32_t *retval)
 				if (status & 0x20) {
 					ps2_mouse_handle_byte(data);
 				} else {
-					int next = (g_ps2_kbd_head + 1) % 128;
-					if (next != g_ps2_kbd_tail) {
-						g_ps2_kbd_queue[g_ps2_kbd_head] = data;
-						g_ps2_kbd_head = next;
-						kprintf("KBD: 0x%02x\n", data);
-					}
+					ps2_keyboard_enqueue_scancode(data);
 				}
 			} else {
 				break;
