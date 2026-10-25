@@ -102,10 +102,10 @@ wslog(const char *fmt, ...)
 
 #define kWindowServerTitlebarHeight 32.0
 
-static int      g_w = 1280;
-static int      g_h = 800;
+static int      g_w = 1920;
+static int      g_h = 1080;
 static int      g_depth = 32;
-static int      g_stride = 1280 * 4;
+static int      g_stride = 1920 * 4;
 static size_t   g_fbsize;
 static uint32_t *g_fb;
 static uint8_t  *g_vram;             /* zero-copy VRAM mapping, if available */
@@ -782,8 +782,8 @@ enum {
 
 #define TERM_MAX_COLS 140
 #define TERM_MAX_ROWS 45
-#define TERM_MAX_W 1280
-#define TERM_MAX_H 800
+#define TERM_MAX_W 1920
+#define TERM_MAX_H 1080
 
 static int g_show_terminal = 0;
 static double g_term_x = 280;
@@ -1465,7 +1465,12 @@ draw_menubar(void)
     }
 
     for (int y = 0; y < MENUBAR_H && y < g_h; y++) {
-        memcpy(g_fb + (size_t)y * (size_t)g_w, mb_src + (size_t)y * (size_t)MENUBAR_W, (size_t)MENUBAR_W * 4);
+        uint32_t *row = g_fb + (size_t)y * (size_t)g_w;
+        const uint32_t *src_row = mb_src + (size_t)y * (size_t)MENUBAR_W;
+        memcpy(row, src_row, (size_t)MENUBAR_W * 4);
+        for (int x = MENUBAR_W; x < g_w; x++) {
+            row[x] = 0xff18181au;
+        }
     }
 
     const uint32_t *drop_pixels = NULL;
@@ -1564,26 +1569,28 @@ draw_menubar(void)
     }
 }
 
-static uint32_t g_bg_gradient[1280 * 800];
+static uint32_t *g_bg_gradient = NULL;
 static int g_bg_gradient_ready = 0;
 
 static void
 init_bg_gradient(void)
 {
     if (g_bg_gradient_ready) return;
+    if (!g_bg_gradient) {
+        g_bg_gradient = (uint32_t *)malloc((size_t)g_w * (size_t)g_h * 4);
+    }
     float xc = (float)g_w * 0.5f;
     float yc = (float)g_h * 0.5f;
-    for (int y = 0; y < g_h && y < 800; y++) {
+    for (int y = 0; y < g_h; y++) {
         float dy = ((float)y - yc) / yc;
-        for (int x = 0; x < g_w && x < 1280; x++) {
+        for (int x = 0; x < g_w; x++) {
             float dx = ((float)x - xc) / xc;
             float r2 = dx * dx + dy * dy;
             float t = sqrtf(r2) * 0.75f;
             if (t > 1.0f) t = 1.0f;
-            /* Authentic macOS Recovery vignette: rich Apple dark grey wallpaper */
             int v = (int)roundf(38.0f - 16.0f * t);
             if (v < 20) v = 20;
-            g_bg_gradient[y * g_w + x] = 0xff000000u | ((uint32_t)v << 16) | ((uint32_t)v << 8) | (uint32_t)v;
+            g_bg_gradient[(size_t)y * (size_t)g_w + x] = 0xff000000u | ((uint32_t)v << 16) | ((uint32_t)v << 8) | (uint32_t)v;
         }
     }
     g_bg_gradient_ready = 1;
@@ -2911,6 +2918,8 @@ rpc_window_create(WSPortMessage *m, mach_port_t reply)
             fill[k] = 0xff292929u;
         if (d->w == RECOVERY_UI_W && d->h == RECOVERY_UI_H) {
             memcpy(fill, g_recovery_ui_pixels, (size_t)RECOVERY_UI_W * (size_t)RECOVERY_UI_H * 4);
+            d->x = (g_w - RECOVERY_UI_W) / 2;
+            d->y = (g_h - RECOVERY_UI_H) / 2;
         }
     }
 
