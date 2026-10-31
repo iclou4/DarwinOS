@@ -48,6 +48,8 @@
 #include "cursor_data.h"
 #include "menubar_data.h"
 #include "recovery_ui_data.h"
+#include "su_render.h"
+#include "disk_utility_view.h"
 #include "terminal_data.h"
 #include <Metal/MTLSoftware.h>
 
@@ -795,6 +797,23 @@ static int g_show_recovery = 1;
 static double g_recovery_x = 0;
 static double g_recovery_y = 0;
 static int g_recovery_dragging = 0;
+static int g_show_disk_utility = 1;
+static double g_disk_utility_x = 0;
+static double g_disk_utility_y = 0;
+static int g_disk_utility_dragging = 0;
+/* Disk Utility's whole view model: the renderer is a pure function of this,
+ * so every control (sidebar toggle, rows, +/- volume, Erase, Add) is live. */
+static DUState g_du;
+static int g_du_ready = 0;
+
+static void du_ensure_ready(void)
+{
+    if (!g_du_ready) {
+        du_state_init(&g_du);
+        g_du_ready = 1;
+    }
+}
+
 
 /* --- Terminal App State & Engine (Resizable, 80x24+ Dynamic) --- */
 enum {
@@ -1443,6 +1462,45 @@ draw_terminal_window(void)
         }
     }
 }
+/* Disk Utility is drawn live from the SwiftUI component kit. The surface is
+ * only re-rendered when the view state actually changes. */
+static inline void
+draw_disk_utility_window(void)
+{
+    static uint32_t *du_surf = NULL;
+    static DUState du_prev;
+    static int du_valid = 0;
+    int du_x, du_y, row, col;
+
+    if (!g_show_disk_utility || !g_fb) return;
+    du_ensure_ready();
+
+    du_x = (int)g_disk_utility_x;
+    du_y = (int)g_disk_utility_y;
+
+    if (!du_surf) {
+        du_surf = (uint32_t *)calloc((size_t)DISK_UTILITY_W * (size_t)DISK_UTILITY_H, 4);
+        if (!du_surf) return;
+    }
+    if (!du_valid || memcmp(&du_prev, &g_du, sizeof g_du) != 0) {
+        du_render_state_buf(du_surf, DISK_UTILITY_W, DISK_UTILITY_H, DISK_UTILITY_W, &g_du);
+        du_prev = g_du;
+        du_valid = 1;
+    }
+
+    for (row = 0; row < DISK_UTILITY_H && (du_y + row) < g_h; row++) {
+        uint32_t *dst;
+        const uint32_t *src;
+        if (du_y + row < 0) continue;
+        dst = g_fb + (size_t)(du_y + row) * (size_t)g_w + du_x;
+        src = du_surf + (size_t)row * (size_t)DISK_UTILITY_W;
+        for (col = 0; col < DISK_UTILITY_W; col++) {
+            if (du_x + col < 0 || du_x + col >= g_w) continue;
+            dst[col] = blend_pixel(dst[col], src[col]);
+        }
+    }
+}
+
 static inline void
 draw_recovery_window(void)
 {
@@ -1623,17 +1681,34 @@ init_bg_gradient(void)
     if (!g_bg_gradient) {
         g_bg_gradient = (uint32_t *)malloc((size_t)g_w * (size_t)g_h * 4);
     }
+
+    static const float bayer8[8][8] = {
+        {  0.0f/64.0f - 0.5f, 32.0f/64.0f - 0.5f,  8.0f/64.0f - 0.5f, 40.0f/64.0f - 0.5f,  2.0f/64.0f - 0.5f, 34.0f/64.0f - 0.5f, 10.0f/64.0f - 0.5f, 42.0f/64.0f - 0.5f },
+        { 48.0f/64.0f - 0.5f, 16.0f/64.0f - 0.5f, 56.0f/64.0f - 0.5f, 24.0f/64.0f - 0.5f, 50.0f/64.0f - 0.5f, 18.0f/64.0f - 0.5f, 58.0f/64.0f - 0.5f, 26.0f/64.0f - 0.5f },
+        { 12.0f/64.0f - 0.5f, 44.0f/64.0f - 0.5f,  4.0f/64.0f - 0.5f, 36.0f/64.0f - 0.5f, 14.0f/64.0f - 0.5f, 46.0f/64.0f - 0.5f,  6.0f/64.0f - 0.5f, 38.0f/64.0f - 0.5f },
+        { 60.0f/64.0f - 0.5f, 28.0f/64.0f - 0.5f, 52.0f/64.0f - 0.5f, 20.0f/64.0f - 0.5f, 62.0f/64.0f - 0.5f, 30.0f/64.0f - 0.5f, 54.0f/64.0f - 0.5f, 22.0f/64.0f - 0.5f },
+        {  3.0f/64.0f - 0.5f, 35.0f/64.0f - 0.5f, 11.0f/64.0f - 0.5f, 43.0f/64.0f - 0.5f,  1.0f/64.0f - 0.5f, 33.0f/64.0f - 0.5f,  9.0f/64.0f - 0.5f, 41.0f/64.0f - 0.5f },
+        { 51.0f/64.0f - 0.5f, 19.0f/64.0f - 0.5f, 59.0f/64.0f - 0.5f, 27.0f/64.0f - 0.5f, 49.0f/64.0f - 0.5f, 17.0f/64.0f - 0.5f, 57.0f/64.0f - 0.5f, 25.0f/64.0f - 0.5f },
+        { 15.0f/64.0f - 0.5f, 47.0f/64.0f - 0.5f,  7.0f/64.0f - 0.5f, 39.0f/64.0f - 0.5f, 13.0f/64.0f - 0.5f, 45.0f/64.0f - 0.5f,  5.0f/64.0f - 0.5f, 37.0f/64.0f - 0.5f },
+        { 63.0f/64.0f - 0.5f, 31.0f/64.0f - 0.5f, 55.0f/64.0f - 0.5f, 23.0f/64.0f - 0.5f, 61.0f/64.0f - 0.5f, 29.0f/64.0f - 0.5f, 53.0f/64.0f - 0.5f, 21.0f/64.0f - 0.5f }
+    };
+
     float xc = (float)g_w * 0.5f;
     float yc = (float)g_h * 0.5f;
+    float max_r = sqrtf(xc * xc + yc * yc) * 0.95f;
+
     for (int y = 0; y < g_h; y++) {
-        float dy = ((float)y - yc) / yc;
+        float dy = (float)y - yc;
         for (int x = 0; x < g_w; x++) {
-            float dx = ((float)x - xc) / xc;
-            float r2 = dx * dx + dy * dy;
-            float t = sqrtf(r2) * 0.75f;
-            if (t > 1.0f) t = 1.0f;
-            int v = (int)roundf(38.0f - 16.0f * t);
+            float dx = (float)x - xc;
+            float r = sqrtf(dx * dx + dy * dy) / max_r;
+            if (r > 1.0f) r = 1.0f;
+            float t = r * r * (3.0f - 2.0f * r); /* smoothstep curve */
+            float val = 38.0f - 16.0f * t;
+            float dither = bayer8[y & 7][x & 7] * 1.5f;
+            int v = (int)roundf(val + dither);
             if (v < 20) v = 20;
+            if (v > 42) v = 42;
             g_bg_gradient[(size_t)y * (size_t)g_w + x] = 0xff000000u | ((uint32_t)v << 16) | ((uint32_t)v << 8) | (uint32_t)v;
         }
     }
@@ -1679,7 +1754,7 @@ init_shadow_lut(void)
     }
     for (int y = 0; y <= 33; y++) {
         for (int x = 0; x <= 33; x++) {
-            float dist = sqrtf((float)(x * x + y * y)) - 16.0f;
+            float dist = powf(powf((float)x / 16.0f, 2.6f) + powf((float)y / 16.0f, 2.6f), 1.0f / 2.6f) * 16.0f - 16.0f;
             int d = (int)roundf(dist);
             if (d >= 0 && d < 16) {
                 g_corner_lut[y][x] = g_shadow_lut[d];
@@ -1845,6 +1920,7 @@ composite_ex(int is_drag, int sc_x, int sc_y, int sc_w, int sc_h)
             }
         }
         draw_recovery_window();
+        draw_disk_utility_window();
         draw_terminal_window();
         draw_about_window();
         draw_menubar();
@@ -1955,7 +2031,8 @@ composite_ex(int is_drag, int sc_x, int sc_y, int sc_w, int sc_h)
     }
     t_after_commit = now_ms();
 
-    draw_recovery_window();
+        draw_recovery_window();
+        draw_disk_utility_window();
     draw_terminal_window();
     draw_about_window();
     draw_menubar();
@@ -2216,7 +2293,12 @@ poll_input(void)
             } else if ((sc & 0x80) == 0 && sc < 128) {
                 char c = g_shift_down ? g_scancode_shift[sc] : g_scancode_normal[sc];
                 wslog("WS_KBD: sc=0x%02x char='%c' (term=%d)", sc, c ? c : '?', g_show_terminal);
-                if (!g_show_terminal && (c == 't' || c == 'T')) {
+                du_ensure_ready();
+                if (g_show_disk_utility && g_du.sheet != DU_SHEET_NONE) {
+                    /* the modal sheet owns the keyboard while it is open */
+                    du_key_state(&g_du, sc == 0x01 ? 27 : (int)(unsigned char)c);
+                    g_dirty = 1;
+                } else if (!g_show_terminal && (c == 't' || c == 'T')) {
                     g_show_terminal = 1;
                     g_term_focused = 1;
                     g_term_x = (g_w - (g_term_body_w + TERM_PAD * 2)) / 2;
@@ -2240,8 +2322,8 @@ poll_input(void)
         return;
     }
 
-    dx = px - (double)lastx;
-    dy = py - (double)(g_h - lasty);
+    dx = px - g_mouse_x;
+    dy = py - g_mouse_y;
     moved = (ms.mouse_x != lastx || ms.mouse_y != lasty || ms.has_moved);
 
     if (moved) {
@@ -2371,6 +2453,30 @@ poll_input(void)
             }
         }
 
+        
+        if (g_show_disk_utility) {
+            double dux = px - g_disk_utility_x;
+            double duy = ((double)g_h - py) - g_disk_utility_y;
+            if (dux >= 0.0 && dux < (double)DISK_UTILITY_W &&
+                duy >= 0.0 && duy < (double)DISK_UTILITY_H) {
+                int act;
+                du_ensure_ready();
+                g_term_focused = 0;
+                act = du_click_state(&g_du, (int)dux, (int)duy,
+                                     DISK_UTILITY_W, DISK_UTILITY_H);
+                if (act == DU_ACT_CLOSE) {
+                    g_show_disk_utility = 0;
+                    g_disk_utility_dragging = 0;
+                } else if (act == DU_ACT_DRAG) {
+                    g_disk_utility_dragging = 1;
+                }
+                g_dirty = 1;
+                lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                pthread_mutex_unlock(&g_lock);
+                return;
+            }
+        }
+
         if (g_show_recovery) {
             double rx = px - g_recovery_x;
             double ry = ((double)g_h - py) - g_recovery_y;
@@ -2388,6 +2494,7 @@ poll_input(void)
                     g_dirty = 1;
                 } else if (rx >= 324.0 && rx <= 408.0 && ry >= 324.0 && ry <= 360.0) {
                     g_recovery_selected_row = 4;
+                    g_show_disk_utility = 1;
                     g_dirty = 1;
                 } else if (ry < 30.0) {
                     g_recovery_dragging = 1;
@@ -2575,7 +2682,10 @@ poll_input(void)
                         g_about_y = ABOUT_WINDOW_Y;
                     }
                 } else if (g_active_menu == 3) {
-                    if (clicked_row == 2) {
+                    if (clicked_row == 0 || clicked_row == 1) {
+                        g_show_disk_utility = 1;
+                        g_dirty = 1;
+                    } else if (clicked_row == 2) {
                         wslog("WindowServer: Utilities -> Terminal clicked! Launching Terminal...");
                         g_show_terminal = 1;
                         g_term_focused = 1;
@@ -2652,6 +2762,10 @@ poll_input(void)
             g_recovery_dragging = 0;
             g_dirty = 1;
         }
+        if (g_disk_utility_dragging) {
+            g_disk_utility_dragging = 0;
+            g_dirty = 1;
+        }
         if (g_recovery_selected_row == 4) {
             g_recovery_selected_row = 1;
             g_dirty = 1;
@@ -2659,6 +2773,17 @@ poll_input(void)
     }
 
     /* Recovery Window Dragging (Fixed size, not resizable) */
+    
+    if (g_show_disk_utility && g_disk_utility_dragging && (dx != 0 || dy != 0)) {
+        g_disk_utility_x += dx;
+        g_disk_utility_y -= dy;
+        if (g_disk_utility_x < 0) g_disk_utility_x = 0;
+        if (g_disk_utility_x > g_w - DISK_UTILITY_W) g_disk_utility_x = g_w - DISK_UTILITY_W;
+        if (g_disk_utility_y < MENUBAR_H) g_disk_utility_y = MENUBAR_H;
+        if (g_disk_utility_y > g_h - DISK_UTILITY_H) g_disk_utility_y = g_h - DISK_UTILITY_H;
+        g_dirty = 1;
+    }
+
     if (g_show_recovery && g_recovery_dragging && (dx != 0 || dy != 0)) {
         g_recovery_x += dx;
         g_recovery_y -= dy;
@@ -3445,6 +3570,11 @@ render_thread(void *arg)
 
         pthread_mutex_lock(&g_lock);
 
+        /* time-based view state: caret blink, operation status expiry */
+        if (g_show_disk_utility && g_du_ready) {
+            if (du_tick(&g_du)) g_dirty = 1;
+        }
+
         /*
          * Check g_dirty first: when dragging or updating windows, full compositing
          * must run every frame to prevent window freeze and stuttering.
@@ -3655,6 +3785,8 @@ main(int argc, char **argv)
     g_term_x = (g_w - (g_term_body_w + 32)) / 2.0;
     g_recovery_x = (g_w - RECOVERY_UI_W) / 2.0;
     g_recovery_y = (g_h - RECOVERY_UI_H) / 2.0;
+    g_disk_utility_x = (g_w - DISK_UTILITY_W) / 2.0;
+    g_disk_utility_y = (g_h - DISK_UTILITY_H) / 2.0;
     ws_metal_init();
 
     /* publish the first frame before any client connects */
