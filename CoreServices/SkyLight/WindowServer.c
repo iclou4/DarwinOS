@@ -793,6 +793,21 @@ static double g_about_x = ABOUT_WINDOW_X;
 static double g_about_y = ABOUT_WINDOW_Y;
 static int g_about_dragging = 0;
 
+/* Desktop & Installer State */
+static int g_desktop_mode = 0;       /* 1 = Booted into Desktop Environment */
+static int g_show_installer = 0;      /* 1 = Installer window open */
+static int g_installer_stage = 0;     /* 0 = Select disk, 1 = Installing progress, 2 = Complete */
+static float g_installer_progress = 0.0f;
+static double g_installer_x = 240.0;
+static double g_installer_y = 120.0;
+static int g_installer_dragging = 0;
+#define INSTALLER_W 640
+#define INSTALLER_H 440
+
+/* Dock Metrics */
+#define DOCK_H 58.0f
+#define DOCK_ITEM_COUNT 6
+
 static int g_show_recovery = 1;
 static double g_recovery_x = 0;
 static double g_recovery_y = 0;
@@ -1534,6 +1549,8 @@ draw_recovery_window(void)
 }
 
 #include "darwin_logo.h"
+#include "dock_icons.h"
+#include "du_icons.h"
 
 static void
 draw_darwin_logo(SUCanvas *c, float x, float y, uint32_t argb)
@@ -1660,6 +1677,226 @@ draw_about_window(void)
 
     text_y += 22.0f;
     su_text_mid(&c, SU_REG11, cx - su_text_width(SU_REG11, "Darwin Kernel Version 24.1.0") * 0.5f, text_y, "Darwin Kernel Version 24.1.0", su_rgba(255, 255, 255, 100));
+}
+
+/* --- macOS DarwinOS Installer (100% Procedural SwiftUI Component) --- */
+static void
+draw_installer_window(void)
+{
+    if (!g_show_installer || !g_fb) return;
+    float ax = (float)g_installer_x;
+    float ay = (float)g_installer_y;
+    float aw = (float)INSTALLER_W;
+    float ah = (float)INSTALLER_H;
+
+    SUCanvas c;
+    su_canvas_bind(&c, g_fb, g_w, g_h, g_w);
+
+    /* Tahoe Floating Modal Shadow */
+    su_shadow_rrect(&c, ax, ay, aw, ah, 20.0f, 28.0f, 10.0f, su_rgba(0, 0, 0, 200));
+    su_fill_rrect(&c, ax, ay, aw, ah, 20.0f, su_rgba(32, 32, 36, 252));
+    su_stroke_rrect(&c, ax, ay, aw, ah, 20.0f, 1.0f, su_rgba(255, 255, 255, 32));
+
+    /* Traffic Lights */
+    su_fill_circle(&c, ax + 18.0f, ay + 18.0f, 6.0f, su_rgba(235, 75, 70, 255));
+    su_stroke_circle(&c, ax + 18.0f, ay + 18.0f, 6.0f, 0.75f, su_rgba(0, 0, 0, 80));
+
+    /* Title */
+    float cx = ax + aw * 0.5f;
+    su_text_center_mid(&c, SU_SEM13, cx, ay + 18.0f, "Install darwinOS 26", su_rgba(255, 255, 255, 200));
+    su_fill_rect(&c, ax, ay + 36.0f, aw, 1.0f, su_rgba(255, 255, 255, 20));
+
+    if (g_installer_stage == 0) {
+        /* Stage 0: Welcome & Target Disk Selection */
+        float logo_x = cx - (float)DARWIN_ABOUT_LOGO_W * 0.5f;
+        draw_darwin_about_logo(&c, logo_x, ay + 50.0f, su_rgba(255, 255, 255, 255));
+
+        su_text_center_mid(&c, SU_BOLD22, cx, ay + 132.0f, "Install darwinOS 26", su_rgba(255, 255, 255, 255));
+        su_text_center_mid(&c, SU_REG13, cx, ay + 158.0f, "Select the disk where you want to install darwinOS:", su_rgba(235, 235, 245, 180));
+
+        /* Target Disk Card (Selected) */
+        float card_w = 340.0f, card_h = 84.0f;
+        float card_x = cx - card_w * 0.5f, card_y = ay + 185.0f;
+        su_fill_rrect(&c, card_x, card_y, card_w, card_h, 14.0f, su_rgba(44, 44, 48, 255));
+        su_stroke_rrect(&c, card_x, card_y, card_w, card_h, 14.0f, 2.0f, su_rgba(10, 132, 255, 255));
+
+        /* Drive Icon */
+        float drive_x = card_x + 22.0f, drive_y = card_y + card_h * 0.5f;
+        for (int r = 0; r < DU_ICON_DISK_H; r++) {
+            for (int col = 0; col < DU_ICON_DISK_W; col++) {
+                uint8_t a = g_du_icon_disk[r * DU_ICON_DISK_W + col];
+                if (a) {
+                    su_fill_rect(&c, drive_x + (float)col * 1.5f - 10.0f, drive_y + (float)r * 1.5f - 10.0f, 1.5f, 1.5f, su_rgba(255, 255, 255, a));
+                }
+            }
+        }
+
+        su_text_mid(&c, SU_SEM15, card_x + 58.0f, card_y + 30.0f, "darwinOS", su_rgba(255, 255, 255, 255));
+        su_text_mid(&c, SU_REG12, card_x + 58.0f, card_y + 54.0f, "994.66 GB available • Apple SSD Media", su_rgba(235, 235, 245, 140));
+
+        /* Bottom Buttons */
+        float by = ay + ah - 48.0f;
+        /* Cancel Button */
+        su_fill_rrect(&c, ax + 24.0f, by, 84.0f, 28.0f, 8.0f, su_rgba(255, 255, 255, 24));
+        su_stroke_rrect(&c, ax + 24.0f, by, 84.0f, 28.0f, 8.0f, 1.0f, su_rgba(255, 255, 255, 30));
+        su_text_center_mid(&c, SU_REG13, ax + 66.0f, by + 14.0f, "Cancel", su_rgba(255, 255, 255, 230));
+
+        /* Install Button (Accent Blue) */
+        float inst_w = 140.0f;
+        float inst_x = ax + aw - 24.0f - inst_w;
+        su_fill_rrect(&c, inst_x, by, inst_w, 28.0f, 8.0f, su_rgba(10, 132, 255, 255));
+        su_text_center_mid(&c, SU_SEM13, inst_x + inst_w * 0.5f, by + 14.0f, "Install darwinOS", su_rgba(255, 255, 255, 255));
+    } else if (g_installer_stage == 1) {
+        /* Stage 1: Installing Progress */
+        float logo_x = cx - (float)DARWIN_ABOUT_LOGO_W * 0.5f;
+        draw_darwin_about_logo(&c, logo_x, ay + 60.0f, su_rgba(255, 255, 255, 255));
+
+        su_text_center_mid(&c, SU_BOLD22, cx, ay + 148.0f, "Installing darwinOS on “darwinOS”...", su_rgba(255, 255, 255, 255));
+
+        const char *step_txt = "Extracting system packages...";
+        if (g_installer_progress > 0.35f) step_txt = "Installing CoreServices & frameworks...";
+        if (g_installer_progress > 0.70f) step_txt = "Configuring system bootloader & kernelcache...";
+        if (g_installer_progress > 0.95f) step_txt = "Finishing installation...";
+        su_text_center_mid(&c, SU_REG13, cx, ay + 185.0f, step_txt, su_rgba(235, 235, 245, 180));
+
+        /* Progress Bar */
+        float bar_w = 380.0f, bar_h = 8.0f;
+        float bar_x = cx - bar_w * 0.5f, bar_y = ay + 215.0f;
+        su_fill_rrect(&c, bar_x, bar_y, bar_w, bar_h, 4.0f, su_rgba(60, 60, 65, 255));
+        float fill_w = bar_w * g_installer_progress;
+        if (fill_w > bar_w) fill_w = bar_w;
+        if (fill_w > 4.0f) {
+            su_fill_rrect(&c, bar_x, bar_y, fill_w, bar_h, 4.0f, su_rgba(10, 132, 255, 255));
+        }
+
+        char prog_str[64];
+        snprintf(prog_str, sizeof prog_str, "%.0f%% completed", g_installer_progress * 100.0f);
+        su_text_center_mid(&c, SU_REG11, cx, ay + 240.0f, prog_str, su_rgba(235, 235, 245, 120));
+    } else if (g_installer_stage == 2) {
+        /* Stage 2: Complete */
+        float logo_x = cx - (float)DARWIN_ABOUT_LOGO_W * 0.5f;
+        draw_darwin_about_logo(&c, logo_x, ay + 60.0f, su_rgba(255, 255, 255, 255));
+
+        su_text_center_mid(&c, SU_BOLD22, cx, ay + 150.0f, "Installation Complete!", su_rgba(255, 255, 255, 255));
+        su_text_center_mid(&c, SU_REG13, cx, ay + 180.0f, "darwinOS has been successfully installed on your computer.", su_rgba(235, 235, 245, 200));
+        su_text_center_mid(&c, SU_REG12, cx, ay + 204.0f, "Click Restart into Desktop to start using darwinOS.", su_rgba(235, 235, 245, 140));
+
+        /* Restart into Desktop Button */
+        float btn_w = 200.0f, btn_h = 32.0f;
+        float btn_x = cx - btn_w * 0.5f, btn_y = ay + 245.0f;
+        su_fill_rrect(&c, btn_x, btn_y, btn_w, btn_h, 8.0f, su_rgba(10, 132, 255, 255));
+        su_text_center_mid(&c, SU_SEM13, cx, btn_y + btn_h * 0.5f, "Restart into Desktop", su_rgba(255, 255, 255, 255));
+    }
+}
+
+/* --- macOS Tahoe Desktop & Dock (100% Procedural SwiftUI Component) --- */
+static void
+draw_desktop(void)
+{
+    if (!g_desktop_mode || !g_fb) return;
+
+    SUCanvas c;
+    su_canvas_bind(&c, g_fb, g_w, g_h, g_w);
+
+    /* Desktop Hard Drive Icon at Top-Right (macOS style) */
+    float dsk_x = (float)g_w - 90.0f;
+    float dsk_y = 48.0f;
+    float dsk_w = 64.0f;
+
+    /* Scaled disk icon */
+    float ic_x = dsk_x + (dsk_w - (float)DOCK_ICON_DISK_W) * 0.5f;
+    float ic_y = dsk_y;
+    for (int r = 0; r < DOCK_ICON_DISK_H; r++) {
+        for (int col = 0; col < DOCK_ICON_DISK_W; col++) {
+            uint8_t a = g_dock_icon_disk[r * DOCK_ICON_DISK_W + col];
+            if (a) {
+                su_fill_rect(&c, ic_x + (float)col, ic_y + (float)r, 1.0f, 1.0f, su_rgba(255, 255, 255, a));
+            }
+        }
+    }
+
+    /* Drive Name with subtle drop shadow */
+    su_text_center_mid(&c, SU_SEM12, dsk_x + dsk_w * 0.5f, dsk_y + 36.0f, "darwinOS", su_rgba(0, 0, 0, 200));
+    su_text_center_mid(&c, SU_SEM12, dsk_x + dsk_w * 0.5f, dsk_y + 35.0f, "darwinOS", su_rgba(255, 255, 255, 240));
+}
+
+static void
+draw_dock(void)
+{
+    if (!g_desktop_mode || !g_fb) return;
+
+    SUCanvas c;
+    su_canvas_bind(&c, g_fb, g_w, g_h, g_w);
+
+    /* Dock Capsule Dimensions */
+    float dock_w = 330.0f;
+    float dock_h = DOCK_H;
+    float dock_x = ((float)g_w - dock_w) * 0.5f;
+    float dock_y = (float)g_h - dock_h - 10.0f;
+
+    /* Frosted Glass Tahoe Capsule */
+    su_shadow_rrect(&c, dock_x, dock_y, dock_w, dock_h, 18.0f, 20.0f, 8.0f, su_rgba(0, 0, 0, 180));
+    su_fill_rrect(&c, dock_x, dock_y, dock_w, dock_h, 18.0f, su_rgba(28, 28, 34, 215));
+    su_stroke_rrect(&c, dock_x, dock_y, dock_w, dock_h, 18.0f, 1.0f, su_rgba(255, 255, 255, 36));
+
+    /* 6 Dock Items: Finder, Launchpad, Terminal, Disk Utility, Settings, [sep], Trash */
+    typedef struct {
+        const char *name;
+        const uint8_t *mask;
+        int mw, mh;
+        int is_running;
+        uint32_t tile_col;
+    } DockApp;
+
+    DockApp apps[6] = {
+        {"Finder",       g_dock_icon_finder,    DOCK_ICON_FINDER_W,    DOCK_ICON_FINDER_H,    1, su_rgba(20, 120, 240, 255)},
+        {"Launchpad",    g_dock_icon_launchpad, DOCK_ICON_LAUNCHPAD_W, DOCK_ICON_LAUNCHPAD_H, 0, su_rgba(180, 180, 190, 255)},
+        {"Terminal",     g_dock_icon_terminal,  DOCK_ICON_TERMINAL_W,  DOCK_ICON_TERMINAL_H,  g_show_terminal, su_rgba(40, 40, 44, 255)},
+        {"Disk Utility", g_dock_icon_disk,      DOCK_ICON_DISK_W,      DOCK_ICON_DISK_H,      g_show_disk_utility, su_rgba(160, 160, 170, 255)},
+        {"Settings",     g_dock_icon_settings,  DOCK_ICON_SETTINGS_W,  DOCK_ICON_SETTINGS_H,  0, su_rgba(120, 120, 125, 255)},
+        {"Trash",        g_dock_icon_trash,     DOCK_ICON_TRASH_W,     DOCK_ICON_TRASH_H,     0, 0}
+    };
+
+    float start_x = dock_x + 14.0f;
+    float slot_w = 46.0f;
+
+    for (int i = 0; i < 6; i++) {
+        float cx = start_x + (float)i * slot_w + (i == 5 ? 12.0f : 0.0f) + slot_w * 0.5f;
+        float cy = dock_y + dock_h * 0.5f - 2.0f;
+
+        /* Separator before Trash */
+        if (i == 5) {
+            float sep_x = start_x + (float)i * slot_w + 5.0f;
+            su_fill_rect(&c, sep_x, dock_y + 12.0f, 1.0f, dock_h - 24.0f, su_rgba(255, 255, 255, 30));
+        }
+
+        /* App Icon Tile */
+        float tile_sz = 36.0f;
+        float tx = cx - tile_sz * 0.5f;
+        float ty = cy - tile_sz * 0.5f;
+
+        if (apps[i].tile_col) {
+            su_fill_rrect(&c, tx, ty, tile_sz, tile_sz, 8.0f, apps[i].tile_col);
+            su_stroke_rrect(&c, tx, ty, tile_sz, tile_sz, 8.0f, 1.0f, su_rgba(255, 255, 255, 30));
+        }
+
+        /* App Symbol */
+        int ix = (int)(cx - (float)apps[i].mw * 0.5f + 0.5f);
+        int iy = (int)(cy - (float)apps[i].mh * 0.5f + 0.5f);
+        for (int r = 0; r < apps[i].mh; r++) {
+            for (int col = 0; col < apps[i].mw; col++) {
+                uint8_t a = apps[i].mask[r * apps[i].mw + col];
+                if (a) {
+                    su_fill_rect(&c, (float)(ix + col), (float)(iy + r), 1.0f, 1.0f, su_rgba(255, 255, 255, a));
+                }
+            }
+        }
+
+        /* Running Indicator Dot */
+        if (apps[i].is_running) {
+            su_fill_circle(&c, cx, dock_y + dock_h - 5.0f, 2.0f, su_rgba(255, 255, 255, 210));
+        }
+    }
 }
 
 /* --- Procedural SwiftUI 26 Global Menubar & Dropdowns (100% Code, Zero Screenshots) --- */
@@ -1805,6 +2042,98 @@ build_current_menus(void)
         m = &g_cur_menus[g_cur_menu_count++];
         m->title = "Help"; m->is_app_title = 0;
         m->items[0] = (SUMenuItem){"Disk Utility Help", NULL, 0, ACT_NONE};
+        m->item_count = 1;
+    } else if (g_desktop_mode && !g_show_disk_utility && !g_show_terminal && !g_show_installer) {
+        SUMenuDef *m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Finder"; m->is_app_title = 1;
+        m->items[0] = (SUMenuItem){"About Finder", NULL, 0, ACT_ABOUT};
+        m->items[1] = (SUMenuItem){NULL, NULL, 1, 0};
+        m->items[2] = (SUMenuItem){"Settings...", "⌘,", 0, ACT_NONE};
+        m->items[3] = (SUMenuItem){NULL, NULL, 1, 0};
+        m->items[4] = (SUMenuItem){"Empty Trash...", "⇧⌘⌫", 0, ACT_NONE};
+        m->item_count = 5;
+
+        /* File */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "File"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"New Finder Window", "⌘N", 0, ACT_NONE};
+        m->items[1] = (SUMenuItem){"New Folder", "⇧⌘N", 0, ACT_NONE};
+        m->items[2] = (SUMenuItem){"Close Window", "⌘W", 0, ACT_CLOSE_WIN};
+        m->item_count = 3;
+
+        /* Edit */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Edit"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"Undo", "⌘Z", 0, ACT_NONE};
+        m->items[1] = (SUMenuItem){"Redo", "⇧⌘Z", 0, ACT_NONE};
+        m->items[2] = (SUMenuItem){NULL, NULL, 1, 0};
+        m->items[3] = (SUMenuItem){"Cut", "⌘X", 0, ACT_NONE};
+        m->items[4] = (SUMenuItem){"Copy", "⌘C", 0, ACT_NONE};
+        m->items[5] = (SUMenuItem){"Paste", "⌘V", 0, ACT_NONE};
+        m->items[6] = (SUMenuItem){"Select All", "⌘A", 0, ACT_NONE};
+        m->item_count = 7;
+
+        /* View */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "View"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"as Icons", "⌘1", 0, ACT_NONE};
+        m->items[1] = (SUMenuItem){"as List", "⌘2", 0, ACT_NONE};
+        m->items[2] = (SUMenuItem){"as Columns", "⌘3", 0, ACT_NONE};
+        m->items[3] = (SUMenuItem){"as Gallery", "⌘4", 0, ACT_NONE};
+        m->item_count = 4;
+
+        /* Go */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Go"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"Applications", "⇧⌘A", 0, ACT_NONE};
+        m->items[1] = (SUMenuItem){"Utilities", "⇧⌘U", 0, ACT_NONE};
+        m->items[2] = (SUMenuItem){"Computer", "⇧⌘C", 0, ACT_NONE};
+        m->item_count = 3;
+
+        /* Window */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Window"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"Minimize", "⌘M", 0, ACT_MINIMIZE_WIN};
+        m->items[1] = (SUMenuItem){"Zoom", NULL, 0, ACT_ZOOM_WIN};
+        m->item_count = 2;
+
+        /* Help */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Help"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"macOS Help", NULL, 0, ACT_NONE};
+        m->item_count = 1;
+    } else if (g_show_installer) {
+        SUMenuDef *m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Install darwinOS"; m->is_app_title = 1;
+        m->items[0] = (SUMenuItem){"About Install darwinOS", NULL, 0, ACT_ABOUT};
+        m->items[1] = (SUMenuItem){NULL, NULL, 1, 0};
+        m->items[2] = (SUMenuItem){"Quit Install darwinOS", "⌘Q", 0, ACT_QUIT_APP};
+        m->item_count = 3;
+
+        /* Edit */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Edit"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"Undo", "⌘Z", 0, ACT_NONE};
+        m->items[1] = (SUMenuItem){"Redo", "⇧⌘Z", 0, ACT_NONE};
+        m->item_count = 2;
+
+        /* Utilities */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Utilities"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"Disk Utility", NULL, 0, ACT_DISK_UTILITY};
+        m->items[1] = (SUMenuItem){"Terminal", NULL, 0, ACT_TERMINAL};
+        m->item_count = 2;
+
+        /* Window */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Window"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"Minimize", "⌘M", 0, ACT_MINIMIZE_WIN};
+        m->item_count = 1;
+
+        /* Help */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Help"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"macOS Installer Help", NULL, 0, ACT_NONE};
         m->item_count = 1;
     } else {
         SUMenuDef *m = &g_cur_menus[g_cur_menu_count++];
@@ -1978,17 +2307,33 @@ init_bg_gradient(void)
 
     for (int y = 0; y < g_h; y++) {
         float dy = (float)y - yc;
+        float ny = (float)y / (float)(g_h > 0 ? g_h : 1);
         for (int x = 0; x < g_w; x++) {
             float dx = (float)x - xc;
             float r = sqrtf(dx * dx + dy * dy) / max_r;
             if (r > 1.0f) r = 1.0f;
-            float t = r * r * (3.0f - 2.0f * r); /* smoothstep curve */
-            float val = 38.0f - 16.0f * t;
             float dither = bayer8[y & 7][x & 7] * 1.5f;
-            int v = (int)roundf(val + dither);
-            if (v < 20) v = 20;
-            if (v > 42) v = 42;
-            g_bg_gradient[(size_t)y * (size_t)g_w + x] = 0xff000000u | ((uint32_t)v << 16) | ((uint32_t)v << 8) | (uint32_t)v;
+
+            if (g_desktop_mode) {
+                /* macOS Tahoe Midnight Gradient Wallpaper */
+                float glow = 1.0f - r;
+                if (glow < 0.0f) glow = 0.0f;
+                float cr = (14.0f * (1.0f - ny) + 10.0f * ny) + glow * 16.0f + dither;
+                float cg = (26.0f * (1.0f - ny) + 14.0f * ny) + glow * 24.0f + dither;
+                float cb = (54.0f * (1.0f - ny) + 26.0f * ny) + glow * 38.0f + dither;
+                int ir = (int)roundf(cr); if (ir < 8) ir = 8; if (ir > 255) ir = 255;
+                int ig = (int)roundf(cg); if (ig < 12) ig = 12; if (ig > 255) ig = 255;
+                int ib = (int)roundf(cb); if (ib < 20) ib = 20; if (ib > 255) ib = 255;
+                g_bg_gradient[(size_t)y * (size_t)g_w + x] = 0xff000000u | ((uint32_t)ir << 16) | ((uint32_t)ig << 8) | (uint32_t)ib;
+            } else {
+                /* Recovery Vignette */
+                float t = r * r * (3.0f - 2.0f * r);
+                float val = 38.0f - 16.0f * t;
+                int v = (int)roundf(val + dither);
+                if (v < 20) v = 20;
+                if (v > 42) v = 42;
+                g_bg_gradient[(size_t)y * (size_t)g_w + x] = 0xff000000u | ((uint32_t)v << 16) | ((uint32_t)v << 8) | (uint32_t)v;
+            }
         }
     }
     g_bg_gradient_ready = 1;
@@ -2198,10 +2543,13 @@ composite_ex(int is_drag, int sc_x, int sc_y, int sc_w, int sc_h)
                     composite_window(w);
             }
         }
+        draw_desktop();
         draw_recovery_window();
+        draw_installer_window();
         draw_disk_utility_window();
         draw_terminal_window();
         draw_about_window();
+        draw_dock();
         draw_menubar();
         if (!g_cursor_hidden)
             composite_cursor();
@@ -2310,10 +2658,13 @@ composite_ex(int is_drag, int sc_x, int sc_y, int sc_w, int sc_h)
     }
     t_after_commit = now_ms();
 
+        draw_desktop();
         draw_recovery_window();
+        draw_installer_window();
         draw_disk_utility_window();
     draw_terminal_window();
     draw_about_window();
+    draw_dock();
     draw_menubar();
 
     if (!g_cursor_hidden)
@@ -2832,13 +3183,145 @@ poll_input(void)
 
                 if (clicked_row >= 0) {
                     g_recovery_selected_row = clicked_row;
+                    if (clicked_row == 1) {
+                        /* Row 1 = Install darwinOS */
+                        g_show_installer = 1;
+                        g_installer_stage = 0;
+                        g_installer_progress = 0.0f;
+                        g_show_recovery = 0;
+                    }
                     g_dirty = 1;
                 } else if (rx >= 324.0 && rx <= 408.0 && ry >= 324.0 && ry <= 360.0) {
-                    g_recovery_selected_row = 4;
-                    g_show_disk_utility = 1;
+                    /* Continue Button */
+                    if (g_recovery_selected_row == 3) {
+                        g_show_disk_utility = 1;
+                    } else if (g_recovery_selected_row == 1) {
+                        g_show_installer = 1;
+                        g_installer_stage = 0;
+                        g_installer_progress = 0.0f;
+                        g_show_recovery = 0;
+                    } else {
+                        g_show_installer = 1;
+                        g_installer_stage = 0;
+                        g_installer_progress = 0.0f;
+                        g_show_recovery = 0;
+                    }
                     g_dirty = 1;
                 } else if (ry < 30.0) {
                     g_recovery_dragging = 1;
+                }
+                lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                pthread_mutex_unlock(&g_lock);
+                return;
+            }
+        }
+
+        
+        /* Installer Window Click Handling */
+        if (g_show_installer) {
+            double ix = px - g_installer_x;
+            double iy = ((double)g_h - py) - g_installer_y;
+            if (ix >= 0.0 && ix < (double)INSTALLER_W && iy >= 0.0 && iy < (double)INSTALLER_H) {
+                /* Red traffic light close */
+                if (ix >= 12.0 && ix <= 24.0 && iy >= 12.0 && iy <= 24.0) {
+                    g_show_installer = 0;
+                    if (!g_desktop_mode) g_show_recovery = 1;
+                    g_dirty = 1;
+                    lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                    pthread_mutex_unlock(&g_lock);
+                    return;
+                }
+
+                if (g_installer_stage == 0) {
+                    /* Cancel button */
+                    float by = (float)INSTALLER_H - 48.0f;
+                    if (ix >= 24.0 && ix <= 108.0 && iy >= by && iy <= by + 28.0) {
+                        g_show_installer = 0;
+                        if (!g_desktop_mode) g_show_recovery = 1;
+                        g_dirty = 1;
+                        lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                        pthread_mutex_unlock(&g_lock);
+                        return;
+                    }
+                    /* Install button */
+                    float inst_w = 140.0f;
+                    float inst_x = (float)INSTALLER_W - 24.0f - inst_w;
+                    if (ix >= inst_x && ix <= inst_x + inst_w && iy >= by && iy <= by + 28.0) {
+                        g_installer_stage = 1;
+                        g_installer_progress = 0.0f;
+                        g_dirty = 1;
+                        lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                        pthread_mutex_unlock(&g_lock);
+                        return;
+                    }
+                } else if (g_installer_stage == 2) {
+                    /* Restart into Desktop button */
+                    float cx = (float)INSTALLER_W * 0.5f;
+                    float btn_w = 200.0f, btn_h = 32.0f;
+                    float btn_x = cx - btn_w * 0.5f, btn_y = 245.0f;
+                    if (ix >= btn_x && ix <= btn_x + btn_w && iy >= btn_y && iy <= btn_y + btn_h) {
+                        g_desktop_mode = 1;
+                        g_show_installer = 0;
+                        g_show_recovery = 0;
+                        g_show_disk_utility = 0;
+                        g_show_terminal = 0;
+                        g_bg_gradient_ready = 0; /* switch to macOS Tahoe Midnight desktop wallpaper */
+                        g_dirty = 1;
+                        lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                        pthread_mutex_unlock(&g_lock);
+                        return;
+                    }
+                }
+
+                if (iy < 36.0) {
+                    g_installer_dragging = 1;
+                }
+                lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                pthread_mutex_unlock(&g_lock);
+                return;
+            }
+        }
+
+        /* Desktop Mode: Desktop Drive Icon and Dock Clicks */
+        if (g_desktop_mode) {
+            double top_y = (double)g_h - py;
+            /* Desktop Hard Drive Icon (top-right) */
+            if (px >= (double)(g_w - 90) && px <= (double)(g_w - 26) &&
+                top_y >= 44.0 && top_y <= 104.0) {
+                g_show_disk_utility = 1;
+                g_dirty = 1;
+                lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                pthread_mutex_unlock(&g_lock);
+                return;
+            }
+
+            /* Dock Capsule */
+            float dock_w = 330.0f;
+            float dock_h = DOCK_H;
+            float dock_x = ((float)g_w - dock_w) * 0.5f;
+            float dock_y = (float)g_h - dock_h - 10.0f;
+
+            if (px >= (double)dock_x && px <= (double)(dock_x + dock_w) &&
+                top_y >= (double)dock_y && top_y <= (double)(dock_y + dock_h)) {
+                float rel_x = (float)px - (dock_x + 14.0f);
+                int slot = (int)(rel_x / 46.0f);
+                if (slot == 0) {
+                    /* Finder */
+                    g_dirty = 1;
+                } else if (slot == 2) {
+                    /* Terminal */
+                    g_show_terminal = !g_show_terminal;
+                    if (g_show_terminal) {
+                        g_term_focused = 1;
+                        g_term_x = (g_w - (g_term_body_w + TERM_PAD * 2)) / 2;
+                        g_term_y = 60;
+                        g_term_redraw_needed = 1;
+                    }
+                    g_dirty = 1;
+                } else if (slot == 3) {
+                    /* Disk Utility */
+                    g_show_disk_utility = !g_show_disk_utility;
+                    g_dirty = 1;
                 }
                 lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
                 pthread_mutex_unlock(&g_lock);
@@ -3061,6 +3544,10 @@ if (under && under->surface) {
             g_recovery_dragging = 0;
             g_dirty = 1;
         }
+        if (g_installer_dragging) {
+            g_installer_dragging = 0;
+            g_dirty = 1;
+        }
         if (g_disk_utility_dragging) {
             g_disk_utility_dragging = 0;
             g_dirty = 1;
@@ -3111,6 +3598,11 @@ if (under && under->surface) {
         g_dirty = 1;
     }
 
+    if (g_show_installer && g_installer_dragging && (dx != 0 || dy != 0)) {
+        g_installer_x += dx;
+        g_installer_y -= dy;
+        g_dirty = 1;
+    }
     if (g_show_recovery && g_recovery_dragging && (dx != 0 || dy != 0)) {
         g_recovery_x += dx;
         g_recovery_y -= dy;
@@ -3925,6 +4417,14 @@ render_thread(void *arg)
         /* time-based view state: caret blink, operation status expiry */
         if (g_show_disk_utility && g_du_ready) {
             if (du_tick(&g_du)) g_dirty = 1;
+        }
+        if (g_show_installer && g_installer_stage == 1) {
+            g_installer_progress += 0.012f;
+            if (g_installer_progress >= 1.0f) {
+                g_installer_progress = 1.0f;
+                g_installer_stage = 2;
+            }
+            g_dirty = 1;
         }
 
         /*
