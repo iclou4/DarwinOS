@@ -16,6 +16,13 @@
 #include "su_render.h"
 #include <stdio.h>
 #include <math.h>
+#include <sys/mount.h>
+#include <sys/disk.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <errno.h>
+#include <dirent.h>
 
 /* --- Palette: Authentic macOS Dark Mode --- */
 #define C_WINDOW       su_rgba(28, 28, 30, 255)
@@ -1004,15 +1011,47 @@ int du_click_state(DUState *s, int x, int y, int w, int h)
     }
     if (hit == DU_HIT_TOOL_MOUNT) {
         DUVolume *v = &s->vol[s->selected];
-        v->mounted = !v->mounted;
-        s->status = v->mounted ? DU_STATUS_MOUNTED : DU_STATUS_UNMOUNTED;
-        s->status_ttl = DU_STATUS_TTL;
-        if (v->mounted) {
-            snprintf(v->mount, sizeof v->mount, "/Volumes/%s", v->name);
-            snprintf(s->status_str, sizeof s->status_str, "“%s” was mounted.", v->name);
+        if (!v->mounted) {
+            char devpath[64];
+            snprintf(devpath, sizeof devpath, "/dev/%s", v->device);
+            char mntpt[128];
+            snprintf(mntpt, sizeof mntpt, "/Volumes/%s", v->name);
+            mkdir("/Volumes", 0755);
+            mkdir(mntpt, 0755);
+
+            struct { char *fspec; } margs;
+            margs.fspec = devpath;
+            int rc = mount("hfs", mntpt, 0, &margs);
+            if (rc == 0 || rc == EBUSY) {
+                v->mounted = 1;
+                snprintf(v->mount, sizeof v->mount, "%s", mntpt);
+                s->status = DU_STATUS_MOUNTED;
+                s->status_ttl = DU_STATUS_TTL;
+                snprintf(s->status_str, sizeof s->status_str, "“%s” mounted at %s.", v->name, mntpt);
+            } else {
+                s->status = DU_STATUS_UNMOUNTED;
+                s->status_ttl = DU_STATUS_TTL;
+                snprintf(s->status_str, sizeof s->status_str, "Mount failed (errno %d).", rc);
+            }
         } else {
-            snprintf(v->mount, sizeof v->mount, "Not Mounted");
-            snprintf(s->status_str, sizeof s->status_str, "“%s” was unmounted.", v->name);
+            if (strcmp(v->mount, "/") != 0) {
+                int rc = unmount(v->mount, 0);
+                if (rc == 0) {
+                    v->mounted = 0;
+                    snprintf(v->mount, sizeof v->mount, "Not Mounted");
+                    s->status = DU_STATUS_UNMOUNTED;
+                    s->status_ttl = DU_STATUS_TTL;
+                    snprintf(s->status_str, sizeof s->status_str, "“%s” unmounted.", v->name);
+                } else {
+                    s->status = DU_STATUS_MOUNTED;
+                    s->status_ttl = DU_STATUS_TTL;
+                    snprintf(s->status_str, sizeof s->status_str, "Unmount failed (errno %d).", rc);
+                }
+            } else {
+                s->status = DU_STATUS_MOUNTED;
+                s->status_ttl = DU_STATUS_TTL;
+                snprintf(s->status_str, sizeof s->status_str, "Cannot unmount root system volume.");
+            }
         }
         return DU_ACT_NONE;
     }
@@ -1087,25 +1126,49 @@ int du_tick(DUState *s)
     return 0;
 }
 
-/* --- State Initialization: Authentic darwinOS 26 Recovery Volumes --- */
-void du_state_init(DUState *s)
+/* --- Real Storage Probe for DarwinOS 26 Recovery --- */
+void du_probe_real_storage(DUState *s)
 {
     memset(s, 0, sizeof(*s));
     s->sidebar = 1;
     s->view_mode = DU_VIEW_ALL_DEVICES;
-    s->selected = 3; /* Default selection: darwinOS root system volume */
+    s->selected = 3; /* Default: target darwinOS volume */
+    s->count = 0;
 
-    /* 0. Internal Physical NVMe SSD */
-    DUVolume *v0 = &s->vol[0];
-    strncpy(v0->name, "APPLE SSD AP1024Q Media", sizeof(v0->name) - 1);
-    strncpy(v0->kind, "PCI-Express Apple Fabric NVMe Internal Physical Disk", sizeof(v0->kind) - 1);
-    strncpy(v0->fs, "GUID Partition Map", sizeof(v0->fs) - 1);
+    /* Query real mounted filesystems via getmntinfo */
+    struct statfs *mntbuf = NULL;
+    int mntcount = getmntinfo(&mntbuf, MNT_NOWAIT);
+    float root_cap = 2.50f, root_used = 0.55f, root_free = 1.95f;
+    int is_root_mounted = 1;
+    int is_target_mounted = 0;
+
+    for (int i = 0; i < mntcount; i++) {
+        if (strcmp(mntbuf[i].f_mntonname, "/") == 0) {
+            uint64_t total = (uint64_t)mntbuf[i].f_blocks * (uint64_t)mntbuf[i].f_bsize;
+            uint64_t free_b = (uint64_t)mntbuf[i].f_bfree * (uint64_t)mntbuf[i].f_bsize;
+            if (total > 0) {
+                root_cap = (float)((double)total / (1024.0 * 1024.0 * 1024.0));
+                root_free = (float)((double)free_b / (1024.0 * 1024.0 * 1024.0));
+                root_used = root_cap - root_free;
+                if (root_used < 0.01f) root_used = 0.05f;
+            }
+            is_root_mounted = 1;
+        } else if (strcmp(mntbuf[i].f_mntonname, "/Volumes/darwinOS") == 0) {
+            is_target_mounted = 1;
+        }
+    }
+
+    /* 0. Internal Physical Hard Disk (disk0, 8.0 GB) */
+    DUVolume *v0 = &s->vol[s->count++];
+    strncpy(v0->name, "QEMU HARDDISK Media", sizeof(v0->name) - 1);
+    strncpy(v0->kind, "SATA AHCI Internal Physical Disk", sizeof(v0->kind) - 1);
+    strncpy(v0->fs, "GUID Partition Map (GPT)", sizeof(v0->fs) - 1);
     strncpy(v0->device, "disk0", sizeof(v0->device) - 1);
     strncpy(v0->mount, "Not Mounted", sizeof(v0->mount) - 1);
     strncpy(v0->owners, "Disabled", sizeof(v0->owners) - 1);
-    strncpy(v0->connection, "Apple Fabric", sizeof(v0->connection) - 1);
-    v0->cap_gb = 1000.20f;
-    v0->used_gb = 994.66f;
+    strncpy(v0->connection, "SATA", sizeof(v0->connection) - 1);
+    v0->cap_gb = 8.00f;
+    v0->used_gb = 7.50f;
     v0->other_gb = 0.0f;
     v0->type = DU_NODE_DISK;
     v0->indent = 0;
@@ -1113,123 +1176,86 @@ void du_state_init(DUState *s)
     v0->expanded = 1;
     v0->mounted = 1;
 
-    /* 1. APFS Container disk2 */
-    DUVolume *v1 = &s->vol[1];
-    strncpy(v1->name, "Container disk2", sizeof(v1->name) - 1);
-    strncpy(v1->kind, "APFS Container • 2 Volumes", sizeof(v1->kind) - 1);
-    strncpy(v1->fs, "APFS", sizeof(v1->fs) - 1);
-    strncpy(v1->device, "disk2", sizeof(v1->device) - 1);
+    /* 1. EFI System Partition (disk0s1, 512 MB) */
+    DUVolume *v1 = &s->vol[s->count++];
+    strncpy(v1->name, "EFI System Partition", sizeof(v1->name) - 1);
+    strncpy(v1->kind, "EFI System Partition • FAT32", sizeof(v1->kind) - 1);
+    strncpy(v1->fs, "MS-DOS (FAT32)", sizeof(v1->fs) - 1);
+    strncpy(v1->device, "disk0s1", sizeof(v1->device) - 1);
     strncpy(v1->mount, "Not Mounted", sizeof(v1->mount) - 1);
     strncpy(v1->owners, "Disabled", sizeof(v1->owners) - 1);
-    strncpy(v1->connection, "Apple Fabric", sizeof(v1->connection) - 1);
-    v1->cap_gb = 994.66f;
-    v1->used_gb = 15.86f;
+    strncpy(v1->connection, "SATA", sizeof(v1->connection) - 1);
+    v1->cap_gb = 0.51f;
+    v1->used_gb = 0.08f;
     v1->other_gb = 0.0f;
-    v1->type = DU_NODE_CONTAINER;
+    v1->type = DU_NODE_VOLUME;
     v1->indent = 1;
-    v1->has_children = 1;
-    v1->expanded = 1;
-    v1->mounted = 1;
+    v1->has_children = 0;
+    v1->mounted = 0;
 
-    /* 2. darwinOS Volume Group */
-    DUVolume *v2 = &s->vol[2];
-    strncpy(v2->name, "darwinOS volumes", sizeof(v2->name) - 1);
-    strncpy(v2->kind, "APFS Volume Group • System & Data", sizeof(v2->kind) - 1);
-    strncpy(v2->fs, "APFS Volume Group", sizeof(v2->fs) - 1);
-    strncpy(v2->device, "disk2s1", sizeof(v2->device) - 1);
+    /* 2. Recovery BaseSystem Volume (disk0s2, 2.5 GB, Mounted on /) */
+    DUVolume *v2 = &s->vol[s->count++];
+    strncpy(v2->name, "darwinOS BaseSystem", sizeof(v2->name) - 1);
+    strncpy(v2->kind, "Apple HFS+ Recovery System Volume", sizeof(v2->kind) - 1);
+    strncpy(v2->fs, "Mac OS Extended (Journaled)", sizeof(v2->fs) - 1);
+    strncpy(v2->device, "disk0s2", sizeof(v2->device) - 1);
     strncpy(v2->mount, "/", sizeof(v2->mount) - 1);
-    strncpy(v2->owners, "Enabled", sizeof(v2->owners) - 1);
-    strncpy(v2->connection, "Apple Fabric", sizeof(v2->connection) - 1);
-    v2->cap_gb = 994.66f;
-    v2->used_gb = 15.86f;
+    strncpy(v2->owners, "Disabled", sizeof(v2->owners) - 1);
+    strncpy(v2->connection, "SATA", sizeof(v2->connection) - 1);
+    v2->cap_gb = root_cap;
+    v2->used_gb = root_used;
     v2->other_gb = 0.0f;
-    v2->type = DU_NODE_VOLGROUP;
-    v2->indent = 2;
-    v2->has_children = 1;
-    v2->expanded = 1;
-    v2->mounted = 1;
+    v2->type = DU_NODE_VOLUME;
+    v2->indent = 1;
+    v2->has_children = 0;
+    v2->mounted = is_root_mounted;
 
-    /* 3. System Volume: darwinOS (Encrypted) */
-    DUVolume *v3 = &s->vol[3];
+    /* 3. Target Installed System Volume (disk0s3, 5.0 GB) */
+    DUVolume *v3 = &s->vol[s->count++];
     strncpy(v3->name, "darwinOS", sizeof(v3->name) - 1);
-    strncpy(v3->kind, "APFS Volume Group • APFS (Encrypted)", sizeof(v3->kind) - 1);
-    strncpy(v3->fs, "APFS (Encrypted)", sizeof(v3->fs) - 1);
-    strncpy(v3->device, "disk2s1s1", sizeof(v3->device) - 1);
-    strncpy(v3->mount, "/", sizeof(v3->mount) - 1);
-    strncpy(v3->snapshot_name, "com.apple.os.update-4DBE2E89F12...", sizeof(v3->snapshot_name) - 1);
-    strncpy(v3->snapshot_uuid, "2404D211-8422-4302-B839...", sizeof(v3->snapshot_uuid) - 1);
-    strncpy(v3->owners, "Disabled", sizeof(v3->owners) - 1);
-    strncpy(v3->connection, "Apple Fabric", sizeof(v3->connection) - 1);
-    v3->cap_gb = 994.66f;
-    v3->used_gb = 15.40f;
-    v3->other_gb = 460.8f / 1024.0f;
-    v3->shared_vols = 2;
+    strncpy(v3->kind, "Apple HFS+ System Volume (Installation Target)", sizeof(v3->kind) - 1);
+    strncpy(v3->fs, "Mac OS Extended (Journaled)", sizeof(v3->fs) - 1);
+    strncpy(v3->device, "disk0s3", sizeof(v3->device) - 1);
+    strncpy(v3->mount, is_target_mounted ? "/Volumes/darwinOS" : "Not Mounted", sizeof(v3->mount) - 1);
+    strncpy(v3->owners, "Enabled", sizeof(v3->owners) - 1);
+    strncpy(v3->connection, "SATA", sizeof(v3->connection) - 1);
+    v3->cap_gb = 5.00f;
+    v3->used_gb = 0.05f;
+    v3->other_gb = 0.0f;
     v3->type = DU_NODE_VOLUME;
-    v3->indent = 3;
+    v3->indent = 1;
     v3->has_children = 0;
-    v3->mounted = 1;
+    v3->mounted = is_target_mounted;
 
-    /* 4. Data Volume: darwinOS - Data */
-    DUVolume *v4 = &s->vol[4];
-    strncpy(v4->name, "darwinOS - Data", sizeof(v4->name) - 1);
-    strncpy(v4->kind, "APFS Volume • APFS", sizeof(v4->kind) - 1);
-    strncpy(v4->fs, "APFS", sizeof(v4->fs) - 1);
-    strncpy(v4->device, "disk2s2", sizeof(v4->device) - 1);
-    strncpy(v4->mount, "/System/Volumes/Data", sizeof(v4->mount) - 1);
-    strncpy(v4->owners, "Enabled", sizeof(v4->owners) - 1);
-    strncpy(v4->connection, "Apple Fabric", sizeof(v4->connection) - 1);
-    v4->cap_gb = 994.66f;
-    v4->used_gb = 460.8f / 1024.0f;
-    v4->other_gb = 15.40f;
-    v4->shared_vols = 2;
-    v4->type = DU_NODE_VOLUME;
-    v4->indent = 3;
+    /* 4. Optical / Recovery CD-ROM Image (disk1) */
+    DUVolume *v4 = &s->vol[s->count++];
+    strncpy(v4->name, "Install darwinOS Recovery Media", sizeof(v4->name) - 1);
+    strncpy(v4->kind, "CD-ROM / Optical Disc Image", sizeof(v4->kind) - 1);
+    strncpy(v4->fs, "ISO 9660 / UDF", sizeof(v4->fs) - 1);
+    strncpy(v4->device, "disk1", sizeof(v4->device) - 1);
+    strncpy(v4->mount, "Not Mounted", sizeof(v4->mount) - 1);
+    strncpy(v4->owners, "Disabled", sizeof(v4->owners) - 1);
+    strncpy(v4->connection, "ATAPI", sizeof(v4->connection) - 1);
+    v4->cap_gb = 0.15f;
+    v4->used_gb = 0.15f;
+    v4->other_gb = 0.0f;
+    v4->type = DU_NODE_IMAGE;
+    v4->indent = 0;
     v4->has_children = 0;
     v4->mounted = 1;
-
-    /* 5. External Recovery USB Media */
-    DUVolume *v5 = &s->vol[5];
-    strncpy(v5->name, "Install darwinOS Recovery Media", sizeof(v5->name) - 1);
-    strncpy(v5->kind, "External Physical Disk • Mac OS Extended (Journaled)", sizeof(v5->kind) - 1);
-    strncpy(v5->fs, "Mac OS Extended (Journaled)", sizeof(v5->fs) - 1);
-    strncpy(v5->device, "disk1s2", sizeof(v5->device) - 1);
-    strncpy(v5->mount, "/Volumes/Image Volume", sizeof(v5->mount) - 1);
-    strncpy(v5->owners, "Enabled", sizeof(v5->owners) - 1);
-    strncpy(v5->connection, "USB", sizeof(v5->connection) - 1);
-    v5->cap_gb = 16.00f;
-    v5->used_gb = 4.20f;
-    v5->other_gb = 0.0f;
-    v5->type = DU_NODE_EXTERNAL;
-    v5->indent = 0;
-    v5->has_children = 0;
-    v5->mounted = 1;
-
-    /* 6. Disk Image: Base System */
-    DUVolume *v6 = &s->vol[6];
-    strncpy(v6->name, "darwinOS Base System", sizeof(v6->name) - 1);
-    strncpy(v6->kind, "Disk Image • Mac OS Extended", sizeof(v6->kind) - 1);
-    strncpy(v6->fs, "Mac OS Extended", sizeof(v6->fs) - 1);
-    strncpy(v6->device, "disk3", sizeof(v6->device) - 1);
-    strncpy(v6->mount, "/Volumes/darwinOS Base System", sizeof(v6->mount) - 1);
-    strncpy(v6->owners, "Disabled", sizeof(v6->owners) - 1);
-    strncpy(v6->connection, "Disk Image", sizeof(v6->connection) - 1);
-    v6->cap_gb = 2.45f;
-    v6->used_gb = 2.10f;
-    v6->other_gb = 0.0f;
-    v6->type = DU_NODE_IMAGE;
-    v6->indent = 0;
-    v6->has_children = 0;
-    v6->mounted = 1;
-
-    s->count = 7;
 
     /* Partition default slices */
     s->slice_count = 2;
     strncpy(s->slices[0].name, "darwinOS", sizeof(s->slices[0].name) - 1);
-    s->slices[0].size_gb = 300.0f;
+    s->slices[0].size_gb = 5.0f;
     s->slices[0].color = su_rgba(10, 132, 255, 255);
 
     strncpy(s->slices[1].name, "Free Space", sizeof(s->slices[1].name) - 1);
-    s->slices[1].size_gb = 700.0f;
+    s->slices[1].size_gb = 3.0f;
     s->slices[1].color = su_rgba(60, 60, 65, 255);
+}
+
+void du_state_init(DUState *s)
+{
+    du_probe_real_storage(s);
 }
