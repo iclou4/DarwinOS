@@ -1533,21 +1533,133 @@ draw_recovery_window(void)
     }
 }
 
+#include "darwin_logo.h"
+
+static void
+draw_darwin_logo(SUCanvas *c, float x, float y, uint32_t argb)
+{
+    int w = DARWIN_LOGO_W;
+    int h = DARWIN_LOGO_H;
+    int ix = (int)(x + 0.5f);
+    int iy = (int)(y + 0.5f);
+    uint32_t sa = (argb >> 24) & 0xFF;
+    uint32_t sr = (argb >> 16) & 0xFF;
+    uint32_t sg = (argb >> 8) & 0xFF;
+    uint32_t sb = argb & 0xFF;
+
+    for (int r = 0; r < h; r++) {
+        int py = iy + r;
+        if (py < c->cy0 || py >= c->cy1) continue;
+        for (int col = 0; col < w; col++) {
+            int px = ix + col;
+            if (px < c->cx0 || px >= c->cx1) continue;
+            unsigned char mask = g_darwin_logo_mask[r * w + col];
+            if (mask == 0) continue;
+            uint32_t fa = (sa * (uint32_t)mask) / 255;
+            if (fa == 0) continue;
+            uint32_t *dst = &c->px[py * c->stride + px];
+            uint32_t d = *dst;
+            uint32_t da = (d >> 24) & 0xFF;
+            uint32_t dr = (d >> 16) & 0xFF;
+            uint32_t dg = (d >> 8) & 0xFF;
+            uint32_t db = d & 0xFF;
+
+            uint32_t inv = 255 - fa;
+            uint32_t out_r = (sr * fa + dr * inv) / 255;
+            uint32_t out_g = (sg * fa + dg * inv) / 255;
+            uint32_t out_b = (sb * fa + db * inv) / 255;
+            uint32_t out_a = fa + (da * inv) / 255;
+
+            *dst = (out_a << 24) | (out_r << 16) | (out_g << 8) | out_b;
+        }
+    }
+}
+
+static void
+draw_darwin_about_logo(SUCanvas *c, float x, float y, uint32_t argb)
+{
+    int w = DARWIN_ABOUT_LOGO_W;
+    int h = DARWIN_ABOUT_LOGO_H;
+    int ix = (int)(x + 0.5f);
+    int iy = (int)(y + 0.5f);
+    uint32_t sa = (argb >> 24) & 0xFF;
+    uint32_t sr = (argb >> 16) & 0xFF;
+    uint32_t sg = (argb >> 8) & 0xFF;
+    uint32_t sb = argb & 0xFF;
+
+    for (int r = 0; r < h; r++) {
+        int py = iy + r;
+        if (py < c->cy0 || py >= c->cy1) continue;
+        for (int col = 0; col < w; col++) {
+            int px = ix + col;
+            if (px < c->cx0 || px >= c->cx1) continue;
+            unsigned char mask = g_darwin_about_logo_mask[r * w + col];
+            if (mask == 0) continue;
+            uint32_t fa = (sa * (uint32_t)mask) / 255;
+            if (fa == 0) continue;
+            uint32_t *dst = &c->px[py * c->stride + px];
+            uint32_t d = *dst;
+            uint32_t da = (d >> 24) & 0xFF;
+            uint32_t dr = (d >> 16) & 0xFF;
+            uint32_t dg = (d >> 8) & 0xFF;
+            uint32_t db = d & 0xFF;
+
+            uint32_t inv = 255 - fa;
+            uint32_t out_r = (sr * fa + dr * inv) / 255;
+            uint32_t out_g = (sg * fa + dg * inv) / 255;
+            uint32_t out_b = (sb * fa + db * inv) / 255;
+            uint32_t out_a = fa + (da * inv) / 255;
+
+            *dst = (out_a << 24) | (out_r << 16) | (out_g << 8) | out_b;
+        }
+    }
+}
+
+#undef ABOUT_WINDOW_W
+#undef ABOUT_WINDOW_H
+#define ABOUT_WINDOW_W 280
+#define ABOUT_WINDOW_H 224
+
 static inline void
 draw_about_window(void)
 {
     if (!g_show_about || !g_fb) return;
-    int ax = (int)g_about_x;
-    int ay = (int)g_about_y;
-    for (int dy = 0; dy < ABOUT_WINDOW_H && (ay + dy) < g_h; dy++) {
-        if (ay + dy < 0) continue;
-        uint32_t *dst = g_fb + (size_t)(ay + dy) * (size_t)g_w + ax;
-        const uint32_t *src = g_about_window_pixels + (size_t)dy * (size_t)ABOUT_WINDOW_W;
-        for (int dx = 0; dx < ABOUT_WINDOW_W; dx++) {
-            if (ax + dx < 0 || ax + dx >= g_w) continue;
-            dst[dx] = blend_pixel(dst[dx], src[dx]);
-        }
-    }
+    float ax = (float)g_about_x;
+    float ay = (float)g_about_y;
+    float aw = (float)ABOUT_WINDOW_W;
+    float ah = (float)ABOUT_WINDOW_H;
+
+    SUCanvas c;
+    su_canvas_bind(&c, g_fb, g_w, g_h, g_w);
+
+    /* Tahoe Floating Modal Shadow */
+    su_shadow_rrect(&c, ax, ay, aw, ah, 16.0f, 24.0f, 10.0f, su_rgba(0, 0, 0, 180));
+    /* Dark frosted squircle body */
+    su_fill_rrect(&c, ax, ay, aw, ah, 16.0f, su_rgba(32, 32, 36, 252));
+    su_stroke_rrect(&c, ax, ay, aw, ah, 16.0f, 1.0f, su_rgba(255, 255, 255, 30));
+
+    /* Red close button */
+    su_fill_circle(&c, ax + 18.0f, ay + 18.0f, 6.0f, su_rgba(235, 75, 70, 255));
+    su_stroke_circle(&c, ax + 18.0f, ay + 18.0f, 6.0f, 0.75f, su_rgba(0, 0, 0, 80));
+
+    /* Centered DarwinOS Splash Logo (52x64) */
+    float logo_x = ax + (aw - (float)DARWIN_ABOUT_LOGO_W) * 0.5f;
+    float logo_y = ay + 30.0f;
+    draw_darwin_about_logo(&c, logo_x, logo_y, su_rgba(255, 255, 255, 245));
+
+    /* Centered Typography */
+    float cx = ax + aw * 0.5f;
+    float text_y = logo_y + (float)DARWIN_ABOUT_LOGO_H + 18.0f;
+    su_text_mid(&c, SU_BOLD22, cx - su_text_width(SU_BOLD22, "darwinOS") * 0.5f, text_y, "darwinOS", su_rgba(255, 255, 255, 255));
+
+    text_y += 24.0f;
+    su_text_mid(&c, SU_MED13, cx - su_text_width(SU_MED13, "Recovery Mode") * 0.5f, text_y, "Recovery Mode", su_rgba(255, 255, 255, 210));
+
+    text_y += 20.0f;
+    su_text_mid(&c, SU_REG12, cx - su_text_width(SU_REG12, "Version 1.0 (Build 24A348)") * 0.5f, text_y, "Version 1.0 (Build 24A348)", su_rgba(255, 255, 255, 140));
+
+    text_y += 22.0f;
+    su_text_mid(&c, SU_REG11, cx - su_text_width(SU_REG11, "Darwin Kernel Version 24.1.0") * 0.5f, text_y, "Darwin Kernel Version 24.1.0", su_rgba(255, 255, 255, 100));
 }
 
 /* --- Procedural SwiftUI 26 Global Menubar & Dropdowns (100% Code, Zero Screenshots) --- */
@@ -1751,12 +1863,12 @@ draw_menubar(void)
     su_fill_rect(&mc, 0.0f, 0.0f, (float)g_w, 24.0f, su_rgba(24, 24, 28, 250));
     su_fill_rect(&mc, 0.0f, 23.0f, (float)g_w, 1.0f, su_rgba(255, 255, 255, 25));
 
-    /*  Apple Logo */
+    /* DarwinOS Boot Splash Logo (Whole Apple with Leaf, No Bite) */
     int is_apple_active = (g_active_menu == 10);
     if (is_apple_active) {
         su_fill_rrect(&mc, 8.0f, 3.0f, 26.0f, 18.0f, 5.0f, su_rgba(255, 255, 255, 45));
     }
-    su_symbol_h(&mc, "apple.logo", 21.0f, 12.0f, 13.0f, su_rgba(255, 255, 255, 240));
+    draw_darwin_logo(&mc, 15.0f, 4.5f, su_rgba(255, 255, 255, 240));
 
     /* Dynamic Menu Items */
     float cur_x = 42.0f;
@@ -1781,7 +1893,7 @@ draw_menubar(void)
     /* Active Dropdown Menu */
     if (g_active_menu >= 0) {
         SUMenuItem apple_items[4] = {
-            {"About This Mac", NULL, 0, ACT_ABOUT},
+            {"About Recovery", NULL, 0, ACT_ABOUT},
             {NULL, NULL, 1, 0},
             {"Restart...", NULL, 0, ACT_RESTART},
             {"Shut Down...", NULL, 0, ACT_SHUTDOWN}
@@ -2735,15 +2847,15 @@ poll_input(void)
         }
 
         if (g_show_about) {
-            double win_body_x = px - (g_about_x + 28.0);
-            double win_body_y = ((double)g_h - py) - (g_about_y + 28.0);
-            int inside_body = (win_body_x >= 0 && win_body_x < ABOUT_WINDOW_BODY_W &&
-                               win_body_y >= 0 && win_body_y < ABOUT_WINDOW_BODY_H);
+            double win_body_x = px - g_about_x;
+            double win_body_y = ((double)g_h - py) - g_about_y;
+            int inside_body = (win_body_x >= 0 && win_body_x < (double)ABOUT_WINDOW_W &&
+                               win_body_y >= 0 && win_body_y < (double)ABOUT_WINDOW_H);
 
             if (inside_body) {
                 double rdx = win_body_x - 18.0;
-                double rdy = win_body_y - 16.0;
-                if (rdx * rdx + rdy * rdy <= 49.0) {
+                double rdy = win_body_y - 18.0;
+                if (rdx * rdx + rdy * rdy <= 100.0) {
                     g_show_about = 0;
                     g_about_dragging = 0;
                     g_dirty = 1;
@@ -2782,7 +2894,7 @@ poll_input(void)
         } else if (g_active_menu >= 0) {
             build_current_menus();
             SUMenuItem apple_items[4] = {
-                {"About This Mac", NULL, 0, ACT_ABOUT},
+                {"About Recovery", NULL, 0, ACT_ABOUT},
                 {NULL, NULL, 1, 0},
                 {"Restart...", NULL, 0, ACT_RESTART},
                 {"Shut Down...", NULL, 0, ACT_SHUTDOWN}
