@@ -1,3 +1,4 @@
+#include "du_icons.h"
 /*
  * disk_utility_view.c
  * Disk Utility for darwinOS 26 Recovery — Pixel-Perfect SwiftUI Component Kit
@@ -260,6 +261,42 @@ static void draw_toolbar(SUCanvas *c, const DULayout *L, const DUState *s)
 }
 
 /* --- Sidebar --- */
+static void draw_alpha_mask(SUCanvas *c, int ix, int iy, int w, int h, const uint8_t *mask, uint32_t argb)
+{
+    uint32_t sa = (argb >> 24) & 0xFF;
+    uint32_t sr = (argb >> 16) & 0xFF;
+    uint32_t sg = (argb >> 8) & 0xFF;
+    uint32_t sb = argb & 0xFF;
+
+    for (int r = 0; r < h; r++) {
+        int py = iy + r;
+        if (py < c->cy0 || py >= c->cy1) continue;
+        for (int col = 0; col < w; col++) {
+            int px = ix + col;
+            if (px < c->cx0 || px >= c->cx1) continue;
+            uint8_t m = mask[r * w + col];
+            if (!m) continue;
+            uint32_t fa = (sa * (uint32_t)m) / 255;
+            if (!fa) continue;
+
+            uint32_t *dst = &c->px[py * c->stride + px];
+            uint32_t d = *dst;
+            uint32_t da = (d >> 24) & 0xFF;
+            uint32_t dr = (d >> 16) & 0xFF;
+            uint32_t dg = (d >> 8) & 0xFF;
+            uint32_t db = d & 0xFF;
+
+            uint32_t inv = 255 - fa;
+            uint32_t out_r = (sr * fa + dr * inv) / 255;
+            uint32_t out_g = (sg * fa + dg * inv) / 255;
+            uint32_t out_b = (sb * fa + db * inv) / 255;
+            uint32_t out_a = fa + (da * inv) / 255;
+
+            *dst = (out_a << 24) | (out_r << 16) | (out_g << 8) | out_b;
+        }
+    }
+}
+
 static void draw_sidebar(SUCanvas *c, const DULayout *L, const DUState *s)
 {
     float r = L->card_r;
@@ -279,35 +316,48 @@ static void draw_sidebar(SUCanvas *c, const DULayout *L, const DUState *s)
         }
 
         /* Disclosure Chevron (Authentic SF Symbols) */
-        float ind_x = L->row_x + 8.0f + (float)v->indent * 14.0f;
+        float ind_x = L->row_x + 6.0f + (float)v->indent * 14.0f;
         if (v->has_children) {
             const char *chev = v->expanded ? "chevron.down" : "chevron.right";
             su_symbol_h(c, chev, ind_x + 3.0f, ry + L->row_h * 0.5f, 7.5f, sel ? C_TEXT : C_TEXT2);
         }
 
-        /* Node SF Symbol */
-        const char *icon = "internaldrive";
-        if (v->type == DU_NODE_DISK) icon = "internaldrive";
-        else if (v->type == DU_NODE_CONTAINER) icon = "cube";
-        else if (v->type == DU_NODE_VOLGROUP) icon = "square.stack.3d.up";
-        else if (v->type == DU_NODE_VOLUME) icon = "internaldrive";
-        else if (v->type == DU_NODE_EXTERNAL) icon = "externaldrive";
-        else if (v->type == DU_NODE_IMAGE) icon = "opticaldisc.fill";
+        /* Node SF Symbol - Fixed uniform 16x16 icon box */
+        float icon_cx = ind_x + 16.0f;
+        float icon_cy = ry + L->row_h * 0.5f;
 
-        float sym_x = ind_x + (v->has_children ? 18.0f : 6.0f);
+        const uint8_t *mask = g_du_icon_volume;
+        int mw = DU_ICON_VOLUME_W, mh = DU_ICON_VOLUME_H;
+
+        if (v->type == DU_NODE_DISK) {
+            mask = g_du_icon_disk; mw = DU_ICON_DISK_W; mh = DU_ICON_DISK_H;
+        } else if (v->type == DU_NODE_CONTAINER || v->type == DU_NODE_VOLGROUP) {
+            mask = g_du_icon_container; mw = DU_ICON_CONTAINER_W; mh = DU_ICON_CONTAINER_H;
+        } else if (v->type == DU_NODE_VOLUME) {
+            mask = g_du_icon_volume; mw = DU_ICON_VOLUME_W; mh = DU_ICON_VOLUME_H;
+        } else if (v->type == DU_NODE_EXTERNAL) {
+            mask = g_du_icon_external; mw = DU_ICON_EXTERNAL_W; mh = DU_ICON_EXTERNAL_H;
+        } else if (v->type == DU_NODE_IMAGE) {
+            mask = g_du_icon_image; mw = DU_ICON_IMAGE_W; mh = DU_ICON_IMAGE_H;
+        }
+
         uint32_t icon_col = sel ? su_rgba(255, 255, 255, 255) : (v->mounted ? C_TEXT : C_LABEL);
-        su_symbol_h(c, icon, sym_x, ry + L->row_h * 0.5f, 13.0f, icon_col);
+        int ix = (int)(icon_cx - (float)mw * 0.5f + 0.5f);
+        int iy = (int)(icon_cy - (float)mh * 0.5f + 0.5f);
+        draw_alpha_mask(c, ix, iy, mw, mh, mask, icon_col);
 
-        /* Label */
-        float txt_x = sym_x + 13.0f;
+        /* Label - strictly fixed column starting after icon box */
+        float txt_x = ind_x + 28.0f;
         float max_w = (L->row_x + L->row_w - (v->type == DU_NODE_EXTERNAL ? 28.0f : 10.0f)) - txt_x;
         uint32_t fg = sel ? su_rgba(255, 255, 255, 255) : (v->mounted ? C_TEXT : C_LABEL);
         su_text_clipped_mid(c, SU_MED13, txt_x, ry + L->row_h * 0.5f, max_w, v->name, fg);
 
         /* External Eject Icon */
         if (v->type == DU_NODE_EXTERNAL) {
-            su_symbol_h(c, "eject.fill", L->row_x + L->row_w - 14.0f, ry + L->row_h * 0.5f, 11.0f,
-                        sel ? su_rgba(255, 255, 255, 255) : C_TEXT2);
+            int ej_x = (int)(L->row_x + L->row_w - 20.0f);
+            int ej_y = (int)(ry + L->row_h * 0.5f - (float)DU_ICON_EJECT_H * 0.5f + 0.5f);
+            draw_alpha_mask(c, ej_x, ej_y, DU_ICON_EJECT_W, DU_ICON_EJECT_H, g_du_icon_eject,
+                            sel ? su_rgba(255, 255, 255, 255) : C_TEXT2);
         }
     }
 }
@@ -369,17 +419,38 @@ static void detail_grid(SUCanvas *c, float x, float y, float w, float h, const G
     su_stroke_rrect(c, x, y, w, h, 14.0f, 1.0f, C_BORDER);
     su_fill_rect(c, div, y + 8.0f, 1.0f, h - 16.0f, C_HAIR);
 
+    float row_h = (h - 20.0f) / (float)rows;
     for (int i = 0; i < rows; i++) {
-        float row_y = y + 10.0f + i * 29.0f;
+        float row_cy = y + 10.0f + ((float)i + 0.5f) * row_h;
         if (i > 0) {
-            su_fill_rect(c, x + 10.0f, row_y - 2.0f, div - x - 20.0f, 1.0f, C_HAIR);
-            su_fill_rect(c, div + 10.0f, row_y - 2.0f, x + w - div - 20.0f, 1.0f, C_HAIR);
+            float sep_y = y + 10.0f + (float)i * row_h;
+            su_fill_rect(c, x + 10.0f, sep_y, div - x - 20.0f, 1.0f, C_HAIR);
+            su_fill_rect(c, div + 10.0f, sep_y, x + w - div - 20.0f, 1.0f, C_HAIR);
         }
-        float row_cy = y + 14.5f + (float)i * 29.0f;
+
+        /* Left Column: label & safely clipped value (never overlaps label) */
+        float lk_w = su_text_width(SU_SEM12, left[i].k);
         su_text_mid(c, SU_SEM12, x + pad, row_cy, left[i].k, C_LABEL);
-        su_text_right_mid(c, SU_SEM12, div - pad, row_cy, left[i].v, C_VALUE);
+
+        float lv_max_w = (div - pad - 12.0f) - (x + pad + lk_w);
+        float lv_w = su_text_width(SU_SEM12, left[i].v);
+        if (lv_w > lv_max_w) {
+            su_text_clipped_mid(c, SU_SEM12, div - pad - lv_max_w, row_cy, lv_max_w, left[i].v, C_VALUE);
+        } else {
+            su_text_right_mid(c, SU_SEM12, div - pad, row_cy, left[i].v, C_VALUE);
+        }
+
+        /* Right Column: label & safely clipped value */
+        float rk_w = su_text_width(SU_SEM12, right[i].k);
         su_text_mid(c, SU_SEM12, div + pad, row_cy, right[i].k, C_LABEL);
-        su_text_right_mid(c, SU_SEM12, x + w - pad, row_cy, right[i].v, C_VALUE);
+
+        float rv_max_w = (x + w - pad - 12.0f) - (div + pad + rk_w);
+        float rv_w = su_text_width(SU_SEM12, right[i].v);
+        if (rv_w > rv_max_w) {
+            su_text_clipped_mid(c, SU_SEM12, x + w - pad - rv_max_w, row_cy, rv_max_w, right[i].v, C_VALUE);
+        } else {
+            su_text_right_mid(c, SU_SEM12, x + w - pad, row_cy, right[i].v, C_VALUE);
+        }
     }
 }
 
@@ -664,13 +735,12 @@ void du_render_state_buf(uint32_t *px, int w, int h, int stride, const DUState *
         /* Big Hardware Icon */
         su_symbol_rect(c, "apple_internal_disk", L.icon_x, L.icon_y, L.icon_w, L.icon_h, 0);
 
-        /* Title & Subtitle */
-        su_text_clipped_mid(c, SU_BOLD26, L.title_x, L.icon_y + 16.0f, (L.chip_x - 16.0f) - L.title_x, v->name, C_TEXT);
+        /* Title & Subtitle - Clean authentic Tahoe typography */
+        su_text_clipped_mid(c, SU_BOLD26, L.title_x, L.icon_y + 18.0f, (L.chip_x - 16.0f) - L.title_x, v->name, C_TEXT);
 
         char sub[128];
         snprintf(sub, sizeof sub, "%s", v->kind);
-        su_text_clipped_mid(c, SU_MED13, L.title_x, L.icon_y + 40.0f, (L.chip_x - 16.0f) - L.title_x, sub, C_TEXT2);
-        su_text_clipped_mid(c, SU_REG11, L.title_x, L.icon_y + 56.0f, (L.chip_x - 16.0f) - L.title_x, "darwinOS 26.0 (26A424)", C_LABEL);
+        su_text_clipped_mid(c, SU_MED13, L.title_x, L.icon_y + 46.0f, (L.chip_x - 16.0f) - L.title_x, sub, C_TEXT2);
 
         /* Capacity Chip */
         char cap_str[32];
@@ -683,7 +753,7 @@ void du_render_state_buf(uint32_t *px, int w, int h, int stride, const DUState *
         float other_f = v->cap_gb > 0.0f ? (v->other_gb / v->cap_gb) : 0.0f;
         capacity_bar(c, L.bar_x, L.bar_y, L.bar_w, L.bar_h, used_f, other_f);
 
-        /* Legend */
+        /* Legend - responsive 3-column distribution */
         char u_str[32], o_str[32], f_str[32];
         if (v->used_gb >= 1.0f) snprintf(u_str, sizeof u_str, "%.2f GB", v->used_gb);
         else snprintf(u_str, sizeof u_str, "%.1f MB", v->used_gb * 1024.0f);
@@ -696,30 +766,29 @@ void du_render_state_buf(uint32_t *px, int w, int h, int stride, const DUState *
         if (free_gb >= 1000.0f) snprintf(f_str, sizeof f_str, "%.2f TB", free_gb / 1000.0f);
         else snprintf(f_str, sizeof f_str, "%.2f GB", free_gb);
 
+        float leg_step = L.bar_w / 3.0f;
         legend_dot(c, L.bar_x, L.leg_y, L.leg_v_y, "Used", u_str, su_rgba(10, 132, 255, 255), 0);
-        legend_dot(c, L.bar_x + 220.0f, L.leg_y, L.leg_v_y, "Other Volumes", o_str, su_rgba(100, 100, 105, 255), 0);
-        legend_dot(c, L.bar_x + 440.0f, L.leg_y, L.leg_v_y, "Free", f_str, 0, 1);
+        legend_dot(c, L.bar_x + leg_step, L.leg_y, L.leg_v_y, "Other Volumes", o_str, su_rgba(100, 100, 105, 255), 0);
+        legend_dot(c, L.bar_x + leg_step * 2.0f, L.leg_y, L.leg_v_y, "Free", f_str, 0, 1);
 
-        /* Detail Grid */
+        /* Detail Grid - 4 authentic rows, zero overlap */
         char avail_str[64];
         snprintf(avail_str, sizeof avail_str, "%s (purgeable 1.15 GB)", f_str);
 
-        GridItem left[5] = {
+        GridItem left[4] = {
             {"Mount Point:", v->mount},
             {"Capacity:", cap_str},
             {"Available:", avail_str},
-            {"Used:", u_str},
-            {"Snapshot Name:", v->snapshot_name[0] ? v->snapshot_name : "--"}
+            {"Used:", u_str}
         };
-        GridItem right[5] = {
+        GridItem right[4] = {
             {"Type:", v->fs},
             {"Owners:", v->owners},
             {"Connection:", v->connection},
-            {"Device:", v->device},
-            {"Snapshot UUID:", v->snapshot_uuid[0] ? v->snapshot_uuid : "--"}
+            {"Device:", v->device}
         };
-        float gh = 154.0f;
-        detail_grid(c, L.grid_x, L.grid_y, L.grid_w, gh, left, right, 5);
+        float gh = 136.0f;
+        detail_grid(c, L.grid_x, L.grid_y, L.grid_w, gh, left, right, 4);
 
         if (s->status_str[0] && s->status_ttl > 0) {
             su_text_top(c, SU_MED12, L.cx0, L.grid_y + gh + 14.0f, s->status_str, C_TEXT2);

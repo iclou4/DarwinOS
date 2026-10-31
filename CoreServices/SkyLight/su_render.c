@@ -1,3 +1,4 @@
+#include "su_modifiers.h"
 /* su_render.c — canvas, text and symbol rendering. */
 #include "su_render.h"
 #include "su_atlas.h"
@@ -359,6 +360,40 @@ void su_text(SUCanvas *c, SUFont f, float x, float y, const char *utf8, uint32_t
         const SUGlyph *g;
         if (!n) break;
         s += n;
+
+        /* Apple SF Symbols Keyboard Modifiers: ⌘, ⌃, ⇧, ⌥ */
+        const uint8_t *mod_mask = NULL;
+        int mod_w = 0, mod_h = 0;
+        if (cp == 0x2318) {
+            mod_mask = g_su_mod_cmd; mod_w = SU_MOD_CMD_W; mod_h = SU_MOD_CMD_H;
+        } else if (cp == 0x2303) {
+            mod_mask = g_su_mod_ctrl; mod_w = SU_MOD_CTRL_W; mod_h = SU_MOD_CTRL_H;
+        } else if (cp == 0x21E7) {
+            mod_mask = g_su_mod_shift; mod_w = SU_MOD_SHIFT_W; mod_h = SU_MOD_SHIFT_H;
+        } else if (cp == 0x2325) {
+            mod_mask = g_su_mod_opt; mod_w = SU_MOD_OPT_W; mod_h = SU_MOD_OPT_H;
+        }
+
+        if (mod_mask) {
+            float asc = su_font_ascent(f);
+            float cap = su_font_cap(f);
+            int my = (int)(y + (asc - cap) + (cap - (float)mod_h) * 0.5f + 0.5f);
+            int mx = (int)(pen + 0.5f);
+            for (int r = 0; r < mod_h; r++) {
+                int py = my + r;
+                if (py < c->cy0 || py >= c->cy1) continue;
+                for (int col = 0; col < mod_w; col++) {
+                    int px = mx + col;
+                    if (px < c->cx0 || px >= c->cx1) continue;
+                    uint8_t a = mod_mask[r * mod_w + col];
+                    if (!a) continue;
+                    blend(c, px, py, argb, a / 255.0f);
+                }
+            }
+            pen += (float)mod_w + 2.0f + su_trk;
+            continue;
+        }
+
         g = find_glyph(f.name, cp);
         if (!g) { pen += 6.0f; continue; }
         {
@@ -386,6 +421,12 @@ float su_text_width(SUFont f, const char *utf8)
         const SUGlyph *g;
         if (!n) break;
         s += n;
+
+        if (cp == 0x2318) { w += (float)SU_MOD_CMD_W + 2.0f + su_trk; continue; }
+        if (cp == 0x2303) { w += (float)SU_MOD_CTRL_W + 2.0f + su_trk; continue; }
+        if (cp == 0x21E7) { w += (float)SU_MOD_SHIFT_W + 2.0f + su_trk; continue; }
+        if (cp == 0x2325) { w += (float)SU_MOD_OPT_W + 2.0f + su_trk; continue; }
+
         g = find_glyph(f.name, cp);
         w += (g ? adv_of(g, cp) : 6.0f) + su_trk;
     }
