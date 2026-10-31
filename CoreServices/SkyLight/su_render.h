@@ -71,6 +71,8 @@ void su_text_clipped(SUCanvas *c, SUFont f, float x, float capTop, float maxw, c
 /* horizontally centre the run on cx */
 void su_text_center(SUCanvas *c, SUFont f, float cx, float capTop, const char *utf8,
                     uint32_t argb);
+void su_text_center_mid(SUCanvas *c, SUFont f, float cx, float cy, const char *utf8,
+                        uint32_t argb);
 
 void su_symbol(SUCanvas *c, const char *name, float cx, float cy, float size, uint32_t argb);
 void su_symbol_rect(SUCanvas *c, const char *name, float x, float y, float w, float h,

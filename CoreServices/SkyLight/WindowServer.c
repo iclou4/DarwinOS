@@ -1543,8 +1543,27 @@ static inline void
 draw_menubar(void)
 {
     if (!g_fb || g_w < MENUBAR_W) return;
-    const uint32_t *mb_src;
     int is_term_menu = (g_show_terminal && g_term_focused);
+
+    if (g_show_disk_utility && !is_term_menu) {
+        SUCanvas mc;
+        su_canvas_bind(&mc, g_fb, g_w, g_h, g_w);
+        su_fill_rect(&mc, 0.0f, 0.0f, (float)g_w, 24.0f, su_rgba(24, 24, 26, 255));
+        su_fill_rect(&mc, 0.0f, 23.0f, (float)g_w, 1.0f, su_rgba(255, 255, 255, 24));
+
+        su_symbol_h(&mc, "apple.logo", 20.0f, 11.5f, 13.0f, su_rgba(255, 255, 255, 235));
+        su_text_mid(&mc, SU_SEM13, 38.0f, 11.5f, "Disk Utility", su_rgba(255, 255, 255, 245));
+        su_text_mid(&mc, SU_REG13, 126.0f, 11.5f, "File", su_rgba(255, 255, 255, 220));
+        su_text_mid(&mc, SU_REG13, 162.0f, 11.5f, "Edit", su_rgba(255, 255, 255, 220));
+        su_text_mid(&mc, SU_REG13, 198.0f, 11.5f, "View", su_rgba(255, 255, 255, 220));
+        su_text_mid(&mc, SU_REG13, 240.0f, 11.5f, "Window", su_rgba(255, 255, 255, 220));
+        su_text_mid(&mc, SU_REG13, 300.0f, 11.5f, "Help", su_rgba(255, 255, 255, 220));
+
+        su_text_right(&mc, SU_REG12, (float)g_w - 18.0f, 5.0f, "Sat Oct 31  1:45 PM", su_rgba(255, 255, 255, 220));
+        return;
+    }
+
+    const uint32_t *mb_src;
 
     if (is_term_menu) {
         if (g_active_menu == 10) mb_src = g_menubar_term_apple;

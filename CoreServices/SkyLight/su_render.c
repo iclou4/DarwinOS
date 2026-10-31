@@ -95,10 +95,7 @@ static inline float sd_rrect(float px, float py, float x, float y, float w, floa
     }
     if (dx <= 0.0f) return dy - r;
     if (dy <= 0.0f) return dx - r;
-    float nx = dx / r;
-    float ny = dy / r;
-    float dist = powf(powf(nx, 2.6f) + powf(ny, 2.6f), 0.38461538f) * r;
-    return dist - r;
+    return sqrtf(dx * dx + dy * dy) - r;
 }
 
 void su_fill_pie_slice(SUCanvas *c, float cx, float cy, float r_in, float r_out,
@@ -447,6 +444,12 @@ void su_text_center(SUCanvas *c, SUFont f, float cx, float capTop, const char *u
                     uint32_t argb)
 {
     su_text_top(c, f, cx - su_text_width(f, utf8) * 0.5f, capTop, utf8, argb);
+}
+
+void su_text_center_mid(SUCanvas *c, SUFont f, float cx, float cy, const char *utf8,
+                        uint32_t argb)
+{
+    su_text_mid(c, f, cx - su_text_width(f, utf8) * 0.5f, cy, utf8, argb);
 }
 
 /* ----------------------------------------------------------------- symbols */
