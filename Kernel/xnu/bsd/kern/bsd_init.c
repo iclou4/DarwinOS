@@ -1097,7 +1097,9 @@ bsd_init(void)
 #if DEVFS
 	{
 		char mounthere[] = "/dev"; /* !const because of internal casting */
+		extern int kernel_mkdir(const char *path, int mode);
 
+		kernel_mkdir("/dev", 0755);
 		bsd_init_kprintf("calling devfs_kernel_mount\n");
 		devfs_kernel_mount(mounthere);
 	}
