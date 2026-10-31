@@ -100,16 +100,16 @@ static void compute_layout(DULayout *L, float w, float h, const DUState *s)
     L->card_r = 18.0f;  /* Amplified modern macOS Tahoe card squircle */
 
     L->band_h = 56.0f;
-    L->tl_x = 22.0f; L->tl_cy = 28.0f; L->tl_pitch = 22.0f; L->tl_r = 7.0f;
+    L->tl_x = 20.0f; L->tl_cy = 22.0f; L->tl_pitch = 20.0f; L->tl_r = 6.0f;
     L->bar_cx = w - 28.0f; L->bar_cy = 28.0f;
     L->lab_top = 48.0f;
 
     L->cx0 = s->sidebar ? (L->card_x + L->card_w + 24.0f) : 28.0f;
     L->cx1 = w - 28.0f;
 
-    L->view_x = s->sidebar ? (L->cx0 - 18.0f) : 96.0f;
+    L->view_x = s->sidebar ? L->cx0 : 96.0f;
     L->view_w = 46.0f; L->view_y = L->bar_cy - 16.0f; L->view_h = 32.0f;
-    L->title_tx = s->sidebar ? (L->cx0 + 40.0f) : (L->view_x + L->view_w + 16.0f);
+    L->title_tx = L->view_x + L->view_w + 14.0f;
 
     L->row_x = L->card_x + 8.0f;
     L->row_w = L->card_w - 16.0f;
@@ -209,18 +209,17 @@ typedef struct {
 } ToolDef;
 
 static const ToolDef TOOLS[] = {
-    {"First Aid", "stethoscope",              17.0f, 56.0f, 56.0f},
-    {"Partition", "chart.pie.fill",           16.0f, 54.0f, 52.0f},
-    {"Erase",     "externaldrive.badge.xmark",15.0f, 50.0f, 50.0f},
-    {"Restore",   "arrow.counterclockwise",    16.0f, 54.0f, 54.0f},
-    {"Unmount",   "eject.fill",               16.0f, 56.0f, 56.0f},
+    {"First Aid", "stethoscope",              17.0f, 44.0f, 16.0f},
+    {"Partition", "chart.pie.fill",           16.0f, 44.0f, 16.0f},
+    {"Erase",     "externaldrive.badge.xmark",15.0f, 44.0f, 16.0f},
+    {"Restore",   "arrow.counterclockwise",    16.0f, 44.0f, 16.0f},
+    {"Unmount",   "eject.fill",               16.0f, 44.0f, 16.0f},
     {"Info",      "info.circle",              16.5f, 36.0f,  0.0f},
 };
 #define TOOL_COUNT (int)(sizeof(TOOLS) / sizeof(TOOLS[0]))
 
 static void draw_toolbar(SUCanvas *c, const DULayout *L, const DUState *s)
 {
-    traffic_lights(c, L->tl_x, L->tl_cy, L->tl_pitch, L->tl_r);
 
     /* View Button Capsule */
     glass_capsule(c, L->view_x, L->view_y, L->view_w, L->view_h);
@@ -267,7 +266,7 @@ static void draw_sidebar(SUCanvas *c, const DULayout *L, const DUState *s)
     su_fill_rrect(c, L->card_x, L->card_y, L->card_w, L->card_h, r, C_CARD);
     su_stroke_rrect(c, L->card_x, L->card_y, L->card_w, L->card_h, r, 1.0f, su_rgba(255, 255, 255, 20));
 
-    su_text_top(c, SU_SEM11, L->card_x + 14.0f, 48.0f, "Storage Devices", C_HEADER);
+    su_text_mid(c, SU_SEM11, L->card_x + 14.0f, 44.0f, "Storage Devices", C_HEADER);
 
     for (int i = 0; i < L->visible_rows; i++) {
         int v_idx = L->row_vol_idx[i];
@@ -303,7 +302,7 @@ static void draw_sidebar(SUCanvas *c, const DULayout *L, const DUState *s)
         float txt_x = sym_x + 13.0f;
         float max_w = (L->row_x + L->row_w - (v->type == DU_NODE_EXTERNAL ? 28.0f : 10.0f)) - txt_x;
         uint32_t fg = sel ? su_rgba(255, 255, 255, 255) : (v->mounted ? C_TEXT : C_LABEL);
-        su_text_clipped(c, SU_MED13, txt_x, ry + 7.5f, max_w, v->name, fg);
+        su_text_clipped_mid(c, SU_MED13, txt_x, ry + L->row_h * 0.5f, max_w, v->name, fg);
 
         /* External Eject Icon */
         if (v->type == DU_NODE_EXTERNAL) {
@@ -376,10 +375,11 @@ static void detail_grid(SUCanvas *c, float x, float y, float w, float h, const G
             su_fill_rect(c, x + 10.0f, row_y - 2.0f, div - x - 20.0f, 1.0f, C_HAIR);
             su_fill_rect(c, div + 10.0f, row_y - 2.0f, x + w - div - 20.0f, 1.0f, C_HAIR);
         }
-        su_text_top(c, SU_SEM12, x + pad, row_y, left[i].k, C_LABEL);
-        su_text_right(c, SU_SEM12, div - pad, row_y, left[i].v, C_VALUE);
-        su_text_top(c, SU_SEM12, div + pad, row_y, right[i].k, C_LABEL);
-        su_text_right(c, SU_SEM12, x + w - pad, row_y, right[i].v, C_VALUE);
+        float row_cy = y + 14.5f + (float)i * 29.0f;
+        su_text_mid(c, SU_SEM12, x + pad, row_cy, left[i].k, C_LABEL);
+        su_text_right_mid(c, SU_SEM12, div - pad, row_cy, left[i].v, C_VALUE);
+        su_text_mid(c, SU_SEM12, div + pad, row_cy, right[i].k, C_LABEL);
+        su_text_right_mid(c, SU_SEM12, x + w - pad, row_cy, right[i].v, C_VALUE);
     }
 }
 
@@ -646,13 +646,16 @@ void du_render_state_buf(uint32_t *px, int w, int h, int stride, const DUState *
     /* 1. Window squircle */
     window_chrome(c, L.w, L.h);
 
-    /* 2. Unified Toolbar */
-    draw_toolbar(c, &L, s);
-
-    /* 3. Sidebar */
+    /* 2. Sidebar */
     if (s->sidebar) {
         draw_sidebar(c, &L, s);
     }
+
+    /* 3. Traffic Lights (ALWAYS ON TOP of window & sidebar card) */
+    traffic_lights(c, L.tl_x, L.tl_cy, L.tl_pitch, L.tl_r);
+
+    /* 4. Unified Toolbar */
+    draw_toolbar(c, &L, s);
 
     /* 4. Content Area */
     if (s->selected < s->count) {
@@ -662,12 +665,12 @@ void du_render_state_buf(uint32_t *px, int w, int h, int stride, const DUState *
         su_symbol_rect(c, "apple_internal_disk", L.icon_x, L.icon_y, L.icon_w, L.icon_h, 0);
 
         /* Title & Subtitle */
-        su_text_clipped(c, SU_BOLD26, L.title_x, L.title_top, (L.chip_x - 16.0f) - L.title_x, v->name, C_TEXT);
+        su_text_clipped_mid(c, SU_BOLD26, L.title_x, L.icon_y + 16.0f, (L.chip_x - 16.0f) - L.title_x, v->name, C_TEXT);
 
         char sub[128];
         snprintf(sub, sizeof sub, "%s", v->kind);
-        su_text_clipped(c, SU_MED13, L.title_x, L.sub_top, (L.chip_x - 16.0f) - L.title_x, sub, C_TEXT2);
-        su_text_clipped(c, SU_REG11, L.title_x, L.sub_top + 16.0f, (L.chip_x - 16.0f) - L.title_x, "darwinOS 26.0 (26A424)", C_LABEL);
+        su_text_clipped_mid(c, SU_MED13, L.title_x, L.icon_y + 40.0f, (L.chip_x - 16.0f) - L.title_x, sub, C_TEXT2);
+        su_text_clipped_mid(c, SU_REG11, L.title_x, L.icon_y + 56.0f, (L.chip_x - 16.0f) - L.title_x, "darwinOS 26.0 (26A424)", C_LABEL);
 
         /* Capacity Chip */
         char cap_str[32];
@@ -750,9 +753,15 @@ int du_hit_state(const DUState *s, int px, int py, int w, int h)
     compute_layout(&L, (float)w, (float)h, s);
     float fx = (float)px, fy = (float)py;
 
-    /* Traffic Lights */
-    if (in_rect(fx, fy, L.tl_x - L.tl_r - 4.0f, L.tl_cy - L.tl_r - 4.0f, L.tl_r * 2.0f + 8.0f, L.tl_r * 2.0f + 8.0f))
-        return DU_HIT_CLOSE;
+    /* Traffic Lights (Red Close, Yellow Minimize, Green Zoom) */
+    float r2 = (L.tl_r + 4.0f) * (L.tl_r + 4.0f);
+    float dy0 = fy - L.tl_cy;
+    float dx0 = fx - L.tl_x;
+    if (dx0 * dx0 + dy0 * dy0 <= r2) return DU_HIT_CLOSE;
+    float dx1 = fx - (L.tl_x + L.tl_pitch);
+    if (dx1 * dx1 + dy0 * dy0 <= r2) return DU_HIT_MINIMIZE;
+    float dx2 = fx - (L.tl_x + L.tl_pitch * 2.0f);
+    if (dx2 * dx2 + dy0 * dy0 <= r2) return DU_HIT_ZOOM;
 
     /* View Menu Popover open */
     if (s->view_menu) {
@@ -856,7 +865,8 @@ int du_click_state(DUState *s, int x, int y, int w, int h)
         return DU_ACT_NONE;
     }
 
-    if (hit == DU_HIT_CLOSE) return DU_ACT_CLOSE;
+    if (hit == DU_HIT_CLOSE || hit == DU_HIT_MINIMIZE) return DU_ACT_CLOSE;
+    if (hit == DU_HIT_ZOOM) return DU_ACT_ZOOM;
     if (hit == DU_HIT_TITLEBAR) return DU_ACT_DRAG;
 
     /* Disclosure Chevron clicked: toggle expansion */
@@ -1078,7 +1088,7 @@ void du_state_init(DUState *s)
     strncpy(v3->device, "disk2s1s1", sizeof(v3->device) - 1);
     strncpy(v3->mount, "/", sizeof(v3->mount) - 1);
     strncpy(v3->snapshot_name, "com.apple.os.update-4DBE2E89F12...", sizeof(v3->snapshot_name) - 1);
-    strncpy(v3->snapshot_uuid, "2404D211-8422-4302-B839-F5A93D0E8112", sizeof(v3->snapshot_uuid) - 1);
+    strncpy(v3->snapshot_uuid, "2404D211-8422-4302-B839...", sizeof(v3->snapshot_uuid) - 1);
     strncpy(v3->owners, "Disabled", sizeof(v3->owners) - 1);
     strncpy(v3->connection, "Apple Fabric", sizeof(v3->connection) - 1);
     v3->cap_gb = 994.66f;

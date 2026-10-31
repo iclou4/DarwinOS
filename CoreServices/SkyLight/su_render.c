@@ -180,6 +180,11 @@ void su_stroke_rrect(SUCanvas *c, float x, float y, float w, float h, float r,
         }
 }
 
+void su_stroke_circle(SUCanvas *c, float cx, float cy, float r, float lw, uint32_t argb)
+{
+    su_stroke_rrect(c, cx - r, cy - r, r * 2.0f, r * 2.0f, r, lw, argb);
+}
+
 void su_fill_circle(SUCanvas *c, float cx, float cy, float r, uint32_t argb)
 {
     su_fill_rrect(c, cx - r, cy - r, r * 2, r * 2, r, argb);
@@ -444,6 +449,16 @@ void su_text_center(SUCanvas *c, SUFont f, float cx, float capTop, const char *u
                     uint32_t argb)
 {
     su_text_top(c, f, cx - su_text_width(f, utf8) * 0.5f, capTop, utf8, argb);
+}
+
+void su_text_clipped_mid(SUCanvas *c, SUFont f, float x, float cy, float maxw, const char *utf8, uint32_t argb)
+{
+    su_text_clipped(c, f, x, cy - su_font_cap(f) * 0.5f, maxw, utf8, argb);
+}
+
+void su_text_right_mid(SUCanvas *c, SUFont f, float xRight, float cy, const char *utf8, uint32_t argb)
+{
+    su_text_right(c, f, xRight, cy - su_font_cap(f) * 0.5f, utf8, argb);
 }
 
 void su_text_center_mid(SUCanvas *c, SUFont f, float cx, float cy, const char *utf8,

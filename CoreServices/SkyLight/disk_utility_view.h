@@ -148,6 +148,8 @@ typedef struct {
 enum {
     DU_HIT_NONE = 0,
     DU_HIT_CLOSE,
+    DU_HIT_MINIMIZE,
+    DU_HIT_ZOOM,
     DU_HIT_ROW_FIRST,
     DU_HIT_ROW_LAST = DU_HIT_ROW_FIRST + DU_MAX_VOL - 1,
     DU_HIT_CHEVRON_FIRST,
@@ -194,6 +196,6 @@ int  du_sheet_key(DUState *s, char ch);
 int  du_key_state(DUState *s, int key);
 int  du_tick(DUState *s);
 
-enum { DU_ACT_NONE = 0, DU_ACT_CLOSE, DU_ACT_DRAG };
+enum { DU_ACT_NONE = 0, DU_ACT_CLOSE, DU_ACT_DRAG, DU_ACT_ZOOM };
 
 #endif /* DISK_UTILITY_VIEW_H */

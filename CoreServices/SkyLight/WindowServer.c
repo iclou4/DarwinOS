@@ -800,6 +800,14 @@ static int g_recovery_dragging = 0;
 static int g_show_disk_utility = 1;
 static double g_disk_utility_x = 0;
 static double g_disk_utility_y = 0;
+static int g_disk_utility_w = 940;
+static int g_disk_utility_h = 600;
+static int g_disk_utility_prev_w = 940;
+static int g_disk_utility_prev_h = 600;
+static double g_disk_utility_prev_x = 0;
+static double g_disk_utility_prev_y = 0;
+static int g_disk_utility_is_zoomed = 0;
+static int g_disk_utility_resize_mode = 0;
 static int g_disk_utility_dragging = 0;
 /* Disk Utility's whole view model: the renderer is a pure function of this,
  * so every control (sidebar toggle, rows, +/- volume, Erase, Add) is live. */
@@ -1470,6 +1478,7 @@ draw_disk_utility_window(void)
     static uint32_t *du_surf = NULL;
     static DUState du_prev;
     static int du_valid = 0;
+    static int prev_w = 0, prev_h = 0;
     int du_x, du_y, row, col;
 
     if (!g_show_disk_utility || !g_fb) return;
@@ -1479,22 +1488,24 @@ draw_disk_utility_window(void)
     du_y = (int)g_disk_utility_y;
 
     if (!du_surf) {
-        du_surf = (uint32_t *)calloc((size_t)DISK_UTILITY_W * (size_t)DISK_UTILITY_H, 4);
+        du_surf = (uint32_t *)calloc((size_t)TERM_MAX_W * (size_t)TERM_MAX_H, 4);
         if (!du_surf) return;
     }
-    if (!du_valid || memcmp(&du_prev, &g_du, sizeof g_du) != 0) {
-        du_render_state_buf(du_surf, DISK_UTILITY_W, DISK_UTILITY_H, DISK_UTILITY_W, &g_du);
+    if (!du_valid || prev_w != g_disk_utility_w || prev_h != g_disk_utility_h || memcmp(&du_prev, &g_du, sizeof g_du) != 0) {
+        du_render_state_buf(du_surf, g_disk_utility_w, g_disk_utility_h, g_disk_utility_w, &g_du);
         du_prev = g_du;
+        prev_w = g_disk_utility_w;
+        prev_h = g_disk_utility_h;
         du_valid = 1;
     }
 
-    for (row = 0; row < DISK_UTILITY_H && (du_y + row) < g_h; row++) {
+    for (row = 0; row < g_disk_utility_h && (du_y + row) < g_h; row++) {
         uint32_t *dst;
         const uint32_t *src;
         if (du_y + row < 0) continue;
         dst = g_fb + (size_t)(du_y + row) * (size_t)g_w + du_x;
-        src = du_surf + (size_t)row * (size_t)DISK_UTILITY_W;
-        for (col = 0; col < DISK_UTILITY_W; col++) {
+        src = du_surf + (size_t)row * (size_t)g_disk_utility_w;
+        for (col = 0; col < g_disk_utility_w; col++) {
             if (du_x + col < 0 || du_x + col >= g_w) continue;
             dst[col] = blend_pixel(dst[col], src[col]);
         }
@@ -1539,152 +1550,289 @@ draw_about_window(void)
     }
 }
 
+/* --- Procedural SwiftUI 26 Global Menubar & Dropdowns (100% Code, Zero Screenshots) --- */
+
+typedef struct {
+    const char *label;
+    const char *shortcut;
+    int is_sep;
+    int action_id;
+} SUMenuItem;
+
+typedef struct {
+    const char *title;
+    int is_app_title;
+    float x_start;
+    float x_end;
+    SUMenuItem items[10];
+    int item_count;
+} SUMenuDef;
+
+enum {
+    ACT_NONE = 0,
+    ACT_ABOUT,
+    ACT_RESTART,
+    ACT_SHUTDOWN,
+    ACT_TERMINAL,
+    ACT_DISK_UTILITY,
+    ACT_QUIT_APP,
+    ACT_CLOSE_WIN,
+    ACT_ZOOM_WIN,
+    ACT_MINIMIZE_WIN,
+    ACT_NEW_IMAGE,
+    ACT_MOUNT,
+    ACT_UNMOUNT,
+    ACT_FIRST_AID,
+    ACT_PARTITION,
+    ACT_ERASE,
+    ACT_VIEW_ALL,
+    ACT_VIEW_VOLUMES,
+    ACT_TOGGLE_SIDEBAR
+};
+
+static SUMenuDef g_cur_menus[7];
+static int g_cur_menu_count = 0;
+
+static void
+build_current_menus(void)
+{
+    g_cur_menu_count = 0;
+    int is_term = (g_show_terminal && g_term_focused);
+    int is_du = (g_show_disk_utility && !is_term);
+
+    /* Menu 0: App Title */
+    if (is_term) {
+        SUMenuDef *m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Terminal"; m->is_app_title = 1;
+        m->items[0] = (SUMenuItem){"About Terminal", NULL, 0, ACT_ABOUT};
+        m->items[1] = (SUMenuItem){NULL, NULL, 1, 0};
+        m->items[2] = (SUMenuItem){"Clear Buffer", "⌘K", 0, ACT_NONE};
+        m->items[3] = (SUMenuItem){NULL, NULL, 1, 0};
+        m->items[4] = (SUMenuItem){"Hide Terminal", "⌘H", 0, ACT_QUIT_APP};
+        m->items[5] = (SUMenuItem){"Quit Terminal", "⌘Q", 0, ACT_QUIT_APP};
+        m->item_count = 6;
+
+        /* Shell */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Shell"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"New Window", "⌘N", 0, ACT_NONE};
+        m->items[1] = (SUMenuItem){"Close Window", "⌘W", 0, ACT_CLOSE_WIN};
+        m->item_count = 2;
+
+        /* Edit */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Edit"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"Copy", "⌘C", 0, ACT_NONE};
+        m->items[1] = (SUMenuItem){"Paste", "⌘V", 0, ACT_NONE};
+        m->items[2] = (SUMenuItem){"Select All", "⌘A", 0, ACT_NONE};
+        m->item_count = 3;
+
+        /* View */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "View"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"Bigger", "⌘+", 0, ACT_NONE};
+        m->items[1] = (SUMenuItem){"Smaller", "⌘-", 0, ACT_NONE};
+        m->item_count = 2;
+
+        /* Window */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Window"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"Minimize", "⌘M", 0, ACT_MINIMIZE_WIN};
+        m->items[1] = (SUMenuItem){"Zoom", NULL, 0, ACT_ZOOM_WIN};
+        m->item_count = 2;
+
+        /* Help */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Help"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"Terminal Help", NULL, 0, ACT_NONE};
+        m->item_count = 1;
+    } else if (is_du) {
+        SUMenuDef *m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Disk Utility"; m->is_app_title = 1;
+        m->items[0] = (SUMenuItem){"About Disk Utility", NULL, 0, ACT_ABOUT};
+        m->items[1] = (SUMenuItem){NULL, NULL, 1, 0};
+        m->items[2] = (SUMenuItem){"Hide Disk Utility", "⌘H", 0, ACT_QUIT_APP};
+        m->items[3] = (SUMenuItem){"Quit Disk Utility", "⌘Q", 0, ACT_QUIT_APP};
+        m->item_count = 4;
+
+        /* File */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "File"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"New Image...", "⌘N", 0, ACT_NEW_IMAGE};
+        m->items[1] = (SUMenuItem){"Mount", "⌘M", 0, ACT_MOUNT};
+        m->items[2] = (SUMenuItem){"Unmount", "⇧⌘U", 0, ACT_UNMOUNT};
+        m->items[3] = (SUMenuItem){NULL, NULL, 1, 0};
+        m->items[4] = (SUMenuItem){"Close Window", "⌘W", 0, ACT_CLOSE_WIN};
+        m->item_count = 5;
+
+        /* Edit */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Edit"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"First Aid", NULL, 0, ACT_FIRST_AID};
+        m->items[1] = (SUMenuItem){"Partition...", NULL, 0, ACT_PARTITION};
+        m->items[2] = (SUMenuItem){"Erase...", NULL, 0, ACT_ERASE};
+        m->item_count = 3;
+
+        /* View */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "View"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"Show Only Volumes", "⌘1", 0, ACT_VIEW_VOLUMES};
+        m->items[1] = (SUMenuItem){"Show All Devices", "⌘2", 0, ACT_VIEW_ALL};
+        m->items[2] = (SUMenuItem){NULL, NULL, 1, 0};
+        m->items[3] = (SUMenuItem){"Hide Sidebar", "⌃⌘S", 0, ACT_TOGGLE_SIDEBAR};
+        m->item_count = 4;
+
+        /* Window */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Window"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"Minimize", "⌘M", 0, ACT_MINIMIZE_WIN};
+        m->items[1] = (SUMenuItem){"Zoom", NULL, 0, ACT_ZOOM_WIN};
+        m->item_count = 2;
+
+        /* Help */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Help"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"Disk Utility Help", NULL, 0, ACT_NONE};
+        m->item_count = 1;
+    } else {
+        SUMenuDef *m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Recovery"; m->is_app_title = 1;
+        m->items[0] = (SUMenuItem){"About Recovery", NULL, 0, ACT_ABOUT};
+        m->item_count = 1;
+
+        /* File */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "File"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"Close Window", "⌘W", 0, ACT_CLOSE_WIN};
+        m->item_count = 1;
+
+        /* Edit */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Edit"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"Undo", "⌘Z", 0, ACT_NONE};
+        m->items[1] = (SUMenuItem){"Redo", "⇧⌘Z", 0, ACT_NONE};
+        m->item_count = 2;
+
+        /* Utilities */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Utilities"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"Disk Utility", NULL, 0, ACT_DISK_UTILITY};
+        m->items[1] = (SUMenuItem){"Terminal", NULL, 0, ACT_TERMINAL};
+        m->items[2] = (SUMenuItem){"Startup Security Utility", NULL, 0, ACT_NONE};
+        m->items[3] = (SUMenuItem){"Network Utility", NULL, 0, ACT_NONE};
+        m->item_count = 4;
+
+        /* Window */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Window"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"Minimize", "⌘M", 0, ACT_MINIMIZE_WIN};
+        m->items[1] = (SUMenuItem){"Zoom", NULL, 0, ACT_ZOOM_WIN};
+        m->item_count = 2;
+
+        /* Help */
+        m = &g_cur_menus[g_cur_menu_count++];
+        m->title = "Help"; m->is_app_title = 0;
+        m->items[0] = (SUMenuItem){"macOS Recovery Help", NULL, 0, ACT_NONE};
+        m->item_count = 1;
+    }
+}
+
 static inline void
 draw_menubar(void)
 {
     if (!g_fb || g_w < MENUBAR_W) return;
-    int is_term_menu = (g_show_terminal && g_term_focused);
 
-    if (g_show_disk_utility && !is_term_menu) {
-        SUCanvas mc;
-        su_canvas_bind(&mc, g_fb, g_w, g_h, g_w);
-        su_fill_rect(&mc, 0.0f, 0.0f, (float)g_w, 24.0f, su_rgba(24, 24, 26, 255));
-        su_fill_rect(&mc, 0.0f, 23.0f, (float)g_w, 1.0f, su_rgba(255, 255, 255, 24));
+    build_current_menus();
 
-        su_symbol_h(&mc, "apple.logo", 20.0f, 11.5f, 13.0f, su_rgba(255, 255, 255, 235));
-        su_text_mid(&mc, SU_SEM13, 38.0f, 11.5f, "Disk Utility", su_rgba(255, 255, 255, 245));
-        su_text_mid(&mc, SU_REG13, 126.0f, 11.5f, "File", su_rgba(255, 255, 255, 220));
-        su_text_mid(&mc, SU_REG13, 162.0f, 11.5f, "Edit", su_rgba(255, 255, 255, 220));
-        su_text_mid(&mc, SU_REG13, 198.0f, 11.5f, "View", su_rgba(255, 255, 255, 220));
-        su_text_mid(&mc, SU_REG13, 240.0f, 11.5f, "Window", su_rgba(255, 255, 255, 220));
-        su_text_mid(&mc, SU_REG13, 300.0f, 11.5f, "Help", su_rgba(255, 255, 255, 220));
+    SUCanvas mc;
+    su_canvas_bind(&mc, g_fb, g_w, g_h, g_w);
 
-        su_text_right(&mc, SU_REG12, (float)g_w - 18.0f, 5.0f, "Sat Oct 31  1:45 PM", su_rgba(255, 255, 255, 220));
-        return;
+    /* Frosted Topbar Base & Hairline Border */
+    su_fill_rect(&mc, 0.0f, 0.0f, (float)g_w, 24.0f, su_rgba(24, 24, 28, 250));
+    su_fill_rect(&mc, 0.0f, 23.0f, (float)g_w, 1.0f, su_rgba(255, 255, 255, 25));
+
+    /*  Apple Logo */
+    int is_apple_active = (g_active_menu == 10);
+    if (is_apple_active) {
+        su_fill_rrect(&mc, 8.0f, 3.0f, 26.0f, 18.0f, 5.0f, su_rgba(255, 255, 255, 45));
     }
+    su_symbol_h(&mc, "apple.logo", 21.0f, 12.0f, 13.0f, su_rgba(255, 255, 255, 240));
 
-    const uint32_t *mb_src;
+    /* Dynamic Menu Items */
+    float cur_x = 42.0f;
+    for (int i = 0; i < g_cur_menu_count; i++) {
+        SUMenuDef *m = &g_cur_menus[i];
+        SUFont font = m->is_app_title ? SU_SEM13 : SU_REG13;
+        float tw = su_text_width(font, m->title);
+        m->x_start = cur_x - 6.0f;
+        m->x_end = cur_x + tw + 6.0f;
 
-    if (is_term_menu) {
-        if (g_active_menu == 10) mb_src = g_menubar_term_apple;
-        else if (g_active_menu == 0) mb_src = g_menubar_term_terminal;
-        else if (g_active_menu == 1) mb_src = g_menubar_term_shell;
-        else if (g_active_menu == 2) mb_src = g_menubar_term_edit;
-        else if (g_active_menu == 3) mb_src = g_menubar_term_view;
-        else if (g_active_menu == 4) mb_src = g_menubar_term_window;
-        else if (g_active_menu == 5) mb_src = g_menubar_term_help;
-        else mb_src = g_menubar_term_normal;
-    } else {
-        if (g_active_menu == 10) mb_src = g_menubar_apple;
-        else if (g_active_menu == 0) mb_src = g_menubar_recovery;
-        else if (g_active_menu == 1) mb_src = g_menubar_file;
-        else if (g_active_menu == 2) mb_src = g_menubar_edit;
-        else if (g_active_menu == 3) mb_src = g_menubar_utilities;
-        else if (g_active_menu == 4) mb_src = g_menubar_window;
-        else if (g_active_menu == 5) mb_src = g_menubar_help;
-        else mb_src = g_menubar_pixels;
-    }
-
-    for (int y = 0; y < MENUBAR_H && y < g_h; y++) {
-        uint32_t *row = g_fb + (size_t)y * (size_t)g_w;
-        const uint32_t *src_row = mb_src + (size_t)y * (size_t)MENUBAR_W;
-        memcpy(row, src_row, (size_t)MENUBAR_W * 4);
-        for (int x = MENUBAR_W; x < g_w; x++) {
-            row[x] = 0xff18181au;
+        if (g_active_menu == i) {
+            su_fill_rrect(&mc, m->x_start, 3.0f, m->x_end - m->x_start, 18.0f, 5.0f, su_rgba(255, 255, 255, 45));
         }
+        uint32_t col = m->is_app_title ? su_rgba(255, 255, 255, 250) : su_rgba(255, 255, 255, 220);
+        su_text_mid(&mc, font, cur_x, 12.0f, m->title, col);
+        cur_x += tw + 18.0f;
     }
 
-    const uint32_t *drop_pixels = NULL;
-    int drop_x = 0, drop_y = 0, drop_w = 0, drop_h = 0;
+    /* System Status Clock (Right aligned, perfectly centered) */
+    su_text_right_mid(&mc, SU_REG12, (float)g_w - 18.0f, 12.0f, "Sat Oct 31  2:45 PM", su_rgba(255, 255, 255, 220));
 
-    if (g_active_menu == 10) {
-        drop_x = DROPDOWN_APPLE_X; drop_y = DROPDOWN_APPLE_Y;
-        drop_w = DROPDOWN_APPLE_W; drop_h = DROPDOWN_APPLE_H;
-        int st_idx = 0;
-        if (g_hovered_row == 0) st_idx = 1;
-        else if (g_hovered_row == 2) st_idx = 2;
-        else if (g_hovered_row == 3) st_idx = 3;
-        drop_pixels = g_dropdown_apple_states[st_idx];
-    } else if (is_term_menu) {
-        if (g_active_menu == 0) {
-            drop_x = DROPDOWN_TERM_APP_X; drop_y = DROPDOWN_TERM_APP_Y;
-            drop_w = DROPDOWN_TERM_APP_W; drop_h = DROPDOWN_TERM_APP_H;
-            int st_idx = 0;
-            if (g_hovered_row == 0) st_idx = 1;
-            else if (g_hovered_row == 2) st_idx = 2;
-            else if (g_hovered_row == 4) st_idx = 3;
-            else if (g_hovered_row == 6) st_idx = 4;
-            drop_pixels = g_dropdown_term_app_states[st_idx];
-        } else if (g_active_menu == 1) {
-            drop_x = DROPDOWN_TERM_SHELL_X; drop_y = DROPDOWN_TERM_SHELL_Y;
-            drop_w = DROPDOWN_TERM_SHELL_W; drop_h = DROPDOWN_TERM_SHELL_H;
-            int st_idx = 0;
-            if (g_hovered_row == 0) st_idx = 1;
-            else if (g_hovered_row == 1) st_idx = 2;
-            drop_pixels = g_dropdown_term_shell_states[st_idx];
-        } else if (g_active_menu == 2) {
-            drop_x = DROPDOWN_TERM_EDIT_X; drop_y = DROPDOWN_TERM_EDIT_Y;
-            drop_w = DROPDOWN_TERM_EDIT_W; drop_h = DROPDOWN_TERM_EDIT_H;
-            int st_idx = (g_hovered_row >= 0 && g_hovered_row < 3) ? (g_hovered_row + 1) : 0;
-            drop_pixels = g_dropdown_term_edit_states[st_idx];
-        } else if (g_active_menu == 3) {
-            drop_x = DROPDOWN_TERM_VIEW_X; drop_y = DROPDOWN_TERM_VIEW_Y;
-            drop_w = DROPDOWN_TERM_VIEW_W; drop_h = DROPDOWN_TERM_VIEW_H;
-            int st_idx = (g_hovered_row >= 0 && g_hovered_row < 2) ? (g_hovered_row + 1) : 0;
-            drop_pixels = g_dropdown_term_view_states[st_idx];
-        } else if (g_active_menu == 4) {
-            drop_x = DROPDOWN_TERM_WINDOW_X; drop_y = DROPDOWN_TERM_WINDOW_Y;
-            drop_w = DROPDOWN_TERM_WINDOW_W; drop_h = DROPDOWN_TERM_WINDOW_H;
-            int st_idx = 0;
-            if (g_hovered_row == 0) st_idx = 1;
-            else if (g_hovered_row == 1) st_idx = 2;
-            else if (g_hovered_row == 3) st_idx = 3;
-            drop_pixels = g_dropdown_term_window_states[st_idx];
-        } else if (g_active_menu == 5) {
-            drop_x = DROPDOWN_TERM_HELP_X; drop_y = DROPDOWN_TERM_HELP_Y;
-            drop_w = DROPDOWN_TERM_HELP_W; drop_h = DROPDOWN_TERM_HELP_H;
-            int st_idx = (g_hovered_row == 0) ? 1 : 0;
-            drop_pixels = g_dropdown_term_help_states[st_idx];
-        }
-    } else {
-        if (g_active_menu == 0) {
-            drop_x = DROPDOWN_RECOVERY_X; drop_y = DROPDOWN_RECOVERY_Y;
-            drop_w = DROPDOWN_RECOVERY_W; drop_h = DROPDOWN_RECOVERY_H;
-            int st_idx = (g_hovered_row == 0) ? 1 : 0;
-            drop_pixels = g_dropdown_recovery_states[st_idx];
-        } else if (g_active_menu == 1) {
-            drop_x = DROPDOWN_FILE_X; drop_y = DROPDOWN_FILE_Y;
-            drop_w = DROPDOWN_FILE_W; drop_h = DROPDOWN_FILE_H;
-            int st_idx = (g_hovered_row == 0) ? 1 : 0;
-            drop_pixels = g_dropdown_file_states[st_idx];
-        } else if (g_active_menu == 2) {
-            drop_x = DROPDOWN_EDIT_X; drop_y = DROPDOWN_EDIT_Y;
-            drop_w = DROPDOWN_EDIT_W; drop_h = DROPDOWN_EDIT_H;
-            drop_pixels = g_dropdown_edit_states[0];
-        } else if (g_active_menu == 3) {
-            drop_x = DROPDOWN_UTILITIES_X; drop_y = DROPDOWN_UTILITIES_Y;
-            drop_w = DROPDOWN_UTILITIES_W; drop_h = DROPDOWN_UTILITIES_H;
-            int st_idx = (g_hovered_row >= 0 && g_hovered_row < 4) ? (g_hovered_row + 1) : 0;
-            drop_pixels = g_dropdown_utilities_states[st_idx];
-        } else if (g_active_menu == 4) {
-            drop_x = DROPDOWN_WINDOW_X; drop_y = DROPDOWN_WINDOW_Y;
-            drop_w = DROPDOWN_WINDOW_W; drop_h = DROPDOWN_WINDOW_H;
-            int st_idx = (g_hovered_row == 3) ? 1 : 0;
-            drop_pixels = g_dropdown_window_states[st_idx];
-        } else if (g_active_menu == 5) {
-            drop_x = DROPDOWN_HELP_X; drop_y = DROPDOWN_HELP_Y;
-            drop_w = DROPDOWN_HELP_W; drop_h = DROPDOWN_HELP_H;
-            int st_idx = (g_hovered_row == 0) ? 1 : 0;
-            drop_pixels = g_dropdown_help_states[st_idx];
-        }
-    }
+    /* Active Dropdown Menu */
+    if (g_active_menu >= 0) {
+        SUMenuItem apple_items[4] = {
+            {"About This Mac", NULL, 0, ACT_ABOUT},
+            {NULL, NULL, 1, 0},
+            {"Restart...", NULL, 0, ACT_RESTART},
+            {"Shut Down...", NULL, 0, ACT_SHUTDOWN}
+        };
+        const SUMenuItem *items = NULL;
+        int count = 0;
+        float drop_x = 8.0f;
 
-    if (drop_pixels) {
-        for (int dy = 0; dy < drop_h && (drop_y + dy) < g_h; dy++) {
-            uint32_t *dst = g_fb + (size_t)(drop_y + dy) * (size_t)g_w + drop_x;
-            const uint32_t *src = drop_pixels + (size_t)dy * (size_t)drop_w;
-            for (int dx = 0; dx < drop_w; dx++) {
-                dst[dx] = blend_pixel(dst[dx], src[dx]);
+        if (g_active_menu == 10) {
+            items = apple_items;
+            count = 4;
+            drop_x = 8.0f;
+        } else if (g_active_menu < g_cur_menu_count) {
+            items = g_cur_menus[g_active_menu].items;
+            count = g_cur_menus[g_active_menu].item_count;
+            drop_x = g_cur_menus[g_active_menu].x_start;
+        }
+
+        if (items && count > 0) {
+            float drop_y = 26.0f;
+            float drop_w = 216.0f;
+            float drop_h = 10.0f;
+            for (int r = 0; r < count; r++) {
+                drop_h += items[r].is_sep ? 9.0f : 23.0f;
+            }
+            if (drop_x + drop_w > (float)g_w - 8.0f) drop_x = (float)g_w - drop_w - 8.0f;
+
+            /* Floating macOS Tahoe Card */
+            su_shadow_rrect(&mc, drop_x, drop_y, drop_w, drop_h, 10.0f, 16.0f, 6.0f, su_rgba(0, 0, 0, 180));
+            su_fill_rrect(&mc, drop_x, drop_y, drop_w, drop_h, 10.0f, su_rgba(32, 32, 36, 252));
+            su_stroke_rrect(&mc, drop_x, drop_y, drop_w, drop_h, 10.0f, 1.0f, su_rgba(255, 255, 255, 36));
+
+            float cur_iy = drop_y + 5.0f;
+            for (int r = 0; r < count; r++) {
+                if (items[r].is_sep) {
+                    su_fill_rect(&mc, drop_x + 10.0f, cur_iy + 4.0f, drop_w - 20.0f, 1.0f, su_rgba(255, 255, 255, 24));
+                    cur_iy += 9.0f;
+                } else {
+                    float row_h = 22.0f;
+                    int is_hov = (g_hovered_row == r);
+                    if (is_hov) {
+                        su_fill_rrect(&mc, drop_x + 5.0f, cur_iy, drop_w - 10.0f, row_h, 5.0f, su_rgba(10, 132, 255, 240));
+                    }
+                    uint32_t txt_col = is_hov ? su_rgba(255, 255, 255, 255) : su_rgba(240, 240, 245, 230);
+                    su_text_mid(&mc, SU_REG13, drop_x + 14.0f, cur_iy + 11.0f, items[r].label, txt_col);
+                    if (items[r].shortcut) {
+                        uint32_t sc_col = is_hov ? su_rgba(255, 255, 255, 230) : su_rgba(255, 255, 255, 120);
+                        su_text_right_mid(&mc, SU_REG12, drop_x + drop_w - 14.0f, cur_iy + 11.0f, items[r].shortcut, sc_col);
+                    }
+                    cur_iy += 23.0f;
+                }
             }
         }
     }
@@ -2476,18 +2624,80 @@ poll_input(void)
         if (g_show_disk_utility) {
             double dux = px - g_disk_utility_x;
             double duy = ((double)g_h - py) - g_disk_utility_y;
-            if (dux >= 0.0 && dux < (double)DISK_UTILITY_W &&
-                duy >= 0.0 && duy < (double)DISK_UTILITY_H) {
+
+            /* Resizing Edge & Corner Hit-Testing */
+            int near_right = (dux >= (double)g_disk_utility_w - 10.0 && dux <= (double)g_disk_utility_w + 10.0);
+            int near_bottom = (duy >= (double)g_disk_utility_h - 10.0 && duy <= (double)g_disk_utility_h + 10.0);
+            int near_left = (dux >= -10.0 && dux <= 8.0);
+
+            if (near_right && near_bottom) {
+                g_disk_utility_resize_mode = TERM_RESIZE_BOTTOM_RIGHT;
+                g_term_focused = 0;
+                g_dirty = 1;
+                lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                pthread_mutex_unlock(&g_lock);
+                return;
+            } else if (near_left && near_bottom) {
+                g_disk_utility_resize_mode = TERM_RESIZE_BOTTOM_LEFT;
+                g_term_focused = 0;
+                g_dirty = 1;
+                lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                pthread_mutex_unlock(&g_lock);
+                return;
+            } else if (near_right) {
+                g_disk_utility_resize_mode = TERM_RESIZE_RIGHT;
+                g_term_focused = 0;
+                g_dirty = 1;
+                lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                pthread_mutex_unlock(&g_lock);
+                return;
+            } else if (near_left) {
+                g_disk_utility_resize_mode = TERM_RESIZE_LEFT;
+                g_term_focused = 0;
+                g_dirty = 1;
+                lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                pthread_mutex_unlock(&g_lock);
+                return;
+            } else if (near_bottom) {
+                g_disk_utility_resize_mode = TERM_RESIZE_BOTTOM;
+                g_term_focused = 0;
+                g_dirty = 1;
+                lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
+                pthread_mutex_unlock(&g_lock);
+                return;
+            }
+
+            if (dux >= 0.0 && dux < (double)g_disk_utility_w &&
+                duy >= 0.0 && duy < (double)g_disk_utility_h) {
                 int act;
                 du_ensure_ready();
                 g_term_focused = 0;
                 act = du_click_state(&g_du, (int)dux, (int)duy,
-                                     DISK_UTILITY_W, DISK_UTILITY_H);
+                                     g_disk_utility_w, g_disk_utility_h);
                 if (act == DU_ACT_CLOSE) {
                     g_show_disk_utility = 0;
                     g_disk_utility_dragging = 0;
+                    g_disk_utility_resize_mode = TERM_RESIZE_NONE;
                 } else if (act == DU_ACT_DRAG) {
                     g_disk_utility_dragging = 1;
+                } else if (act == DU_ACT_ZOOM) {
+                    if (!g_disk_utility_is_zoomed) {
+                        g_disk_utility_prev_x = g_disk_utility_x;
+                        g_disk_utility_prev_y = g_disk_utility_y;
+                        g_disk_utility_prev_w = g_disk_utility_w;
+                        g_disk_utility_prev_h = g_disk_utility_h;
+                        g_disk_utility_x = 30;
+                        g_disk_utility_y = MENUBAR_H + 10;
+                        g_disk_utility_w = g_w - 60;
+                        g_disk_utility_h = g_h - MENUBAR_H - 24;
+                        g_disk_utility_is_zoomed = 1;
+                    } else {
+                        g_disk_utility_x = g_disk_utility_prev_x;
+                        g_disk_utility_y = g_disk_utility_prev_y;
+                        g_disk_utility_w = g_disk_utility_prev_w;
+                        g_disk_utility_h = g_disk_utility_prev_h;
+                        g_disk_utility_is_zoomed = 0;
+                    }
                 }
                 g_dirty = 1;
                 lastx = ms.mouse_x; lasty = ms.mouse_y; lastbuttons = buttons;
@@ -2549,25 +2759,18 @@ poll_input(void)
             }
         }
 
-        if (py >= (double)(g_h - MENUBAR_H)) {
+                if (py >= (double)(g_h - MENUBAR_H)) {
+            build_current_menus();
             int clicked_menu = -1;
-            int is_term_menu = (g_show_terminal && g_term_focused);
-            if (is_term_menu) {
-                if (px >= 6 && px < 35) clicked_menu = 10;
-                else if (px >= 35 && px < 98) clicked_menu = 0;
-                else if (px >= 98 && px < 138) clicked_menu = 1;
-                else if (px >= 138 && px < 172) clicked_menu = 2;
-                else if (px >= 172 && px < 212) clicked_menu = 3;
-                else if (px >= 212 && px < 272) clicked_menu = 4;
-                else if (px >= 272 && px < 315) clicked_menu = 5;
+            if (px >= 6 && px < 38) {
+                clicked_menu = 10; /* Apple */
             } else {
-                if (px >= 6 && px < 35) clicked_menu = 10;
-                else if (px >= 35 && px < 100) clicked_menu = 0;
-                else if (px >= 100 && px < 134) clicked_menu = 1;
-                else if (px >= 134 && px < 172) clicked_menu = 2;
-                else if (px >= 172 && px < 226) clicked_menu = 3;
-                else if (px >= 226 && px < 285) clicked_menu = 4;
-                else if (px >= 285 && px < 330) clicked_menu = 5;
+                for (int m = 0; m < g_cur_menu_count; m++) {
+                    if (px >= g_cur_menus[m].x_start && px <= g_cur_menus[m].x_end) {
+                        clicked_menu = m;
+                        break;
+                    }
+                }
             }
 
             g_active_menu = (g_active_menu == clicked_menu) ? -1 : clicked_menu;
@@ -2577,149 +2780,114 @@ poll_input(void)
             pthread_mutex_unlock(&g_lock);
             return;
         } else if (g_active_menu >= 0) {
-            int is_term_menu = (g_show_terminal && g_term_focused);
-            int drop_x = 0, drop_y = 0, drop_w = 0, drop_h = 0;
+            build_current_menus();
+            SUMenuItem apple_items[4] = {
+                {"About This Mac", NULL, 0, ACT_ABOUT},
+                {NULL, NULL, 1, 0},
+                {"Restart...", NULL, 0, ACT_RESTART},
+                {"Shut Down...", NULL, 0, ACT_SHUTDOWN}
+            };
+            const SUMenuItem *items = NULL;
+            int count = 0;
+            float drop_x = 8.0f;
+
             if (g_active_menu == 10) {
-                drop_x = DROPDOWN_APPLE_X; drop_y = DROPDOWN_APPLE_Y;
-                drop_w = DROPDOWN_APPLE_W; drop_h = DROPDOWN_APPLE_H;
-            } else if (is_term_menu) {
-                if (g_active_menu == 0) { drop_x = DROPDOWN_TERM_APP_X; drop_y = DROPDOWN_TERM_APP_Y; drop_w = DROPDOWN_TERM_APP_W; drop_h = DROPDOWN_TERM_APP_H; }
-                else if (g_active_menu == 1) { drop_x = DROPDOWN_TERM_SHELL_X; drop_y = DROPDOWN_TERM_SHELL_Y; drop_w = DROPDOWN_TERM_SHELL_W; drop_h = DROPDOWN_TERM_SHELL_H; }
-                else if (g_active_menu == 2) { drop_x = DROPDOWN_TERM_EDIT_X; drop_y = DROPDOWN_TERM_EDIT_Y; drop_w = DROPDOWN_TERM_EDIT_W; drop_h = DROPDOWN_TERM_EDIT_H; }
-                else if (g_active_menu == 3) { drop_x = DROPDOWN_TERM_VIEW_X; drop_y = DROPDOWN_TERM_VIEW_Y; drop_w = DROPDOWN_TERM_VIEW_W; drop_h = DROPDOWN_TERM_VIEW_H; }
-                else if (g_active_menu == 4) { drop_x = DROPDOWN_TERM_WINDOW_X; drop_y = DROPDOWN_TERM_WINDOW_Y; drop_w = DROPDOWN_TERM_WINDOW_W; drop_h = DROPDOWN_TERM_WINDOW_H; }
-                else if (g_active_menu == 5) { drop_x = DROPDOWN_TERM_HELP_X; drop_y = DROPDOWN_TERM_HELP_Y; drop_w = DROPDOWN_TERM_HELP_W; drop_h = DROPDOWN_TERM_HELP_H; }
-            } else {
-                if (g_active_menu == 0) { drop_x = DROPDOWN_RECOVERY_X; drop_y = DROPDOWN_RECOVERY_Y; drop_w = DROPDOWN_RECOVERY_W; drop_h = DROPDOWN_RECOVERY_H; }
-                else if (g_active_menu == 1) { drop_x = DROPDOWN_FILE_X; drop_y = DROPDOWN_FILE_Y; drop_w = DROPDOWN_FILE_W; drop_h = DROPDOWN_FILE_H; }
-                else if (g_active_menu == 2) { drop_x = DROPDOWN_EDIT_X; drop_y = DROPDOWN_EDIT_Y; drop_w = DROPDOWN_EDIT_W; drop_h = DROPDOWN_EDIT_H; }
-                else if (g_active_menu == 3) { drop_x = DROPDOWN_UTILITIES_X; drop_y = DROPDOWN_UTILITIES_Y; drop_w = DROPDOWN_UTILITIES_W; drop_h = DROPDOWN_UTILITIES_H; }
-                else if (g_active_menu == 4) { drop_x = DROPDOWN_WINDOW_X; drop_y = DROPDOWN_WINDOW_Y; drop_w = DROPDOWN_WINDOW_W; drop_h = DROPDOWN_WINDOW_H; }
-                else if (g_active_menu == 5) { drop_x = DROPDOWN_HELP_X; drop_y = DROPDOWN_HELP_Y; drop_w = DROPDOWN_HELP_W; drop_h = DROPDOWN_HELP_H; }
+                items = apple_items; count = 4; drop_x = 8.0f;
+            } else if (g_active_menu < g_cur_menu_count) {
+                items = g_cur_menus[g_active_menu].items;
+                count = g_cur_menus[g_active_menu].item_count;
+                drop_x = g_cur_menus[g_active_menu].x_start;
             }
 
-            double mx = px - drop_x;
-            double my = ((double)g_h - py) - drop_y;
-            int clicked_row = -1;
-            if (mx >= 0 && mx < drop_w && my >= 0 && my < drop_h) {
-                if (g_active_menu == 10) {
-                    if (my >= 4 && my < 25) clicked_row = 0;
-                    else if (my >= 32 && my < 53) clicked_row = 2;
-                    else if (my >= 53 && my < 74) clicked_row = 3;
-                } else if (is_term_menu) {
-                    if (g_active_menu == 0) {
-                        if (my >= 4 && my < 25) clicked_row = 0;
-                        else if (my >= 32 && my < 53) clicked_row = 2;
-                        else if (my >= 60 && my < 81) clicked_row = 4;
-                        else if (my >= 88 && my < 109) clicked_row = 6;
-                    } else if (g_active_menu == 1) {
-                        if (my >= 4 && my < 25) clicked_row = 0;
-                        else if (my >= 25 && my < 46) clicked_row = 1;
-                    } else if (g_active_menu == 2) {
-                        if (my >= 4 && my < 25) clicked_row = 0;
-                        else if (my >= 25 && my < 46) clicked_row = 1;
-                        else if (my >= 46 && my < 67) clicked_row = 2;
-                    } else if (g_active_menu == 3) {
-                        if (my >= 4 && my < 25) clicked_row = 0;
-                        else if (my >= 25 && my < 46) clicked_row = 1;
-                    } else if (g_active_menu == 4) {
-                        if (my >= 4 && my < 25) clicked_row = 0;
-                        else if (my >= 25 && my < 46) clicked_row = 1;
-                        else if (my >= 53 && my < 74) clicked_row = 3;
-                    } else if (g_active_menu == 5) {
-                        if (my >= 4 && my < 25) clicked_row = 0;
-                    }
-                } else {
-                    if (g_active_menu == 0) {
-                        if (my >= 4 && my < 25) clicked_row = 0;
-                    } else if (g_active_menu == 1) {
-                        if (my >= 4 && my < 25) clicked_row = 0;
-                    } else if (g_active_menu == 3) {
-                        if (my >= 4 && my < 25) clicked_row = 0;
-                        else if (my >= 25 && my < 46) clicked_row = 1;
-                        else if (my >= 46 && my < 67) clicked_row = 2;
-                        else if (my >= 67 && my < 88) clicked_row = 3;
-                    } else if (g_active_menu == 4) {
-                        if (my >= 53 && my < 74) clicked_row = 3;
-                    } else if (g_active_menu == 5) {
-                        if (my >= 4 && my < 25) clicked_row = 0;
+            if (items && count > 0) {
+                float drop_y = 26.0f;
+                float drop_w = 216.0f;
+                float drop_h = 10.0f;
+                for (int r = 0; r < count; r++) {
+                    drop_h += items[r].is_sep ? 9.0f : 23.0f;
+                }
+                if (drop_x + drop_w > (float)g_w - 8.0f) drop_x = (float)g_w - drop_w - 8.0f;
+
+                double mx = px - drop_x;
+                double my = ((double)g_h - py) - drop_y;
+                int act_id = ACT_NONE;
+
+                if (mx >= 0 && mx < drop_w && my >= 0 && my < drop_h) {
+                    float cur_iy = 5.0f;
+                    for (int r = 0; r < count; r++) {
+                        float rh = items[r].is_sep ? 9.0f : 23.0f;
+                        if (!items[r].is_sep && my >= cur_iy && my < cur_iy + rh) {
+                            act_id = items[r].action_id;
+                            break;
+                        }
+                        cur_iy += rh;
                     }
                 }
-            }
-            if (clicked_row < 0) clicked_row = g_hovered_row;
 
-            /* Execute action of selected menu row */
-            if (g_active_menu == 10) {
-                if (clicked_row == 2) {
+                if (act_id == ACT_ABOUT) {
+                    g_show_about = 1;
+                    g_about_x = (g_w - ABOUT_WINDOW_W) / 2.0;
+                    g_about_y = (g_h - ABOUT_WINDOW_H) / 2.0;
+                } else if (act_id == ACT_RESTART) {
                     wslog("WindowServer: Apple Menu -> Restart clicked! Syncing and rebooting...");
                     sync();
                     reboot(0x400);
-                } else if (clicked_row == 3) {
+                } else if (act_id == ACT_SHUTDOWN) {
                     wslog("WindowServer: Apple Menu -> Shut Down clicked! Syncing and halting...");
                     sync();
-                    reboot(0x400 | 0x08); /* RB_HALT */
-                }
-            } else if (is_term_menu) {
-                if (g_active_menu == 0) {
-                    if (clicked_row == 0) {
-                        g_show_about = 1; g_about_x = (g_w - ABOUT_WINDOW_W) / 2.0; g_about_y = (g_h - ABOUT_WINDOW_H) / 2.0;
-                    } else if (clicked_row == 4) {
-                        term_exec_command("clear");
-                    } else if (clicked_row == 6) {
-                        g_show_terminal = 0; g_term_focused = 0;
-                    }
-                } else if (g_active_menu == 1) {
-                    if (clicked_row == 0) {
-                        g_term_x = (g_w - (g_term_body_w + TERM_PAD * 2)) / 2; g_term_y = 60; g_term_redraw_needed = 1;
-                    } else if (clicked_row == 1) {
-                        g_show_terminal = 0; g_term_focused = 0;
-                    }
-                } else if (g_active_menu == 4) {
-                    if (clicked_row == 0) {
-                        g_show_terminal = 0; g_term_focused = 0;
-                    } else if (clicked_row == 1) {
-                        /* Toggle zoom */
-                        if (!g_term_is_zoomed) {
-                            g_term_prev_x = g_term_x; g_term_prev_y = g_term_y;
-                            g_term_prev_w = g_term_body_w; g_term_prev_h = g_term_body_h;
-                            g_term_x = 30; g_term_y = MENUBAR_H + 8;
-                            g_term_body_w = g_w - 60 - TERM_PAD * 2; g_term_body_h = g_h - MENUBAR_H - 24 - TERM_PAD * 2;
-                            g_term_is_zoomed = 1;
+                    reboot(0x400 | 0x08);
+                } else if (act_id == ACT_TERMINAL) {
+                    g_show_terminal = 1;
+                    g_term_focused = 1;
+                    g_term_x = (g_w - (g_term_body_w + TERM_PAD * 2)) / 2;
+                    g_term_y = 60;
+                    g_term_redraw_needed = 1;
+                } else if (act_id == ACT_DISK_UTILITY) {
+                    g_show_disk_utility = 1;
+                } else if (act_id == ACT_QUIT_APP || act_id == ACT_CLOSE_WIN) {
+                    if (g_show_disk_utility) g_show_disk_utility = 0;
+                    else if (g_show_terminal) { g_show_terminal = 0; g_term_focused = 0; }
+                } else if (act_id == ACT_ZOOM_WIN) {
+                    if (g_show_disk_utility) {
+                        if (!g_disk_utility_is_zoomed) {
+                            g_disk_utility_prev_x = g_disk_utility_x;
+                            g_disk_utility_prev_y = g_disk_utility_y;
+                            g_disk_utility_prev_w = g_disk_utility_w;
+                            g_disk_utility_prev_h = g_disk_utility_h;
+                            g_disk_utility_x = 30;
+                            g_disk_utility_y = MENUBAR_H + 10;
+                            g_disk_utility_w = g_w - 60;
+                            g_disk_utility_h = g_h - MENUBAR_H - 24;
+                            g_disk_utility_is_zoomed = 1;
                         } else {
-                            g_term_x = g_term_prev_x; g_term_y = g_term_prev_y;
-                            g_term_body_w = g_term_prev_w; g_term_body_h = g_term_prev_h;
-                            g_term_is_zoomed = 0;
+                            g_disk_utility_x = g_disk_utility_prev_x;
+                            g_disk_utility_y = g_disk_utility_prev_y;
+                            g_disk_utility_w = g_disk_utility_prev_w;
+                            g_disk_utility_h = g_disk_utility_prev_h;
+                            g_disk_utility_is_zoomed = 0;
                         }
-                        g_term_redraw_needed = 1;
                     }
-                }
-            } else {
-                if (g_active_menu == 0) {
-                    if (clicked_row == 0) {
-                        g_show_about = 1;
-                        g_about_x = ABOUT_WINDOW_X;
-                        g_about_y = ABOUT_WINDOW_Y;
-                    }
-                } else if (g_active_menu == 3) {
-                    if (clicked_row == 0 || clicked_row == 1) {
-                        g_show_disk_utility = 1;
-                        g_dirty = 1;
-                    } else if (clicked_row == 2) {
-                        wslog("WindowServer: Utilities -> Terminal clicked! Launching Terminal...");
-                        g_show_terminal = 1;
-                        g_term_focused = 1;
-                        g_term_x = (g_w - (g_term_body_w + TERM_PAD * 2)) / 2;
-                        g_term_y = 60;
-                        g_term_redraw_needed = 1;
-                    }
+                } else if (act_id == ACT_FIRST_AID) {
+                    g_du.sheet = DU_SHEET_FIRST_AID;
+                } else if (act_id == ACT_PARTITION) {
+                    g_du.sheet = DU_SHEET_PARTITION;
+                } else if (act_id == ACT_ERASE) {
+                    g_du.sheet = DU_SHEET_ERASE;
+                } else if (act_id == ACT_VIEW_ALL) {
+                    g_du.view_mode = DU_VIEW_ALL_DEVICES;
+                } else if (act_id == ACT_VIEW_VOLUMES) {
+                    g_du.view_mode = DU_VIEW_VOLUMES_ONLY;
+                } else if (act_id == ACT_TOGGLE_SIDEBAR) {
+                    g_du.sidebar = !g_du.sidebar;
                 }
             }
+
             g_active_menu = -1;
             g_hovered_row = -1;
             g_dirty = 1;
         }
 
-        if (under && under->surface) {
+if (under && under->surface) {
             g_term_focused = 0;
             g_dirty = 1;
             int win_x = (int)(px - under->x);
@@ -2785,6 +2953,7 @@ poll_input(void)
             g_disk_utility_dragging = 0;
             g_dirty = 1;
         }
+        g_disk_utility_resize_mode = TERM_RESIZE_NONE;
         if (g_recovery_selected_row == 4) {
             g_recovery_selected_row = 1;
             g_dirty = 1;
@@ -2793,13 +2962,40 @@ poll_input(void)
 
     /* Recovery Window Dragging (Fixed size, not resizable) */
     
+    /* Disk Utility Dragging */
     if (g_show_disk_utility && g_disk_utility_dragging && (dx != 0 || dy != 0)) {
         g_disk_utility_x += dx;
         g_disk_utility_y -= dy;
         if (g_disk_utility_x < 0) g_disk_utility_x = 0;
-        if (g_disk_utility_x > g_w - DISK_UTILITY_W) g_disk_utility_x = g_w - DISK_UTILITY_W;
+        if (g_disk_utility_x > g_w - g_disk_utility_w) g_disk_utility_x = g_w - g_disk_utility_w;
         if (g_disk_utility_y < MENUBAR_H) g_disk_utility_y = MENUBAR_H;
-        if (g_disk_utility_y > g_h - DISK_UTILITY_H) g_disk_utility_y = g_h - DISK_UTILITY_H;
+        if (g_disk_utility_y > g_h - g_disk_utility_h) g_disk_utility_y = g_h - g_disk_utility_h;
+        g_dirty = 1;
+    }
+
+    /* Disk Utility Resizing */
+    if (g_show_disk_utility && g_disk_utility_resize_mode != TERM_RESIZE_NONE && (dx != 0 || dy != 0)) {
+        if (g_disk_utility_resize_mode == TERM_RESIZE_RIGHT) {
+            g_disk_utility_w += (int)dx;
+        } else if (g_disk_utility_resize_mode == TERM_RESIZE_BOTTOM) {
+            g_disk_utility_h -= (int)dy;
+        } else if (g_disk_utility_resize_mode == TERM_RESIZE_BOTTOM_RIGHT) {
+            g_disk_utility_w += (int)dx;
+            g_disk_utility_h -= (int)dy;
+        } else if (g_disk_utility_resize_mode == TERM_RESIZE_LEFT) {
+            g_disk_utility_x += dx;
+            g_disk_utility_w -= (int)dx;
+        } else if (g_disk_utility_resize_mode == TERM_RESIZE_BOTTOM_LEFT) {
+            g_disk_utility_x += dx;
+            g_disk_utility_w -= (int)dx;
+            g_disk_utility_h -= (int)dy;
+        }
+
+        if (g_disk_utility_w < 780) g_disk_utility_w = 780;
+        if (g_disk_utility_w > g_w - 40) g_disk_utility_w = g_w - 40;
+        if (g_disk_utility_h < 460) g_disk_utility_h = 460;
+        if (g_disk_utility_h > g_h - MENUBAR_H - 24) g_disk_utility_h = g_h - MENUBAR_H - 24;
+
         g_dirty = 1;
     }
 
@@ -2851,6 +3047,31 @@ poll_input(void)
 
         g_term_redraw_needed = 1;
         g_dirty = 1;
+    }
+
+    /* Dynamic Cursor Update on Hover over Disk Utility Window */
+    if (g_show_disk_utility) {
+        double dux = px - g_disk_utility_x;
+        double duy = ((double)g_h - py) - g_disk_utility_y;
+        if (dux >= -8.0 && dux <= (double)g_disk_utility_w + 10.0 &&
+            duy >= -8.0 && duy <= (double)g_disk_utility_h + 10.0) {
+            int near_r = (dux >= (double)g_disk_utility_w - 8.0);
+            int near_b = (duy >= (double)g_disk_utility_h - 8.0);
+            int near_l = (dux <= 6.0);
+
+            int target_cursor = WSCURSOR_ARROW;
+            if (near_r && near_b) target_cursor = WSCURSOR_RESIZE_NWSE;
+            else if (near_l && near_b) target_cursor = WSCURSOR_RESIZE_NESW;
+            else if (near_r || near_l) target_cursor = WSCURSOR_RESIZE_LEFTRIGHT;
+            else if (near_b) target_cursor = WSCURSOR_RESIZE_UPDOWN;
+
+            if (g_current_cursor_id != target_cursor) {
+                cursor_restore();
+                g_current_cursor_id = target_cursor;
+                composite_cursor();
+                g_dirty = 1;
+            }
+        }
     }
 
     /* Dynamic Cursor Update on Hover over Terminal Window */
@@ -3804,8 +4025,8 @@ main(int argc, char **argv)
     g_term_x = (g_w - (g_term_body_w + 32)) / 2.0;
     g_recovery_x = (g_w - RECOVERY_UI_W) / 2.0;
     g_recovery_y = (g_h - RECOVERY_UI_H) / 2.0;
-    g_disk_utility_x = (g_w - DISK_UTILITY_W) / 2.0;
-    g_disk_utility_y = (g_h - DISK_UTILITY_H) / 2.0;
+    g_disk_utility_x = (g_w - g_disk_utility_w) / 2.0;
+    g_disk_utility_y = (g_h - g_disk_utility_h) / 2.0;
     ws_metal_init();
 
     /* publish the first frame before any client connects */

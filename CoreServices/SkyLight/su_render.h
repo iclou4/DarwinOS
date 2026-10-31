@@ -33,6 +33,7 @@ void su_fill_rect(SUCanvas *c, float x, float y, float w, float h, uint32_t argb
 void su_fill_rrect(SUCanvas *c, float x, float y, float w, float h, float r, uint32_t argb);
 void su_stroke_rrect(SUCanvas *c, float x, float y, float w, float h, float r,
                      float lw, uint32_t argb);
+void su_stroke_circle(SUCanvas *c, float cx, float cy, float r, float lw, uint32_t argb);
 void su_fill_circle(SUCanvas *c, float cx, float cy, float r, uint32_t argb);
 void su_fill_pie_slice(SUCanvas *c, float cx, float cy, float r_in, float r_out, float a0, float a1, uint32_t argb);
 void su_shadow_rrect(SUCanvas *c, float x, float y, float w, float h, float r,
@@ -71,6 +72,8 @@ void su_text_clipped(SUCanvas *c, SUFont f, float x, float capTop, float maxw, c
 /* horizontally centre the run on cx */
 void su_text_center(SUCanvas *c, SUFont f, float cx, float capTop, const char *utf8,
                     uint32_t argb);
+void su_text_clipped_mid(SUCanvas *c, SUFont f, float x, float cy, float maxw, const char *utf8, uint32_t argb);
+void su_text_right_mid(SUCanvas *c, SUFont f, float xRight, float cy, const char *utf8, uint32_t argb);
 void su_text_center_mid(SUCanvas *c, SUFont f, float cx, float cy, const char *utf8,
                         uint32_t argb);
 
